@@ -1,8 +1,5 @@
 <div class="prayer-times-page">
-  <app-header
-    [locationName]="locationName()"
-    [dateLabel]="dateLabel()"
-  />
+  <app-header [locationName]="locationName()" [dateLabel]="dateLabel()" />
 
   <main class="page-content">
     <section class="city-section">
@@ -24,8 +21,32 @@
         <p>{{ error() }}</p>
       </div>
     } @else {
-      <section class="prayer-list">
-        @for (prayer of prayerTimes(); track prayer.name) {
+      <!-- Countdown to next prayer -->
+      @if (countdown(); as cd) {
+        <section class="countdown-section" id="countdown">
+          <span class="countdown-label">{{ cd.name }}</span>
+          <div class="countdown-timer">
+            <div class="countdown-segment">
+              <span class="countdown-value">{{ pad(cd.hours) }}</span>
+              <span class="countdown-unit">sati</span>
+            </div>
+            <span class="countdown-sep">:</span>
+            <div class="countdown-segment">
+              <span class="countdown-value">{{ pad(cd.minutes) }}</span>
+              <span class="countdown-unit">min</span>
+            </div>
+            <span class="countdown-sep">:</span>
+            <div class="countdown-segment">
+              <span class="countdown-value">{{ pad(cd.seconds) }}</span>
+              <span class="countdown-unit">sek</span>
+            </div>
+          </div>
+        </section>
+      }
+
+      <!-- Prayer time cards -->
+      <section class="prayer-grid">
+        @for (prayer of displayTimes(); track prayer.name) {
           <app-prayer-card [prayer]="prayer" />
         }
       </section>

@@ -1,5 +1,5 @@
 .prayer-times-page {
-  min-height: 100vh;
+  min-height: 100dvh;
   display: flex;
   flex-direction: column;
   background: var(--surface);
@@ -7,32 +7,93 @@
 
 .page-content {
   flex: 1;
-  padding: 1.25rem 1rem;
-  max-width: 520px;
+  padding: 1.25rem 1rem 2rem;
+  max-width: 960px;
   width: 100%;
   margin: 0 auto;
   box-sizing: border-box;
 }
 
+/* ===== City selector ===== */
 .city-section {
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.25rem;
 }
 
-.prayer-list {
+/* ===== Countdown ===== */
+.countdown-section {
+  text-align: center;
+  padding: 1.5rem 1rem;
+  margin-bottom: 1.5rem;
+  background: var(--accent-surface);
+  border: 1px solid rgba(45, 212, 168, 0.15);
+  border-radius: 16px;
+}
+
+.countdown-label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin-bottom: 0.75rem;
+}
+
+.countdown-timer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+}
+
+.countdown-segment {
   display: flex;
   flex-direction: column;
-  gap: 0.6rem;
+  align-items: center;
+  min-width: 56px;
 }
 
-/* Loading state */
+.countdown-value {
+  font-family: var(--font-heading);
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+
+.countdown-unit {
+  font-size: 0.65rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-top: 0.25rem;
+}
+
+.countdown-sep {
+  font-family: var(--font-heading);
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  line-height: 1;
+  padding-bottom: 1rem;
+}
+
+/* ===== Prayer grid ===== */
+.prayer-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.5rem;
+}
+
+/* ===== Loading ===== */
 .loading-state {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 0.75rem;
-  padding: 3rem 0;
+  padding: 4rem 0;
   color: var(--text-secondary);
-  font-size: 0.9rem;
 }
 
 .spinner {
@@ -45,18 +106,16 @@
 }
 
 @keyframes spin {
-  to {
-    transform: rotate(360deg);
-  }
+  to { transform: rotate(360deg); }
 }
 
-/* Error state */
+/* ===== Error ===== */
 .error-state {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 0.5rem;
-  padding: 3rem 0;
+  padding: 4rem 0;
   text-align: center;
 }
 
@@ -68,5 +127,37 @@
 .error-state p {
   margin: 0;
   color: var(--text-secondary);
-  font-size: 0.9rem;
+}
+
+/* ===== Tablet: 2 columns ===== */
+@media (min-width: 580px) {
+  .prayer-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.6rem;
+  }
+
+  .countdown-value {
+    font-size: 3rem;
+  }
+}
+
+/* ===== Desktop: 4 columns ===== */
+@media (min-width: 900px) {
+  .page-content {
+    padding: 1.5rem 2rem 2.5rem;
+  }
+
+  .prayer-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.75rem;
+  }
+
+  .countdown-section {
+    padding: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .countdown-value {
+    font-size: 3.5rem;
+  }
 }

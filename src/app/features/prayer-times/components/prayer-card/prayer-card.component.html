@@ -4,16 +4,19 @@
   [class.passed]="prayer().isPassed"
   [class.calculated]="prayer().isCalculated"
 >
-  <div class="prayer-name">
-    {{ prayer().name }}
-    @if (prayer().isCalculated) {
-      <span class="calc-badge" title="Izračunato vrijeme">✦</span>
-    }
-  </div>
-  <div class="prayer-time">
-    {{ prayer().time }}
-  </div>
   @if (prayer().isActive) {
-    <div class="active-indicator"></div>
+    <div class="active-bar"></div>
   }
+
+  <div class="card-top">
+    <span class="prayer-name">
+      {{ prayer().name }}
+      @if (prayer().isCalculated) {
+        <span class="calc-badge">✦</span>
+      }
+    </span>
+    <span class="prayer-time">{{ prayer().time }}</span>
+  </div>
+
+  <span class="prayer-relative">{{ prayer().relativeText }}</span>
 </div>
