@@ -2,7 +2,7 @@ import { Injectable, inject } from '@angular/core';
 import { Observable, forkJoin, map } from 'rxjs';
 import { VaktijaApiService } from './vaktija-api.service';
 import { PrayerTimeData, VaktijaApiResponse } from '../models/prayer-time.model';
-import { PRAYER_NAMES, CALCULATED_NAMES } from '../constants/prayer-names.constant';
+import { PRAYER_NAMES, CALCULATED_NAMES, CALCULATED_TOOLTIPS } from '../constants/prayer-names.constant';
 
 @Injectable({ providedIn: 'root' })
 export class PrayerTimeService {
@@ -63,12 +63,14 @@ export class PrayerTimeService {
         time: this.minutesToTime(krajJacijeMin),
         minutes: krajJacijeMin,
         isCalculated: true,
+        tooltip: CALCULATED_TOOLTIPS.KRAJ_JACIJE,
       },
       {
         name: CALCULATED_NAMES.ZADNJA_TRECINA_NOCI,
         time: this.minutesToTime(zadnjaTrecinaMin),
         minutes: zadnjaTrecinaMin,
         isCalculated: true,
+        tooltip: CALCULATED_TOOLTIPS.ZADNJA_TRECINA_NOCI,
       },
     ];
 

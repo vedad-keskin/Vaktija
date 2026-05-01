@@ -9,4 +9,5 @@ import { Component, input } from '@angular/core';
 export class HeaderComponent {
   readonly locationName = input<string>('');
   readonly dateLabel = input<string>('');
+  readonly hijriDate = input<string>('');
 }

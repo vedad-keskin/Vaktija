@@ -1,18 +1,23 @@
 <header class="app-header">
-  <div class="header-brand">
+  <div class="header-left">
     <img
       src="assets/icons/logo-small.png"
       alt="Vaktija logo"
       class="header-logo"
     />
-    <h1 class="header-title">Vaktija</h1>
+    <div class="header-brand">
+      <h1 class="header-title">Vaktija</h1>
+      @if (locationName()) {
+        <span class="header-location">{{ locationName() }}</span>
+      }
+    </div>
   </div>
-  <div class="header-info">
-    @if (locationName()) {
-      <span class="header-location">{{ locationName() }}</span>
-    }
+  <div class="header-right">
     @if (dateLabel()) {
       <span class="header-date">{{ dateLabel() }}</span>
+    }
+    @if (hijriDate()) {
+      <span class="header-hijri">{{ hijriDate() }}</span>
     }
   </div>
 </header>

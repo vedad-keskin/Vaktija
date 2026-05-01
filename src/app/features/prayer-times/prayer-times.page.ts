@@ -27,6 +27,13 @@ export class PrayerTimesPage implements OnInit, OnDestroy {
   protected readonly isLoading = signal(true);
   protected readonly error = signal<string | null>(null);
   protected readonly now = signal(new Date());
+  protected readonly hijriDate = signal('');
+
+  private static readonly HIJRI_MONTHS: readonly string[] = [
+    'Muharrem', 'Safer', "Rebi'u-l-evvel", "Rebi'u-l-ahir",
+    "Džumade-l-ula", "Džumade-l-ahira", 'Redžeb', "Ša'ban",
+    'Ramazan', 'Ševval', "Zu-l-ka'de", "Zu-l-hidždže",
+  ];
 
   /** All 8 prayer times with dynamic isPassed/isActive/relativeText */
   protected readonly displayTimes = computed<PrayerTime[]>(() => {
@@ -89,6 +96,26 @@ export class PrayerTimesPage implements OnInit, OnDestroy {
 
     // Tick every second for countdown + relative times
     this.tickInterval = setInterval(() => this.now.set(new Date()), 1000);
+
+    this.hijriDate.set(this.calculateHijriDate());
+  }
+
+  private calculateHijriDate(): string {
+    const date = new Date();
+    const options: Intl.DateTimeFormatOptions = {
+      calendar: 'islamic-uma',
+      day: 'numeric',
+      month: 'numeric',
+      year: 'numeric',
+    };
+    const hijriFormatter = new Intl.DateTimeFormat('en-u-ca-islamic-uma', options);
+    const parts = hijriFormatter.formatToParts(date);
+
+    const day = parts.find((p) => p.type === 'day')?.value;
+    const monthIndex = parseInt(parts.find((p) => p.type === 'month')?.value || '1') - 1;
+    const year = parts.find((p) => p.type === 'year')?.value;
+
+    return `${day}. ${PrayerTimesPage.HIJRI_MONTHS[monthIndex]} ${year}.`;
   }
 
   ngOnDestroy(): void {

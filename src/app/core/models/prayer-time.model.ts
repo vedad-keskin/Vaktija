@@ -4,6 +4,7 @@ export interface PrayerTimeData {
   time: string;
   minutes: number;
   isCalculated: boolean;
+  tooltip?: string;
 }
 
 /** Display data with dynamic fields computed in the page */

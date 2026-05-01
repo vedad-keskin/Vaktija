@@ -9,43 +9,56 @@
   gap: 0.75rem;
 }
 
-.header-brand {
+.header-left {
   display: flex;
   align-items: center;
   gap: 0.75rem;
 }
 
 .header-logo {
-  width: 40px;
-  height: 40px;
+  width: 38px;
+  height: 38px;
   object-fit: contain;
   filter: invert(1);
 }
 
+.header-brand {
+  display: flex;
+  flex-direction: column;
+}
+
 .header-title {
   font-family: var(--font-heading);
-  font-size: 1.5rem;
+  font-size: 1.35rem;
   font-weight: 700;
   color: var(--text-primary);
   margin: 0;
   letter-spacing: 0.5px;
+  line-height: 1.2;
 }
 
-.header-info {
+.header-location {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--accent);
+  margin-top: 0.1rem;
+}
+
+.header-right {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
   gap: 0.15rem;
 }
 
-.header-location {
-  font-size: 0.95rem;
-  font-weight: 600;
-  color: var(--accent);
-}
-
 .header-date {
-  font-size: 0.8rem;
+  font-size: 0.82rem;
   color: var(--text-secondary);
   text-transform: capitalize;
+}
+
+.header-hijri {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  font-style: italic;
 }
