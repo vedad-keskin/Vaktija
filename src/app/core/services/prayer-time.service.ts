@@ -2,7 +2,7 @@ import { Injectable, inject } from '@angular/core';
 import { Observable, forkJoin, map } from 'rxjs';
 import { VaktijaApiService } from './vaktija-api.service';
 import { PrayerTimeData, VaktijaApiResponse } from '../models/prayer-time.model';
-import { PRAYER_NAMES, CALCULATED_NAMES, CALCULATED_TOOLTIPS } from '../constants/prayer-names.constant';
+import { PRAYER_NAMES, CALCULATED_NAMES, CALCULATED_TOOLTIPS, PRAYER_TOOLTIPS } from '../constants/prayer-names.constant';
 
 @Injectable({ providedIn: 'root' })
 export class PrayerTimeService {
@@ -41,21 +41,26 @@ export class PrayerTimeService {
     today: VaktijaApiResponse,
     tomorrow: VaktijaApiResponse
   ): PrayerTimeData[] {
-    // Map 6 standard times
-    const standardTimes: PrayerTimeData[] = today.vakat.map((timeStr, index) => ({
-      name: PRAYER_NAMES[index],
-      time: timeStr,
-      minutes: this.timeToMinutes(timeStr),
-      isCalculated: false,
-    }));
+    // Map 6 standard times, attaching tooltips from PRAYER_TOOLTIPS if available
+    const standardTimes: PrayerTimeData[] = today.vakat.map((timeStr, index) => {
+      const name = PRAYER_NAMES[index];
+      return {
+        name,
+        time: timeStr,
+        minutes: this.timeToMinutes(timeStr),
+        isCalculated: false,
+        ...(PRAYER_TOOLTIPS[name] ? { tooltip: PRAYER_TOOLTIPS[name] } : {}),
+      };
+    });
 
-    // Calculate night-based times using tomorrow's Zora
-    const jacijaMinutes = this.timeToMinutes(today.vakat[5]);
+    // Night = akšam (sunset) → tomorrow's prava zora (true dawn / Fajr)
+    // This is the correct Islamic definition of "night" (layl)
+    const aksamMinutes = this.timeToMinutes(today.vakat[4]);
     const tomorrowZoraMinutes = this.timeToMinutes(tomorrow.vakat[0]);
-    const nightDuration = (24 * 60 - jacijaMinutes) + tomorrowZoraMinutes;
+    const nightDuration = (24 * 60 - aksamMinutes) + tomorrowZoraMinutes;
 
-    const krajJacijeMin = (jacijaMinutes + Math.floor(nightDuration / 2)) % (24 * 60);
-    const zadnjaTrecinaMin = (jacijaMinutes + Math.floor((2 / 3) * nightDuration)) % (24 * 60);
+    const krajJacijeMin = (aksamMinutes + Math.floor(nightDuration / 2)) % (24 * 60);
+    const zadnjaTrecinaMin = (aksamMinutes + Math.floor((2 / 3) * nightDuration)) % (24 * 60);
 
     const calculated: PrayerTimeData[] = [
       {
