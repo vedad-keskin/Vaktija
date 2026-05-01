@@ -1,97 +1,73 @@
 import { Injectable, inject } from '@angular/core';
-import { Observable, forkJoin, map } from 'rxjs';
-import { VaktijaApiService } from './vaktija-api.service';
-import { PrayerTimeData, VaktijaApiResponse } from '../models/prayer-time.model';
-import { PRAYER_NAMES, CALCULATED_NAMES, CALCULATED_TOOLTIPS, PRAYER_TOOLTIPS } from '../constants/prayer-names.constant';
+import { Observable, map } from 'rxjs';
+import { PrayerApiService } from './vaktija-api.service';
+import { PrayerTimeData, AladhanApiResponse } from '../models/prayer-time.model';
+import { TIMING_DISPLAY_MAP, PRAYER_TOOLTIPS, HIJRI_MONTHS } from '../constants/prayer-names.constant';
 
 @Injectable({ providedIn: 'root' })
 export class PrayerTimeService {
-  private readonly api = inject(VaktijaApiService);
+  private readonly api = inject(PrayerApiService);
 
   /**
-   * Returns all 8 prayer times for today, sorted chronologically by minutes.
-   * Fetches both today and tomorrow for precise night calculations.
+   * Returns all 8 prayer times for today, sorted chronologically.
+   * Aladhan API with custom method (14.6° = prava zora) provides
+   * Fajr, Midnight, and Lastthird directly.
    */
-  getTodayPrayerTimes(locationId: number): Observable<{
+  getTodayPrayerTimes(lat: number, lng: number, cityName: string): Observable<{
     prayerTimes: PrayerTimeData[];
     locationName: string;
     dateLabel: string;
+    hijriDate: string;
   }> {
-    const tomorrow = new Date();
-    tomorrow.setDate(tomorrow.getDate() + 1);
-
-    return forkJoin({
-      today: this.api.getPrayerTimes(locationId),
-      tomorrow: this.api.getPrayerTimesForDate(
-        locationId,
-        tomorrow.getFullYear(),
-        tomorrow.getMonth() + 1,
-        tomorrow.getDate()
-      ),
-    }).pipe(
-      map(({ today, tomorrow }) => ({
-        prayerTimes: this.buildPrayerTimes(today, tomorrow),
-        locationName: today.lokacija,
-        dateLabel: today.datum[1],
+    return this.api.getPrayerTimes(lat, lng).pipe(
+      map((res) => ({
+        prayerTimes: this.buildPrayerTimes(res),
+        locationName: cityName,
+        dateLabel: this.buildDateLabel(),
+        hijriDate: this.buildHijriDate(res),
       }))
     );
   }
 
-  private buildPrayerTimes(
-    today: VaktijaApiResponse,
-    tomorrow: VaktijaApiResponse
-  ): PrayerTimeData[] {
-    // Map 6 standard times, attaching tooltips from PRAYER_TOOLTIPS if available
-    const standardTimes: PrayerTimeData[] = today.vakat.map((timeStr, index) => {
-      const name = PRAYER_NAMES[index];
+  private buildPrayerTimes(res: AladhanApiResponse): PrayerTimeData[] {
+    const timings = res.data.timings;
+
+    const times: PrayerTimeData[] = TIMING_DISPLAY_MAP.map((entry) => {
+      const rawTime = timings[entry.key] ?? '00:00';
+      const cleanTime = this.cleanTime(rawTime);
       return {
-        name,
-        time: timeStr,
-        minutes: this.timeToMinutes(timeStr),
-        isCalculated: false,
-        ...(PRAYER_TOOLTIPS[name] ? { tooltip: PRAYER_TOOLTIPS[name] } : {}),
+        name: entry.name,
+        time: cleanTime,
+        minutes: this.timeToMinutes(cleanTime),
+        isCalculated: entry.isCalculated,
+        ...(PRAYER_TOOLTIPS[entry.name] ? { tooltip: PRAYER_TOOLTIPS[entry.name] } : {}),
       };
     });
 
-    // Night = akšam (sunset) → tomorrow's prava zora (true dawn / Fajr)
-    // This is the correct Islamic definition of "night" (layl)
-    const aksamMinutes = this.timeToMinutes(today.vakat[4]);
-    const tomorrowZoraMinutes = this.timeToMinutes(tomorrow.vakat[0]);
-    const nightDuration = (24 * 60 - aksamMinutes) + tomorrowZoraMinutes;
+    return times.sort((a, b) => a.minutes - b.minutes);
+  }
 
-    const krajJacijeMin = (aksamMinutes + Math.floor(nightDuration / 2)) % (24 * 60);
-    const zadnjaTrecinaMin = (aksamMinutes + Math.floor((2 / 3) * nightDuration)) % (24 * 60);
+  private buildDateLabel(): string {
+    return new Intl.DateTimeFormat('bs-Latn-BA', {
+      weekday: 'long',
+      day: 'numeric',
+      month: 'long',
+      year: 'numeric',
+    }).format(new Date());
+  }
 
-    const calculated: PrayerTimeData[] = [
-      {
-        name: CALCULATED_NAMES.KRAJ_JACIJE,
-        time: this.minutesToTime(krajJacijeMin),
-        minutes: krajJacijeMin,
-        isCalculated: true,
-        tooltip: CALCULATED_TOOLTIPS.KRAJ_JACIJE,
-      },
-      {
-        name: CALCULATED_NAMES.ZADNJA_TRECINA_NOCI,
-        time: this.minutesToTime(zadnjaTrecinaMin),
-        minutes: zadnjaTrecinaMin,
-        isCalculated: true,
-        tooltip: CALCULATED_TOOLTIPS.ZADNJA_TRECINA_NOCI,
-      },
-    ];
+  private buildHijriDate(res: AladhanApiResponse): string {
+    const h = res.data.date.hijri;
+    const monthName = HIJRI_MONTHS[h.month.number - 1] ?? h.month.en;
+    return `${h.day}. ${monthName} ${h.year}.`;
+  }
 
-    // Sort all 8 times by minutes ascending (chronological from midnight)
-    return [...standardTimes, ...calculated].sort((a, b) => a.minutes - b.minutes);
+  private cleanTime(raw: string): string {
+    return raw.replace(/\s*\(.*\)$/, '').trim();
   }
 
   private timeToMinutes(time: string): number {
     const [hours, minutes] = time.split(':').map(Number);
     return hours * 60 + minutes;
-  }
-
-  private minutesToTime(totalMinutes: number): string {
-    const normalized = ((totalMinutes % (24 * 60)) + 24 * 60) % (24 * 60);
-    const hours = Math.floor(normalized / 60);
-    const minutes = normalized % 60;
-    return `${hours}:${minutes.toString().padStart(2, '0')}`;
   }
 }

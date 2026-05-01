@@ -29,12 +29,6 @@ export class PrayerTimesPage implements OnInit, OnDestroy {
   protected readonly now = signal(new Date());
   protected readonly hijriDate = signal('');
 
-  private static readonly HIJRI_MONTHS: readonly string[] = [
-    'Muharrem', 'Safer', "Rebi'u-l-evvel", "Rebi'u-l-ahir",
-    "Džumade-l-ula", "Džumade-l-ahira", 'Redžeb', "Ša'ban",
-    'Ramazan', 'Ševval', "Zu-l-ka'de", "Zu-l-hidždže",
-  ];
-
   /** All 8 prayer times with dynamic isPassed/isActive/relativeText */
   protected readonly displayTimes = computed<PrayerTime[]>(() => {
     const times = this.rawTimes();
@@ -92,30 +86,10 @@ export class PrayerTimesPage implements OnInit, OnDestroy {
     this.loadLocations();
     const saved = this.locationService.getSelectedLocation();
     this.selectedLocation.set(saved);
-    this.loadPrayerTimes(saved.id);
+    this.loadPrayerTimes(saved);
 
     // Tick every second for countdown + relative times
     this.tickInterval = setInterval(() => this.now.set(new Date()), 1000);
-
-    this.hijriDate.set(this.calculateHijriDate());
-  }
-
-  private calculateHijriDate(): string {
-    const date = new Date();
-    const options: Intl.DateTimeFormatOptions = {
-      calendar: 'islamic-uma',
-      day: 'numeric',
-      month: 'numeric',
-      year: 'numeric',
-    };
-    const hijriFormatter = new Intl.DateTimeFormat('en-u-ca-islamic-uma', options);
-    const parts = hijriFormatter.formatToParts(date);
-
-    const day = parts.find((p) => p.type === 'day')?.value;
-    const monthIndex = parseInt(parts.find((p) => p.type === 'month')?.value || '1') - 1;
-    const year = parts.find((p) => p.type === 'year')?.value;
-
-    return `${day}. ${PrayerTimesPage.HIJRI_MONTHS[monthIndex]} ${year}.`;
   }
 
   ngOnDestroy(): void {
@@ -125,7 +99,7 @@ export class PrayerTimesPage implements OnInit, OnDestroy {
   protected onCityChange(location: Location): void {
     this.selectedLocation.set(location);
     this.locationService.setSelectedLocation(location);
-    this.loadPrayerTimes(location.id);
+    this.loadPrayerTimes(location);
   }
 
   protected pad(n: number): string {
@@ -139,15 +113,16 @@ export class PrayerTimesPage implements OnInit, OnDestroy {
     });
   }
 
-  private loadPrayerTimes(locationId: number): void {
+  private loadPrayerTimes(location: Location): void {
     this.isLoading.set(true);
     this.error.set(null);
 
-    this.prayerTimeService.getTodayPrayerTimes(locationId).subscribe({
-      next: ({ prayerTimes, locationName, dateLabel }) => {
+    this.prayerTimeService.getTodayPrayerTimes(location.lat, location.lng, location.name).subscribe({
+      next: ({ prayerTimes, locationName, dateLabel, hijriDate }) => {
         this.rawTimes.set(prayerTimes);
         this.locationName.set(locationName);
         this.dateLabel.set(dateLabel);
+        this.hijriDate.set(hijriDate);
         this.isLoading.set(false);
       },
       error: () => {

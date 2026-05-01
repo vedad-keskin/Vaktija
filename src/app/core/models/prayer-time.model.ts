@@ -14,9 +14,32 @@ export interface PrayerTime extends PrayerTimeData {
   relativeText: string;
 }
 
-export interface VaktijaApiResponse {
-  id: number;
-  lokacija: string;
-  datum: [string, string];
-  vakat: [string, string, string, string, string, string];
+/** Aladhan.com API response */
+export interface AladhanApiResponse {
+  code: number;
+  status: string;
+  data: {
+    timings: Record<string, string>;
+    date: {
+      readable: string;
+      hijri: {
+        date: string;
+        day: string;
+        month: { number: number; en: string; ar: string };
+        year: string;
+      };
+      gregorian: {
+        date: string;
+        day: string;
+        weekday: { en: string };
+        month: { number: number; en: string };
+        year: string;
+      };
+    };
+    meta: {
+      method: { id: number; name: string; params: Record<string, number> };
+      midnightMode: string;
+      school: string;
+    };
+  };
 }

@@ -1,27 +1,25 @@
 /**
- * Maps vakat array indices from the vaktija.ba API to Bosnian prayer names.
- * API returns: [Zora, Izlazak sunca, Podne, Ikindija, Akšam, Jacija]
+ * Maps aladhan.com API timing keys to Bosnian display names.
+ * Order determines display order within the sorted list.
  *
- * "Zora" from vaktija.ba API represents PRAVU ZORU (fecr sadik) — true dawn,
- * calculated when the Sun is approximately -18° below the horizon
- * (astronomical twilight), per the standard of the Islamic Community of BiH.
+ * Fajr from aladhan uses the -18° angle (MWL method) = prava zora (fecr sadik).
+ * Midnight uses midnightMode=1 (Jafari) = mid Sunset→Fajr = šerijatska polovina noći.
+ * Lastthird = start of the last third of the night (Sunset→Fajr).
  */
-export const PRAYER_NAMES: readonly string[] = [
-  'Zora (sabah)',
-  'Izlazak sunca',
-  'Podne',
-  'Ikindija',
-  'Akšam',
-  'Jacija',
-] as const;
-
-/**
- * Names for the two calculated prayer-related times.
- */
-export const CALCULATED_NAMES = {
-  ZADNJA_TRECINA_NOCI: 'Zadnja trećina',
-  KRAJ_JACIJE: 'Polovina noći',
-} as const;
+export const TIMING_DISPLAY_MAP: {
+  key: string;
+  name: string;
+  isCalculated: boolean;
+}[] = [
+  { key: 'Fajr', name: 'Zora (sabah)', isCalculated: false },
+  { key: 'Sunrise', name: 'Izlazak sunca', isCalculated: false },
+  { key: 'Dhuhr', name: 'Podne', isCalculated: false },
+  { key: 'Asr', name: 'Ikindija', isCalculated: false },
+  { key: 'Maghrib', name: 'Akšam', isCalculated: false },
+  { key: 'Isha', name: 'Jacija', isCalculated: false },
+  { key: 'Midnight', name: 'Polovina noći', isCalculated: true },
+  { key: 'Lastthird', name: 'Zadnja trećina', isCalculated: true },
+];
 
 /**
  * Tooltips for standard prayer times that require extra explanation.
@@ -29,15 +27,12 @@ export const CALCULATED_NAMES = {
 export const PRAYER_TOOLTIPS: Record<string, string> = {
   'Zora (sabah)':
     'Ovo je PRAVA ZORA (ar. fecr sadik) — horizontalna svjetlost koja se širi cijelim horizontom.\n\n' +
-    'Razlikuje se od LAŽNE ZORE (ar. fecr kazib) koja je vertikalna i kratkotrajna.\n\n'
-} as const;
-
-export const CALCULATED_TOOLTIPS = {
-  KRAJ_JACIJE:
+    'Razlikuje se od LAŽNE ZORE (ar. fecr kazib) koja je vertikalna i kratkotrajna.\n\n',
+  'Polovina noći':
     'Polovina noći se računa kao polovina vremena između akšama (zalaska sunca) i prave zore (sabaha).\n\n' +
     'Vrijeme jacijskog namaza završava završetkom polovine noći. ' +
     'Ako bi čovjek bio u nuždi i potrebi, može jaciju klanjati sve do nastupanja zore, tj. sabah-namaza.',
-  ZADNJA_TRECINA_NOCI:
+  'Zadnja trećina':
     'Prenosi Ebu Hurejra radijallahu anhu, da je Allahov Poslanik, sallallahu alejhi ve sellem rekao:\n\n' +
     '"Naš Uzvišeni Gospodar se spušta svake noći na najniže nebo kada ostane posljednja trećina noći, pa kaže:\n' +
     "'Ko Me doziva da mu se odazovem?\n" +
@@ -46,3 +41,12 @@ export const CALCULATED_TOOLTIPS = {
     '— i to traje sve dok ne nastupi zora."\n\n' +
     'Hadis bilježe Buharija i Muslim.',
 } as const;
+
+/**
+ * Bosnian names for Hijri months.
+ */
+export const HIJRI_MONTHS: readonly string[] = [
+  'Muharrem', 'Safer', "Rebi'u-l-evvel", "Rebi'u-l-ahir",
+  "Džumade-l-ula", "Džumade-l-ahira", 'Redžeb', "Ša'ban",
+  'Ramazan', 'Ševval', "Zu-l-ka'de", "Zu-l-hidždže",
+] as const;

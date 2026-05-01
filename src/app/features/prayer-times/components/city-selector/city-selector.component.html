@@ -35,11 +35,11 @@
         />
       </div>
       <ul class="city-list">
-        @for (location of filteredLocations(); track location.id) {
+        @for (location of filteredLocations(); track location.name) {
           <li>
             <button
               class="city-option"
-              [class.active]="selected()?.id === location.id"
+              [class.active]="selected()?.name === location.name"
               (click)="selectCity(location)"
               type="button"
             >

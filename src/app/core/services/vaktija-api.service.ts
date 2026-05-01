@@ -1,44 +1,44 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { VaktijaApiResponse } from '../models/prayer-time.model';
+import { AladhanApiResponse } from '../models/prayer-time.model';
 
-const BASE_URL = 'https://api.vaktija.ba/vaktija/v1';
+const BASE_URL = 'https://api.aladhan.com/v1/timings';
+
+/**
+ * Fajr angle 14.6° = prava zora (fecr sadik), as used by vaktija.dev
+ * and consistent with observed true dawn at Balkan latitudes.
+ * 18° = astronomical twilight = too early (closer to lažna zora / fecr kazib).
+ */
+const FAJR_ANGLE = 14.6;
+const ISHA_ANGLE = 14.6;
 
 @Injectable({ providedIn: 'root' })
-export class VaktijaApiService {
+export class PrayerApiService {
   private readonly http = inject(HttpClient);
 
   /**
-   * Fetches the list of all available location names.
-   * The array index corresponds to the location ID used in other endpoints.
+   * Fetches prayer times for given coordinates on today's date.
+   *
+   * Configuration:
+   * - method=99 (custom) with Fajr=14.6°, Isha=14.6° → prava zora
+   * - school=0 (Shafi/standard Asr)
+   * - midnightMode=1 (Jafari: mid Sunset→Fajr = šerijatska polovina noći)
    */
-  getLocations(): Observable<string[]> {
-    return this.http.get<string[]>(`${BASE_URL}/lokacije`);
-  }
+  getPrayerTimes(lat: number, lng: number): Observable<AladhanApiResponse> {
+    const today = new Date();
+    const date = `${today.getDate().toString().padStart(2, '0')}-${(today.getMonth() + 1).toString().padStart(2, '0')}-${today.getFullYear()}`;
 
-  /**
-   * Fetches today's prayer times for the given location ID.
-   */
-  getPrayerTimes(locationId: number): Observable<VaktijaApiResponse> {
-    return this.http.get<VaktijaApiResponse>(`${BASE_URL}/${locationId}`);
-  }
-
-  /**
-   * Fetches prayer times for a specific date and location.
-   * @param locationId - The location index from the lokacije array.
-   * @param year - Full year (e.g. 2026)
-   * @param month - Month (1-12)
-   * @param day - Day of month (1-31)
-   */
-  getPrayerTimesForDate(
-    locationId: number,
-    year: number,
-    month: number,
-    day: number
-  ): Observable<VaktijaApiResponse> {
-    return this.http.get<VaktijaApiResponse>(
-      `${BASE_URL}/${locationId}/${year}/${month}/${day}`
-    );
+    return this.http.get<AladhanApiResponse>(`${BASE_URL}/${date}`, {
+      params: {
+        latitude: lat.toString(),
+        longitude: lng.toString(),
+        method: '99',
+        methodSettings: `${FAJR_ANGLE},null,${ISHA_ANGLE}`,
+        school: '0',         // Shafi (standard)
+        midnightMode: '1',   // Jafari: mid Sunset→Fajr
+        timezonestring: 'Europe/Sarajevo',
+      },
+    });
   }
 }
