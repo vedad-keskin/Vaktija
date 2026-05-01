@@ -2,17 +2,17 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  gap: 0.4rem;
-  padding: 1.1rem 1.2rem;
+  gap: 0.5rem;
+  padding: 1.25rem 1.35rem;
   background: var(--surface-elevated);
   border: 1px solid var(--border-color);
-  border-radius: 14px;
+  border-radius: 16px;
   transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
 }
 
 .prayer-card:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
 }
 
 .prayer-card.has-tooltip {
@@ -22,8 +22,12 @@
 /* Active — next upcoming prayer */
 .prayer-card.active {
   border-color: var(--accent);
-  background: var(--accent-surface);
-  box-shadow: 0 0 24px var(--accent-glow);
+  background: linear-gradient(
+    135deg,
+    rgba(45, 212, 168, 0.1) 0%,
+    rgba(45, 212, 168, 0.04) 100%
+  );
+  box-shadow: 0 0 28px var(--accent-glow), inset 0 1px 0 rgba(45, 212, 168, 0.15);
 }
 
 .prayer-card.active .prayer-name,
@@ -35,7 +39,7 @@
   color: var(--accent);
 }
 
-/* Passed — dim card but NOT the tooltip */
+/* Passed — dim card content but NOT the tooltip */
 .prayer-card.passed > .card-top,
 .prayer-card.passed > .prayer-relative {
   opacity: 0.4;
@@ -56,15 +60,15 @@
 .prayer-name {
   display: flex;
   align-items: center;
-  gap: 0.35rem;
-  font-size: 0.95rem;
+  gap: 0.4rem;
+  font-size: 1rem;
   font-weight: 500;
   color: var(--text-primary);
 }
 
 .info-icon {
   color: var(--accent);
-  opacity: 0.55;
+  opacity: 0.5;
   flex-shrink: 0;
   transition: opacity 0.2s;
 }
@@ -75,7 +79,7 @@
 
 .prayer-time {
   font-family: var(--font-heading);
-  font-size: 1.5rem;
+  font-size: 1.6rem;
   font-weight: 700;
   color: var(--text-primary);
   font-variant-numeric: tabular-nums;
@@ -83,7 +87,7 @@
 }
 
 .prayer-relative {
-  font-size: 0.78rem;
+  font-size: 0.8rem;
   color: var(--text-muted);
   text-align: right;
 }
@@ -92,24 +96,25 @@
 .tooltip-overlay {
   position: absolute;
   left: 50%;
-  bottom: calc(100% + 10px);
-  transform: translateX(-50%);
+  bottom: calc(100% + 12px);
   z-index: 200;
   pointer-events: none;
-  animation: tooltipIn 0.2s ease-out;
+  /* Use a custom property so the animation includes centering */
+  transform: translateX(-50%) translateY(0);
+  animation: tooltipIn 0.18s ease-out forwards;
 }
 
 .tooltip-content {
   background: #252a3a;
   color: #e8eaed;
-  border: 1px solid rgba(45, 212, 168, 0.25);
+  border: 1px solid rgba(45, 212, 168, 0.3);
   border-radius: 12px;
-  padding: 1rem 1.1rem;
+  padding: 1rem 1.15rem;
   font-size: 0.82rem;
   line-height: 1.65;
   white-space: pre-line;
   box-shadow: 0 12px 40px rgba(0, 0, 0, 0.55);
-  max-width: 360px;
+  max-width: 340px;
   width: max-content;
 }
 
@@ -118,62 +123,60 @@
   content: '';
   position: absolute;
   bottom: -6px;
-  left: 24px;
+  left: 50%;
+  margin-left: -6px;
   width: 12px;
   height: 12px;
   background: #252a3a;
-  border-right: 1px solid rgba(45, 212, 168, 0.25);
-  border-bottom: 1px solid rgba(45, 212, 168, 0.25);
+  border-right: 1px solid rgba(45, 212, 168, 0.3);
+  border-bottom: 1px solid rgba(45, 212, 168, 0.3);
   transform: rotate(45deg);
 }
 
 @keyframes tooltipIn {
   from {
     opacity: 0;
-    transform: translateY(6px);
+    transform: translateX(-50%) translateY(6px);
   }
   to {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateX(-50%) translateY(0);
   }
 }
 
 /* ===== Tablet+ : card centered layout ===== */
 @media (min-width: 580px) {
   .prayer-card {
-    padding: 1.25rem 1.3rem;
+    padding: 1.5rem 1.5rem;
     align-items: center;
     text-align: center;
   }
 
   .card-top {
     flex-direction: column;
-    gap: 0.3rem;
+    gap: 0.35rem;
   }
 
   .prayer-name {
-    font-size: 0.85rem;
+    font-size: 0.9rem;
     justify-content: center;
   }
 
   .prayer-time {
-    font-size: 1.65rem;
+    font-size: 1.85rem;
   }
 
   .prayer-relative {
     text-align: center;
   }
+}
 
-  .tooltip-overlay {
-    left: 50%;
-    right: auto;
-    transform: translateX(-50%);
-    width: max-content;
-    max-width: 360px;
+@media (min-width: 900px) {
+  .prayer-card {
+    padding: 1.75rem 1.5rem;
   }
 
-  .tooltip-overlay::after {
-    left: 50%;
-    transform: translateX(-50%) rotate(45deg);
+  .prayer-time {
+    font-size: 2rem;
   }
 }
