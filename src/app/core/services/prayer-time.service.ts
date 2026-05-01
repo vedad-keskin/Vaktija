@@ -1,12 +1,25 @@
 import { Injectable, inject } from '@angular/core';
 import { Observable, map } from 'rxjs';
 import { PrayerApiService } from './vaktija-api.service';
+import { LanguageService } from './language.service';
 import { PrayerTimeData, AladhanApiResponse } from '../models/prayer-time.model';
-import { TIMING_DISPLAY_MAP, PRAYER_TOOLTIPS, HIJRI_MONTHS } from '../constants/prayer-names.constant';
+
+/** Keys for the 8 prayer/timing entries we display */
+const TIMING_KEYS: { key: string; isCalculated: boolean }[] = [
+  { key: 'Fajr', isCalculated: false },
+  { key: 'Sunrise', isCalculated: false },
+  { key: 'Dhuhr', isCalculated: false },
+  { key: 'Asr', isCalculated: false },
+  { key: 'Maghrib', isCalculated: false },
+  { key: 'Isha', isCalculated: false },
+  { key: 'Midnight', isCalculated: true },
+  { key: 'Lastthird', isCalculated: true },
+];
 
 @Injectable({ providedIn: 'root' })
 export class PrayerTimeService {
   private readonly api = inject(PrayerApiService);
+  private readonly langService = inject(LanguageService);
 
   /**
    * Returns all 8 prayer times for today, sorted chronologically.
@@ -31,47 +44,47 @@ export class PrayerTimeService {
 
   private buildPrayerTimes(res: AladhanApiResponse): PrayerTimeData[] {
     const timings = res.data.timings;
+    const labels = this.langService.labels();
 
-    const times: PrayerTimeData[] = TIMING_DISPLAY_MAP.map((entry) => {
+    const times: PrayerTimeData[] = TIMING_KEYS.map((entry) => {
       const rawTime = timings[entry.key] ?? '00:00';
       const cleanTime = this.cleanTime(rawTime);
+      const name = labels.prayerNames[entry.key] ?? entry.key;
+      const tooltip = labels.prayerTooltips[entry.key];
       return {
-        name: entry.name,
+        name,
         time: cleanTime,
         minutes: this.timeToMinutes(cleanTime),
         isCalculated: entry.isCalculated,
-        ...(PRAYER_TOOLTIPS[entry.name] ? { tooltip: PRAYER_TOOLTIPS[entry.name] } : {}),
+        ...(tooltip ? { tooltip } : {}),
       };
     });
 
     return times.sort((a, b) => a.minutes - b.minutes);
   }
 
-  private static readonly BOSNIAN_DAYS = [
-    'nedjelja', 'ponedjeljak', 'utorak', 'srijeda',
-    'četvrtak', 'petak', 'subota',
-  ];
-
-  private static readonly BOSNIAN_MONTHS = [
-    'januar', 'februar', 'mart', 'april', 'maj', 'juni',
-    'juli', 'august', 'septembar', 'oktobar', 'novembar', 'decembar',
-  ];
-
   /**
-   * Formats today's date in Bosnian (e.g. "petak, 1. maj 2026").
-   * Uses explicit Bosnian names since Intl('bs-Latn-BA') isn't
-   * reliably available on all platforms.
+   * Formats today's date using the active language labels.
+   * Example BS: "petak, 1. maj 2026."
+   * Example EN: "Friday, 1 May 2026"
    */
-  private buildDateLabel(): string {
+  buildDateLabel(): string {
+    const labels = this.langService.labels();
     const now = new Date();
-    const day = PrayerTimeService.BOSNIAN_DAYS[now.getDay()];
-    const month = PrayerTimeService.BOSNIAN_MONTHS[now.getMonth()];
+    const day = labels.dayNames[now.getDay()];
+    const month = labels.monthNames[now.getMonth()];
+    const lang = this.langService.lang();
+
+    if (lang === 'en') {
+      return `${day}, ${now.getDate()} ${month} ${now.getFullYear()}`;
+    }
     return `${day}, ${now.getDate()}. ${month} ${now.getFullYear()}.`;
   }
 
-  private buildHijriDate(res: AladhanApiResponse): string {
+  buildHijriDate(res: AladhanApiResponse): string {
+    const labels = this.langService.labels();
     const h = res.data.date.hijri;
-    const monthName = HIJRI_MONTHS[h.month.number - 1] ?? h.month.en;
+    const monthName = labels.hijriMonths[h.month.number - 1] ?? h.month.en;
     return `${h.day}. ${monthName} ${h.year}.`;
   }
 

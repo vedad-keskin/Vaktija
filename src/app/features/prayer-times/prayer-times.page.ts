@@ -1,9 +1,10 @@
-import { Component, inject, OnInit, OnDestroy, signal, computed } from '@angular/core';
+import { Component, inject, OnInit, OnDestroy, signal, computed, effect } from '@angular/core';
 import { HeaderComponent } from './components/header/header.component';
 import { CitySelectorComponent } from './components/city-selector/city-selector.component';
 import { PrayerCardComponent } from './components/prayer-card/prayer-card.component';
 import { PrayerTimeService } from '../../core/services/prayer-time.service';
 import { LocationService } from '../../core/services/location.service';
+import { LanguageService } from '../../core/services/language.service';
 import { PrayerTimeData, PrayerTime } from '../../core/models/prayer-time.model';
 import { Location } from '../../core/models/location.model';
 
@@ -17,6 +18,7 @@ import { Location } from '../../core/models/location.model';
 export class PrayerTimesPage implements OnInit, OnDestroy {
   private readonly prayerTimeService = inject(PrayerTimeService);
   private readonly locationService = inject(LocationService);
+  protected readonly langService = inject(LanguageService);
   private tickInterval: ReturnType<typeof setInterval> | null = null;
 
   protected readonly locations = signal<Location[]>([]);
@@ -28,6 +30,9 @@ export class PrayerTimesPage implements OnInit, OnDestroy {
   protected readonly error = signal<string | null>(null);
   protected readonly now = signal(new Date());
   protected readonly hijriDate = signal('');
+
+  /** Reactive labels shortcut */
+  protected readonly labels = this.langService.labels;
 
   /** All 8 prayer times with dynamic isPassed/isActive/relativeText */
   protected readonly displayTimes = computed<PrayerTime[]>(() => {
@@ -82,6 +87,17 @@ export class PrayerTimesPage implements OnInit, OnDestroy {
     };
   });
 
+  constructor() {
+    // Re-fetch prayer times whenever language changes so names/tooltips update
+    effect(() => {
+      const _lang = this.langService.lang(); // track
+      const loc = this.selectedLocation();
+      if (loc) {
+        this.loadPrayerTimes(loc);
+      }
+    });
+  }
+
   ngOnInit(): void {
     this.loadLocations();
     const saved = this.locationService.getSelectedLocation();
@@ -126,39 +142,61 @@ export class PrayerTimesPage implements OnInit, OnDestroy {
         this.isLoading.set(false);
       },
       error: () => {
-        this.error.set('Greška pri učitavanju. Pokušajte ponovo.');
+        this.error.set(this.langService.labels().errorGeneric);
         this.isLoading.set(false);
       },
     });
   }
 
   /**
-   * Formats a minute-difference as Bosnian relative time.
+   * Formats a minute-difference as relative time using active language labels.
    * Negative = in the past, positive = in the future.
    */
   private formatRelative(diffMinutes: number): string {
+    const labels = this.langService.labels();
     const abs = Math.abs(diffMinutes);
-    const prefix = diffMinutes <= 0 ? 'prije' : 'za';
 
-    if (abs < 1) return 'sada';
+    if (abs < 1) return labels.relativeNow;
 
+    const lang = this.langService.lang();
     const h = Math.floor(abs / 60);
     const m = abs % 60;
 
-    if (h === 0) return `${prefix} ${m} ${this.minPlural(m)}`;
-    if (m === 0) return `${prefix} ${h} ${this.hrPlural(h)}`;
+    if (lang === 'en') {
+      // English: "in 2 hours" / "5 minutes ago"
+      const prefix = diffMinutes <= 0 ? '' : labels.relativeFuture + ' ';
+      const suffix = diffMinutes <= 0 ? ' ' + labels.relativePast : '';
+      if (h === 0) return `${prefix}${m} ${this.minPluralEn(m)}${suffix}`;
+      if (m === 0) return `${prefix}${h} ${this.hrPluralEn(h)}${suffix}`;
+      return `${prefix}${h}h ${m}min${suffix}`;
+    }
+
+    // Bosnian: "prije 2 sata" / "za 5 minuta"
+    const prefix = diffMinutes <= 0 ? labels.relativePast : labels.relativeFuture;
+    if (h === 0) return `${prefix} ${m} ${this.minPluralBs(m)}`;
+    if (m === 0) return `${prefix} ${h} ${this.hrPluralBs(h)}`;
     return `${prefix} ${h}h ${m}min`;
   }
 
-  private hrPlural(n: number): string {
-    if (n === 1) return 'sat';
-    if (n >= 2 && n <= 4) return 'sata';
-    return 'sati';
+  private hrPluralBs(n: number): string {
+    const labels = this.langService.labels();
+    if (n === 1) return labels.hrSingular;
+    if (n >= 2 && n <= 4) return labels.hrFew;
+    return labels.hrPlural;
   }
 
-  private minPlural(n: number): string {
-    if (n === 1) return 'minutu';
-    if (n >= 2 && n <= 4) return 'minute';
-    return 'minuta';
+  private minPluralBs(n: number): string {
+    const labels = this.langService.labels();
+    if (n === 1) return labels.minSingular;
+    if (n >= 2 && n <= 4) return labels.minFew;
+    return labels.minPlural;
+  }
+
+  private hrPluralEn(n: number): string {
+    return n === 1 ? 'hour' : 'hours';
+  }
+
+  private minPluralEn(n: number): string {
+    return n === 1 ? 'minute' : 'minutes';
   }
 }

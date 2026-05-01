@@ -29,6 +29,34 @@
   border-radius: 16px;
 }
 
+/* Dates row inside countdown */
+.countdown-dates {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+
+.date-gregorian {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  text-transform: capitalize;
+}
+
+.date-separator {
+  color: var(--text-muted);
+  font-size: 0.75rem;
+}
+
+.date-hijri {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  font-style: italic;
+}
+
 .countdown-label {
   display: block;
   font-size: 0.85rem;

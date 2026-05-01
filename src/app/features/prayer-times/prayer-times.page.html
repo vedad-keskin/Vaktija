@@ -1,9 +1,5 @@
 <div class="prayer-times-page">
-  <app-header
-    [locationName]="locationName()"
-    [dateLabel]="dateLabel()"
-    [hijriDate]="hijriDate()"
-  />
+  <app-header />
 
   <main class="page-content">
     <section class="city-section">
@@ -17,7 +13,7 @@
     @if (isLoading()) {
       <div class="loading-state">
         <div class="spinner"></div>
-        <span>Učitavanje...</span>
+        <span>{{ labels().loading }}</span>
       </div>
     } @else if (error()) {
       <div class="error-state">
@@ -25,24 +21,35 @@
         <p>{{ error() }}</p>
       </div>
     } @else {
-      <!-- Countdown to next prayer -->
+      <!-- Countdown to next prayer (dates included inside) -->
       @if (countdown(); as cd) {
         <section class="countdown-section" id="countdown">
+          <!-- Dates inside countdown container -->
+          <div class="countdown-dates" id="date-display">
+            @if (dateLabel()) {
+              <span class="date-gregorian">{{ dateLabel() }}</span>
+            }
+            @if (hijriDate()) {
+              <span class="date-separator">·</span>
+              <span class="date-hijri">{{ hijriDate() }}</span>
+            }
+          </div>
+
           <span class="countdown-label">{{ cd.name }}</span>
           <div class="countdown-timer">
             <div class="countdown-segment">
               <span class="countdown-value">{{ pad(cd.hours) }}</span>
-              <span class="countdown-unit">sati</span>
+              <span class="countdown-unit">{{ labels().countdownHours }}</span>
             </div>
             <span class="countdown-sep">:</span>
             <div class="countdown-segment">
               <span class="countdown-value">{{ pad(cd.minutes) }}</span>
-              <span class="countdown-unit">min</span>
+              <span class="countdown-unit">{{ labels().countdownMinutes }}</span>
             </div>
             <span class="countdown-sep">:</span>
             <div class="countdown-segment">
               <span class="countdown-value">{{ pad(cd.seconds) }}</span>
-              <span class="countdown-unit">sek</span>
+              <span class="countdown-unit">{{ labels().countdownSeconds }}</span>
             </div>
           </div>
         </section>

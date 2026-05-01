@@ -1,4 +1,5 @@
-import { Component, input } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { LanguageService, LangCode } from '../../../../core/services/language.service';
 
 @Component({
   selector: 'app-header',
@@ -7,7 +8,10 @@ import { Component, input } from '@angular/core';
   styleUrl: './header.component.css',
 })
 export class HeaderComponent {
-  readonly locationName = input<string>('');
-  readonly dateLabel = input<string>('');
-  readonly hijriDate = input<string>('');
+  protected readonly langService = inject(LanguageService);
+  protected readonly currentLang = this.langService.lang;
+
+  protected switchLang(code: LangCode): void {
+    this.langService.setLanguage(code);
+  }
 }

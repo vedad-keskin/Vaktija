@@ -5,19 +5,31 @@
       alt="Vaktija logo"
       class="header-logo"
     />
-    <div class="header-brand">
-      <h1 class="header-title">Vaktija</h1>
-      @if (locationName()) {
-        <span class="header-location">{{ locationName() }}</span>
-      }
-    </div>
+    <h1 class="header-title">Vaktija</h1>
   </div>
   <div class="header-right">
-    @if (dateLabel()) {
-      <span class="header-date">{{ dateLabel() }}</span>
-    }
-    @if (hijriDate()) {
-      <span class="header-hijri">{{ hijriDate() }}</span>
-    }
+    <div class="lang-switcher" [class.en-active]="currentLang() === 'en'" id="lang-switcher">
+      <div class="lang-slider"></div>
+      <button
+        class="lang-btn"
+        [class.active]="currentLang() === 'bs'"
+        (click)="switchLang('bs')"
+        title="Bosanski"
+        id="lang-btn-bs"
+      >
+        <img src="assets/icons/bih.png" alt="BiH" class="lang-flag" />
+        <span class="lang-code">BS</span>
+      </button>
+      <button
+        class="lang-btn"
+        [class.active]="currentLang() === 'en'"
+        (click)="switchLang('en')"
+        title="English"
+        id="lang-btn-en"
+      >
+        <img src="assets/icons/uk.png" alt="UK" class="lang-flag" />
+        <span class="lang-code">EN</span>
+      </button>
+    </div>
   </div>
 </header>
