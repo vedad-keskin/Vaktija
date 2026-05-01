@@ -11,23 +11,23 @@ export const TIMING_DISPLAY_MAP: {
   name: string;
   isCalculated: boolean;
 }[] = [
-  { key: 'Fajr', name: 'Zora (sabah)', isCalculated: false },
-  { key: 'Sunrise', name: 'Izlazak sunca', isCalculated: false },
-  { key: 'Dhuhr', name: 'Podne', isCalculated: false },
-  { key: 'Asr', name: 'Ikindija', isCalculated: false },
-  { key: 'Maghrib', name: 'Akšam', isCalculated: false },
-  { key: 'Isha', name: 'Jacija', isCalculated: false },
-  { key: 'Midnight', name: 'Polovina noći', isCalculated: true },
-  { key: 'Lastthird', name: 'Zadnja trećina', isCalculated: true },
-];
+    { key: 'Fajr', name: 'Zora (sabah)', isCalculated: false },
+    { key: 'Sunrise', name: 'Izlazak sunca', isCalculated: false },
+    { key: 'Dhuhr', name: 'Podne', isCalculated: false },
+    { key: 'Asr', name: 'Ikindija', isCalculated: false },
+    { key: 'Maghrib', name: 'Akšam', isCalculated: false },
+    { key: 'Isha', name: 'Jacija', isCalculated: false },
+    { key: 'Midnight', name: 'Polovina noći', isCalculated: true },
+    { key: 'Lastthird', name: 'Zadnja trećina', isCalculated: true },
+  ];
 
 /**
  * Tooltips for standard prayer times that require extra explanation.
  */
 export const PRAYER_TOOLTIPS: Record<string, string> = {
   'Zora (sabah)':
-    'Ovo je PRAVA ZORA (ar. fecr sadik) — horizontalna svjetlost koja se širi cijelim horizontom.\n\n' +
-    'Razlikuje se od LAŽNE ZORE (ar. fecr kazib) koja je vertikalna i kratkotrajna.\n\n',
+    'Prava zora (ar. fecr sadik) nastupa pojavom jasne horizontalne svjetlosti koja se širi preko cijelog horizonta.\n\n' +
+    'Ona najavljuje početak sabahskog vremena i razlikuje se od lažne zore (ar. fecr kazib) – prolaznog, vertikalnog stuba svjetlosti koji brzo nestaje i nastupa nešto ranije.\n\n',
   'Polovina noći':
     'Polovina noći se računa kao polovina vremena između akšama (zalaska sunca) i prave zore (sabaha).\n\n' +
     'Vrijeme jacijskog namaza završava završetkom polovine noći. ' +
