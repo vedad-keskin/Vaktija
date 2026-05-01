@@ -181,11 +181,63 @@
   }
 
   .countdown-section {
-    padding: 2rem;
+    padding: 2.25rem 2rem 2.5rem;
     margin-bottom: 2rem;
   }
 
+  .countdown-dates {
+    margin-bottom: 1.1rem;
+  }
+
+  .date-gregorian {
+    font-size: 0.95rem;
+  }
+
+  .date-hijri {
+    font-size: 0.9rem;
+  }
+
+  .countdown-label {
+    font-size: 0.95rem;
+    margin-bottom: 0.9rem;
+    letter-spacing: 2px;
+  }
+
+  .countdown-timer {
+    gap: 0.4rem;
+  }
+
+  .countdown-segment {
+    min-width: 4.5rem;
+  }
+
   .countdown-value {
-    font-size: 3.5rem;
+    font-size: 4.25rem;
+  }
+
+  .countdown-unit {
+    font-size: 0.72rem;
+    margin-top: 0.35rem;
+  }
+
+  .countdown-sep {
+    font-size: 3.1rem;
+    padding-bottom: 1.35rem;
+  }
+}
+
+/* Large desktop: even more prominent countdown */
+@media (min-width: 1200px) {
+  .countdown-segment {
+    min-width: 5.25rem;
+  }
+
+  .countdown-value {
+    font-size: 5rem;
+  }
+
+  .countdown-sep {
+    font-size: 3.6rem;
+    padding-bottom: 1.5rem;
   }
 }
