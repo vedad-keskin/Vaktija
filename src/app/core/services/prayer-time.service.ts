@@ -47,13 +47,26 @@ export class PrayerTimeService {
     return times.sort((a, b) => a.minutes - b.minutes);
   }
 
+  private static readonly BOSNIAN_DAYS = [
+    'nedjelja', 'ponedjeljak', 'utorak', 'srijeda',
+    'četvrtak', 'petak', 'subota',
+  ];
+
+  private static readonly BOSNIAN_MONTHS = [
+    'januar', 'februar', 'mart', 'april', 'maj', 'juni',
+    'juli', 'august', 'septembar', 'oktobar', 'novembar', 'decembar',
+  ];
+
+  /**
+   * Formats today's date in Bosnian (e.g. "petak, 1. maj 2026").
+   * Uses explicit Bosnian names since Intl('bs-Latn-BA') isn't
+   * reliably available on all platforms.
+   */
   private buildDateLabel(): string {
-    return new Intl.DateTimeFormat('bs-Latn-BA', {
-      weekday: 'long',
-      day: 'numeric',
-      month: 'long',
-      year: 'numeric',
-    }).format(new Date());
+    const now = new Date();
+    const day = PrayerTimeService.BOSNIAN_DAYS[now.getDay()];
+    const month = PrayerTimeService.BOSNIAN_MONTHS[now.getMonth()];
+    return `${day}, ${now.getDate()}. ${month} ${now.getFullYear()}.`;
   }
 
   private buildHijriDate(res: AladhanApiResponse): string {
