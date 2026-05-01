@@ -1,0 +1,61 @@
+/* ===== CSS Reset ===== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ===== Design Tokens ===== */
+:root {
+  /* Typography */
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-heading: 'Outfit', 'Inter', sans-serif;
+
+  /* Dark theme palette */
+  --surface: #0f1117;
+  --surface-elevated: #181b23;
+  --surface-hover: #1f2330;
+  --border-color: #2a2e3a;
+
+  /* Accent — Islamic green tones */
+  --accent: #2dd4a8;
+  --accent-light: #5eecc6;
+  --accent-surface: rgba(45, 212, 168, 0.08);
+  --accent-glow: rgba(45, 212, 168, 0.2);
+
+  /* Text */
+  --text-primary: #e8eaed;
+  --text-secondary: #9aa0ad;
+  --text-muted: #5f6573;
+
+  /* Feedback */
+  --error: #f87171;
+}
+
+/* ===== Global Styles ===== */
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-body);
+  background: var(--surface);
+  color: var(--text-primary);
+  line-height: 1.5;
+  min-height: 100vh;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Selection color */
+::selection {
+  background: var(--accent);
+  color: var(--surface);
+}
