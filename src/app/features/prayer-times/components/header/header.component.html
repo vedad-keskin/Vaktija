@@ -11,13 +11,20 @@
   <!-- Desktop controls (hidden on mobile) -->
   <div class="header-desktop-controls">
     <app-theme-switcher />
-    <div class="lang-switcher" [class.en-active]="currentLang() === 'en'" id="lang-switcher-desktop">
+    <div
+      class="lang-switcher"
+      [class.en-active]="currentLang() === 'en'"
+      id="lang-switcher-desktop"
+      (click)="toggleLang()"
+      role="group"
+      aria-label="Language"
+    >
       <div class="lang-slider"></div>
-      <button class="lang-btn" [class.active]="currentLang() === 'bs'" (click)="switchLang('bs')" title="Bosanski">
+      <button type="button" class="lang-btn" [class.active]="currentLang() === 'bs'" title="Bosanski">
         <img src="assets/icons/bih.png" alt="BiH" class="lang-flag" />
         <span class="lang-code">BS</span>
       </button>
-      <button class="lang-btn" [class.active]="currentLang() === 'en'" (click)="switchLang('en')" title="English">
+      <button type="button" class="lang-btn" [class.active]="currentLang() === 'en'" title="English">
         <img src="assets/icons/uk.png" alt="UK" class="lang-flag" />
         <span class="lang-code">EN</span>
       </button>
@@ -27,13 +34,20 @@
   <!-- Mobile controls -->
   <div class="header-mobile-controls">
     <!-- Language switcher (always visible on mobile) -->
-    <div class="lang-switcher" [class.en-active]="currentLang() === 'en'" id="lang-switcher-mobile">
+    <div
+      class="lang-switcher"
+      [class.en-active]="currentLang() === 'en'"
+      id="lang-switcher-mobile"
+      (click)="toggleLang()"
+      role="group"
+      aria-label="Language"
+    >
       <div class="lang-slider"></div>
-      <button class="lang-btn" [class.active]="currentLang() === 'bs'" (click)="switchLang('bs')" title="Bosanski">
+      <button type="button" class="lang-btn" [class.active]="currentLang() === 'bs'" title="Bosanski">
         <img src="assets/icons/bih.png" alt="BiH" class="lang-flag" />
         <span class="lang-code">BS</span>
       </button>
-      <button class="lang-btn" [class.active]="currentLang() === 'en'" (click)="switchLang('en')" title="English">
+      <button type="button" class="lang-btn" [class.active]="currentLang() === 'en'" title="English">
         <img src="assets/icons/uk.png" alt="UK" class="lang-flag" />
         <span class="lang-code">EN</span>
       </button>

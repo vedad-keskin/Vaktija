@@ -1,5 +1,5 @@
 import { Component, inject, signal, HostListener } from '@angular/core';
-import { LanguageService, LangCode } from '../../../../core/services/language.service';
+import { LanguageService } from '../../../../core/services/language.service';
 import { ThemeSwitcherComponent } from '../theme-switcher/theme-switcher.component';
 
 @Component({
@@ -16,8 +16,9 @@ export class HeaderComponent {
 
   private drawerTouchStartY = 0;
 
-  protected switchLang(code: LangCode): void {
-    this.langService.setLanguage(code);
+  /** Any click on the language control flips BS ↔ EN (including tapping the active side again). */
+  protected toggleLang(): void {
+    this.langService.setLanguage(this.currentLang() === 'bs' ? 'en' : 'bs');
   }
 
   protected toggleMenu(): void {

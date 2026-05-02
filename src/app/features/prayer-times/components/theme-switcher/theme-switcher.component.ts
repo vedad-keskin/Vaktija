@@ -1,5 +1,5 @@
 import { Component, inject, output } from '@angular/core';
-import { ThemeService, type ThemeMode } from '../../../../core/services/theme.service';
+import { ThemeService } from '../../../../core/services/theme.service';
 import { LanguageService } from '../../../../core/services/language.service';
 
 @Component({
@@ -15,8 +15,9 @@ export class ThemeSwitcherComponent {
 
   readonly picked = output<void>();
 
-  protected pick(mode: ThemeMode): void {
-    this.themes.setTheme(mode);
+  /** Any click on the control flips light ↔ dark (including the active segment). */
+  protected toggleTheme(): void {
+    this.themes.setTheme(this.theme() === 'dark' ? 'light' : 'dark');
     this.picked.emit();
   }
 }
