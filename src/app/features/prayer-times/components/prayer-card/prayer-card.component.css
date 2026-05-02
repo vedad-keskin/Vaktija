@@ -35,25 +35,20 @@
 /*
  * Animated border fill via conic-gradient.
  * Starts from top-center (0deg), fills clockwise.
- * The mask removes the inner area, leaving only a 2px border ring.
+ * Uses thick (3px) fully opaque colors to stay visible
+ * even under Samsung's forced dark-mode dimming layer.
  */
 .prayer-card.current::before {
   content: '';
   position: absolute;
-  inset: -1px;
-  border-radius: 17px;
-  /* Slightly thicker ring — reads better on OLED / high-contrast dark UIs (e.g. Samsung) */
+  inset: -2px;
+  border-radius: 18px;
   padding: 3px;
 
-  /*
-   * Progress arc: brighter stops so the fill stays visible when displays
-   * compress shadows/greens; unfilled track slightly stronger for separation.
-   */
   background: conic-gradient(
     from 0deg at 50% 50%,
-    var(--accent-light) calc(var(--progress) * 3.6deg),
-    rgba(45, 212, 168, 0.4) calc(var(--progress) * 3.6deg),
-    rgba(45, 212, 168, 0.16) 360deg
+    #2dd4a8 calc(var(--progress) * 3.6deg),
+    #2a3a35 calc(var(--progress) * 3.6deg)
   );
 
   /* Mask trick: show only the border ring, not the filled interior */
@@ -69,10 +64,9 @@
   pointer-events: none;
   z-index: 1;
   transition: background 1s linear;
-  /* Glow helps low-contrast / dimmed screens without changing layout */
-  filter: drop-shadow(0 0 4px rgba(94, 236, 198, 0.45))
-    drop-shadow(0 0 10px rgba(45, 212, 168, 0.22));
-  transform: translateZ(0);
+
+  /* Glow around the border ring — survives forced dimming */
+  filter: drop-shadow(0 0 6px rgba(45, 212, 168, 0.5));
 }
 
 .prayer-card.current .prayer-name,
