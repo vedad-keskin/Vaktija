@@ -15,6 +15,8 @@ export interface AppLabels {
   countdownSeconds: string;
   /** Shown after the next-prayer name in the countdown header */
   countdownLabelSuffix: string;
+  /** aria-label for linear progress under countdown (same window as current-prayer ring) */
+  countdownProgressAria: string;
 
   /** Loading / Error */
   loading: string;
@@ -63,6 +65,7 @@ export const BS_LABELS: AppLabels = {
   countdownMinutes: 'min',
   countdownSeconds: 'sek',
   countdownLabelSuffix: 'ZA',
+  countdownProgressAria: 'Postotak proteklog vremena u intervalu do sljedećeg namaza',
 
   dhuhrFridayName: 'Džuma',
 

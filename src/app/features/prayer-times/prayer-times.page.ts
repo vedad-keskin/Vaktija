@@ -94,6 +94,15 @@ export class PrayerTimesPage implements OnInit, OnDestroy {
     });
   });
 
+  /**
+   * Same percentage as the current-prayer card ring: time elapsed from the listed
+   * “current” prayer toward the listed next prayer (wraps correctly after midnight).
+   */
+  protected readonly countdownWindowProgress = computed(() => {
+    const current = this.displayTimes().find((t) => t.isCurrent);
+    return current?.progress ?? 0;
+  });
+
   /** Countdown to the next upcoming prayer */
   protected readonly countdown = computed(() => {
     const times = this.rawTimes();

@@ -36,7 +36,7 @@ Ovaj vodič je namijenjen za pregled od strane stručnjaka iz islamskog prava (F
 
 ### 🎯 Trenutni odabir: `99` (Custom) 
 **Razlog:**  
-Većina unaprijed definisanih metoda koristi ugao od 18° ili 15° za Zoru i Jaciju. Istraživanjem sam pronašao da korištenje ugla od 18° rezultira astronomskim sumrakom, što se često smatra "Lažnom zorom" što rezultira ranijim računanjem sabaha i jacije, dok sam istraživanjem sam uspio naći da ugao od 14.6° za zoru i jaciju daje ispravnije rezultate. Obzirom da sam daleko od ekperta za ovu oblast ovo je jedno od glavnih nedoumica kojih imam.
+Većina unaprijed definisanih metoda koristi ugao od 18° ili 15° za Zoru i Jaciju. Istraživanjem sam pronašao da korištenje ugla od 18° rezultira astronomskim sumrakom, što se često smatra "Lažnom zorom" što rezultira ranijim računanjem sabaha i jacije, dok sam istraživanjem uspio naći da ugao od 14.6° za zoru i jaciju daje ispravnije rezultate. Obzirom da sam daleko od ekperta za ovu oblast ovo je jedno od glavnih nedoumica kojih imam.
 
 ---
 
@@ -50,7 +50,7 @@ Većina unaprijed definisanih metoda koristi ugao od 18° ili 15° za Zoru i Jac
 
 ### 🎯 Trenutni odabir: `0` (Shafi / Standard)
 **Razlog:**  
-Iako muslimani u Bosni i Hercegovini pretežno slijede hanefijsku pravnu školu (mezheb), zvanični takvih po mom znanju također koristi šafijski. Odabir `1` (Hanefijski) bi rezultirao vremenima Ikindije koja bi bila otprilike 45-60 minuta kasnija od onoga što je napisano u zvaničnoj Vaktiji. To i neka dodatna istraživanja su razlozi ovog odabira.
+Iako muslimani u Bosni i Hercegovini pretežno slijede hanefijsku pravnu školu (mezheb), zvanični takvim po mom znanju također koristi šafijski. Odabir `1` (Hanefijski) bi rezultirao vremenima Ikindije koja bi bila otprilike 45-60 minuta kasnija od onoga što je napisano u zvaničnoj Vaktiji. To i neka dodatna istraživanja su razlozi ovog odabira.
 
 ---
 
@@ -110,7 +110,7 @@ Bosna i Hercegovina (geografska širina ~43° do 45° N) nije dovoljno daleko na
 
 ### 🎯 Trenutno: Podrazumijevano / Nedefinisano (Koristi API podrazumijevano)
 **Razlog:**  
-Oslanjamo se na standardni vraćeni hidžretski datum. Međutim, budući da početak islamskih mjeseci ovisi o stvarnom viđenju mlađaka što može varirati za 1 dan, uobičajeno je da digitalne aplikacije ponekad imaju odstupanje od 1 dana u poređenju s lokalnim štampanim Takvimom. 
+Oslanjamo se na standardni vraćeni hidžretski datum. Međutim, budući da početak islamskih mjeseci ovisi o stvarnom viđenju mlađaka što može varirati za 1 dan, uobičajeno je da digitalne aplikacije ponekad imaju odstupanje od 1 dana u poređenju s lokalnim štampanim Takvimom. Nisam siguran da li u ovakvom slučaju ostaviti zadane postavke ili nešto mijenjati.
 
 ## 7. Dodatno pitanje
 
@@ -133,4 +133,8 @@ Traje samo nekoliko minuta
 Nakon ikindije (Asr) pa sve dok sunce ne zađe
 Posebno pred sam zalazak (kad sunce požuti)
 
-Nemam puno znanja o ovome pa bi volio dobiti precinzije i provjerene informacije vezano za ovo, i savjet da li tako nešto uvesti u aplikaciju ?
+Nemam puno znanja o ovome pa bi volio dobiti precinzije i provjerene informacije vezano za ovo, i savjet da li tako nešto uvesti u vaktiju ?
+
+## 8. Dodatno pitanje 2
+
+Da li bi bilo korisno dodati odabir mezheba prilikom aplikacije tako da korisnik može odabrati po kojem mezhebu želi prilagoditi vaktiju ?

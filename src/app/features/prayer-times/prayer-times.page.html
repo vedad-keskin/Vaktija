@@ -52,6 +52,18 @@
               <span class="countdown-unit">{{ labels().countdownSeconds }}</span>
             </div>
           </div>
+
+          <div
+            class="countdown-progress"
+            role="progressbar"
+            [attr.aria-valuenow]="countdownWindowProgress()"
+            aria-valuemin="0"
+            aria-valuemax="100"
+            [attr.aria-valuetext]="countdownWindowProgress() + '%'"
+            [attr.aria-label]="labels().countdownProgressAria"
+          >
+            <div class="countdown-progress-fill" [style.width.%]="countdownWindowProgress()"></div>
+          </div>
         </section>
       }
 

@@ -15,6 +15,7 @@ export const EN_LABELS: AppLabels = {
   countdownMinutes: 'min',
   countdownSeconds: 'sec',
   countdownLabelSuffix: 'IN',
+  countdownProgressAria: 'Elapsed share of the current prayer-time window until the next prayer',
 
   dhuhrFridayName: "Jumu'ah",
 
