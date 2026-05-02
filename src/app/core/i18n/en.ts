@@ -16,6 +16,8 @@ export const EN_LABELS: AppLabels = {
   countdownSeconds: 'sec',
   countdownLabelSuffix: 'IN',
 
+  dhuhrFridayName: "Jumu'ah",
+
   /** Loading / Error */
   loading: 'Loading...',
   errorGeneric: 'Failed to load. Please try again.',

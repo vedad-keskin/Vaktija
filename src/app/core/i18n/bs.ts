@@ -23,6 +23,9 @@ export interface AppLabels {
   /** Prayer names (keyed by Aladhan API key) */
   prayerNames: Record<string, string>;
 
+  /** Dhuhr (noon prayer) on Gregorian Fridays */
+  dhuhrFridayName: string;
+
   /** Prayer tooltips (keyed by Aladhan API key) */
   prayerTooltips: Record<string, string>;
 
@@ -60,6 +63,8 @@ export const BS_LABELS: AppLabels = {
   countdownMinutes: 'min',
   countdownSeconds: 'sek',
   countdownLabelSuffix: 'ZA',
+
+  dhuhrFridayName: 'Džuma',
 
   loading: 'Učitavanje...',
   errorGeneric: 'Greška pri učitavanju. Pokušajte ponovo.',

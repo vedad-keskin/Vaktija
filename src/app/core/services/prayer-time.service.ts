@@ -45,11 +45,15 @@ export class PrayerTimeService {
   private buildPrayerTimes(res: AladhanApiResponse): PrayerTimeData[] {
     const timings = res.data.timings;
     const labels = this.langService.labels();
+    const fridayGregorian = this.isGregorianFriday(res);
 
     const times: PrayerTimeData[] = TIMING_KEYS.map((entry) => {
       const rawTime = timings[entry.key] ?? '00:00';
       const cleanTime = this.cleanTime(rawTime);
-      const name = labels.prayerNames[entry.key] ?? entry.key;
+      const name =
+        entry.key === 'Dhuhr' && fridayGregorian
+          ? labels.dhuhrFridayName
+          : labels.prayerNames[entry.key] ?? entry.key;
       const tooltip = labels.prayerTooltips[entry.key];
       return {
         name,
@@ -61,6 +65,14 @@ export class PrayerTimeService {
     });
 
     return times.sort((a, b) => a.minutes - b.minutes);
+  }
+
+  /** Aladhan returns English weekday labels on `gregorian.weekday.en`. */
+  private isGregorianFriday(res: AladhanApiResponse): boolean {
+    const en = res.data.date?.gregorian?.weekday?.en?.toLowerCase()?.trim();
+    if (en === 'friday') return true;
+    // Fallback if API shape changes
+    return new Date().getDay() === 5;
   }
 
   /**
