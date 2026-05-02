@@ -42,12 +42,18 @@
   position: absolute;
   inset: -1px;
   border-radius: 17px;
-  padding: 2px;
+  /* Slightly thicker ring — reads better on OLED / high-contrast dark UIs (e.g. Samsung) */
+  padding: 3px;
 
+  /*
+   * Progress arc: brighter stops so the fill stays visible when displays
+   * compress shadows/greens; unfilled track slightly stronger for separation.
+   */
   background: conic-gradient(
     from 0deg at 50% 50%,
-    var(--accent) calc(var(--progress) * 3.6deg),
-    rgba(45, 212, 168, 0.15) calc(var(--progress) * 3.6deg)
+    var(--accent-light) calc(var(--progress) * 3.6deg),
+    rgba(45, 212, 168, 0.4) calc(var(--progress) * 3.6deg),
+    rgba(45, 212, 168, 0.16) 360deg
   );
 
   /* Mask trick: show only the border ring, not the filled interior */
@@ -63,6 +69,10 @@
   pointer-events: none;
   z-index: 1;
   transition: background 1s linear;
+  /* Glow helps low-contrast / dimmed screens without changing layout */
+  filter: drop-shadow(0 0 4px rgba(94, 236, 198, 0.45))
+    drop-shadow(0 0 10px rgba(45, 212, 168, 0.22));
+  transform: translateZ(0);
 }
 
 .prayer-card.current .prayer-name,
