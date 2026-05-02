@@ -6,6 +6,7 @@
   [class.current]="prayer().isCurrent"
   [class.next]="prayer().isNext"
   [class.has-tooltip]="!!prayer().tooltip"
+  [class.tooltip-open]="showTooltip() && !!prayer().tooltip"
   [style.--progress]="prayer().progress"
   (mouseenter)="onMouseEnter()"
   (mouseleave)="onMouseLeave()"

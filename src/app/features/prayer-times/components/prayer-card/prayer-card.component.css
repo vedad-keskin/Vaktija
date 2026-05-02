@@ -1,5 +1,6 @@
 .prayer-card {
   position: relative;
+  isolation: isolate;
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
@@ -19,6 +20,11 @@
 
 .prayer-card.has-tooltip {
   cursor: pointer;
+}
+
+/** Sit above neighbouring cards so upward tooltip clears their progress borders */
+.prayer-card.tooltip-open {
+  z-index: 100;
 }
 
 /* ===== Current — most recently started prayer ===== */
@@ -62,7 +68,7 @@
   mask-composite: exclude;
 
   pointer-events: none;
-  z-index: 1;
+  z-index: 0;
   transition: background 1s linear;
 
   /* Glow around the border ring — survives forced dimming */
@@ -120,6 +126,8 @@
 
 /* ===== Card layout ===== */
 .card-top {
+  position: relative;
+  z-index: 1;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -155,6 +163,8 @@
 }
 
 .prayer-relative {
+  position: relative;
+  z-index: 1;
   font-size: 0.8rem;
   color: var(--text-muted);
   text-align: right;
@@ -165,7 +175,7 @@
   position: absolute;
   left: 50%;
   bottom: calc(100% + 12px);
-  z-index: 200;
+  z-index: 10;
   pointer-events: none;
   transform: translateX(-50%) translateY(0);
   animation: tooltipIn 0.18s ease-out forwards;
