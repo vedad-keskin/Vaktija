@@ -47,8 +47,8 @@
 
   background: conic-gradient(
     from 0deg at 50% 50%,
-    #2dd4a8 calc(var(--progress) * 3.6deg),
-    #2a3a35 calc(var(--progress) * 3.6deg)
+    var(--progress-filled) calc(var(--progress) * 3.6deg),
+    var(--progress-track) calc(var(--progress) * 3.6deg)
   );
 
   /* Mask trick: show only the border ring, not the filled interior */

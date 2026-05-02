@@ -6,6 +6,9 @@ import { AppLabels } from './bs';
 export const EN_LABELS: AppLabels = {
   /** Header */
   appTitle: 'Vaktija',
+  themeDay: 'Day',
+  themeNight: 'Night',
+  themeGroupLabel: 'Day or night',
 
   /** Countdown */
   countdownHours: 'hrs',

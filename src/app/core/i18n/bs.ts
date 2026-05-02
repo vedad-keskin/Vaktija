@@ -4,6 +4,10 @@
 export interface AppLabels {
   /** Header */
   appTitle: string;
+  /** Theme segmented switch (paired with language control style) */
+  themeDay: string;
+  themeNight: string;
+  themeGroupLabel: string;
 
   /** Countdown */
   countdownHours: string;
@@ -48,6 +52,9 @@ export interface AppLabels {
  */
 export const BS_LABELS: AppLabels = {
   appTitle: 'Vaktija',
+  themeDay: 'Dan',
+  themeNight: 'Noć',
+  themeGroupLabel: 'Dan ili noć',
 
   countdownHours: 'sati',
   countdownMinutes: 'min',

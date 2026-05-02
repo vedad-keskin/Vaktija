@@ -1,19 +1,6 @@
-/* ===== CSS Reset ===== */
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-/* ===== Design Tokens ===== */
+/* ===== Default (Dark) Theme ===== */
 :root {
-  /* Typography */
-  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-  --font-heading: 'Outfit', 'Inter', sans-serif;
-
-  /* Dark theme palette (default) */
+  /* Dark theme palette */
   --surface: #0f1117;
   --surface-elevated: #181b23;
   --surface-hover: #1f2330;
@@ -63,32 +50,4 @@
   --error: #dc3545;
 
   --logo-filter: invert(0);
-}
-
-/* ===== Global Styles ===== */
-html {
-  font-size: 16px;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  /* Remove default blue tap flash on mobile WebKit browsers */
-  -webkit-tap-highlight-color: transparent;
-}
-
-body {
-  font-family: var(--font-body);
-  background: var(--surface);
-  color: var(--text-primary);
-  line-height: 1.5;
-  min-height: 100vh;
-}
-
-/* Smooth scrolling */
-html {
-  scroll-behavior: smooth;
-}
-
-/* Selection color */
-::selection {
-  background: var(--accent);
-  color: var(--surface);
 }

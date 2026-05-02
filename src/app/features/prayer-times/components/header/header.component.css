@@ -1,15 +1,16 @@
 .app-header {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 1rem 1.5rem;
+  padding: 0 1.5rem;
   background: var(--surface-elevated);
   border-bottom: 1px solid var(--border-color);
-  /* Fixed height prevents vertical expansion on click */
   height: 64px;
   box-sizing: border-box;
 }
 
+/* ===== Left: Logo + Title ===== */
 .header-left {
   display: flex;
   align-items: center;
@@ -21,7 +22,7 @@
   width: 38px;
   height: 38px;
   object-fit: contain;
-  filter: invert(1);
+  filter: var(--logo-filter);
   flex-shrink: 0;
 }
 
@@ -33,6 +34,20 @@
   margin: 0;
   letter-spacing: 0.5px;
   line-height: 1.2;
+}
+
+/* ===== Desktop Controls ===== */
+.header-desktop-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+/* ===== Mobile Controls (hidden on desktop) ===== */
+.header-mobile-controls {
+  display: none;
+  align-items: center;
+  gap: 0.5rem;
 }
 
 /* ===== Language Switcher ===== */
@@ -48,7 +63,6 @@
   flex-shrink: 0;
 }
 
-/* Animated sliding pill */
 .lang-slider {
   position: absolute;
   top: 3px;
@@ -64,7 +78,6 @@
   z-index: 0;
 }
 
-/* Slide pill to the right when EN is active */
 .lang-switcher.en-active .lang-slider {
   transform: translateX(calc(100% + 2px));
 }
@@ -112,4 +125,101 @@
 
 .lang-code {
   pointer-events: none;
+}
+
+/* ===== Hamburger ===== */
+.hamburger {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 38px;
+  height: 38px;
+  padding: 9px 8px;
+  background: transparent;
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: border-color 0.25s ease;
+  -webkit-tap-highlight-color: transparent;
+  flex-shrink: 0;
+}
+
+.hamburger:hover {
+  border-color: var(--accent);
+}
+
+.hamburger span {
+  display: block;
+  width: 100%;
+  height: 2px;
+  background: var(--text-primary);
+  border-radius: 1px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
+}
+
+.hamburger.active span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+  transform: scaleX(0);
+}
+
+.hamburger.active span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* ===== Mobile Dropdown (theme segmented control) ===== */
+.mobile-dropdown {
+  display: none;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  left: 0;
+  background: var(--surface-elevated);
+  border-bottom: 1px solid var(--border-color);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.2);
+  padding: 0.75rem 1.5rem 1rem;
+  transform: translateY(-100%);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition:
+    transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 0.25s ease,
+    visibility 0.25s;
+  z-index: 200;
+}
+
+.mobile-dropdown.open {
+  transform: translateY(0);
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+[data-theme='dark'] .mobile-dropdown.open {
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.55);
+}
+
+/* ===== Mobile breakpoint ===== */
+@media (max-width: 580px) {
+  .app-header {
+    padding: 0 1rem;
+  }
+
+  .header-desktop-controls {
+    display: none;
+  }
+
+  .header-mobile-controls {
+    display: flex;
+  }
+
+  .mobile-dropdown {
+    display: block;
+  }
 }

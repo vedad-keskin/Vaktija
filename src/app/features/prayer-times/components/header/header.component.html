@@ -7,29 +7,61 @@
     />
     <h1 class="header-title">Vaktija</h1>
   </div>
-  <div class="header-right">
-    <div class="lang-switcher" [class.en-active]="currentLang() === 'en'" id="lang-switcher">
+
+  <!-- Desktop controls (hidden on mobile) -->
+  <div class="header-desktop-controls">
+    <app-theme-switcher />
+    <div class="lang-switcher" [class.en-active]="currentLang() === 'en'" id="lang-switcher-desktop">
       <div class="lang-slider"></div>
-      <button
-        class="lang-btn"
-        [class.active]="currentLang() === 'bs'"
-        (click)="switchLang('bs')"
-        title="Bosanski"
-        id="lang-btn-bs"
-      >
+      <button class="lang-btn" [class.active]="currentLang() === 'bs'" (click)="switchLang('bs')" title="Bosanski">
         <img src="assets/icons/bih.png" alt="BiH" class="lang-flag" />
         <span class="lang-code">BS</span>
       </button>
-      <button
-        class="lang-btn"
-        [class.active]="currentLang() === 'en'"
-        (click)="switchLang('en')"
-        title="English"
-        id="lang-btn-en"
-      >
+      <button class="lang-btn" [class.active]="currentLang() === 'en'" (click)="switchLang('en')" title="English">
         <img src="assets/icons/uk.png" alt="UK" class="lang-flag" />
         <span class="lang-code">EN</span>
       </button>
     </div>
+  </div>
+
+  <!-- Mobile controls -->
+  <div class="header-mobile-controls">
+    <!-- Language switcher (always visible on mobile) -->
+    <div class="lang-switcher" [class.en-active]="currentLang() === 'en'" id="lang-switcher-mobile">
+      <div class="lang-slider"></div>
+      <button class="lang-btn" [class.active]="currentLang() === 'bs'" (click)="switchLang('bs')" title="Bosanski">
+        <img src="assets/icons/bih.png" alt="BiH" class="lang-flag" />
+        <span class="lang-code">BS</span>
+      </button>
+      <button class="lang-btn" [class.active]="currentLang() === 'en'" (click)="switchLang('en')" title="English">
+        <img src="assets/icons/uk.png" alt="UK" class="lang-flag" />
+        <span class="lang-code">EN</span>
+      </button>
+    </div>
+
+    <!-- Hamburger -->
+    <button
+      type="button"
+      class="hamburger"
+      [class.active]="menuOpen()"
+      (click)="toggleMenu()"
+      aria-label="Toggle menu"
+      id="nav-hamburger"
+      [attr.aria-expanded]="menuOpen()"
+    >
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+
+  <!-- Mobile: theme segmented control below header bar (paired with `.lang-switcher` style) -->
+  <div
+    class="mobile-dropdown"
+    [class.open]="menuOpen()"
+    (touchstart)="onDrawerTouchStart($event)"
+    (touchend)="onDrawerTouchEnd($event)"
+  >
+    <app-theme-switcher (picked)="closeMenu()" />
   </div>
 </header>
