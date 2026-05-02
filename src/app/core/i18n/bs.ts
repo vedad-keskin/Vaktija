@@ -9,6 +9,8 @@ export interface AppLabels {
   countdownHours: string;
   countdownMinutes: string;
   countdownSeconds: string;
+  /** Shown after the next-prayer name in the countdown header */
+  countdownLabelSuffix: string;
 
   /** Loading / Error */
   loading: string;
@@ -50,6 +52,7 @@ export const BS_LABELS: AppLabels = {
   countdownHours: 'sati',
   countdownMinutes: 'min',
   countdownSeconds: 'sek',
+  countdownLabelSuffix: 'ZA',
 
   loading: 'Učitavanje...',
   errorGeneric: 'Greška pri učitavanju. Pokušajte ponovo.',

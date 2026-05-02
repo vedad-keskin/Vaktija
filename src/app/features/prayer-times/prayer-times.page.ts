@@ -1,4 +1,5 @@
 import { Component, inject, OnInit, OnDestroy, signal, computed, effect } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { HeaderComponent } from './components/header/header.component';
 import { CitySelectorComponent } from './components/city-selector/city-selector.component';
 import { PrayerCardComponent } from './components/prayer-card/prayer-card.component';
@@ -18,6 +19,7 @@ import { Location } from '../../core/models/location.model';
 export class PrayerTimesPage implements OnInit, OnDestroy {
   private readonly prayerTimeService = inject(PrayerTimeService);
   private readonly locationService = inject(LocationService);
+  private readonly titleService = inject(Title);
   protected readonly langService = inject(LanguageService);
   private tickInterval: ReturnType<typeof setInterval> | null = null;
 
@@ -132,6 +134,11 @@ export class PrayerTimesPage implements OnInit, OnDestroy {
       if (loc) {
         this.loadPrayerTimes(loc);
       }
+    });
+
+    effect(() => {
+      const loc = this.selectedLocation();
+      this.titleService.setTitle(loc?.name ? `Vaktija — ${loc.name}` : 'Vaktija');
     });
   }
 

@@ -11,6 +11,7 @@ export const EN_LABELS: AppLabels = {
   countdownHours: 'hrs',
   countdownMinutes: 'min',
   countdownSeconds: 'sec',
+  countdownLabelSuffix: 'IN',
 
   /** Loading / Error */
   loading: 'Loading...',
