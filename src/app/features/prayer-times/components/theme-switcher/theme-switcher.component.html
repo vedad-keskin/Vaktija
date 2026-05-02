@@ -11,17 +11,17 @@
     class="theme-btn"
     [class.active]="theme() === 'light'"
     [title]="labels().themeDay"
+    [attr.aria-label]="labels().themeDay"
   >
     <img src="assets/icons/day.png" alt="" class="theme-flag" width="18" height="18" aria-hidden="true" />
-    <span class="theme-code">{{ labels().themeDay }}</span>
   </button>
   <button
     type="button"
     class="theme-btn"
     [class.active]="theme() === 'dark'"
     [title]="labels().themeNight"
+    [attr.aria-label]="labels().themeNight"
   >
     <img src="assets/icons/night.png" alt="" class="theme-flag" width="18" height="18" aria-hidden="true" />
-    <span class="theme-code">{{ labels().themeNight }}</span>
   </button>
 </div>

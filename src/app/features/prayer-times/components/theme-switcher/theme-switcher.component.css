@@ -5,6 +5,8 @@
   display: flex;
   align-items: center;
   gap: 2px;
+  height: 38px;
+  box-sizing: border-box;
   background: var(--surface);
   border: 1px solid var(--border-color);
   border-radius: 12px;
@@ -36,7 +38,8 @@
   z-index: 1;
   display: flex;
   align-items: center;
-  gap: 0.35rem;
+  justify-content: center;
+  /* Match `.lang-btn` in header — keeps theme row same height as language row */
   padding: 0.35rem 0.65rem;
   border: none;
   border-radius: 9px;
@@ -44,11 +47,6 @@
   color: var(--text-muted);
   cursor: pointer;
   transition: color 0.25s ease;
-  font-family: var(--font-body);
-  font-size: 0.7rem;
-  font-weight: 600;
-  letter-spacing: 0.35px;
-  text-transform: uppercase;
   line-height: 1;
   -webkit-tap-highlight-color: transparent;
 }
@@ -71,14 +69,6 @@
 
 .theme-btn:hover .theme-flag {
   transform: scale(1.06);
-}
-
-.theme-code {
-  pointer-events: none;
-  max-width: 4rem;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
 }
 
 /* Wider segments when shown in the header mobile dropdown */

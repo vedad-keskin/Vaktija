@@ -51,11 +51,14 @@
 }
 
 /* ===== Language Switcher ===== */
+/* Segmented controls share one fixed height (language + theme in header) */
 .lang-switcher {
   position: relative;
   display: flex;
   align-items: center;
   gap: 2px;
+  height: 38px;
+  box-sizing: border-box;
   background: var(--surface);
   border: 1px solid var(--border-color);
   border-radius: 12px;
