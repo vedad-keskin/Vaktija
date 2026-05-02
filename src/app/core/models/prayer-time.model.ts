@@ -11,6 +11,10 @@ export interface PrayerTimeData {
 export interface PrayerTime extends PrayerTimeData {
   isActive: boolean;
   isPassed: boolean;
+  isCurrent: boolean;
+  isNext: boolean;
+  /** 0–100: how much of the current prayer window has elapsed (only for isCurrent) */
+  progress: number;
   relativeText: string;
 }
 

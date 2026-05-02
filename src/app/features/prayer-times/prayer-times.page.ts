@@ -34,22 +34,59 @@ export class PrayerTimesPage implements OnInit, OnDestroy {
   /** Reactive labels shortcut */
   protected readonly labels = this.langService.labels;
 
-  /** All 8 prayer times with dynamic isPassed/isActive/relativeText */
+  /** All 8 prayer times with dynamic isPassed/isActive/isCurrent/isNext/progress/relativeText */
   protected readonly displayTimes = computed<PrayerTime[]>(() => {
     const times = this.rawTimes();
     const current = this.now();
     const currentMin = current.getHours() * 60 + current.getMinutes();
+    const currentTotalSec =
+      current.getHours() * 3600 + current.getMinutes() * 60 + current.getSeconds();
 
-    let activeFound = false;
-    return times.map((t) => {
-      const isPassed = !activeFound && t.minutes <= currentMin;
-      const isActive = !activeFound && t.minutes > currentMin;
-      if (isActive) activeFound = true;
+    if (!times.length) return [];
+
+    // Find the index of the next prayer (first whose minutes > currentMin)
+    let nextIdx = times.findIndex((t) => t.minutes > currentMin);
+    // If all have passed, next is first prayer (tomorrow)
+    if (nextIdx === -1) nextIdx = 0;
+    // Current prayer is the one just before the next
+    const currentIdx = nextIdx === 0 ? times.length - 1 : nextIdx - 1;
+
+    // Calculate progress for the current prayer window
+    const currentPrayer = times[currentIdx];
+    const nextPrayer = times[nextIdx];
+
+    let windowDurationSec: number;
+    let elapsedSec: number;
+
+    if (nextIdx > currentIdx) {
+      // Normal case: both prayers are on the same day
+      windowDurationSec = (nextPrayer.minutes - currentPrayer.minutes) * 60;
+      elapsedSec = currentTotalSec - currentPrayer.minutes * 60;
+    } else {
+      // Wrap around midnight: current is last prayer of day, next is first of tomorrow
+      windowDurationSec = ((24 * 60 - currentPrayer.minutes) + nextPrayer.minutes) * 60;
+      const secSinceCurrent = currentTotalSec - currentPrayer.minutes * 60;
+      elapsedSec = secSinceCurrent >= 0
+        ? secSinceCurrent
+        : currentTotalSec + (24 * 60 - currentPrayer.minutes) * 60;
+    }
+
+    const rawProgress = windowDurationSec > 0 ? (elapsedSec / windowDurationSec) * 100 : 0;
+    // Quantize to 2% steps for a clean visual
+    const progress = Math.min(100, Math.max(0, Math.round(rawProgress / 2) * 2));
+
+    return times.map((t, i) => {
+      const isCurrent = i === currentIdx;
+      const isNext = i === nextIdx;
+      const isPassed = !isCurrent && !isNext && t.minutes <= currentMin;
 
       return {
         ...t,
-        isPassed: isPassed && !isActive,
-        isActive,
+        isPassed: isPassed && nextIdx !== 0, // If all passed (wrap), don't dim everything
+        isActive: isNext,
+        isCurrent,
+        isNext,
+        progress: isCurrent ? progress : 0,
         relativeText: this.formatRelative(t.minutes - currentMin),
       };
     });
