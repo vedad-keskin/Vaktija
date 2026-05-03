@@ -23,13 +23,12 @@ export const PRAYER_TOOLTIPS: Record<string, string> = {
     'Vrijeme jacijskog namaza završava završetkom polovine noći. ' +
     'Ako bi čovjek bio u nuždi i potrebi, može jaciju klanjati sve do nastupanja zore, tj. sabah-namaza.',
   'Zadnja trećina':
-    'Prenosi Ebu Hurejra radijallahu anhu, da je Allahov Poslanik, sallallahu alejhi ve sellem rekao:\n\n' +
-    '"Naš Uzvišeni Gospodar se spušta svake noći na najniže nebo kada ostane posljednja trećina noći, pa kaže:\n' +
-    "'Ko Me doziva da mu se odazovem?\n" +
-    "Ko od Mene traži da mu dam?\n" +
-    "Ko od Mene traži oprost da mu oprostim?'\n" +
-    '— i to traje sve dok ne nastupi zora."\n\n' +
-    'Hadis bilježe Buharija i Muslim.',
+    'Zadnja trećina noći ima posebno mjesto u islamu jer se smatra jednim od najvrijednijih vremena za ibadet i dovu.\n\n' +
+    'To je vrijeme kada je čovjek najbliži Allahu, jer se u vjerodostojnim predajama navodi da se Allahova milost tada posebno spušta i da se dove primaju.\n\n' +
+    'Dova u ovom periodu ima veliku vrijednost – vjernik može tražiti oprost, pomoć i bilo kakvu potrebu.\n\n' +
+    'To je vrijeme za noćni namaz (tahadžud) koji je među najvrjednijim dobrovoljnim ibadetima.\n\n' +
+    'U tom periodu iskrenost dolazi do izražaja, jer se čovjek budi dok drugi spavaju, bez želje za pokazivanjem.\n\n' +
+    'Traženje oprosta (istigfar) u zadnjoj trećini noći posebno se ističe u Kur’anu.',
 } as const;
 
 /**

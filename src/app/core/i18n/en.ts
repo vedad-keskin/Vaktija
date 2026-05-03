@@ -57,13 +57,12 @@ export const EN_LABELS: AppLabels = {
       'The time for Isha prayer ends at midnight. ' +
       'In cases of necessity, Isha may be performed up until the break of dawn (Fajr).',
     Lastthird:
-      'Abu Hurayrah (may Allah be pleased with him) reported that the Messenger of Allah (peace be upon him) said:\n\n' +
-      '"Our Lord descends every night to the lowest heaven when the last third of the night remains, and He says:\n' +
-      "'Who calls upon Me that I may answer him?\n" +
-      "Who asks of Me that I may give him?\n" +
-      "Who seeks My forgiveness that I may forgive him?'\n" +
-      '— and this continues until dawn."\n\n' +
-      'Narrated by Bukhari and Muslim.',
+      'The last third of the night has a special place in Islam: it is regarded as one of the most virtuous times for worship and supplication.\n\n' +
+      'It is a time when a person is especially close to Allah; authentic narrations describe His mercy descending then and prayers being answered.\n' +
+      'Supplication in this period carries great weight—a believer may ask forgiveness, help, and for any genuine need.\n' +
+      'It is the hour of the night prayer (tahajjud), among the most rewarding voluntary acts of worship.\n' +
+      'Then sincerity shows plainly: one rises while others sleep, without seeking display.\n' +
+      'Seeking forgiveness (istighfar) in the last third of the night is especially highlighted in the Qur’an.',
   },
 
   /** Hijri months */
