@@ -1,11 +1,4 @@
-/**
- * Maps aladhan.com API timing keys to Bosnian display names.
- * Order determines display order within the sorted list.
- *
- * Fajr from aladhan uses the -18° angle (MWL method) = prava zora (fecr sadik).
- * Midnight uses midnightMode=1 (Jafari) = mid Sunset→Fajr = šerijatska polovina noći.
- * Lastthird = start of the last third of the night (Sunset→Fajr).
- */
+
 export const TIMING_DISPLAY_MAP: {
   key: string;
   name: string;

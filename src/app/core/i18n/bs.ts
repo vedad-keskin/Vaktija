@@ -88,7 +88,7 @@ export const BS_LABELS: AppLabels = {
       'Prava zora (ar. fecr sadik) nastupa pojavom jasne horizontalne svjetlosti koja se širi preko cijelog horizonta.\n\n' +
       'Ona najavljuje početak sabahskog vremena i razlikuje se od lažne zore (ar. fecr kazib) – prolaznog, vertikalnog stuba svjetlosti koji brzo nestaje i nastupa nešto ranije.\n\n',
     Midnight:
-      'Polovina noći se računa kao polovina vremena između akšama (zalaska sunca) i prave zore (sabaha).\n\n' +
+      'Polovina noći se računa kao polovina vremena između akšama (zalaska sunca) i zore (sabaha).\n\n' +
       'Vrijeme jacijskog namaza završava završetkom polovine noći. ' +
       'Ako bi čovjek bio u nuždi i potrebi, može jaciju klanjati sve do nastupanja zore, tj. sabah-namaza.',
     Lastthird:

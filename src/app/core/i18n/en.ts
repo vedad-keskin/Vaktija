@@ -41,7 +41,7 @@ export const EN_LABELS: AppLabels = {
       'True dawn (ar. fecr sadik) begins with the appearance of a clear, horizontal light spreading across the entire horizon.\n\n' +
       'It marks the beginning of Fajr time and is distinguished from false dawn (ar. fecr kazib) — a brief, vertical column of light that quickly fades and appears slightly earlier.\n\n',
     Midnight:
-      'Midnight is calculated as the midpoint between Maghrib (sunset) and true dawn (Fajr).\n\n' +
+      'Midnight is calculated as the midpoint between Maghrib (sunset) and dawn (Fajr).\n\n' +
       'The time for Isha prayer ends at midnight. ' +
       'In cases of necessity, Isha may be performed up until the break of dawn (Fajr).',
     Lastthird:
