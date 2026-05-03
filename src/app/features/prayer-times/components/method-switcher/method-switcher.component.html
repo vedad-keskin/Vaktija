@@ -1,0 +1,78 @@
+<div class="method-switcher-host" [class.help-open]="helpOpen() !== null">
+  <div
+    class="method-switcher"
+    [class.iz-active]="method() === 'iz'"
+    role="group"
+    [attr.aria-label]="labels().methodGroupLabel"
+    (click)="onContainerClick()"
+  >
+    <div class="method-slider"></div>
+
+    <div class="method-segment" [class.active]="method() === '14.6'">
+      <button
+        type="button"
+        class="method-btn"
+        [class.active]="method() === '14.6'"
+        [attr.aria-label]="labels().method146Label"
+        (click)="onBtnClick('14.6', $event)"
+      >
+        <span class="method-label">{{ labels().method146Label }}</span>
+      </button>
+      <button
+        type="button"
+        class="method-help-trigger"
+        [attr.aria-label]="labels().method146HelpAria"
+        (click)="toggleHelp('14.6', $event)"
+      >
+        <svg class="method-help-icon" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+          <path
+            fill-rule="evenodd"
+            d="M18 10a8 8 0 1 1-16 0 8 8 0 0 1 16 0Zm-7-4a1 1 0 1 1-2 0 1 1 0 0 1 2 0ZM9 9a.75.75 0 0 0 0 1.5h.253a.25.25 0 0 1 .244.304l-.459 2.066A1.75 1.75 0 0 0 10.747 15H11a.75.75 0 0 0 0-1.5h-.253a.25.25 0 0 1-.244-.304l.459-2.066A1.75 1.75 0 0 0 9.253 9H9Z"
+            clip-rule="evenodd"
+          />
+        </svg>
+      </button>
+    </div>
+
+    <div class="method-segment" [class.active]="method() === 'iz'">
+      <button
+        type="button"
+        class="method-btn"
+        [class.active]="method() === 'iz'"
+        [attr.aria-label]="labels().methodIzLabel"
+        (click)="onBtnClick('iz', $event)"
+      >
+        <span class="method-label">{{ labels().methodIzLabel }}</span>
+      </button>
+      <button
+        type="button"
+        class="method-help-trigger"
+        [attr.aria-label]="labels().methodIzHelpAria"
+        (click)="toggleHelp('iz', $event)"
+      >
+        <svg class="method-help-icon" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+          <path
+            fill-rule="evenodd"
+            d="M18 10a8 8 0 1 1-16 0 8 8 0 0 1 16 0Zm-7-4a1 1 0 1 1-2 0 1 1 0 0 1 2 0ZM9 9a.75.75 0 0 0 0 1.5h.253a.25.25 0 0 1 .244.304l-.459 2.066A1.75 1.75 0 0 0 10.747 15H11a.75.75 0 0 0 0-1.5h-.253a.25.25 0 0 1-.244-.304l.459-2.066A1.75 1.75 0 0 0 9.253 9H9Z"
+            clip-rule="evenodd"
+          />
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  @if (helpOpen(); as key) {
+    <div class="method-tooltip" role="tooltip">
+      <div class="method-tooltip-content">
+        @switch (key) {
+          @case ('14.6') {
+            {{ labels().method146Tooltip }}
+          }
+          @case ('iz') {
+            {{ labels().methodIzTooltip }}
+          }
+        }
+      </div>
+    </div>
+  }
+</div>

@@ -1,8 +1,11 @@
 import { Injectable, inject } from '@angular/core';
-import { Observable, map } from 'rxjs';
+import { Observable, map, forkJoin } from 'rxjs';
 import { PrayerApiService } from './vaktija-api.service';
+import { VaktijaBaApiService, VaktijaBaResponse } from './vaktija-ba-api.service';
+import { CalculationMethodService } from './calculation-method.service';
 import { LanguageService } from './language.service';
 import { PrayerTimeData, AladhanApiResponse } from '../models/prayer-time.model';
+import { Location } from '../models/location.model';
 
 /** Keys for the 8 prayer/timing entries we display */
 const TIMING_KEYS: { key: string; isCalculated: boolean }[] = [
@@ -16,33 +19,82 @@ const TIMING_KEYS: { key: string; isCalculated: boolean }[] = [
   { key: 'Lastthird', isCalculated: true },
 ];
 
+/** vaktija.ba vakat array indices → Aladhan-style keys */
+const VAKAT_KEY_MAP: string[] = ['Fajr', 'Sunrise', 'Dhuhr', 'Asr', 'Maghrib', 'Isha'];
+
 @Injectable({ providedIn: 'root' })
 export class PrayerTimeService {
-  private readonly api = inject(PrayerApiService);
+  private readonly aladhanApi = inject(PrayerApiService);
+  private readonly vaktijaApi = inject(VaktijaBaApiService);
+  private readonly methodService = inject(CalculationMethodService);
   private readonly langService = inject(LanguageService);
 
   /**
    * Returns all 8 prayer times for today, sorted chronologically.
-   * Aladhan API with custom method (14.6° = prava zora) provides
-   * Fajr, Midnight, and Lastthird directly.
+   * Dispatches to either Aladhan (14.6°) or vaktija.ba (IZ) based on the active method.
+   * Always uses Aladhan for date info (Hijri, weekday).
    */
-  getTodayPrayerTimes(lat: number, lng: number, cityName: string): Observable<{
+  getTodayPrayerTimes(location: Location): Observable<{
     prayerTimes: PrayerTimeData[];
     locationName: string;
     dateLabel: string;
     hijriDate: string;
   }> {
-    return this.api.getPrayerTimes(lat, lng).pipe(
+    const method = this.methodService.method();
+
+    if (method === 'iz' && location.vaktijaId != null) {
+      return this.getIzTimes(location);
+    }
+    return this.getAladhanTimes(location);
+  }
+
+  /** 14.6° method — current behaviour via Aladhan API */
+  private getAladhanTimes(location: Location): Observable<{
+    prayerTimes: PrayerTimeData[];
+    locationName: string;
+    dateLabel: string;
+    hijriDate: string;
+  }> {
+    return this.aladhanApi.getPrayerTimes(location.lat, location.lng).pipe(
       map((res) => ({
-        prayerTimes: this.buildPrayerTimes(res),
-        locationName: cityName,
+        prayerTimes: this.buildAladhanPrayerTimes(res),
+        locationName: location.name,
         dateLabel: this.buildDateLabel(),
         hijriDate: this.buildHijriDate(res),
       }))
     );
   }
 
-  private buildPrayerTimes(res: AladhanApiResponse): PrayerTimeData[] {
+  /**
+   * IZ method — fetches today + tomorrow from vaktija.ba, plus Aladhan for Hijri date.
+   * Tomorrow's Fajr is needed for accurate Midnight / Last Third calculation.
+   */
+  private getIzTimes(location: Location): Observable<{
+    prayerTimes: PrayerTimeData[];
+    locationName: string;
+    dateLabel: string;
+    hijriDate: string;
+  }> {
+    const cityId = location.vaktijaId!;
+    const tomorrow = new Date();
+    tomorrow.setDate(tomorrow.getDate() + 1);
+
+    return forkJoin({
+      today: this.vaktijaApi.getTimesToday(cityId),
+      tomorrow: this.vaktijaApi.getTimesForDate(cityId, tomorrow),
+      aladhan: this.aladhanApi.getPrayerTimes(location.lat, location.lng),
+    }).pipe(
+      map(({ today, tomorrow: tmrw, aladhan }) => ({
+        prayerTimes: this.buildIzPrayerTimes(today, tmrw),
+        locationName: location.name,
+        dateLabel: this.buildDateLabel(),
+        hijriDate: this.buildHijriDate(aladhan),
+      }))
+    );
+  }
+
+  /** Build 8 prayer times from Aladhan response (existing logic). */
+  private buildAladhanPrayerTimes(res: AladhanApiResponse): PrayerTimeData[] {
     const timings = res.data.timings;
     const labels = this.langService.labels();
     const fridayGregorian = this.isGregorianFriday(res);
@@ -52,6 +104,53 @@ export class PrayerTimeService {
       const cleanTime = this.cleanTime(rawTime);
       const name =
         entry.key === 'Dhuhr' && fridayGregorian
+          ? labels.dhuhrFridayName
+          : labels.prayerNames[entry.key] ?? entry.key;
+      const tooltip = labels.prayerTooltips[entry.key];
+      return {
+        name,
+        time: cleanTime,
+        minutes: this.timeToMinutes(cleanTime),
+        isCalculated: entry.isCalculated,
+        ...(tooltip ? { tooltip } : {}),
+      };
+    });
+
+    return times.sort((a, b) => a.minutes - b.minutes);
+  }
+
+  /**
+   * Build 8 prayer times from vaktija.ba today + tomorrow responses.
+   * Computes Midnight and Last Third locally:
+   *   Midnight  = Maghrib + (nextFajr − Maghrib) / 2
+   *   LastThird = Maghrib + 2 × (nextFajr − Maghrib) / 3
+   */
+  private buildIzPrayerTimes(today: VaktijaBaResponse, tomorrow: VaktijaBaResponse): PrayerTimeData[] {
+    const labels = this.langService.labels();
+    const isFriday = new Date().getDay() === 5;
+
+    // Map the 6 vakat values to keyed timings
+    const timings: Record<string, string> = {};
+    today.vakat.forEach((time, i) => {
+      timings[VAKAT_KEY_MAP[i]] = time;
+    });
+
+    // Calculate Midnight and Last Third using tomorrow's Fajr
+    const maghribMin = this.timeToMinutes(timings['Maghrib']);
+    const tomorrowFajrMin = this.timeToMinutes(tomorrow.vakat[0]) + 24 * 60; // next day
+    const nightDuration = tomorrowFajrMin - maghribMin;
+
+    const midnightMin = maghribMin + Math.round(nightDuration / 2);
+    const lastThirdMin = maghribMin + Math.round((2 * nightDuration) / 3);
+
+    // Normalise to 24h (wraps past midnight)
+    timings['Midnight'] = this.minutesToTime(midnightMin % (24 * 60));
+    timings['Lastthird'] = this.minutesToTime(lastThirdMin % (24 * 60));
+
+    const times: PrayerTimeData[] = TIMING_KEYS.map((entry) => {
+      const cleanTime = timings[entry.key] ?? '00:00';
+      const name =
+        entry.key === 'Dhuhr' && isFriday
           ? labels.dhuhrFridayName
           : labels.prayerNames[entry.key] ?? entry.key;
       const tooltip = labels.prayerTooltips[entry.key];
@@ -107,5 +206,11 @@ export class PrayerTimeService {
   private timeToMinutes(time: string): number {
     const [hours, minutes] = time.split(':').map(Number);
     return hours * 60 + minutes;
+  }
+
+  private minutesToTime(totalMinutes: number): string {
+    const h = Math.floor(totalMinutes / 60);
+    const m = totalMinutes % 60;
+    return `${h}:${m.toString().padStart(2, '0')}`;
   }
 }

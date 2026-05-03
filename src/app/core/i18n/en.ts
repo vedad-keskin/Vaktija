@@ -10,6 +10,21 @@ export const EN_LABELS: AppLabels = {
   themeNight: 'Night',
   themeGroupLabel: 'Day or night',
 
+  methodGroupLabel: 'Calculation method',
+  method146Label: '14.6°',
+  methodIzLabel: 'IZ',
+
+  method146Tooltip:
+    'Astronomical times from the Aladhan API using a custom method: the Sun is 14.6° below the horizon for Fajr (dawn) and for Isha.\n\n' +
+    'That angle is commonly associated with true dawn (fecr sadik). Widespread 18° presets match astronomical twilight and usually give an earlier Fajr; in Islamic jurisprudence they are often distinguished from true dawn and linked to false dawn (fecr kazib).\n\n' +
+    'For Bosnia-Herzegovina and similar mid-latitudes this aligns with public calculators such as vaktija.dev. Other settings here include the shar‘i midpoint for “midnight” and standard Shafi Asr.',
+
+  methodIzTooltip:
+    'Official prayer times published by the Islamic Community in Bosnia and Herzegovina (Islamska zajednica u BiH)',
+
+  method146HelpAria: 'Explain the 14.6° method',
+  methodIzHelpAria: 'Explain IZ (Islamic Community) times',
+
   /** Countdown */
   countdownHours: 'hrs',
   countdownMinutes: 'min',
@@ -37,9 +52,6 @@ export const EN_LABELS: AppLabels = {
 
   /** Prayer tooltips (keyed by Aladhan API key) */
   prayerTooltips: {
-    Fajr:
-      'True dawn (ar. fecr sadik) begins with the appearance of a clear, horizontal light spreading across the entire horizon.\n\n' +
-      'It marks the beginning of Fajr time and is distinguished from false dawn (ar. fecr kazib) — a brief, vertical column of light that quickly fades and appears slightly earlier.\n\n',
     Midnight:
       'Midnight is calculated as the midpoint between Maghrib (sunset) and dawn (Fajr).\n\n' +
       'The time for Isha prayer ends at midnight. ' +

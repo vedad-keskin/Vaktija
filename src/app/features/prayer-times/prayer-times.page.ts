@@ -1,4 +1,5 @@
 import { Component, inject, OnInit, OnDestroy, signal, computed, effect } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { Title } from '@angular/platform-browser';
 import { HeaderComponent } from './components/header/header.component';
 import { CitySelectorComponent } from './components/city-selector/city-selector.component';
@@ -6,6 +7,7 @@ import { PrayerCardComponent } from './components/prayer-card/prayer-card.compon
 import { PrayerTimeService } from '../../core/services/prayer-time.service';
 import { LocationService } from '../../core/services/location.service';
 import { LanguageService } from '../../core/services/language.service';
+import { CalculationMethodService } from '../../core/services/calculation-method.service';
 import { PrayerTimeData, PrayerTime } from '../../core/models/prayer-time.model';
 import { Location } from '../../core/models/location.model';
 
@@ -21,7 +23,10 @@ export class PrayerTimesPage implements OnInit, OnDestroy {
   private readonly locationService = inject(LocationService);
   private readonly titleService = inject(Title);
   protected readonly langService = inject(LanguageService);
+  private readonly methodService = inject(CalculationMethodService);
   private tickInterval: ReturnType<typeof setInterval> | null = null;
+  /** Cancels an in-flight load when a newer one starts (avoids piled-up IZ forkJoin traffic). */
+  private prayerLoadSub: Subscription | null = null;
 
   protected readonly locations = signal<Location[]>([]);
   protected readonly selectedLocation = signal<Location | null>(null);
@@ -139,6 +144,7 @@ export class PrayerTimesPage implements OnInit, OnDestroy {
     // Re-fetch prayer times whenever language changes so names/tooltips update
     effect(() => {
       const _lang = this.langService.lang(); // track
+      const _method = this.methodService.method(); // track
       const loc = this.selectedLocation();
       if (loc) {
         this.loadPrayerTimes(loc);
@@ -155,7 +161,7 @@ export class PrayerTimesPage implements OnInit, OnDestroy {
     this.loadLocations();
     const saved = this.locationService.getSelectedLocation();
     this.selectedLocation.set(saved);
-    this.loadPrayerTimes(saved);
+    // Prayer load is driven by the constructor effect when `selectedLocation` / lang / method change.
 
     // Tick every second for countdown + relative times
     this.tickInterval = setInterval(() => this.now.set(new Date()), 1000);
@@ -163,12 +169,13 @@ export class PrayerTimesPage implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     if (this.tickInterval) clearInterval(this.tickInterval);
+    this.prayerLoadSub?.unsubscribe();
   }
 
   protected onCityChange(location: Location): void {
     this.selectedLocation.set(location);
     this.locationService.setSelectedLocation(location);
-    this.loadPrayerTimes(location);
+    // Reload via effect (tracks selectedLocation).
   }
 
   protected pad(n: number): string {
@@ -183,10 +190,11 @@ export class PrayerTimesPage implements OnInit, OnDestroy {
   }
 
   private loadPrayerTimes(location: Location): void {
+    this.prayerLoadSub?.unsubscribe();
     this.isLoading.set(true);
     this.error.set(null);
 
-    this.prayerTimeService.getTodayPrayerTimes(location.lat, location.lng, location.name).subscribe({
+    this.prayerLoadSub = this.prayerTimeService.getTodayPrayerTimes(location).subscribe({
       next: ({ prayerTimes, locationName, dateLabel, hijriDate }) => {
         this.rawTimes.set(prayerTimes);
         this.locationName.set(locationName);

@@ -10,6 +10,7 @@
 
   <!-- Desktop controls (hidden on mobile) -->
   <div class="header-desktop-controls">
+    <app-method-switcher />
     <app-theme-switcher />
     <div
       class="lang-switcher"
@@ -33,7 +34,7 @@
 
   <!-- Mobile controls -->
   <div class="header-mobile-controls">
-    <!-- Language switcher (always visible on mobile) -->
+    <!-- Language switcher (always visible on mobile, click-anywhere toggle) -->
     <div
       class="lang-switcher"
       [class.en-active]="currentLang() === 'en'"
@@ -69,13 +70,14 @@
     </button>
   </div>
 
-  <!-- Mobile: theme segmented control below header bar (paired with `.lang-switcher` style) -->
+  <!-- Mobile dropdown: method + theme (directSelect mode, auto-close on pick) -->
   <div
     class="mobile-dropdown"
     [class.open]="menuOpen()"
     (touchstart)="onDrawerTouchStart($event)"
     (touchend)="onDrawerTouchEnd($event)"
   >
-    <app-theme-switcher (picked)="closeMenu()" />
+    <app-theme-switcher [directSelect]="true" (picked)="closeMenu()" />
+    <app-method-switcher [directSelect]="true" (picked)="closeMenu()" />
   </div>
 </header>

@@ -4,7 +4,7 @@ import { BOSNIA_PRESET_CITIES } from '../constants/bosnia-preset-cities.constant
 import { Location } from '../models/location.model';
 
 const STORAGE_KEY = 'vaktija_selected_location';
-const DEFAULT_LOCATION: Location = { name: 'Sarajevo', lat: 43.8486, lng: 18.3564 };
+const DEFAULT_LOCATION: Location = { name: 'Sarajevo', lat: 43.8486, lng: 18.3564, vaktijaId: 77 };
 
 @Injectable({ providedIn: 'root' })
 export class LocationService {
@@ -18,6 +18,13 @@ export class LocationService {
       if (stored) {
         const parsed = JSON.parse(stored) as Location;
         if (parsed.name && typeof parsed.lat === 'number' && typeof parsed.lng === 'number') {
+          // Upgrade old stored locations that lack vaktijaId
+          if (parsed.vaktijaId === undefined) {
+            const preset = BOSNIA_PRESET_CITIES.find(c => c.name === parsed.name);
+            if (preset && preset.vaktijaId !== undefined) {
+              parsed.vaktijaId = preset.vaktijaId;
+            }
+          }
           return parsed;
         }
       }

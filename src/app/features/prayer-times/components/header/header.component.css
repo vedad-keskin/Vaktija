@@ -175,7 +175,7 @@
   transform: translateY(-7px) rotate(-45deg);
 }
 
-/* ===== Mobile Dropdown (theme segmented control) ===== */
+/* ===== Mobile Dropdown (method + theme segmented controls) ===== */
 .mobile-dropdown {
   display: none;
   position: absolute;
@@ -195,6 +195,8 @@
     opacity 0.25s ease,
     visibility 0.25s;
   z-index: 200;
+  flex-direction: column;
+  gap: 0.5rem;
 }
 
 .mobile-dropdown.open {
@@ -223,6 +225,6 @@
   }
 
   .mobile-dropdown {
-    display: block;
+    display: flex;
   }
 }

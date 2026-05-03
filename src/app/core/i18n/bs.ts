@@ -9,6 +9,16 @@ export interface AppLabels {
   themeNight: string;
   themeGroupLabel: string;
 
+  /** Method switcher */
+  methodGroupLabel: string;
+  method146Label: string;
+  methodIzLabel: string;
+  /** Long help shown next to method switcher (tap “i”) */
+  method146Tooltip: string;
+  methodIzTooltip: string;
+  method146HelpAria: string;
+  methodIzHelpAria: string;
+
   /** Countdown */
   countdownHours: string;
   countdownMinutes: string;
@@ -61,6 +71,21 @@ export const BS_LABELS: AppLabels = {
   themeNight: 'Noć',
   themeGroupLabel: 'Dan ili noć',
 
+  methodGroupLabel: 'Metoda proračuna',
+  method146Label: '14.6°',
+  methodIzLabel: 'IZ',
+
+  method146Tooltip:
+    'Matematički proračun preko Aladhan API-ja s prilagođenom metodom (custom): Sunce je 14,6° ispod horizonta za početak zore (Fajr) i za jaciju (Isha).\n\n' +
+    'U praksi se takav ugao često veže uz pravu zoru (fecr sadik). Široko korišteni proračuni s 18° tipično odgovaraju astronomskom sumraku i daju raniju zoru — u islamskom pravu (fikhu) često se razlikuju od prave zore i vezuju uz lažnu zoru (fecr kazib).\n\n' +
+    'Za BiH i slične geografske širine ovaj model je usporediv s javnim proračunima poput vaktija.dev. Ostale postavke u ovom modu uključuju šerijatsku polovinu noći za „polovinu noći” i šafijsku ikindiju.',
+
+  methodIzTooltip:
+    'Službena vremena namaza koja objavljuje Islamska zajednica u Bosni i Hercegovini (IZ)',
+
+  method146HelpAria: 'Objašnjenje metode 14,6°',
+  methodIzHelpAria: 'Objašnjenje IZ vremena',
+
   countdownHours: 'sati',
   countdownMinutes: 'min',
   countdownSeconds: 'sek',
@@ -84,9 +109,6 @@ export const BS_LABELS: AppLabels = {
   },
 
   prayerTooltips: {
-    Fajr:
-      'Prava zora (ar. fecr sadik) nastupa pojavom jasne horizontalne svjetlosti koja se širi preko cijelog horizonta.\n\n' +
-      'Ona najavljuje početak sabahskog vremena i razlikuje se od lažne zore (ar. fecr kazib) – prolaznog, vertikalnog stuba svjetlosti koji brzo nestaje i nastupa nešto ranije.\n\n',
     Midnight:
       'Polovina noći se računa kao polovina vremena između akšama (zalaska sunca) i zore (sabaha).\n\n' +
       'Vrijeme jacijskog namaza završava završetkom polovine noći. ' +

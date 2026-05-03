@@ -18,9 +18,6 @@ export const TIMING_DISPLAY_MAP: {
  * Tooltips for standard prayer times that require extra explanation.
  */
 export const PRAYER_TOOLTIPS: Record<string, string> = {
-  'Zora (sabah)':
-    'Prava zora (ar. fecr sadik) nastupa pojavom jasne horizontalne svjetlosti koja se širi preko cijelog horizonta.\n\n' +
-    'Ona najavljuje početak sabahskog vremena i razlikuje se od lažne zore (ar. fecr kazib) – prolaznog, vertikalnog stuba svjetlosti koji brzo nestaje i nastupa nešto ranije.\n\n',
   'Polovina noći':
     'Polovina noći se računa kao polovina vremena između akšama (zalaska sunca) i prave zore (sabaha).\n\n' +
     'Vrijeme jacijskog namaza završava završetkom polovine noći. ' +

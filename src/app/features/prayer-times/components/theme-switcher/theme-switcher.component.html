@@ -3,7 +3,7 @@
   [class.dark-active]="theme() === 'dark'"
   role="group"
   [attr.aria-label]="labels().themeGroupLabel"
-  (click)="toggleTheme()"
+  (click)="onContainerClick()"
 >
   <div class="theme-slider"></div>
   <button
@@ -12,6 +12,7 @@
     [class.active]="theme() === 'light'"
     [title]="labels().themeDay"
     [attr.aria-label]="labels().themeDay"
+    (click)="onBtnClick('light', $event)"
   >
     <img src="assets/icons/day.png" alt="" class="theme-flag" width="18" height="18" aria-hidden="true" />
   </button>
@@ -21,6 +22,7 @@
     [class.active]="theme() === 'dark'"
     [title]="labels().themeNight"
     [attr.aria-label]="labels().themeNight"
+    (click)="onBtnClick('dark', $event)"
   >
     <img src="assets/icons/night.png" alt="" class="theme-flag" width="18" height="18" aria-hidden="true" />
   </button>
