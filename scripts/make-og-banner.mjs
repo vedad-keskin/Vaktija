@@ -16,7 +16,7 @@ const W = 1200;
 const H = 630;
 
 async function main() {
-  const logoPath = path.join(ROOT, 'public/assets/icons/logo-large.png');
+  const logoPath = path.join(ROOT, 'public/assets/icons/logo-small.png');
   const outPath = path.join(ROOT, 'public/assets/icons/banner.png');
 
   const logoH = 220;
