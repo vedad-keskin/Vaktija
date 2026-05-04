@@ -46,12 +46,15 @@ export class PrayerApiService {
       };
     } else {
       // IZ / Vaktija.ba Parity
+      // Uses Method 99 to avoid hidden offsets inside pre-configured methods.
+      // Mathematical parity found at: Fajr 18.0°, Isha 15.9°, plus pure solar tune offsets
       params = {
         ...params,
-        method: '13',        // Diyanet İşleri Başkanlığı, Turkey
+        method: '99',
+        methodSettings: '18.0,null,15.9',
         school: '0',         // Shafi (standard)
         midnightMode: '0',   // Standard (mid Sunset to Sunrise)
-        tune: '0,0,0,-4,-4,-2,-2,-6,0', // Fine-tuned offsets for vaktija.ba parity
+        tune: '0,0,-6,1,0,6,6,1,0', // Fine-tuned solar offsets for vaktija.ba parity
       };
     }
 
