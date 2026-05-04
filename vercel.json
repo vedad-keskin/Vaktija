@@ -3,6 +3,7 @@
   "outputDirectory": "dist/Vaktija/browser",
   "framework": null,
   "rewrites": [
+    { "handle": "filesystem" },
     {
       "source": "/(.*)",
       "destination": "/index.html"

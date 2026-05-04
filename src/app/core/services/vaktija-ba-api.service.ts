@@ -4,23 +4,23 @@ import { Observable, timer, throwError } from 'rxjs';
 import { retry } from 'rxjs/operators';
 
 /**
- * Production: browser calls api.vaktija.ba directly (must send CORS headers).
- * Development (`ng serve`): same-origin proxy (`proxy.conf.json`) avoids flaky CORS on localhost when the API errors.
+ * Development (`ng serve`): dev-server proxy → api.vaktija.ba (`proxy.conf.json`).
+ * Production (Vercel): same-origin `/api/vaktija/...` serverless proxy — avoids CORS on upstream 503 and edge-caches responses.
  */
 const BASE_URL = isDevMode()
   ? '/vaktija-ba-api/vaktija/v1'
-  : 'https://api.vaktija.ba/vaktija/v1';
+  : '/api/vaktija/vaktija/v1';
 
-/** Retry transient failures — api.vaktija.ba often returns 503; error bodies usually omit CORS headers so the browser reports both CORS and HTTP errors. */
+/** Retry transient failures (network blips; proxy handles most upstream retries). */
 function vaktijaRetry<T>() {
   return retry<T>({
-    count: 3,
+    count: 4,
     delay: (error: unknown, retryCount: number) => {
       const status = error instanceof HttpErrorResponse ? error.status : 0;
       const retryable =
         status === 0 || status >= 500 || status === 429 || status === 408;
       if (!retryable) return throwError(() => error);
-      return timer(Math.min(400 * 2 ** (retryCount - 1), 6000));
+      return timer(Math.min(800 * 2 ** (retryCount - 1), 6000));
     },
   });
 }
