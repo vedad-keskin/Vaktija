@@ -1,0 +1,6054 @@
+{
+  "metadata": {
+    "city": "Sarajevo",
+    "coords": {
+      "lat": 43.8486,
+      "lng": 18.3564,
+      "vaktijaId": 77
+    },
+    "year": 2025,
+    "sampleDates": [
+      "2025-01-01",
+      "2025-01-15",
+      "2025-02-01",
+      "2025-02-15",
+      "2025-03-01",
+      "2025-03-15",
+      "2025-04-01",
+      "2025-04-15",
+      "2025-05-01",
+      "2025-05-15",
+      "2025-06-01",
+      "2025-06-15",
+      "2025-07-01",
+      "2025-07-15",
+      "2025-08-01",
+      "2025-08-15",
+      "2025-09-01",
+      "2025-09-15",
+      "2025-10-01",
+      "2025-10-15",
+      "2025-11-01",
+      "2025-11-15",
+      "2025-12-01",
+      "2025-12-15"
+    ],
+    "testedAt": "2026-05-04T03:23:51.233Z"
+  },
+  "vaktijaSamples": {
+    "2025-01-01": [
+      "5:37",
+      "7:15",
+      "11:51",
+      "14:01",
+      "16:25",
+      "17:52"
+    ],
+    "2025-01-15": [
+      "5:35",
+      "7:12",
+      "11:57",
+      "14:14",
+      "16:40",
+      "18:05"
+    ],
+    "2025-02-01": [
+      "5:25",
+      "6:59",
+      "12:01",
+      "14:33",
+      "17:02",
+      "18:24"
+    ],
+    "2025-02-15": [
+      "5:09",
+      "6:40",
+      "12:02",
+      "14:48",
+      "17:21",
+      "18:41"
+    ],
+    "2025-03-01": [
+      "4:48",
+      "6:18",
+      "12:00",
+      "15:03",
+      "17:40",
+      "18:59"
+    ],
+    "2025-03-15": [
+      "4:23",
+      "5:54",
+      "11:56",
+      "15:14",
+      "17:58",
+      "19:17"
+    ],
+    "2025-04-01": [
+      "4:49",
+      "6:23",
+      "12:51",
+      "16:25",
+      "19:19",
+      "20:40"
+    ],
+    "2025-04-15": [
+      "4:19",
+      "5:58",
+      "12:47",
+      "16:31",
+      "19:36",
+      "21:01"
+    ],
+    "2025-05-01": [
+      "3:45",
+      "5:33",
+      "12:44",
+      "16:38",
+      "19:55",
+      "21:27"
+    ],
+    "2025-05-15": [
+      "3:17",
+      "5:15",
+      "12:44",
+      "16:44",
+      "20:11",
+      "21:51"
+    ],
+    "2025-06-01": [
+      "2:51",
+      "5:01",
+      "12:45",
+      "16:49",
+      "20:27",
+      "22:17"
+    ],
+    "2025-06-15": [
+      "2:40",
+      "4:56",
+      "12:48",
+      "16:54",
+      "20:36",
+      "22:31"
+    ],
+    "2025-07-01": [
+      "2:46",
+      "5:00",
+      "12:51",
+      "16:56",
+      "20:38",
+      "22:33"
+    ],
+    "2025-07-15": [
+      "3:04",
+      "5:11",
+      "12:53",
+      "16:56",
+      "20:33",
+      "22:21"
+    ],
+    "2025-08-01": [
+      "3:34",
+      "5:27",
+      "12:53",
+      "16:51",
+      "20:16",
+      "21:55"
+    ],
+    "2025-08-15": [
+      "3:59",
+      "5:44",
+      "12:52",
+      "16:43",
+      "19:58",
+      "21:28"
+    ],
+    "2025-09-01": [
+      "4:27",
+      "6:02",
+      "12:47",
+      "16:28",
+      "19:29",
+      "20:53"
+    ],
+    "2025-09-15": [
+      "4:47",
+      "6:19",
+      "12:43",
+      "16:12",
+      "19:04",
+      "20:24"
+    ],
+    "2025-10-01": [
+      "5:08",
+      "6:37",
+      "12:37",
+      "15:53",
+      "18:35",
+      "19:53"
+    ],
+    "2025-10-15": [
+      "5:25",
+      "6:54",
+      "12:33",
+      "15:33",
+      "18:09",
+      "19:28"
+    ],
+    "2025-11-01": [
+      "4:45",
+      "6:15",
+      "11:31",
+      "14:13",
+      "16:43",
+      "18:04"
+    ],
+    "2025-11-15": [
+      "5:01",
+      "6:34",
+      "11:32",
+      "14:00",
+      "16:27",
+      "17:50"
+    ],
+    "2025-12-01": [
+      "5:18",
+      "6:54",
+      "11:36",
+      "13:51",
+      "16:16",
+      "17:42"
+    ],
+    "2025-12-15": [
+      "5:29",
+      "7:08",
+      "11:42",
+      "13:52",
+      "16:15",
+      "17:42"
+    ]
+  },
+  "top20": [
+    {
+      "label": "Diyanet İşleri Başkanlığı, Turkey | school=0 | midnightMode=0",
+      "config": {
+        "method": 13,
+        "school": 0,
+        "midnightMode": 0,
+        "label": "Diyanet İşleri Başkanlığı, Turkey | school=0 | midnightMode=0"
+      },
+      "avgError": 3.0347222222222223,
+      "prayerStats": {
+        "Fajr": {
+          "avgDiff": "0.0",
+          "avgAbsDiff": "0.1",
+          "maxAbsDiff": 1,
+          "samples": 24
+        },
+        "Sunrise": {
+          "avgDiff": "-0.6",
+          "avgAbsDiff": "1.0",
+          "maxAbsDiff": 2,
+          "samples": 24
+        },
+        "Dhuhr": {
+          "avgDiff": "4.3",
+          "avgAbsDiff": "4.3",
+          "maxAbsDiff": 5,
+          "samples": 24
+        },
+        "Asr": {
+          "avgDiff": "4.3",
+          "avgAbsDiff": "4.3",
+          "maxAbsDiff": 6,
+          "samples": 24
+        },
+        "Maghrib": {
+          "avgDiff": "1.3",
+          "avgAbsDiff": "1.4",
+          "maxAbsDiff": 3,
+          "samples": 24
+        },
+        "Isha": {
+          "avgDiff": "7.0",
+          "avgAbsDiff": "7.0",
+          "maxAbsDiff": 12,
+          "samples": 24
+        }
+      },
+      "dateErrors": [
+        {
+          "date": "2025-01-01",
+          "Fajr": 0,
+          "Sunrise": -1,
+          "Dhuhr": 4,
+          "Asr": 4,
+          "Maghrib": 2,
+          "Isha": 6,
+          "avgAbsError": 2.8333333333333335
+        },
+        {
+          "date": "2025-01-15",
+          "Fajr": 1,
+          "Sunrise": -1,
+          "Dhuhr": 4,
+          "Asr": 4,
+          "Maghrib": 2,
+          "Isha": 6,
+          "avgAbsError": 3
+        },
+        {
+          "date": "2025-02-01",
+          "Fajr": 0,
+          "Sunrise": -2,
+          "Dhuhr": 4,
+          "Asr": 4,
+          "Maghrib": 2,
+          "Isha": 7,
+          "avgAbsError": 3.1666666666666665
+        },
+        {
+          "date": "2025-02-15",
+          "Fajr": 0,
+          "Sunrise": -2,
+          "Dhuhr": 4,
+          "Asr": 4,
+          "Maghrib": 3,
+          "Isha": 7,
+          "avgAbsError": 3.3333333333333335
+        },
+        {
+          "date": "2025-03-01",
+          "Fajr": 0,
+          "Sunrise": -2,
+          "Dhuhr": 4,
+          "Asr": 3,
+          "Maghrib": 2,
+          "Isha": 6,
+          "avgAbsError": 2.8333333333333335
+        },
+        {
+          "date": "2025-03-15",
+          "Fajr": 0,
+          "Sunrise": -2,
+          "Dhuhr": 4,
+          "Asr": 3,
+          "Maghrib": 2,
+          "Isha": 6,
+          "avgAbsError": 2.8333333333333335
+        },
+        {
+          "date": "2025-04-01",
+          "Fajr": -1,
+          "Sunrise": -2,
+          "Dhuhr": 4,
+          "Asr": 3,
+          "Maghrib": 2,
+          "Isha": 7,
+          "avgAbsError": 3.1666666666666665
+        },
+        {
+          "date": "2025-04-15",
+          "Fajr": 0,
+          "Sunrise": -2,
+          "Dhuhr": 5,
+          "Asr": 4,
+          "Maghrib": 1,
+          "Isha": 8,
+          "avgAbsError": 3.3333333333333335
+        },
+        {
+          "date": "2025-05-01",
+          "Fajr": 0,
+          "Sunrise": -2,
+          "Dhuhr": 5,
+          "Asr": 4,
+          "Maghrib": 2,
+          "Isha": 9,
+          "avgAbsError": 3.6666666666666665
+        },
+        {
+          "date": "2025-05-15",
+          "Fajr": 0,
+          "Sunrise": -1,
+          "Dhuhr": 4,
+          "Asr": 3,
+          "Maghrib": 2,
+          "Isha": 10,
+          "avgAbsError": 3.3333333333333335
+        },
+        {
+          "date": "2025-06-01",
+          "Fajr": 0,
+          "Sunrise": -1,
+          "Dhuhr": 4,
+          "Asr": 4,
+          "Maghrib": 2,
+          "Isha": 11,
+          "avgAbsError": 3.6666666666666665
+        },
+        {
+          "date": "2025-06-15",
+          "Fajr": 0,
+          "Sunrise": 1,
+          "Dhuhr": 4,
+          "Asr": 4,
+          "Maghrib": 2,
+          "Isha": 12,
+          "avgAbsError": 3.8333333333333335
+        },
+        {
+          "date": "2025-07-01",
+          "Fajr": 0,
+          "Sunrise": 1,
+          "Dhuhr": 5,
+          "Asr": 5,
+          "Maghrib": 2,
+          "Isha": 10,
+          "avgAbsError": 3.8333333333333335
+        },
+        {
+          "date": "2025-07-15",
+          "Fajr": 1,
+          "Sunrise": 0,
+          "Dhuhr": 5,
+          "Asr": 5,
+          "Maghrib": 0,
+          "Isha": 9,
+          "avgAbsError": 3.3333333333333335
+        },
+        {
+          "date": "2025-08-01",
+          "Fajr": 0,
+          "Sunrise": 1,
+          "Dhuhr": 5,
+          "Asr": 6,
+          "Maghrib": 1,
+          "Isha": 7,
+          "avgAbsError": 3.3333333333333335
+        },
+        {
+          "date": "2025-08-15",
+          "Fajr": 0,
+          "Sunrise": 0,
+          "Dhuhr": 4,
+          "Asr": 5,
+          "Maghrib": 0,
+          "Isha": 6,
+          "avgAbsError": 2.5
+        },
+        {
+          "date": "2025-09-01",
+          "Fajr": 0,
+          "Sunrise": 1,
+          "Dhuhr": 5,
+          "Asr": 5,
+          "Maghrib": 0,
+          "Isha": 5,
+          "avgAbsError": 2.6666666666666665
+        },
+        {
+          "date": "2025-09-15",
+          "Fajr": 0,
+          "Sunrise": 0,
+          "Dhuhr": 4,
+          "Asr": 5,
+          "Maghrib": 0,
+          "Isha": 5,
+          "avgAbsError": 2.3333333333333335
+        },
+        {
+          "date": "2025-10-01",
+          "Fajr": 0,
+          "Sunrise": 0,
+          "Dhuhr": 4,
+          "Asr": 4,
+          "Maghrib": -1,
+          "Isha": 5,
+          "avgAbsError": 2.3333333333333335
+        },
+        {
+          "date": "2025-10-15",
+          "Fajr": 0,
+          "Sunrise": 0,
+          "Dhuhr": 4,
+          "Asr": 5,
+          "Maghrib": 1,
+          "Isha": 5,
+          "avgAbsError": 2.5
+        },
+        {
+          "date": "2025-11-01",
+          "Fajr": 0,
+          "Sunrise": 1,
+          "Dhuhr": 4,
+          "Asr": 5,
+          "Maghrib": 1,
+          "Isha": 5,
+          "avgAbsError": 2.6666666666666665
+        },
+        {
+          "date": "2025-11-15",
+          "Fajr": 0,
+          "Sunrise": 0,
+          "Dhuhr": 4,
+          "Asr": 5,
+          "Maghrib": 1,
+          "Isha": 5,
+          "avgAbsError": 2.5
+        },
+        {
+          "date": "2025-12-01",
+          "Fajr": 0,
+          "Sunrise": 0,
+          "Dhuhr": 5,
+          "Asr": 6,
+          "Maghrib": 1,
+          "Isha": 5,
+          "avgAbsError": 2.8333333333333335
+        },
+        {
+          "date": "2025-12-15",
+          "Fajr": 0,
+          "Sunrise": -1,
+          "Dhuhr": 5,
+          "Asr": 4,
+          "Maghrib": 2,
+          "Isha": 6,
+          "avgAbsError": 3
+        }
+      ]
+    },
+    {
+      "label": "Diyanet İşleri Başkanlığı, Turkey | school=0 | midnightMode=1",
+      "config": {
+        "method": 13,
+        "school": 0,
+        "midnightMode": 1,
+        "label": "Diyanet İşleri Başkanlığı, Turkey | school=0 | midnightMode=1"
+      },
+      "avgError": 3.0347222222222223,
+      "prayerStats": {
+        "Fajr": {
+          "avgDiff": "0.0",
+          "avgAbsDiff": "0.1",
+          "maxAbsDiff": 1,
+          "samples": 24
+        },
+        "Sunrise": {
+          "avgDiff": "-0.6",
+          "avgAbsDiff": "1.0",
+          "maxAbsDiff": 2,
+          "samples": 24
+        },
+        "Dhuhr": {
+          "avgDiff": "4.3",
+          "avgAbsDiff": "4.3",
+          "maxAbsDiff": 5,
+          "samples": 24
+        },
+        "Asr": {
+          "avgDiff": "4.3",
+          "avgAbsDiff": "4.3",
+          "maxAbsDiff": 6,
+          "samples": 24
+        },
+        "Maghrib": {
+          "avgDiff": "1.3",
+          "avgAbsDiff": "1.4",
+          "maxAbsDiff": 3,
+          "samples": 24
+        },
+        "Isha": {
+          "avgDiff": "7.0",
+          "avgAbsDiff": "7.0",
+          "maxAbsDiff": 12,
+          "samples": 24
+        }
+      },
+      "dateErrors": [
+        {
+          "date": "2025-01-01",
+          "Fajr": 0,
+          "Sunrise": -1,
+          "Dhuhr": 4,
+          "Asr": 4,
+          "Maghrib": 2,
+          "Isha": 6,
+          "avgAbsError": 2.8333333333333335
+        },
+        {
+          "date": "2025-01-15",
+          "Fajr": 1,
+          "Sunrise": -1,
+          "Dhuhr": 4,
+          "Asr": 4,
+          "Maghrib": 2,
+          "Isha": 6,
+          "avgAbsError": 3
+        },
+        {
+          "date": "2025-02-01",
+          "Fajr": 0,
+          "Sunrise": -2,
+          "Dhuhr": 4,
+          "Asr": 4,
+          "Maghrib": 2,
+          "Isha": 7,
+          "avgAbsError": 3.1666666666666665
+        },
+        {
+          "date": "2025-02-15",
+          "Fajr": 0,
+          "Sunrise": -2,
+          "Dhuhr": 4,
+          "Asr": 4,
+          "Maghrib": 3,
+          "Isha": 7,
+          "avgAbsError": 3.3333333333333335
+        },
+        {
+          "date": "2025-03-01",
+          "Fajr": 0,
+          "Sunrise": -2,
+          "Dhuhr": 4,
+          "Asr": 3,
+          "Maghrib": 2,
+          "Isha": 6,
+          "avgAbsError": 2.8333333333333335
+        },
+        {
+          "date": "2025-03-15",
+          "Fajr": 0,
+          "Sunrise": -2,
+          "Dhuhr": 4,
+          "Asr": 3,
+          "Maghrib": 2,
+          "Isha": 6,
+          "avgAbsError": 2.8333333333333335
+        },
+        {
+          "date": "2025-04-01",
+          "Fajr": -1,
+          "Sunrise": -2,
+          "Dhuhr": 4,
+          "Asr": 3,
+          "Maghrib": 2,
+          "Isha": 7,
+          "avgAbsError": 3.1666666666666665
+        },
+        {
+          "date": "2025-04-15",
+          "Fajr": 0,
+          "Sunrise": -2,
+          "Dhuhr": 5,
+          "Asr": 4,
+          "Maghrib": 1,
+          "Isha": 8,
+          "avgAbsError": 3.3333333333333335
+        },
+        {
+          "date": "2025-05-01",
+          "Fajr": 0,
+          "Sunrise": -2,
+          "Dhuhr": 5,
+          "Asr": 4,
+          "Maghrib": 2,
+          "Isha": 9,
+          "avgAbsError": 3.6666666666666665
+        },
+        {
+          "date": "2025-05-15",
+          "Fajr": 0,
+          "Sunrise": -1,
+          "Dhuhr": 4,
+          "Asr": 3,
+          "Maghrib": 2,
+          "Isha": 10,
+          "avgAbsError": 3.3333333333333335
+        },
+        {
+          "date": "2025-06-01",
+          "Fajr": 0,
+          "Sunrise": -1,
+          "Dhuhr": 4,
+          "Asr": 4,
+          "Maghrib": 2,
+          "Isha": 11,
+          "avgAbsError": 3.6666666666666665
+        },
+        {
+          "date": "2025-06-15",
+          "Fajr": 0,
+          "Sunrise": 1,
+          "Dhuhr": 4,
+          "Asr": 4,
+          "Maghrib": 2,
+          "Isha": 12,
+          "avgAbsError": 3.8333333333333335
+        },
+        {
+          "date": "2025-07-01",
+          "Fajr": 0,
+          "Sunrise": 1,
+          "Dhuhr": 5,
+          "Asr": 5,
+          "Maghrib": 2,
+          "Isha": 10,
+          "avgAbsError": 3.8333333333333335
+        },
+        {
+          "date": "2025-07-15",
+          "Fajr": 1,
+          "Sunrise": 0,
+          "Dhuhr": 5,
+          "Asr": 5,
+          "Maghrib": 0,
+          "Isha": 9,
+          "avgAbsError": 3.3333333333333335
+        },
+        {
+          "date": "2025-08-01",
+          "Fajr": 0,
+          "Sunrise": 1,
+          "Dhuhr": 5,
+          "Asr": 6,
+          "Maghrib": 1,
+          "Isha": 7,
+          "avgAbsError": 3.3333333333333335
+        },
+        {
+          "date": "2025-08-15",
+          "Fajr": 0,
+          "Sunrise": 0,
+          "Dhuhr": 4,
+          "Asr": 5,
+          "Maghrib": 0,
+          "Isha": 6,
+          "avgAbsError": 2.5
+        },
+        {
+          "date": "2025-09-01",
+          "Fajr": 0,
+          "Sunrise": 1,
+          "Dhuhr": 5,
+          "Asr": 5,
+          "Maghrib": 0,
+          "Isha": 5,
+          "avgAbsError": 2.6666666666666665
+        },
+        {
+          "date": "2025-09-15",
+          "Fajr": 0,
+          "Sunrise": 0,
+          "Dhuhr": 4,
+          "Asr": 5,
+          "Maghrib": 0,
+          "Isha": 5,
+          "avgAbsError": 2.3333333333333335
+        },
+        {
+          "date": "2025-10-01",
+          "Fajr": 0,
+          "Sunrise": 0,
+          "Dhuhr": 4,
+          "Asr": 4,
+          "Maghrib": -1,
+          "Isha": 5,
+          "avgAbsError": 2.3333333333333335
+        },
+        {
+          "date": "2025-10-15",
+          "Fajr": 0,
+          "Sunrise": 0,
+          "Dhuhr": 4,
+          "Asr": 5,
+          "Maghrib": 1,
+          "Isha": 5,
+          "avgAbsError": 2.5
+        },
+        {
+          "date": "2025-11-01",
+          "Fajr": 0,
+          "Sunrise": 1,
+          "Dhuhr": 4,
+          "Asr": 5,
+          "Maghrib": 1,
+          "Isha": 5,
+          "avgAbsError": 2.6666666666666665
+        },
+        {
+          "date": "2025-11-15",
+          "Fajr": 0,
+          "Sunrise": 0,
+          "Dhuhr": 4,
+          "Asr": 5,
+          "Maghrib": 1,
+          "Isha": 5,
+          "avgAbsError": 2.5
+        },
+        {
+          "date": "2025-12-01",
+          "Fajr": 0,
+          "Sunrise": 0,
+          "Dhuhr": 5,
+          "Asr": 6,
+          "Maghrib": 1,
+          "Isha": 5,
+          "avgAbsError": 2.8333333333333335
+        },
+        {
+          "date": "2025-12-15",
+          "Fajr": 0,
+          "Sunrise": -1,
+          "Dhuhr": 5,
+          "Asr": 4,
+          "Maghrib": 2,
+          "Isha": 6,
+          "avgAbsError": 3
+        }
+      ]
+    },
+    {
+      "label": "Muslim World League (MWL) | school=0 | midnightMode=0",
+      "config": {
+        "method": 3,
+        "school": 0,
+        "midnightMode": 0,
+        "label": "Muslim World League (MWL) | school=0 | midnightMode=0"
+      },
+      "avgError": 3.423611111111111,
+      "prayerStats": {
+        "Fajr": {
+          "avgDiff": "0.0",
+          "avgAbsDiff": "0.1",
+          "maxAbsDiff": 1,
+          "samples": 24
+        },
+        "Sunrise": {
+          "avgDiff": "6.4",
+          "avgAbsDiff": "6.4",
+          "maxAbsDiff": 8,
+          "samples": 24
+        },
+        "Dhuhr": {
+          "avgDiff": "-0.7",
+          "avgAbsDiff": "0.7",
+          "maxAbsDiff": 1,
+          "samples": 24
+        },
+        "Asr": {
+          "avgDiff": "0.3",
+          "avgAbsDiff": "0.7",
+          "maxAbsDiff": 2,
+          "samples": 24
+        },
+        "Maghrib": {
+          "avgDiff": "-5.7",
+          "avgAbsDiff": "5.7",
+          "maxAbsDiff": 8,
+          "samples": 24
+        },
+        "Isha": {
+          "avgDiff": "7.0",
+          "avgAbsDiff": "7.0",
+          "maxAbsDiff": 12,
+          "samples": 24
+        }
+      },
+      "dateErrors": [
+        {
+          "date": "2025-01-01",
+          "Fajr": 0,
+          "Sunrise": 6,
+          "Dhuhr": -1,
+          "Asr": 0,
+          "Maghrib": -5,
+          "Isha": 6,
+          "avgAbsError": 3
+        },
+        {
+          "date": "2025-01-15",
+          "Fajr": 1,
+          "Sunrise": 6,
+          "Dhuhr": -1,
+          "Asr": 0,
+          "Maghrib": -5,
+          "Isha": 6,
+          "avgAbsError": 3.1666666666666665
+        },
+        {
+          "date": "2025-02-01",
+          "Fajr": 0,
+          "Sunrise": 5,
+          "Dhuhr": -1,
+          "Asr": 0,
+          "Maghrib": -5,
+          "Isha": 7,
+          "avgAbsError": 3
+        },
+        {
+          "date": "2025-02-15",
+          "Fajr": 0,
+          "Sunrise": 5,
+          "Dhuhr": -1,
+          "Asr": 0,
+          "Maghrib": -4,
+          "Isha": 7,
+          "avgAbsError": 2.8333333333333335
+        },
+        {
+          "date": "2025-03-01",
+          "Fajr": 0,
+          "Sunrise": 5,
+          "Dhuhr": -1,
+          "Asr": -1,
+          "Maghrib": -5,
+          "Isha": 6,
+          "avgAbsError": 3
+        },
+        {
+          "date": "2025-03-15",
+          "Fajr": 0,
+          "Sunrise": 5,
+          "Dhuhr": -1,
+          "Asr": -1,
+          "Maghrib": -5,
+          "Isha": 6,
+          "avgAbsError": 3
+        },
+        {
+          "date": "2025-04-01",
+          "Fajr": -1,
+          "Sunrise": 5,
+          "Dhuhr": -1,
+          "Asr": -1,
+          "Maghrib": -5,
+          "Isha": 7,
+          "avgAbsError": 3.3333333333333335
+        },
+        {
+          "date": "2025-04-15",
+          "Fajr": 0,
+          "Sunrise": 5,
+          "Dhuhr": 0,
+          "Asr": 0,
+          "Maghrib": -6,
+          "Isha": 8,
+          "avgAbsError": 3.1666666666666665
+        },
+        {
+          "date": "2025-05-01",
+          "Fajr": 0,
+          "Sunrise": 5,
+          "Dhuhr": 0,
+          "Asr": 0,
+          "Maghrib": -5,
+          "Isha": 9,
+          "avgAbsError": 3.1666666666666665
+        },
+        {
+          "date": "2025-05-15",
+          "Fajr": 0,
+          "Sunrise": 6,
+          "Dhuhr": -1,
+          "Asr": -1,
+          "Maghrib": -5,
+          "Isha": 10,
+          "avgAbsError": 3.8333333333333335
+        },
+        {
+          "date": "2025-06-01",
+          "Fajr": 0,
+          "Sunrise": 6,
+          "Dhuhr": -1,
+          "Asr": 0,
+          "Maghrib": -5,
+          "Isha": 11,
+          "avgAbsError": 3.8333333333333335
+        },
+        {
+          "date": "2025-06-15",
+          "Fajr": 0,
+          "Sunrise": 8,
+          "Dhuhr": -1,
+          "Asr": 0,
+          "Maghrib": -5,
+          "Isha": 12,
+          "avgAbsError": 4.333333333333333
+        },
+        {
+          "date": "2025-07-01",
+          "Fajr": 0,
+          "Sunrise": 8,
+          "Dhuhr": 0,
+          "Asr": 1,
+          "Maghrib": -5,
+          "Isha": 10,
+          "avgAbsError": 4
+        },
+        {
+          "date": "2025-07-15",
+          "Fajr": 1,
+          "Sunrise": 7,
+          "Dhuhr": 0,
+          "Asr": 1,
+          "Maghrib": -7,
+          "Isha": 9,
+          "avgAbsError": 4.166666666666667
+        },
+        {
+          "date": "2025-08-01",
+          "Fajr": 0,
+          "Sunrise": 8,
+          "Dhuhr": 0,
+          "Asr": 2,
+          "Maghrib": -6,
+          "Isha": 7,
+          "avgAbsError": 3.8333333333333335
+        },
+        {
+          "date": "2025-08-15",
+          "Fajr": 0,
+          "Sunrise": 7,
+          "Dhuhr": -1,
+          "Asr": 1,
+          "Maghrib": -7,
+          "Isha": 6,
+          "avgAbsError": 3.6666666666666665
+        },
+        {
+          "date": "2025-09-01",
+          "Fajr": 0,
+          "Sunrise": 8,
+          "Dhuhr": 0,
+          "Asr": 1,
+          "Maghrib": -7,
+          "Isha": 5,
+          "avgAbsError": 3.5
+        },
+        {
+          "date": "2025-09-15",
+          "Fajr": 0,
+          "Sunrise": 7,
+          "Dhuhr": -1,
+          "Asr": 1,
+          "Maghrib": -7,
+          "Isha": 5,
+          "avgAbsError": 3.5
+        },
+        {
+          "date": "2025-10-01",
+          "Fajr": 0,
+          "Sunrise": 7,
+          "Dhuhr": -1,
+          "Asr": 0,
+          "Maghrib": -8,
+          "Isha": 5,
+          "avgAbsError": 3.5
+        },
+        {
+          "date": "2025-10-15",
+          "Fajr": 0,
+          "Sunrise": 7,
+          "Dhuhr": -1,
+          "Asr": 1,
+          "Maghrib": -6,
+          "Isha": 5,
+          "avgAbsError": 3.3333333333333335
+        },
+        {
+          "date": "2025-11-01",
+          "Fajr": 0,
+          "Sunrise": 8,
+          "Dhuhr": -1,
+          "Asr": 1,
+          "Maghrib": -6,
+          "Isha": 5,
+          "avgAbsError": 3.5
+        },
+        {
+          "date": "2025-11-15",
+          "Fajr": 0,
+          "Sunrise": 7,
+          "Dhuhr": -1,
+          "Asr": 1,
+          "Maghrib": -6,
+          "Isha": 5,
+          "avgAbsError": 3.3333333333333335
+        },
+        {
+          "date": "2025-12-01",
+          "Fajr": 0,
+          "Sunrise": 7,
+          "Dhuhr": 0,
+          "Asr": 2,
+          "Maghrib": -6,
+          "Isha": 5,
+          "avgAbsError": 3.3333333333333335
+        },
+        {
+          "date": "2025-12-15",
+          "Fajr": 0,
+          "Sunrise": 6,
+          "Dhuhr": 0,
+          "Asr": 0,
+          "Maghrib": -5,
+          "Isha": 6,
+          "avgAbsError": 2.8333333333333335
+        }
+      ]
+    },
+    {
+      "label": "Muslim World League (MWL) | school=0 | midnightMode=1",
+      "config": {
+        "method": 3,
+        "school": 0,
+        "midnightMode": 1,
+        "label": "Muslim World League (MWL) | school=0 | midnightMode=1"
+      },
+      "avgError": 3.423611111111111,
+      "prayerStats": {
+        "Fajr": {
+          "avgDiff": "0.0",
+          "avgAbsDiff": "0.1",
+          "maxAbsDiff": 1,
+          "samples": 24
+        },
+        "Sunrise": {
+          "avgDiff": "6.4",
+          "avgAbsDiff": "6.4",
+          "maxAbsDiff": 8,
+          "samples": 24
+        },
+        "Dhuhr": {
+          "avgDiff": "-0.7",
+          "avgAbsDiff": "0.7",
+          "maxAbsDiff": 1,
+          "samples": 24
+        },
+        "Asr": {
+          "avgDiff": "0.3",
+          "avgAbsDiff": "0.7",
+          "maxAbsDiff": 2,
+          "samples": 24
+        },
+        "Maghrib": {
+          "avgDiff": "-5.7",
+          "avgAbsDiff": "5.7",
+          "maxAbsDiff": 8,
+          "samples": 24
+        },
+        "Isha": {
+          "avgDiff": "7.0",
+          "avgAbsDiff": "7.0",
+          "maxAbsDiff": 12,
+          "samples": 24
+        }
+      },
+      "dateErrors": [
+        {
+          "date": "2025-01-01",
+          "Fajr": 0,
+          "Sunrise": 6,
+          "Dhuhr": -1,
+          "Asr": 0,
+          "Maghrib": -5,
+          "Isha": 6,
+          "avgAbsError": 3
+        },
+        {
+          "date": "2025-01-15",
+          "Fajr": 1,
+          "Sunrise": 6,
+          "Dhuhr": -1,
+          "Asr": 0,
+          "Maghrib": -5,
+          "Isha": 6,
+          "avgAbsError": 3.1666666666666665
+        },
+        {
+          "date": "2025-02-01",
+          "Fajr": 0,
+          "Sunrise": 5,
+          "Dhuhr": -1,
+          "Asr": 0,
+          "Maghrib": -5,
+          "Isha": 7,
+          "avgAbsError": 3
+        },
+        {
+          "date": "2025-02-15",
+          "Fajr": 0,
+          "Sunrise": 5,
+          "Dhuhr": -1,
+          "Asr": 0,
+          "Maghrib": -4,
+          "Isha": 7,
+          "avgAbsError": 2.8333333333333335
+        },
+        {
+          "date": "2025-03-01",
+          "Fajr": 0,
+          "Sunrise": 5,
+          "Dhuhr": -1,
+          "Asr": -1,
+          "Maghrib": -5,
+          "Isha": 6,
+          "avgAbsError": 3
+        },
+        {
+          "date": "2025-03-15",
+          "Fajr": 0,
+          "Sunrise": 5,
+          "Dhuhr": -1,
+          "Asr": -1,
+          "Maghrib": -5,
+          "Isha": 6,
+          "avgAbsError": 3
+        },
+        {
+          "date": "2025-04-01",
+          "Fajr": -1,
+          "Sunrise": 5,
+          "Dhuhr": -1,
+          "Asr": -1,
+          "Maghrib": -5,
+          "Isha": 7,
+          "avgAbsError": 3.3333333333333335
+        },
+        {
+          "date": "2025-04-15",
+          "Fajr": 0,
+          "Sunrise": 5,
+          "Dhuhr": 0,
+          "Asr": 0,
+          "Maghrib": -6,
+          "Isha": 8,
+          "avgAbsError": 3.1666666666666665
+        },
+        {
+          "date": "2025-05-01",
+          "Fajr": 0,
+          "Sunrise": 5,
+          "Dhuhr": 0,
+          "Asr": 0,
+          "Maghrib": -5,
+          "Isha": 9,
+          "avgAbsError": 3.1666666666666665
+        },
+        {
+          "date": "2025-05-15",
+          "Fajr": 0,
+          "Sunrise": 6,
+          "Dhuhr": -1,
+          "Asr": -1,
+          "Maghrib": -5,
+          "Isha": 10,
+          "avgAbsError": 3.8333333333333335
+        },
+        {
+          "date": "2025-06-01",
+          "Fajr": 0,
+          "Sunrise": 6,
+          "Dhuhr": -1,
+          "Asr": 0,
+          "Maghrib": -5,
+          "Isha": 11,
+          "avgAbsError": 3.8333333333333335
+        },
+        {
+          "date": "2025-06-15",
+          "Fajr": 0,
+          "Sunrise": 8,
+          "Dhuhr": -1,
+          "Asr": 0,
+          "Maghrib": -5,
+          "Isha": 12,
+          "avgAbsError": 4.333333333333333
+        },
+        {
+          "date": "2025-07-01",
+          "Fajr": 0,
+          "Sunrise": 8,
+          "Dhuhr": 0,
+          "Asr": 1,
+          "Maghrib": -5,
+          "Isha": 10,
+          "avgAbsError": 4
+        },
+        {
+          "date": "2025-07-15",
+          "Fajr": 1,
+          "Sunrise": 7,
+          "Dhuhr": 0,
+          "Asr": 1,
+          "Maghrib": -7,
+          "Isha": 9,
+          "avgAbsError": 4.166666666666667
+        },
+        {
+          "date": "2025-08-01",
+          "Fajr": 0,
+          "Sunrise": 8,
+          "Dhuhr": 0,
+          "Asr": 2,
+          "Maghrib": -6,
+          "Isha": 7,
+          "avgAbsError": 3.8333333333333335
+        },
+        {
+          "date": "2025-08-15",
+          "Fajr": 0,
+          "Sunrise": 7,
+          "Dhuhr": -1,
+          "Asr": 1,
+          "Maghrib": -7,
+          "Isha": 6,
+          "avgAbsError": 3.6666666666666665
+        },
+        {
+          "date": "2025-09-01",
+          "Fajr": 0,
+          "Sunrise": 8,
+          "Dhuhr": 0,
+          "Asr": 1,
+          "Maghrib": -7,
+          "Isha": 5,
+          "avgAbsError": 3.5
+        },
+        {
+          "date": "2025-09-15",
+          "Fajr": 0,
+          "Sunrise": 7,
+          "Dhuhr": -1,
+          "Asr": 1,
+          "Maghrib": -7,
+          "Isha": 5,
+          "avgAbsError": 3.5
+        },
+        {
+          "date": "2025-10-01",
+          "Fajr": 0,
+          "Sunrise": 7,
+          "Dhuhr": -1,
+          "Asr": 0,
+          "Maghrib": -8,
+          "Isha": 5,
+          "avgAbsError": 3.5
+        },
+        {
+          "date": "2025-10-15",
+          "Fajr": 0,
+          "Sunrise": 7,
+          "Dhuhr": -1,
+          "Asr": 1,
+          "Maghrib": -6,
+          "Isha": 5,
+          "avgAbsError": 3.3333333333333335
+        },
+        {
+          "date": "2025-11-01",
+          "Fajr": 0,
+          "Sunrise": 8,
+          "Dhuhr": -1,
+          "Asr": 1,
+          "Maghrib": -6,
+          "Isha": 5,
+          "avgAbsError": 3.5
+        },
+        {
+          "date": "2025-11-15",
+          "Fajr": 0,
+          "Sunrise": 7,
+          "Dhuhr": -1,
+          "Asr": 1,
+          "Maghrib": -6,
+          "Isha": 5,
+          "avgAbsError": 3.3333333333333335
+        },
+        {
+          "date": "2025-12-01",
+          "Fajr": 0,
+          "Sunrise": 7,
+          "Dhuhr": 0,
+          "Asr": 2,
+          "Maghrib": -6,
+          "Isha": 5,
+          "avgAbsError": 3.3333333333333335
+        },
+        {
+          "date": "2025-12-15",
+          "Fajr": 0,
+          "Sunrise": 6,
+          "Dhuhr": 0,
+          "Asr": 0,
+          "Maghrib": -5,
+          "Isha": 6,
+          "avgAbsError": 2.8333333333333335
+        }
+      ]
+    },
+    {
+      "label": "Custom 18.0/17.0 (astronomical) | school=0 | midnightMode=0",
+      "config": {
+        "method": 99,
+        "fajr": 18,
+        "isha": 17,
+        "school": 0,
+        "midnightMode": 0,
+        "label": "Custom 18.0/17.0 (astronomical) | school=0 | midnightMode=0"
+      },
+      "avgError": 3.423611111111111,
+      "prayerStats": {
+        "Fajr": {
+          "avgDiff": "0.0",
+          "avgAbsDiff": "0.1",
+          "maxAbsDiff": 1,
+          "samples": 24
+        },
+        "Sunrise": {
+          "avgDiff": "6.4",
+          "avgAbsDiff": "6.4",
+          "maxAbsDiff": 8,
+          "samples": 24
+        },
+        "Dhuhr": {
+          "avgDiff": "-0.7",
+          "avgAbsDiff": "0.7",
+          "maxAbsDiff": 1,
+          "samples": 24
+        },
+        "Asr": {
+          "avgDiff": "0.3",
+          "avgAbsDiff": "0.7",
+          "maxAbsDiff": 2,
+          "samples": 24
+        },
+        "Maghrib": {
+          "avgDiff": "-5.7",
+          "avgAbsDiff": "5.7",
+          "maxAbsDiff": 8,
+          "samples": 24
+        },
+        "Isha": {
+          "avgDiff": "7.0",
+          "avgAbsDiff": "7.0",
+          "maxAbsDiff": 12,
+          "samples": 24
+        }
+      },
+      "dateErrors": [
+        {
+          "date": "2025-01-01",
+          "Fajr": 0,
+          "Sunrise": 6,
+          "Dhuhr": -1,
+          "Asr": 0,
+          "Maghrib": -5,
+          "Isha": 6,
+          "avgAbsError": 3
+        },
+        {
+          "date": "2025-01-15",
+          "Fajr": 1,
+          "Sunrise": 6,
+          "Dhuhr": -1,
+          "Asr": 0,
+          "Maghrib": -5,
+          "Isha": 6,
+          "avgAbsError": 3.1666666666666665
+        },
+        {
+          "date": "2025-02-01",
+          "Fajr": 0,
+          "Sunrise": 5,
+          "Dhuhr": -1,
+          "Asr": 0,
+          "Maghrib": -5,
+          "Isha": 7,
+          "avgAbsError": 3
+        },
+        {
+          "date": "2025-02-15",
+          "Fajr": 0,
+          "Sunrise": 5,
+          "Dhuhr": -1,
+          "Asr": 0,
+          "Maghrib": -4,
+          "Isha": 7,
+          "avgAbsError": 2.8333333333333335
+        },
+        {
+          "date": "2025-03-01",
+          "Fajr": 0,
+          "Sunrise": 5,
+          "Dhuhr": -1,
+          "Asr": -1,
+          "Maghrib": -5,
+          "Isha": 6,
+          "avgAbsError": 3
+        },
+        {
+          "date": "2025-03-15",
+          "Fajr": 0,
+          "Sunrise": 5,
+          "Dhuhr": -1,
+          "Asr": -1,
+          "Maghrib": -5,
+          "Isha": 6,
+          "avgAbsError": 3
+        },
+        {
+          "date": "2025-04-01",
+          "Fajr": -1,
+          "Sunrise": 5,
+          "Dhuhr": -1,
+          "Asr": -1,
+          "Maghrib": -5,
+          "Isha": 7,
+          "avgAbsError": 3.3333333333333335
+        },
+        {
+          "date": "2025-04-15",
+          "Fajr": 0,
+          "Sunrise": 5,
+          "Dhuhr": 0,
+          "Asr": 0,
+          "Maghrib": -6,
+          "Isha": 8,
+          "avgAbsError": 3.1666666666666665
+        },
+        {
+          "date": "2025-05-01",
+          "Fajr": 0,
+          "Sunrise": 5,
+          "Dhuhr": 0,
+          "Asr": 0,
+          "Maghrib": -5,
+          "Isha": 9,
+          "avgAbsError": 3.1666666666666665
+        },
+        {
+          "date": "2025-05-15",
+          "Fajr": 0,
+          "Sunrise": 6,
+          "Dhuhr": -1,
+          "Asr": -1,
+          "Maghrib": -5,
+          "Isha": 10,
+          "avgAbsError": 3.8333333333333335
+        },
+        {
+          "date": "2025-06-01",
+          "Fajr": 0,
+          "Sunrise": 6,
+          "Dhuhr": -1,
+          "Asr": 0,
+          "Maghrib": -5,
+          "Isha": 11,
+          "avgAbsError": 3.8333333333333335
+        },
+        {
+          "date": "2025-06-15",
+          "Fajr": 0,
+          "Sunrise": 8,
+          "Dhuhr": -1,
+          "Asr": 0,
+          "Maghrib": -5,
+          "Isha": 12,
+          "avgAbsError": 4.333333333333333
+        },
+        {
+          "date": "2025-07-01",
+          "Fajr": 0,
+          "Sunrise": 8,
+          "Dhuhr": 0,
+          "Asr": 1,
+          "Maghrib": -5,
+          "Isha": 10,
+          "avgAbsError": 4
+        },
+        {
+          "date": "2025-07-15",
+          "Fajr": 1,
+          "Sunrise": 7,
+          "Dhuhr": 0,
+          "Asr": 1,
+          "Maghrib": -7,
+          "Isha": 9,
+          "avgAbsError": 4.166666666666667
+        },
+        {
+          "date": "2025-08-01",
+          "Fajr": 0,
+          "Sunrise": 8,
+          "Dhuhr": 0,
+          "Asr": 2,
+          "Maghrib": -6,
+          "Isha": 7,
+          "avgAbsError": 3.8333333333333335
+        },
+        {
+          "date": "2025-08-15",
+          "Fajr": 0,
+          "Sunrise": 7,
+          "Dhuhr": -1,
+          "Asr": 1,
+          "Maghrib": -7,
+          "Isha": 6,
+          "avgAbsError": 3.6666666666666665
+        },
+        {
+          "date": "2025-09-01",
+          "Fajr": 0,
+          "Sunrise": 8,
+          "Dhuhr": 0,
+          "Asr": 1,
+          "Maghrib": -7,
+          "Isha": 5,
+          "avgAbsError": 3.5
+        },
+        {
+          "date": "2025-09-15",
+          "Fajr": 0,
+          "Sunrise": 7,
+          "Dhuhr": -1,
+          "Asr": 1,
+          "Maghrib": -7,
+          "Isha": 5,
+          "avgAbsError": 3.5
+        },
+        {
+          "date": "2025-10-01",
+          "Fajr": 0,
+          "Sunrise": 7,
+          "Dhuhr": -1,
+          "Asr": 0,
+          "Maghrib": -8,
+          "Isha": 5,
+          "avgAbsError": 3.5
+        },
+        {
+          "date": "2025-10-15",
+          "Fajr": 0,
+          "Sunrise": 7,
+          "Dhuhr": -1,
+          "Asr": 1,
+          "Maghrib": -6,
+          "Isha": 5,
+          "avgAbsError": 3.3333333333333335
+        },
+        {
+          "date": "2025-11-01",
+          "Fajr": 0,
+          "Sunrise": 8,
+          "Dhuhr": -1,
+          "Asr": 1,
+          "Maghrib": -6,
+          "Isha": 5,
+          "avgAbsError": 3.5
+        },
+        {
+          "date": "2025-11-15",
+          "Fajr": 0,
+          "Sunrise": 7,
+          "Dhuhr": -1,
+          "Asr": 1,
+          "Maghrib": -6,
+          "Isha": 5,
+          "avgAbsError": 3.3333333333333335
+        },
+        {
+          "date": "2025-12-01",
+          "Fajr": 0,
+          "Sunrise": 7,
+          "Dhuhr": 0,
+          "Asr": 2,
+          "Maghrib": -6,
+          "Isha": 5,
+          "avgAbsError": 3.3333333333333335
+        },
+        {
+          "date": "2025-12-15",
+          "Fajr": 0,
+          "Sunrise": 6,
+          "Dhuhr": 0,
+          "Asr": 0,
+          "Maghrib": -5,
+          "Isha": 6,
+          "avgAbsError": 2.8333333333333335
+        }
+      ]
+    },
+    {
+      "label": "Custom 18.0/17.0 (astronomical) | school=0 | midnightMode=1",
+      "config": {
+        "method": 99,
+        "fajr": 18,
+        "isha": 17,
+        "school": 0,
+        "midnightMode": 1,
+        "label": "Custom 18.0/17.0 (astronomical) | school=0 | midnightMode=1"
+      },
+      "avgError": 3.423611111111111,
+      "prayerStats": {
+        "Fajr": {
+          "avgDiff": "0.0",
+          "avgAbsDiff": "0.1",
+          "maxAbsDiff": 1,
+          "samples": 24
+        },
+        "Sunrise": {
+          "avgDiff": "6.4",
+          "avgAbsDiff": "6.4",
+          "maxAbsDiff": 8,
+          "samples": 24
+        },
+        "Dhuhr": {
+          "avgDiff": "-0.7",
+          "avgAbsDiff": "0.7",
+          "maxAbsDiff": 1,
+          "samples": 24
+        },
+        "Asr": {
+          "avgDiff": "0.3",
+          "avgAbsDiff": "0.7",
+          "maxAbsDiff": 2,
+          "samples": 24
+        },
+        "Maghrib": {
+          "avgDiff": "-5.7",
+          "avgAbsDiff": "5.7",
+          "maxAbsDiff": 8,
+          "samples": 24
+        },
+        "Isha": {
+          "avgDiff": "7.0",
+          "avgAbsDiff": "7.0",
+          "maxAbsDiff": 12,
+          "samples": 24
+        }
+      },
+      "dateErrors": [
+        {
+          "date": "2025-01-01",
+          "Fajr": 0,
+          "Sunrise": 6,
+          "Dhuhr": -1,
+          "Asr": 0,
+          "Maghrib": -5,
+          "Isha": 6,
+          "avgAbsError": 3
+        },
+        {
+          "date": "2025-01-15",
+          "Fajr": 1,
+          "Sunrise": 6,
+          "Dhuhr": -1,
+          "Asr": 0,
+          "Maghrib": -5,
+          "Isha": 6,
+          "avgAbsError": 3.1666666666666665
+        },
+        {
+          "date": "2025-02-01",
+          "Fajr": 0,
+          "Sunrise": 5,
+          "Dhuhr": -1,
+          "Asr": 0,
+          "Maghrib": -5,
+          "Isha": 7,
+          "avgAbsError": 3
+        },
+        {
+          "date": "2025-02-15",
+          "Fajr": 0,
+          "Sunrise": 5,
+          "Dhuhr": -1,
+          "Asr": 0,
+          "Maghrib": -4,
+          "Isha": 7,
+          "avgAbsError": 2.8333333333333335
+        },
+        {
+          "date": "2025-03-01",
+          "Fajr": 0,
+          "Sunrise": 5,
+          "Dhuhr": -1,
+          "Asr": -1,
+          "Maghrib": -5,
+          "Isha": 6,
+          "avgAbsError": 3
+        },
+        {
+          "date": "2025-03-15",
+          "Fajr": 0,
+          "Sunrise": 5,
+          "Dhuhr": -1,
+          "Asr": -1,
+          "Maghrib": -5,
+          "Isha": 6,
+          "avgAbsError": 3
+        },
+        {
+          "date": "2025-04-01",
+          "Fajr": -1,
+          "Sunrise": 5,
+          "Dhuhr": -1,
+          "Asr": -1,
+          "Maghrib": -5,
+          "Isha": 7,
+          "avgAbsError": 3.3333333333333335
+        },
+        {
+          "date": "2025-04-15",
+          "Fajr": 0,
+          "Sunrise": 5,
+          "Dhuhr": 0,
+          "Asr": 0,
+          "Maghrib": -6,
+          "Isha": 8,
+          "avgAbsError": 3.1666666666666665
+        },
+        {
+          "date": "2025-05-01",
+          "Fajr": 0,
+          "Sunrise": 5,
+          "Dhuhr": 0,
+          "Asr": 0,
+          "Maghrib": -5,
+          "Isha": 9,
+          "avgAbsError": 3.1666666666666665
+        },
+        {
+          "date": "2025-05-15",
+          "Fajr": 0,
+          "Sunrise": 6,
+          "Dhuhr": -1,
+          "Asr": -1,
+          "Maghrib": -5,
+          "Isha": 10,
+          "avgAbsError": 3.8333333333333335
+        },
+        {
+          "date": "2025-06-01",
+          "Fajr": 0,
+          "Sunrise": 6,
+          "Dhuhr": -1,
+          "Asr": 0,
+          "Maghrib": -5,
+          "Isha": 11,
+          "avgAbsError": 3.8333333333333335
+        },
+        {
+          "date": "2025-06-15",
+          "Fajr": 0,
+          "Sunrise": 8,
+          "Dhuhr": -1,
+          "Asr": 0,
+          "Maghrib": -5,
+          "Isha": 12,
+          "avgAbsError": 4.333333333333333
+        },
+        {
+          "date": "2025-07-01",
+          "Fajr": 0,
+          "Sunrise": 8,
+          "Dhuhr": 0,
+          "Asr": 1,
+          "Maghrib": -5,
+          "Isha": 10,
+          "avgAbsError": 4
+        },
+        {
+          "date": "2025-07-15",
+          "Fajr": 1,
+          "Sunrise": 7,
+          "Dhuhr": 0,
+          "Asr": 1,
+          "Maghrib": -7,
+          "Isha": 9,
+          "avgAbsError": 4.166666666666667
+        },
+        {
+          "date": "2025-08-01",
+          "Fajr": 0,
+          "Sunrise": 8,
+          "Dhuhr": 0,
+          "Asr": 2,
+          "Maghrib": -6,
+          "Isha": 7,
+          "avgAbsError": 3.8333333333333335
+        },
+        {
+          "date": "2025-08-15",
+          "Fajr": 0,
+          "Sunrise": 7,
+          "Dhuhr": -1,
+          "Asr": 1,
+          "Maghrib": -7,
+          "Isha": 6,
+          "avgAbsError": 3.6666666666666665
+        },
+        {
+          "date": "2025-09-01",
+          "Fajr": 0,
+          "Sunrise": 8,
+          "Dhuhr": 0,
+          "Asr": 1,
+          "Maghrib": -7,
+          "Isha": 5,
+          "avgAbsError": 3.5
+        },
+        {
+          "date": "2025-09-15",
+          "Fajr": 0,
+          "Sunrise": 7,
+          "Dhuhr": -1,
+          "Asr": 1,
+          "Maghrib": -7,
+          "Isha": 5,
+          "avgAbsError": 3.5
+        },
+        {
+          "date": "2025-10-01",
+          "Fajr": 0,
+          "Sunrise": 7,
+          "Dhuhr": -1,
+          "Asr": 0,
+          "Maghrib": -8,
+          "Isha": 5,
+          "avgAbsError": 3.5
+        },
+        {
+          "date": "2025-10-15",
+          "Fajr": 0,
+          "Sunrise": 7,
+          "Dhuhr": -1,
+          "Asr": 1,
+          "Maghrib": -6,
+          "Isha": 5,
+          "avgAbsError": 3.3333333333333335
+        },
+        {
+          "date": "2025-11-01",
+          "Fajr": 0,
+          "Sunrise": 8,
+          "Dhuhr": -1,
+          "Asr": 1,
+          "Maghrib": -6,
+          "Isha": 5,
+          "avgAbsError": 3.5
+        },
+        {
+          "date": "2025-11-15",
+          "Fajr": 0,
+          "Sunrise": 7,
+          "Dhuhr": -1,
+          "Asr": 1,
+          "Maghrib": -6,
+          "Isha": 5,
+          "avgAbsError": 3.3333333333333335
+        },
+        {
+          "date": "2025-12-01",
+          "Fajr": 0,
+          "Sunrise": 7,
+          "Dhuhr": 0,
+          "Asr": 2,
+          "Maghrib": -6,
+          "Isha": 5,
+          "avgAbsError": 3.3333333333333335
+        },
+        {
+          "date": "2025-12-15",
+          "Fajr": 0,
+          "Sunrise": 6,
+          "Dhuhr": 0,
+          "Asr": 0,
+          "Maghrib": -5,
+          "Isha": 6,
+          "avgAbsError": 2.8333333333333335
+        }
+      ]
+    },
+    {
+      "label": "Custom 18/17 (Diyanet-like) | school=0 | midnightMode=0",
+      "config": {
+        "method": 99,
+        "fajr": 18,
+        "isha": 17,
+        "school": 0,
+        "midnightMode": 0,
+        "label": "Custom 18/17 (Diyanet-like) | school=0 | midnightMode=0"
+      },
+      "avgError": 3.423611111111111,
+      "prayerStats": {
+        "Fajr": {
+          "avgDiff": "0.0",
+          "avgAbsDiff": "0.1",
+          "maxAbsDiff": 1,
+          "samples": 24
+        },
+        "Sunrise": {
+          "avgDiff": "6.4",
+          "avgAbsDiff": "6.4",
+          "maxAbsDiff": 8,
+          "samples": 24
+        },
+        "Dhuhr": {
+          "avgDiff": "-0.7",
+          "avgAbsDiff": "0.7",
+          "maxAbsDiff": 1,
+          "samples": 24
+        },
+        "Asr": {
+          "avgDiff": "0.3",
+          "avgAbsDiff": "0.7",
+          "maxAbsDiff": 2,
+          "samples": 24
+        },
+        "Maghrib": {
+          "avgDiff": "-5.7",
+          "avgAbsDiff": "5.7",
+          "maxAbsDiff": 8,
+          "samples": 24
+        },
+        "Isha": {
+          "avgDiff": "7.0",
+          "avgAbsDiff": "7.0",
+          "maxAbsDiff": 12,
+          "samples": 24
+        }
+      },
+      "dateErrors": [
+        {
+          "date": "2025-01-01",
+          "Fajr": 0,
+          "Sunrise": 6,
+          "Dhuhr": -1,
+          "Asr": 0,
+          "Maghrib": -5,
+          "Isha": 6,
+          "avgAbsError": 3
+        },
+        {
+          "date": "2025-01-15",
+          "Fajr": 1,
+          "Sunrise": 6,
+          "Dhuhr": -1,
+          "Asr": 0,
+          "Maghrib": -5,
+          "Isha": 6,
+          "avgAbsError": 3.1666666666666665
+        },
+        {
+          "date": "2025-02-01",
+          "Fajr": 0,
+          "Sunrise": 5,
+          "Dhuhr": -1,
+          "Asr": 0,
+          "Maghrib": -5,
+          "Isha": 7,
+          "avgAbsError": 3
+        },
+        {
+          "date": "2025-02-15",
+          "Fajr": 0,
+          "Sunrise": 5,
+          "Dhuhr": -1,
+          "Asr": 0,
+          "Maghrib": -4,
+          "Isha": 7,
+          "avgAbsError": 2.8333333333333335
+        },
+        {
+          "date": "2025-03-01",
+          "Fajr": 0,
+          "Sunrise": 5,
+          "Dhuhr": -1,
+          "Asr": -1,
+          "Maghrib": -5,
+          "Isha": 6,
+          "avgAbsError": 3
+        },
+        {
+          "date": "2025-03-15",
+          "Fajr": 0,
+          "Sunrise": 5,
+          "Dhuhr": -1,
+          "Asr": -1,
+          "Maghrib": -5,
+          "Isha": 6,
+          "avgAbsError": 3
+        },
+        {
+          "date": "2025-04-01",
+          "Fajr": -1,
+          "Sunrise": 5,
+          "Dhuhr": -1,
+          "Asr": -1,
+          "Maghrib": -5,
+          "Isha": 7,
+          "avgAbsError": 3.3333333333333335
+        },
+        {
+          "date": "2025-04-15",
+          "Fajr": 0,
+          "Sunrise": 5,
+          "Dhuhr": 0,
+          "Asr": 0,
+          "Maghrib": -6,
+          "Isha": 8,
+          "avgAbsError": 3.1666666666666665
+        },
+        {
+          "date": "2025-05-01",
+          "Fajr": 0,
+          "Sunrise": 5,
+          "Dhuhr": 0,
+          "Asr": 0,
+          "Maghrib": -5,
+          "Isha": 9,
+          "avgAbsError": 3.1666666666666665
+        },
+        {
+          "date": "2025-05-15",
+          "Fajr": 0,
+          "Sunrise": 6,
+          "Dhuhr": -1,
+          "Asr": -1,
+          "Maghrib": -5,
+          "Isha": 10,
+          "avgAbsError": 3.8333333333333335
+        },
+        {
+          "date": "2025-06-01",
+          "Fajr": 0,
+          "Sunrise": 6,
+          "Dhuhr": -1,
+          "Asr": 0,
+          "Maghrib": -5,
+          "Isha": 11,
+          "avgAbsError": 3.8333333333333335
+        },
+        {
+          "date": "2025-06-15",
+          "Fajr": 0,
+          "Sunrise": 8,
+          "Dhuhr": -1,
+          "Asr": 0,
+          "Maghrib": -5,
+          "Isha": 12,
+          "avgAbsError": 4.333333333333333
+        },
+        {
+          "date": "2025-07-01",
+          "Fajr": 0,
+          "Sunrise": 8,
+          "Dhuhr": 0,
+          "Asr": 1,
+          "Maghrib": -5,
+          "Isha": 10,
+          "avgAbsError": 4
+        },
+        {
+          "date": "2025-07-15",
+          "Fajr": 1,
+          "Sunrise": 7,
+          "Dhuhr": 0,
+          "Asr": 1,
+          "Maghrib": -7,
+          "Isha": 9,
+          "avgAbsError": 4.166666666666667
+        },
+        {
+          "date": "2025-08-01",
+          "Fajr": 0,
+          "Sunrise": 8,
+          "Dhuhr": 0,
+          "Asr": 2,
+          "Maghrib": -6,
+          "Isha": 7,
+          "avgAbsError": 3.8333333333333335
+        },
+        {
+          "date": "2025-08-15",
+          "Fajr": 0,
+          "Sunrise": 7,
+          "Dhuhr": -1,
+          "Asr": 1,
+          "Maghrib": -7,
+          "Isha": 6,
+          "avgAbsError": 3.6666666666666665
+        },
+        {
+          "date": "2025-09-01",
+          "Fajr": 0,
+          "Sunrise": 8,
+          "Dhuhr": 0,
+          "Asr": 1,
+          "Maghrib": -7,
+          "Isha": 5,
+          "avgAbsError": 3.5
+        },
+        {
+          "date": "2025-09-15",
+          "Fajr": 0,
+          "Sunrise": 7,
+          "Dhuhr": -1,
+          "Asr": 1,
+          "Maghrib": -7,
+          "Isha": 5,
+          "avgAbsError": 3.5
+        },
+        {
+          "date": "2025-10-01",
+          "Fajr": 0,
+          "Sunrise": 7,
+          "Dhuhr": -1,
+          "Asr": 0,
+          "Maghrib": -8,
+          "Isha": 5,
+          "avgAbsError": 3.5
+        },
+        {
+          "date": "2025-10-15",
+          "Fajr": 0,
+          "Sunrise": 7,
+          "Dhuhr": -1,
+          "Asr": 1,
+          "Maghrib": -6,
+          "Isha": 5,
+          "avgAbsError": 3.3333333333333335
+        },
+        {
+          "date": "2025-11-01",
+          "Fajr": 0,
+          "Sunrise": 8,
+          "Dhuhr": -1,
+          "Asr": 1,
+          "Maghrib": -6,
+          "Isha": 5,
+          "avgAbsError": 3.5
+        },
+        {
+          "date": "2025-11-15",
+          "Fajr": 0,
+          "Sunrise": 7,
+          "Dhuhr": -1,
+          "Asr": 1,
+          "Maghrib": -6,
+          "Isha": 5,
+          "avgAbsError": 3.3333333333333335
+        },
+        {
+          "date": "2025-12-01",
+          "Fajr": 0,
+          "Sunrise": 7,
+          "Dhuhr": 0,
+          "Asr": 2,
+          "Maghrib": -6,
+          "Isha": 5,
+          "avgAbsError": 3.3333333333333335
+        },
+        {
+          "date": "2025-12-15",
+          "Fajr": 0,
+          "Sunrise": 6,
+          "Dhuhr": 0,
+          "Asr": 0,
+          "Maghrib": -5,
+          "Isha": 6,
+          "avgAbsError": 2.8333333333333335
+        }
+      ]
+    },
+    {
+      "label": "Custom 18/17 (Diyanet-like) | school=0 | midnightMode=1",
+      "config": {
+        "method": 99,
+        "fajr": 18,
+        "isha": 17,
+        "school": 0,
+        "midnightMode": 1,
+        "label": "Custom 18/17 (Diyanet-like) | school=0 | midnightMode=1"
+      },
+      "avgError": 3.423611111111111,
+      "prayerStats": {
+        "Fajr": {
+          "avgDiff": "0.0",
+          "avgAbsDiff": "0.1",
+          "maxAbsDiff": 1,
+          "samples": 24
+        },
+        "Sunrise": {
+          "avgDiff": "6.4",
+          "avgAbsDiff": "6.4",
+          "maxAbsDiff": 8,
+          "samples": 24
+        },
+        "Dhuhr": {
+          "avgDiff": "-0.7",
+          "avgAbsDiff": "0.7",
+          "maxAbsDiff": 1,
+          "samples": 24
+        },
+        "Asr": {
+          "avgDiff": "0.3",
+          "avgAbsDiff": "0.7",
+          "maxAbsDiff": 2,
+          "samples": 24
+        },
+        "Maghrib": {
+          "avgDiff": "-5.7",
+          "avgAbsDiff": "5.7",
+          "maxAbsDiff": 8,
+          "samples": 24
+        },
+        "Isha": {
+          "avgDiff": "7.0",
+          "avgAbsDiff": "7.0",
+          "maxAbsDiff": 12,
+          "samples": 24
+        }
+      },
+      "dateErrors": [
+        {
+          "date": "2025-01-01",
+          "Fajr": 0,
+          "Sunrise": 6,
+          "Dhuhr": -1,
+          "Asr": 0,
+          "Maghrib": -5,
+          "Isha": 6,
+          "avgAbsError": 3
+        },
+        {
+          "date": "2025-01-15",
+          "Fajr": 1,
+          "Sunrise": 6,
+          "Dhuhr": -1,
+          "Asr": 0,
+          "Maghrib": -5,
+          "Isha": 6,
+          "avgAbsError": 3.1666666666666665
+        },
+        {
+          "date": "2025-02-01",
+          "Fajr": 0,
+          "Sunrise": 5,
+          "Dhuhr": -1,
+          "Asr": 0,
+          "Maghrib": -5,
+          "Isha": 7,
+          "avgAbsError": 3
+        },
+        {
+          "date": "2025-02-15",
+          "Fajr": 0,
+          "Sunrise": 5,
+          "Dhuhr": -1,
+          "Asr": 0,
+          "Maghrib": -4,
+          "Isha": 7,
+          "avgAbsError": 2.8333333333333335
+        },
+        {
+          "date": "2025-03-01",
+          "Fajr": 0,
+          "Sunrise": 5,
+          "Dhuhr": -1,
+          "Asr": -1,
+          "Maghrib": -5,
+          "Isha": 6,
+          "avgAbsError": 3
+        },
+        {
+          "date": "2025-03-15",
+          "Fajr": 0,
+          "Sunrise": 5,
+          "Dhuhr": -1,
+          "Asr": -1,
+          "Maghrib": -5,
+          "Isha": 6,
+          "avgAbsError": 3
+        },
+        {
+          "date": "2025-04-01",
+          "Fajr": -1,
+          "Sunrise": 5,
+          "Dhuhr": -1,
+          "Asr": -1,
+          "Maghrib": -5,
+          "Isha": 7,
+          "avgAbsError": 3.3333333333333335
+        },
+        {
+          "date": "2025-04-15",
+          "Fajr": 0,
+          "Sunrise": 5,
+          "Dhuhr": 0,
+          "Asr": 0,
+          "Maghrib": -6,
+          "Isha": 8,
+          "avgAbsError": 3.1666666666666665
+        },
+        {
+          "date": "2025-05-01",
+          "Fajr": 0,
+          "Sunrise": 5,
+          "Dhuhr": 0,
+          "Asr": 0,
+          "Maghrib": -5,
+          "Isha": 9,
+          "avgAbsError": 3.1666666666666665
+        },
+        {
+          "date": "2025-05-15",
+          "Fajr": 0,
+          "Sunrise": 6,
+          "Dhuhr": -1,
+          "Asr": -1,
+          "Maghrib": -5,
+          "Isha": 10,
+          "avgAbsError": 3.8333333333333335
+        },
+        {
+          "date": "2025-06-01",
+          "Fajr": 0,
+          "Sunrise": 6,
+          "Dhuhr": -1,
+          "Asr": 0,
+          "Maghrib": -5,
+          "Isha": 11,
+          "avgAbsError": 3.8333333333333335
+        },
+        {
+          "date": "2025-06-15",
+          "Fajr": 0,
+          "Sunrise": 8,
+          "Dhuhr": -1,
+          "Asr": 0,
+          "Maghrib": -5,
+          "Isha": 12,
+          "avgAbsError": 4.333333333333333
+        },
+        {
+          "date": "2025-07-01",
+          "Fajr": 0,
+          "Sunrise": 8,
+          "Dhuhr": 0,
+          "Asr": 1,
+          "Maghrib": -5,
+          "Isha": 10,
+          "avgAbsError": 4
+        },
+        {
+          "date": "2025-07-15",
+          "Fajr": 1,
+          "Sunrise": 7,
+          "Dhuhr": 0,
+          "Asr": 1,
+          "Maghrib": -7,
+          "Isha": 9,
+          "avgAbsError": 4.166666666666667
+        },
+        {
+          "date": "2025-08-01",
+          "Fajr": 0,
+          "Sunrise": 8,
+          "Dhuhr": 0,
+          "Asr": 2,
+          "Maghrib": -6,
+          "Isha": 7,
+          "avgAbsError": 3.8333333333333335
+        },
+        {
+          "date": "2025-08-15",
+          "Fajr": 0,
+          "Sunrise": 7,
+          "Dhuhr": -1,
+          "Asr": 1,
+          "Maghrib": -7,
+          "Isha": 6,
+          "avgAbsError": 3.6666666666666665
+        },
+        {
+          "date": "2025-09-01",
+          "Fajr": 0,
+          "Sunrise": 8,
+          "Dhuhr": 0,
+          "Asr": 1,
+          "Maghrib": -7,
+          "Isha": 5,
+          "avgAbsError": 3.5
+        },
+        {
+          "date": "2025-09-15",
+          "Fajr": 0,
+          "Sunrise": 7,
+          "Dhuhr": -1,
+          "Asr": 1,
+          "Maghrib": -7,
+          "Isha": 5,
+          "avgAbsError": 3.5
+        },
+        {
+          "date": "2025-10-01",
+          "Fajr": 0,
+          "Sunrise": 7,
+          "Dhuhr": -1,
+          "Asr": 0,
+          "Maghrib": -8,
+          "Isha": 5,
+          "avgAbsError": 3.5
+        },
+        {
+          "date": "2025-10-15",
+          "Fajr": 0,
+          "Sunrise": 7,
+          "Dhuhr": -1,
+          "Asr": 1,
+          "Maghrib": -6,
+          "Isha": 5,
+          "avgAbsError": 3.3333333333333335
+        },
+        {
+          "date": "2025-11-01",
+          "Fajr": 0,
+          "Sunrise": 8,
+          "Dhuhr": -1,
+          "Asr": 1,
+          "Maghrib": -6,
+          "Isha": 5,
+          "avgAbsError": 3.5
+        },
+        {
+          "date": "2025-11-15",
+          "Fajr": 0,
+          "Sunrise": 7,
+          "Dhuhr": -1,
+          "Asr": 1,
+          "Maghrib": -6,
+          "Isha": 5,
+          "avgAbsError": 3.3333333333333335
+        },
+        {
+          "date": "2025-12-01",
+          "Fajr": 0,
+          "Sunrise": 7,
+          "Dhuhr": 0,
+          "Asr": 2,
+          "Maghrib": -6,
+          "Isha": 5,
+          "avgAbsError": 3.3333333333333335
+        },
+        {
+          "date": "2025-12-15",
+          "Fajr": 0,
+          "Sunrise": 6,
+          "Dhuhr": 0,
+          "Asr": 0,
+          "Maghrib": -5,
+          "Isha": 6,
+          "avgAbsError": 2.8333333333333335
+        }
+      ]
+    },
+    {
+      "label": "Qatar | school=0 | midnightMode=0",
+      "config": {
+        "method": 10,
+        "school": 0,
+        "midnightMode": 0,
+        "label": "Qatar | school=0 | midnightMode=0"
+      },
+      "avgError": 3.6666666666666665,
+      "prayerStats": {
+        "Fajr": {
+          "avgDiff": "0.0",
+          "avgAbsDiff": "0.1",
+          "maxAbsDiff": 1,
+          "samples": 24
+        },
+        "Sunrise": {
+          "avgDiff": "6.4",
+          "avgAbsDiff": "6.4",
+          "maxAbsDiff": 8,
+          "samples": 24
+        },
+        "Dhuhr": {
+          "avgDiff": "-0.7",
+          "avgAbsDiff": "0.7",
+          "maxAbsDiff": 1,
+          "samples": 24
+        },
+        "Asr": {
+          "avgDiff": "0.3",
+          "avgAbsDiff": "0.7",
+          "maxAbsDiff": 2,
+          "samples": 24
+        },
+        "Maghrib": {
+          "avgDiff": "-5.7",
+          "avgAbsDiff": "5.7",
+          "maxAbsDiff": 8,
+          "samples": 24
+        },
+        "Isha": {
+          "avgDiff": "-5.0",
+          "avgAbsDiff": "8.5",
+          "maxAbsDiff": 30,
+          "samples": 24
+        }
+      },
+      "dateErrors": [
+        {
+          "date": "2025-01-01",
+          "Fajr": 0,
+          "Sunrise": 6,
+          "Dhuhr": -1,
+          "Asr": 0,
+          "Maghrib": -5,
+          "Isha": -2,
+          "avgAbsError": 2.3333333333333335
+        },
+        {
+          "date": "2025-01-15",
+          "Fajr": 1,
+          "Sunrise": 6,
+          "Dhuhr": -1,
+          "Asr": 0,
+          "Maghrib": -5,
+          "Isha": 0,
+          "avgAbsError": 2.1666666666666665
+        },
+        {
+          "date": "2025-02-01",
+          "Fajr": 0,
+          "Sunrise": 5,
+          "Dhuhr": -1,
+          "Asr": 0,
+          "Maghrib": -5,
+          "Isha": 3,
+          "avgAbsError": 2.3333333333333335
+        },
+        {
+          "date": "2025-02-15",
+          "Fajr": 0,
+          "Sunrise": 5,
+          "Dhuhr": -1,
+          "Asr": 0,
+          "Maghrib": -4,
+          "Isha": 6,
+          "avgAbsError": 2.6666666666666665
+        },
+        {
+          "date": "2025-03-01",
+          "Fajr": 0,
+          "Sunrise": 5,
+          "Dhuhr": -1,
+          "Asr": -1,
+          "Maghrib": -5,
+          "Isha": 6,
+          "avgAbsError": 3
+        },
+        {
+          "date": "2025-03-15",
+          "Fajr": 0,
+          "Sunrise": 5,
+          "Dhuhr": -1,
+          "Asr": -1,
+          "Maghrib": -5,
+          "Isha": 6,
+          "avgAbsError": 3
+        },
+        {
+          "date": "2025-04-01",
+          "Fajr": -1,
+          "Sunrise": 5,
+          "Dhuhr": -1,
+          "Asr": -1,
+          "Maghrib": -5,
+          "Isha": 4,
+          "avgAbsError": 2.8333333333333335
+        },
+        {
+          "date": "2025-04-15",
+          "Fajr": 0,
+          "Sunrise": 5,
+          "Dhuhr": 0,
+          "Asr": 0,
+          "Maghrib": -6,
+          "Isha": -1,
+          "avgAbsError": 2
+        },
+        {
+          "date": "2025-05-01",
+          "Fajr": 0,
+          "Sunrise": 5,
+          "Dhuhr": 0,
+          "Asr": 0,
+          "Maghrib": -5,
+          "Isha": -7,
+          "avgAbsError": 2.8333333333333335
+        },
+        {
+          "date": "2025-05-15",
+          "Fajr": 0,
+          "Sunrise": 6,
+          "Dhuhr": -1,
+          "Asr": -1,
+          "Maghrib": -5,
+          "Isha": -15,
+          "avgAbsError": 4.666666666666667
+        },
+        {
+          "date": "2025-06-01",
+          "Fajr": 0,
+          "Sunrise": 6,
+          "Dhuhr": -1,
+          "Asr": 0,
+          "Maghrib": -5,
+          "Isha": -25,
+          "avgAbsError": 6.166666666666667
+        },
+        {
+          "date": "2025-06-15",
+          "Fajr": 0,
+          "Sunrise": 8,
+          "Dhuhr": -1,
+          "Asr": 0,
+          "Maghrib": -5,
+          "Isha": -30,
+          "avgAbsError": 7.333333333333333
+        },
+        {
+          "date": "2025-07-01",
+          "Fajr": 0,
+          "Sunrise": 8,
+          "Dhuhr": 0,
+          "Asr": 1,
+          "Maghrib": -5,
+          "Isha": -30,
+          "avgAbsError": 7.333333333333333
+        },
+        {
+          "date": "2025-07-15",
+          "Fajr": 1,
+          "Sunrise": 7,
+          "Dhuhr": 0,
+          "Asr": 1,
+          "Maghrib": -7,
+          "Isha": -25,
+          "avgAbsError": 6.833333333333333
+        },
+        {
+          "date": "2025-08-01",
+          "Fajr": 0,
+          "Sunrise": 8,
+          "Dhuhr": 0,
+          "Asr": 2,
+          "Maghrib": -6,
+          "Isha": -15,
+          "avgAbsError": 5.166666666666667
+        },
+        {
+          "date": "2025-08-15",
+          "Fajr": 0,
+          "Sunrise": 7,
+          "Dhuhr": -1,
+          "Asr": 1,
+          "Maghrib": -7,
+          "Isha": -7,
+          "avgAbsError": 3.8333333333333335
+        },
+        {
+          "date": "2025-09-01",
+          "Fajr": 0,
+          "Sunrise": 8,
+          "Dhuhr": 0,
+          "Asr": 1,
+          "Maghrib": -7,
+          "Isha": -1,
+          "avgAbsError": 2.8333333333333335
+        },
+        {
+          "date": "2025-09-15",
+          "Fajr": 0,
+          "Sunrise": 7,
+          "Dhuhr": -1,
+          "Asr": 1,
+          "Maghrib": -7,
+          "Isha": 3,
+          "avgAbsError": 3.1666666666666665
+        },
+        {
+          "date": "2025-10-01",
+          "Fajr": 0,
+          "Sunrise": 7,
+          "Dhuhr": -1,
+          "Asr": 0,
+          "Maghrib": -8,
+          "Isha": 4,
+          "avgAbsError": 3.3333333333333335
+        },
+        {
+          "date": "2025-10-15",
+          "Fajr": 0,
+          "Sunrise": 7,
+          "Dhuhr": -1,
+          "Asr": 1,
+          "Maghrib": -6,
+          "Isha": 5,
+          "avgAbsError": 3.3333333333333335
+        },
+        {
+          "date": "2025-11-01",
+          "Fajr": 0,
+          "Sunrise": 8,
+          "Dhuhr": -1,
+          "Asr": 1,
+          "Maghrib": -6,
+          "Isha": 3,
+          "avgAbsError": 3.1666666666666665
+        },
+        {
+          "date": "2025-11-15",
+          "Fajr": 0,
+          "Sunrise": 7,
+          "Dhuhr": -1,
+          "Asr": 1,
+          "Maghrib": -6,
+          "Isha": 1,
+          "avgAbsError": 2.6666666666666665
+        },
+        {
+          "date": "2025-12-01",
+          "Fajr": 0,
+          "Sunrise": 7,
+          "Dhuhr": 0,
+          "Asr": 2,
+          "Maghrib": -6,
+          "Isha": -2,
+          "avgAbsError": 2.8333333333333335
+        },
+        {
+          "date": "2025-12-15",
+          "Fajr": 0,
+          "Sunrise": 6,
+          "Dhuhr": 0,
+          "Asr": 0,
+          "Maghrib": -5,
+          "Isha": -2,
+          "avgAbsError": 2.1666666666666665
+        }
+      ]
+    },
+    {
+      "label": "Qatar | school=0 | midnightMode=1",
+      "config": {
+        "method": 10,
+        "school": 0,
+        "midnightMode": 1,
+        "label": "Qatar | school=0 | midnightMode=1"
+      },
+      "avgError": 3.6666666666666665,
+      "prayerStats": {
+        "Fajr": {
+          "avgDiff": "0.0",
+          "avgAbsDiff": "0.1",
+          "maxAbsDiff": 1,
+          "samples": 24
+        },
+        "Sunrise": {
+          "avgDiff": "6.4",
+          "avgAbsDiff": "6.4",
+          "maxAbsDiff": 8,
+          "samples": 24
+        },
+        "Dhuhr": {
+          "avgDiff": "-0.7",
+          "avgAbsDiff": "0.7",
+          "maxAbsDiff": 1,
+          "samples": 24
+        },
+        "Asr": {
+          "avgDiff": "0.3",
+          "avgAbsDiff": "0.7",
+          "maxAbsDiff": 2,
+          "samples": 24
+        },
+        "Maghrib": {
+          "avgDiff": "-5.7",
+          "avgAbsDiff": "5.7",
+          "maxAbsDiff": 8,
+          "samples": 24
+        },
+        "Isha": {
+          "avgDiff": "-5.0",
+          "avgAbsDiff": "8.5",
+          "maxAbsDiff": 30,
+          "samples": 24
+        }
+      },
+      "dateErrors": [
+        {
+          "date": "2025-01-01",
+          "Fajr": 0,
+          "Sunrise": 6,
+          "Dhuhr": -1,
+          "Asr": 0,
+          "Maghrib": -5,
+          "Isha": -2,
+          "avgAbsError": 2.3333333333333335
+        },
+        {
+          "date": "2025-01-15",
+          "Fajr": 1,
+          "Sunrise": 6,
+          "Dhuhr": -1,
+          "Asr": 0,
+          "Maghrib": -5,
+          "Isha": 0,
+          "avgAbsError": 2.1666666666666665
+        },
+        {
+          "date": "2025-02-01",
+          "Fajr": 0,
+          "Sunrise": 5,
+          "Dhuhr": -1,
+          "Asr": 0,
+          "Maghrib": -5,
+          "Isha": 3,
+          "avgAbsError": 2.3333333333333335
+        },
+        {
+          "date": "2025-02-15",
+          "Fajr": 0,
+          "Sunrise": 5,
+          "Dhuhr": -1,
+          "Asr": 0,
+          "Maghrib": -4,
+          "Isha": 6,
+          "avgAbsError": 2.6666666666666665
+        },
+        {
+          "date": "2025-03-01",
+          "Fajr": 0,
+          "Sunrise": 5,
+          "Dhuhr": -1,
+          "Asr": -1,
+          "Maghrib": -5,
+          "Isha": 6,
+          "avgAbsError": 3
+        },
+        {
+          "date": "2025-03-15",
+          "Fajr": 0,
+          "Sunrise": 5,
+          "Dhuhr": -1,
+          "Asr": -1,
+          "Maghrib": -5,
+          "Isha": 6,
+          "avgAbsError": 3
+        },
+        {
+          "date": "2025-04-01",
+          "Fajr": -1,
+          "Sunrise": 5,
+          "Dhuhr": -1,
+          "Asr": -1,
+          "Maghrib": -5,
+          "Isha": 4,
+          "avgAbsError": 2.8333333333333335
+        },
+        {
+          "date": "2025-04-15",
+          "Fajr": 0,
+          "Sunrise": 5,
+          "Dhuhr": 0,
+          "Asr": 0,
+          "Maghrib": -6,
+          "Isha": -1,
+          "avgAbsError": 2
+        },
+        {
+          "date": "2025-05-01",
+          "Fajr": 0,
+          "Sunrise": 5,
+          "Dhuhr": 0,
+          "Asr": 0,
+          "Maghrib": -5,
+          "Isha": -7,
+          "avgAbsError": 2.8333333333333335
+        },
+        {
+          "date": "2025-05-15",
+          "Fajr": 0,
+          "Sunrise": 6,
+          "Dhuhr": -1,
+          "Asr": -1,
+          "Maghrib": -5,
+          "Isha": -15,
+          "avgAbsError": 4.666666666666667
+        },
+        {
+          "date": "2025-06-01",
+          "Fajr": 0,
+          "Sunrise": 6,
+          "Dhuhr": -1,
+          "Asr": 0,
+          "Maghrib": -5,
+          "Isha": -25,
+          "avgAbsError": 6.166666666666667
+        },
+        {
+          "date": "2025-06-15",
+          "Fajr": 0,
+          "Sunrise": 8,
+          "Dhuhr": -1,
+          "Asr": 0,
+          "Maghrib": -5,
+          "Isha": -30,
+          "avgAbsError": 7.333333333333333
+        },
+        {
+          "date": "2025-07-01",
+          "Fajr": 0,
+          "Sunrise": 8,
+          "Dhuhr": 0,
+          "Asr": 1,
+          "Maghrib": -5,
+          "Isha": -30,
+          "avgAbsError": 7.333333333333333
+        },
+        {
+          "date": "2025-07-15",
+          "Fajr": 1,
+          "Sunrise": 7,
+          "Dhuhr": 0,
+          "Asr": 1,
+          "Maghrib": -7,
+          "Isha": -25,
+          "avgAbsError": 6.833333333333333
+        },
+        {
+          "date": "2025-08-01",
+          "Fajr": 0,
+          "Sunrise": 8,
+          "Dhuhr": 0,
+          "Asr": 2,
+          "Maghrib": -6,
+          "Isha": -15,
+          "avgAbsError": 5.166666666666667
+        },
+        {
+          "date": "2025-08-15",
+          "Fajr": 0,
+          "Sunrise": 7,
+          "Dhuhr": -1,
+          "Asr": 1,
+          "Maghrib": -7,
+          "Isha": -7,
+          "avgAbsError": 3.8333333333333335
+        },
+        {
+          "date": "2025-09-01",
+          "Fajr": 0,
+          "Sunrise": 8,
+          "Dhuhr": 0,
+          "Asr": 1,
+          "Maghrib": -7,
+          "Isha": -1,
+          "avgAbsError": 2.8333333333333335
+        },
+        {
+          "date": "2025-09-15",
+          "Fajr": 0,
+          "Sunrise": 7,
+          "Dhuhr": -1,
+          "Asr": 1,
+          "Maghrib": -7,
+          "Isha": 3,
+          "avgAbsError": 3.1666666666666665
+        },
+        {
+          "date": "2025-10-01",
+          "Fajr": 0,
+          "Sunrise": 7,
+          "Dhuhr": -1,
+          "Asr": 0,
+          "Maghrib": -8,
+          "Isha": 4,
+          "avgAbsError": 3.3333333333333335
+        },
+        {
+          "date": "2025-10-15",
+          "Fajr": 0,
+          "Sunrise": 7,
+          "Dhuhr": -1,
+          "Asr": 1,
+          "Maghrib": -6,
+          "Isha": 5,
+          "avgAbsError": 3.3333333333333335
+        },
+        {
+          "date": "2025-11-01",
+          "Fajr": 0,
+          "Sunrise": 8,
+          "Dhuhr": -1,
+          "Asr": 1,
+          "Maghrib": -6,
+          "Isha": 3,
+          "avgAbsError": 3.1666666666666665
+        },
+        {
+          "date": "2025-11-15",
+          "Fajr": 0,
+          "Sunrise": 7,
+          "Dhuhr": -1,
+          "Asr": 1,
+          "Maghrib": -6,
+          "Isha": 1,
+          "avgAbsError": 2.6666666666666665
+        },
+        {
+          "date": "2025-12-01",
+          "Fajr": 0,
+          "Sunrise": 7,
+          "Dhuhr": 0,
+          "Asr": 2,
+          "Maghrib": -6,
+          "Isha": -2,
+          "avgAbsError": 2.8333333333333335
+        },
+        {
+          "date": "2025-12-15",
+          "Fajr": 0,
+          "Sunrise": 6,
+          "Dhuhr": 0,
+          "Asr": 0,
+          "Maghrib": -5,
+          "Isha": -2,
+          "avgAbsError": 2.1666666666666665
+        }
+      ]
+    },
+    {
+      "label": "Kuwait | school=0 | midnightMode=0",
+      "config": {
+        "method": 9,
+        "school": 0,
+        "midnightMode": 0,
+        "label": "Kuwait | school=0 | midnightMode=0"
+      },
+      "avgError": 4.006944444444445,
+      "prayerStats": {
+        "Fajr": {
+          "avgDiff": "0.0",
+          "avgAbsDiff": "0.1",
+          "maxAbsDiff": 1,
+          "samples": 24
+        },
+        "Sunrise": {
+          "avgDiff": "6.4",
+          "avgAbsDiff": "6.4",
+          "maxAbsDiff": 8,
+          "samples": 24
+        },
+        "Dhuhr": {
+          "avgDiff": "-0.7",
+          "avgAbsDiff": "0.7",
+          "maxAbsDiff": 1,
+          "samples": 24
+        },
+        "Asr": {
+          "avgDiff": "0.3",
+          "avgAbsDiff": "0.7",
+          "maxAbsDiff": 2,
+          "samples": 24
+        },
+        "Maghrib": {
+          "avgDiff": "-5.7",
+          "avgAbsDiff": "5.7",
+          "maxAbsDiff": 8,
+          "samples": 24
+        },
+        "Isha": {
+          "avgDiff": "10.5",
+          "avgAbsDiff": "10.5",
+          "maxAbsDiff": 17,
+          "samples": 24
+        }
+      },
+      "dateErrors": [
+        {
+          "date": "2025-01-01",
+          "Fajr": 0,
+          "Sunrise": 6,
+          "Dhuhr": -1,
+          "Asr": 0,
+          "Maghrib": -5,
+          "Isha": 9,
+          "avgAbsError": 3.5
+        },
+        {
+          "date": "2025-01-15",
+          "Fajr": 1,
+          "Sunrise": 6,
+          "Dhuhr": -1,
+          "Asr": 0,
+          "Maghrib": -5,
+          "Isha": 9,
+          "avgAbsError": 3.6666666666666665
+        },
+        {
+          "date": "2025-02-01",
+          "Fajr": 0,
+          "Sunrise": 5,
+          "Dhuhr": -1,
+          "Asr": 0,
+          "Maghrib": -5,
+          "Isha": 9,
+          "avgAbsError": 3.3333333333333335
+        },
+        {
+          "date": "2025-02-15",
+          "Fajr": 0,
+          "Sunrise": 5,
+          "Dhuhr": -1,
+          "Asr": 0,
+          "Maghrib": -4,
+          "Isha": 9,
+          "avgAbsError": 3.1666666666666665
+        },
+        {
+          "date": "2025-03-01",
+          "Fajr": 0,
+          "Sunrise": 5,
+          "Dhuhr": -1,
+          "Asr": -1,
+          "Maghrib": -5,
+          "Isha": 9,
+          "avgAbsError": 3.5
+        },
+        {
+          "date": "2025-03-15",
+          "Fajr": 0,
+          "Sunrise": 5,
+          "Dhuhr": -1,
+          "Asr": -1,
+          "Maghrib": -5,
+          "Isha": 9,
+          "avgAbsError": 3.5
+        },
+        {
+          "date": "2025-04-01",
+          "Fajr": -1,
+          "Sunrise": 5,
+          "Dhuhr": -1,
+          "Asr": -1,
+          "Maghrib": -5,
+          "Isha": 10,
+          "avgAbsError": 3.8333333333333335
+        },
+        {
+          "date": "2025-04-15",
+          "Fajr": 0,
+          "Sunrise": 5,
+          "Dhuhr": 0,
+          "Asr": 0,
+          "Maghrib": -6,
+          "Isha": 11,
+          "avgAbsError": 3.6666666666666665
+        },
+        {
+          "date": "2025-05-01",
+          "Fajr": 0,
+          "Sunrise": 5,
+          "Dhuhr": 0,
+          "Asr": 0,
+          "Maghrib": -5,
+          "Isha": 13,
+          "avgAbsError": 3.8333333333333335
+        },
+        {
+          "date": "2025-05-15",
+          "Fajr": 0,
+          "Sunrise": 6,
+          "Dhuhr": -1,
+          "Asr": -1,
+          "Maghrib": -5,
+          "Isha": 14,
+          "avgAbsError": 4.5
+        },
+        {
+          "date": "2025-06-01",
+          "Fajr": 0,
+          "Sunrise": 6,
+          "Dhuhr": -1,
+          "Asr": 0,
+          "Maghrib": -5,
+          "Isha": 17,
+          "avgAbsError": 4.833333333333333
+        },
+        {
+          "date": "2025-06-15",
+          "Fajr": 0,
+          "Sunrise": 8,
+          "Dhuhr": -1,
+          "Asr": 0,
+          "Maghrib": -5,
+          "Isha": 17,
+          "avgAbsError": 5.166666666666667
+        },
+        {
+          "date": "2025-07-01",
+          "Fajr": 0,
+          "Sunrise": 8,
+          "Dhuhr": 0,
+          "Asr": 1,
+          "Maghrib": -5,
+          "Isha": 16,
+          "avgAbsError": 5
+        },
+        {
+          "date": "2025-07-15",
+          "Fajr": 1,
+          "Sunrise": 7,
+          "Dhuhr": 0,
+          "Asr": 1,
+          "Maghrib": -7,
+          "Isha": 14,
+          "avgAbsError": 5
+        },
+        {
+          "date": "2025-08-01",
+          "Fajr": 0,
+          "Sunrise": 8,
+          "Dhuhr": 0,
+          "Asr": 2,
+          "Maghrib": -6,
+          "Isha": 11,
+          "avgAbsError": 4.5
+        },
+        {
+          "date": "2025-08-15",
+          "Fajr": 0,
+          "Sunrise": 7,
+          "Dhuhr": -1,
+          "Asr": 1,
+          "Maghrib": -7,
+          "Isha": 10,
+          "avgAbsError": 4.333333333333333
+        },
+        {
+          "date": "2025-09-01",
+          "Fajr": 0,
+          "Sunrise": 8,
+          "Dhuhr": 0,
+          "Asr": 1,
+          "Maghrib": -7,
+          "Isha": 9,
+          "avgAbsError": 4.166666666666667
+        },
+        {
+          "date": "2025-09-15",
+          "Fajr": 0,
+          "Sunrise": 7,
+          "Dhuhr": -1,
+          "Asr": 1,
+          "Maghrib": -7,
+          "Isha": 8,
+          "avgAbsError": 4
+        },
+        {
+          "date": "2025-10-01",
+          "Fajr": 0,
+          "Sunrise": 7,
+          "Dhuhr": -1,
+          "Asr": 0,
+          "Maghrib": -8,
+          "Isha": 7,
+          "avgAbsError": 3.8333333333333335
+        },
+        {
+          "date": "2025-10-15",
+          "Fajr": 0,
+          "Sunrise": 7,
+          "Dhuhr": -1,
+          "Asr": 1,
+          "Maghrib": -6,
+          "Isha": 8,
+          "avgAbsError": 3.8333333333333335
+        },
+        {
+          "date": "2025-11-01",
+          "Fajr": 0,
+          "Sunrise": 8,
+          "Dhuhr": -1,
+          "Asr": 1,
+          "Maghrib": -6,
+          "Isha": 8,
+          "avgAbsError": 4
+        },
+        {
+          "date": "2025-11-15",
+          "Fajr": 0,
+          "Sunrise": 7,
+          "Dhuhr": -1,
+          "Asr": 1,
+          "Maghrib": -6,
+          "Isha": 8,
+          "avgAbsError": 3.8333333333333335
+        },
+        {
+          "date": "2025-12-01",
+          "Fajr": 0,
+          "Sunrise": 7,
+          "Dhuhr": 0,
+          "Asr": 2,
+          "Maghrib": -6,
+          "Isha": 8,
+          "avgAbsError": 3.8333333333333335
+        },
+        {
+          "date": "2025-12-15",
+          "Fajr": 0,
+          "Sunrise": 6,
+          "Dhuhr": 0,
+          "Asr": 0,
+          "Maghrib": -5,
+          "Isha": 9,
+          "avgAbsError": 3.3333333333333335
+        }
+      ]
+    },
+    {
+      "label": "Kuwait | school=0 | midnightMode=1",
+      "config": {
+        "method": 9,
+        "school": 0,
+        "midnightMode": 1,
+        "label": "Kuwait | school=0 | midnightMode=1"
+      },
+      "avgError": 4.006944444444445,
+      "prayerStats": {
+        "Fajr": {
+          "avgDiff": "0.0",
+          "avgAbsDiff": "0.1",
+          "maxAbsDiff": 1,
+          "samples": 24
+        },
+        "Sunrise": {
+          "avgDiff": "6.4",
+          "avgAbsDiff": "6.4",
+          "maxAbsDiff": 8,
+          "samples": 24
+        },
+        "Dhuhr": {
+          "avgDiff": "-0.7",
+          "avgAbsDiff": "0.7",
+          "maxAbsDiff": 1,
+          "samples": 24
+        },
+        "Asr": {
+          "avgDiff": "0.3",
+          "avgAbsDiff": "0.7",
+          "maxAbsDiff": 2,
+          "samples": 24
+        },
+        "Maghrib": {
+          "avgDiff": "-5.7",
+          "avgAbsDiff": "5.7",
+          "maxAbsDiff": 8,
+          "samples": 24
+        },
+        "Isha": {
+          "avgDiff": "10.5",
+          "avgAbsDiff": "10.5",
+          "maxAbsDiff": 17,
+          "samples": 24
+        }
+      },
+      "dateErrors": [
+        {
+          "date": "2025-01-01",
+          "Fajr": 0,
+          "Sunrise": 6,
+          "Dhuhr": -1,
+          "Asr": 0,
+          "Maghrib": -5,
+          "Isha": 9,
+          "avgAbsError": 3.5
+        },
+        {
+          "date": "2025-01-15",
+          "Fajr": 1,
+          "Sunrise": 6,
+          "Dhuhr": -1,
+          "Asr": 0,
+          "Maghrib": -5,
+          "Isha": 9,
+          "avgAbsError": 3.6666666666666665
+        },
+        {
+          "date": "2025-02-01",
+          "Fajr": 0,
+          "Sunrise": 5,
+          "Dhuhr": -1,
+          "Asr": 0,
+          "Maghrib": -5,
+          "Isha": 9,
+          "avgAbsError": 3.3333333333333335
+        },
+        {
+          "date": "2025-02-15",
+          "Fajr": 0,
+          "Sunrise": 5,
+          "Dhuhr": -1,
+          "Asr": 0,
+          "Maghrib": -4,
+          "Isha": 9,
+          "avgAbsError": 3.1666666666666665
+        },
+        {
+          "date": "2025-03-01",
+          "Fajr": 0,
+          "Sunrise": 5,
+          "Dhuhr": -1,
+          "Asr": -1,
+          "Maghrib": -5,
+          "Isha": 9,
+          "avgAbsError": 3.5
+        },
+        {
+          "date": "2025-03-15",
+          "Fajr": 0,
+          "Sunrise": 5,
+          "Dhuhr": -1,
+          "Asr": -1,
+          "Maghrib": -5,
+          "Isha": 9,
+          "avgAbsError": 3.5
+        },
+        {
+          "date": "2025-04-01",
+          "Fajr": -1,
+          "Sunrise": 5,
+          "Dhuhr": -1,
+          "Asr": -1,
+          "Maghrib": -5,
+          "Isha": 10,
+          "avgAbsError": 3.8333333333333335
+        },
+        {
+          "date": "2025-04-15",
+          "Fajr": 0,
+          "Sunrise": 5,
+          "Dhuhr": 0,
+          "Asr": 0,
+          "Maghrib": -6,
+          "Isha": 11,
+          "avgAbsError": 3.6666666666666665
+        },
+        {
+          "date": "2025-05-01",
+          "Fajr": 0,
+          "Sunrise": 5,
+          "Dhuhr": 0,
+          "Asr": 0,
+          "Maghrib": -5,
+          "Isha": 13,
+          "avgAbsError": 3.8333333333333335
+        },
+        {
+          "date": "2025-05-15",
+          "Fajr": 0,
+          "Sunrise": 6,
+          "Dhuhr": -1,
+          "Asr": -1,
+          "Maghrib": -5,
+          "Isha": 14,
+          "avgAbsError": 4.5
+        },
+        {
+          "date": "2025-06-01",
+          "Fajr": 0,
+          "Sunrise": 6,
+          "Dhuhr": -1,
+          "Asr": 0,
+          "Maghrib": -5,
+          "Isha": 17,
+          "avgAbsError": 4.833333333333333
+        },
+        {
+          "date": "2025-06-15",
+          "Fajr": 0,
+          "Sunrise": 8,
+          "Dhuhr": -1,
+          "Asr": 0,
+          "Maghrib": -5,
+          "Isha": 17,
+          "avgAbsError": 5.166666666666667
+        },
+        {
+          "date": "2025-07-01",
+          "Fajr": 0,
+          "Sunrise": 8,
+          "Dhuhr": 0,
+          "Asr": 1,
+          "Maghrib": -5,
+          "Isha": 16,
+          "avgAbsError": 5
+        },
+        {
+          "date": "2025-07-15",
+          "Fajr": 1,
+          "Sunrise": 7,
+          "Dhuhr": 0,
+          "Asr": 1,
+          "Maghrib": -7,
+          "Isha": 14,
+          "avgAbsError": 5
+        },
+        {
+          "date": "2025-08-01",
+          "Fajr": 0,
+          "Sunrise": 8,
+          "Dhuhr": 0,
+          "Asr": 2,
+          "Maghrib": -6,
+          "Isha": 11,
+          "avgAbsError": 4.5
+        },
+        {
+          "date": "2025-08-15",
+          "Fajr": 0,
+          "Sunrise": 7,
+          "Dhuhr": -1,
+          "Asr": 1,
+          "Maghrib": -7,
+          "Isha": 10,
+          "avgAbsError": 4.333333333333333
+        },
+        {
+          "date": "2025-09-01",
+          "Fajr": 0,
+          "Sunrise": 8,
+          "Dhuhr": 0,
+          "Asr": 1,
+          "Maghrib": -7,
+          "Isha": 9,
+          "avgAbsError": 4.166666666666667
+        },
+        {
+          "date": "2025-09-15",
+          "Fajr": 0,
+          "Sunrise": 7,
+          "Dhuhr": -1,
+          "Asr": 1,
+          "Maghrib": -7,
+          "Isha": 8,
+          "avgAbsError": 4
+        },
+        {
+          "date": "2025-10-01",
+          "Fajr": 0,
+          "Sunrise": 7,
+          "Dhuhr": -1,
+          "Asr": 0,
+          "Maghrib": -8,
+          "Isha": 7,
+          "avgAbsError": 3.8333333333333335
+        },
+        {
+          "date": "2025-10-15",
+          "Fajr": 0,
+          "Sunrise": 7,
+          "Dhuhr": -1,
+          "Asr": 1,
+          "Maghrib": -6,
+          "Isha": 8,
+          "avgAbsError": 3.8333333333333335
+        },
+        {
+          "date": "2025-11-01",
+          "Fajr": 0,
+          "Sunrise": 8,
+          "Dhuhr": -1,
+          "Asr": 1,
+          "Maghrib": -6,
+          "Isha": 8,
+          "avgAbsError": 4
+        },
+        {
+          "date": "2025-11-15",
+          "Fajr": 0,
+          "Sunrise": 7,
+          "Dhuhr": -1,
+          "Asr": 1,
+          "Maghrib": -6,
+          "Isha": 8,
+          "avgAbsError": 3.8333333333333335
+        },
+        {
+          "date": "2025-12-01",
+          "Fajr": 0,
+          "Sunrise": 7,
+          "Dhuhr": 0,
+          "Asr": 2,
+          "Maghrib": -6,
+          "Isha": 8,
+          "avgAbsError": 3.8333333333333335
+        },
+        {
+          "date": "2025-12-15",
+          "Fajr": 0,
+          "Sunrise": 6,
+          "Dhuhr": 0,
+          "Asr": 0,
+          "Maghrib": -5,
+          "Isha": 9,
+          "avgAbsError": 3.3333333333333335
+        }
+      ]
+    },
+    {
+      "label": "Custom 16.5/16.5 | school=0 | midnightMode=0",
+      "config": {
+        "method": 99,
+        "fajr": 16.5,
+        "isha": 16.5,
+        "school": 0,
+        "midnightMode": 0,
+        "label": "Custom 16.5/16.5 | school=0 | midnightMode=0"
+      },
+      "avgError": 4.583333333333333,
+      "prayerStats": {
+        "Fajr": {
+          "avgDiff": "10.5",
+          "avgAbsDiff": "10.5",
+          "maxAbsDiff": 17,
+          "samples": 24
+        },
+        "Sunrise": {
+          "avgDiff": "6.4",
+          "avgAbsDiff": "6.4",
+          "maxAbsDiff": 8,
+          "samples": 24
+        },
+        "Dhuhr": {
+          "avgDiff": "-0.7",
+          "avgAbsDiff": "0.7",
+          "maxAbsDiff": 1,
+          "samples": 24
+        },
+        "Asr": {
+          "avgDiff": "0.3",
+          "avgAbsDiff": "0.7",
+          "maxAbsDiff": 2,
+          "samples": 24
+        },
+        "Maghrib": {
+          "avgDiff": "-5.7",
+          "avgAbsDiff": "5.7",
+          "maxAbsDiff": 8,
+          "samples": 24
+        },
+        "Isha": {
+          "avgDiff": "3.5",
+          "avgAbsDiff": "3.5",
+          "maxAbsDiff": 6,
+          "samples": 24
+        }
+      },
+      "dateErrors": [
+        {
+          "date": "2025-01-01",
+          "Fajr": 8,
+          "Sunrise": 6,
+          "Dhuhr": -1,
+          "Asr": 0,
+          "Maghrib": -5,
+          "Isha": 3,
+          "avgAbsError": 3.8333333333333335
+        },
+        {
+          "date": "2025-01-15",
+          "Fajr": 9,
+          "Sunrise": 6,
+          "Dhuhr": -1,
+          "Asr": 0,
+          "Maghrib": -5,
+          "Isha": 3,
+          "avgAbsError": 4
+        },
+        {
+          "date": "2025-02-01",
+          "Fajr": 8,
+          "Sunrise": 5,
+          "Dhuhr": -1,
+          "Asr": 0,
+          "Maghrib": -5,
+          "Isha": 4,
+          "avgAbsError": 3.8333333333333335
+        },
+        {
+          "date": "2025-02-15",
+          "Fajr": 8,
+          "Sunrise": 5,
+          "Dhuhr": -1,
+          "Asr": 0,
+          "Maghrib": -4,
+          "Isha": 4,
+          "avgAbsError": 3.6666666666666665
+        },
+        {
+          "date": "2025-03-01",
+          "Fajr": 8,
+          "Sunrise": 5,
+          "Dhuhr": -1,
+          "Asr": -1,
+          "Maghrib": -5,
+          "Isha": 3,
+          "avgAbsError": 3.8333333333333335
+        },
+        {
+          "date": "2025-03-15",
+          "Fajr": 8,
+          "Sunrise": 5,
+          "Dhuhr": -1,
+          "Asr": -1,
+          "Maghrib": -5,
+          "Isha": 4,
+          "avgAbsError": 4
+        },
+        {
+          "date": "2025-04-01",
+          "Fajr": 9,
+          "Sunrise": 5,
+          "Dhuhr": -1,
+          "Asr": -1,
+          "Maghrib": -5,
+          "Isha": 4,
+          "avgAbsError": 4.166666666666667
+        },
+        {
+          "date": "2025-04-15",
+          "Fajr": 10,
+          "Sunrise": 5,
+          "Dhuhr": 0,
+          "Asr": 0,
+          "Maghrib": -6,
+          "Isha": 4,
+          "avgAbsError": 4.166666666666667
+        },
+        {
+          "date": "2025-05-01",
+          "Fajr": 11,
+          "Sunrise": 5,
+          "Dhuhr": 0,
+          "Asr": 0,
+          "Maghrib": -5,
+          "Isha": 5,
+          "avgAbsError": 4.333333333333333
+        },
+        {
+          "date": "2025-05-15",
+          "Fajr": 13,
+          "Sunrise": 6,
+          "Dhuhr": -1,
+          "Asr": -1,
+          "Maghrib": -5,
+          "Isha": 6,
+          "avgAbsError": 5.333333333333333
+        },
+        {
+          "date": "2025-06-01",
+          "Fajr": 15,
+          "Sunrise": 6,
+          "Dhuhr": -1,
+          "Asr": 0,
+          "Maghrib": -5,
+          "Isha": 6,
+          "avgAbsError": 5.5
+        },
+        {
+          "date": "2025-06-15",
+          "Fajr": 17,
+          "Sunrise": 8,
+          "Dhuhr": -1,
+          "Asr": 0,
+          "Maghrib": -5,
+          "Isha": 6,
+          "avgAbsError": 6.166666666666667
+        },
+        {
+          "date": "2025-07-01",
+          "Fajr": 17,
+          "Sunrise": 8,
+          "Dhuhr": 0,
+          "Asr": 1,
+          "Maghrib": -5,
+          "Isha": 5,
+          "avgAbsError": 6
+        },
+        {
+          "date": "2025-07-15",
+          "Fajr": 16,
+          "Sunrise": 7,
+          "Dhuhr": 0,
+          "Asr": 1,
+          "Maghrib": -7,
+          "Isha": 4,
+          "avgAbsError": 5.833333333333333
+        },
+        {
+          "date": "2025-08-01",
+          "Fajr": 13,
+          "Sunrise": 8,
+          "Dhuhr": 0,
+          "Asr": 2,
+          "Maghrib": -6,
+          "Isha": 3,
+          "avgAbsError": 5.333333333333333
+        },
+        {
+          "date": "2025-08-15",
+          "Fajr": 11,
+          "Sunrise": 7,
+          "Dhuhr": -1,
+          "Asr": 1,
+          "Maghrib": -7,
+          "Isha": 3,
+          "avgAbsError": 5
+        },
+        {
+          "date": "2025-09-01",
+          "Fajr": 10,
+          "Sunrise": 8,
+          "Dhuhr": 0,
+          "Asr": 1,
+          "Maghrib": -7,
+          "Isha": 2,
+          "avgAbsError": 4.666666666666667
+        },
+        {
+          "date": "2025-09-15",
+          "Fajr": 9,
+          "Sunrise": 7,
+          "Dhuhr": -1,
+          "Asr": 1,
+          "Maghrib": -7,
+          "Isha": 2,
+          "avgAbsError": 4.5
+        },
+        {
+          "date": "2025-10-01",
+          "Fajr": 9,
+          "Sunrise": 7,
+          "Dhuhr": -1,
+          "Asr": 0,
+          "Maghrib": -8,
+          "Isha": 2,
+          "avgAbsError": 4.5
+        },
+        {
+          "date": "2025-10-15",
+          "Fajr": 9,
+          "Sunrise": 7,
+          "Dhuhr": -1,
+          "Asr": 1,
+          "Maghrib": -6,
+          "Isha": 2,
+          "avgAbsError": 4.333333333333333
+        },
+        {
+          "date": "2025-11-01",
+          "Fajr": 9,
+          "Sunrise": 8,
+          "Dhuhr": -1,
+          "Asr": 1,
+          "Maghrib": -6,
+          "Isha": 2,
+          "avgAbsError": 4.5
+        },
+        {
+          "date": "2025-11-15",
+          "Fajr": 9,
+          "Sunrise": 7,
+          "Dhuhr": -1,
+          "Asr": 1,
+          "Maghrib": -6,
+          "Isha": 2,
+          "avgAbsError": 4.333333333333333
+        },
+        {
+          "date": "2025-12-01",
+          "Fajr": 8,
+          "Sunrise": 7,
+          "Dhuhr": 0,
+          "Asr": 2,
+          "Maghrib": -6,
+          "Isha": 3,
+          "avgAbsError": 4.333333333333333
+        },
+        {
+          "date": "2025-12-15",
+          "Fajr": 9,
+          "Sunrise": 6,
+          "Dhuhr": 0,
+          "Asr": 0,
+          "Maghrib": -5,
+          "Isha": 3,
+          "avgAbsError": 3.8333333333333335
+        }
+      ]
+    },
+    {
+      "label": "Custom 16.5/16.5 | school=0 | midnightMode=1",
+      "config": {
+        "method": 99,
+        "fajr": 16.5,
+        "isha": 16.5,
+        "school": 0,
+        "midnightMode": 1,
+        "label": "Custom 16.5/16.5 | school=0 | midnightMode=1"
+      },
+      "avgError": 4.583333333333333,
+      "prayerStats": {
+        "Fajr": {
+          "avgDiff": "10.5",
+          "avgAbsDiff": "10.5",
+          "maxAbsDiff": 17,
+          "samples": 24
+        },
+        "Sunrise": {
+          "avgDiff": "6.4",
+          "avgAbsDiff": "6.4",
+          "maxAbsDiff": 8,
+          "samples": 24
+        },
+        "Dhuhr": {
+          "avgDiff": "-0.7",
+          "avgAbsDiff": "0.7",
+          "maxAbsDiff": 1,
+          "samples": 24
+        },
+        "Asr": {
+          "avgDiff": "0.3",
+          "avgAbsDiff": "0.7",
+          "maxAbsDiff": 2,
+          "samples": 24
+        },
+        "Maghrib": {
+          "avgDiff": "-5.7",
+          "avgAbsDiff": "5.7",
+          "maxAbsDiff": 8,
+          "samples": 24
+        },
+        "Isha": {
+          "avgDiff": "3.5",
+          "avgAbsDiff": "3.5",
+          "maxAbsDiff": 6,
+          "samples": 24
+        }
+      },
+      "dateErrors": [
+        {
+          "date": "2025-01-01",
+          "Fajr": 8,
+          "Sunrise": 6,
+          "Dhuhr": -1,
+          "Asr": 0,
+          "Maghrib": -5,
+          "Isha": 3,
+          "avgAbsError": 3.8333333333333335
+        },
+        {
+          "date": "2025-01-15",
+          "Fajr": 9,
+          "Sunrise": 6,
+          "Dhuhr": -1,
+          "Asr": 0,
+          "Maghrib": -5,
+          "Isha": 3,
+          "avgAbsError": 4
+        },
+        {
+          "date": "2025-02-01",
+          "Fajr": 8,
+          "Sunrise": 5,
+          "Dhuhr": -1,
+          "Asr": 0,
+          "Maghrib": -5,
+          "Isha": 4,
+          "avgAbsError": 3.8333333333333335
+        },
+        {
+          "date": "2025-02-15",
+          "Fajr": 8,
+          "Sunrise": 5,
+          "Dhuhr": -1,
+          "Asr": 0,
+          "Maghrib": -4,
+          "Isha": 4,
+          "avgAbsError": 3.6666666666666665
+        },
+        {
+          "date": "2025-03-01",
+          "Fajr": 8,
+          "Sunrise": 5,
+          "Dhuhr": -1,
+          "Asr": -1,
+          "Maghrib": -5,
+          "Isha": 3,
+          "avgAbsError": 3.8333333333333335
+        },
+        {
+          "date": "2025-03-15",
+          "Fajr": 8,
+          "Sunrise": 5,
+          "Dhuhr": -1,
+          "Asr": -1,
+          "Maghrib": -5,
+          "Isha": 4,
+          "avgAbsError": 4
+        },
+        {
+          "date": "2025-04-01",
+          "Fajr": 9,
+          "Sunrise": 5,
+          "Dhuhr": -1,
+          "Asr": -1,
+          "Maghrib": -5,
+          "Isha": 4,
+          "avgAbsError": 4.166666666666667
+        },
+        {
+          "date": "2025-04-15",
+          "Fajr": 10,
+          "Sunrise": 5,
+          "Dhuhr": 0,
+          "Asr": 0,
+          "Maghrib": -6,
+          "Isha": 4,
+          "avgAbsError": 4.166666666666667
+        },
+        {
+          "date": "2025-05-01",
+          "Fajr": 11,
+          "Sunrise": 5,
+          "Dhuhr": 0,
+          "Asr": 0,
+          "Maghrib": -5,
+          "Isha": 5,
+          "avgAbsError": 4.333333333333333
+        },
+        {
+          "date": "2025-05-15",
+          "Fajr": 13,
+          "Sunrise": 6,
+          "Dhuhr": -1,
+          "Asr": -1,
+          "Maghrib": -5,
+          "Isha": 6,
+          "avgAbsError": 5.333333333333333
+        },
+        {
+          "date": "2025-06-01",
+          "Fajr": 15,
+          "Sunrise": 6,
+          "Dhuhr": -1,
+          "Asr": 0,
+          "Maghrib": -5,
+          "Isha": 6,
+          "avgAbsError": 5.5
+        },
+        {
+          "date": "2025-06-15",
+          "Fajr": 17,
+          "Sunrise": 8,
+          "Dhuhr": -1,
+          "Asr": 0,
+          "Maghrib": -5,
+          "Isha": 6,
+          "avgAbsError": 6.166666666666667
+        },
+        {
+          "date": "2025-07-01",
+          "Fajr": 17,
+          "Sunrise": 8,
+          "Dhuhr": 0,
+          "Asr": 1,
+          "Maghrib": -5,
+          "Isha": 5,
+          "avgAbsError": 6
+        },
+        {
+          "date": "2025-07-15",
+          "Fajr": 16,
+          "Sunrise": 7,
+          "Dhuhr": 0,
+          "Asr": 1,
+          "Maghrib": -7,
+          "Isha": 4,
+          "avgAbsError": 5.833333333333333
+        },
+        {
+          "date": "2025-08-01",
+          "Fajr": 13,
+          "Sunrise": 8,
+          "Dhuhr": 0,
+          "Asr": 2,
+          "Maghrib": -6,
+          "Isha": 3,
+          "avgAbsError": 5.333333333333333
+        },
+        {
+          "date": "2025-08-15",
+          "Fajr": 11,
+          "Sunrise": 7,
+          "Dhuhr": -1,
+          "Asr": 1,
+          "Maghrib": -7,
+          "Isha": 3,
+          "avgAbsError": 5
+        },
+        {
+          "date": "2025-09-01",
+          "Fajr": 10,
+          "Sunrise": 8,
+          "Dhuhr": 0,
+          "Asr": 1,
+          "Maghrib": -7,
+          "Isha": 2,
+          "avgAbsError": 4.666666666666667
+        },
+        {
+          "date": "2025-09-15",
+          "Fajr": 9,
+          "Sunrise": 7,
+          "Dhuhr": -1,
+          "Asr": 1,
+          "Maghrib": -7,
+          "Isha": 2,
+          "avgAbsError": 4.5
+        },
+        {
+          "date": "2025-10-01",
+          "Fajr": 9,
+          "Sunrise": 7,
+          "Dhuhr": -1,
+          "Asr": 0,
+          "Maghrib": -8,
+          "Isha": 2,
+          "avgAbsError": 4.5
+        },
+        {
+          "date": "2025-10-15",
+          "Fajr": 9,
+          "Sunrise": 7,
+          "Dhuhr": -1,
+          "Asr": 1,
+          "Maghrib": -6,
+          "Isha": 2,
+          "avgAbsError": 4.333333333333333
+        },
+        {
+          "date": "2025-11-01",
+          "Fajr": 9,
+          "Sunrise": 8,
+          "Dhuhr": -1,
+          "Asr": 1,
+          "Maghrib": -6,
+          "Isha": 2,
+          "avgAbsError": 4.5
+        },
+        {
+          "date": "2025-11-15",
+          "Fajr": 9,
+          "Sunrise": 7,
+          "Dhuhr": -1,
+          "Asr": 1,
+          "Maghrib": -6,
+          "Isha": 2,
+          "avgAbsError": 4.333333333333333
+        },
+        {
+          "date": "2025-12-01",
+          "Fajr": 8,
+          "Sunrise": 7,
+          "Dhuhr": 0,
+          "Asr": 2,
+          "Maghrib": -6,
+          "Isha": 3,
+          "avgAbsError": 4.333333333333333
+        },
+        {
+          "date": "2025-12-15",
+          "Fajr": 9,
+          "Sunrise": 6,
+          "Dhuhr": 0,
+          "Asr": 0,
+          "Maghrib": -5,
+          "Isha": 3,
+          "avgAbsError": 3.8333333333333335
+        }
+      ]
+    },
+    {
+      "label": "Custom 17.0/17.0 | school=0 | midnightMode=0",
+      "config": {
+        "method": 99,
+        "fajr": 17,
+        "isha": 17,
+        "school": 0,
+        "midnightMode": 0,
+        "label": "Custom 17.0/17.0 | school=0 | midnightMode=0"
+      },
+      "avgError": 4.590277777777778,
+      "prayerStats": {
+        "Fajr": {
+          "avgDiff": "7.1",
+          "avgAbsDiff": "7.1",
+          "maxAbsDiff": 12,
+          "samples": 24
+        },
+        "Sunrise": {
+          "avgDiff": "6.4",
+          "avgAbsDiff": "6.4",
+          "maxAbsDiff": 8,
+          "samples": 24
+        },
+        "Dhuhr": {
+          "avgDiff": "-0.7",
+          "avgAbsDiff": "0.7",
+          "maxAbsDiff": 1,
+          "samples": 24
+        },
+        "Asr": {
+          "avgDiff": "0.3",
+          "avgAbsDiff": "0.7",
+          "maxAbsDiff": 2,
+          "samples": 24
+        },
+        "Maghrib": {
+          "avgDiff": "-5.7",
+          "avgAbsDiff": "5.7",
+          "maxAbsDiff": 8,
+          "samples": 24
+        },
+        "Isha": {
+          "avgDiff": "7.0",
+          "avgAbsDiff": "7.0",
+          "maxAbsDiff": 12,
+          "samples": 24
+        }
+      },
+      "dateErrors": [
+        {
+          "date": "2025-01-01",
+          "Fajr": 6,
+          "Sunrise": 6,
+          "Dhuhr": -1,
+          "Asr": 0,
+          "Maghrib": -5,
+          "Isha": 6,
+          "avgAbsError": 4
+        },
+        {
+          "date": "2025-01-15",
+          "Fajr": 6,
+          "Sunrise": 6,
+          "Dhuhr": -1,
+          "Asr": 0,
+          "Maghrib": -5,
+          "Isha": 6,
+          "avgAbsError": 4
+        },
+        {
+          "date": "2025-02-01",
+          "Fajr": 5,
+          "Sunrise": 5,
+          "Dhuhr": -1,
+          "Asr": 0,
+          "Maghrib": -5,
+          "Isha": 7,
+          "avgAbsError": 3.8333333333333335
+        },
+        {
+          "date": "2025-02-15",
+          "Fajr": 5,
+          "Sunrise": 5,
+          "Dhuhr": -1,
+          "Asr": 0,
+          "Maghrib": -4,
+          "Isha": 7,
+          "avgAbsError": 3.6666666666666665
+        },
+        {
+          "date": "2025-03-01",
+          "Fajr": 5,
+          "Sunrise": 5,
+          "Dhuhr": -1,
+          "Asr": -1,
+          "Maghrib": -5,
+          "Isha": 6,
+          "avgAbsError": 3.8333333333333335
+        },
+        {
+          "date": "2025-03-15",
+          "Fajr": 5,
+          "Sunrise": 5,
+          "Dhuhr": -1,
+          "Asr": -1,
+          "Maghrib": -5,
+          "Isha": 6,
+          "avgAbsError": 3.8333333333333335
+        },
+        {
+          "date": "2025-04-01",
+          "Fajr": 6,
+          "Sunrise": 5,
+          "Dhuhr": -1,
+          "Asr": -1,
+          "Maghrib": -5,
+          "Isha": 7,
+          "avgAbsError": 4.166666666666667
+        },
+        {
+          "date": "2025-04-15",
+          "Fajr": 6,
+          "Sunrise": 5,
+          "Dhuhr": 0,
+          "Asr": 0,
+          "Maghrib": -6,
+          "Isha": 8,
+          "avgAbsError": 4.166666666666667
+        },
+        {
+          "date": "2025-05-01",
+          "Fajr": 7,
+          "Sunrise": 5,
+          "Dhuhr": 0,
+          "Asr": 0,
+          "Maghrib": -5,
+          "Isha": 9,
+          "avgAbsError": 4.333333333333333
+        },
+        {
+          "date": "2025-05-15",
+          "Fajr": 9,
+          "Sunrise": 6,
+          "Dhuhr": -1,
+          "Asr": -1,
+          "Maghrib": -5,
+          "Isha": 10,
+          "avgAbsError": 5.333333333333333
+        },
+        {
+          "date": "2025-06-01",
+          "Fajr": 10,
+          "Sunrise": 6,
+          "Dhuhr": -1,
+          "Asr": 0,
+          "Maghrib": -5,
+          "Isha": 11,
+          "avgAbsError": 5.5
+        },
+        {
+          "date": "2025-06-15",
+          "Fajr": 12,
+          "Sunrise": 8,
+          "Dhuhr": -1,
+          "Asr": 0,
+          "Maghrib": -5,
+          "Isha": 12,
+          "avgAbsError": 6.333333333333333
+        },
+        {
+          "date": "2025-07-01",
+          "Fajr": 12,
+          "Sunrise": 8,
+          "Dhuhr": 0,
+          "Asr": 1,
+          "Maghrib": -5,
+          "Isha": 10,
+          "avgAbsError": 6
+        },
+        {
+          "date": "2025-07-15",
+          "Fajr": 11,
+          "Sunrise": 7,
+          "Dhuhr": 0,
+          "Asr": 1,
+          "Maghrib": -7,
+          "Isha": 9,
+          "avgAbsError": 5.833333333333333
+        },
+        {
+          "date": "2025-08-01",
+          "Fajr": 9,
+          "Sunrise": 8,
+          "Dhuhr": 0,
+          "Asr": 2,
+          "Maghrib": -6,
+          "Isha": 7,
+          "avgAbsError": 5.333333333333333
+        },
+        {
+          "date": "2025-08-15",
+          "Fajr": 8,
+          "Sunrise": 7,
+          "Dhuhr": -1,
+          "Asr": 1,
+          "Maghrib": -7,
+          "Isha": 6,
+          "avgAbsError": 5
+        },
+        {
+          "date": "2025-09-01",
+          "Fajr": 7,
+          "Sunrise": 8,
+          "Dhuhr": 0,
+          "Asr": 1,
+          "Maghrib": -7,
+          "Isha": 5,
+          "avgAbsError": 4.666666666666667
+        },
+        {
+          "date": "2025-09-15",
+          "Fajr": 6,
+          "Sunrise": 7,
+          "Dhuhr": -1,
+          "Asr": 1,
+          "Maghrib": -7,
+          "Isha": 5,
+          "avgAbsError": 4.5
+        },
+        {
+          "date": "2025-10-01",
+          "Fajr": 6,
+          "Sunrise": 7,
+          "Dhuhr": -1,
+          "Asr": 0,
+          "Maghrib": -8,
+          "Isha": 5,
+          "avgAbsError": 4.5
+        },
+        {
+          "date": "2025-10-15",
+          "Fajr": 6,
+          "Sunrise": 7,
+          "Dhuhr": -1,
+          "Asr": 1,
+          "Maghrib": -6,
+          "Isha": 5,
+          "avgAbsError": 4.333333333333333
+        },
+        {
+          "date": "2025-11-01",
+          "Fajr": 6,
+          "Sunrise": 8,
+          "Dhuhr": -1,
+          "Asr": 1,
+          "Maghrib": -6,
+          "Isha": 5,
+          "avgAbsError": 4.5
+        },
+        {
+          "date": "2025-11-15",
+          "Fajr": 6,
+          "Sunrise": 7,
+          "Dhuhr": -1,
+          "Asr": 1,
+          "Maghrib": -6,
+          "Isha": 5,
+          "avgAbsError": 4.333333333333333
+        },
+        {
+          "date": "2025-12-01",
+          "Fajr": 6,
+          "Sunrise": 7,
+          "Dhuhr": 0,
+          "Asr": 2,
+          "Maghrib": -6,
+          "Isha": 5,
+          "avgAbsError": 4.333333333333333
+        },
+        {
+          "date": "2025-12-15",
+          "Fajr": 6,
+          "Sunrise": 6,
+          "Dhuhr": 0,
+          "Asr": 0,
+          "Maghrib": -5,
+          "Isha": 6,
+          "avgAbsError": 3.8333333333333335
+        }
+      ]
+    },
+    {
+      "label": "Custom 17.0/17.0 | school=0 | midnightMode=1",
+      "config": {
+        "method": 99,
+        "fajr": 17,
+        "isha": 17,
+        "school": 0,
+        "midnightMode": 1,
+        "label": "Custom 17.0/17.0 | school=0 | midnightMode=1"
+      },
+      "avgError": 4.590277777777778,
+      "prayerStats": {
+        "Fajr": {
+          "avgDiff": "7.1",
+          "avgAbsDiff": "7.1",
+          "maxAbsDiff": 12,
+          "samples": 24
+        },
+        "Sunrise": {
+          "avgDiff": "6.4",
+          "avgAbsDiff": "6.4",
+          "maxAbsDiff": 8,
+          "samples": 24
+        },
+        "Dhuhr": {
+          "avgDiff": "-0.7",
+          "avgAbsDiff": "0.7",
+          "maxAbsDiff": 1,
+          "samples": 24
+        },
+        "Asr": {
+          "avgDiff": "0.3",
+          "avgAbsDiff": "0.7",
+          "maxAbsDiff": 2,
+          "samples": 24
+        },
+        "Maghrib": {
+          "avgDiff": "-5.7",
+          "avgAbsDiff": "5.7",
+          "maxAbsDiff": 8,
+          "samples": 24
+        },
+        "Isha": {
+          "avgDiff": "7.0",
+          "avgAbsDiff": "7.0",
+          "maxAbsDiff": 12,
+          "samples": 24
+        }
+      },
+      "dateErrors": [
+        {
+          "date": "2025-01-01",
+          "Fajr": 6,
+          "Sunrise": 6,
+          "Dhuhr": -1,
+          "Asr": 0,
+          "Maghrib": -5,
+          "Isha": 6,
+          "avgAbsError": 4
+        },
+        {
+          "date": "2025-01-15",
+          "Fajr": 6,
+          "Sunrise": 6,
+          "Dhuhr": -1,
+          "Asr": 0,
+          "Maghrib": -5,
+          "Isha": 6,
+          "avgAbsError": 4
+        },
+        {
+          "date": "2025-02-01",
+          "Fajr": 5,
+          "Sunrise": 5,
+          "Dhuhr": -1,
+          "Asr": 0,
+          "Maghrib": -5,
+          "Isha": 7,
+          "avgAbsError": 3.8333333333333335
+        },
+        {
+          "date": "2025-02-15",
+          "Fajr": 5,
+          "Sunrise": 5,
+          "Dhuhr": -1,
+          "Asr": 0,
+          "Maghrib": -4,
+          "Isha": 7,
+          "avgAbsError": 3.6666666666666665
+        },
+        {
+          "date": "2025-03-01",
+          "Fajr": 5,
+          "Sunrise": 5,
+          "Dhuhr": -1,
+          "Asr": -1,
+          "Maghrib": -5,
+          "Isha": 6,
+          "avgAbsError": 3.8333333333333335
+        },
+        {
+          "date": "2025-03-15",
+          "Fajr": 5,
+          "Sunrise": 5,
+          "Dhuhr": -1,
+          "Asr": -1,
+          "Maghrib": -5,
+          "Isha": 6,
+          "avgAbsError": 3.8333333333333335
+        },
+        {
+          "date": "2025-04-01",
+          "Fajr": 6,
+          "Sunrise": 5,
+          "Dhuhr": -1,
+          "Asr": -1,
+          "Maghrib": -5,
+          "Isha": 7,
+          "avgAbsError": 4.166666666666667
+        },
+        {
+          "date": "2025-04-15",
+          "Fajr": 6,
+          "Sunrise": 5,
+          "Dhuhr": 0,
+          "Asr": 0,
+          "Maghrib": -6,
+          "Isha": 8,
+          "avgAbsError": 4.166666666666667
+        },
+        {
+          "date": "2025-05-01",
+          "Fajr": 7,
+          "Sunrise": 5,
+          "Dhuhr": 0,
+          "Asr": 0,
+          "Maghrib": -5,
+          "Isha": 9,
+          "avgAbsError": 4.333333333333333
+        },
+        {
+          "date": "2025-05-15",
+          "Fajr": 9,
+          "Sunrise": 6,
+          "Dhuhr": -1,
+          "Asr": -1,
+          "Maghrib": -5,
+          "Isha": 10,
+          "avgAbsError": 5.333333333333333
+        },
+        {
+          "date": "2025-06-01",
+          "Fajr": 10,
+          "Sunrise": 6,
+          "Dhuhr": -1,
+          "Asr": 0,
+          "Maghrib": -5,
+          "Isha": 11,
+          "avgAbsError": 5.5
+        },
+        {
+          "date": "2025-06-15",
+          "Fajr": 12,
+          "Sunrise": 8,
+          "Dhuhr": -1,
+          "Asr": 0,
+          "Maghrib": -5,
+          "Isha": 12,
+          "avgAbsError": 6.333333333333333
+        },
+        {
+          "date": "2025-07-01",
+          "Fajr": 12,
+          "Sunrise": 8,
+          "Dhuhr": 0,
+          "Asr": 1,
+          "Maghrib": -5,
+          "Isha": 10,
+          "avgAbsError": 6
+        },
+        {
+          "date": "2025-07-15",
+          "Fajr": 11,
+          "Sunrise": 7,
+          "Dhuhr": 0,
+          "Asr": 1,
+          "Maghrib": -7,
+          "Isha": 9,
+          "avgAbsError": 5.833333333333333
+        },
+        {
+          "date": "2025-08-01",
+          "Fajr": 9,
+          "Sunrise": 8,
+          "Dhuhr": 0,
+          "Asr": 2,
+          "Maghrib": -6,
+          "Isha": 7,
+          "avgAbsError": 5.333333333333333
+        },
+        {
+          "date": "2025-08-15",
+          "Fajr": 8,
+          "Sunrise": 7,
+          "Dhuhr": -1,
+          "Asr": 1,
+          "Maghrib": -7,
+          "Isha": 6,
+          "avgAbsError": 5
+        },
+        {
+          "date": "2025-09-01",
+          "Fajr": 7,
+          "Sunrise": 8,
+          "Dhuhr": 0,
+          "Asr": 1,
+          "Maghrib": -7,
+          "Isha": 5,
+          "avgAbsError": 4.666666666666667
+        },
+        {
+          "date": "2025-09-15",
+          "Fajr": 6,
+          "Sunrise": 7,
+          "Dhuhr": -1,
+          "Asr": 1,
+          "Maghrib": -7,
+          "Isha": 5,
+          "avgAbsError": 4.5
+        },
+        {
+          "date": "2025-10-01",
+          "Fajr": 6,
+          "Sunrise": 7,
+          "Dhuhr": -1,
+          "Asr": 0,
+          "Maghrib": -8,
+          "Isha": 5,
+          "avgAbsError": 4.5
+        },
+        {
+          "date": "2025-10-15",
+          "Fajr": 6,
+          "Sunrise": 7,
+          "Dhuhr": -1,
+          "Asr": 1,
+          "Maghrib": -6,
+          "Isha": 5,
+          "avgAbsError": 4.333333333333333
+        },
+        {
+          "date": "2025-11-01",
+          "Fajr": 6,
+          "Sunrise": 8,
+          "Dhuhr": -1,
+          "Asr": 1,
+          "Maghrib": -6,
+          "Isha": 5,
+          "avgAbsError": 4.5
+        },
+        {
+          "date": "2025-11-15",
+          "Fajr": 6,
+          "Sunrise": 7,
+          "Dhuhr": -1,
+          "Asr": 1,
+          "Maghrib": -6,
+          "Isha": 5,
+          "avgAbsError": 4.333333333333333
+        },
+        {
+          "date": "2025-12-01",
+          "Fajr": 6,
+          "Sunrise": 7,
+          "Dhuhr": 0,
+          "Asr": 2,
+          "Maghrib": -6,
+          "Isha": 5,
+          "avgAbsError": 4.333333333333333
+        },
+        {
+          "date": "2025-12-15",
+          "Fajr": 6,
+          "Sunrise": 6,
+          "Dhuhr": 0,
+          "Asr": 0,
+          "Maghrib": -5,
+          "Isha": 6,
+          "avgAbsError": 3.8333333333333335
+        }
+      ]
+    },
+    {
+      "label": "University of Islamic Sciences, Karachi | school=0 | midnightMode=0",
+      "config": {
+        "method": 1,
+        "school": 0,
+        "midnightMode": 0,
+        "label": "University of Islamic Sciences, Karachi | school=0 | midnightMode=0"
+      },
+      "avgError": 4.597222222222222,
+      "prayerStats": {
+        "Fajr": {
+          "avgDiff": "0.0",
+          "avgAbsDiff": "0.1",
+          "maxAbsDiff": 1,
+          "samples": 24
+        },
+        "Sunrise": {
+          "avgDiff": "6.4",
+          "avgAbsDiff": "6.4",
+          "maxAbsDiff": 8,
+          "samples": 24
+        },
+        "Dhuhr": {
+          "avgDiff": "-0.7",
+          "avgAbsDiff": "0.7",
+          "maxAbsDiff": 1,
+          "samples": 24
+        },
+        "Asr": {
+          "avgDiff": "0.3",
+          "avgAbsDiff": "0.7",
+          "maxAbsDiff": 2,
+          "samples": 24
+        },
+        "Maghrib": {
+          "avgDiff": "-5.7",
+          "avgAbsDiff": "5.7",
+          "maxAbsDiff": 8,
+          "samples": 24
+        },
+        "Isha": {
+          "avgDiff": "14.0",
+          "avgAbsDiff": "14.0",
+          "maxAbsDiff": 23,
+          "samples": 24
+        }
+      },
+      "dateErrors": [
+        {
+          "date": "2025-01-01",
+          "Fajr": 0,
+          "Sunrise": 6,
+          "Dhuhr": -1,
+          "Asr": 0,
+          "Maghrib": -5,
+          "Isha": 12,
+          "avgAbsError": 4
+        },
+        {
+          "date": "2025-01-15",
+          "Fajr": 1,
+          "Sunrise": 6,
+          "Dhuhr": -1,
+          "Asr": 0,
+          "Maghrib": -5,
+          "Isha": 12,
+          "avgAbsError": 4.166666666666667
+        },
+        {
+          "date": "2025-02-01",
+          "Fajr": 0,
+          "Sunrise": 5,
+          "Dhuhr": -1,
+          "Asr": 0,
+          "Maghrib": -5,
+          "Isha": 12,
+          "avgAbsError": 3.8333333333333335
+        },
+        {
+          "date": "2025-02-15",
+          "Fajr": 0,
+          "Sunrise": 5,
+          "Dhuhr": -1,
+          "Asr": 0,
+          "Maghrib": -4,
+          "Isha": 12,
+          "avgAbsError": 3.6666666666666665
+        },
+        {
+          "date": "2025-03-01",
+          "Fajr": 0,
+          "Sunrise": 5,
+          "Dhuhr": -1,
+          "Asr": -1,
+          "Maghrib": -5,
+          "Isha": 12,
+          "avgAbsError": 4
+        },
+        {
+          "date": "2025-03-15",
+          "Fajr": 0,
+          "Sunrise": 5,
+          "Dhuhr": -1,
+          "Asr": -1,
+          "Maghrib": -5,
+          "Isha": 12,
+          "avgAbsError": 4
+        },
+        {
+          "date": "2025-04-01",
+          "Fajr": -1,
+          "Sunrise": 5,
+          "Dhuhr": -1,
+          "Asr": -1,
+          "Maghrib": -5,
+          "Isha": 13,
+          "avgAbsError": 4.333333333333333
+        },
+        {
+          "date": "2025-04-15",
+          "Fajr": 0,
+          "Sunrise": 5,
+          "Dhuhr": 0,
+          "Asr": 0,
+          "Maghrib": -6,
+          "Isha": 14,
+          "avgAbsError": 4.166666666666667
+        },
+        {
+          "date": "2025-05-01",
+          "Fajr": 0,
+          "Sunrise": 5,
+          "Dhuhr": 0,
+          "Asr": 0,
+          "Maghrib": -5,
+          "Isha": 17,
+          "avgAbsError": 4.5
+        },
+        {
+          "date": "2025-05-15",
+          "Fajr": 0,
+          "Sunrise": 6,
+          "Dhuhr": -1,
+          "Asr": -1,
+          "Maghrib": -5,
+          "Isha": 19,
+          "avgAbsError": 5.333333333333333
+        },
+        {
+          "date": "2025-06-01",
+          "Fajr": 0,
+          "Sunrise": 6,
+          "Dhuhr": -1,
+          "Asr": 0,
+          "Maghrib": -5,
+          "Isha": 22,
+          "avgAbsError": 5.666666666666667
+        },
+        {
+          "date": "2025-06-15",
+          "Fajr": 0,
+          "Sunrise": 8,
+          "Dhuhr": -1,
+          "Asr": 0,
+          "Maghrib": -5,
+          "Isha": 23,
+          "avgAbsError": 6.166666666666667
+        },
+        {
+          "date": "2025-07-01",
+          "Fajr": 0,
+          "Sunrise": 8,
+          "Dhuhr": 0,
+          "Asr": 1,
+          "Maghrib": -5,
+          "Isha": 21,
+          "avgAbsError": 5.833333333333333
+        },
+        {
+          "date": "2025-07-15",
+          "Fajr": 1,
+          "Sunrise": 7,
+          "Dhuhr": 0,
+          "Asr": 1,
+          "Maghrib": -7,
+          "Isha": 19,
+          "avgAbsError": 5.833333333333333
+        },
+        {
+          "date": "2025-08-01",
+          "Fajr": 0,
+          "Sunrise": 8,
+          "Dhuhr": 0,
+          "Asr": 2,
+          "Maghrib": -6,
+          "Isha": 15,
+          "avgAbsError": 5.166666666666667
+        },
+        {
+          "date": "2025-08-15",
+          "Fajr": 0,
+          "Sunrise": 7,
+          "Dhuhr": -1,
+          "Asr": 1,
+          "Maghrib": -7,
+          "Isha": 14,
+          "avgAbsError": 5
+        },
+        {
+          "date": "2025-09-01",
+          "Fajr": 0,
+          "Sunrise": 8,
+          "Dhuhr": 0,
+          "Asr": 1,
+          "Maghrib": -7,
+          "Isha": 12,
+          "avgAbsError": 4.666666666666667
+        },
+        {
+          "date": "2025-09-15",
+          "Fajr": 0,
+          "Sunrise": 7,
+          "Dhuhr": -1,
+          "Asr": 1,
+          "Maghrib": -7,
+          "Isha": 11,
+          "avgAbsError": 4.5
+        },
+        {
+          "date": "2025-10-01",
+          "Fajr": 0,
+          "Sunrise": 7,
+          "Dhuhr": -1,
+          "Asr": 0,
+          "Maghrib": -8,
+          "Isha": 10,
+          "avgAbsError": 4.333333333333333
+        },
+        {
+          "date": "2025-10-15",
+          "Fajr": 0,
+          "Sunrise": 7,
+          "Dhuhr": -1,
+          "Asr": 1,
+          "Maghrib": -6,
+          "Isha": 11,
+          "avgAbsError": 4.333333333333333
+        },
+        {
+          "date": "2025-11-01",
+          "Fajr": 0,
+          "Sunrise": 8,
+          "Dhuhr": -1,
+          "Asr": 1,
+          "Maghrib": -6,
+          "Isha": 10,
+          "avgAbsError": 4.333333333333333
+        },
+        {
+          "date": "2025-11-15",
+          "Fajr": 0,
+          "Sunrise": 7,
+          "Dhuhr": -1,
+          "Asr": 1,
+          "Maghrib": -6,
+          "Isha": 11,
+          "avgAbsError": 4.333333333333333
+        },
+        {
+          "date": "2025-12-01",
+          "Fajr": 0,
+          "Sunrise": 7,
+          "Dhuhr": 0,
+          "Asr": 2,
+          "Maghrib": -6,
+          "Isha": 11,
+          "avgAbsError": 4.333333333333333
+        },
+        {
+          "date": "2025-12-15",
+          "Fajr": 0,
+          "Sunrise": 6,
+          "Dhuhr": 0,
+          "Asr": 0,
+          "Maghrib": -5,
+          "Isha": 12,
+          "avgAbsError": 3.8333333333333335
+        }
+      ]
+    },
+    {
+      "label": "University of Islamic Sciences, Karachi | school=0 | midnightMode=1",
+      "config": {
+        "method": 1,
+        "school": 0,
+        "midnightMode": 1,
+        "label": "University of Islamic Sciences, Karachi | school=0 | midnightMode=1"
+      },
+      "avgError": 4.597222222222222,
+      "prayerStats": {
+        "Fajr": {
+          "avgDiff": "0.0",
+          "avgAbsDiff": "0.1",
+          "maxAbsDiff": 1,
+          "samples": 24
+        },
+        "Sunrise": {
+          "avgDiff": "6.4",
+          "avgAbsDiff": "6.4",
+          "maxAbsDiff": 8,
+          "samples": 24
+        },
+        "Dhuhr": {
+          "avgDiff": "-0.7",
+          "avgAbsDiff": "0.7",
+          "maxAbsDiff": 1,
+          "samples": 24
+        },
+        "Asr": {
+          "avgDiff": "0.3",
+          "avgAbsDiff": "0.7",
+          "maxAbsDiff": 2,
+          "samples": 24
+        },
+        "Maghrib": {
+          "avgDiff": "-5.7",
+          "avgAbsDiff": "5.7",
+          "maxAbsDiff": 8,
+          "samples": 24
+        },
+        "Isha": {
+          "avgDiff": "14.0",
+          "avgAbsDiff": "14.0",
+          "maxAbsDiff": 23,
+          "samples": 24
+        }
+      },
+      "dateErrors": [
+        {
+          "date": "2025-01-01",
+          "Fajr": 0,
+          "Sunrise": 6,
+          "Dhuhr": -1,
+          "Asr": 0,
+          "Maghrib": -5,
+          "Isha": 12,
+          "avgAbsError": 4
+        },
+        {
+          "date": "2025-01-15",
+          "Fajr": 1,
+          "Sunrise": 6,
+          "Dhuhr": -1,
+          "Asr": 0,
+          "Maghrib": -5,
+          "Isha": 12,
+          "avgAbsError": 4.166666666666667
+        },
+        {
+          "date": "2025-02-01",
+          "Fajr": 0,
+          "Sunrise": 5,
+          "Dhuhr": -1,
+          "Asr": 0,
+          "Maghrib": -5,
+          "Isha": 12,
+          "avgAbsError": 3.8333333333333335
+        },
+        {
+          "date": "2025-02-15",
+          "Fajr": 0,
+          "Sunrise": 5,
+          "Dhuhr": -1,
+          "Asr": 0,
+          "Maghrib": -4,
+          "Isha": 12,
+          "avgAbsError": 3.6666666666666665
+        },
+        {
+          "date": "2025-03-01",
+          "Fajr": 0,
+          "Sunrise": 5,
+          "Dhuhr": -1,
+          "Asr": -1,
+          "Maghrib": -5,
+          "Isha": 12,
+          "avgAbsError": 4
+        },
+        {
+          "date": "2025-03-15",
+          "Fajr": 0,
+          "Sunrise": 5,
+          "Dhuhr": -1,
+          "Asr": -1,
+          "Maghrib": -5,
+          "Isha": 12,
+          "avgAbsError": 4
+        },
+        {
+          "date": "2025-04-01",
+          "Fajr": -1,
+          "Sunrise": 5,
+          "Dhuhr": -1,
+          "Asr": -1,
+          "Maghrib": -5,
+          "Isha": 13,
+          "avgAbsError": 4.333333333333333
+        },
+        {
+          "date": "2025-04-15",
+          "Fajr": 0,
+          "Sunrise": 5,
+          "Dhuhr": 0,
+          "Asr": 0,
+          "Maghrib": -6,
+          "Isha": 14,
+          "avgAbsError": 4.166666666666667
+        },
+        {
+          "date": "2025-05-01",
+          "Fajr": 0,
+          "Sunrise": 5,
+          "Dhuhr": 0,
+          "Asr": 0,
+          "Maghrib": -5,
+          "Isha": 17,
+          "avgAbsError": 4.5
+        },
+        {
+          "date": "2025-05-15",
+          "Fajr": 0,
+          "Sunrise": 6,
+          "Dhuhr": -1,
+          "Asr": -1,
+          "Maghrib": -5,
+          "Isha": 19,
+          "avgAbsError": 5.333333333333333
+        },
+        {
+          "date": "2025-06-01",
+          "Fajr": 0,
+          "Sunrise": 6,
+          "Dhuhr": -1,
+          "Asr": 0,
+          "Maghrib": -5,
+          "Isha": 22,
+          "avgAbsError": 5.666666666666667
+        },
+        {
+          "date": "2025-06-15",
+          "Fajr": 0,
+          "Sunrise": 8,
+          "Dhuhr": -1,
+          "Asr": 0,
+          "Maghrib": -5,
+          "Isha": 23,
+          "avgAbsError": 6.166666666666667
+        },
+        {
+          "date": "2025-07-01",
+          "Fajr": 0,
+          "Sunrise": 8,
+          "Dhuhr": 0,
+          "Asr": 1,
+          "Maghrib": -5,
+          "Isha": 21,
+          "avgAbsError": 5.833333333333333
+        },
+        {
+          "date": "2025-07-15",
+          "Fajr": 1,
+          "Sunrise": 7,
+          "Dhuhr": 0,
+          "Asr": 1,
+          "Maghrib": -7,
+          "Isha": 19,
+          "avgAbsError": 5.833333333333333
+        },
+        {
+          "date": "2025-08-01",
+          "Fajr": 0,
+          "Sunrise": 8,
+          "Dhuhr": 0,
+          "Asr": 2,
+          "Maghrib": -6,
+          "Isha": 15,
+          "avgAbsError": 5.166666666666667
+        },
+        {
+          "date": "2025-08-15",
+          "Fajr": 0,
+          "Sunrise": 7,
+          "Dhuhr": -1,
+          "Asr": 1,
+          "Maghrib": -7,
+          "Isha": 14,
+          "avgAbsError": 5
+        },
+        {
+          "date": "2025-09-01",
+          "Fajr": 0,
+          "Sunrise": 8,
+          "Dhuhr": 0,
+          "Asr": 1,
+          "Maghrib": -7,
+          "Isha": 12,
+          "avgAbsError": 4.666666666666667
+        },
+        {
+          "date": "2025-09-15",
+          "Fajr": 0,
+          "Sunrise": 7,
+          "Dhuhr": -1,
+          "Asr": 1,
+          "Maghrib": -7,
+          "Isha": 11,
+          "avgAbsError": 4.5
+        },
+        {
+          "date": "2025-10-01",
+          "Fajr": 0,
+          "Sunrise": 7,
+          "Dhuhr": -1,
+          "Asr": 0,
+          "Maghrib": -8,
+          "Isha": 10,
+          "avgAbsError": 4.333333333333333
+        },
+        {
+          "date": "2025-10-15",
+          "Fajr": 0,
+          "Sunrise": 7,
+          "Dhuhr": -1,
+          "Asr": 1,
+          "Maghrib": -6,
+          "Isha": 11,
+          "avgAbsError": 4.333333333333333
+        },
+        {
+          "date": "2025-11-01",
+          "Fajr": 0,
+          "Sunrise": 8,
+          "Dhuhr": -1,
+          "Asr": 1,
+          "Maghrib": -6,
+          "Isha": 10,
+          "avgAbsError": 4.333333333333333
+        },
+        {
+          "date": "2025-11-15",
+          "Fajr": 0,
+          "Sunrise": 7,
+          "Dhuhr": -1,
+          "Asr": 1,
+          "Maghrib": -6,
+          "Isha": 11,
+          "avgAbsError": 4.333333333333333
+        },
+        {
+          "date": "2025-12-01",
+          "Fajr": 0,
+          "Sunrise": 7,
+          "Dhuhr": 0,
+          "Asr": 2,
+          "Maghrib": -6,
+          "Isha": 11,
+          "avgAbsError": 4.333333333333333
+        },
+        {
+          "date": "2025-12-15",
+          "Fajr": 0,
+          "Sunrise": 6,
+          "Dhuhr": 0,
+          "Asr": 0,
+          "Maghrib": -5,
+          "Isha": 12,
+          "avgAbsError": 3.8333333333333335
+        }
+      ]
+    },
+    {
+      "label": "Custom 18.0/18.0 | school=0 | midnightMode=0",
+      "config": {
+        "method": 99,
+        "fajr": 18,
+        "isha": 18,
+        "school": 0,
+        "midnightMode": 0,
+        "label": "Custom 18.0/18.0 | school=0 | midnightMode=0"
+      },
+      "avgError": 4.597222222222222,
+      "prayerStats": {
+        "Fajr": {
+          "avgDiff": "0.0",
+          "avgAbsDiff": "0.1",
+          "maxAbsDiff": 1,
+          "samples": 24
+        },
+        "Sunrise": {
+          "avgDiff": "6.4",
+          "avgAbsDiff": "6.4",
+          "maxAbsDiff": 8,
+          "samples": 24
+        },
+        "Dhuhr": {
+          "avgDiff": "-0.7",
+          "avgAbsDiff": "0.7",
+          "maxAbsDiff": 1,
+          "samples": 24
+        },
+        "Asr": {
+          "avgDiff": "0.3",
+          "avgAbsDiff": "0.7",
+          "maxAbsDiff": 2,
+          "samples": 24
+        },
+        "Maghrib": {
+          "avgDiff": "-5.7",
+          "avgAbsDiff": "5.7",
+          "maxAbsDiff": 8,
+          "samples": 24
+        },
+        "Isha": {
+          "avgDiff": "14.0",
+          "avgAbsDiff": "14.0",
+          "maxAbsDiff": 23,
+          "samples": 24
+        }
+      },
+      "dateErrors": [
+        {
+          "date": "2025-01-01",
+          "Fajr": 0,
+          "Sunrise": 6,
+          "Dhuhr": -1,
+          "Asr": 0,
+          "Maghrib": -5,
+          "Isha": 12,
+          "avgAbsError": 4
+        },
+        {
+          "date": "2025-01-15",
+          "Fajr": 1,
+          "Sunrise": 6,
+          "Dhuhr": -1,
+          "Asr": 0,
+          "Maghrib": -5,
+          "Isha": 12,
+          "avgAbsError": 4.166666666666667
+        },
+        {
+          "date": "2025-02-01",
+          "Fajr": 0,
+          "Sunrise": 5,
+          "Dhuhr": -1,
+          "Asr": 0,
+          "Maghrib": -5,
+          "Isha": 12,
+          "avgAbsError": 3.8333333333333335
+        },
+        {
+          "date": "2025-02-15",
+          "Fajr": 0,
+          "Sunrise": 5,
+          "Dhuhr": -1,
+          "Asr": 0,
+          "Maghrib": -4,
+          "Isha": 12,
+          "avgAbsError": 3.6666666666666665
+        },
+        {
+          "date": "2025-03-01",
+          "Fajr": 0,
+          "Sunrise": 5,
+          "Dhuhr": -1,
+          "Asr": -1,
+          "Maghrib": -5,
+          "Isha": 12,
+          "avgAbsError": 4
+        },
+        {
+          "date": "2025-03-15",
+          "Fajr": 0,
+          "Sunrise": 5,
+          "Dhuhr": -1,
+          "Asr": -1,
+          "Maghrib": -5,
+          "Isha": 12,
+          "avgAbsError": 4
+        },
+        {
+          "date": "2025-04-01",
+          "Fajr": -1,
+          "Sunrise": 5,
+          "Dhuhr": -1,
+          "Asr": -1,
+          "Maghrib": -5,
+          "Isha": 13,
+          "avgAbsError": 4.333333333333333
+        },
+        {
+          "date": "2025-04-15",
+          "Fajr": 0,
+          "Sunrise": 5,
+          "Dhuhr": 0,
+          "Asr": 0,
+          "Maghrib": -6,
+          "Isha": 14,
+          "avgAbsError": 4.166666666666667
+        },
+        {
+          "date": "2025-05-01",
+          "Fajr": 0,
+          "Sunrise": 5,
+          "Dhuhr": 0,
+          "Asr": 0,
+          "Maghrib": -5,
+          "Isha": 17,
+          "avgAbsError": 4.5
+        },
+        {
+          "date": "2025-05-15",
+          "Fajr": 0,
+          "Sunrise": 6,
+          "Dhuhr": -1,
+          "Asr": -1,
+          "Maghrib": -5,
+          "Isha": 19,
+          "avgAbsError": 5.333333333333333
+        },
+        {
+          "date": "2025-06-01",
+          "Fajr": 0,
+          "Sunrise": 6,
+          "Dhuhr": -1,
+          "Asr": 0,
+          "Maghrib": -5,
+          "Isha": 22,
+          "avgAbsError": 5.666666666666667
+        },
+        {
+          "date": "2025-06-15",
+          "Fajr": 0,
+          "Sunrise": 8,
+          "Dhuhr": -1,
+          "Asr": 0,
+          "Maghrib": -5,
+          "Isha": 23,
+          "avgAbsError": 6.166666666666667
+        },
+        {
+          "date": "2025-07-01",
+          "Fajr": 0,
+          "Sunrise": 8,
+          "Dhuhr": 0,
+          "Asr": 1,
+          "Maghrib": -5,
+          "Isha": 21,
+          "avgAbsError": 5.833333333333333
+        },
+        {
+          "date": "2025-07-15",
+          "Fajr": 1,
+          "Sunrise": 7,
+          "Dhuhr": 0,
+          "Asr": 1,
+          "Maghrib": -7,
+          "Isha": 19,
+          "avgAbsError": 5.833333333333333
+        },
+        {
+          "date": "2025-08-01",
+          "Fajr": 0,
+          "Sunrise": 8,
+          "Dhuhr": 0,
+          "Asr": 2,
+          "Maghrib": -6,
+          "Isha": 15,
+          "avgAbsError": 5.166666666666667
+        },
+        {
+          "date": "2025-08-15",
+          "Fajr": 0,
+          "Sunrise": 7,
+          "Dhuhr": -1,
+          "Asr": 1,
+          "Maghrib": -7,
+          "Isha": 14,
+          "avgAbsError": 5
+        },
+        {
+          "date": "2025-09-01",
+          "Fajr": 0,
+          "Sunrise": 8,
+          "Dhuhr": 0,
+          "Asr": 1,
+          "Maghrib": -7,
+          "Isha": 12,
+          "avgAbsError": 4.666666666666667
+        },
+        {
+          "date": "2025-09-15",
+          "Fajr": 0,
+          "Sunrise": 7,
+          "Dhuhr": -1,
+          "Asr": 1,
+          "Maghrib": -7,
+          "Isha": 11,
+          "avgAbsError": 4.5
+        },
+        {
+          "date": "2025-10-01",
+          "Fajr": 0,
+          "Sunrise": 7,
+          "Dhuhr": -1,
+          "Asr": 0,
+          "Maghrib": -8,
+          "Isha": 10,
+          "avgAbsError": 4.333333333333333
+        },
+        {
+          "date": "2025-10-15",
+          "Fajr": 0,
+          "Sunrise": 7,
+          "Dhuhr": -1,
+          "Asr": 1,
+          "Maghrib": -6,
+          "Isha": 11,
+          "avgAbsError": 4.333333333333333
+        },
+        {
+          "date": "2025-11-01",
+          "Fajr": 0,
+          "Sunrise": 8,
+          "Dhuhr": -1,
+          "Asr": 1,
+          "Maghrib": -6,
+          "Isha": 10,
+          "avgAbsError": 4.333333333333333
+        },
+        {
+          "date": "2025-11-15",
+          "Fajr": 0,
+          "Sunrise": 7,
+          "Dhuhr": -1,
+          "Asr": 1,
+          "Maghrib": -6,
+          "Isha": 11,
+          "avgAbsError": 4.333333333333333
+        },
+        {
+          "date": "2025-12-01",
+          "Fajr": 0,
+          "Sunrise": 7,
+          "Dhuhr": 0,
+          "Asr": 2,
+          "Maghrib": -6,
+          "Isha": 11,
+          "avgAbsError": 4.333333333333333
+        },
+        {
+          "date": "2025-12-15",
+          "Fajr": 0,
+          "Sunrise": 6,
+          "Dhuhr": 0,
+          "Asr": 0,
+          "Maghrib": -5,
+          "Isha": 12,
+          "avgAbsError": 3.8333333333333335
+        }
+      ]
+    },
+    {
+      "label": "Custom 18.0/18.0 | school=0 | midnightMode=1",
+      "config": {
+        "method": 99,
+        "fajr": 18,
+        "isha": 18,
+        "school": 0,
+        "midnightMode": 1,
+        "label": "Custom 18.0/18.0 | school=0 | midnightMode=1"
+      },
+      "avgError": 4.597222222222222,
+      "prayerStats": {
+        "Fajr": {
+          "avgDiff": "0.0",
+          "avgAbsDiff": "0.1",
+          "maxAbsDiff": 1,
+          "samples": 24
+        },
+        "Sunrise": {
+          "avgDiff": "6.4",
+          "avgAbsDiff": "6.4",
+          "maxAbsDiff": 8,
+          "samples": 24
+        },
+        "Dhuhr": {
+          "avgDiff": "-0.7",
+          "avgAbsDiff": "0.7",
+          "maxAbsDiff": 1,
+          "samples": 24
+        },
+        "Asr": {
+          "avgDiff": "0.3",
+          "avgAbsDiff": "0.7",
+          "maxAbsDiff": 2,
+          "samples": 24
+        },
+        "Maghrib": {
+          "avgDiff": "-5.7",
+          "avgAbsDiff": "5.7",
+          "maxAbsDiff": 8,
+          "samples": 24
+        },
+        "Isha": {
+          "avgDiff": "14.0",
+          "avgAbsDiff": "14.0",
+          "maxAbsDiff": 23,
+          "samples": 24
+        }
+      },
+      "dateErrors": [
+        {
+          "date": "2025-01-01",
+          "Fajr": 0,
+          "Sunrise": 6,
+          "Dhuhr": -1,
+          "Asr": 0,
+          "Maghrib": -5,
+          "Isha": 12,
+          "avgAbsError": 4
+        },
+        {
+          "date": "2025-01-15",
+          "Fajr": 1,
+          "Sunrise": 6,
+          "Dhuhr": -1,
+          "Asr": 0,
+          "Maghrib": -5,
+          "Isha": 12,
+          "avgAbsError": 4.166666666666667
+        },
+        {
+          "date": "2025-02-01",
+          "Fajr": 0,
+          "Sunrise": 5,
+          "Dhuhr": -1,
+          "Asr": 0,
+          "Maghrib": -5,
+          "Isha": 12,
+          "avgAbsError": 3.8333333333333335
+        },
+        {
+          "date": "2025-02-15",
+          "Fajr": 0,
+          "Sunrise": 5,
+          "Dhuhr": -1,
+          "Asr": 0,
+          "Maghrib": -4,
+          "Isha": 12,
+          "avgAbsError": 3.6666666666666665
+        },
+        {
+          "date": "2025-03-01",
+          "Fajr": 0,
+          "Sunrise": 5,
+          "Dhuhr": -1,
+          "Asr": -1,
+          "Maghrib": -5,
+          "Isha": 12,
+          "avgAbsError": 4
+        },
+        {
+          "date": "2025-03-15",
+          "Fajr": 0,
+          "Sunrise": 5,
+          "Dhuhr": -1,
+          "Asr": -1,
+          "Maghrib": -5,
+          "Isha": 12,
+          "avgAbsError": 4
+        },
+        {
+          "date": "2025-04-01",
+          "Fajr": -1,
+          "Sunrise": 5,
+          "Dhuhr": -1,
+          "Asr": -1,
+          "Maghrib": -5,
+          "Isha": 13,
+          "avgAbsError": 4.333333333333333
+        },
+        {
+          "date": "2025-04-15",
+          "Fajr": 0,
+          "Sunrise": 5,
+          "Dhuhr": 0,
+          "Asr": 0,
+          "Maghrib": -6,
+          "Isha": 14,
+          "avgAbsError": 4.166666666666667
+        },
+        {
+          "date": "2025-05-01",
+          "Fajr": 0,
+          "Sunrise": 5,
+          "Dhuhr": 0,
+          "Asr": 0,
+          "Maghrib": -5,
+          "Isha": 17,
+          "avgAbsError": 4.5
+        },
+        {
+          "date": "2025-05-15",
+          "Fajr": 0,
+          "Sunrise": 6,
+          "Dhuhr": -1,
+          "Asr": -1,
+          "Maghrib": -5,
+          "Isha": 19,
+          "avgAbsError": 5.333333333333333
+        },
+        {
+          "date": "2025-06-01",
+          "Fajr": 0,
+          "Sunrise": 6,
+          "Dhuhr": -1,
+          "Asr": 0,
+          "Maghrib": -5,
+          "Isha": 22,
+          "avgAbsError": 5.666666666666667
+        },
+        {
+          "date": "2025-06-15",
+          "Fajr": 0,
+          "Sunrise": 8,
+          "Dhuhr": -1,
+          "Asr": 0,
+          "Maghrib": -5,
+          "Isha": 23,
+          "avgAbsError": 6.166666666666667
+        },
+        {
+          "date": "2025-07-01",
+          "Fajr": 0,
+          "Sunrise": 8,
+          "Dhuhr": 0,
+          "Asr": 1,
+          "Maghrib": -5,
+          "Isha": 21,
+          "avgAbsError": 5.833333333333333
+        },
+        {
+          "date": "2025-07-15",
+          "Fajr": 1,
+          "Sunrise": 7,
+          "Dhuhr": 0,
+          "Asr": 1,
+          "Maghrib": -7,
+          "Isha": 19,
+          "avgAbsError": 5.833333333333333
+        },
+        {
+          "date": "2025-08-01",
+          "Fajr": 0,
+          "Sunrise": 8,
+          "Dhuhr": 0,
+          "Asr": 2,
+          "Maghrib": -6,
+          "Isha": 15,
+          "avgAbsError": 5.166666666666667
+        },
+        {
+          "date": "2025-08-15",
+          "Fajr": 0,
+          "Sunrise": 7,
+          "Dhuhr": -1,
+          "Asr": 1,
+          "Maghrib": -7,
+          "Isha": 14,
+          "avgAbsError": 5
+        },
+        {
+          "date": "2025-09-01",
+          "Fajr": 0,
+          "Sunrise": 8,
+          "Dhuhr": 0,
+          "Asr": 1,
+          "Maghrib": -7,
+          "Isha": 12,
+          "avgAbsError": 4.666666666666667
+        },
+        {
+          "date": "2025-09-15",
+          "Fajr": 0,
+          "Sunrise": 7,
+          "Dhuhr": -1,
+          "Asr": 1,
+          "Maghrib": -7,
+          "Isha": 11,
+          "avgAbsError": 4.5
+        },
+        {
+          "date": "2025-10-01",
+          "Fajr": 0,
+          "Sunrise": 7,
+          "Dhuhr": -1,
+          "Asr": 0,
+          "Maghrib": -8,
+          "Isha": 10,
+          "avgAbsError": 4.333333333333333
+        },
+        {
+          "date": "2025-10-15",
+          "Fajr": 0,
+          "Sunrise": 7,
+          "Dhuhr": -1,
+          "Asr": 1,
+          "Maghrib": -6,
+          "Isha": 11,
+          "avgAbsError": 4.333333333333333
+        },
+        {
+          "date": "2025-11-01",
+          "Fajr": 0,
+          "Sunrise": 8,
+          "Dhuhr": -1,
+          "Asr": 1,
+          "Maghrib": -6,
+          "Isha": 10,
+          "avgAbsError": 4.333333333333333
+        },
+        {
+          "date": "2025-11-15",
+          "Fajr": 0,
+          "Sunrise": 7,
+          "Dhuhr": -1,
+          "Asr": 1,
+          "Maghrib": -6,
+          "Isha": 11,
+          "avgAbsError": 4.333333333333333
+        },
+        {
+          "date": "2025-12-01",
+          "Fajr": 0,
+          "Sunrise": 7,
+          "Dhuhr": 0,
+          "Asr": 2,
+          "Maghrib": -6,
+          "Isha": 11,
+          "avgAbsError": 4.333333333333333
+        },
+        {
+          "date": "2025-12-15",
+          "Fajr": 0,
+          "Sunrise": 6,
+          "Dhuhr": 0,
+          "Asr": 0,
+          "Maghrib": -5,
+          "Isha": 12,
+          "avgAbsError": 3.8333333333333335
+        }
+      ]
+    }
+  ]
+}
