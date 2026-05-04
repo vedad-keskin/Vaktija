@@ -1,7 +1,6 @@
 /**
  * Same-origin proxy for api.vaktija.ba (production on Vercel).
- * Avoids browser CORS when upstream returns 503 without ACAO (e.g. Render cold start).
- * Retries transient errors; sets Cache-Control for edge caching.
+ * Single dynamic token [id] — Vercel non-Next projects do not reliably support [...path] catch-alls.
  */
 
 function sleep(ms) {
@@ -14,20 +13,16 @@ module.exports = async (req, res) => {
     return;
   }
 
-  let segments = req.query.path;
-  if (segments == null) {
+  let id = req.query.id;
+  if (id == null || id === '') {
     res.status(400).send('Bad Request');
     return;
   }
-  if (!Array.isArray(segments)) {
-    segments = [segments];
-  }
-  if (segments.length === 0) {
-    res.status(400).send('Bad Request');
-    return;
+  if (Array.isArray(id)) {
+    id = id[0];
   }
 
-  const { path: _path, ...queryRest } = req.query;
+  const { id: _id, ...queryRest } = req.query;
   const qs = new URLSearchParams();
   for (const [key, value] of Object.entries(queryRest)) {
     if (value === undefined) continue;
@@ -41,7 +36,7 @@ module.exports = async (req, res) => {
   }
   const search = qs.toString() ? `?${qs}` : '';
 
-  const target = `https://api.vaktija.ba/${segments.join('/')}${search}`;
+  const target = `https://api.vaktija.ba/vaktija/v1/${id}${search}`;
   const maxAttempts = 5;
 
   for (let attempt = 1; attempt <= maxAttempts; attempt++) {
