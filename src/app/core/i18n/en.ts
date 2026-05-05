@@ -35,8 +35,13 @@ export const EN_LABELS: AppLabels = {
   dhuhrFridayName: "Jumu'ah",
 
   /** Loading / Error */
-  loading: 'Loading...',
+  loading: 'Fetching schedule',
+  loadingSubtitle: 'Loading prayer times for your selected city…',
+  errorTitle: 'Could not load prayer times',
+  errorHint:
+    'Check your connection or wait a moment. Local memory times are available if you loaded today\'s times successfully before.',
   errorGeneric: 'Failed to load. Please try again.',
+  retryAction: 'Try again',
 
   /** Prayer names (keyed by Aladhan API key) */
   prayerNames: {

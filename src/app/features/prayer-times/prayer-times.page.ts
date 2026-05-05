@@ -180,6 +180,12 @@ export class PrayerTimesPage implements OnInit, OnDestroy {
     // Reload via effect (tracks selectedLocation).
   }
 
+  /** Refetch prayer times for the current city (error panel Retry). */
+  protected retryLoad(): void {
+    const loc = this.selectedLocation();
+    if (loc) this.loadPrayerTimes(loc);
+  }
+
   protected pad(n: number): string {
     return n.toString().padStart(2, '0');
   }

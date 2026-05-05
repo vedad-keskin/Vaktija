@@ -30,7 +30,15 @@ export interface AppLabels {
 
   /** Loading / Error */
   loading: string;
+  /** Short line under loading title */
+  loadingSubtitle: string;
+  /** Empty/error panel headline */
+  errorTitle: string;
+  /** Supporting line under error body */
+  errorHint: string;
   errorGeneric: string;
+  /** Retry button label */
+  retryAction: string;
 
   /** Prayer names (keyed by Aladhan API key) */
   prayerNames: Record<string, string>;
@@ -94,8 +102,13 @@ export const BS_LABELS: AppLabels = {
 
   dhuhrFridayName: 'Džuma',
 
-  loading: 'Učitavanje...',
+  loading: 'Učitavanje podataka',
+  loadingSubtitle: 'Dohvatamo vremena namaza za odabrani grad…',
+  errorTitle: 'Nismo mogli učitati vremena',
+  errorHint:
+    'Provjerite internet ili pričekajte trenutak. Lokalni prikaz iz memorije dostupan je ako ste ranije uspješno učitali dan.',
   errorGeneric: 'Greška pri učitavanju. Pokušajte ponovo.',
+  retryAction: 'Pokušaj ponovo',
 
   prayerNames: {
     Fajr: 'Zora (sabah)',
