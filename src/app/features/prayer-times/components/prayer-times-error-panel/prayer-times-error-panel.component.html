@@ -1,0 +1,52 @@
+<section
+  class="state-panel error-panel"
+  role="alert"
+  aria-live="polite"
+  aria-labelledby="prayer-times-error-title"
+>
+  <div class="state-panel-inner">
+    <div class="error-panel-icon-wrap" aria-hidden="true">
+      <!-- Wi‑Fi arcs + slash: reads clearly as “connection unavailable” at small sizes -->
+      <svg
+        class="error-panel-icon-svg"
+        viewBox="0 0 48 48"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M6 22c9-9 27-9 36 0"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+        />
+        <path
+          d="M10 27c7.5-6 22.5-6 28 0"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+        />
+        <path
+          d="M14 32c6-5 14-5 20 0"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+        />
+        <circle cx="24" cy="37" r="2" fill="currentColor" />
+        <path
+          d="M8 40 L40 12"
+          stroke="currentColor"
+          stroke-width="2.75"
+          stroke-linecap="round"
+        />
+      </svg>
+    </div>
+    <h2 id="prayer-times-error-title" class="state-panel-title">{{ titleText() }}</h2>
+    <p class="state-panel-message">{{ messageText() }}</p>
+    <p class="state-panel-message state-panel-message-muted">{{ hintText() }}</p>
+    <div class="error-panel-actions">
+      <button type="button" class="error-panel-retry" (click)="onRetry()">
+        {{ retryLabel() }}
+      </button>
+    </div>
+  </div>
+</section>

@@ -15,9 +15,9 @@ export const EN_LABELS: AppLabels = {
   methodIzLabel: 'IZ',
 
   method146Tooltip:
-    'Astronomical times from the Aladhan API using a custom method: the Sun is 14.6° below the horizon for Fajr (dawn) and for Isha.\n\n' +
-    'That angle is commonly associated with true dawn (fecr sadik). Widespread 18° presets match astronomical twilight and usually give an earlier Fajr; in Islamic jurisprudence they are often distinguished from true dawn and linked to false dawn (fecr kazib).\n\n' +
-    'For Bosnia-Herzegovina and similar mid-latitudes this aligns with public calculators such as vaktija.dev. Other settings here include the shar‘i midpoint for “midnight” and standard Shafi Asr.',
+    'The 14.6° method uses the solar depression angle of 14.6° below the horizon to determine the beginning of dawn.\n\n' +
+    'Hadith sources relate that Fajr begins with the appearance of true dawn — light spreading horizontally in the east, becoming visible on the horizon and gradually illuminating the surroundings.\n\n' +
+    'This angle rests on contemporary research and observation suggesting that this phenomenon often occurs later than with 18° calculations, so values around 14–15° give a more precise Fajr start for regions such as Bosnia and Herzegovina.',
 
   methodIzTooltip:
     'Official prayer times published by the Islamic Community in Bosnia and Herzegovina (Islamska zajednica u BiH)',

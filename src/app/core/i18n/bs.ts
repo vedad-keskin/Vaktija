@@ -84,9 +84,9 @@ export const BS_LABELS: AppLabels = {
   methodIzLabel: 'IZ',
 
   method146Tooltip:
-    'Matematički proračun preko Aladhan API-ja s prilagođenom metodom (custom): Sunce je 14,6° ispod horizonta za početak zore (Fajr) i za jaciju (Isha).\n\n' +
-    'U praksi se takav ugao često veže uz pravu zoru (fecr sadik). Široko korišteni proračuni s 18° tipično odgovaraju astronomskom sumraku i daju raniju zoru — u islamskom pravu (fikhu) često se razlikuju od prave zore i vezuju uz lažnu zoru (fecr kazib).\n\n' +
-    'Za BiH i slične geografske širine ovaj model je usporediv s javnim proračunima poput vaktija.dev. Ostale postavke u ovom modu uključuju šerijatsku polovinu noći za „polovinu noći” i šafijsku ikindiju.',
+    'Metod 14,6° koristi ugao pri kojem se Sunce nalazi 14,6° ispod horizonta za određivanje početka zore.\n\n' +
+    'U hadisima se navodi da sabah-namaz počinje pojavom stvarne zore – svjetlosti koja se širi vodoravno na istoku, postaje vidljiva na horizontu i postepeno osvjetljava okolinu.\n\n' +
+    'Ovaj ugao temelji se na savremenim istraživanjima i opažanjima koja pokazuju da se ta pojava često javlja kasnije nego kod proračuna s 18°, pa vrijednosti oko 14–15° daju preciznije vrijeme početka sabaha u područjima poput BiH.',
 
   methodIzTooltip:
     'Službena vremena namaza koja objavljuje Islamska zajednica u Bosni i Hercegovini (IZ)',

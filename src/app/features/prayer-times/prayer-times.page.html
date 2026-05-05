@@ -11,51 +11,18 @@
     </section>
 
     @if (isLoading()) {
-      <section
-        class="state-panel loading-panel"
-        aria-busy="true"
-        aria-labelledby="loading-state-title"
-        aria-describedby="loading-state-subtitle"
-      >
-        <div class="state-panel-inner">
-          <div class="spinner" aria-hidden="true"></div>
-          <h2 id="loading-state-title" class="state-panel-title">{{ labels().loading }}</h2>
-          <p id="loading-state-subtitle" class="state-panel-message state-panel-message-muted">
-            {{ labels().loadingSubtitle }}
-          </p>
-        </div>
-      </section>
+      <app-prayer-times-loading-panel
+        [titleText]="labels().loading"
+        [subtitleText]="labels().loadingSubtitle"
+      />
     } @else if (error(); as errMsg) {
-      <section
-        class="state-panel error-panel"
-        role="alert"
-        aria-live="polite"
-        aria-labelledby="error-state-title"
-      >
-        <div class="state-panel-inner">
-          <div class="state-panel-icon" aria-hidden="true">
-            <svg class="state-panel-icon-svg" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="28" cy="28" r="24" stroke="currentColor" stroke-opacity="0.22" stroke-width="1.5" />
-              <path
-                d="M14 34h26c5 0 9-4 9-9 0-4-3-7.5-7-8 .5-8 7-14 14.5-12 5 1 9 6 9 11 0 .5 0 1-.5 1.5"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-              <path d="M12 40 L42 18" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" />
-            </svg>
-          </div>
-          <h2 id="error-state-title" class="state-panel-title">{{ labels().errorTitle }}</h2>
-          <p class="state-panel-message">{{ errMsg }}</p>
-          <p class="state-panel-message state-panel-message-muted">{{ labels().errorHint }}</p>
-          <div class="state-panel-actions">
-            <button type="button" class="retry-button" (click)="retryLoad()">
-              {{ labels().retryAction }}
-            </button>
-          </div>
-        </div>
-      </section>
+      <app-prayer-times-error-panel
+        [titleText]="labels().errorTitle"
+        [messageText]="errMsg"
+        [hintText]="labels().errorHint"
+        [retryLabel]="labels().retryAction"
+        (retry)="retryLoad()"
+      />
     } @else {
       <!-- Countdown to next prayer (dates included inside) -->
       @if (countdown(); as cd) {

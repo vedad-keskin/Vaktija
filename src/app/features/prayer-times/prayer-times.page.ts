@@ -4,6 +4,8 @@ import { Title } from '@angular/platform-browser';
 import { HeaderComponent } from './components/header/header.component';
 import { CitySelectorComponent } from './components/city-selector/city-selector.component';
 import { PrayerCardComponent } from './components/prayer-card/prayer-card.component';
+import { PrayerTimesLoadingPanelComponent } from './components/prayer-times-loading-panel/prayer-times-loading-panel.component';
+import { PrayerTimesErrorPanelComponent } from './components/prayer-times-error-panel/prayer-times-error-panel.component';
 import { PrayerTimeService } from '../../core/services/prayer-time.service';
 import { PrayerTimesCacheService } from '../../core/services/prayer-times-cache.service';
 import { LocationService } from '../../core/services/location.service';
@@ -15,7 +17,13 @@ import { Location } from '../../core/models/location.model';
 @Component({
   selector: 'app-prayer-times',
   standalone: true,
-  imports: [HeaderComponent, CitySelectorComponent, PrayerCardComponent],
+  imports: [
+    HeaderComponent,
+    CitySelectorComponent,
+    PrayerCardComponent,
+    PrayerTimesLoadingPanelComponent,
+    PrayerTimesErrorPanelComponent,
+  ],
   templateUrl: './prayer-times.page.html',
   styleUrl: './prayer-times.page.css',
 })

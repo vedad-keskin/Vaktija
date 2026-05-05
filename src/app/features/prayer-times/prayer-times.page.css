@@ -136,111 +136,6 @@
   gap: 0.75rem;
 }
 
-/* ===== Loading / error panels (aligned with countdown card) ===== */
-.state-panel {
-  text-align: center;
-  padding: 1.75rem 1.25rem;
-  margin-bottom: 1.5rem;
-  margin-left: auto;
-  margin-right: auto;
-  max-width: min(520px, 100%);
-  background: var(--accent-surface);
-  border: 1px solid rgba(45, 212, 168, 0.15);
-  border-radius: 16px;
-  box-sizing: border-box;
-}
-
-.state-panel-inner {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.65rem;
-}
-
-.state-panel-icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 0.15rem;
-  color: var(--error);
-}
-
-.state-panel-icon-svg {
-  width: 56px;
-  height: 56px;
-  display: block;
-}
-
-.state-panel-title {
-  margin: 0;
-  font-family: var(--font-heading);
-  font-size: 1.05rem;
-  font-weight: 700;
-  color: var(--text-primary);
-  line-height: 1.25;
-}
-
-.state-panel-message {
-  margin: 0;
-  font-size: 0.9rem;
-  line-height: 1.45;
-  color: var(--text-secondary);
-  max-width: 34rem;
-}
-
-.state-panel-message-muted {
-  font-size: 0.82rem;
-  color: var(--text-muted);
-}
-
-.state-panel-actions {
-  margin-top: 0.35rem;
-}
-
-.retry-button {
-  appearance: none;
-  cursor: pointer;
-  font-family: inherit;
-  font-size: 0.875rem;
-  font-weight: 600;
-  padding: 0.55rem 1.25rem;
-  border-radius: 999px;
-  border: 1px solid var(--accent);
-  color: var(--accent);
-  background: transparent;
-  transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
-}
-
-.retry-button:hover {
-  background: color-mix(in srgb, var(--accent) 12%, transparent);
-}
-
-.retry-button:focus-visible {
-  outline: 2px solid var(--accent);
-  outline-offset: 2px;
-}
-
-.loading-panel .state-panel-inner {
-  gap: 0.85rem;
-}
-
-.loading-panel .spinner {
-  flex-shrink: 0;
-}
-
-.spinner {
-  width: 32px;
-  height: 32px;
-  border: 3px solid var(--border-color);
-  border-top-color: var(--accent);
-  border-radius: 50%;
-  animation: spin 0.8s linear infinite;
-}
-
-@keyframes spin {
-  to { transform: rotate(360deg); }
-}
-
 /* ===== Tablet: 2 columns ===== */
 @media (min-width: 580px) {
   .prayer-grid {
@@ -267,20 +162,6 @@
   .countdown-section {
     padding: 2.25rem 2rem 2.5rem;
     margin-bottom: 2rem;
-  }
-
-  .state-panel {
-    padding: 2rem 1.75rem;
-    margin-bottom: 2rem;
-    max-width: min(560px, 92%);
-  }
-
-  .state-panel-title {
-    font-size: 1.15rem;
-  }
-
-  .state-panel-message {
-    font-size: 0.95rem;
   }
 
   .countdown-dates {

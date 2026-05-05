@@ -1,0 +1,14 @@
+<section
+  class="state-panel loading-panel"
+  aria-busy="true"
+  aria-labelledby="prayer-times-loading-title"
+  aria-describedby="prayer-times-loading-subtitle"
+>
+  <div class="state-panel-inner">
+    <div class="loading-panel-spinner" aria-hidden="true"></div>
+    <h2 id="prayer-times-loading-title" class="state-panel-title">{{ titleText() }}</h2>
+    <p id="prayer-times-loading-subtitle" class="state-panel-message state-panel-message-muted">
+      {{ subtitleText() }}
+    </p>
+  </div>
+</section>

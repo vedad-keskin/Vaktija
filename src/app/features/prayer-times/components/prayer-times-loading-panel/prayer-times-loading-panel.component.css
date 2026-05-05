@@ -1,0 +1,19 @@
+.loading-panel .state-panel-inner {
+  gap: 0.85rem;
+}
+
+.loading-panel-spinner {
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+  border: 3px solid var(--border-color);
+  border-top-color: var(--accent);
+  border-radius: 50%;
+  animation: prayer-times-spin 0.8s linear infinite;
+}
+
+@keyframes prayer-times-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
