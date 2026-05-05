@@ -7,7 +7,7 @@ import { PrayerCardComponent } from './components/prayer-card/prayer-card.compon
 import { PrayerTimeService } from '../../core/services/prayer-time.service';
 import { PrayerTimesCacheService } from '../../core/services/prayer-times-cache.service';
 import { LocationService } from '../../core/services/location.service';
-import { LanguageService } from '../../core/services/language.service';
+import { LanguageService, type LangCode } from '../../core/services/language.service';
 import { CalculationMethodService } from '../../core/services/calculation-method.service';
 import { PrayerTimeData, PrayerTime } from '../../core/models/prayer-time.model';
 import { Location } from '../../core/models/location.model';
@@ -233,17 +233,25 @@ export class PrayerTimesPage implements OnInit, OnDestroy {
     this.isLoading.set(true);
 
     this.prayerLoadSub = this.prayerTimeService.getTodayPrayerTimes(location).subscribe({
-      next: ({ prayerTimes, locationName, dateLabel, hijriDate }) => {
-        this.rawTimes.set(prayerTimes);
-        this.locationName.set(locationName);
-        this.dateLabel.set(dateLabel);
-        this.hijriDate.set(hijriDate);
-        this.prayerTimesCache.write(location, method, lang, {
-          prayerTimes,
-          locationName,
-          dateLabel,
-          hijriDate,
-        });
+      next: ({ snapshots }) => {
+        const codes: LangCode[] = ['bs', 'en'];
+        const primary = this.langService.lang();
+        const writeOrder = [primary, ...codes.filter((c) => c !== primary)];
+        for (const code of writeOrder) {
+          const snap = snapshots[code];
+          this.prayerTimesCache.write(location, method, code, {
+            prayerTimes: snap.prayerTimes,
+            locationName: snap.locationName,
+            dateLabel: snap.dateLabel,
+            hijriDate: snap.hijriDate,
+          });
+        }
+
+        const active = snapshots[this.langService.lang()];
+        this.rawTimes.set(active.prayerTimes);
+        this.locationName.set(active.locationName);
+        this.dateLabel.set(active.dateLabel);
+        this.hijriDate.set(active.hijriDate);
         this.isLoading.set(false);
         this.error.set(null);
       },

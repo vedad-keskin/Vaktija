@@ -1,9 +1,10 @@
 import { Injectable, inject } from '@angular/core';
 import { Observable, map, throwError } from 'rxjs';
+import { BS_LABELS, EN_LABELS, type AppLabels } from '../i18n';
 import { AladhanPrayerApiService } from './aladhan-api.service';
 import { VaktijaBaApiService } from './vaktija-ba-api.service';
 import { CalculationMethodService } from './calculation-method.service';
-import { LanguageService } from './language.service';
+import { LanguageService, type LangCode } from './language.service';
 import {
   PrayerTimeData,
   AladhanApiResponse,
@@ -26,6 +27,18 @@ const TIMING_KEYS: { key: string; isCalculated: boolean }[] = [
 /** vaktija.ba `vakat` indices → canonical keys */
 const VAKAT_KEY_MAP = ['Fajr', 'Sunrise', 'Dhuhr', 'Asr', 'Maghrib', 'Isha'] as const;
 
+/** Cached prayer UI slice for one language */
+export interface PrayerTimesLangSnapshot {
+  prayerTimes: PrayerTimeData[];
+  locationName: string;
+  dateLabel: string;
+  hijriDate: string;
+}
+
+export interface PrayerTimesDualLoadResult {
+  snapshots: Record<LangCode, PrayerTimesLangSnapshot>;
+}
+
 @Injectable({ providedIn: 'root' })
 export class PrayerTimeService {
   private readonly aladhanApi = inject(AladhanPrayerApiService);
@@ -34,24 +47,16 @@ export class PrayerTimeService {
   private readonly langService = inject(LanguageService);
 
   /**
-   * Returns all 8 prayer times for today, sorted chronologically.
+   * Returns localized snapshots for both languages from one HTTP response.
    * `14.6` → Aladhan; `iz` → api.vaktija.ba (same-origin proxy).
    */
-  getTodayPrayerTimes(location: Location): Observable<{
-    prayerTimes: PrayerTimeData[];
-    locationName: string;
-    dateLabel: string;
-    hijriDate: string;
-  }> {
+  getTodayPrayerTimes(location: Location): Observable<PrayerTimesDualLoadResult> {
     const method = this.methodService.method();
 
     if (method === '14.6') {
       return this.aladhanApi.getPrayerTimes(location.lat, location.lng).pipe(
         map((res) => ({
-          prayerTimes: this.buildAladhanPrayerTimes(res),
-          locationName: location.name,
-          dateLabel: this.buildDateLabel(),
-          hijriDate: this.buildHijriDate(res),
+          snapshots: this.dualSnapshotsFromAladhan(res, location.name),
         })),
       );
     }
@@ -65,18 +70,55 @@ export class PrayerTimeService {
 
     return this.vaktijaBaApi.getPrayerTimesForToday(id).pipe(
       map((res) => ({
-        prayerTimes: this.buildVaktijaPrayerTimes(res),
-        locationName: res.lokacija?.trim() || location.name,
-        dateLabel: this.buildVaktijaDateLabel(res),
-        hijriDate: '',
+        snapshots: this.dualSnapshotsFromVaktija(res, location.name),
       })),
     );
   }
 
+  private dualSnapshotsFromAladhan(
+    res: AladhanApiResponse,
+    locationName: string,
+  ): Record<LangCode, PrayerTimesLangSnapshot> {
+    return {
+      bs: {
+        prayerTimes: this.buildAladhanPrayerTimes(res, BS_LABELS),
+        locationName,
+        dateLabel: this.buildDateLabelFor(BS_LABELS, 'bs'),
+        hijriDate: this.buildHijriDateFor(res, BS_LABELS),
+      },
+      en: {
+        prayerTimes: this.buildAladhanPrayerTimes(res, EN_LABELS),
+        locationName,
+        dateLabel: this.buildDateLabelFor(EN_LABELS, 'en'),
+        hijriDate: this.buildHijriDateFor(res, EN_LABELS),
+      },
+    };
+  }
+
+  private dualSnapshotsFromVaktija(
+    res: VaktijaBaApiResponse,
+    fallbackLocationName: string,
+  ): Record<LangCode, PrayerTimesLangSnapshot> {
+    const locationName = res.lokacija?.trim() || fallbackLocationName;
+    return {
+      bs: {
+        prayerTimes: this.buildVaktijaPrayerTimes(res, BS_LABELS),
+        locationName,
+        dateLabel: this.buildVaktijaDateLabel(res, BS_LABELS, 'bs'),
+        hijriDate: '',
+      },
+      en: {
+        prayerTimes: this.buildVaktijaPrayerTimes(res, EN_LABELS),
+        locationName,
+        dateLabel: this.buildVaktijaDateLabel(res, EN_LABELS, 'en'),
+        hijriDate: '',
+      },
+    };
+  }
+
   /** Build 8 prayer times from Aladhan response (existing logic). */
-  private buildAladhanPrayerTimes(res: AladhanApiResponse): PrayerTimeData[] {
+  private buildAladhanPrayerTimes(res: AladhanApiResponse, labels: AppLabels): PrayerTimeData[] {
     const timings = res.data.timings;
-    const labels = this.langService.labels();
     const fridayGregorian = this.isGregorianFriday(res);
 
     const times: PrayerTimeData[] = TIMING_KEYS.map((entry) => {
@@ -100,13 +142,12 @@ export class PrayerTimeService {
   }
 
   /** Six salat times from vakat[] plus Midnight / Lastthird derived from Maghrib→Fajr night window. */
-  private buildVaktijaPrayerTimes(res: VaktijaBaApiResponse): PrayerTimeData[] {
+  private buildVaktijaPrayerTimes(res: VaktijaBaApiResponse, labels: AppLabels): PrayerTimeData[] {
     const vakat = res.vakat;
     if (!Array.isArray(vakat) || vakat.length < 6) {
       throw new Error('Invalid vaktija.ba vakat payload');
     }
 
-    const labels = this.langService.labels();
     const friday = this.isFridaySarajevo();
 
     const baseTimes: PrayerTimeData[] = VAKAT_KEY_MAP.map((key, i) => {
@@ -164,11 +205,15 @@ export class PrayerTimeService {
     );
   }
 
-  private buildVaktijaDateLabel(res: VaktijaBaApiResponse): string {
+  private buildVaktijaDateLabel(
+    res: VaktijaBaApiResponse,
+    labels: AppLabels,
+    lang: LangCode,
+  ): string {
     const d = res.datum;
-    if (!Array.isArray(d)) return this.buildDateLabel();
+    if (!Array.isArray(d)) return this.buildDateLabelFor(labels, lang);
     const text = d.map(String).find((s) => s.trim().length > 0);
-    return text?.trim() ?? this.buildDateLabel();
+    return text?.trim() ?? this.buildDateLabelFor(labels, lang);
   }
 
   /** Friday in Europe/Sarajevo (Podne vs Jumu'a label). */
@@ -193,11 +238,13 @@ export class PrayerTimeService {
    * Example EN: "Friday, 1 May 2026"
    */
   buildDateLabel(): string {
-    const labels = this.langService.labels();
+    return this.buildDateLabelFor(this.langService.labels(), this.langService.lang());
+  }
+
+  private buildDateLabelFor(labels: AppLabels, lang: LangCode): string {
     const now = new Date();
     const day = labels.dayNames[now.getDay()];
     const month = labels.monthNames[now.getMonth()];
-    const lang = this.langService.lang();
 
     if (lang === 'en') {
       return `${day}, ${now.getDate()} ${month} ${now.getFullYear()}`;
@@ -206,7 +253,10 @@ export class PrayerTimeService {
   }
 
   buildHijriDate(res: AladhanApiResponse): string {
-    const labels = this.langService.labels();
+    return this.buildHijriDateFor(res, this.langService.labels());
+  }
+
+  private buildHijriDateFor(res: AladhanApiResponse, labels: AppLabels): string {
     const h = res.data.date.hijri;
     const monthName = labels.hijriMonths[h.month.number - 1] ?? h.month.en;
     return `${h.day}. ${monthName} ${h.year}.`;
