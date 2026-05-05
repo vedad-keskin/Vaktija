@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, OnDestroy, signal, computed, effect } from '@angular/core';
+import { Component, inject, OnInit, OnDestroy, signal, computed, effect, untracked } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Title } from '@angular/platform-browser';
 import { HeaderComponent } from './components/header/header.component';
@@ -145,12 +145,11 @@ export class PrayerTimesPage implements OnInit, OnDestroy {
   constructor() {
     // Re-fetch prayer times whenever language changes so names/tooltips update
     effect(() => {
-      const _lang = this.langService.lang(); // track
-      const _method = this.methodService.method(); // track
+      const _lang = this.langService.lang();
+      const _method = this.methodService.method();
       const loc = this.selectedLocation();
-      if (loc) {
-        this.loadPrayerTimes(loc);
-      }
+      if (!loc) return;
+      untracked(() => this.loadPrayerTimes(loc));
     });
 
     effect(() => {
