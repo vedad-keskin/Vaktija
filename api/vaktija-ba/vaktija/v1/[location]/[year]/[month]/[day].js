@@ -6,15 +6,29 @@ async function handler(req, res) {
     return;
   }
 
-  const slug = req.query.slug;
-  const pathTail = Array.isArray(slug) ? slug.join('/') : String(slug ?? '');
-  const path = pathTail.startsWith('/') ? pathTail : `/${pathTail}`;
-  let search = '';
-  if (typeof req.url === 'string') {
-    const q = req.url.indexOf('?');
-    if (q !== -1) search = req.url.slice(q);
+  const q = req.query;
+  const location = Array.isArray(q.location) ? q.location[0] : q.location;
+  const year = Array.isArray(q.year) ? q.year[0] : q.year;
+  const month = Array.isArray(q.month) ? q.month[0] : q.month;
+  const day = Array.isArray(q.day) ? q.day[0] : q.day;
+
+  if (
+    location === undefined ||
+    year === undefined ||
+    month === undefined ||
+    day === undefined
+  ) {
+    res.status(400).json({ error: 'Missing path parameters' });
+    return;
   }
 
+  let search = '';
+  if (typeof req.url === 'string') {
+    const qi = req.url.indexOf('?');
+    if (qi !== -1) search = req.url.slice(qi);
+  }
+
+  const path = `/vaktija/v1/${encodeURIComponent(location)}/${encodeURIComponent(year)}/${encodeURIComponent(month)}/${encodeURIComponent(day)}`;
   const targetUrl = `${ORIGIN}${path}${search}`;
 
   try {
