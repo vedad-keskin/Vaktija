@@ -3,22 +3,9 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, TimeoutError, timer, throwError } from 'rxjs';
 import { retry, timeout } from 'rxjs/operators';
 import { VaktijaBaApiResponse } from '../models/prayer-time.model';
+import { sarajevoYmd } from '../utils/sarajevo-date';
 
 const PROXY_BASE = '/api/vaktija-ba';
-
-/** Calendar date parts in Europe/Sarajevo (BiH wall clock). */
-export function sarajevoYmd(now = new Date()): { y: number; m: number; d: number } {
-  const fmt = new Intl.DateTimeFormat('en-CA', {
-    timeZone: 'Europe/Sarajevo',
-    year: 'numeric',
-    month: 'numeric',
-    day: 'numeric',
-  });
-  const parts = fmt.formatToParts(now);
-  const n = (type: Intl.DateTimeFormatPartTypes) =>
-    Number(parts.find((p) => p.type === type)?.value ?? NaN);
-  return { y: n('year'), m: n('month'), d: n('day') };
-}
 
 @Injectable({ providedIn: 'root' })
 export class VaktijaBaApiService {

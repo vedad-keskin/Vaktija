@@ -5,6 +5,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { CitySelectorComponent } from './components/city-selector/city-selector.component';
 import { PrayerCardComponent } from './components/prayer-card/prayer-card.component';
 import { PrayerTimeService } from '../../core/services/prayer-time.service';
+import { PrayerTimesCacheService } from '../../core/services/prayer-times-cache.service';
 import { LocationService } from '../../core/services/location.service';
 import { LanguageService } from '../../core/services/language.service';
 import { CalculationMethodService } from '../../core/services/calculation-method.service';
@@ -20,6 +21,7 @@ import { Location } from '../../core/models/location.model';
 })
 export class PrayerTimesPage implements OnInit, OnDestroy {
   private readonly prayerTimeService = inject(PrayerTimeService);
+  private readonly prayerTimesCache = inject(PrayerTimesCacheService);
   private readonly locationService = inject(LocationService);
   private readonly titleService = inject(Title);
   protected readonly langService = inject(LanguageService);
@@ -158,6 +160,7 @@ export class PrayerTimesPage implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    this.prayerTimesCache.pruneStale();
     this.loadLocations();
     const saved = this.locationService.getSelectedLocation();
     this.selectedLocation.set(saved);
@@ -191,8 +194,38 @@ export class PrayerTimesPage implements OnInit, OnDestroy {
 
   private loadPrayerTimes(location: Location): void {
     this.prayerLoadSub?.unsubscribe();
-    this.isLoading.set(true);
+
+    const method = this.methodService.method();
+    const lang = this.langService.lang();
+
+    let cached = this.prayerTimesCache.read(location, method, lang);
+    if (
+      this.prayerTimesCache.hasFetchedToday(location, method, lang) &&
+      !cached
+    ) {
+      this.prayerTimesCache.clearFetchGate(location, method, lang);
+    }
+
+    if (cached) {
+      this.rawTimes.set(cached.prayerTimes);
+      this.locationName.set(cached.locationName);
+      this.dateLabel.set(cached.dateLabel);
+      this.hijriDate.set(cached.hijriDate);
+      this.error.set(null);
+      this.isLoading.set(false);
+      /* Valid snapshot for today → at most one fetch/day per key; no duplicate HTTP. */
+      return;
+    }
+
     this.error.set(null);
+
+    if (!navigator.onLine) {
+      this.error.set(this.langService.labels().errorGeneric);
+      this.isLoading.set(false);
+      return;
+    }
+
+    this.isLoading.set(true);
 
     this.prayerLoadSub = this.prayerTimeService.getTodayPrayerTimes(location).subscribe({
       next: ({ prayerTimes, locationName, dateLabel, hijriDate }) => {
@@ -200,7 +233,14 @@ export class PrayerTimesPage implements OnInit, OnDestroy {
         this.locationName.set(locationName);
         this.dateLabel.set(dateLabel);
         this.hijriDate.set(hijriDate);
+        this.prayerTimesCache.write(location, method, lang, {
+          prayerTimes,
+          locationName,
+          dateLabel,
+          hijriDate,
+        });
         this.isLoading.set(false);
+        this.error.set(null);
       },
       error: () => {
         this.error.set(this.langService.labels().errorGeneric);
