@@ -25,7 +25,7 @@ export class PrayerTimesPage implements OnInit, OnDestroy {
   protected readonly langService = inject(LanguageService);
   private readonly methodService = inject(CalculationMethodService);
   private tickInterval: ReturnType<typeof setInterval> | null = null;
-  /** Cancels an in-flight load when a newer one starts (avoids piled-up IZ forkJoin traffic). */
+  /** Cancels an in-flight load when a newer one starts (avoids stacked concurrent requests). */
   private prayerLoadSub: Subscription | null = null;
 
   protected readonly locations = signal<Location[]>([]);

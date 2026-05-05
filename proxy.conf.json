@@ -1,0 +1,11 @@
+{
+  "/api/vaktija-ba": {
+    "target": "https://api.vaktija.ba",
+    "secure": true,
+    "changeOrigin": true,
+    "pathRewrite": {
+      "^/api/vaktija-ba": ""
+    },
+    "logLevel": "silent"
+  }
+}

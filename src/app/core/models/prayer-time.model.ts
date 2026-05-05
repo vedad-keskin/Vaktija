@@ -18,6 +18,13 @@ export interface PrayerTime extends PrayerTimeData {
   relativeText: string;
 }
 
+/** api.vaktija.ba JSON (`/vaktija/v1/:lokacija/...`) */
+export interface VaktijaBaApiResponse {
+  lokacija: string;
+  datum: string[];
+  vakat: string[];
+}
+
 /** Aladhan.com API response */
 export interface AladhanApiResponse {
   code: number;

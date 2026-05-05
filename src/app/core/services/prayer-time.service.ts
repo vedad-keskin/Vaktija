@@ -1,9 +1,14 @@
 import { Injectable, inject } from '@angular/core';
-import { Observable, map, forkJoin } from 'rxjs';
-import { PrayerApiService } from './vaktija-api.service';
+import { Observable, map, throwError } from 'rxjs';
+import { AladhanPrayerApiService } from './aladhan-api.service';
+import { VaktijaBaApiService } from './vaktija-ba-api.service';
 import { CalculationMethodService } from './calculation-method.service';
 import { LanguageService } from './language.service';
-import { PrayerTimeData, AladhanApiResponse } from '../models/prayer-time.model';
+import {
+  PrayerTimeData,
+  AladhanApiResponse,
+  VaktijaBaApiResponse,
+} from '../models/prayer-time.model';
 import { Location } from '../models/location.model';
 
 /** Keys for the 8 prayer/timing entries we display */
@@ -18,18 +23,19 @@ const TIMING_KEYS: { key: string; isCalculated: boolean }[] = [
   { key: 'Lastthird', isCalculated: true },
 ];
 
-/** vaktija.ba vakat array indices → Aladhan-style keys */
-const VAKAT_KEY_MAP: string[] = ['Fajr', 'Sunrise', 'Dhuhr', 'Asr', 'Maghrib', 'Isha'];
+/** vaktija.ba `vakat` indices → canonical keys */
+const VAKAT_KEY_MAP = ['Fajr', 'Sunrise', 'Dhuhr', 'Asr', 'Maghrib', 'Isha'] as const;
 
 @Injectable({ providedIn: 'root' })
 export class PrayerTimeService {
-  private readonly aladhanApi = inject(PrayerApiService);
+  private readonly aladhanApi = inject(AladhanPrayerApiService);
+  private readonly vaktijaBaApi = inject(VaktijaBaApiService);
   private readonly methodService = inject(CalculationMethodService);
   private readonly langService = inject(LanguageService);
 
   /**
    * Returns all 8 prayer times for today, sorted chronologically.
-   * Dispatches to Aladhan API with the currently selected method ('14.6' or 'iz').
+   * `14.6` → Aladhan; `iz` → api.vaktija.ba (same-origin proxy).
    */
   getTodayPrayerTimes(location: Location): Observable<{
     prayerTimes: PrayerTimeData[];
@@ -39,13 +45,31 @@ export class PrayerTimeService {
   }> {
     const method = this.methodService.method();
 
-    return this.aladhanApi.getPrayerTimes(location.lat, location.lng, method).pipe(
+    if (method === '14.6') {
+      return this.aladhanApi.getPrayerTimes(location.lat, location.lng).pipe(
+        map((res) => ({
+          prayerTimes: this.buildAladhanPrayerTimes(res),
+          locationName: location.name,
+          dateLabel: this.buildDateLabel(),
+          hijriDate: this.buildHijriDate(res),
+        })),
+      );
+    }
+
+    const id = location.vaktijaId;
+    if (id === undefined || id === null) {
+      return throwError(
+        () => new Error('Missing vaktija location id for IZ mode'),
+      );
+    }
+
+    return this.vaktijaBaApi.getPrayerTimesForToday(id).pipe(
       map((res) => ({
-        prayerTimes: this.buildAladhanPrayerTimes(res),
-        locationName: location.name,
-        dateLabel: this.buildDateLabel(),
-        hijriDate: this.buildHijriDate(res),
-      }))
+        prayerTimes: this.buildVaktijaPrayerTimes(res),
+        locationName: res.lokacija?.trim() || location.name,
+        dateLabel: this.buildVaktijaDateLabel(res),
+        hijriDate: '',
+      })),
     );
   }
 
@@ -75,12 +99,91 @@ export class PrayerTimeService {
     return times.sort((a, b) => a.minutes - b.minutes);
   }
 
+  /** Six salat times from vakat[] plus Midnight / Lastthird derived from Maghrib→Fajr night window. */
+  private buildVaktijaPrayerTimes(res: VaktijaBaApiResponse): PrayerTimeData[] {
+    const vakat = res.vakat;
+    if (!Array.isArray(vakat) || vakat.length < 6) {
+      throw new Error('Invalid vaktija.ba vakat payload');
+    }
+
+    const labels = this.langService.labels();
+    const friday = this.isFridaySarajevo();
+
+    const baseTimes: PrayerTimeData[] = VAKAT_KEY_MAP.map((key, i) => {
+      const cleanTime = this.cleanTime(vakat[i]);
+      const name =
+        key === 'Dhuhr' && friday
+          ? labels.dhuhrFridayName
+          : labels.prayerNames[key] ?? key;
+      const tooltip = labels.prayerTooltips[key];
+      return {
+        name,
+        time: cleanTime,
+        minutes: this.timeToMinutes(cleanTime),
+        isCalculated: false,
+        ...(tooltip ? { tooltip } : {}),
+      };
+    });
+
+    const fajrMin = this.timeToMinutes(this.cleanTime(vakat[0]));
+    const maghribMin = this.timeToMinutes(this.cleanTime(vakat[4]));
+
+    /* Islamic midnight / last-third use night length Maghrib→next Fajr. Same approximation as countdown wrap:
+       tomorrow’s Fajr ≈ today’s listed Fajr (single API response). */
+    const nightMinutes = 24 * 60 - maghribMin + fajrMin;
+    const midnightMin =
+      Math.round(maghribMin + nightMinutes / 2) % (24 * 60);
+    const lastThirdMin =
+      Math.round(maghribMin + (2 * nightMinutes) / 3) % (24 * 60);
+
+    const midnightTime = this.minutesToTime(midnightMin);
+    const lastThirdTime = this.minutesToTime(lastThirdMin);
+
+    const midnightEntry: PrayerTimeData = {
+      name: labels.prayerNames['Midnight'] ?? 'Midnight',
+      time: midnightTime,
+      minutes: midnightMin,
+      isCalculated: true,
+      ...(labels.prayerTooltips['Midnight']
+        ? { tooltip: labels.prayerTooltips['Midnight'] }
+        : {}),
+    };
+
+    const lastThirdEntry: PrayerTimeData = {
+      name: labels.prayerNames['Lastthird'] ?? 'Lastthird',
+      time: lastThirdTime,
+      minutes: lastThirdMin,
+      isCalculated: true,
+      ...(labels.prayerTooltips['Lastthird']
+        ? { tooltip: labels.prayerTooltips['Lastthird'] }
+        : {}),
+    };
+
+    return [...baseTimes, midnightEntry, lastThirdEntry].sort(
+      (a, b) => a.minutes - b.minutes,
+    );
+  }
+
+  private buildVaktijaDateLabel(res: VaktijaBaApiResponse): string {
+    const d = res.datum;
+    if (!Array.isArray(d)) return this.buildDateLabel();
+    const text = d.map(String).find((s) => s.trim().length > 0);
+    return text?.trim() ?? this.buildDateLabel();
+  }
+
+  /** Friday in Europe/Sarajevo (Podne vs Jumu'a label). */
+  private isFridaySarajevo(now = new Date()): boolean {
+    const wd = new Intl.DateTimeFormat('en-US', {
+      weekday: 'short',
+      timeZone: 'Europe/Sarajevo',
+    }).format(now);
+    return wd.startsWith('Fri');
+  }
 
   /** Aladhan returns English weekday labels on `gregorian.weekday.en`. */
   private isGregorianFriday(res: AladhanApiResponse): boolean {
     const en = res.data.date?.gregorian?.weekday?.en?.toLowerCase()?.trim();
     if (en === 'friday') return true;
-    // Fallback if API shape changes
     return new Date().getDay() === 5;
   }
 
@@ -119,8 +222,9 @@ export class PrayerTimeService {
   }
 
   private minutesToTime(totalMinutes: number): string {
-    const h = Math.floor(totalMinutes / 60);
-    const m = totalMinutes % 60;
+    const normalized = ((totalMinutes % (24 * 60)) + 24 * 60) % (24 * 60);
+    const h = Math.floor(normalized / 60);
+    const m = normalized % 60;
     return `${h}:${m.toString().padStart(2, '0')}`;
   }
 }
