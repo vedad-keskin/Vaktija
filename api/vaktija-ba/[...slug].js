@@ -28,7 +28,10 @@ async function handler(req, res) {
     const body = await upstream.text();
     const ct = upstream.headers.get('content-type') || 'application/json';
 
-    res.status(upstream.status).setHeader('Content-Type', ct);
+    res
+      .status(upstream.status)
+      .setHeader('Content-Type', ct)
+      .setHeader('Cache-Control', 'private, no-store');
     res.send(body);
   } catch {
     res.status(502).json({ error: 'Upstream fetch failed' });
