@@ -119,15 +119,24 @@
   white-space: nowrap;
 }
 
-.header-qibla--icon-only {
-  width: 38px;
+/* Full-width Qibla row inside hamburger drawer (mobile) */
+.mobile-dropdown .header-qibla--mobile-drawer {
+  width: 100%;
+  display: flex;
   align-items: stretch;
 }
 
-.header-qibla--icon-only .header-qibla-pad {
+.mobile-dropdown .header-qibla--mobile-drawer .header-qibla-pad {
   flex: 1 1 auto;
-  padding: 0;
-  min-width: 0;
+  justify-content: flex-start;
+  width: 100%;
+  padding-inline: 0.85rem;
+}
+
+.mobile-dropdown .header-qibla--mobile-drawer .header-qibla-text {
+  white-space: normal;
+  text-align: start;
+  line-height: 1.2;
 }
 
 [data-theme='light'] .header-qibla--active .header-qibla-pad {
