@@ -75,41 +75,47 @@
     </section>
 
     <section class="qibla-compass-section" aria-label="Compass">
-      <!-- Calibration overlay -->
-      @if (showCalibrationOverlay()) {
-        <div class="calibration-overlay" role="dialog" aria-modal="true">
-          <div class="calibration-card">
-            <h2 class="calibration-title">{{ labels().qiblaCalibrateTitle }}</h2>
-            <div class="calibration-anim" aria-hidden="true">
-              <div class="calibration-phone">
-                <div class="calibration-phone-screen">
-                  <div class="calibration-phone-notch"></div>
+      <div class="compass-stack" [class.compass-stack--aligned]="qiblaAligned()">
+        @if (showCalibrationOverlay()) {
+          <div
+            class="calibration-overlay"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="calibration-dialog-title"
+          >
+            <div class="calibration-card">
+              <h2 class="calibration-title" id="calibration-dialog-title">
+                {{ labels().qiblaCalibrateTitle }}
+              </h2>
+              <div class="calibration-anim" aria-hidden="true">
+                <div class="calibration-phone">
+                  <div class="calibration-phone-screen">
+                    <div class="calibration-phone-notch"></div>
+                  </div>
                 </div>
+                <svg class="calibration-trail" viewBox="0 0 120 80" aria-hidden="true">
+                  <path
+                    d="M60,40 C60,10 90,10 90,40 C90,70 60,70 60,40 C60,10 30,10 30,40 C30,70 60,70 60,40"
+                    fill="none"
+                    stroke="rgba(201,162,39,0.32)"
+                    stroke-width="2"
+                    stroke-dasharray="4 3"
+                  />
+                </svg>
               </div>
-              <svg class="calibration-trail" viewBox="0 0 120 80" aria-hidden="true">
-                <path
-                  d="M60,40 C60,10 90,10 90,40 C90,70 60,70 60,40 C60,10 30,10 30,40 C30,70 60,70 60,40"
-                  fill="none"
-                  stroke="rgba(201,162,39,0.32)"
-                  stroke-width="2"
-                  stroke-dasharray="4 3"
-                />
-              </svg>
-            </div>
-            <p class="calibration-body">{{ labels().qiblaCalibrateBody }}</p>
-            <div class="calibration-actions">
-              <button type="button" class="calibration-btn calibration-btn--skip" (click)="dismissCalibration()">
-                {{ labels().qiblaCalibrateSkip }}
-              </button>
-              <button type="button" class="calibration-btn calibration-btn--done" (click)="dismissCalibration()">
-                {{ labels().qiblaCalibrateDone }}
-              </button>
+              <p class="calibration-body">{{ labels().qiblaCalibrateBody }}</p>
+              <div class="calibration-actions">
+                <button type="button" class="calibration-btn calibration-btn--skip" (click)="dismissCalibration()">
+                  {{ labels().qiblaCalibrateSkip }}
+                </button>
+                <button type="button" class="calibration-btn calibration-btn--done" (click)="dismissCalibration()">
+                  {{ labels().qiblaCalibrateDone }}
+                </button>
+              </div>
             </div>
           </div>
-        </div>
-      }
+        }
 
-      <div class="compass-stack" [class.compass-stack--aligned]="qiblaAligned()">
         <div class="compass-frame">
           <div class="compass-apex" aria-hidden="true"></div>
 
