@@ -169,7 +169,7 @@
 }
 [data-theme='light'] .source-btn.active { border-color: rgba(26, 171, 134, 0.5); }
 .qibla-city-wrap { margin-bottom: 0.65rem; }
-.qibla-msg { font-size: 0.84rem; color: var(--text-secondary); margin-bottom: 0.5rem; }
+.qibla-msg { font-size: 0.84rem; color: var(--text-secondary); margin-bottom: 0.5rem; text-align: center; }
 .qibla-msg--error { color: var(--error); }
 .qibla-stats {
   display: flex;
