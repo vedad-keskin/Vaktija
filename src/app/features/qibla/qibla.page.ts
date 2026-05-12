@@ -19,11 +19,15 @@ import {
   computeDistanceToKaabaKm,
   computeQiblaBearingDeg,
 } from '../../core/math/qibla-bearing';
-import { headingFromDeviceOrientationEvent } from '../../core/math/compass-heading';
+import { headingFromDeviceOrientationEvent, normalizeDeg } from '../../core/math/compass-heading';
+import { estimateMagneticDeclinationDeg } from '../../core/math/magnetic-declination';
 
 type LocationSource = 'preset' | 'gps';
 
-const ALIGN_THRESHOLD_DEG = 4;
+const ALIGN_THRESHOLD_DEG = 5;
+
+/** Time constant for the exponential moving-average heading filter (ms). */
+const SMOOTH_TIME_CONSTANT_MS = 120;
 
 function lerpAngleDeg(from: number, to: number, t: number): number {
   const diff = ((to - from + 540) % 360) - 180;
@@ -58,6 +62,8 @@ export class QiblaPage implements OnInit {
   protected readonly compassListening = signal(false);
   protected readonly compassDenied = signal(false);
   protected readonly compassNoDataHint = signal(false);
+  /** Show a one-time calibration hint when the compass first activates. */
+  protected readonly showCalibrationHint = signal(false);
   protected readonly prefersReducedMotion =
     typeof matchMedia !== 'undefined' && matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -66,25 +72,34 @@ export class QiblaPage implements OnInit {
 
   private geoWatchId: number | null = null;
   private orientationTimer: ReturnType<typeof setTimeout> | null = null;
-  private hasAbsoluteOrientation = false;
+  /** Timestamp of the last heading sample (for time-based smoothing). */
+  private lastHeadingTs = 0;
 
   private readonly orientationListener = (e: DeviceOrientationEvent) => {
-    const isAbsoluteEvent = e.type === 'deviceorientationabsolute';
     const h = headingFromDeviceOrientationEvent(e);
     if (h === null) return;
-    if (isAbsoluteEvent) {
-      this.hasAbsoluteOrientation = true;
-    } else if (this.hasAbsoluteOrientation) {
-      return;
+
+    // Dismiss the calibration hint once real data arrives.
+    if (this.showCalibrationHint()) {
+      this.showCalibrationHint.set(false);
     }
+
     this.rawHeading.set(h);
     this.compassNoDataHint.set(false);
+
+    // --- Time-based exponential moving average ---
+    const now = performance.now();
+    const dt = this.lastHeadingTs ? now - this.lastHeadingTs : 0;
+    this.lastHeadingTs = now;
+
     const prev = this.smoothedHeading();
-    const next =
-      prev === null || this.prefersReducedMotion
-        ? h
-        : lerpAngleDeg(prev, h, this.compassListening() ? 0.22 : 1);
-    this.smoothedHeading.set(next);
+    if (prev === null || this.prefersReducedMotion || dt === 0) {
+      this.smoothedHeading.set(h);
+    } else {
+      // alpha = 1 - e^(-dt/tau) → identical smoothing regardless of sensor Hz
+      const alpha = 1 - Math.exp(-dt / SMOOTH_TIME_CONSTANT_MS);
+      this.smoothedHeading.set(lerpAngleDeg(prev, h, alpha));
+    }
   };
 
   constructor() {
@@ -109,10 +124,23 @@ export class QiblaPage implements OnInit {
     return g ? { lat: g.lat, lng: g.lng, label: null as string | null } : null;
   });
 
+  /** True-north bearing from user position toward the Kaaba [0, 360). */
   protected readonly bearingDeg = computed(() => {
     const pt = this.effectivePoint();
     if (!pt) return null;
     return computeQiblaBearingDeg(pt.lat, pt.lng);
+  });
+
+  /**
+   * Magnetic bearing to the Kaaba (true bearing minus magnetic declination).
+   * This is what we compare against the compass heading (which reads magnetic north).
+   */
+  protected readonly magneticBearingDeg = computed(() => {
+    const b = this.bearingDeg();
+    const pt = this.effectivePoint();
+    if (b == null || !pt) return null;
+    const decl = estimateMagneticDeclinationDeg(pt.lat, pt.lng);
+    return normalizeDeg(b - decl);
   });
 
   protected readonly distanceKm = computed(() => {
@@ -122,7 +150,7 @@ export class QiblaPage implements OnInit {
   });
 
   protected readonly dialRotateDeg = computed(() => {
-    const b = this.bearingDeg();
+    const b = this.magneticBearingDeg();
     if (b == null) return 0;
     const h = this.smoothedHeading();
     // No heading yet: orient dial so Qibla aligns with top marker (flat-phone fallback).
@@ -131,7 +159,7 @@ export class QiblaPage implements OnInit {
   });
 
   protected readonly qiblaAligned = computed(() => {
-    const b = this.bearingDeg();
+    const b = this.magneticBearingDeg();
     const h = this.smoothedHeading();
     if (b == null || h == null) return false;
     const diff = Math.abs(((b - h + 540) % 360) - 180);
@@ -204,7 +232,7 @@ export class QiblaPage implements OnInit {
     this.compassListening.set(false);
     this.rawHeading.set(null);
     this.smoothedHeading.set(null);
-    this.hasAbsoluteOrientation = false;
+    this.lastHeadingTs = 0;
   }
 
   protected async enableCompass(): Promise<void> {
@@ -227,13 +255,24 @@ export class QiblaPage implements OnInit {
       }
     }
     this.teardownCompass();
-    window.addEventListener('deviceorientationabsolute', this.orientationListener, true);
+
+    // Show calibration hint until the first real heading event arrives.
+    this.showCalibrationHint.set(true);
+
+    // Prefer `deviceorientationabsolute` (Android) — alpha is magnetic-north-referenced.
+    // Always also listen to `deviceorientation` for iOS (webkitCompassHeading path).
+    // headingFromDeviceOrientationEvent() gates non-absolute standard events → returns null.
+    if ('ondeviceorientationabsolute' in window) {
+      window.addEventListener('deviceorientationabsolute', this.orientationListener, true);
+    }
     window.addEventListener('deviceorientation', this.orientationListener, true);
+
     this.compassListening.set(true);
     if (this.orientationTimer) clearTimeout(this.orientationTimer);
     this.orientationTimer = setTimeout(() => {
       if (this.compassListening() && this.rawHeading() === null) {
         this.compassNoDataHint.set(true);
+        this.showCalibrationHint.set(false);
       }
     }, 4000);
   }

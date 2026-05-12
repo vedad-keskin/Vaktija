@@ -149,6 +149,9 @@
         @if (compassNoDataHint() && compassListening() && !compassDenied()) {
           <p class="qibla-banner" role="status">{{ labels().qiblaNoEventsHint }}</p>
         }
+        @if (showCalibrationHint() && compassListening() && !compassDenied()) {
+          <p class="qibla-banner" role="status">{{ labels().qiblaCalibrationHint }}</p>
+        }
       }
     </section>
   </main>

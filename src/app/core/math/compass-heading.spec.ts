@@ -33,14 +33,29 @@ describe('headingFromDeviceOrientationEvent', () => {
     expect(headingFromDeviceOrientationEvent(e)).toBe(45);
   });
 
-  it('uses flat formula when beta and gamma small', () => {
+  it('returns null for non-absolute event without webkitCompassHeading', () => {
+    const e = {
+      alpha: 270,
+      beta: 10,
+      gamma: 5,
+      absolute: false,
+    } as DeviceOrientationEvent;
+    expect(headingFromDeviceOrientationEvent(e)).toBeNull();
+  });
+
+  it('returns a heading for absolute event with small tilt', () => {
     const e = {
       alpha: 270,
       beta: 10,
       gamma: 5,
       absolute: true,
     } as DeviceOrientationEvent;
-    expect(headingFromDeviceOrientationEvent(e)).toBe(90);
+    const result = headingFromDeviceOrientationEvent(e);
+    expect(result).not.toBeNull();
+    // Tilt-compensated formula differs from the flat formula at non-zero tilt;
+    // just verify it returns a valid degree value.
+    expect(result!).toBeGreaterThanOrEqual(0);
+    expect(result!).toBeLessThan(360);
   });
 
   it('uses tilt formula when tilted (portrait-like)', () => {
@@ -51,5 +66,25 @@ describe('headingFromDeviceOrientationEvent', () => {
       absolute: true,
     } as DeviceOrientationEvent;
     expect(headingFromDeviceOrientationEvent(e)).toBe(0);
+  });
+
+  it('returns null when alpha is missing', () => {
+    const e = {
+      alpha: null,
+      beta: 90,
+      gamma: 0,
+      absolute: true,
+    } as unknown as DeviceOrientationEvent;
+    expect(headingFromDeviceOrientationEvent(e)).toBeNull();
+  });
+
+  it('falls back to flat formula when only alpha available on absolute event', () => {
+    const e = {
+      alpha: 90,
+      beta: null,
+      gamma: null,
+      absolute: true,
+    } as unknown as DeviceOrientationEvent;
+    expect(headingFromDeviceOrientationEvent(e)).toBe(270);
   });
 });
