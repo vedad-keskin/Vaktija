@@ -23,6 +23,8 @@ import { headingFromDeviceOrientationEvent } from '../../core/math/compass-headi
 
 type LocationSource = 'preset' | 'gps';
 
+const ALIGN_THRESHOLD_DEG = 4;
+
 function lerpAngleDeg(from: number, to: number, t: number): number {
   const diff = ((to - from + 540) % 360) - 180;
   return (from + diff * t + 360) % 360;
@@ -126,6 +128,14 @@ export class QiblaPage implements OnInit {
     // No heading yet: orient dial so Qibla aligns with top marker (flat-phone fallback).
     if (h == null) return -b;
     return -h;
+  });
+
+  protected readonly qiblaAligned = computed(() => {
+    const b = this.bearingDeg();
+    const h = this.smoothedHeading();
+    if (b == null || h == null) return false;
+    const diff = Math.abs(((b - h + 540) % 360) - 180);
+    return diff <= ALIGN_THRESHOLD_DEG;
   });
 
   ngOnInit(): void {

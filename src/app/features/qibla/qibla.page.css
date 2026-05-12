@@ -238,6 +238,14 @@
 .compass-action .qibla-enable-status--warn {
   color: #ffe2e2;
 }
+.compass-frame--aligned .compass-action {
+  border-color: rgba(45, 212, 168, 0.6);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.45), 0 0 20px var(--accent-glow);
+}
+.compass-frame--aligned .qibla-enable-min,
+.compass-frame--aligned .qibla-enable-status {
+  color: var(--accent-light);
+}
 .compass-apex {
   position: absolute;
   top: 0;
@@ -250,6 +258,10 @@
   border-right: 14px solid transparent;
   border-bottom: 22px solid var(--qibla-gold);
   filter: drop-shadow(0 3px 8px var(--qibla-gold-glow));
+}
+.compass-frame--aligned .compass-apex {
+  border-bottom-color: var(--accent);
+  filter: drop-shadow(0 0 12px var(--accent-glow));
 }
 .compass-apex::before {
   content: '';
@@ -284,6 +296,10 @@
     radial-gradient(circle at 50% 50%, var(--surface-elevated) 0%, var(--surface) 62%, var(--qibla-ink) 100%);
   border: 2px solid rgba(212, 175, 55, 0.35);
   overflow: hidden;
+}
+.compass-frame--aligned .compass-ring-bg {
+  border-color: rgba(45, 212, 168, 0.55);
+  box-shadow: 0 0 24px rgba(45, 212, 168, 0.18);
 }
 .compass-ornament {
   position: absolute;
@@ -345,6 +361,10 @@
   background: linear-gradient(180deg, var(--qibla-gold) 0%, rgba(212, 175, 55, 0.25) 88%, transparent);
   box-shadow: 0 0 14px var(--qibla-gold-glow);
 }
+.compass-frame--aligned .qibla-spoke-line {
+  background: linear-gradient(180deg, var(--accent) 0%, rgba(45, 212, 168, 0.25) 88%, transparent);
+  box-shadow: 0 0 18px var(--accent-glow);
+}
 .qibla-spoke-cap {
   position: absolute;
   left: 50%;
@@ -363,6 +383,10 @@
   line-height: 1;
   margin-bottom: 0;
   text-shadow: 0 0 10px var(--qibla-gold-glow);
+}
+.compass-frame--aligned .qibla-spoke-star {
+  color: var(--accent-light);
+  text-shadow: 0 0 12px var(--accent-glow);
 }
 .qibla-kaaba-icon {
   width: 18px;
@@ -384,6 +408,10 @@
   background: conic-gradient(from 0deg, var(--qibla-gold), var(--accent), var(--qibla-gold));
   box-shadow: 0 0 16px var(--accent-glow), inset 0 2px 4px rgba(255, 255, 255, 0.25);
   z-index: 5;
+}
+.compass-frame--aligned .compass-hub {
+  background: conic-gradient(from 0deg, var(--accent), #52e4c2, var(--accent));
+  box-shadow: 0 0 20px var(--accent-glow), inset 0 2px 4px rgba(255, 255, 255, 0.25);
 }
 .compass-hub-inner {
   position: absolute;
