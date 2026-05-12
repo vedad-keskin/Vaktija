@@ -2,6 +2,8 @@ import { describe, expect, it } from 'vitest';
 import {
   componentsFromOrientationQuaternion,
   headingDegFromOrientationQuaternion,
+  headingDegFromOrientationQuaternionBlended,
+  headingDegFromOrientationQuaternionTopAxis,
   headingMatchesVerticalEulerWithinTol,
   quaternionFromDeviceOrientationDeg,
 } from './orientation-quaternion-heading';
@@ -50,5 +52,20 @@ describe('headingDegFromOrientationQuaternion', () => {
     for (const [a, b, g] of samples) {
       expect(headingMatchesVerticalEulerWithinTol(a, b, g, 0.25)).toBe(true);
     }
+  });
+});
+
+describe('headingDegFromOrientationQuaternionTopAxis', () => {
+  it('matches flat alpha for pure z rotation', () => {
+    const q = quaternionFromDeviceOrientationDeg(90, 0, 0);
+    const h = headingDegFromOrientationQuaternionTopAxis(q.x, q.y, q.z, q.w);
+    expect(h).toBe(270);
+  });
+});
+
+describe('headingDegFromOrientationQuaternionBlended', () => {
+  it('returns a stable heading when flat', () => {
+    const h = headingDegFromOrientationQuaternionBlended(0, 0, 0, 1);
+    expect(h).toBe(0);
   });
 });

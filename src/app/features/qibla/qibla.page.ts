@@ -22,7 +22,7 @@ import {
 import { headingFromDeviceOrientationEvent, normalizeDeg } from '../../core/math/compass-heading';
 import {
   componentsFromOrientationQuaternion,
-  headingDegFromOrientationQuaternion,
+  headingDegFromOrientationQuaternionBlended,
 } from '../../core/math/orientation-quaternion-heading';
 import { estimateMagneticDeclinationDeg } from '../../core/math/magnetic-declination';
 
@@ -39,6 +39,9 @@ const SPIKE_JUMP_DEG = 42;
 const SPIKE_DAMP_ALPHA = 0.12;
 
 const SPIKE_FAST_DT_MS = 90;
+
+const FLAT_BLEND_START_DEG = 10;
+const FLAT_BLEND_END_DEG = 35;
 
 function lerpAngleDeg(from: number, to: number, t: number): number {
   const diff = ((to - from + 540) % 360) - 180;
@@ -114,7 +117,11 @@ export class QiblaPage implements OnInit {
   private rafFlushHandle = 0;
 
   private readonly orientationListener = (e: DeviceOrientationEvent) => {
-    const heading = headingFromDeviceOrientationEvent(e);
+    const heading = headingFromDeviceOrientationEvent(e, {
+      screenAngleDeg: this.getScreenAngleDeg(),
+      flatBlendStartDeg: FLAT_BLEND_START_DEG,
+      flatBlendEndDeg: FLAT_BLEND_END_DEG,
+    });
     if (heading === null) return;
     this.ingestHeadingSample(heading);
   };
@@ -146,6 +153,15 @@ export class QiblaPage implements OnInit {
     } else {
       window.addEventListener('deviceorientation', this.orientationListener, true);
     }
+  }
+
+  private getScreenAngleDeg(): number {
+    if (typeof window === 'undefined') return 0;
+    const raw =
+      typeof screen !== 'undefined' && typeof screen.orientation?.angle === 'number'
+        ? screen.orientation.angle
+        : (window as Window & { orientation?: number }).orientation ?? 0;
+    return normalizeDeg(typeof raw === 'number' ? raw : 0);
   }
 
   private ingestHeadingSample(heading: number): void {
@@ -225,7 +241,11 @@ export class QiblaPage implements OnInit {
       sensor.addEventListener('reading', () => {
         const parsed = componentsFromOrientationQuaternion(sensor.quaternion);
         if (!parsed) return;
-        const h = headingDegFromOrientationQuaternion(parsed.x, parsed.y, parsed.z, parsed.w);
+        const h = headingDegFromOrientationQuaternionBlended(parsed.x, parsed.y, parsed.z, parsed.w, {
+          screenAngleDeg: this.getScreenAngleDeg(),
+          flatBlendStartDeg: FLAT_BLEND_START_DEG,
+          flatBlendEndDeg: FLAT_BLEND_END_DEG,
+        });
         if (h === null) return;
         this.ingestHeadingSample(h);
       });

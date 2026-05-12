@@ -1,5 +1,32 @@
 import { compassHeadingVerticalDeg, normalizeDeg } from './compass-heading';
 
+export type HeadingBlendOptions = {
+  screenAngleDeg?: number;
+  flatBlendStartDeg?: number;
+  flatBlendEndDeg?: number;
+};
+
+const DEFAULT_FLAT_BLEND_START_DEG = 10;
+const DEFAULT_FLAT_BLEND_END_DEG = 35;
+
+function clamp01(value: number): number {
+  return Math.min(1, Math.max(0, value));
+}
+
+function smoothstep(edge0: number, edge1: number, x: number): number {
+  const t = clamp01((x - edge0) / (edge1 - edge0));
+  return t * t * (3 - 2 * t);
+}
+
+function lerpAngleDeg(from: number, to: number, t: number): number {
+  const diff = ((to - from + 540) % 360) - 180;
+  return normalizeDeg(from + diff * t);
+}
+
+function applyScreenAngle(heading: number, screenAngleDeg: number): number {
+  return normalizeDeg(heading + screenAngleDeg);
+}
+
 /**
  * `OrientationSensor.quaternion` is a four-element list `[qx, qy, qz, qw]` per W3C Orientation Sensor.
  * Some browsers also expose `DOMPointReadOnly`-like `{ x, y, z, w }`.
@@ -61,6 +88,78 @@ export function headingDegFromOrientationQuaternion(
   const heading = Math.atan2(east, north) * (180 / Math.PI);
   if (!Number.isFinite(heading)) return null;
   return normalizeDeg(heading);
+}
+
+/** Heading from the device top axis (+Y) projected onto the horizontal plane. */
+export function headingDegFromOrientationQuaternionTopAxis(
+  x: number,
+  y: number,
+  z: number,
+  w: number,
+): number | null {
+  if ([x, y, z, w].some((n) => !Number.isFinite(n))) return null;
+
+  const east = 2 * (x * y - z * w);
+  const north = 1 - 2 * (x * x + z * z);
+  const horizMagSq = east * east + north * north;
+  if (!Number.isFinite(horizMagSq) || horizMagSq < 1e-10) return null;
+
+  const heading = Math.atan2(east, north) * (180 / Math.PI);
+  if (!Number.isFinite(heading)) return null;
+  return normalizeDeg(heading);
+}
+
+/** Tilt angle (degrees) from flat using the device Z axis. */
+export function tiltDegFromOrientationQuaternion(
+  x: number,
+  y: number,
+  z: number,
+  w: number,
+): number | null {
+  if ([x, y, z, w].some((n) => !Number.isFinite(n))) return null;
+  const zUp = 1 - 2 * (x * x + y * y);
+  const flatness = Math.min(1, Math.max(-1, Math.abs(zUp)));
+  const tiltRad = Math.acos(flatness);
+  if (!Number.isFinite(tiltRad)) return null;
+  return tiltRad * (180 / Math.PI);
+}
+
+/**
+ * Blended heading that is stable when flat (top axis) and when vertical (screen normal).
+ */
+export function headingDegFromOrientationQuaternionBlended(
+  x: number,
+  y: number,
+  z: number,
+  w: number,
+  options: HeadingBlendOptions = {},
+): number | null {
+  const flatHeading = headingDegFromOrientationQuaternionTopAxis(x, y, z, w);
+  const verticalHeading = headingDegFromOrientationQuaternion(x, y, z, w);
+  if (flatHeading == null && verticalHeading == null) return null;
+
+  const screenAngleDeg =
+    typeof options.screenAngleDeg === 'number' && Number.isFinite(options.screenAngleDeg)
+      ? options.screenAngleDeg
+      : 0;
+
+  if (flatHeading == null) {
+    return applyScreenAngle(verticalHeading!, screenAngleDeg);
+  }
+  if (verticalHeading == null) {
+    return applyScreenAngle(flatHeading, screenAngleDeg);
+  }
+
+  const tiltDeg = tiltDegFromOrientationQuaternion(x, y, z, w);
+  if (tiltDeg == null) {
+    return applyScreenAngle(lerpAngleDeg(flatHeading, verticalHeading, 0.5), screenAngleDeg);
+  }
+
+  const start = options.flatBlendStartDeg ?? DEFAULT_FLAT_BLEND_START_DEG;
+  const end = options.flatBlendEndDeg ?? DEFAULT_FLAT_BLEND_END_DEG;
+  const t = smoothstep(Math.min(start, end), Math.max(start, end), tiltDeg);
+  const blended = lerpAngleDeg(flatHeading, verticalHeading, t);
+  return applyScreenAngle(blended, screenAngleDeg);
 }
 
 /**

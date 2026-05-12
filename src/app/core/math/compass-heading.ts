@@ -39,6 +39,33 @@ export function normalizeDeg(deg: number): number {
   return ((deg % 360) + 360) % 360;
 }
 
+export type HeadingBlendOptions = {
+  screenAngleDeg?: number;
+  flatBlendStartDeg?: number;
+  flatBlendEndDeg?: number;
+};
+
+const DEFAULT_FLAT_BLEND_START_DEG = 10;
+const DEFAULT_FLAT_BLEND_END_DEG = 35;
+
+function clamp01(value: number): number {
+  return Math.min(1, Math.max(0, value));
+}
+
+function smoothstep(edge0: number, edge1: number, x: number): number {
+  const t = clamp01((x - edge0) / (edge1 - edge0));
+  return t * t * (3 - 2 * t);
+}
+
+function lerpAngleDeg(from: number, to: number, t: number): number {
+  const diff = ((to - from + 540) % 360) - 180;
+  return normalizeDeg(from + diff * t);
+}
+
+function applyScreenAngle(heading: number, screenAngleDeg: number): number {
+  return normalizeDeg(heading + screenAngleDeg);
+}
+
 /**
  * Best-effort **magnetic-north** compass heading (degrees CW from magnetic north
  * to the top of the device).
@@ -49,11 +76,18 @@ export function normalizeDeg(deg: number): number {
  *   alpha; standard `deviceorientation` events have `absolute === false` and an
  *   arbitrary origin → rejected with `null`.
  */
-export function headingFromDeviceOrientationEvent(e: DeviceOrientationEvent): number | null {
+export function headingFromDeviceOrientationEvent(
+  e: DeviceOrientationEvent,
+  options: HeadingBlendOptions = {},
+): number | null {
+  const screenAngleDeg =
+    typeof options.screenAngleDeg === 'number' && Number.isFinite(options.screenAngleDeg)
+      ? options.screenAngleDeg
+      : 0;
   // --- iOS path: webkitCompassHeading is always magnetic-north-referenced ---
   const wk = (e as DeviceOrientationEvent & { webkitCompassHeading?: number }).webkitCompassHeading;
   if (wk != null && !Number.isNaN(wk)) {
-    return normalizeDeg(wk);
+    return applyScreenAngle(normalizeDeg(wk), screenAngleDeg);
   }
 
   // --- Android / other: reject non-absolute events ---
@@ -70,17 +104,23 @@ export function headingFromDeviceOrientationEvent(e: DeviceOrientationEvent): nu
   const beta = e.beta;
   const gamma = e.gamma;
 
-  // Always use the tilt-compensated formula — it handles every phone angle
-  // continuously without the heading-jump that a flat/vertical threshold causes.
+  const flatHeading = headingFromFlatAlpha(alpha);
+
+  // Blend flat and tilt-compensated headings based on device tilt.
   if (
     beta != null &&
     gamma != null &&
     !Number.isNaN(beta) &&
     !Number.isNaN(gamma)
   ) {
-    return compassHeadingVerticalDeg(alpha, beta, gamma);
+    const tiltDeg = Math.min(90, Math.hypot(beta, gamma));
+    const start = options.flatBlendStartDeg ?? DEFAULT_FLAT_BLEND_START_DEG;
+    const end = options.flatBlendEndDeg ?? DEFAULT_FLAT_BLEND_END_DEG;
+    const t = smoothstep(Math.min(start, end), Math.max(start, end), tiltDeg);
+    const blended = lerpAngleDeg(flatHeading, compassHeadingVerticalDeg(alpha, beta, gamma), t);
+    return applyScreenAngle(blended, screenAngleDeg);
   }
 
   // Fallback: only alpha available (rare; treat as flat).
-  return headingFromFlatAlpha(alpha);
+  return applyScreenAngle(flatHeading, screenAngleDeg);
 }

@@ -220,7 +220,7 @@ export const BS_LABELS: AppLabels = {
   qiblaCalibrateSkip: 'Preskoči',
   qiblaCalibrateDone: 'Gotovo',
 
-  qiblaFaqTitle: 'Često postavljana pitanja 2',
+  qiblaFaqTitle: 'Često postavljana pitanja 3',
   qiblaFaq: [
     {
       q: 'Zašto je potrebna kalibracija kompasa?',
