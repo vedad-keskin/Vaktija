@@ -19,20 +19,9 @@ import {
   computeDistanceToKaabaKm,
   computeQiblaBearingDeg,
 } from '../../core/math/qibla-bearing';
+import { headingFromDeviceOrientationEvent } from '../../core/math/compass-heading';
 
 type LocationSource = 'preset' | 'gps';
-
-function readCompassHeading(e: DeviceOrientationEvent): number | null {
-  const wk = (e as DeviceOrientationEvent & { webkitCompassHeading?: number })
-    .webkitCompassHeading;
-  if (wk != null && !Number.isNaN(wk)) {
-    return wk;
-  }
-  if (e.alpha != null && !Number.isNaN(e.alpha)) {
-    return (360 - e.alpha + 360) % 360;
-  }
-  return null;
-}
 
 function lerpAngleDeg(from: number, to: number, t: number): number {
   const diff = ((to - from + 540) % 360) - 180;
@@ -77,7 +66,7 @@ export class QiblaPage implements OnInit {
   private orientationTimer: ReturnType<typeof setTimeout> | null = null;
 
   private readonly orientationListener = (e: DeviceOrientationEvent) => {
-    const h = readCompassHeading(e);
+    const h = headingFromDeviceOrientationEvent(e);
     if (h === null) return;
     this.rawHeading.set(h);
     this.compassNoDataHint.set(false);
@@ -193,6 +182,7 @@ export class QiblaPage implements OnInit {
   }
 
   private teardownCompass(): void {
+    window.removeEventListener('deviceorientationabsolute', this.orientationListener, true);
     window.removeEventListener('deviceorientation', this.orientationListener, true);
     this.compassListening.set(false);
     this.rawHeading.set(null);
@@ -219,6 +209,7 @@ export class QiblaPage implements OnInit {
       }
     }
     this.teardownCompass();
+    window.addEventListener('deviceorientationabsolute', this.orientationListener, true);
     window.addEventListener('deviceorientation', this.orientationListener, true);
     this.compassListening.set(true);
     if (this.orientationTimer) clearTimeout(this.orientationTimer);
