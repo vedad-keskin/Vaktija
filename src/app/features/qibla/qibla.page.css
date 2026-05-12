@@ -19,29 +19,44 @@
 .qibla-hero { margin-bottom: 1.15rem; }
 .qibla-hero-row {
   display: grid;
-  grid-template-columns: auto 1fr;
+  grid-template-columns: 34px 1fr 34px;
   align-items: center;
   gap: 0.65rem;
 }
 .qibla-back {
-  display: inline-flex;
+  display: flex;
   align-items: center;
   justify-content: center;
   width: 34px;
   height: 34px;
   border-radius: 10px;
+
   color: var(--accent-light);
   text-decoration: none;
   background: var(--accent-surface);
   border: 2px solid rgba(45, 212, 168, 0.35);
+
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.28);
   transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+
+  padding: 0;
+  line-height: 1;
 }
+
 .qibla-back:hover {
   transform: translateY(-1px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35), 0 0 14px var(--accent-glow);
+  box-shadow:
+    0 8px 20px rgba(0, 0, 0, 0.35),
+    0 0 14px var(--accent-glow);
 }
-.qibla-back-icon { font-size: 1.0rem }
+
+.qibla-back-icon {
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
 .qibla-bismillah {
   font-size: clamp(1.35rem, 4vw, 1.65rem);
   line-height: 1.4;
@@ -58,7 +73,11 @@
   letter-spacing: 0.12em;
   text-transform: uppercase;
   text-align: center;
-  margin: 0.65rem 0 0;
+  margin: 0;
+}
+.qibla-hero-spacer {
+  width: 34px;
+  height: 34px;
 }
 .qibla-enable-min {
   appearance: none;

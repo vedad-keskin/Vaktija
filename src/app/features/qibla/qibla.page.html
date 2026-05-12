@@ -11,8 +11,9 @@
         >
           <span class="qibla-back-icon" aria-hidden="true">&lt;</span>
         </a>
+        <h1 class="qibla-title">{{ labels().qiblaSectionTitle }}</h1>
+        <span class="qibla-hero-spacer" aria-hidden="true"></span>
       </div>
-      <h1 class="qibla-title">{{ labels().qiblaSectionTitle }}</h1>
       <div class="qibla-ornament" aria-hidden="true"></div>
     </header>
 
@@ -148,12 +149,6 @@
         }
         @if (compassNoDataHint() && compassListening() && !compassDenied()) {
           <p class="qibla-banner" role="status">{{ labels().qiblaNoEventsHint }}</p>
-        }
-        @if (compassListening()) {
-          <p class="qibla-listening" role="status">
-            <span class="qibla-pulse" aria-hidden="true"></span>
-            {{ labels().qiblaCompassListening }}
-          </p>
         }
       }
     </section>
