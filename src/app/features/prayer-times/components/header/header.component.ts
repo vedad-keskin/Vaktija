@@ -1,4 +1,5 @@
 import { Component, inject, signal, HostListener } from '@angular/core';
+import { RouterLink, RouterLinkActive } from '@angular/router';
 import { LanguageService } from '../../../../core/services/language.service';
 import { ThemeSwitcherComponent } from '../theme-switcher/theme-switcher.component';
 import { MethodSwitcherComponent } from '../method-switcher/method-switcher.component';
@@ -6,12 +7,13 @@ import { MethodSwitcherComponent } from '../method-switcher/method-switcher.comp
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [ThemeSwitcherComponent, MethodSwitcherComponent],
+  imports: [RouterLink, RouterLinkActive, ThemeSwitcherComponent, MethodSwitcherComponent],
   templateUrl: './header.component.html',
   styleUrl: './header.component.css',
 })
 export class HeaderComponent {
   protected readonly langService = inject(LanguageService);
+  protected readonly labels = this.langService.labels;
   protected readonly currentLang = this.langService.lang;
   protected readonly menuOpen = signal(false);
 

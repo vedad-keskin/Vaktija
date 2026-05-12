@@ -1,15 +1,36 @@
 <header class="app-header">
-  <div class="header-left">
+  <a
+    routerLink="/"
+    class="header-brand"
+    [attr.aria-label]="labels().appTitle"
+  >
     <img
       src="assets/icons/logo-small.png?v=10"
-      alt="Vaktija logo"
+      alt=""
       class="header-logo"
+      width="38"
+      height="38"
     />
-    <h1 class="header-title">Vaktija</h1>
-  </div>
+    <h1 class="header-title">{{ labels().appTitle }}</h1>
+  </a>
 
   <!-- Desktop controls (hidden on mobile) -->
   <div class="header-desktop-controls">
+    <a
+      routerLink="/qibla"
+      routerLinkActive="header-qibla--active"
+      class="header-qibla"
+      [title]="labels().qiblaTileSubtitle"
+    >
+      <span class="header-qibla-pad">
+        <svg class="header-qibla-icon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none">
+          <circle cx="12" cy="12" r="9.5" stroke="currentColor" stroke-width="1.2" opacity="0.4" />
+          <path d="M12 12V4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+          <circle cx="12" cy="12" r="2" fill="currentColor" />
+        </svg>
+        <span class="header-qibla-text">{{ labels().qiblaTileTitle }}</span>
+      </span>
+    </a>
     <app-method-switcher />
     <app-theme-switcher />
     <div
@@ -34,6 +55,21 @@
 
   <!-- Mobile controls -->
   <div class="header-mobile-controls">
+    <a
+      routerLink="/qibla"
+      routerLinkActive="header-qibla--active"
+      class="header-qibla header-qibla--icon-only"
+      [title]="labels().qiblaTileSubtitle"
+      [attr.aria-label]="labels().qiblaTileTitle"
+    >
+      <span class="header-qibla-pad">
+        <svg class="header-qibla-icon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none">
+          <circle cx="12" cy="12" r="9.5" stroke="currentColor" stroke-width="1.2" opacity="0.4" />
+          <path d="M12 12V4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+          <circle cx="12" cy="12" r="2" fill="currentColor" />
+        </svg>
+      </span>
+    </a>
     <!-- Language switcher (always visible on mobile, click-anywhere toggle) -->
     <div
       class="lang-switcher"

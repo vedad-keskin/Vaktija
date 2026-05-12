@@ -10,12 +10,28 @@
   box-sizing: border-box;
 }
 
-/* ===== Left: Logo + Title ===== */
-.header-left {
+/* ===== Brand (home link) ===== */
+.header-brand {
   display: flex;
   align-items: center;
   gap: 0.75rem;
   min-width: 0;
+  flex-shrink: 0;
+  text-decoration: none;
+  color: inherit;
+  border-radius: 12px;
+  padding: 0.2rem 0.35rem 0.2rem 0.2rem;
+  margin: 0 -0.2rem 0 -0.2rem;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.header-brand:hover .header-title {
+  color: var(--accent-light);
+}
+
+.header-brand:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
 }
 
 .header-logo {
@@ -34,6 +50,88 @@
   margin: 0;
   letter-spacing: 0.5px;
   line-height: 1.2;
+  transition: color 0.2s ease;
+}
+
+/* ===== Qibla — matches .lang-switcher / .theme-switcher / .method-switcher shell + inner segment ===== */
+.header-qibla {
+  position: relative;
+  display: inline-flex;
+  align-items: stretch;
+  height: 38px;
+  box-sizing: border-box;
+  padding: 3px;
+  background: var(--surface);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  text-decoration: none;
+  flex-shrink: 0;
+  color: var(--text-muted);
+  -webkit-tap-highlight-color: transparent;
+  transition: border-color 0.25s ease, color 0.25s ease;
+}
+
+.header-qibla:hover {
+  color: var(--text-secondary);
+}
+
+.header-qibla:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.header-qibla-pad {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  padding: 0.35rem 0.65rem;
+  border-radius: 9px;
+  box-sizing: border-box;
+  min-width: 0;
+  align-self: stretch;
+  border: 1px solid transparent;
+  transition: background 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease, color 0.25s ease;
+}
+
+.header-qibla--active {
+  color: var(--accent);
+}
+
+.header-qibla--active .header-qibla-pad {
+  background: var(--accent-surface);
+  border: 1px solid rgba(45, 212, 168, 0.2);
+  box-shadow: 0 0 12px rgba(45, 212, 168, 0.08);
+}
+
+.header-qibla-icon {
+  flex-shrink: 0;
+}
+
+.header-qibla-text {
+  pointer-events: none;
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.header-qibla--icon-only {
+  width: 38px;
+  align-items: stretch;
+}
+
+.header-qibla--icon-only .header-qibla-pad {
+  flex: 1 1 auto;
+  padding: 0;
+  min-width: 0;
+}
+
+[data-theme='light'] .header-qibla--active .header-qibla-pad {
+  border-color: rgba(26, 171, 134, 0.25);
 }
 
 /* ===== Desktop Controls ===== */
