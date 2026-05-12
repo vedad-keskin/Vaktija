@@ -16,20 +16,37 @@
   width: 100%;
   box-sizing: border-box;
 }
+.qibla-hero { margin-bottom: 1.15rem; }
+.qibla-hero-row {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: 0.65rem;
+}
+.qibla-hero-action {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  min-height: 34px;
+}
 .qibla-back {
   display: inline-flex;
   align-items: center;
-  gap: 0.4rem;
-  font-size: 0.88rem;
-  color: var(--accent);
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  color: var(--accent-light);
   text-decoration: none;
-  margin-bottom: 1.25rem;
-  font-weight: 500;
-  transition: opacity 0.2s;
+  background: var(--accent-surface);
+  border: 1px solid rgba(45, 212, 168, 0.3);
+  transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
 }
-.qibla-back:hover { opacity: 0.85; }
-.qibla-back-icon { font-size: 1.1rem; line-height: 1; }
-.qibla-hero { text-align: center; margin-bottom: 1.15rem; }
+.qibla-back:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px var(--accent-glow);
+}
+.qibla-back-icon { font-size: 1.05rem; line-height: 1; }
 .qibla-bismillah {
   font-size: clamp(1.35rem, 4vw, 1.65rem);
   line-height: 1.4;
@@ -45,6 +62,39 @@
   color: var(--text-primary);
   letter-spacing: 0.12em;
   text-transform: uppercase;
+  text-align: center;
+  margin: 0.65rem 0 0;
+}
+.qibla-enable-min {
+  appearance: none;
+  border: 1px solid rgba(212, 175, 55, 0.4);
+  background: transparent;
+  color: var(--qibla-gold);
+  border-radius: 999px;
+  padding: 0.3rem 0.7rem;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+.qibla-enable-min:hover { box-shadow: 0 0 10px var(--qibla-gold-glow); }
+.qibla-enable-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.72rem;
+  color: var(--accent-light);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.qibla-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 8px var(--accent-glow);
 }
 .qibla-ornament {
   width: min(220px, 70%);

@@ -2,12 +2,30 @@
   <app-header />
 
   <main class="qibla-main">
-    <a routerLink="/" class="qibla-back">
-      <span class="qibla-back-icon" aria-hidden="true">←</span>
-      {{ labels().qiblaBackToTimes }}
-    </a>
-
     <header class="qibla-hero">
+      <div class="qibla-hero-row">
+        <a
+          routerLink="/"
+          class="qibla-back"
+          [attr.aria-label]="labels().qiblaBackToTimes"
+        >
+          <span class="qibla-back-icon" aria-hidden="true">&lt;</span>
+        </a>
+        <div class="qibla-hero-action">
+          @if (orientationSupported && !compassDenied()) {
+            @if (!compassListening()) {
+              <button type="button" class="qibla-enable-min" (click)="enableCompass()">
+                {{ labels().qiblaEnableCompass }}
+              </button>
+            } @else {
+              <span class="qibla-enable-status" role="status">
+                <span class="qibla-dot" aria-hidden="true"></span>
+                {{ labels().qiblaCompassListening }}
+              </span>
+            }
+          }
+        </div>
+      </div>
       <h1 class="qibla-title">{{ labels().qiblaSectionTitle }}</h1>
       <div class="qibla-ornament" aria-hidden="true"></div>
     </header>
@@ -128,11 +146,7 @@
         @if (compassNoDataHint() && compassListening() && !compassDenied()) {
           <p class="qibla-banner" role="status">{{ labels().qiblaNoEventsHint }}</p>
         }
-        @if (!compassListening()) {
-          <button type="button" class="qibla-primary" (click)="enableCompass()">
-            {{ labels().qiblaEnableCompass }}
-          </button>
-        } @else {
+        @if (compassListening()) {
           <p class="qibla-listening" role="status">
             <span class="qibla-pulse" aria-hidden="true"></span>
             {{ labels().qiblaCompassListening }}
