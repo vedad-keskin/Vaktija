@@ -12,6 +12,7 @@ import { Location } from '../../../../core/models/location.model';
 export class CitySelectorComponent implements OnInit {
   readonly locations = input<Location[]>([]);
   readonly selected = input<Location | null>(null);
+  readonly compact = input(false);
   readonly selectionChange = output<Location>();
 
   protected readonly searchTerm = signal('');

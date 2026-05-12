@@ -4,6 +4,9 @@
   max-width: 360px;
   margin: 0 auto;
 }
+.city-selector.compact {
+  max-width: 320px;
+}
 
 .selector-trigger {
   display: flex;
@@ -19,6 +22,11 @@
   font-family: var(--font-body);
   cursor: pointer;
   transition: border-color 0.2s, box-shadow 0.2s;
+}
+.city-selector.compact .selector-trigger {
+  padding: 0.5rem 0.75rem;
+  font-size: 0.88rem;
+  border-radius: 9px;
 }
 
 .selector-trigger:hover {
@@ -37,6 +45,10 @@
   color: var(--accent);
   flex-shrink: 0;
 }
+.city-selector.compact .selector-icon {
+  width: 16px;
+  height: 16px;
+}
 
 .selector-label {
   flex: 1;
@@ -49,6 +61,10 @@
   color: var(--text-secondary);
   transition: transform 0.2s;
   flex-shrink: 0;
+}
+.city-selector.compact .selector-chevron {
+  width: 14px;
+  height: 14px;
 }
 
 .selector-chevron.open {
@@ -84,6 +100,9 @@
   padding: 0.5rem;
   border-bottom: 1px solid var(--border-color);
 }
+.city-selector.compact .search-wrapper {
+  padding: 0.4rem;
+}
 
 .search-input {
   width: 100%;
@@ -95,6 +114,10 @@
   font-size: 0.875rem;
   font-family: var(--font-body);
   box-sizing: border-box;
+}
+.city-selector.compact .search-input {
+  padding: 0.4rem 0.65rem;
+  font-size: 0.84rem;
 }
 
 .search-input::placeholder {
@@ -112,6 +135,9 @@
   padding: 0.25rem 0;
   max-height: 240px;
   overflow-y: auto;
+}
+.city-selector.compact .city-list {
+  max-height: 200px;
 }
 
 .city-list::-webkit-scrollbar {
@@ -140,6 +166,10 @@
   cursor: pointer;
   transition: background 0.15s;
 }
+.city-selector.compact .city-option {
+  padding: 0.4rem 0.75rem;
+  font-size: 0.84rem;
+}
 
 .city-option:hover {
   background: var(--surface-hover);
@@ -155,4 +185,8 @@
   color: var(--text-muted);
   font-size: 0.875rem;
   text-align: center;
+}
+.city-selector.compact .no-results {
+  padding: 0.6rem 0.75rem;
+  font-size: 0.82rem;
 }

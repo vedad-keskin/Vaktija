@@ -117,8 +117,8 @@ export const EN_LABELS: AppLabels = {
   qiblaUnsupported:
     'This device or browser does not support compass orientation. Try a phone with Chrome or Safari.',
   qiblaPermissionDenied: 'Orientation access was denied. Allow motion sensors in settings.',
-  qiblaNoEventsHint: 'No compass signal yet. Move the phone in a gentle figure-eight to calibrate, then try again.',
-  qiblaCalibrationHint: 'Hold the phone away from metal and magnets for a steadier reading.',
+  qiblaNoEventsHint: 'No compass signal yet. Move in a small figure-eight.',
+  qiblaCalibrationHint: 'Keep away from metal or magnets for a steadier reading.',
   qiblaBearingLabel: 'Bearing',
   qiblaDistanceLabel: 'Distance',
   qiblaKaabaCaption: 'The Kaaba',

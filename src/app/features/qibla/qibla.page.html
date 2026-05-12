@@ -8,10 +8,8 @@
     </a>
 
     <header class="qibla-hero">
-      <p class="qibla-bismillah" aria-hidden="true">﷽</p>
       <h1 class="qibla-title">{{ labels().qiblaSectionTitle }}</h1>
       <div class="qibla-ornament" aria-hidden="true"></div>
-      <p class="qibla-lead">{{ labels().qiblaSectionSubtitle }}</p>
     </header>
 
     <section class="qibla-panel" aria-label="Location">
@@ -39,6 +37,7 @@
           <app-city-selector
             [locations]="locations()"
             [selected]="selectedPreset()"
+            [compact]="true"
             (selectionChange)="onPresetChange($event)"
           />
         </div>
@@ -81,6 +80,7 @@
           [class.compass-rotor--idle]="smoothedHeading() === null"
         >
           <div class="compass-ring-bg"></div>
+          <div class="compass-ornament" aria-hidden="true"></div>
           <svg class="compass-degrees" viewBox="0 0 200 200" aria-hidden="true">
             @for (n of tickMarks; track n) {
               <line
@@ -105,9 +105,9 @@
           @if (bearingDeg() !== null) {
             <div class="qibla-spoke" [style.transform]="'rotate(' + bearingDeg() + 'deg)'">
               <div class="qibla-spoke-line"></div>
-              <div class="qibla-spoke-cap">
+              <div class="qibla-spoke-cap" role="img" [attr.aria-label]="labels().qiblaKaabaCaption">
                 <span class="qibla-spoke-star" aria-hidden="true">✦</span>
-                <span class="qibla-spoke-label">{{ labels().qiblaKaabaCaption }}</span>
+                <span class="qibla-kaaba-icon" aria-hidden="true"></span>
               </div>
             </div>
           }
@@ -117,7 +117,6 @@
           </div>
         </div>
 
-        <p class="qibla-face-hint">{{ labels().qiblaFaceKaabaHint }}</p>
       </div>
 
       @if (!orientationSupported) {
@@ -129,8 +128,6 @@
         @if (compassNoDataHint() && compassListening() && !compassDenied()) {
           <p class="qibla-banner" role="status">{{ labels().qiblaNoEventsHint }}</p>
         }
-        <p class="qibla-calibration">{{ labels().qiblaCalibrationHint }}</p>
-
         @if (!compassListening()) {
           <button type="button" class="qibla-primary" (click)="enableCompass()">
             {{ labels().qiblaEnableCompass }}

@@ -64,10 +64,17 @@ export class QiblaPage implements OnInit {
 
   private geoWatchId: number | null = null;
   private orientationTimer: ReturnType<typeof setTimeout> | null = null;
+  private hasAbsoluteOrientation = false;
 
   private readonly orientationListener = (e: DeviceOrientationEvent) => {
+    const isAbsoluteEvent = e.type === 'deviceorientationabsolute';
     const h = headingFromDeviceOrientationEvent(e);
     if (h === null) return;
+    if (isAbsoluteEvent) {
+      this.hasAbsoluteOrientation = true;
+    } else if (this.hasAbsoluteOrientation) {
+      return;
+    }
     this.rawHeading.set(h);
     this.compassNoDataHint.set(false);
     const prev = this.smoothedHeading();
@@ -187,6 +194,7 @@ export class QiblaPage implements OnInit {
     this.compassListening.set(false);
     this.rawHeading.set(null);
     this.smoothedHeading.set(null);
+    this.hasAbsoluteOrientation = false;
   }
 
   protected async enableCompass(): Promise<void> {

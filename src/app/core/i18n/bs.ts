@@ -200,9 +200,8 @@ export const BS_LABELS: AppLabels = {
   qiblaUnsupported:
     'Ovaj uređaj ili preglednik ne podržava orijentaciju (kompas). Pokušajte na mobilnom telefonu u Chromeu ili Safariju.',
   qiblaPermissionDenied: 'Pristup orijentaciji je odbijen. Dozvolite senzore u postavkama.',
-  qiblaNoEventsHint:
-    'Nema signala kompasa. Polako zakrećite telefon u obliku osmice za kalibraciju ili pokušajte ponovo.',
-  qiblaCalibrationHint: 'Držite telefon podalje od metala i magneta radi tačnijeg smjera.',
+  qiblaNoEventsHint: 'Nema signala kompasa. Lagano nacrtajte osmicu.',
+  qiblaCalibrationHint: 'Držite telefon podalje od metala i magneta.',
   qiblaBearingLabel: 'Azimut',
   qiblaDistanceLabel: 'Udaljenost',
   qiblaKaabaCaption: 'Kaaba',
