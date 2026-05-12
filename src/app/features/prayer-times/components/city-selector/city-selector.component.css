@@ -5,7 +5,7 @@
   margin: 0 auto;
 }
 .city-selector.compact {
-  max-width: 320px;
+  max-width: 100%;
 }
 
 .selector-trigger {

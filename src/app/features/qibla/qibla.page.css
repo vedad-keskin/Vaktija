@@ -3,6 +3,9 @@
   display: flex;
   flex-direction: column;
   background: var(--surface);
+  min-width: 0;
+  /* Avoid horizontal scroll from vw-sized children vs padded main */
+  overflow-x: clip;
   --qibla-gold: #d4af37;
   --qibla-gold-dim: rgba(212, 175, 55, 0.45);
   --qibla-gold-glow: rgba(212, 175, 55, 0.22);
@@ -14,6 +17,7 @@
   max-width: 520px;
   margin: 0 auto;
   width: 100%;
+  min-width: 0;
   box-sizing: border-box;
 }
 .qibla-hero { margin-bottom: 1.15rem; }
@@ -206,12 +210,16 @@
   box-shadow: 0 0 12px var(--qibla-gold-glow);
 }
 .qibla-coords { text-align: center; font-size: 0.75rem; color: var(--text-muted); margin-top: 0.45rem; }
-.qibla-compass-section { text-align: center; }
+.qibla-compass-section { text-align: center; min-width: 0; }
 .compass-frame {
   position: relative;
-  width: min(92vw, 340px);
-  height: min(92vw, 340px);
-  margin: 0 auto 1rem;
+  /* Use parent width, not vw — vw ignores .qibla-main padding and causes horizontal scroll */
+  width: 100%;
+  max-width: 340px;
+  margin-inline: auto;
+  margin-bottom: 1rem;
+  aspect-ratio: 1;
+  height: auto;
 }
 .compass-action {
   position: absolute;
@@ -518,5 +526,5 @@
 }
 @media (min-width: 580px) {
   .qibla-main { padding: 1.35rem 1.25rem 3rem; }
-  .compass-frame { width: 360px; height: 360px; }
+  .compass-frame { max-width: 360px; }
 }
