@@ -1,0 +1,147 @@
+<div class="qibla-page">
+  <app-header />
+
+  <main class="qibla-main">
+    <a routerLink="/" class="qibla-back">
+      <span class="qibla-back-icon" aria-hidden="true">←</span>
+      {{ labels().qiblaBackToTimes }}
+    </a>
+
+    <header class="qibla-hero">
+      <p class="qibla-bismillah" aria-hidden="true">﷽</p>
+      <h1 class="qibla-title">{{ labels().qiblaSectionTitle }}</h1>
+      <div class="qibla-ornament" aria-hidden="true"></div>
+      <p class="qibla-lead">{{ labels().qiblaSectionSubtitle }}</p>
+    </header>
+
+    <section class="qibla-panel" aria-label="Location">
+      <div class="qibla-source-toggle" role="group">
+        <button
+          type="button"
+          class="source-btn"
+          [class.active]="source() === 'preset'"
+          (click)="setSource('preset')"
+        >
+          {{ labels().qiblaLocationPreset }}
+        </button>
+        <button
+          type="button"
+          class="source-btn"
+          [class.active]="source() === 'gps'"
+          (click)="setSource('gps')"
+        >
+          {{ labels().qiblaLocationGps }}
+        </button>
+      </div>
+
+      @if (source() === 'preset') {
+        <div class="qibla-city-wrap">
+          <app-city-selector
+            [locations]="locations()"
+            [selected]="selectedPreset()"
+            (selectionChange)="onPresetChange($event)"
+          />
+        </div>
+      }
+
+      @if (source() === 'gps') {
+        @if (gpsMessage(); as gErr) {
+          <p class="qibla-msg qibla-msg--error" role="status">{{ gErr }}</p>
+        } @else if (gpsLoading()) {
+          <p class="qibla-msg" role="status">{{ labels().qiblaGpsPending }}</p>
+        }
+      }
+
+      <div class="qibla-stats" [class.qibla-stats--dim]="effectivePoint() === null">
+        <div class="qibla-stat">
+          <span class="qibla-stat-label">{{ labels().qiblaBearingLabel }}</span>
+          <span class="qibla-stat-value">{{ bearingFmt() }}</span>
+        </div>
+        <div class="qibla-stat-q">
+          <span class="qibla-stat-dot"></span>
+        </div>
+        <div class="qibla-stat">
+          <span class="qibla-stat-label">{{ labels().qiblaDistanceLabel }}</span>
+          <span class="qibla-stat-value">{{ distanceFmt() }}</span>
+        </div>
+      </div>
+
+      @if (locationLine()) {
+        <p class="qibla-coords">{{ locationLine() }}</p>
+      }
+    </section>
+
+    <section class="qibla-compass-section" aria-label="Compass">
+      <div class="compass-frame">
+        <div class="compass-apex" aria-hidden="true"></div>
+
+        <div
+          class="compass-rotor"
+          [style.transform]="'rotate(' + dialRotateDeg() + 'deg)'"
+          [class.compass-rotor--idle]="smoothedHeading() === null"
+        >
+          <div class="compass-ring-bg"></div>
+          <svg class="compass-degrees" viewBox="0 0 200 200" aria-hidden="true">
+            @for (n of tickMarks; track n) {
+              <line
+                class="compass-tick-line"
+                [class.major]="n % 9 === 0"
+                x1="100"
+                y1="14"
+                x2="100"
+                [attr.y2]="n % 9 === 0 ? 28 : 22"
+                [attr.transform]="'rotate(' + n * 10 + ' 100 100)'"
+              />
+            }
+          </svg>
+
+          <div class="compass-inner-ring"></div>
+
+          <span class="cardinal cardinal-n">N</span>
+          <span class="cardinal cardinal-e">E</span>
+          <span class="cardinal cardinal-s">S</span>
+          <span class="cardinal cardinal-w">W</span>
+
+          @if (bearingDeg() !== null) {
+            <div class="qibla-spoke" [style.transform]="'rotate(' + bearingDeg() + 'deg)'">
+              <div class="qibla-spoke-line"></div>
+              <div class="qibla-spoke-cap">
+                <span class="qibla-spoke-star" aria-hidden="true">✦</span>
+                <span class="qibla-spoke-label">{{ labels().qiblaKaabaCaption }}</span>
+              </div>
+            </div>
+          }
+
+          <div class="compass-hub">
+            <div class="compass-hub-inner"></div>
+          </div>
+        </div>
+
+        <p class="qibla-face-hint">{{ labels().qiblaFaceKaabaHint }}</p>
+      </div>
+
+      @if (!orientationSupported) {
+        <p class="qibla-banner qibla-banner--warn" role="status">{{ labels().qiblaUnsupported }}</p>
+      } @else {
+        @if (compassDenied()) {
+          <p class="qibla-banner qibla-banner--warn" role="status">{{ labels().qiblaPermissionDenied }}</p>
+        }
+        @if (compassNoDataHint() && compassListening() && !compassDenied()) {
+          <p class="qibla-banner" role="status">{{ labels().qiblaNoEventsHint }}</p>
+        }
+        <p class="qibla-calibration">{{ labels().qiblaCalibrationHint }}</p>
+
+        @if (!compassListening()) {
+          <button type="button" class="qibla-primary" (click)="enableCompass()">
+            {{ labels().qiblaEnableCompass }}
+          </button>
+        } @else {
+          <p class="qibla-listening" role="status">
+            <span class="qibla-pulse" aria-hidden="true"></span>
+            {{ labels().qiblaCompassListening }}
+          </p>
+        }
+      }
+    </section>
+  </main>
+</div>

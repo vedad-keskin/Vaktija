@@ -99,4 +99,28 @@ export const EN_LABELS: AppLabels = {
   minSingular: 'minute',
   minFew: 'minutes',
   minPlural: 'minutes',
+
+  qiblaPageDocTitle: 'Qibla compass — Vaktija',
+  qiblaTileTitle: 'Qibla compass',
+  qiblaTileSubtitle: 'Direction to the Kaaba in Makkah',
+  qiblaBackToTimes: 'Back to prayer times',
+  qiblaSectionTitle: 'Qibla',
+  qiblaSectionSubtitle:
+    'Align the marker with the top of your phone, then turn slowly until you are facing the Qibla.',
+  qiblaLocationPreset: 'City from list',
+  qiblaLocationGps: 'My location',
+  qiblaGpsPending: 'Getting your location…',
+  qiblaGpsError: 'Could not get location. Check permissions and GPS.',
+  qiblaGpsDenied: 'Location was denied. Enable it in your browser settings.',
+  qiblaEnableCompass: 'Enable compass',
+  qiblaCompassListening: 'Compass active',
+  qiblaUnsupported:
+    'This device or browser does not support compass orientation. Try a phone with Chrome or Safari.',
+  qiblaPermissionDenied: 'Orientation access was denied. Allow motion sensors in settings.',
+  qiblaNoEventsHint: 'No compass signal yet. Move the phone in a gentle figure-eight to calibrate, then try again.',
+  qiblaCalibrationHint: 'Hold the phone away from metal and magnets for a steadier reading.',
+  qiblaBearingLabel: 'Bearing',
+  qiblaDistanceLabel: 'Distance',
+  qiblaKaabaCaption: 'The Kaaba',
+  qiblaFaceKaabaHint: 'When the top marker points ahead, you are facing the Qibla.',
 };

@@ -68,6 +68,29 @@ export interface AppLabels {
   minSingular: string;
   minFew: string;
   minPlural: string;
+
+  /** Qibla compass */
+  qiblaPageDocTitle: string;
+  qiblaTileTitle: string;
+  qiblaTileSubtitle: string;
+  qiblaBackToTimes: string;
+  qiblaSectionTitle: string;
+  qiblaSectionSubtitle: string;
+  qiblaLocationPreset: string;
+  qiblaLocationGps: string;
+  qiblaGpsPending: string;
+  qiblaGpsError: string;
+  qiblaGpsDenied: string;
+  qiblaEnableCompass: string;
+  qiblaCompassListening: string;
+  qiblaUnsupported: string;
+  qiblaPermissionDenied: string;
+  qiblaNoEventsHint: string;
+  qiblaCalibrationHint: string;
+  qiblaBearingLabel: string;
+  qiblaDistanceLabel: string;
+  qiblaKaabaCaption: string;
+  qiblaFaceKaabaHint: string;
 }
 
 /**
@@ -160,4 +183,28 @@ export const BS_LABELS: AppLabels = {
   minSingular: 'minutu',
   minFew: 'minute',
   minPlural: 'minuta',
+
+  qiblaPageDocTitle: 'Kibla kompas — Vaktija',
+  qiblaTileTitle: 'Kibla kompas',
+  qiblaTileSubtitle: 'Smjer prema Kabi u Mekki',
+  qiblaBackToTimes: 'Natrag na vremena namaza',
+  qiblaSectionTitle: 'Kibla',
+  qiblaSectionSubtitle: 'Poravnajte strelicu s vrhom telefona i lagano pomičite uređaj dok se ne uklopi.',
+  qiblaLocationPreset: 'Grad s liste',
+  qiblaLocationGps: 'Moja lokacija',
+  qiblaGpsPending: 'Određujem lokaciju…',
+  qiblaGpsError: 'Nije moguće dobiti lokaciju. Provjerite dozvole i GPS.',
+  qiblaGpsDenied: 'Lokacija je odbijena. Uključite je u postavkama preglednika.',
+  qiblaEnableCompass: 'Uključi kompas',
+  qiblaCompassListening: 'Kompas aktivan',
+  qiblaUnsupported:
+    'Ovaj uređaj ili preglednik ne podržava orijentaciju (kompas). Pokušajte na mobilnom telefonu u Chromeu ili Safariju.',
+  qiblaPermissionDenied: 'Pristup orijentaciji je odbijen. Dozvolite senzore u postavkama.',
+  qiblaNoEventsHint:
+    'Nema signala kompasa. Polako zakrećite telefon u obliku osmice za kalibraciju ili pokušajte ponovo.',
+  qiblaCalibrationHint: 'Držite telefon podalje od metala i magneta radi tačnijeg smjera.',
+  qiblaBearingLabel: 'Azimut',
+  qiblaDistanceLabel: 'Udaljenost',
+  qiblaKaabaCaption: 'Kaaba',
+  qiblaFaceKaabaHint: 'Kada strelica na gornjem rubu pokazuje naprijed, licem ste okrenuti prema kibli.',
 };
