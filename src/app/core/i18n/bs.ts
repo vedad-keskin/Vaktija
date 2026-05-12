@@ -75,7 +75,6 @@ export interface AppLabels {
   qiblaTileSubtitle: string;
   qiblaBackToTimes: string;
   qiblaSectionTitle: string;
-  qiblaSectionSubtitle: string;
   qiblaLocationPreset: string;
   qiblaLocationGps: string;
   qiblaGpsPending: string;
@@ -197,7 +196,6 @@ export const BS_LABELS: AppLabels = {
   qiblaTileSubtitle: 'Smjer prema Kabi u Mekki',
   qiblaBackToTimes: 'Natrag na vremena namaza',
   qiblaSectionTitle: 'Kibla',
-  qiblaSectionSubtitle: 'Poravnajte strelicu s vrhom telefona i lagano pomičite uređaj dok se ne uklopi.',
   qiblaLocationPreset: 'Grad s liste',
   qiblaLocationGps: 'Moja lokacija',
   qiblaGpsPending: 'Određujem lokaciju…',
@@ -220,12 +218,17 @@ export const BS_LABELS: AppLabels = {
   qiblaCalibrateSkip: 'Preskoči',
   qiblaCalibrateDone: 'Gotovo',
 
-  qiblaFaqTitle: 'Često postavljana pitanja 3',
+  qiblaFaqTitle: 'Često postavljana pitanja',
   qiblaFaq: [
     {
       q: 'Zašto je potrebna kalibracija kompasa?',
       a: 'Digitalni kompas koristi magnetometar ugrađen u vaš uređaj, koji je veoma osjetljiv na magnetne smetnje. Kalibracijom osvježavate kompas kako bi pokazivao ispravan smjer.',
     },
+    {
+      q: 'Kako držati telefon pri očitavanju kompasa?',
+      a:
+        'Poravnajte oznaku s vrhom telefona i lagano se okrećite dok ne budete okrenuti prema kibli. Najpraktičnije je držati telefon uspravno (portretno) ispred sebe, s ekranom okrenutim prema licu — blagi nagib prema ili od sebe ne smeta. Telefon možete držati i vodoravno, s ekranom okrenutim prema gore, kao klasični kompas. Pri očitavanju smjera držite telefon mirno i polako se okrećite; izbjegavajte metalne površine, punjače i maske s magnetima.',
+      },
     {
       q: 'Zašto je potrebna lokacija za pronalaženje kible?',
       a: 'Smjer kible zavisi od vaše tačne fizičke lokacije. Alat privremeno pristupa GPS-u samo kako bi izračunao precizan matematički ugao između vaših koordinata i Kabe. Podaci o lokaciji obrađuju se lokalno u pregledniku i nigdje se ne pohranjuju niti prate.',

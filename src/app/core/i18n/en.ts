@@ -105,8 +105,6 @@ export const EN_LABELS: AppLabels = {
   qiblaTileSubtitle: 'Direction to the Kaaba in Makkah',
   qiblaBackToTimes: 'Back to prayer times',
   qiblaSectionTitle: 'Qibla',
-  qiblaSectionSubtitle:
-    'Align the marker with the top of your phone, then turn slowly until you are facing the Qibla.',
   qiblaLocationPreset: 'City from list',
   qiblaLocationGps: 'My location',
   qiblaGpsPending: 'Getting your location…',
@@ -134,6 +132,11 @@ export const EN_LABELS: AppLabels = {
     {
       q: 'Why does my compass need calibration?',
       a: 'Digital compasses rely on your device\'s built-in magnetometer, which is highly sensitive to magnetic interference. Device calibration is used for refreshing the device compass to show correct directions.',
+    },
+    {
+      q: 'How should I hold my phone to read the compass?',
+      a:
+        'Align the marker with the top of your phone, then turn slowly until you are facing the Qibla. Portrait in front of you with the screen toward your face works best—a slight tilt toward or away from you is fine. You can also lay it flat, screen facing up like a classic compass. Keep steady and turn slowly to read direction; avoid metal surfaces, chargers, and magnetic-backed cases.',
     },
     {
       q: 'Why does the Qibla finder require my location?',
