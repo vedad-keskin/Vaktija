@@ -116,6 +116,25 @@
           </div>
         }
 
+        <div class="compass-action">
+          @if (orientationSupported) {
+            @if (compassDenied()) {
+              <span class="qibla-enable-status qibla-enable-status--warn" role="status">
+                {{ labels().qiblaPermissionDenied }}
+              </span>
+            } @else if (!compassListening() && !showCalibrationOverlay()) {
+              <button type="button" class="qibla-enable-min" (click)="requestCompass()">
+                {{ labels().qiblaEnableCompass }}
+              </button>
+            } @else if (compassListening()) {
+              <span class="qibla-enable-status" role="status">
+                <span class="qibla-dot" aria-hidden="true"></span>
+                {{ labels().qiblaCompassListening }}
+              </span>
+            }
+          }
+        </div>
+
         <div class="compass-frame">
           <div class="compass-apex" aria-hidden="true"></div>
 
@@ -195,25 +214,6 @@
             <div class="compass-hub-inner"></div>
           </div>
           </div>
-        </div>
-
-        <div class="compass-action">
-          @if (orientationSupported) {
-            @if (compassDenied()) {
-              <span class="qibla-enable-status qibla-enable-status--warn" role="status">
-                {{ labels().qiblaPermissionDenied }}
-              </span>
-            } @else if (!compassListening() && !showCalibrationOverlay()) {
-              <button type="button" class="qibla-enable-min" (click)="requestCompass()">
-                {{ labels().qiblaEnableCompass }}
-              </button>
-            } @else if (compassListening()) {
-              <span class="qibla-enable-status" role="status">
-                <span class="qibla-dot" aria-hidden="true"></span>
-                {{ labels().qiblaCompassListening }}
-              </span>
-            }
-          }
         </div>
       </div>
       @if (!orientationSupported) {
