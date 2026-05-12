@@ -1,6 +1,38 @@
 import { compassHeadingVerticalDeg, normalizeDeg } from './compass-heading';
 
 /**
+ * `OrientationSensor.quaternion` is a four-element list `[qx, qy, qz, qw]` per W3C Orientation Sensor.
+ * Some browsers also expose `DOMPointReadOnly`-like `{ x, y, z, w }`.
+ */
+export function componentsFromOrientationQuaternion(
+  q: DOMPointReadOnly | ReadonlyArray<number> | null | undefined,
+): { x: number; y: number; z: number; w: number } | null {
+  if (q == null) return null;
+  const maybePoint = q as DOMPointReadOnly;
+  if (
+    typeof maybePoint.x === 'number' &&
+    typeof maybePoint.y === 'number' &&
+    typeof maybePoint.z === 'number' &&
+    typeof maybePoint.w === 'number' &&
+    Number.isFinite(maybePoint.x) &&
+    Number.isFinite(maybePoint.w)
+  ) {
+    return { x: maybePoint.x, y: maybePoint.y, z: maybePoint.z, w: maybePoint.w };
+  }
+  const arr = q as ReadonlyArray<number>;
+  if (
+    arr.length >= 4 &&
+    typeof arr[0] === 'number' &&
+    typeof arr[3] === 'number' &&
+    Number.isFinite(arr[0]) &&
+    Number.isFinite(arr[3])
+  ) {
+    return { x: arr[0], y: arr[1], z: arr[2], w: arr[3] };
+  }
+  return null;
+}
+
+/**
  * Compass heading (degrees CW from magnetic north toward the top edge of the device)
  * from an `AbsoluteOrientationSensor` quaternion.
  *
@@ -17,16 +49,17 @@ export function headingDegFromOrientationQuaternion(
   z: number,
   w: number,
 ): number | null {
-  if ([x, y, z, w].some((n) => Number.isNaN(n))) return null;
+  if ([x, y, z, w].some((n) => !Number.isFinite(n))) return null;
 
   // Unit quaternion → rotation matrix R maps device → Earth (ENU).
   // Screen normal out the back ≈ −Z_device; R * [0,0,-1]^T uses negative third column.
   const east = -2 * (x * z + y * w);
   const north = -2 * (y * z - x * w);
   const horizMagSq = east * east + north * north;
-  if (horizMagSq < 1e-10) return null;
+  if (!Number.isFinite(horizMagSq) || horizMagSq < 1e-10) return null;
 
   const heading = Math.atan2(east, north) * (180 / Math.PI);
+  if (!Number.isFinite(heading)) return null;
   return normalizeDeg(heading);
 }
 

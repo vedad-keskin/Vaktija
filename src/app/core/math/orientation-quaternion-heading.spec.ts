@@ -1,9 +1,30 @@
 import { describe, expect, it } from 'vitest';
 import {
+  componentsFromOrientationQuaternion,
   headingDegFromOrientationQuaternion,
   headingMatchesVerticalEulerWithinTol,
   quaternionFromDeviceOrientationDeg,
 } from './orientation-quaternion-heading';
+
+describe('componentsFromOrientationQuaternion', () => {
+  it('parses W3C FrozenArray order [qx, qy, qz, qw]', () => {
+    const q = quaternionFromDeviceOrientationDeg(120, 45, -10);
+    const arr = [q.x, q.y, q.z, q.w] as const;
+    const p = componentsFromOrientationQuaternion(arr);
+    expect(p).toEqual({ x: q.x, y: q.y, z: q.z, w: q.w });
+  });
+
+  it('parses DOMPoint-like objects', () => {
+    const q = quaternionFromDeviceOrientationDeg(45, 30, 10);
+    const p = componentsFromOrientationQuaternion({
+      x: q.x,
+      y: q.y,
+      z: q.z,
+      w: q.w,
+    } as DOMPointReadOnly);
+    expect(p).toEqual({ x: q.x, y: q.y, z: q.z, w: q.w });
+  });
+});
 
 describe('headingDegFromOrientationQuaternion', () => {
   it('returns null when horizontal projection vanishes (identity rotation)', () => {

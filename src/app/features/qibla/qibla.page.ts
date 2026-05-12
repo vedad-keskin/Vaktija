@@ -20,7 +20,10 @@ import {
   computeQiblaBearingDeg,
 } from '../../core/math/qibla-bearing';
 import { headingFromDeviceOrientationEvent, normalizeDeg } from '../../core/math/compass-heading';
-import { headingDegFromOrientationQuaternion } from '../../core/math/orientation-quaternion-heading';
+import {
+  componentsFromOrientationQuaternion,
+  headingDegFromOrientationQuaternion,
+} from '../../core/math/orientation-quaternion-heading';
 import { estimateMagneticDeclinationDeg } from '../../core/math/magnetic-declination';
 
 type LocationSource = 'preset' | 'gps';
@@ -44,7 +47,7 @@ function lerpAngleDeg(from: number, to: number, t: number): number {
 
 /** Minimal typing — `AbsoluteOrientationSensor` is not in all TS lib targets. */
 type AbsoluteOrientationSensorInstance = {
-  quaternion: DOMPointReadOnly | null;
+  quaternion: DOMPointReadOnly | ReadonlyArray<number> | null;
   start(): Promise<void>;
   stop(): void;
   addEventListener(
@@ -146,6 +149,8 @@ export class QiblaPage implements OnInit {
   }
 
   private ingestHeadingSample(heading: number): void {
+    if (!Number.isFinite(heading)) return;
+
     if (this.showCalibrationHint()) {
       this.showCalibrationHint.set(false);
     }
@@ -218,9 +223,9 @@ export class QiblaPage implements OnInit {
       const sensor = new ctor({ frequency: 50, referenceFrame: 'device' });
 
       sensor.addEventListener('reading', () => {
-        const q = sensor.quaternion;
-        if (!q) return;
-        const h = headingDegFromOrientationQuaternion(q.x, q.y, q.z, q.w);
+        const parsed = componentsFromOrientationQuaternion(sensor.quaternion);
+        if (!parsed) return;
+        const h = headingDegFromOrientationQuaternion(parsed.x, parsed.y, parsed.z, parsed.w);
         if (h === null) return;
         this.ingestHeadingSample(h);
       });
