@@ -90,7 +90,7 @@
                 <path
                   d="M60,40 C60,10 90,10 90,40 C90,70 60,70 60,40 C60,10 30,10 30,40 C30,70 60,70 60,40"
                   fill="none"
-                  stroke="rgba(212,175,55,0.35)"
+                  stroke="rgba(201,162,39,0.32)"
                   stroke-width="2"
                   stroke-dasharray="4 3"
                 />
@@ -109,16 +109,36 @@
         </div>
       }
 
-      <div class="compass-frame" [class.compass-frame--aligned]="qiblaAligned()">
-        <div class="compass-apex" aria-hidden="true"></div>
+      <div class="compass-stack" [class.compass-stack--aligned]="qiblaAligned()">
+        <div class="compass-frame">
+          <div class="compass-apex" aria-hidden="true"></div>
 
-        <div
-          class="compass-rotor"
-          [style.transform]="'rotate(' + dialRotateDeg() + 'deg)'"
-          [class.compass-rotor--idle]="smoothedHeading() === null"
-        >
-          <div class="compass-ring-bg"></div>
-          <div class="compass-ornament" aria-hidden="true"></div>
+          <svg class="compass-decorative-ring" viewBox="0 0 200 200" aria-hidden="true">
+            <circle
+              cx="100"
+              cy="100"
+              r="93"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="0.65"
+              opacity="0.35"
+            />
+            <path
+              fill="none"
+              stroke="currentColor"
+              stroke-width="0.55"
+              opacity="0.4"
+              d="M100 22 L124 78 L184 78 L136 122 L160 178 L100 142 L40 178 L64 122 L16 78 L76 78 Z"
+            />
+          </svg>
+
+          <div
+            class="compass-rotor"
+            [style.transform]="'rotate(' + dialRotateDeg() + 'deg)'"
+            [class.compass-rotor--idle]="smoothedHeading() === null"
+          >
+            <div class="compass-ring-bg"></div>
+            <div class="compass-ornament" aria-hidden="true"></div>
           <svg class="compass-degrees" viewBox="0 0 200 200" aria-hidden="true">
             @for (n of tickMarks; track n) {
               <line
@@ -145,13 +165,29 @@
               <div class="qibla-spoke-line"></div>
               <div class="qibla-spoke-cap" role="img" [attr.aria-label]="labels().qiblaKaabaCaption">
                 <span class="qibla-spoke-star" aria-hidden="true">✦</span>
-                <span class="qibla-kaaba-icon" aria-hidden="true"></span>
+                <svg
+                  class="qibla-kaaba-svg"
+                  viewBox="0 0 32 40"
+                  aria-hidden="true"
+                  focusable="false"
+                >
+                  <rect x="5" y="14" width="22" height="24" rx="1.5" fill="#141210" />
+                  <rect x="5" y="14" width="22" height="6" rx="1" fill="#c9a227" />
+                  <rect x="5" y="18" width="22" height="1.2" fill="#e4c76b" opacity="0.45" />
+                  <path
+                    d="M14 26 Q16 23 18 26 L18 34 Q16 36 14 34 Z"
+                    fill="#0d0b09"
+                    opacity="0.92"
+                  />
+                  <rect x="15.5" y="27" width="1" height="5" rx="0.3" fill="#c9a227" opacity="0.65" />
+                </svg>
               </div>
             </div>
           }
 
           <div class="compass-hub">
             <div class="compass-hub-inner"></div>
+          </div>
           </div>
         </div>
 
