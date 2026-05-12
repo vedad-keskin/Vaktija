@@ -11,20 +11,6 @@
         >
           <span class="qibla-back-icon" aria-hidden="true">&lt;</span>
         </a>
-        <div class="qibla-hero-action">
-          @if (orientationSupported && !compassDenied()) {
-            @if (!compassListening()) {
-              <button type="button" class="qibla-enable-min" (click)="enableCompass()">
-                {{ labels().qiblaEnableCompass }}
-              </button>
-            } @else {
-              <span class="qibla-enable-status" role="status">
-                <span class="qibla-dot" aria-hidden="true"></span>
-                {{ labels().qiblaCompassListening }}
-              </span>
-            }
-          }
-        </div>
       </div>
       <h1 class="qibla-title">{{ labels().qiblaSectionTitle }}</h1>
       <div class="qibla-ornament" aria-hidden="true"></div>
@@ -135,8 +121,25 @@
           </div>
         </div>
 
+        <div class="compass-action">
+          @if (orientationSupported) {
+            @if (compassDenied()) {
+              <span class="qibla-enable-status qibla-enable-status--warn" role="status">
+                {{ labels().qiblaPermissionDenied }}
+              </span>
+            } @else if (!compassListening()) {
+              <button type="button" class="qibla-enable-min" (click)="enableCompass()">
+                {{ labels().qiblaEnableCompass }}
+              </button>
+            } @else {
+              <span class="qibla-enable-status" role="status">
+                <span class="qibla-dot" aria-hidden="true"></span>
+                {{ labels().qiblaCompassListening }}
+              </span>
+            }
+          }
+        </div>
       </div>
-
       @if (!orientationSupported) {
         <p class="qibla-banner qibla-banner--warn" role="status">{{ labels().qiblaUnsupported }}</p>
       } @else {
