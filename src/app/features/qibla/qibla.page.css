@@ -57,6 +57,7 @@
   justify-content: center;
   line-height: 1;
   transform: translateX(0.5px);
+  transform: translateY(-0.6px);
 }
 .qibla-bismillah {
   font-size: clamp(1.35rem, 4vw, 1.65rem);
