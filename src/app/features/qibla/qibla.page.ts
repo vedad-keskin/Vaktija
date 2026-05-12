@@ -20,19 +20,43 @@ import {
   computeQiblaBearingDeg,
 } from '../../core/math/qibla-bearing';
 import { headingFromDeviceOrientationEvent, normalizeDeg } from '../../core/math/compass-heading';
+import { headingDegFromOrientationQuaternion } from '../../core/math/orientation-quaternion-heading';
 import { estimateMagneticDeclinationDeg } from '../../core/math/magnetic-declination';
 
 type LocationSource = 'preset' | 'gps';
 
 const ALIGN_THRESHOLD_DEG = 5;
 
-/** Time constant for the exponential moving-average heading filter (ms). */
-const SMOOTH_TIME_CONSTANT_MS = 120;
+/** EMA time constant for compass heading (ms); larger → steadier needle. */
+const SMOOTH_TIME_CONSTANT_MS = 380;
+
+/** Ignore magnetometer spikes: jumps larger than this within {@link SPIKE_FAST_DT_MS}. */
+const SPIKE_JUMP_DEG = 42;
+
+const SPIKE_DAMP_ALPHA = 0.12;
+
+const SPIKE_FAST_DT_MS = 90;
 
 function lerpAngleDeg(from: number, to: number, t: number): number {
   const diff = ((to - from + 540) % 360) - 180;
   return (from + diff * t + 360) % 360;
 }
+
+/** Minimal typing — `AbsoluteOrientationSensor` is not in all TS lib targets. */
+type AbsoluteOrientationSensorInstance = {
+  quaternion: DOMPointReadOnly | null;
+  start(): Promise<void>;
+  stop(): void;
+  addEventListener(
+    type: 'reading' | 'error',
+    listener: (this: AbsoluteOrientationSensorInstance, ev: Event) => void,
+  ): void;
+};
+
+type AbsoluteOrientationSensorConstructor = new (options?: {
+  frequency?: number;
+  referenceFrame?: 'device' | 'screen';
+}) => AbsoluteOrientationSensorInstance;
 
 @Component({
   selector: 'app-qibla-page',
@@ -66,8 +90,6 @@ export class QiblaPage implements OnInit {
   protected readonly showCalibrationOverlay = signal(false);
   /** Show a transient calibration hint banner. */
   protected readonly showCalibrationHint = signal(false);
-  protected readonly prefersReducedMotion =
-    typeof matchMedia !== 'undefined' && matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   protected readonly rawHeading = signal<number | null>(null);
   protected readonly smoothedHeading = signal<number | null>(null);
@@ -77,34 +99,21 @@ export class QiblaPage implements OnInit {
 
   private geoWatchId: number | null = null;
   private orientationTimer: ReturnType<typeof setTimeout> | null = null;
-  /** Timestamp of the last heading sample (for time-based smoothing). */
+
+  private absoluteSensor: AbsoluteOrientationSensorInstance | null = null;
+
+  /** Fusion state updated every sensor tick; signals flushed once per animation frame. */
+  private internalSmoothed: number | null = null;
+  private lastRawHeadingInternal: number | null = null;
   private lastHeadingTs = 0;
 
+  private rafFlushScheduled = false;
+  private rafFlushHandle = 0;
+
   private readonly orientationListener = (e: DeviceOrientationEvent) => {
-    const h = headingFromDeviceOrientationEvent(e);
-    if (h === null) return;
-
-    // Dismiss the calibration hint once real data arrives.
-    if (this.showCalibrationHint()) {
-      this.showCalibrationHint.set(false);
-    }
-
-    this.rawHeading.set(h);
-    this.compassNoDataHint.set(false);
-
-    // --- Time-based exponential moving average ---
-    const now = performance.now();
-    const dt = this.lastHeadingTs ? now - this.lastHeadingTs : 0;
-    this.lastHeadingTs = now;
-
-    const prev = this.smoothedHeading();
-    if (prev === null || this.prefersReducedMotion || dt === 0) {
-      this.smoothedHeading.set(h);
-    } else {
-      // alpha = 1 - e^(-dt/tau) → identical smoothing regardless of sensor Hz
-      const alpha = 1 - Math.exp(-dt / SMOOTH_TIME_CONSTANT_MS);
-      this.smoothedHeading.set(lerpAngleDeg(prev, h, alpha));
-    }
+    const heading = headingFromDeviceOrientationEvent(e);
+    if (heading === null) return;
+    this.ingestHeadingSample(heading);
   };
 
   constructor() {
@@ -118,6 +127,118 @@ export class QiblaPage implements OnInit {
       this.clearGeoWatch();
       if (this.orientationTimer) clearTimeout(this.orientationTimer);
     });
+  }
+
+  /** iOS / iPadOS need `deviceorientation` (`webkitCompassHeading`); Android Chrome uses `deviceorientationabsolute`. */
+  private isIosLike(): boolean {
+    const ua = navigator.userAgent;
+    if (/iP(ad|hone|od)/i.test(ua)) return true;
+    return navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1;
+  }
+
+  private registerOrientationListeners(): void {
+    const ios = this.isIosLike();
+    if ('ondeviceorientationabsolute' in window && !ios) {
+      window.addEventListener('deviceorientationabsolute', this.orientationListener, true);
+    } else {
+      window.addEventListener('deviceorientation', this.orientationListener, true);
+    }
+  }
+
+  private ingestHeadingSample(heading: number): void {
+    if (this.showCalibrationHint()) {
+      this.showCalibrationHint.set(false);
+    }
+
+    this.lastRawHeadingInternal = heading;
+    this.compassNoDataHint.set(false);
+
+    const now = performance.now();
+    const dt = this.lastHeadingTs > 0 ? now - this.lastHeadingTs : 0;
+    this.lastHeadingTs = now;
+
+    let target = heading;
+    if (this.internalSmoothed !== null && dt > 0 && dt < SPIKE_FAST_DT_MS) {
+      const jump = Math.abs(((heading - this.internalSmoothed + 540) % 360) - 180);
+      if (jump > SPIKE_JUMP_DEG) {
+        target = lerpAngleDeg(this.internalSmoothed, heading, SPIKE_DAMP_ALPHA);
+      }
+    }
+
+    const prev = this.internalSmoothed;
+    if (prev === null || dt === 0) {
+      this.internalSmoothed = target;
+    } else {
+      const alpha = 1 - Math.exp(-dt / SMOOTH_TIME_CONSTANT_MS);
+      this.internalSmoothed = lerpAngleDeg(prev, target, alpha);
+    }
+
+    this.scheduleHeadingFlush();
+  }
+
+  private scheduleHeadingFlush(): void {
+    if (this.rafFlushScheduled) return;
+    this.rafFlushScheduled = true;
+    this.rafFlushHandle = requestAnimationFrame(() => {
+      this.rafFlushScheduled = false;
+      this.rafFlushHandle = 0;
+      this.rawHeading.set(this.lastRawHeadingInternal);
+      this.smoothedHeading.set(this.internalSmoothed);
+    });
+  }
+
+  private cancelHeadingFlush(): void {
+    if (this.rafFlushHandle !== 0) {
+      cancelAnimationFrame(this.rafFlushHandle);
+      this.rafFlushHandle = 0;
+    }
+    this.rafFlushScheduled = false;
+  }
+
+  private stopAbsoluteSensor(): void {
+    if (!this.absoluteSensor) return;
+    try {
+      this.absoluteSensor.stop();
+    } catch {
+      /* ignore */
+    }
+    this.absoluteSensor = null;
+  }
+
+  private async tryStartAbsoluteOrientationSensor(): Promise<boolean> {
+    if (typeof window === 'undefined' || !window.isSecureContext) return false;
+    // iOS/iPadOS: rely on `deviceorientation` + `webkitCompassHeading`; fused sensor path is unreliable.
+    if (this.isIosLike()) return false;
+
+    const ctor = (globalThis as unknown as { AbsoluteOrientationSensor?: AbsoluteOrientationSensorConstructor })
+      .AbsoluteOrientationSensor;
+    if (!ctor) return false;
+
+    try {
+      const sensor = new ctor({ frequency: 50, referenceFrame: 'device' });
+
+      sensor.addEventListener('reading', () => {
+        const q = sensor.quaternion;
+        if (!q) return;
+        const h = headingDegFromOrientationQuaternion(q.x, q.y, q.z, q.w);
+        if (h === null) return;
+        this.ingestHeadingSample(h);
+      });
+
+      sensor.addEventListener('error', () => {
+        if (this.absoluteSensor !== sensor) return;
+        this.stopAbsoluteSensor();
+        if (this.compassListening()) {
+          this.registerOrientationListeners();
+        }
+      });
+
+      await sensor.start();
+      this.absoluteSensor = sensor;
+      return true;
+    } catch {
+      return false;
+    }
   }
 
   protected readonly effectivePoint = computed(() => {
@@ -232,11 +353,15 @@ export class QiblaPage implements OnInit {
   }
 
   private teardownCompass(): void {
+    this.cancelHeadingFlush();
+    this.stopAbsoluteSensor();
     window.removeEventListener('deviceorientationabsolute', this.orientationListener, true);
     window.removeEventListener('deviceorientation', this.orientationListener, true);
     this.compassListening.set(false);
     this.rawHeading.set(null);
     this.smoothedHeading.set(null);
+    this.internalSmoothed = null;
+    this.lastRawHeadingInternal = null;
     this.lastHeadingTs = 0;
   }
 
@@ -276,10 +401,10 @@ export class QiblaPage implements OnInit {
     // Show calibration hint until the first real heading event arrives.
     this.showCalibrationHint.set(true);
 
-    if ('ondeviceorientationabsolute' in window) {
-      window.addEventListener('deviceorientationabsolute', this.orientationListener, true);
+    const sensorStarted = await this.tryStartAbsoluteOrientationSensor();
+    if (!sensorStarted) {
+      this.registerOrientationListeners();
     }
-    window.addEventListener('deviceorientation', this.orientationListener, true);
 
     this.compassListening.set(true);
     if (this.orientationTimer) clearTimeout(this.orientationTimer);
