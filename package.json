@@ -20,6 +20,8 @@
     "@angular/router": "^21.2.0",
     "@angular/service-worker": "~21.2.0",
     "@kmaslesa/vaktija": "^1.0.5",
+    "geographiclib-geodesic": "^2.2.0",
+    "geomagnetism": "^0.2.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0"
   },

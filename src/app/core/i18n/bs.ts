@@ -13,7 +13,7 @@ export interface AppLabels {
   methodGroupLabel: string;
   method146Label: string;
   methodIzLabel: string;
-  /** Long help shown next to method switcher (tap “i”) */
+  /** Long help shown next to method switcher (tap "i") */
   method146Tooltip: string;
   methodIzTooltip: string;
   method146HelpAria: string;
@@ -91,6 +91,14 @@ export interface AppLabels {
   qiblaDistanceLabel: string;
   qiblaKaabaCaption: string;
   qiblaFaceKaabaHint: string;
+  /** Calibration overlay */
+  qiblaCalibrateTitle: string;
+  qiblaCalibrateBody: string;
+  qiblaCalibrateSkip: string;
+  qiblaCalibrateDone: string;
+  /** FAQ */
+  qiblaFaqTitle: string;
+  qiblaFaq: Array<{ q: string; a: string }>;
 }
 
 /**
@@ -155,7 +163,7 @@ export const BS_LABELS: AppLabels = {
       'Dova u ovom periodu ima veliku vrijednost – vjernik može tražiti oprost, pomoć i bilo kakvu potrebu.\n' +
       'To je vrijeme za noćni namaz (tahadžud) koji je među najvrjednijim dobrovoljnim ibadetima.\n' +
       'U tom periodu iskrenost dolazi do izražaja, jer se čovjek budi dok drugi spavaju, bez želje za pokazivanjem.\n' +
-      'Traženje oprosta (istigfar) u zadnjoj trećini noći posebno se ističe u Kur’anu.',
+      'Traženje oprosta (istigfar) u zadnjoj trećini noći posebno se ističe u Kur\'anu.',
   },
 
   hijriMonths: [
@@ -206,4 +214,37 @@ export const BS_LABELS: AppLabels = {
   qiblaDistanceLabel: 'Udaljenost',
   qiblaKaabaCaption: 'Kaaba',
   qiblaFaceKaabaHint: 'Kada strelica na gornjem rubu pokazuje naprijed, licem ste okrenuti prema kibli.',
+
+  qiblaCalibrateTitle: 'Kalibrišite kompas',
+  qiblaCalibrateBody: 'Lagano pomičite telefon u obliku osmice kako biste poboljšali tačnost kompasa.',
+  qiblaCalibrateSkip: 'Preskoči',
+  qiblaCalibrateDone: 'Gotovo',
+
+  qiblaFaqTitle: 'Često postavljana pitanja',
+  qiblaFaq: [
+    {
+      q: 'Zašto je potrebna kalibracija kompasa?',
+      a: 'Digitalni kompas koristi magnetometar ugrađen u vaš uređaj, koji je veoma osjetljiv na magnetne smetnje. Kalibracijom osvježavate kompas kako bi pokazivao ispravan smjer.',
+    },
+    {
+      q: 'Zašto je potrebna lokacija za pronalaženje kible?',
+      a: 'Smjer kible zavisi od vaše tačne fizičke lokacije. Alat privremeno pristupa GPS-u samo kako bi izračunao precizan matematički ugao između vaših koordinata i Kabe. Podaci o lokaciji obrađuju se lokalno u pregledniku i nigdje se ne pohranjuju niti prate.',
+    },
+    {
+      q: 'Koliko je tačan ovaj kiblemetar?',
+      a: 'Naš digitalni kiblemetar koristi Karnijevu (Karney) geodetsku metodu, industrijsko-standardnu tehniku koja pruža profesionalnu preciznost za smjer kible. Preciznost je višestruko dovoljna za namaz i odgovara tačnosti koju koriste islamski autoriteti širom svijeta.',
+    },
+    {
+      q: 'Koliko je tačan digitalni kompas?',
+      a: 'Kompas postiže preciznost od ±0,5° kada je pravilno kalibriran. Kombinujemo podatke 3-osnog magnetometra sa WMM (World Magnetic Model) korekcijom deklinacije za preciznost nedostižnu fizičkim kompasima.',
+    },
+    {
+      q: 'Koji je najtačniji način za pronalaženje kible putem interneta?',
+      a: 'Najtačnija metoda je korištenje digitalnog kiblametra sa GPS-om. Pristupanjem tačnim geolokacijskim koordinatama, alat računa preciznu najkraću udaljenost (geodetska ruta Karnijevom metodom) do Kabe u Mekki, osiguravajući profesionalnu tačnost.',
+    },
+    {
+      q: 'Šta ako klanjam sa malim odstupanjem od smjera kible?',
+      a: 'Islamski učenjaci razlikuju osobu koja ulaže iskren trud da odredi smjer kible od osobe koja je nemarna. Ako uložite iskren trud, vaš namaz je ispravan čak i uz mali stepen greške. Obaveza je uložiti razuman trud.',
+    },
+  ],
 };

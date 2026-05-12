@@ -67,7 +67,7 @@ export const EN_LABELS: AppLabels = {
       'Supplication in this period carries great weight—a believer may ask forgiveness, help, and for any genuine need.\n' +
       'It is the hour of the night prayer (tahajjud), among the most rewarding voluntary acts of worship.\n' +
       'Then sincerity shows plainly: one rises while others sleep, without seeking display.\n' +
-      'Seeking forgiveness (istighfar) in the last third of the night is especially highlighted in the Qur’an.',
+      'Seeking forgiveness (istighfar) in the last third of the night is especially highlighted in the Qur\u2019an.',
   },
 
   /** Hijri months */
@@ -123,4 +123,37 @@ export const EN_LABELS: AppLabels = {
   qiblaDistanceLabel: 'Distance',
   qiblaKaabaCaption: 'The Kaaba',
   qiblaFaceKaabaHint: 'When the top marker points ahead, you are facing the Qibla.',
+
+  qiblaCalibrateTitle: 'Calibrate Your Compass',
+  qiblaCalibrateBody: 'Slowly move your phone in a figure-eight pattern to improve compass accuracy.',
+  qiblaCalibrateSkip: 'Skip',
+  qiblaCalibrateDone: 'Done',
+
+  qiblaFaqTitle: 'Frequently Asked Questions',
+  qiblaFaq: [
+    {
+      q: 'Why does my compass need calibration?',
+      a: 'Digital compasses rely on your device\'s built-in magnetometer, which is highly sensitive to magnetic interference. Device calibration is used for refreshing the device compass to show correct directions.',
+    },
+    {
+      q: 'Why does the Qibla finder require my location?',
+      a: 'The Qibla bearing is uniquely tied to your exact physical location. The tool requires temporary access to your device\'s GPS solely to calculate the precise mathematical angle between your current coordinates and the Kaaba. This location data is processed locally in your browser and is not stored or tracked.',
+    },
+    {
+      q: 'How accurate is this Qibla Finder?',
+      a: 'Our digital Qibla Finder uses the industry-standard Karney\'s method, providing professional-grade accuracy for Qibla direction. The provided precision is more than sufficient for prayer direction and matches the accuracy used by major Islamic standards worldwide.',
+    },
+    {
+      q: 'How accurate is this digital compass?',
+      a: 'Our compass achieves ±0.5° accuracy when properly calibrated. We combine 3-axis magnetometer data with real-time WMM declination models for precision unmatched by physical compasses.',
+    },
+    {
+      q: 'What is the most accurate way to find the Qibla direction online?',
+      a: 'The most accurate method is using a GPS-enabled digital Qibla Finder compass. By accessing your device\'s exact geolocation coordinates, the tool calculates the precise shortest distance (the Great Circle route using Karney\'s method) to the Kaaba in Makkah, ensuring professional-grade accuracy.',
+    },
+    {
+      q: 'What if I pray slightly off the Qibla direction?',
+      a: 'The classical scholars distinguish between someone who makes a genuine effort to determine the Qibla and someone who is careless. If you make a sincere effort, your prayer is valid even if there is a small degree of error. The obligation is to make a reasonable effort.',
+    },
+  ],
 };

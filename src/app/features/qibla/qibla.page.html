@@ -75,6 +75,40 @@
     </section>
 
     <section class="qibla-compass-section" aria-label="Compass">
+      <!-- Calibration overlay -->
+      @if (showCalibrationOverlay()) {
+        <div class="calibration-overlay" role="dialog" aria-modal="true">
+          <div class="calibration-card">
+            <h2 class="calibration-title">{{ labels().qiblaCalibrateTitle }}</h2>
+            <div class="calibration-anim" aria-hidden="true">
+              <div class="calibration-phone">
+                <div class="calibration-phone-screen">
+                  <div class="calibration-phone-notch"></div>
+                </div>
+              </div>
+              <svg class="calibration-trail" viewBox="0 0 120 80" aria-hidden="true">
+                <path
+                  d="M60,40 C60,10 90,10 90,40 C90,70 60,70 60,40 C60,10 30,10 30,40 C30,70 60,70 60,40"
+                  fill="none"
+                  stroke="rgba(212,175,55,0.35)"
+                  stroke-width="2"
+                  stroke-dasharray="4 3"
+                />
+              </svg>
+            </div>
+            <p class="calibration-body">{{ labels().qiblaCalibrateBody }}</p>
+            <div class="calibration-actions">
+              <button type="button" class="calibration-btn calibration-btn--skip" (click)="dismissCalibration()">
+                {{ labels().qiblaCalibrateSkip }}
+              </button>
+              <button type="button" class="calibration-btn calibration-btn--done" (click)="dismissCalibration()">
+                {{ labels().qiblaCalibrateDone }}
+              </button>
+            </div>
+          </div>
+        </div>
+      }
+
       <div class="compass-frame" [class.compass-frame--aligned]="qiblaAligned()">
         <div class="compass-apex" aria-hidden="true"></div>
 
@@ -107,7 +141,7 @@
           <span class="cardinal cardinal-w">W</span>
 
           @if (bearingDeg() !== null) {
-            <div class="qibla-spoke" [style.transform]="'rotate(' + bearingDeg() + 'deg)'">
+            <div class="qibla-spoke" [style.transform]="'rotate(' + magneticBearingDeg() + 'deg)'">
               <div class="qibla-spoke-line"></div>
               <div class="qibla-spoke-cap" role="img" [attr.aria-label]="labels().qiblaKaabaCaption">
                 <span class="qibla-spoke-star" aria-hidden="true">✦</span>
@@ -127,11 +161,11 @@
               <span class="qibla-enable-status qibla-enable-status--warn" role="status">
                 {{ labels().qiblaPermissionDenied }}
               </span>
-            } @else if (!compassListening()) {
-              <button type="button" class="qibla-enable-min" (click)="enableCompass()">
+            } @else if (!compassListening() && !showCalibrationOverlay()) {
+              <button type="button" class="qibla-enable-min" (click)="requestCompass()">
                 {{ labels().qiblaEnableCompass }}
               </button>
-            } @else {
+            } @else if (compassListening()) {
               <span class="qibla-enable-status" role="status">
                 <span class="qibla-dot" aria-hidden="true"></span>
                 {{ labels().qiblaCompassListening }}
@@ -153,6 +187,31 @@
           <p class="qibla-banner" role="status">{{ labels().qiblaCalibrationHint }}</p>
         }
       }
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="qibla-faq" aria-label="FAQ">
+      <h2 class="qibla-faq-title">{{ labels().qiblaFaqTitle }}</h2>
+      <div class="qibla-faq-list">
+        @for (item of labels().qiblaFaq; track $index) {
+          <div class="faq-item" [class.faq-item--open]="isFaqOpen($index)">
+            <button
+              type="button"
+              class="faq-question"
+              [attr.aria-expanded]="isFaqOpen($index)"
+              (click)="toggleFaq($index)"
+            >
+              <span class="faq-question-text">{{ item.q }}</span>
+              <span class="faq-chevron" aria-hidden="true"></span>
+            </button>
+            @if (isFaqOpen($index)) {
+              <div class="faq-answer">
+                <p>{{ item.a }}</p>
+              </div>
+            }
+          </div>
+        }
+      </div>
     </section>
   </main>
 </div>

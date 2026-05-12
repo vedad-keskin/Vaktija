@@ -62,13 +62,18 @@ export class QiblaPage implements OnInit {
   protected readonly compassListening = signal(false);
   protected readonly compassDenied = signal(false);
   protected readonly compassNoDataHint = signal(false);
-  /** Show a one-time calibration hint when the compass first activates. */
+  /** Show calibration overlay before starting the compass. */
+  protected readonly showCalibrationOverlay = signal(false);
+  /** Show a transient calibration hint banner. */
   protected readonly showCalibrationHint = signal(false);
   protected readonly prefersReducedMotion =
     typeof matchMedia !== 'undefined' && matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   protected readonly rawHeading = signal<number | null>(null);
   protected readonly smoothedHeading = signal<number | null>(null);
+
+  /** FAQ open/close state by index. */
+  protected readonly faqOpen = signal<Set<number>>(new Set());
 
   private geoWatchId: number | null = null;
   private orientationTimer: ReturnType<typeof setTimeout> | null = null;
@@ -235,7 +240,19 @@ export class QiblaPage implements OnInit {
     this.lastHeadingTs = 0;
   }
 
-  protected async enableCompass(): Promise<void> {
+  /** Show the calibration overlay; actual compass starts after user dismisses it. */
+  protected requestCompass(): void {
+    if (!this.orientationSupported) return;
+    this.showCalibrationOverlay.set(true);
+  }
+
+  /** User dismissed the calibration overlay — now actually start the compass. */
+  protected async dismissCalibration(): Promise<void> {
+    this.showCalibrationOverlay.set(false);
+    await this.enableCompass();
+  }
+
+  private async enableCompass(): Promise<void> {
     if (!this.orientationSupported) return;
     this.compassDenied.set(false);
     this.compassNoDataHint.set(false);
@@ -259,9 +276,6 @@ export class QiblaPage implements OnInit {
     // Show calibration hint until the first real heading event arrives.
     this.showCalibrationHint.set(true);
 
-    // Prefer `deviceorientationabsolute` (Android) — alpha is magnetic-north-referenced.
-    // Always also listen to `deviceorientation` for iOS (webkitCompassHeading path).
-    // headingFromDeviceOrientationEvent() gates non-absolute standard events → returns null.
     if ('ondeviceorientationabsolute' in window) {
       window.addEventListener('deviceorientationabsolute', this.orientationListener, true);
     }
@@ -275,6 +289,20 @@ export class QiblaPage implements OnInit {
         this.showCalibrationHint.set(false);
       }
     }, 4000);
+  }
+
+  protected toggleFaq(index: number): void {
+    const current = new Set(this.faqOpen());
+    if (current.has(index)) {
+      current.delete(index);
+    } else {
+      current.add(index);
+    }
+    this.faqOpen.set(current);
+  }
+
+  protected isFaqOpen(index: number): boolean {
+    return this.faqOpen().has(index);
   }
 
   protected bearingFmt(): string {
