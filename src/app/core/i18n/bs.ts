@@ -156,13 +156,10 @@ export const BS_LABELS: AppLabels = {
       'Polovina noći se računa kao polovina vremena između akšama (zalaska sunca) i zore (sabaha).\n\n' +
       'Vrijeme jacijskog namaza završava završetkom polovine noći. ' +
       'Ako bi čovjek bio u nuždi i potrebi, može jaciju klanjati sve do nastupanja zore, tj. sabah-namaza.',
-    Lastthird:
-      'Zadnja trećina noći ima posebno mjesto u islamu jer se smatra jednim od najvrijednijih vremena za ibadet i dovu.\n\n' +
-      'To je vrijeme kada je čovjek najbliži Allahu, jer se u vjerodostojnim predajama navodi da se Allahova milost tada posebno spušta i da se dove primaju.\n' +
-      'Dova u ovom periodu ima veliku vrijednost – vjernik može tražiti oprost, pomoć i bilo kakvu potrebu.\n' +
-      'To je vrijeme za noćni namaz (tahadžud) koji je među najvrjednijim dobrovoljnim ibadetima.\n' +
-      'U tom periodu iskrenost dolazi do izražaja, jer se čovjek budi dok drugi spavaju, bez želje za pokazivanjem.\n' +
-      'Traženje oprosta (istigfar) u zadnjoj trećini noći posebno se ističe u Kur\'anu.',
+      Lastthird:
+      'Zadnja trećina noći je posebno vrijedno vrijeme za dovu, istigfar i noćni namaz.\n' +
+      'U vjerodostojnim predajama navodi se da se tada Allahova milost posebno spušta i da se dove primaju.\n' +
+      'To je vrijeme iskrenog ibadeta, kada se vjernik približava Allahu dok drugi spavaju.',
   },
 
   hijriMonths: [

@@ -61,14 +61,11 @@ export const EN_LABELS: AppLabels = {
       'Midnight is calculated as the midpoint between Maghrib (sunset) and dawn (Fajr).\n\n' +
       'The time for Isha prayer ends at midnight. ' +
       'In cases of necessity, Isha may be performed up until the break of dawn (Fajr).',
-    Lastthird:
-      'The last third of the night has a special place in Islam: it is regarded as one of the most virtuous times for worship and supplication.\n\n' +
-      'It is a time when a person is especially close to Allah; authentic narrations describe His mercy descending then and prayers being answered.\n' +
-      'Supplication in this period carries great weight—a believer may ask forgiveness, help, and for any genuine need.\n' +
-      'It is the hour of the night prayer (tahajjud), among the most rewarding voluntary acts of worship.\n' +
-      'Then sincerity shows plainly: one rises while others sleep, without seeking display.\n' +
-      'Seeking forgiveness (istighfar) in the last third of the night is especially highlighted in the Qur\u2019an.',
-  },
+      Lastthird:
+      'The last third of the night is a particularly blessed time for supplication, seeking forgiveness, and night prayer.\n' +
+      'Authentic narrations mention that Allah’s mercy especially descends during this time and that supplications are accepted.\n' +
+      'It is a time of sincere worship, when a believer draws closer to Allah while others sleep.',
+    },
 
   /** Hijri months */
   hijriMonths: [
