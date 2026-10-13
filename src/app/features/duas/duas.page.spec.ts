@@ -11,7 +11,6 @@ import { DuasPage } from './duas.page';
 afterEach(() => {
   TestBed.resetTestingModule();
   vi.restoreAllMocks();
-  vi.unstubAllGlobals();
   localStorage.clear();
 });
 
@@ -109,101 +108,4 @@ it('routes the bilingual library, validates saved data and persists bookmark cha
       .getAttribute('aria-pressed'),
   ).toBe('true');
   reloaded.destroy();
-});
-
-it('uses an Arabic voice, ignores cancelled callbacks and stops playback when a card disappears or the page closes', async () => {
-  localStorage.clear();
-  let voices: SpeechSynthesisVoice[] = [
-    { lang: 'en-US', localService: true } as SpeechSynthesisVoice,
-  ];
-  const speech = Object.assign(new EventTarget(), {
-    getVoices: vi.fn(() => voices),
-    speak: vi.fn(),
-    cancel: vi.fn(),
-  });
-  class Utterance {
-    lang = '';
-    rate = 1;
-    voice: SpeechSynthesisVoice | null = null;
-    onend: (() => void) | null = null;
-    onerror: (() => void) | null = null;
-    constructor(public text: string) {}
-  }
-  vi.stubGlobal('speechSynthesis', speech);
-  vi.stubGlobal('SpeechSynthesisUtterance', Utterance);
-  await TestBed.configureTestingModule({
-    imports: [DuasPage],
-    providers: [provideRouter(routes)],
-  }).compileComponents();
-  const harness = await RouterTestingHarness.create('/duas');
-  const element = () => harness.routeNativeElement!;
-  const audio = (id: string) =>
-    element().querySelector<HTMLButtonElement>(`[data-dua-id="${id}"] .dua-audio`)!;
-  const bookmark = (id: string) =>
-    element().querySelector<HTMLButtonElement>(`[data-dua-id="${id}"] .dua-bookmark`)!;
-  const spoken = () => speech.speak.mock.calls.at(-1)![0] as Utterance;
-  expect(audio('knowledge').disabled).toBe(true);
-  expect(element().querySelector('.duas-audio-note')?.textContent).toContain(
-    BS_LABELS.duasAudioUnavailable,
-  );
-
-  voices = [...voices, { lang: 'ar-SA', localService: true } as SpeechSynthesisVoice];
-  speech.dispatchEvent(new Event('voiceschanged'));
-  harness.detectChanges();
-  expect(audio('knowledge').disabled).toBe(false);
-  audio('knowledge').click();
-  harness.detectChanges();
-  const first = spoken();
-  expect(first.text).toBe(DUAS[0].arabic);
-  expect(first.lang).toBe('ar-SA');
-  expect(first.voice).toBe(voices[1]);
-  expect(audio('knowledge').getAttribute('aria-pressed')).toBe('true');
-  audio('forgiveness').click();
-  harness.detectChanges();
-  const second = spoken();
-  expect(speech.cancel).toHaveBeenCalledTimes(1);
-  first.onerror!();
-  first.onend!();
-  harness.detectChanges();
-  expect(audio('forgiveness').getAttribute('aria-pressed')).toBe('true');
-  expect(element().querySelector('.duas-feedback')?.textContent.trim()).toBe('');
-  second.onend!();
-  harness.detectChanges();
-  expect(audio('forgiveness').getAttribute('aria-pressed')).toBe('false');
-
-  audio('knowledge').click();
-  spoken().onerror!();
-  harness.detectChanges();
-  expect(element().querySelector('.duas-feedback')?.textContent).toContain(
-    BS_LABELS.duasAudioError,
-  );
-  audio('knowledge').click();
-  audio('knowledge').click();
-  harness.detectChanges();
-  expect(audio('knowledge').getAttribute('aria-pressed')).toBe('false');
-
-  bookmark('knowledge').click();
-  await harness.navigateByUrl('/duas?view=saved');
-  audio('knowledge').click();
-  const removed = spoken();
-  bookmark('knowledge').click();
-  harness.detectChanges();
-  expect(element().querySelectorAll('.dua-card')).toHaveLength(0);
-  expect(speech.cancel).toHaveBeenCalledTimes(3);
-  removed.onerror!();
-  harness.detectChanges();
-  expect(element().querySelector('.duas-feedback')?.textContent.trim()).toBe('');
-
-  await harness.navigateByUrl('/duas');
-  audio('knowledge').click();
-  const hidden = vi.spyOn(document, 'hidden', 'get').mockReturnValue(true);
-  document.dispatchEvent(new Event('visibilitychange'));
-  harness.detectChanges();
-  expect(audio('knowledge').getAttribute('aria-pressed')).toBe('false');
-  hidden.mockRestore();
-  audio('knowledge').click();
-  const last = spoken();
-  harness.fixture.destroy();
-  expect(speech.cancel).toHaveBeenCalledTimes(5);
-  last.onerror!();
 });

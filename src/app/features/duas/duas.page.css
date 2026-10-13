@@ -7,22 +7,9 @@
 }
 
 .duas-page {
-  position: relative;
-  isolation: isolate;
   min-height: 100dvh;
   background: var(--surface);
   color: var(--text-primary);
-}
-
-.duas-page::before {
-  content: '';
-  position: fixed;
-  z-index: -1;
-  inset: 0;
-  background: var(--hero-image) center bottom / max(100%, 1200px) auto no-repeat;
-  opacity: 0.65;
-  mask-image: linear-gradient(transparent 15%, #000 65%);
-  pointer-events: none;
 }
 
 .duas-main {
@@ -51,20 +38,6 @@
   font-family: var(--font-display);
   font-size: 25px;
   color: var(--text-secondary);
-}
-
-.duas-back {
-  position: absolute;
-  top: 4px;
-  left: 0;
-  display: grid;
-  place-items: center;
-  width: 44px;
-  height: 44px;
-  border: 1px solid var(--border-color);
-  border-radius: 12px;
-  color: var(--text-secondary);
-  background: var(--surface-elevated);
 }
 
 svg {
@@ -103,6 +76,7 @@ svg {
   display: flex;
   justify-content: center;
   gap: 10px;
+  margin-bottom: 24px;
 }
 
 .duas-collections a {
@@ -141,15 +115,6 @@ svg {
   color: var(--gold);
 }
 
-.duas-audio-note {
-  max-width: 520px;
-  margin: 14px auto 22px;
-  text-align: center;
-  color: var(--text-muted);
-  font-size: 14px;
-  line-height: 1.5;
-}
-
 .duas-feedback p {
   padding: 12px 16px;
   margin-bottom: 16px;
@@ -166,13 +131,27 @@ svg {
 
 .dua-card {
   position: relative;
+  isolation: isolate;
+  overflow: hidden;
   padding: 24px 28px 20px;
   border: 1px solid var(--hero-border);
   border-radius: 20px;
-  background: color-mix(in srgb, var(--surface-elevated) 96%, transparent);
+  background: var(--hero-sky);
   box-shadow:
     var(--home-shadow),
     inset 0 0 0 5px var(--surface);
+}
+
+.dua-card::before {
+  content: '';
+  position: absolute;
+  inset: auto 0 0;
+  aspect-ratio: 3 / 1;
+  z-index: -1;
+  background: var(--hero-image) center bottom / 100% auto no-repeat;
+  mask-image: linear-gradient(to bottom, transparent, black 65%);
+  opacity: 0.35;
+  pointer-events: none;
 }
 
 .dua-card-header {
@@ -223,13 +202,7 @@ svg {
   fill: currentColor;
 }
 
-.dua-actions button:disabled {
-  opacity: 0.4;
-  cursor: default;
-}
-
-.dua-actions button:hover:not(:disabled),
-.duas-back:hover,
+.dua-actions button:hover,
 .duas-collections a:hover {
   background: var(--surface-hover);
   border-color: var(--gold);
@@ -328,18 +301,11 @@ svg {
   .duas-main {
     padding: 24px 12px 40px;
   }
-  .duas-page::before {
-    background-size: 100% auto;
-    opacity: 0.45;
-  }
   .duas-heading p {
     font-size: 22px;
   }
   .duas-collections a {
     padding-inline: 18px;
-  }
-  .duas-audio-note {
-    padding-inline: 12px;
   }
   .duas-list {
     gap: 16px;
@@ -347,6 +313,10 @@ svg {
   .dua-card {
     padding: 18px 16px 14px;
     border-radius: 16px;
+  }
+  .dua-card::before {
+    aspect-ratio: 4 / 3;
+    opacity: 0.25;
   }
   .dua-card-header {
     gap: 10px;

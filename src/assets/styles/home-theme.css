@@ -122,6 +122,39 @@
   }
 }
 
+/* The secondary screens share the Qibla back button. */
+:is(.qibla-page, .duas-page) :is(.qibla-back, .duas-back) {
+  position: absolute;
+  left: 0;
+  top: 4px;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--border-color);
+  border-radius: 50%;
+  color: var(--text-secondary);
+}
+:is(.qibla-page, .duas-page) :is(.qibla-back, .duas-back):hover {
+  background: var(--surface-hover);
+  color: var(--text-primary);
+}
+:is(.qibla-page, .duas-page) :is(.qibla-back, .duas-back) svg {
+  width: 22px;
+  height: 22px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+@media (max-width: 599px) {
+  :is(.qibla-page, .duas-page) :is(.qibla-back, .duas-back) {
+    width: 36px;
+    border: 0;
+  }
+}
+
 /* :root gives these scoped overrides priority over Angular's component selectors. */
 :root :is(.prayer-times-page, .qibla-page, .duas-page) :is(button, a, input):focus-visible {
   outline: 2px solid var(--gold);
@@ -187,7 +220,9 @@
   grid-column: 2;
   gap: 0.5rem;
 }
-:root :is(.prayer-times-page, .qibla-page, .duas-page) :is(.lang-switcher, .theme-switcher, .method-switcher, .header-qibla) {
+:root
+  :is(.prayer-times-page, .qibla-page, .duas-page)
+  :is(.lang-switcher, .theme-switcher, .method-switcher, .header-qibla) {
   height: 44px;
   background: var(--surface-elevated);
   border-radius: 10px;
@@ -195,7 +230,9 @@
 :root :is(.prayer-times-page, .qibla-page, .duas-page) :is(.lang-btn, .theme-btn) {
   align-self: stretch;
 }
-:root :is(.prayer-times-page, .qibla-page, .duas-page) :is(.lang-slider, .theme-slider, .method-slider) {
+:root
+  :is(.prayer-times-page, .qibla-page, .duas-page)
+  :is(.lang-slider, .theme-slider, .method-slider) {
   border-color: var(--border-color);
   box-shadow: none;
   border-radius: 7px;
@@ -220,7 +257,10 @@
 :root :is(.prayer-times-page, .qibla-page, .duas-page) .mobile-dropdown .header-qibla {
   color: var(--text-primary);
 }
-:root :is(.prayer-times-page, .qibla-page, .duas-page) .mobile-dropdown :is(.theme-switcher, .method-switcher) {
+:root
+  :is(.prayer-times-page, .qibla-page, .duas-page)
+  .mobile-dropdown
+  :is(.theme-switcher, .method-switcher) {
   height: 48px;
 }
 :root :is(.prayer-times-page, .qibla-page, .duas-page) .method-help-icon {
@@ -280,7 +320,9 @@
     display: flex;
     gap: 0.5rem;
   }
-  :root :is(.prayer-times-page, .qibla-page, .duas-page) :is(.header-mobile-controls, .mobile-dropdown) {
+  :root
+    :is(.prayer-times-page, .qibla-page, .duas-page)
+    :is(.header-mobile-controls, .mobile-dropdown) {
     display: none;
   }
   :root :is(.prayer-times-page, .qibla-page, .duas-page) .header-qibla {

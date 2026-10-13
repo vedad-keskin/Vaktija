@@ -121,11 +121,6 @@ export const EN_LABELS: AppLabels = {
   duasBrowse: 'Browse all duas',
   duasStorageError:
     'This change applies to this page only. Your browser could not save it permanently.',
-  duasPlay: 'Listen to dua',
-  duasStop: 'Stop reading',
-  duasAudioNote: 'Reading uses your device’s Arabic voice, rather than a reciter recording.',
-  duasAudioUnavailable: 'Reading needs an Arabic voice supported by your browser.',
-  duasAudioError: 'Reading failed. Check your device’s Arabic voice and try again.',
   duasTranscription: 'Transliteration',
   duasTranslation: 'Translation of the meaning',
   duasSource: 'Source',

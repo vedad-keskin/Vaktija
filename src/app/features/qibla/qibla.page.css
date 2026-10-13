@@ -26,26 +26,9 @@
   font-size: clamp(36px, 4vw, 52px);
 }
 .qibla-heading p {
-  margin: 0;
+  margin: 16px 0 0;
   color: var(--text-secondary);
 }
-.qibla-back {
-  position: absolute;
-  left: 0;
-  top: 4px;
-  display: grid;
-  place-items: center;
-  width: 44px;
-  height: 44px;
-  border: 1px solid var(--border-color);
-  border-radius: 50%;
-  color: var(--text-secondary);
-}
-.qibla-back:hover {
-  background: var(--surface-hover);
-  color: var(--text-primary);
-}
-.qibla-back svg,
 .qibla-gps svg,
 .qibla-start svg {
   width: 22px;
@@ -62,7 +45,7 @@
   position: relative;
   width: 120px;
   height: 1px;
-  margin: 22px auto 0;
+  margin: 16px auto 0;
   background: var(--gold);
   opacity: 0.75;
 }
@@ -587,11 +570,6 @@
   }
   .qibla-heading p {
     font-size: 14px;
-  }
-  .qibla-back {
-    width: 36px;
-    height: 44px;
-    border: 0;
   }
   .qibla-scene {
     border-radius: 20px;

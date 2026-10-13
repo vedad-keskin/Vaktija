@@ -86,11 +86,6 @@ export interface AppLabels {
   duasEmptyBody: string;
   duasBrowse: string;
   duasStorageError: string;
-  duasPlay: string;
-  duasStop: string;
-  duasAudioNote: string;
-  duasAudioUnavailable: string;
-  duasAudioError: string;
   duasTranscription: string;
   duasTranslation: string;
   duasSource: string;
@@ -249,11 +244,6 @@ export const BS_LABELS: AppLabels = {
   duasBrowse: 'Pogledaj sve dove',
   duasStorageError:
     'Promjena vrijedi samo na ovoj stranici. Preglednik je nije mogao trajno sačuvati.',
-  duasPlay: 'Poslušaj dovu',
-  duasStop: 'Zaustavi čitanje',
-  duasAudioNote: 'Čitanje koristi arapski glas uređaja, a ne snimak učača.',
-  duasAudioUnavailable: 'Za čitanje je potreban arapski glas koji podržava vaš preglednik.',
-  duasAudioError: 'Čitanje nije uspjelo. Provjerite arapski glas uređaja i pokušajte ponovo.',
   duasTranscription: 'Transkripcija',
   duasTranslation: 'Prijevod značenja',
   duasSource: 'Izvor',
