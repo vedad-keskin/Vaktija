@@ -1,4 +1,4 @@
-import { Component, inject, signal, HostListener } from '@angular/core';
+import { afterNextRender, Component, inject, signal, HostListener } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { LanguageService } from '../../../../core/services/language.service';
 import { ThemeSwitcherComponent } from '../theme-switcher/theme-switcher.component';
@@ -17,8 +17,16 @@ export class HeaderComponent {
   protected readonly currentLang = this.langService.lang;
   protected readonly menuOpen = signal(false);
   protected readonly logoFilename = 'logo.png';
+  /** Hover and slider motion start only after the saved state is already painted. */
+  protected readonly motion = signal(false);
 
   private drawerTouchStartY = 0;
+
+  constructor() {
+    afterNextRender(() => {
+      requestAnimationFrame(() => this.motion.set(true));
+    });
+  }
 
   /** Any click on the language control flips BS ↔ EN (including tapping the active side again). */
   protected toggleLang(): void {

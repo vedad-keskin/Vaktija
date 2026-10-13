@@ -1,6 +1,7 @@
 <div
   class="theme-switcher"
   [class.dark-active]="theme() === 'dark'"
+  [class.motion]="motion()"
   role="group"
   [attr.aria-label]="labels().themeGroupLabel"
   (click)="onContainerClick()"

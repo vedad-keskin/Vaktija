@@ -54,6 +54,9 @@
   flex-shrink: 0;
   color: var(--text-muted);
   -webkit-tap-highlight-color: transparent;
+}
+
+.app-header.motion .header-qibla {
   transition: border-color 0.25s ease, color 0.25s ease;
 }
 
@@ -77,6 +80,9 @@
   min-width: 0;
   align-self: stretch;
   border: 1px solid transparent;
+}
+
+.app-header.motion .header-qibla-pad {
   transition: background 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease, color 0.25s ease;
 }
 
@@ -169,9 +175,12 @@
   background: var(--accent-surface);
   border: 1px solid rgba(45, 212, 168, 0.2);
   box-shadow: 0 0 12px rgba(45, 212, 168, 0.08);
-  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   pointer-events: none;
   z-index: 0;
+}
+
+.app-header.motion .lang-slider {
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .lang-switcher.en-active .lang-slider {

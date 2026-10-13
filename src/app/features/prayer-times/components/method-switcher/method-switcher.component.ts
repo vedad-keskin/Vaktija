@@ -1,4 +1,4 @@
-import { Component, ElementRef, HostListener, inject, input, output, signal } from '@angular/core';
+import { afterNextRender, Component, ElementRef, HostListener, inject, input, output, signal } from '@angular/core';
 import { CalculationMethodService, CalculationMethod } from '../../../../core/services/calculation-method.service';
 import { LanguageService } from '../../../../core/services/language.service';
 
@@ -16,6 +16,8 @@ export class MethodSwitcherComponent {
 
   /** Which method’s explanation panel is open (tap “i” again or outside to close). */
   protected readonly helpOpen = signal<CalculationMethod | null>(null);
+  /** Slider motion starts only after the saved side is already painted. */
+  protected readonly motion = signal(false);
 
   /**
    * When true, individual buttons select their specific value (mobile dropdown).
@@ -24,6 +26,12 @@ export class MethodSwitcherComponent {
   readonly directSelect = input(false);
 
   readonly picked = output<void>();
+
+  constructor() {
+    afterNextRender(() => {
+      requestAnimationFrame(() => this.motion.set(true));
+    });
+  }
 
   /** Desktop: click anywhere toggles */
   protected onContainerClick(): void {

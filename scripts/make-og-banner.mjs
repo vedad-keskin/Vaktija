@@ -81,14 +81,34 @@ async function main() {
     ['icon-512.png', 512, 0.78],
     ['icon-maskable-512.png', 512, 0.58],
   ]) {
+    const transparent = name.startsWith('favicon');
     const mark = await sharp(logo).resize({ height: Math.round(size * scale) }).png().toBuffer();
-    const icon = await sharp({ create: { width: size, height: size, channels: 4, background: '#faf7ed' } })
-      .composite([{ input: mark, gravity: 'centre' }])
+    const { width: markWidth, height: markHeight } = await sharp(mark).metadata();
+    const left = Math.floor((size - markWidth) / 2);
+    const top = Math.floor((size - markHeight) / 2);
+    const layers = [];
+    if (transparent) {
+      const alpha = await sharp(mark).extractChannel('alpha').toBuffer();
+      const outline = await sharp({ create: { width: markWidth, height: markHeight, channels: 3, background: '#faf7ed' } })
+        .joinChannel(alpha).png().toBuffer();
+      for (const x of [-1, 0, 1]) {
+        for (const y of [-1, 0, 1]) {
+          if (x || y) layers.push({ input: outline, left: left + x, top: top + y });
+        }
+      }
+    }
+    layers.push(transparent ? { input: mark, left, top } : { input: mark, gravity: 'centre' });
+    const icon = await sharp({ create: { width: size, height: size, channels: 4, background: transparent ? '#00000000' : '#faf7ed' } })
+      .composite(layers)
       .png()
       .toBuffer();
     const { width, height } = await sharp(icon).metadata();
     assert.equal(width, size);
     assert.equal(height, size);
+    if (transparent) {
+      const corner = await sharp(icon).extract({ left: 0, top: 0, width: 1, height: 1 }).ensureAlpha().raw().toBuffer();
+      assert.equal(corner[3], 0);
+    }
     await writeFile(path.join(ROOT, name.startsWith('favicon') || name.startsWith('apple') ? 'public' : 'public/assets/icons', name), icon);
     if (name === 'favicon-32.png') favicon = icon;
   }

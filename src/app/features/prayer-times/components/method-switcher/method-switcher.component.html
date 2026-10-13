@@ -2,6 +2,7 @@
   <div
     class="method-switcher"
     [class.iz-active]="method() === 'iz'"
+    [class.motion]="motion()"
     role="group"
     [attr.aria-label]="labels().methodGroupLabel"
     (click)="onContainerClick()"
