@@ -4,8 +4,9 @@ Original backgrounds generated separately with the built-in image generation too
 
 - `mosque-horizon-dark.webp`: emerald night, low hills, illuminated mosque and crescent.
 - `mosque-horizon-light.webp`: ivory daylight, sage hills, green mosque and apricot sun.
+- `mosque-horizon-mobile-dark.webp` and `mosque-horizon-mobile-light.webp`: 4:3 phone compositions with the shores closer together and the waterline higher.
 
-The home theme tokens select the actual image file. Mobile displays the whole panorama along the lower edge; larger viewports scale it up. A theme-specific central overlay protects the countdown and progress arc.
+The home theme tokens select the image for the theme and viewport. Phone widths use the 4:3 artwork and align the progress bar with its higher shoreline; larger viewports keep the wide panorama. A theme-specific central overlay protects the countdown and progress arc.
 
 The dark asset was replaced in the shared workspace during verification; that updated version is retained. The prompt below records the initial dark generation.
 

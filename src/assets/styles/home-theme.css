@@ -113,6 +113,15 @@
   --logo-filter: none;
 }
 
+@media (max-width: 599px) {
+  .prayer-times-page {
+    --hero-image: url('/assets/ornaments/mosque-horizon-mobile-dark.webp');
+  }
+  [data-theme='light'] .prayer-times-page {
+    --hero-image: url('/assets/ornaments/mosque-horizon-mobile-light.webp');
+  }
+}
+
 /* :root gives these scoped overrides priority over Angular's component selectors. */
 :root .prayer-times-page :is(button, a, input):focus-visible {
   outline: 2px solid var(--gold);
