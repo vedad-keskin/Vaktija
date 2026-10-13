@@ -49,7 +49,7 @@ export const DUAS: readonly Dua[] = [
       en: 'Allāhumma rabba hādhihid-daʿwatit-tāmmati waṣ-ṣalātil-qāʾimati, āti Muḥammadanil-wasīlata wal-faḍīlata, wabʿathhu maqāman maḥmūdan alladhī waʿadtah.',
     },
     translation: {
-      bs: 'Allahu, Gospodaru ovog potpunog poziva i namaza koji se uspostavlja, podari Muhammedu vesilu i odliku i uzdigni ga na hvale vrijedno mjesto koje si mu obećao.',
+      bs: 'Allahu, Gospodaru ovog cjelovitog poziva, podari Muhammedu poseban stepen i Džennetu i svako dobro, te uzdigni ga na uzvišeno mjesto koje si mu obećao.',
       en: 'O Allah, Lord of this complete call and the prayer being established, grant Muhammad the highest station and distinction, and raise him to the praised position You have promised him.',
     },
     reference: { bs: 'Sahih el-Buhari, 614', en: 'Sahih al-Bukhari, 614' },
