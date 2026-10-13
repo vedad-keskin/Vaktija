@@ -49,7 +49,6 @@ it('keeps all eight times, translated details and a future next-time label acros
       minutes: minutes[i],
       time: `${Math.floor(minutes[i] / 60)}:${String(minutes[i] % 60).padStart(2, '0')}`,
       isCalculated: key === 'Midnight' || key === 'Lastthird',
-      tooltip: labels.prayerTooltips[key],
     })),
     locationName: 'Sarajevo',
     dateLabel: '13 October 2026',
@@ -118,14 +117,6 @@ it('keeps all eight times, translated details and a future next-time label acros
     ),
   ).toBe('50%');
   expect(element.querySelector('.prayer-card.current')?.textContent).toContain('1h 15min ago');
-  const info = element.querySelector<HTMLButtonElement>('.info-button')!;
-  info.click();
-  fixture.detectChanges();
-  expect(info.getAttribute('aria-expanded')).toBe('true');
-  expect(element.querySelector('.tooltip-content')?.textContent).toContain('last third');
-  info.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true }));
-  fixture.detectChanges();
-  expect(element.querySelector('.tooltip-content')).toBeNull();
 
   // The normal segment follows the current interval; the exact boundary advances the marker.
   state.now.set(new Date(2026, 9, 14, 13, 15));

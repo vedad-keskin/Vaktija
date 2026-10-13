@@ -4,13 +4,8 @@
   [class.calculated]="prayer().isCalculated"
   [class.current]="prayer().isCurrent"
   [class.next]="prayer().isNext"
-  [class.has-tooltip]="!!prayer().tooltip"
-  [class.tooltip-open]="showTooltip() && !!prayer().tooltip"
   [style.--progress]="prayer().progress"
   [attr.aria-current]="prayer().isCurrent ? 'time' : null"
-  (mouseenter)="onMouseEnter()"
-  (mouseleave)="onMouseLeave()"
-  (click)="toggleTooltip()"
 >
   <div class="prayer-symbol" aria-hidden="true">
     <img [src]="illustrationSrc()" alt="" width="128" height="132" />
@@ -27,30 +22,4 @@
     <time class="prayer-time" [attr.datetime]="prayer().time">{{ prayer().time }}</time>
     <span class="prayer-relative">{{ prayer().relativeText }}</span>
   </div>
-  @if (prayer().tooltip) {
-    <button
-      type="button"
-      class="info-button"
-      [attr.aria-label]="prayer().name"
-      [attr.aria-expanded]="showTooltip()"
-      [attr.aria-controls]="'prayer-info-' + prayer().minutes"
-      (click)="$event.stopPropagation(); toggleTooltip()"
-    >
-      <svg
-        viewBox="0 0 20 20"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="1.5"
-        aria-hidden="true"
-      >
-        <circle cx="10" cy="10" r="7.5" />
-        <path d="M10 9v5m0-9v2" />
-      </svg>
-    </button>
-  }
-  @if (showTooltip() && prayer().tooltip) {
-    <div class="tooltip-content" [id]="'prayer-info-' + prayer().minutes">
-      {{ prayer().tooltip }}
-    </div>
-  }
 </article>

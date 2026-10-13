@@ -163,7 +163,7 @@
   opacity: 1;
 }
 
-/* ===== Tooltip panel — match `.prayer-card` `.tooltip-overlay` / `.tooltip-content` ===== */
+/* ===== Tooltip panel ===== */
 .method-tooltip {
   position: absolute;
   left: 50%;
@@ -175,7 +175,7 @@
   pointer-events: none;
 }
 
-/* Arrow points up toward the switcher (card tooltips point down toward the card) */
+/* Arrow points up toward the switcher */
 .method-tooltip::after {
   content: '';
   position: absolute;

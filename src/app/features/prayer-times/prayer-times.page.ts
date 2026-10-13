@@ -171,7 +171,7 @@ export class PrayerTimesPage implements OnInit, OnDestroy {
   });
 
   constructor() {
-    // Re-fetch prayer times whenever language changes so names/tooltips update
+    // Re-fetch prayer times whenever language changes so names update
     effect(() => {
       const _lang = this.langService.lang();
       const _method = this.methodService.method();

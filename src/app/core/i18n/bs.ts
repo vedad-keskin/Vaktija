@@ -53,9 +53,6 @@ export interface AppLabels {
   /** Dhuhr (noon prayer) on Gregorian Fridays */
   dhuhrFridayName: string;
 
-  /** Prayer tooltips (keyed by Aladhan API key) */
-  prayerTooltips: Record<string, string>;
-
   /** Hijri months */
   hijriMonths: string[];
 
@@ -163,17 +160,6 @@ export const BS_LABELS: AppLabels = {
     Isha: 'Jacija',
     Midnight: 'Polovina noći',
     Lastthird: 'Zadnja trećina',
-  },
-
-  prayerTooltips: {
-    Midnight:
-      'Polovina noći se računa kao polovina vremena između akšama (zalaska sunca) i zore (sabaha).\n\n' +
-      'Vrijeme jacijskog namaza završava završetkom polovine noći. ' +
-      'Ako bi čovjek bio u nuždi i potrebi, može jaciju klanjati sve do nastupanja zore, tj. sabah-namaza.',
-      Lastthird:
-      'Zadnja trećina noći je posebno vrijedno vrijeme za dovu, istigfar i noćni namaz.\n' +
-      'U vjerodostojnim predajama navodi se da se tada Allahova milost posebno spušta i da se dove primaju.\n' +
-      'To je vrijeme iskrenog ibadeta, kada se vjernik približava Allahu dok drugi spavaju.',
   },
 
   hijriMonths: [

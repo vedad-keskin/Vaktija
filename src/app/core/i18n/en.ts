@@ -62,18 +62,6 @@ export const EN_LABELS: AppLabels = {
     Lastthird: 'Last Third',
   },
 
-  /** Prayer tooltips (keyed by Aladhan API key) */
-  prayerTooltips: {
-    Midnight:
-      'Midnight is calculated as the midpoint between Maghrib (sunset) and dawn (Fajr).\n\n' +
-      'The time for Isha prayer ends at midnight. ' +
-      'In cases of necessity, Isha may be performed up until the break of dawn (Fajr).',
-      Lastthird:
-      'The last third of the night is a particularly blessed time for supplication, seeking forgiveness, and night prayer.\n' +
-      'Authentic narrations mention that Allah’s mercy especially descends during this time and that supplications are accepted.\n' +
-      'It is a time of sincere worship, when a believer draws closer to Allah while others sleep.',
-    },
-
   /** Hijri months */
   hijriMonths: [
     'Muharram', 'Safar', "Rabi' al-Awwal", "Rabi' al-Thani",

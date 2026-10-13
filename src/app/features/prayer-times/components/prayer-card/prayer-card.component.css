@@ -73,41 +73,6 @@
 .next .prayer-time {
   color: var(--accent-light);
 }
-.has-tooltip {
-  cursor: pointer;
-}
-.info-button {
-  position: absolute;
-  top: 3px;
-  left: 3px;
-  width: 24px;
-  height: 24px;
-  display: grid;
-  place-items: center;
-  border: 0;
-  border-radius: 50%;
-  background: var(--surface-elevated);
-  color: var(--text-secondary);
-  cursor: pointer;
-}
-.info-button svg {
-  width: 16px;
-  height: 16px;
-}
-.info-button:hover {
-  color: var(--gold);
-}
-.tooltip-content {
-  grid-column: 1 / -1;
-  font-size: 0.8rem;
-  line-height: 1.7;
-  white-space: pre-line;
-  border-top: 1px solid var(--border-color);
-  padding-top: 0.75rem;
-  color: var(--text-secondary);
-  text-align: left;
-  cursor: text;
-}
 @media (min-width: 380px) {
   .prayer-card {
     grid-template-columns: 52px minmax(0, 1fr) auto;
@@ -151,28 +116,5 @@
   }
   .prayer-relative {
     font-size: 0.8rem;
-  }
-  .info-button {
-    left: auto;
-    right: 4px;
-    top: 4px;
-    width: 28px;
-    height: 28px;
-  }
-  .tooltip-content {
-    position: absolute;
-    top: calc(100% + 8px);
-    right: 0;
-    width: min(300px, calc(100vw - 3rem));
-    z-index: 10;
-    padding: 1rem;
-    border: 1px solid var(--hero-border);
-    border-radius: 12px;
-    background: var(--surface-elevated);
-    box-shadow: var(--home-shadow);
-  }
-  :host-context(.prayer-stop:first-child) .tooltip-content {
-    right: auto;
-    left: 0;
   }
 }

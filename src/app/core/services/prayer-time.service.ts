@@ -128,13 +128,11 @@ export class PrayerTimeService {
         entry.key === 'Dhuhr' && fridayGregorian
           ? labels.dhuhrFridayName
           : labels.prayerNames[entry.key] ?? entry.key;
-      const tooltip = labels.prayerTooltips[entry.key];
       return {
         name,
         time: cleanTime,
         minutes: this.timeToMinutes(cleanTime),
         isCalculated: entry.isCalculated,
-        ...(tooltip ? { tooltip } : {}),
       };
     });
 
@@ -156,13 +154,11 @@ export class PrayerTimeService {
         key === 'Dhuhr' && friday
           ? labels.dhuhrFridayName
           : labels.prayerNames[key] ?? key;
-      const tooltip = labels.prayerTooltips[key];
       return {
         name,
         time: cleanTime,
         minutes: this.timeToMinutes(cleanTime),
         isCalculated: false,
-        ...(tooltip ? { tooltip } : {}),
       };
     });
 
@@ -185,9 +181,6 @@ export class PrayerTimeService {
       time: midnightTime,
       minutes: midnightMin,
       isCalculated: true,
-      ...(labels.prayerTooltips['Midnight']
-        ? { tooltip: labels.prayerTooltips['Midnight'] }
-        : {}),
     };
 
     const lastThirdEntry: PrayerTimeData = {
@@ -195,9 +188,6 @@ export class PrayerTimeService {
       time: lastThirdTime,
       minutes: lastThirdMin,
       isCalculated: true,
-      ...(labels.prayerTooltips['Lastthird']
-        ? { tooltip: labels.prayerTooltips['Lastthird'] }
-        : {}),
     };
 
     return [...baseTimes, midnightEntry, lastThirdEntry].sort(
