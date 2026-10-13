@@ -40,6 +40,24 @@ export const DUAS: readonly Dua[] = [
     sourceUrl: 'https://sunnah.com/muslim:2697b',
   },
   {
+    id: 'need-for-good',
+    title: { bs: 'Musaova dova', en: 'Musa’s dua' },
+    arabic: 'رَبِّ إِنِّي لِمَا أَنْزَلْتَ إِلَيَّ مِنْ خَيْرٍ فَقِيرٌ',
+    transcription: {
+      bs: 'Rabbi innī limā enzelte ilejje min ḫajrin faqīr.',
+      en: 'Rabbi innī limā anzalta ilayya min khayrin faqīr.',
+    },
+    translation: {
+      bs: 'Gospodaru moj, zaista mi je potrebno svako dobro koje mi Ti pošalješ.',
+      en: 'My Lord, I am truly in need of whatever good You send down to me.',
+    },
+    reference: {
+      bs: 'Kur’an, El-Kasas 28:24 (dio ajeta)',
+      en: 'Qur’an, Al-Qasas 28:24 (excerpt)',
+    },
+    sourceUrl: 'https://quran.com/28/24',
+  },
+  {
     id: 'after-adhan',
     title: { bs: 'Dova poslije ezana', en: 'Dua after the adhan' },
     arabic:
