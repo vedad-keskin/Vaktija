@@ -265,14 +265,10 @@
 .return-fill {
   stroke: var(--horizon-gold);
   filter: drop-shadow(0 0 2px color-mix(in srgb, var(--horizon-gold) 35%, transparent));
-  /* Reveal one continuous return, bottom-to-top on rows and right-to-left on cards. */
-  clip-path: inset(calc(100% - var(--wrap-progress)) -2px -2px -2px);
+  clip-path: inset(-2px -2px -2px calc(100% - var(--wrap-progress)));
 }
 .trail-return:not(.started) .return-fill {
   visibility: hidden;
-}
-.return-desktop {
-  display: none;
 }
 @media (min-width: 600px) {
   .page-content {
@@ -371,14 +367,5 @@
     left: var(--half-stop);
     width: calc(100% - 2 * var(--half-stop));
     height: 28px;
-  }
-  .return-mobile {
-    display: none;
-  }
-  .return-desktop {
-    display: initial;
-  }
-  .return-fill {
-    clip-path: inset(-2px -2px -2px calc(100% - var(--wrap-progress)));
   }
 }
