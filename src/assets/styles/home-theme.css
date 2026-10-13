@@ -42,8 +42,8 @@
     U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
-/* Home-only tokens keep the shared header and Qibla route on their existing theme. */
-.prayer-times-page {
+/* Shared page palette, typography and header controls. */
+:is(.prayer-times-page, .qibla-page) {
   color-scheme: dark;
   --font-body: 'Source Sans 3', 'Segoe UI', sans-serif;
   --font-heading: var(--font-body);
@@ -81,7 +81,7 @@
   --logo-filter: brightness(0) invert(1);
 }
 
-[data-theme='light'] .prayer-times-page {
+[data-theme='light'] :is(.prayer-times-page, .qibla-page) {
   color-scheme: light;
   --surface: #f7f5ee;
   --surface-elevated: #fdfcf8;
@@ -114,20 +114,20 @@
 }
 
 @media (max-width: 599px) {
-  .prayer-times-page {
+  :is(.prayer-times-page, .qibla-page) {
     --hero-image: url('/assets/ornaments/mosque-horizon-mobile-dark.webp');
   }
-  [data-theme='light'] .prayer-times-page {
+  [data-theme='light'] :is(.prayer-times-page, .qibla-page) {
     --hero-image: url('/assets/ornaments/mosque-horizon-mobile-light.webp');
   }
 }
 
 /* :root gives these scoped overrides priority over Angular's component selectors. */
-:root .prayer-times-page :is(button, a, input):focus-visible {
+:root :is(.prayer-times-page, .qibla-page) :is(button, a, input):focus-visible {
   outline: 2px solid var(--gold);
   outline-offset: 3px;
 }
-:root .prayer-times-page .app-header {
+:root :is(.prayer-times-page, .qibla-page) .app-header {
   height: auto;
   min-height: 76px;
   display: grid;
@@ -136,97 +136,97 @@
   padding: 1rem;
   background: var(--surface);
 }
-:root .prayer-times-page .header-brand {
+:root :is(.prayer-times-page, .qibla-page) .header-brand {
   gap: 0.45rem;
 }
-:root .prayer-times-page .header-logo {
+:root :is(.prayer-times-page, .qibla-page) .header-logo {
   width: 30px;
   height: 34px;
 }
-:root .prayer-times-page app-header app-city-selector {
+:root :is(.prayer-times-page, .qibla-page) app-header app-city-selector {
   grid-column: 1 / -1;
   grid-row: 2;
   min-width: 0;
 }
-:root .prayer-times-page .city-selector {
+:root :is(.prayer-times-page, .qibla-page) .city-selector {
   max-width: none;
 }
-:root .prayer-times-page .selector-trigger {
+:root :is(.prayer-times-page, .qibla-page) .selector-trigger {
   min-height: 48px;
   padding: 0.7rem 1rem;
   border-radius: 11px;
   font-weight: 500;
 }
-:root .prayer-times-page .selector-label {
+:root :is(.prayer-times-page, .qibla-page) .selector-label {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-:root .prayer-times-page .selector-icon {
+:root :is(.prayer-times-page, .qibla-page) .selector-icon {
   color: var(--accent);
 }
-:root .prayer-times-page .selector-dropdown {
+:root :is(.prayer-times-page, .qibla-page) .selector-dropdown {
   box-shadow: var(--home-shadow);
 }
-:root .prayer-times-page .city-option {
+:root :is(.prayer-times-page, .qibla-page) .city-option {
   min-height: 44px;
 }
-:root .prayer-times-page .search-input {
+:root :is(.prayer-times-page, .qibla-page) .search-input {
   min-height: 44px;
   font-size: 1rem;
 }
-:root .prayer-times-page .city-option.active {
+:root :is(.prayer-times-page, .qibla-page) .city-option.active {
   background: var(--accent-surface);
 }
-:root .prayer-times-page .header-desktop-controls {
+:root :is(.prayer-times-page, .qibla-page) .header-desktop-controls {
   display: none;
 }
-:root .prayer-times-page .header-mobile-controls {
+:root :is(.prayer-times-page, .qibla-page) .header-mobile-controls {
   display: flex;
   grid-row: 1;
   grid-column: 2;
   gap: 0.5rem;
 }
-:root .prayer-times-page :is(.lang-switcher, .theme-switcher, .method-switcher, .header-qibla) {
+:root :is(.prayer-times-page, .qibla-page) :is(.lang-switcher, .theme-switcher, .method-switcher, .header-qibla) {
   height: 44px;
   background: var(--surface-elevated);
   border-radius: 10px;
 }
-:root .prayer-times-page :is(.lang-btn, .theme-btn) {
+:root :is(.prayer-times-page, .qibla-page) :is(.lang-btn, .theme-btn) {
   align-self: stretch;
 }
-:root .prayer-times-page :is(.lang-slider, .theme-slider, .method-slider) {
+:root :is(.prayer-times-page, .qibla-page) :is(.lang-slider, .theme-slider, .method-slider) {
   border-color: var(--border-color);
   box-shadow: none;
   border-radius: 7px;
 }
-:root .prayer-times-page .lang-btn {
+:root :is(.prayer-times-page, .qibla-page) .lang-btn {
   padding-inline: 0.45rem;
 }
-:root .prayer-times-page .lang-flag {
+:root :is(.prayer-times-page, .qibla-page) .lang-flag {
   width: 16px;
   height: 16px;
 }
-:root .prayer-times-page .hamburger {
+:root :is(.prayer-times-page, .qibla-page) .hamburger {
   width: 44px;
   height: 44px;
 }
-:root .prayer-times-page .mobile-dropdown {
+:root :is(.prayer-times-page, .qibla-page) .mobile-dropdown {
   display: flex;
   padding: 1rem;
   gap: 0.75rem;
   background: var(--surface-elevated);
 }
-:root .prayer-times-page .mobile-dropdown .header-qibla {
+:root :is(.prayer-times-page, .qibla-page) .mobile-dropdown .header-qibla {
   color: var(--text-primary);
 }
-:root .prayer-times-page .mobile-dropdown :is(.theme-switcher, .method-switcher) {
+:root :is(.prayer-times-page, .qibla-page) .mobile-dropdown :is(.theme-switcher, .method-switcher) {
   height: 48px;
 }
-:root .prayer-times-page .method-help-icon {
+:root :is(.prayer-times-page, .qibla-page) .method-help-icon {
   opacity: 1;
 }
-:root .prayer-times-page .method-tooltip {
+:root :is(.prayer-times-page, .qibla-page) .method-tooltip {
   z-index: 250;
   left: 0;
   right: 0;
@@ -234,14 +234,14 @@
   max-width: none;
   transform: none;
 }
-:root .prayer-times-page .method-tooltip-content,
-:root .prayer-times-page .method-tooltip::after {
+:root :is(.prayer-times-page, .qibla-page) .method-tooltip-content,
+:root :is(.prayer-times-page, .qibla-page) .method-tooltip::after {
   background: var(--surface-elevated);
   color: var(--text-primary);
   border-color: var(--hero-border);
   box-shadow: var(--home-shadow);
 }
-:root .prayer-times-page .state-panel {
+:root :is(.prayer-times-page, .qibla-page) .state-panel {
   margin-top: 2rem;
   background: var(--hero-surface);
   border-color: var(--hero-border);
@@ -249,22 +249,22 @@
 }
 
 @media (min-width: 600px) {
-  :root .prayer-times-page .app-header {
+  :root :is(.prayer-times-page, .qibla-page) .app-header {
     padding: 1rem 1.5rem;
     grid-template-columns: auto minmax(180px, 1fr) auto;
     gap: 1.5rem;
   }
-  :root .prayer-times-page app-header app-city-selector {
+  :root :is(.prayer-times-page, .qibla-page) app-header app-city-selector {
     grid-row: 1;
     grid-column: 2;
     max-width: 380px;
     width: 100%;
     justify-self: center;
   }
-  :root .prayer-times-page .header-mobile-controls {
+  :root :is(.prayer-times-page, .qibla-page) .header-mobile-controls {
     grid-column: 3;
   }
-  :root .prayer-times-page .mobile-dropdown {
+  :root :is(.prayer-times-page, .qibla-page) .mobile-dropdown {
     left: auto;
     width: 360px;
     border-left: 1px solid var(--border-color);
@@ -272,25 +272,25 @@
   }
 }
 @media (min-width: 1100px) {
-  :root .prayer-times-page .app-header {
+  :root :is(.prayer-times-page, .qibla-page) .app-header {
     padding: 1rem 2rem;
     gap: 2rem;
   }
-  :root .prayer-times-page .header-desktop-controls {
+  :root :is(.prayer-times-page, .qibla-page) .header-desktop-controls {
     display: flex;
     gap: 0.5rem;
   }
-  :root .prayer-times-page :is(.header-mobile-controls, .mobile-dropdown) {
+  :root :is(.prayer-times-page, .qibla-page) :is(.header-mobile-controls, .mobile-dropdown) {
     display: none;
   }
-  :root .prayer-times-page .header-qibla {
+  :root :is(.prayer-times-page, .qibla-page) .header-qibla {
     color: var(--text-secondary);
   }
-  :root .prayer-times-page .header-qibla:hover {
+  :root :is(.prayer-times-page, .qibla-page) .header-qibla:hover {
     color: var(--accent);
     border-color: var(--accent);
   }
-  :root .prayer-times-page .method-tooltip {
+  :root :is(.prayer-times-page, .qibla-page) .method-tooltip {
     left: 50%;
     right: auto;
     width: 340px;
@@ -298,9 +298,9 @@
   }
 }
 @media (prefers-reduced-motion: reduce) {
-  :root .prayer-times-page *,
-  :root .prayer-times-page *::before,
-  :root .prayer-times-page *::after {
+  :root :is(.prayer-times-page, .qibla-page) *,
+  :root :is(.prayer-times-page, .qibla-page) *::before,
+  :root :is(.prayer-times-page, .qibla-page) *::after {
     animation: none !important;
     transition: none !important;
   }

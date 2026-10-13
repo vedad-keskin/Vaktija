@@ -81,6 +81,12 @@ export interface AppLabels {
   qiblaSectionTitle: string;
   qiblaLocationPreset: string;
   qiblaLocationGps: string;
+  qiblaLocationLabel: string;
+  qiblaUseCity: string;
+  qiblaCompassIdle: string;
+  qiblaCompassWaiting: string;
+  qiblaAlignedLabel: string;
+  qiblaRecalibrate: string;
   qiblaGpsPending: string;
   qiblaGpsError: string;
   qiblaGpsDenied: string;
@@ -192,13 +198,19 @@ export const BS_LABELS: AppLabels = {
   qiblaTileTitle: 'Kibla kompas',
   qiblaTileSubtitle: 'Smjer prema Kabi u Mekki',
   qiblaBackToTimes: 'Natrag na vremena namaza',
-  qiblaSectionTitle: 'Kibla',
+  qiblaSectionTitle: 'Smjer kible',
   qiblaLocationPreset: 'Grad s liste',
   qiblaLocationGps: 'Moja lokacija',
+  qiblaLocationLabel: 'Lokacija za proračun',
+  qiblaUseCity: 'Koristi odabrani grad',
+  qiblaCompassIdle: 'Pregled smjera · kompas nije uključen',
+  qiblaCompassWaiting: 'Čekam signal kompasa…',
+  qiblaAlignedLabel: 'Okrenuti ste prema kibli',
+  qiblaRecalibrate: 'Kalibriši ponovo',
   qiblaGpsPending: 'Određujem lokaciju…',
   qiblaGpsError: 'Nije moguće dobiti lokaciju. Provjerite dozvole i GPS.',
   qiblaGpsDenied: 'Lokacija je odbijena. Uključite je u postavkama preglednika.',
-  qiblaEnableCompass: 'Uključi kompas',
+  qiblaEnableCompass: 'Pokreni kompas',
   qiblaCompassListening: 'Kompas aktivan',
   qiblaUnsupported:
     'Ovaj uređaj ili preglednik ne podržava orijentaciju (kompas). Pokušajte na mobilnom telefonu u Chromeu ili Safariju.',
@@ -208,7 +220,7 @@ export const BS_LABELS: AppLabels = {
   qiblaBearingLabel: 'Azimut',
   qiblaDistanceLabel: 'Udaljenost',
   qiblaKaabaCaption: 'Kaaba',
-  qiblaFaceKaabaHint: 'Kada strelica na gornjem rubu pokazuje naprijed, licem ste okrenuti prema kibli.',
+  qiblaFaceKaabaHint: 'Držite telefon mirno i polako se okrećite dok se oznaka Kabe ne poravna s vrhom kompasa.',
 
   qiblaCalibrateTitle: 'Kalibrišite kompas',
   qiblaCalibrateBody: 'Lagano pomičite telefon u obliku osmice kako biste poboljšali tačnost kompasa.',

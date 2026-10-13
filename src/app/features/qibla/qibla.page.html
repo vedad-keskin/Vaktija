@@ -1,259 +1,220 @@
-<div class="qibla-page">
-  <app-header />
+<div class="qibla-page" [attr.lang]="langService.lang()">
+  <app-header>
+    <app-city-selector
+      [locations]="locations()"
+      [selected]="selectedPreset()"
+      (selectionChange)="onPresetChange($event)"
+    />
+  </app-header>
 
   <main class="qibla-main">
-    <header class="qibla-hero">
-      <div class="qibla-hero-row">
-        <a
-          routerLink="/"
-          class="qibla-back"
-          [attr.aria-label]="labels().qiblaBackToTimes"
-        >
-          <span class="qibla-back-icon" aria-hidden="true">&lt;</span>
-        </a>
-        <h1 class="qibla-title">{{ labels().qiblaSectionTitle }}</h1>
-      </div>
-      <div class="qibla-ornament" aria-hidden="true"></div>
+    <header class="qibla-heading">
+      <a
+        routerLink="/"
+        class="qibla-back"
+        [attr.aria-label]="labels().qiblaBackToTimes"
+        [title]="labels().qiblaBackToTimes"
+      >
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m14 6-6 6 6 6M8 12h12" /></svg>
+      </a>
+      <h1 id="qibla-title">{{ labels().qiblaSectionTitle }}</h1>
+      <p>{{ labels().qiblaTileSubtitle }}</p>
+      <span class="qibla-divider" aria-hidden="true"></span>
     </header>
 
-    <section class="qibla-panel" aria-label="Location">
-      <div class="qibla-source-toggle" role="group">
-        <button
-          type="button"
-          class="source-btn"
-          [class.active]="source() === 'preset'"
-          (click)="setSource('preset')"
-        >
-          {{ labels().qiblaLocationPreset }}
-        </button>
-        <button
-          type="button"
-          class="source-btn"
-          [class.active]="source() === 'gps'"
-          (click)="setSource('gps')"
-        >
-          {{ labels().qiblaLocationGps }}
-        </button>
-      </div>
+    <section class="qibla-scene" aria-labelledby="qibla-title">
+      <svg class="scene-arch" viewBox="0 0 1200 650" preserveAspectRatio="none" aria-hidden="true">
+        <path
+          d="M26 624V218Q26 145 98 130Q104 66 178 66Q234 10 306 34Q367 2 436 25Q526 7 600 20Q674 7 764 25Q833 2 894 34Q966 10 1022 66Q1096 66 1102 130Q1174 145 1174 218V624"
+        />
+        <path
+          d="M38 624V220Q38 154 110 143Q115 80 183 80Q238 25 307 47Q372 16 438 39Q528 20 600 34Q672 20 762 39Q828 16 893 47Q962 25 1017 80Q1085 80 1090 143Q1162 154 1162 220V624"
+        />
+      </svg>
 
-      @if (source() === 'preset') {
-        <div class="qibla-city-wrap">
-          <app-city-selector
-            [locations]="locations()"
-            [selected]="selectedPreset()"
-            [compact]="true"
-            (selectionChange)="onPresetChange($event)"
-          />
-        </div>
-      }
-
-      @if (source() === 'gps') {
-        @if (gpsMessage(); as gErr) {
-          <p class="qibla-msg qibla-msg--error" role="status">{{ gErr }}</p>
-        } @else if (gpsLoading()) {
-          <p class="qibla-msg" role="status">{{ labels().qiblaGpsPending }}</p>
-        }
-      }
-
-      <div class="qibla-stats" [class.qibla-stats--dim]="effectivePoint() === null">
-        <div class="qibla-stat">
-          <span class="qibla-stat-label">{{ labels().qiblaBearingLabel }}</span>
-          <span class="qibla-stat-value">{{ bearingFmt() }}</span>
-        </div>
-        <div class="qibla-stat-q">
-          <span class="qibla-stat-dot"></span>
-        </div>
-        <div class="qibla-stat">
-          <span class="qibla-stat-label">{{ labels().qiblaDistanceLabel }}</span>
-          <span class="qibla-stat-value">{{ distanceFmt() }}</span>
-        </div>
-      </div>
-
-      @if (locationLine()) {
-        <p class="qibla-coords">{{ locationLine() }}</p>
-      }
-    </section>
-
-    <section class="qibla-compass-section" aria-label="Compass">
-      <div class="compass-stack" [class.compass-stack--aligned]="qiblaAligned()">
-        @if (showCalibrationOverlay()) {
-          <div
-            class="calibration-overlay"
-            role="dialog"
-            aria-modal="true"
-            aria-labelledby="calibration-dialog-title"
+      <div class="qibla-layout">
+        <section class="qibla-panel" aria-labelledby="qibla-location-title">
+          <span class="qibla-eyebrow">{{ labels().qiblaLocationLabel }}</span>
+          <h2 id="qibla-location-title">
+            {{ source() === 'gps' ? labels().qiblaLocationGps : selectedPreset()?.name }}
+          </h2>
+          @if (source() === 'gps' && gpsCoords()) {
+            <p class="qibla-coords">{{ locationLine() }}</p>
+          }
+          <button
+            type="button"
+            class="qibla-gps"
+            [class.active]="source() === 'gps'"
+            [attr.aria-pressed]="source() === 'gps'"
+            [attr.aria-busy]="gpsLoading()"
+            (click)="setSource(source() === 'gps' ? 'preset' : 'gps')"
           >
-            <div class="calibration-card">
-              <h2 class="calibration-title" id="calibration-dialog-title">
-                {{ labels().qiblaCalibrateTitle }}
-              </h2>
-              <div class="calibration-anim" aria-hidden="true">
-                <div class="calibration-phone">
-                  <div class="calibration-phone-screen">
-                    <div class="calibration-phone-notch"></div>
-                  </div>
-                </div>
-                <svg class="calibration-trail" viewBox="0 0 120 80" aria-hidden="true">
-                  <path
-                    d="M60,40 C60,10 90,10 90,40 C90,70 60,70 60,40 C60,10 30,10 30,40 C30,70 60,70 60,40"
-                    fill="none"
-                    stroke="rgba(201,162,39,0.32)"
-                    stroke-width="2"
-                    stroke-dasharray="4 3"
-                  />
-                </svg>
-              </div>
-              <p class="calibration-body">{{ labels().qiblaCalibrateBody }}</p>
-              <div class="calibration-actions">
-                <button type="button" class="calibration-btn calibration-btn--skip" (click)="dismissCalibration()">
-                  {{ labels().qiblaCalibrateSkip }}
-                </button>
-                <button type="button" class="calibration-btn calibration-btn--done" (click)="dismissCalibration()">
-                  {{ labels().qiblaCalibrateDone }}
-                </button>
-              </div>
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <circle cx="12" cy="12" r="6" />
+              <circle cx="12" cy="12" r="2" />
+              <path d="M12 2v3m0 14v3M2 12h3m14 0h3" />
+            </svg>
+            {{ source() === 'gps' ? labels().qiblaUseCity : labels().qiblaLocationGps }}
+          </button>
+          @if (gpsMessage(); as message) {
+            <p class="qibla-message qibla-message--error" role="status">{{ message }}</p>
+          } @else if (gpsLoading()) {
+            <p class="qibla-message" role="status">{{ labels().qiblaGpsPending }}</p>
+          }
+          <dl class="qibla-stats" [class.dim]="effectivePoint() === null">
+            <div>
+              <dt>{{ labels().qiblaBearingLabel }}</dt>
+              <dd>{{ bearingFmt() }}</dd>
             </div>
-          </div>
-        }
+            <div>
+              <dt>{{ labels().qiblaDistanceLabel }}</dt>
+              <dd>{{ distanceFmt() }}</dd>
+            </div>
+          </dl>
+        </section>
 
-        <div class="compass-action">
+        <section class="qibla-compass-section" [attr.aria-label]="labels().qiblaTileTitle">
           @if (orientationSupported) {
-            @if (compassDenied()) {
-              <span class="qibla-enable-status qibla-enable-status--warn" role="status">
-                {{ labels().qiblaPermissionDenied }}
-              </span>
-            } @else if (!compassListening() && !showCalibrationOverlay()) {
-              <button type="button" class="qibla-enable-min" (click)="requestCompass()">
-                {{ labels().qiblaEnableCompass }}
-              </button>
-            } @else if (compassListening()) {
-              <span class="qibla-enable-status" role="status">
-                <span class="qibla-dot" aria-hidden="true"></span>
-                {{ labels().qiblaCompassListening }}
-              </span>
-            }
-          }
-        </div>
-
-        <div class="compass-frame">
-          <div class="compass-apex" aria-hidden="true"></div>
-
-          <svg class="compass-decorative-ring" viewBox="0 0 200 200" aria-hidden="true">
-            <circle
-              cx="100"
-              cy="100"
-              r="93"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="0.65"
-              opacity="0.35"
-            />
-            <path
-              fill="none"
-              stroke="currentColor"
-              stroke-width="0.55"
-              opacity="0.4"
-              d="M100 22 L124 78 L184 78 L136 122 L160 178 L100 142 L40 178 L64 122 L16 78 L76 78 Z"
-            />
-          </svg>
-
-          <div
-            class="compass-rotor"
-            [style.transform]="'rotate(' + dialRotateDeg() + 'deg)'"
-            [class.compass-rotor--idle]="smoothedHeading() === null"
-          >
-            <div class="compass-ring-bg"></div>
-            <div class="compass-ornament" aria-hidden="true"></div>
-          <svg class="compass-degrees" viewBox="0 0 200 200" aria-hidden="true">
-            @for (n of tickMarks; track n) {
-              <line
-                class="compass-tick-line"
-                [class.major]="n % 9 === 0"
-                x1="100"
-                y1="14"
-                x2="100"
-                [attr.y2]="n % 9 === 0 ? 28 : 22"
-                [attr.transform]="'rotate(' + n * 10 + ' 100 100)'"
-              />
-            }
-          </svg>
-
-          <div class="compass-inner-ring"></div>
-
-          <span class="cardinal cardinal-n">N</span>
-          <span class="cardinal cardinal-e">E</span>
-          <span class="cardinal cardinal-s">S</span>
-          <span class="cardinal cardinal-w">W</span>
-
-          @if (bearingDeg() !== null) {
-            <div class="qibla-spoke" [style.transform]="'rotate(' + magneticBearingDeg() + 'deg)'">
-              <div class="qibla-spoke-line"></div>
-              <div class="qibla-spoke-cap" role="img" [attr.aria-label]="labels().qiblaKaabaCaption">
-                <span class="qibla-spoke-star" aria-hidden="true">✦</span>
-                <svg
-                  class="qibla-kaaba-svg"
-                  viewBox="0 0 32 40"
-                  aria-hidden="true"
-                  focusable="false"
-                >
-                  <rect x="5" y="14" width="22" height="24" rx="1.5" fill="#141210" />
-                  <rect x="5" y="14" width="22" height="6" rx="1" fill="#c9a227" />
-                  <rect x="5" y="18" width="22" height="1.2" fill="#e4c76b" opacity="0.45" />
-                  <path
-                    d="M14 26 Q16 23 18 26 L18 34 Q16 36 14 34 Z"
-                    fill="#0d0b09"
-                    opacity="0.92"
-                  />
-                  <rect x="15.5" y="27" width="1" height="5" rx="0.3" fill="#c9a227" opacity="0.65" />
-                </svg>
-              </div>
-            </div>
-          }
-
-          <div class="compass-hub">
-            <div class="compass-hub-inner"></div>
-          </div>
-          </div>
-        </div>
-      </div>
-      @if (!orientationSupported) {
-        <p class="qibla-banner qibla-banner--warn" role="status">{{ labels().qiblaUnsupported }}</p>
-      } @else {
-        @if (compassDenied()) {
-          <p class="qibla-banner qibla-banner--warn" role="status">{{ labels().qiblaPermissionDenied }}</p>
-        }
-        @if (compassNoDataHint() && compassListening() && !compassDenied()) {
-          <p class="qibla-banner" role="status">{{ labels().qiblaNoEventsHint }}</p>
-        }
-        @if (showCalibrationHint() && compassListening() && !compassDenied()) {
-          <p class="qibla-banner" role="status">{{ labels().qiblaCalibrationHint }}</p>
-        }
-      }
-    </section>
-
-    <!-- FAQ Section -->
-    <section class="qibla-faq" aria-label="FAQ">
-      <h2 class="qibla-faq-title">{{ labels().qiblaFaqTitle }}</h2>
-      <div class="qibla-faq-list">
-        @for (item of labels().qiblaFaq; track $index) {
-          <div class="faq-item" [class.faq-item--open]="isFaqOpen($index)">
             <button
               type="button"
-              class="faq-question"
-              [attr.aria-expanded]="isFaqOpen($index)"
-              (click)="toggleFaq($index)"
+              class="qibla-start"
+              (click)="requestCompass()"
+              [disabled]="showCalibrationOverlay()"
             >
-              <span class="faq-question-text">{{ item.q }}</span>
-              <span class="faq-chevron" aria-hidden="true"></span>
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <circle cx="12" cy="12" r="9" />
+                <path d="m15.5 8.5-2 5-5 2 2-5 5-2Z" />
+              </svg>
+              {{ compassListening() ? labels().qiblaRecalibrate : labels().qiblaEnableCompass }}
             </button>
-            @if (isFaqOpen($index)) {
-              <div class="faq-answer">
-                <p>{{ item.a }}</p>
+          }
+          <div
+            class="compass-stack"
+            [class.aligned]="qiblaAligned()"
+            [class.unavailable]="effectivePoint() === null"
+          >
+            <div class="compass-apex" aria-hidden="true"></div>
+            <div
+              class="compass-frame"
+              role="img"
+              [attr.aria-label]="labels().qiblaTileSubtitle + ' · ' + bearingFmt()"
+            >
+              <div class="compass-rotor" [style.transform]="'rotate(' + dialRotateDeg() + 'deg)'">
+                <svg class="compass-face" viewBox="0 0 200 200" aria-hidden="true">
+                  <circle class="dial-rim" cx="100" cy="100" r="97" />
+                  <circle class="dial-inner" cx="100" cy="100" r="88" />
+                  @for (n of tickMarks; track n) {
+                    <line
+                      class="compass-tick"
+                      [class.major]="n % 18 === 0"
+                      [class.medium]="n % 6 === 0"
+                      x1="100"
+                      y1="11"
+                      x2="100"
+                      [attr.y2]="n % 18 === 0 ? 21 : n % 6 === 0 ? 19 : 15"
+                      [attr.transform]="'rotate(' + n * 5 + ' 100 100)'"
+                    />
+                  }
+                  <circle class="rose-ring" cx="100" cy="100" r="48" />
+                  <path
+                    class="compass-rose"
+                    d="M100 52 108 80 134 66 120 92 148 100 120 108 134 134 108 120 100 148 92 120 66 134 80 108 52 100 80 92 66 66 92 80Z"
+                  />
+                  <path class="rose-lines" d="M100 52v96M52 100h96M66 66l68 68M66 134l68-68" />
+                </svg>
+                <span class="cardinal cardinal-n">N</span>
+                <span class="cardinal cardinal-e">E</span>
+                <span class="cardinal cardinal-s">S</span>
+                <span class="cardinal cardinal-w">W</span>
+                @let bearing = magneticBearingDeg();
+                @if (bearing !== null) {
+                  <div class="qibla-spoke" [style.transform]="'rotate(' + bearing + 'deg)'">
+                    <svg
+                      class="qibla-needle"
+                      viewBox="0 0 24 100"
+                      preserveAspectRatio="none"
+                      aria-hidden="true"
+                    >
+                      <path class="needle-light" d="M12 0 23 68 12 100Z" />
+                      <path class="needle-shade" d="M12 0 1 68 12 100Z" />
+                      <path class="needle-edge" d="M12 0 23 68 12 100 1 68Z" />
+                    </svg>
+                    <div class="kaaba-marker">
+                      <svg
+                        viewBox="0 0 32 32"
+                        aria-hidden="true"
+                        [style.transform]="'rotate(' + -(dialRotateDeg() + bearing) + 'deg)'"
+                      >
+                        <path class="kaaba-body" d="m5 10 11-5 11 5v16l-11 4-11-4Z" />
+                        <path class="kaaba-band" d="m5 10 11 5 11-5M5 14l11 5 11-5M16 15v15" />
+                      </svg>
+                    </div>
+                  </div>
+                }
+                <span class="compass-hub" aria-hidden="true"></span>
               </div>
-            }
+            </div>
           </div>
-        }
+          <p
+            class="compass-status"
+            [class.is-aligned]="qiblaAligned()"
+            [class.is-warning]="compassDenied() || compassNoDataHint()"
+            role="status"
+            aria-live="polite"
+          >
+            {{ compassStatus() }}
+          </p>
+          <p class="compass-guidance">{{ labels().qiblaFaceKaabaHint }}</p>
+          <div class="calibration-tip">
+            <svg viewBox="0 0 64 32" aria-hidden="true">
+              <rect x="3" y="4" width="13" height="24" rx="2" transform="rotate(8 9 16)" />
+              <path d="M30 16c10-18 22 18 30 0S40 34 30 16Z" />
+              <path d="m29 10 1 6 6-1" />
+            </svg>
+            <p>
+              {{
+                showCalibrationHint() ? labels().qiblaCalibrationHint : labels().qiblaCalibrateBody
+              }}
+            </p>
+          </div>
+        </section>
       </div>
     </section>
+
+    <section class="qibla-faq" aria-labelledby="qibla-faq-title">
+      <h2 id="qibla-faq-title">{{ labels().qiblaFaqTitle }}</h2>
+      @for (item of labels().qiblaFaq; track $index) {
+        <details class="faq-item">
+          <summary>{{ item.q }}<span class="faq-chevron" aria-hidden="true"></span></summary>
+          <p>{{ item.a }}</p>
+        </details>
+      }
+    </section>
   </main>
+
+  <dialog
+    #calibrationDialog
+    class="calibration-dialog"
+    aria-labelledby="calibration-title"
+    aria-describedby="calibration-body"
+    (cancel)="cancelCalibration($event)"
+  >
+    <span class="qibla-eyebrow">{{ labels().qiblaTileTitle }}</span>
+    <h2 id="calibration-title">{{ labels().qiblaCalibrateTitle }}</h2>
+    <div class="calibration-animation" aria-hidden="true">
+      <svg viewBox="0 0 120 80">
+        <path d="M60 40C60 0 100 0 100 40S60 80 60 40 20 0 20 40 60 80 60 40" />
+      </svg>
+      <span class="calibration-phone"></span>
+    </div>
+    <p id="calibration-body">{{ labels().qiblaCalibrateBody }}</p>
+    <div class="calibration-actions">
+      <button type="button" class="calibration-skip" (click)="dismissCalibration()">
+        {{ labels().qiblaCalibrateSkip }}
+      </button>
+      <button type="button" class="qibla-start" (click)="dismissCalibration()">
+        {{ labels().qiblaCalibrateDone }}
+      </button>
+    </div>
+  </dialog>
 </div>

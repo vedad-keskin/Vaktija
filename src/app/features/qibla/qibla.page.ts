@@ -1,12 +1,14 @@
 import {
   Component,
   DestroyRef,
+  ElementRef,
   OnInit,
   inject,
   signal,
   computed,
   effect,
   untracked,
+  viewChild,
 } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { RouterLink } from '@angular/router';
@@ -15,10 +17,7 @@ import { CitySelectorComponent } from '../prayer-times/components/city-selector/
 import { LocationService } from '../../core/services/location.service';
 import { LanguageService } from '../../core/services/language.service';
 import { Location } from '../../core/models/location.model';
-import {
-  computeDistanceToKaabaKm,
-  computeQiblaBearingDeg,
-} from '../../core/math/qibla-bearing';
+import { computeDistanceToKaabaKm, computeQiblaBearingDeg } from '../../core/math/qibla-bearing';
 import { headingFromDeviceOrientationEvent, normalizeDeg } from '../../core/math/compass-heading';
 import {
   componentsFromOrientationQuaternion,
@@ -72,8 +71,8 @@ type AbsoluteOrientationSensorConstructor = new (options?: {
   styleUrl: './qibla.page.css',
 })
 export class QiblaPage implements OnInit {
-  /** Every 10° around the dial (for SVG tick marks). */
-  protected readonly tickMarks = Array.from({ length: 36 }, (_, i) => i);
+  /** Every 5° around the dial (for SVG tick marks). */
+  protected readonly tickMarks = Array.from({ length: 72 }, (_, i) => i);
 
   private readonly locationService = inject(LocationService);
   private readonly title = inject(Title);
@@ -85,7 +84,11 @@ export class QiblaPage implements OnInit {
   protected readonly source = signal<LocationSource>('preset');
   protected readonly selectedPreset = signal<Location | null>(null);
   protected readonly gpsCoords = signal<{ lat: number; lng: number } | null>(null);
-  protected readonly gpsMessage = signal<string | null>(null);
+  private readonly gpsError = signal<'qiblaGpsDenied' | 'qiblaGpsError' | null>(null);
+  protected readonly gpsMessage = computed(() => {
+    const key = this.gpsError();
+    return key ? this.labels()[key] : null;
+  });
   protected readonly gpsLoading = signal(false);
 
   protected readonly orientationSupported = typeof DeviceOrientationEvent !== 'undefined';
@@ -100,8 +103,18 @@ export class QiblaPage implements OnInit {
   protected readonly rawHeading = signal<number | null>(null);
   protected readonly smoothedHeading = signal<number | null>(null);
 
-  /** FAQ open/close state by index. */
-  protected readonly faqOpen = signal<Set<number>>(new Set());
+  private readonly calibrationDialog =
+    viewChild<ElementRef<HTMLDialogElement>>('calibrationDialog');
+
+  protected readonly compassStatus = computed(() => {
+    const labels = this.labels();
+    if (!this.orientationSupported) return labels.qiblaUnsupported;
+    if (this.compassDenied()) return labels.qiblaPermissionDenied;
+    if (this.compassNoDataHint()) return labels.qiblaNoEventsHint;
+    if (!this.compassListening()) return labels.qiblaCompassIdle;
+    if (this.smoothedHeading() === null) return labels.qiblaCompassWaiting;
+    return this.qiblaAligned() ? labels.qiblaAlignedLabel : labels.qiblaCompassListening;
+  });
 
   private geoWatchId: number | null = null;
   private orientationTimer: ReturnType<typeof setTimeout> | null = null;
@@ -127,6 +140,13 @@ export class QiblaPage implements OnInit {
   };
 
   constructor() {
+    effect(() => {
+      const dialog = this.calibrationDialog()?.nativeElement;
+      if (!dialog) return;
+      if (this.showCalibrationOverlay() && !dialog.open) dialog.showModal();
+      else if (!this.showCalibrationOverlay() && dialog.open) dialog.close();
+    });
+
     effect(() => {
       const docTitle = this.langService.labels().qiblaPageDocTitle;
       untracked(() => this.title.setTitle(docTitle));
@@ -160,7 +180,7 @@ export class QiblaPage implements OnInit {
     const raw =
       typeof screen !== 'undefined' && typeof screen.orientation?.angle === 'number'
         ? screen.orientation.angle
-        : (window as Window & { orientation?: number }).orientation ?? 0;
+        : ((window as Window & { orientation?: number }).orientation ?? 0);
     return normalizeDeg(typeof raw === 'number' ? raw : 0);
   }
 
@@ -231,8 +251,9 @@ export class QiblaPage implements OnInit {
     // iOS/iPadOS: rely on `deviceorientation` + `webkitCompassHeading`; fused sensor path is unreliable.
     if (this.isIosLike()) return false;
 
-    const ctor = (globalThis as unknown as { AbsoluteOrientationSensor?: AbsoluteOrientationSensorConstructor })
-      .AbsoluteOrientationSensor;
+    const ctor = (
+      globalThis as unknown as { AbsoluteOrientationSensor?: AbsoluteOrientationSensorConstructor }
+    ).AbsoluteOrientationSensor;
     if (!ctor) return false;
 
     try {
@@ -241,11 +262,17 @@ export class QiblaPage implements OnInit {
       sensor.addEventListener('reading', () => {
         const parsed = componentsFromOrientationQuaternion(sensor.quaternion);
         if (!parsed) return;
-        const h = headingDegFromOrientationQuaternionBlended(parsed.x, parsed.y, parsed.z, parsed.w, {
-          screenAngleDeg: this.getScreenAngleDeg(),
-          flatBlendStartDeg: FLAT_BLEND_START_DEG,
-          flatBlendEndDeg: FLAT_BLEND_END_DEG,
-        });
+        const h = headingDegFromOrientationQuaternionBlended(
+          parsed.x,
+          parsed.y,
+          parsed.z,
+          parsed.w,
+          {
+            screenAngleDeg: this.getScreenAngleDeg(),
+            flatBlendStartDeg: FLAT_BLEND_START_DEG,
+            flatBlendEndDeg: FLAT_BLEND_END_DEG,
+          },
+        );
         if (h === null) return;
         this.ingestHeadingSample(h);
       });
@@ -304,8 +331,8 @@ export class QiblaPage implements OnInit {
     const b = this.magneticBearingDeg();
     if (b == null) return 0;
     const h = this.smoothedHeading();
-    // No heading yet: orient dial so Qibla aligns with top marker (flat-phone fallback).
-    if (h == null) return -b;
+    // A north-up preview avoids implying alignment before a real sensor reading.
+    if (h == null) return 0;
     return -h;
   });
 
@@ -325,7 +352,7 @@ export class QiblaPage implements OnInit {
 
   protected setSource(mode: LocationSource): void {
     this.source.set(mode);
-    this.gpsMessage.set(null);
+    this.gpsError.set(null);
     if (mode === 'gps') {
       this.startGps();
     } else {
@@ -336,6 +363,7 @@ export class QiblaPage implements OnInit {
   }
 
   protected onPresetChange(loc: Location): void {
+    this.setSource('preset');
     this.selectedPreset.set(loc);
     this.locationService.setSelectedLocation(loc);
   }
@@ -343,28 +371,26 @@ export class QiblaPage implements OnInit {
   private startGps(): void {
     this.clearGeoWatch();
     this.gpsCoords.set(null);
+    this.gpsLoading.set(false);
     if (!navigator.geolocation) {
-      this.gpsMessage.set(this.langService.labels().qiblaGpsError);
+      this.gpsError.set('qiblaGpsError');
       return;
     }
     this.gpsLoading.set(true);
-    const labels = this.langService.labels();
     this.geoWatchId = navigator.geolocation.watchPosition(
       (pos) => {
+        if (this.source() !== 'gps') return;
         this.gpsLoading.set(false);
-        this.gpsMessage.set(null);
+        this.gpsError.set(null);
         this.gpsCoords.set({
           lat: pos.coords.latitude,
           lng: pos.coords.longitude,
         });
       },
       (err: GeolocationPositionError) => {
+        if (this.source() !== 'gps') return;
         this.gpsLoading.set(false);
-        if (err.code === 1) {
-          this.gpsMessage.set(labels.qiblaGpsDenied);
-        } else {
-          this.gpsMessage.set(labels.qiblaGpsError);
-        }
+        this.gpsError.set(err.code === 1 ? 'qiblaGpsDenied' : 'qiblaGpsError');
       },
       { enableHighAccuracy: true, maximumAge: 20_000, timeout: 15_000 },
     );
@@ -396,6 +422,11 @@ export class QiblaPage implements OnInit {
     this.showCalibrationOverlay.set(true);
   }
 
+  protected cancelCalibration(event: Event): void {
+    event.preventDefault();
+    this.showCalibrationOverlay.set(false);
+  }
+
   /** User dismissed the calibration overlay — now actually start the compass. */
   protected async dismissCalibration(): Promise<void> {
     this.showCalibrationOverlay.set(false);
@@ -404,6 +435,7 @@ export class QiblaPage implements OnInit {
 
   private async enableCompass(): Promise<void> {
     if (!this.orientationSupported) return;
+    this.teardownCompass();
     this.compassDenied.set(false);
     this.compassNoDataHint.set(false);
     const DO = DeviceOrientationEvent as unknown as {
@@ -421,8 +453,6 @@ export class QiblaPage implements OnInit {
         return;
       }
     }
-    this.teardownCompass();
-
     // Show calibration hint until the first real heading event arrives.
     this.showCalibrationHint.set(true);
 
@@ -441,20 +471,6 @@ export class QiblaPage implements OnInit {
     }, 4000);
   }
 
-  protected toggleFaq(index: number): void {
-    const current = new Set(this.faqOpen());
-    if (current.has(index)) {
-      current.delete(index);
-    } else {
-      current.add(index);
-    }
-    this.faqOpen.set(current);
-  }
-
-  protected isFaqOpen(index: number): boolean {
-    return this.faqOpen().has(index);
-  }
-
   protected bearingFmt(): string {
     const b = this.bearingDeg();
     return b == null ? '—' : `${Math.round(b)}°`;
@@ -463,9 +479,9 @@ export class QiblaPage implements OnInit {
   protected distanceFmt(): string {
     const d = this.distanceKm();
     if (d == null) return '—';
-    if (d >= 100) return `${Math.round(d)} km`;
-    if (d >= 10) return `${d.toFixed(1)} km`;
-    return `${d.toFixed(2)} km`;
+    return `${new Intl.NumberFormat(this.langService.lang() === 'bs' ? 'bs-BA' : 'en-GB', {
+      maximumFractionDigits: d >= 100 ? 0 : d >= 10 ? 1 : 2,
+    }).format(d)} km`;
   }
 
   protected locationLine(): string {
