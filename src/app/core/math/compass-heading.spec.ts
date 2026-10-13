@@ -1,90 +1,68 @@
-import { describe, expect, it } from 'vitest';
+import { expect, it } from 'vitest';
+import { headingFromDeviceOrientationEvent } from './compass-heading';
 import {
-  compassHeadingVerticalDeg,
-  headingFromFlatAlpha,
-  headingFromDeviceOrientationEvent,
-  normalizeDeg,
-} from './compass-heading';
+  headingDegFromOrientationQuaternionTopAxis,
+  quaternionFromDeviceOrientationDeg,
+} from './orientation-quaternion-heading';
 
-describe('normalizeDeg', () => {
-  it('normalizes negatives', () => {
-    expect(normalizeDeg(-90)).toBe(270);
-  });
+it('uses the same physical top edge when flat, pitched, rolled and screen-rotated on both sensor paths', () => {
+  for (const alpha of [0, 90, 270]) {
+    for (const beta of [-20, 0, 20]) {
+      for (const gamma of [-35, 0, 35]) {
+        const e = { alpha, beta, gamma, absolute: true } as DeviceOrientationEvent;
+        const q = quaternionFromDeviceOrientationDeg(alpha, beta, gamma);
+        const expected = (360 - alpha) % 360;
+        expect(headingFromDeviceOrientationEvent(e)).toBeCloseTo(expected, 8);
+        expect(headingDegFromOrientationQuaternionTopAxis(q.x, q.y, q.z, q.w)).toBeCloseTo(
+          expected,
+          8,
+        );
+      }
+    }
+  }
+  // Independent projected vector for a pitched/rolled phone: +X has E=.819152, N=.196175.
+  const landscape = (Math.atan2(0.8191520442889918, 0.19617469496901108) * 180) / Math.PI;
+  const e = { alpha: 0, beta: 20, gamma: 35, absolute: true } as DeviceOrientationEvent;
+  const q = quaternionFromDeviceOrientationDeg(0, 20, 35);
+  for (const [screenAngle, expected] of [
+    [0, 0],
+    [90, landscape],
+    [180, 180],
+    [270, landscape + 180],
+  ]) {
+    expect(headingFromDeviceOrientationEvent(e, { screenAngleDeg: screenAngle })).toBeCloseTo(
+      expected,
+      8,
+    );
+    expect(headingDegFromOrientationQuaternionTopAxis(q.x, q.y, q.z, q.w, screenAngle)).toBeCloseTo(
+      expected,
+      8,
+    );
+  }
+  for (const beta of [60, 90, 180]) {
+    expect(headingFromDeviceOrientationEvent({ ...e, beta })).toBeNull();
+    const tilted = quaternionFromDeviceOrientationDeg(0, beta, 0);
+    expect(
+      headingDegFromOrientationQuaternionTopAxis(tilted.x, tilted.y, tilted.z, tilted.w),
+    ).toBeNull();
+  }
 });
 
-describe('headingFromFlatAlpha', () => {
-  it('north when alpha 0', () => {
-    expect(headingFromFlatAlpha(0)).toBe(0);
-  });
-  it('east when alpha 270 (flat compass opposite sense)', () => {
-    expect(headingFromFlatAlpha(270)).toBe(90);
-  });
-});
-
-describe('compassHeadingVerticalDeg', () => {
-  it('returns 0 for typical vertical portrait reference (alpha=0 beta=90 gamma=0)', () => {
-    expect(compassHeadingVerticalDeg(0, 90, 0)).toBe(0);
-  });
-});
-
-describe('headingFromDeviceOrientationEvent', () => {
-  it('prefers webkitCompassHeading', () => {
-    const e = { webkitCompassHeading: 45 } as unknown as DeviceOrientationEvent;
-    expect(headingFromDeviceOrientationEvent(e)).toBe(45);
-  });
-
-  it('returns null for non-absolute event without webkitCompassHeading', () => {
-    const e = {
-      alpha: 270,
-      beta: 10,
-      gamma: 5,
-      absolute: false,
-    } as DeviceOrientationEvent;
-    expect(headingFromDeviceOrientationEvent(e)).toBeNull();
-  });
-
-  it('returns a heading for absolute event with small tilt', () => {
-    const e = {
-      alpha: 270,
-      beta: 10,
-      gamma: 5,
-      absolute: true,
-    } as DeviceOrientationEvent;
-    const result = headingFromDeviceOrientationEvent(e);
-    expect(result).not.toBeNull();
-    // Tilt-compensated formula differs from the flat formula at non-zero tilt;
-    // just verify it returns a valid degree value.
-    expect(result!).toBeGreaterThanOrEqual(0);
-    expect(result!).toBeLessThan(360);
-  });
-
-  it('uses tilt formula when tilted (portrait-like)', () => {
-    const e = {
-      alpha: 0,
-      beta: 90,
-      gamma: 0,
-      absolute: true,
-    } as DeviceOrientationEvent;
-    expect(headingFromDeviceOrientationEvent(e)).toBe(0);
-  });
-
-  it('returns null when alpha is missing', () => {
-    const e = {
-      alpha: null,
-      beta: 90,
-      gamma: 0,
-      absolute: true,
-    } as unknown as DeviceOrientationEvent;
-    expect(headingFromDeviceOrientationEvent(e)).toBeNull();
-  });
-
-  it('falls back to flat formula when only alpha available on absolute event', () => {
-    const e = {
-      alpha: 90,
-      beta: null,
-      gamma: null,
-      absolute: true,
-    } as unknown as DeviceOrientationEvent;
-    expect(headingFromDeviceOrientationEvent(e)).toBe(270);
-  });
+it('rejects relative, missing, nonfinite and uncalibrated data; preserves calibrated Safari headings', () => {
+  const flat = { alpha: 270, beta: 0, gamma: 0, absolute: true } as DeviceOrientationEvent;
+  expect(headingFromDeviceOrientationEvent(flat)).toBe(90);
+  for (const change of [
+    { absolute: false },
+    { alpha: null },
+    { alpha: Infinity },
+    { beta: null },
+    { gamma: NaN },
+  ]) {
+    expect(headingFromDeviceOrientationEvent({ ...flat, ...change })).toBeNull();
+  }
+  const safari = { ...flat, absolute: false, webkitCompassHeading: 45, webkitCompassAccuracy: 5 };
+  expect(headingFromDeviceOrientationEvent(safari)).toBe(45);
+  expect(headingFromDeviceOrientationEvent(safari, { screenAngleDeg: 90 })).toBe(135);
+  const uncalibrated = { ...safari, webkitCompassAccuracy: -1 };
+  expect(headingFromDeviceOrientationEvent(uncalibrated)).toBeNull();
 });

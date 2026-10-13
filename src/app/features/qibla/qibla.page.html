@@ -126,7 +126,7 @@
                 <span class="cardinal cardinal-e">E</span>
                 <span class="cardinal cardinal-s">S</span>
                 <span class="cardinal cardinal-w">W</span>
-                @let bearing = magneticBearingDeg();
+                @let bearing = bearingDeg();
                 @if (bearing !== null) {
                   <div class="qibla-spoke" [style.transform]="'rotate(' + bearing + 'deg)'">
                     <svg
@@ -158,7 +158,7 @@
           <p
             class="compass-status"
             [class.is-aligned]="qiblaAligned()"
-            [class.is-warning]="compassDenied() || compassNoDataHint()"
+            [class.is-warning]="compassDenied() || compassNoDataHint() || compassQualityHint()"
             role="status"
             aria-live="polite"
           >

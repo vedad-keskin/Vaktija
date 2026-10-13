@@ -7,6 +7,8 @@ import { CitySelectorComponent } from '../prayer-times/components/city-selector/
 import { LanguageService } from '../../core/services/language.service';
 import { LocationService } from '../../core/services/location.service';
 import { BS_LABELS, EN_LABELS } from '../../core/i18n';
+import { normalizeDeg } from '../../core/math/compass-heading';
+import { quaternionFromDeviceOrientationDeg } from '../../core/math/orientation-quaternion-heading';
 
 it('uses the navbar city, handles GPS denial and cancellation, and starts with an honest compass preview', async () => {
   localStorage.clear();
@@ -107,14 +109,27 @@ it('uses the navbar city, handles GPS denial and cancellation, and starts with a
     expect(element.querySelector<HTMLElement>('.compass-rotor')!.style.transform).toBe(
       'rotate(0deg)',
     );
-    const bearing = (
-      fixture.componentInstance as unknown as {
-        magneticBearingDeg: () => number;
-      }
-    ).magneticBearingDeg();
+    const bearing = fixture.componentInstance as unknown as {
+      bearingDeg: () => number;
+      declinationDeg: () => number;
+    };
+    const magneticBearing = bearing.bearingDeg() - bearing.declinationDeg();
     window.dispatchEvent(
       Object.assign(new Event('deviceorientation'), {
-        webkitCompassHeading: bearing,
+        webkitCompassHeading: magneticBearing,
+        beta: 0,
+        gamma: 0,
+      }),
+    );
+    await new Promise((resolve) => setTimeout(resolve, 40));
+    await fixture.whenStable();
+    expect(element.querySelector('.compass-stack.aligned')).toBeNull();
+    await new Promise((resolve) => setTimeout(resolve, 320));
+    window.dispatchEvent(
+      Object.assign(new Event('deviceorientation'), {
+        webkitCompassHeading: magneticBearing,
+        beta: 0,
+        gamma: 0,
       }),
     );
     await new Promise((resolve) => setTimeout(resolve, 40));
@@ -139,6 +154,167 @@ it('uses the navbar city, handles GPS denial and cancellation, and starts with a
     else Reflect.deleteProperty(HTMLDialogElement.prototype, 'close');
     if (originalGeo) Object.defineProperty(navigator, 'geolocation', originalGeo);
     else Reflect.deleteProperty(navigator, 'geolocation');
+    localStorage.clear();
+  }
+});
+
+it('requires sustained fresh alignment and cancels stale, tilted, rotated, hidden and retired sensor readings', async () => {
+  localStorage.clear();
+  vi.stubGlobal('DeviceOrientationEvent', class extends Event {});
+  vi.stubGlobal('ondeviceorientationabsolute', null);
+  vi.stubGlobal('isSecureContext', true);
+  let hidden = false;
+  vi.spyOn(document, 'hidden', 'get').mockImplementation(() => hidden);
+  const sensors: FakeSensor[] = [];
+  class FakeSensor extends EventTarget {
+    quaternion: number[] | null = null;
+    start = vi.fn();
+    stop = vi.fn();
+    constructor() {
+      super();
+      sensors.push(this);
+    }
+  }
+  vi.stubGlobal('AbsoluteOrientationSensor', FakeSensor);
+  await TestBed.configureTestingModule({
+    imports: [QiblaPage],
+    providers: [provideRouter([])],
+  }).compileComponents();
+  const fixture = TestBed.createComponent(QiblaPage);
+  await fixture.whenStable();
+  vi.useFakeTimers({ toFake: ['setTimeout', 'clearTimeout', 'performance'] });
+  vi.stubGlobal('requestAnimationFrame', (callback: FrameRequestCallback) =>
+    setTimeout(() => callback(performance.now()), 16),
+  );
+  vi.stubGlobal('cancelAnimationFrame', (handle: number) => clearTimeout(handle));
+  const page = fixture.componentInstance as unknown as {
+    enableCompass(): Promise<void>;
+    teardownCompass(): void;
+    bearingDeg(): number;
+    declinationDeg(): number;
+    qiblaAligned(): boolean;
+    compassNoDataHint(): boolean;
+    compassQualityHint(): string | null;
+    smoothedHeading(): number | null;
+  };
+  const magneticBearing = page.bearingDeg() - page.declinationDeg();
+  const send = (heading: number, beta = 0, accuracy?: number) =>
+    window.dispatchEvent(
+      Object.assign(new Event('deviceorientationabsolute'), {
+        alpha: normalizeDeg(360 - heading),
+        beta,
+        gamma: 0,
+        absolute: true,
+        ...(accuracy === undefined ? {} : { webkitCompassAccuracy: accuracy }),
+      }),
+    );
+  const hold = async (heading: number, duration: number) => {
+    for (let t = 0; t < duration; t += 20) {
+      send(heading);
+      await vi.advanceTimersByTimeAsync(20);
+    }
+  };
+  const sensorReading = (sensor: FakeSensor) => {
+    const q = quaternionFromDeviceOrientationDeg(normalizeDeg(360 - magneticBearing), 0, 0);
+    sensor.quaternion = [q.x, q.y, q.z, q.w];
+    sensor.dispatchEvent(new Event('reading'));
+  };
+  try {
+    await page.enableCompass();
+    await hold(magneticBearing, 280);
+    expect(page.qiblaAligned()).toBe(false);
+    await hold(magneticBearing, 60);
+    expect(page.qiblaAligned()).toBe(true);
+    expect(page.smoothedHeading()).toBeCloseTo(page.bearingDeg(), 8);
+    await hold(magneticBearing + 5.5, 1500); // Remains aligned between enter/exit thresholds.
+    expect(page.qiblaAligned()).toBe(true);
+    await hold(magneticBearing + 9, 1000);
+    expect(page.qiblaAligned()).toBe(false);
+    await hold(magneticBearing, 700);
+    expect(page.qiblaAligned()).toBe(true);
+
+    send(magneticBearing, 60);
+    expect(page.qiblaAligned()).toBe(false);
+    expect(page.compassQualityHint()).toBe('tilt');
+    await hold(magneticBearing, 340);
+    expect(page.qiblaAligned()).toBe(true);
+    send(magneticBearing, 0, -1);
+    expect(page.qiblaAligned()).toBe(false);
+    expect(page.compassQualityHint()).toBe('accuracy');
+    await hold(magneticBearing, 340);
+    window.dispatchEvent(new Event('orientationchange'));
+    expect(page.qiblaAligned()).toBe(false);
+    expect(page.smoothedHeading()).toBeNull();
+
+    await hold(magneticBearing, 340);
+    await vi.advanceTimersByTimeAsync(1500);
+    expect(page.qiblaAligned()).toBe(false);
+    expect(page.smoothedHeading()).toBeNull();
+    expect(sensors).toHaveLength(1);
+    sensorReading(sensors[0]);
+    await vi.advanceTimersByTimeAsync(20);
+    expect(page.smoothedHeading()).toBeCloseTo(page.bearingDeg(), 8);
+    send(magneticBearing + 90); // Event source was removed when the quaternion source became active.
+    await vi.advanceTimersByTimeAsync(20);
+    expect(page.smoothedHeading()).toBeCloseTo(page.bearingDeg(), 8);
+
+    hidden = true;
+    document.dispatchEvent(new Event('visibilitychange'));
+    expect(sensors[0].stop).toHaveBeenCalledOnce();
+    sensorReading(sensors[0]);
+    expect(page.smoothedHeading()).toBeNull();
+    hidden = false;
+    document.dispatchEvent(new Event('visibilitychange'));
+    await hold(magneticBearing, 340);
+    expect(page.qiblaAligned()).toBe(true);
+
+    await page.enableCompass();
+    await vi.advanceTimersByTimeAsync(2000); // Silent event path falls back to the quaternion API.
+    expect(sensors).toHaveLength(2);
+    expect(page.smoothedHeading()).toBeNull(); // start() alone does not imply a live compass.
+    await vi.advanceTimersByTimeAsync(2000); // Silent quaternion API falls back to events.
+    expect(sensors[1].stop).toHaveBeenCalledOnce();
+    sensorReading(sensors[1]);
+    expect(page.smoothedHeading()).toBeNull();
+    await hold(magneticBearing, 340);
+    expect(page.qiblaAligned()).toBe(true);
+    await page.enableCompass();
+    await vi.advanceTimersByTimeAsync(2000);
+    expect(sensors).toHaveLength(3);
+    sensors[2].dispatchEvent(new Event('error'));
+    expect(sensors[2].stop).toHaveBeenCalledOnce();
+    await hold(magneticBearing, 340);
+    expect(page.qiblaAligned()).toBe(true);
+    sensorReading(sensors[2]);
+    expect(page.qiblaAligned()).toBe(true);
+    page.teardownCompass();
+    send(magneticBearing);
+    await vi.advanceTimersByTimeAsync(4000);
+    expect(page.smoothedHeading()).toBeNull();
+    expect(sensors).toHaveLength(3);
+    let grant!: (value: 'granted') => void;
+    vi.stubGlobal(
+      'DeviceOrientationEvent',
+      class extends Event {
+        static requestPermission = () =>
+          new Promise<'granted'>((resolve) => {
+            grant = resolve;
+          });
+      },
+    );
+    const pendingPermission = page.enableCompass();
+    page.teardownCompass();
+    grant('granted');
+    await pendingPermission;
+    send(magneticBearing);
+    await vi.advanceTimersByTimeAsync(4000);
+    expect(page.smoothedHeading()).toBeNull();
+    expect(sensors).toHaveLength(3);
+  } finally {
+    fixture.destroy();
+    vi.useRealTimers();
+    vi.restoreAllMocks();
+    vi.unstubAllGlobals();
     localStorage.clear();
   }
 });

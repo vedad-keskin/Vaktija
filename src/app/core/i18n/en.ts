@@ -46,7 +46,7 @@ export const EN_LABELS: AppLabels = {
   loadingSubtitle: 'Loading prayer times for your selected city…',
   errorTitle: 'Could not load prayer times',
   errorHint:
-    'Check your connection or wait a moment. Local memory times are available if you loaded today\'s times successfully before.',
+    "Check your connection or wait a moment. Local memory times are available if you loaded today's times successfully before.",
   errorGeneric: 'Failed to load. Please try again.',
   retryAction: 'Try again',
 
@@ -64,21 +64,37 @@ export const EN_LABELS: AppLabels = {
 
   /** Hijri months */
   hijriMonths: [
-    'Muharram', 'Safar', "Rabi' al-Awwal", "Rabi' al-Thani",
-    'Jumada al-Ula', 'Jumada al-Thani', 'Rajab', "Sha'ban",
-    'Ramadan', 'Shawwal', "Dhul Qa'dah", 'Dhul Hijjah',
+    'Muharram',
+    'Safar',
+    "Rabi' al-Awwal",
+    "Rabi' al-Thani",
+    'Jumada al-Ula',
+    'Jumada al-Thani',
+    'Rajab',
+    "Sha'ban",
+    'Ramadan',
+    'Shawwal',
+    "Dhul Qa'dah",
+    'Dhul Hijjah',
   ],
 
   /** Gregorian day names */
-  dayNames: [
-    'Sunday', 'Monday', 'Tuesday', 'Wednesday',
-    'Thursday', 'Friday', 'Saturday',
-  ],
+  dayNames: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
 
   /** Gregorian month names */
   monthNames: [
-    'January', 'February', 'March', 'April', 'May', 'June',
-    'July', 'August', 'September', 'October', 'November', 'December',
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December',
   ],
 
   /** Relative time */
@@ -103,6 +119,12 @@ export const EN_LABELS: AppLabels = {
   qiblaUseCity: 'Use selected city',
   qiblaCompassIdle: 'Direction preview · compass is off',
   qiblaCompassWaiting: 'Waiting for a compass reading…',
+  qiblaHoldFlat: 'Hold your phone flatter, with the screen facing up.',
+  qiblaUncalibrated:
+    'Compass is uncalibrated. Move away from magnets and make a gentle figure-eight.',
+  qiblaNorthUnavailable:
+    'North correction is unavailable. The compass cannot confirm direction right now.',
+  qiblaDirectionUnavailable: 'A unique Qibla direction cannot be determined at this location.',
   qiblaAlignedLabel: 'You are facing the Qibla',
   qiblaRecalibrate: 'Calibrate again',
   qiblaGpsPending: 'Getting your location…',
@@ -113,15 +135,18 @@ export const EN_LABELS: AppLabels = {
   qiblaUnsupported:
     'This device or browser does not support compass orientation. Try a phone with Chrome or Safari.',
   qiblaPermissionDenied: 'Orientation access was denied. Allow motion sensors in settings.',
-  qiblaNoEventsHint: 'No compass signal yet. Move in a small figure-eight.',
+  qiblaNoEventsHint:
+    'Compass signal unavailable. Hold your phone flat and check sensor permissions.',
   qiblaCalibrationHint: 'Keep away from metal or magnets for a steadier reading.',
-  qiblaBearingLabel: 'Bearing',
+  qiblaBearingLabel: 'Bearing · true north',
   qiblaDistanceLabel: 'Distance',
   qiblaKaabaCaption: 'The Kaaba',
-  qiblaFaceKaabaHint: 'Hold your phone steady and turn slowly until the Kaaba marker aligns with the top of the compass.',
+  qiblaFaceKaabaHint:
+    'Hold your phone flat, screen facing up. Turn until the Kaaba marker aligns with the top of the screen.',
 
   qiblaCalibrateTitle: 'Calibrate Your Compass',
-  qiblaCalibrateBody: 'Slowly move your phone in a figure-eight pattern to improve compass accuracy.',
+  qiblaCalibrateBody:
+    'Move away from metal and magnets. Gently move your phone in a figure-eight, then hold it flat with the screen facing up.',
   qiblaCalibrateSkip: 'Skip',
   qiblaCalibrateDone: 'Done',
 
@@ -129,28 +154,27 @@ export const EN_LABELS: AppLabels = {
   qiblaFaq: [
     {
       q: 'Why does my compass need calibration?',
-      a: 'Digital compasses rely on your device\'s built-in magnetometer, which is highly sensitive to magnetic interference. Device calibration is used for refreshing the device compass to show correct directions.',
+      a: "Digital compasses rely on your device's built-in magnetometer, which is highly sensitive to magnetic interference. Device calibration is used for refreshing the device compass to show correct directions.",
     },
     {
       q: 'How should I hold my phone to read the compass?',
-      a:
-        'Align the marker with the top of your phone, then turn slowly until you are facing the Qibla. Portrait in front of you with the screen toward your face works best—a slight tilt toward or away from you is fine. You can also lay it flat, screen facing up like a classic compass. Keep steady and turn slowly to read direction; avoid metal surfaces, chargers, and magnetic-backed cases.',
+      a: 'Hold your phone approximately horizontal, screen facing up, like a classic compass. Align the Kaaba marker with the top of the screen. A slight tilt is fine; alignment pauses when the phone is too upright or face down. Avoid metal surfaces, chargers, and magnetic cases.',
     },
     {
       q: 'Why does the Qibla finder require my location?',
-      a: 'The Qibla bearing is uniquely tied to your exact physical location. The tool requires temporary access to your device\'s GPS solely to calculate the precise mathematical angle between your current coordinates and the Kaaba. This location data is processed locally in your browser and is not stored or tracked.',
+      a: "The Qibla bearing is uniquely tied to your exact physical location. The tool requires temporary access to your device's GPS solely to calculate the precise mathematical angle between your current coordinates and the Kaaba. This location data is processed locally in your browser and is not stored or tracked.",
     },
     {
       q: 'How accurate is this Qibla Finder?',
-      a: 'Our digital Qibla Finder uses the industry-standard Karney\'s method, providing professional-grade accuracy for Qibla direction. The provided precision is more than sufficient for prayer direction and matches the accuracy used by major Islamic standards worldwide.',
+      a: 'We calculate bearing and distance using Karney’s geodesic method on the WGS84 ellipsoid, with WMM magnetic declination correction for the compass. The displayed direction also depends on the selected location, phone sensors, and magnetic interference.',
     },
     {
       q: 'How accurate is this digital compass?',
-      a: 'Our compass achieves ±0.5° accuracy when properly calibrated. We combine 3-axis magnetometer data with real-time WMM declination models for precision unmatched by physical compasses.',
+      a: 'We do not guarantee a fixed compass accuracy. It depends on the sensors, calibration, and surroundings. A steady marker does not prove accuracy. Declination correction converts magnetic to true north; green alignment indicates a display tolerance, not measured sensor precision.',
     },
     {
       q: 'What is the most accurate way to find the Qibla direction online?',
-      a: 'The most accurate method is using a GPS-enabled digital Qibla Finder compass. By accessing your device\'s exact geolocation coordinates, the tool calculates the precise shortest distance (the Great Circle route using Karney\'s method) to the Kaaba in Makkah, ensuring professional-grade accuracy.',
+      a: 'Use your actual location for the calculation. Calibrate the phone and move away from magnets. When possible, check against a known direction or a map oriented to true north; comparing with another compass alone does not establish accuracy.',
     },
     {
       q: 'What if I pray slightly off the Qibla direction?',

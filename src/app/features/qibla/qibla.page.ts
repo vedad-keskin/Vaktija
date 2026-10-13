@@ -17,40 +17,37 @@ import { CitySelectorComponent } from '../prayer-times/components/city-selector/
 import { LocationService } from '../../core/services/location.service';
 import { LanguageService } from '../../core/services/language.service';
 import { Location } from '../../core/models/location.model';
-import { computeDistanceToKaabaKm, computeQiblaBearingDeg } from '../../core/math/qibla-bearing';
-import { headingFromDeviceOrientationEvent, normalizeDeg } from '../../core/math/compass-heading';
+import {
+  computeDistanceToKaabaKm,
+  computeQiblaBearingDeg,
+  isValidCoordinates,
+} from '../../core/math/qibla-bearing';
+import {
+  angleDeltaDeg,
+  headingFromDeviceOrientationEvent,
+  isDeviceOrientationTiltUsable,
+  normalizeDeg,
+} from '../../core/math/compass-heading';
 import {
   componentsFromOrientationQuaternion,
-  headingDegFromOrientationQuaternionBlended,
+  headingDegFromOrientationQuaternionTopAxis,
 } from '../../core/math/orientation-quaternion-heading';
 import { estimateMagneticDeclinationDeg } from '../../core/math/magnetic-declination';
+import { AngularOneEuroFilter, COMPASS_STALE_MS } from '../../core/math/angular-one-euro-filter';
 
 type LocationSource = 'preset' | 'gps';
 
-const ALIGN_THRESHOLD_DEG = 5;
-
-/** EMA time constant for compass heading (ms); larger → steadier needle. */
-const SMOOTH_TIME_CONSTANT_MS = 380;
-
-/** Ignore magnetometer spikes: jumps larger than this within {@link SPIKE_FAST_DT_MS}. */
-const SPIKE_JUMP_DEG = 42;
-
-const SPIKE_DAMP_ALPHA = 0.12;
-
-const SPIKE_FAST_DT_MS = 90;
-
-const FLAT_BLEND_START_DEG = 10;
-const FLAT_BLEND_END_DEG = 35;
-
-function lerpAngleDeg(from: number, to: number, t: number): number {
-  const diff = ((to - from + 540) % 360) - 180;
-  return (from + diff * t + 360) % 360;
-}
+// UI tolerances, not a claim of sensor accuracy. Tune with phone traces.
+const ALIGN_ENTER_DEG = 4;
+const ALIGN_EXIT_DEG = 7;
+const ALIGN_DWELL_MS = 300;
+const DISPLAY_DEADBAND_DEG = 0.3;
+const SOURCE_WAIT_MS = 2000;
 
 /** Minimal typing — `AbsoluteOrientationSensor` is not in all TS lib targets. */
 type AbsoluteOrientationSensorInstance = {
   quaternion: DOMPointReadOnly | ReadonlyArray<number> | null;
-  start(): Promise<void>;
+  start(): void;
   stop(): void;
   addEventListener(
     type: 'reading' | 'error',
@@ -91,10 +88,13 @@ export class QiblaPage implements OnInit {
   });
   protected readonly gpsLoading = signal(false);
 
-  protected readonly orientationSupported = typeof DeviceOrientationEvent !== 'undefined';
+  protected readonly orientationSupported =
+    typeof DeviceOrientationEvent !== 'undefined' || 'AbsoluteOrientationSensor' in globalThis;
   protected readonly compassListening = signal(false);
   protected readonly compassDenied = signal(false);
   protected readonly compassNoDataHint = signal(false);
+  protected readonly compassQualityHint = signal<'tilt' | 'accuracy' | null>(null);
+  protected readonly qiblaAligned = signal(false);
   /** Show calibration overlay before starting the compass. */
   protected readonly showCalibrationOverlay = signal(false);
   /** Show a transient calibration hint banner. */
@@ -110,33 +110,52 @@ export class QiblaPage implements OnInit {
     const labels = this.labels();
     if (!this.orientationSupported) return labels.qiblaUnsupported;
     if (this.compassDenied()) return labels.qiblaPermissionDenied;
-    if (this.compassNoDataHint()) return labels.qiblaNoEventsHint;
+    if (this.bearingDeg() === null && this.effectivePoint())
+      return labels.qiblaDirectionUnavailable;
     if (!this.compassListening()) return labels.qiblaCompassIdle;
+    if (this.declinationDeg() === null && this.effectivePoint())
+      return labels.qiblaNorthUnavailable;
+    if (this.compassQualityHint() === 'tilt') return labels.qiblaHoldFlat;
+    if (this.compassQualityHint() === 'accuracy') return labels.qiblaUncalibrated;
+    if (this.compassNoDataHint()) return labels.qiblaNoEventsHint;
     if (this.smoothedHeading() === null) return labels.qiblaCompassWaiting;
     return this.qiblaAligned() ? labels.qiblaAlignedLabel : labels.qiblaCompassListening;
   });
 
   private geoWatchId: number | null = null;
-  private orientationTimer: ReturnType<typeof setTimeout> | null = null;
+  private sourceTimer: ReturnType<typeof setTimeout> | null = null;
+  private staleTimer: ReturnType<typeof setTimeout> | null = null;
+  private compassSession = 0;
+  private activeSource: 'events' | 'sensor' | null = null;
+  private orientationListener: ((e: DeviceOrientationEvent) => void) | null = null;
+  private screenAngle = 0;
+  private alignedSince: number | null = null;
+  private readonly headingFilter = new AngularOneEuroFilter();
 
   private absoluteSensor: AbsoluteOrientationSensorInstance | null = null;
 
   /** Fusion state updated every sensor tick; signals flushed once per animation frame. */
   private internalSmoothed: number | null = null;
   private lastRawHeadingInternal: number | null = null;
-  private lastHeadingTs = 0;
+  private lastHeadingTs: number | null = null;
 
   private rafFlushScheduled = false;
   private rafFlushHandle = 0;
 
-  private readonly orientationListener = (e: DeviceOrientationEvent) => {
-    const heading = headingFromDeviceOrientationEvent(e, {
-      screenAngleDeg: this.getScreenAngleDeg(),
-      flatBlendStartDeg: FLAT_BLEND_START_DEG,
-      flatBlendEndDeg: FLAT_BLEND_END_DEG,
-    });
-    if (heading === null) return;
-    this.ingestHeadingSample(heading);
+  private readonly visibilityListener = () => {
+    if (!this.compassListening()) return;
+    if (document.hidden) {
+      this.stopHeadingSources();
+      this.resetHeading();
+    } else {
+      this.startHeadingSources();
+    }
+  };
+
+  private readonly screenOrientationListener = () => {
+    if (!this.compassListening()) return;
+    this.screenAngle = this.getScreenAngleDeg();
+    this.resetHeading();
   };
 
   constructor() {
@@ -152,10 +171,16 @@ export class QiblaPage implements OnInit {
       untracked(() => this.title.setTitle(docTitle));
     });
 
+    document.addEventListener('visibilitychange', this.visibilityListener);
+    screen.orientation?.addEventListener('change', this.screenOrientationListener);
+    window.addEventListener('orientationchange', this.screenOrientationListener);
+
     this.destroyRef.onDestroy(() => {
       this.teardownCompass();
       this.clearGeoWatch();
-      if (this.orientationTimer) clearTimeout(this.orientationTimer);
+      document.removeEventListener('visibilitychange', this.visibilityListener);
+      screen.orientation?.removeEventListener('change', this.screenOrientationListener);
+      window.removeEventListener('orientationchange', this.screenOrientationListener);
     });
   }
 
@@ -167,53 +192,125 @@ export class QiblaPage implements OnInit {
   }
 
   private registerOrientationListeners(): void {
-    const ios = this.isIosLike();
-    if ('ondeviceorientationabsolute' in window && !ios) {
-      window.addEventListener('deviceorientationabsolute', this.orientationListener, true);
-    } else {
-      window.addEventListener('deviceorientation', this.orientationListener, true);
-    }
+    const session = this.compassSession;
+    this.activeSource = 'events';
+    this.orientationListener = (event) => {
+      if (session !== this.compassSession || this.activeSource !== 'events' || document.hidden)
+        return;
+      const accuracy = (event as DeviceOrientationEvent & { webkitCompassAccuracy?: number })
+        .webkitCompassAccuracy;
+      if (accuracy != null && (!Number.isFinite(accuracy) || accuracy < 0)) {
+        this.markUnusable('accuracy');
+        return;
+      }
+      const heading = headingFromDeviceOrientationEvent(event, {
+        screenAngleDeg: this.getScreenAngleDeg(),
+      });
+      if (heading === null) {
+        const earthReferenced =
+          event.absolute ||
+          Number.isFinite(
+            (event as DeviceOrientationEvent & { webkitCompassHeading?: number })
+              .webkitCompassHeading,
+          );
+        if (
+          earthReferenced &&
+          event.beta != null &&
+          event.gamma != null &&
+          Number.isFinite(event.beta) &&
+          Number.isFinite(event.gamma) &&
+          !isDeviceOrientationTiltUsable(event)
+        ) {
+          this.markUnusable('tilt');
+        }
+        return;
+      }
+      this.ingestHeadingSample(heading);
+    };
+    const type =
+      'ondeviceorientationabsolute' in window && !this.isIosLike()
+        ? 'deviceorientationabsolute'
+        : 'deviceorientation';
+    window.addEventListener(type, this.orientationListener, true);
   }
 
   private getScreenAngleDeg(): number {
-    if (typeof window === 'undefined') return 0;
     const raw =
-      typeof screen !== 'undefined' && typeof screen.orientation?.angle === 'number'
+      typeof screen.orientation?.angle === 'number'
         ? screen.orientation.angle
         : ((window as Window & { orientation?: number }).orientation ?? 0);
-    return normalizeDeg(typeof raw === 'number' ? raw : 0);
+    return normalizeDeg(Number.isFinite(raw) ? raw : 0);
   }
 
-  private ingestHeadingSample(heading: number): void {
-    if (!Number.isFinite(heading)) return;
-
-    if (this.showCalibrationHint()) {
-      this.showCalibrationHint.set(false);
-    }
-
-    this.lastRawHeadingInternal = heading;
+  private resetHeading(): void {
+    this.cancelHeadingFlush();
+    if (this.staleTimer) clearTimeout(this.staleTimer);
+    this.staleTimer = null;
+    this.headingFilter.reset();
+    this.lastHeadingTs = null;
+    this.internalSmoothed = this.lastRawHeadingInternal = null;
+    this.rawHeading.set(null);
+    this.smoothedHeading.set(null);
+    this.alignedSince = null;
+    this.qiblaAligned.set(false);
+    this.compassQualityHint.set(null);
     this.compassNoDataHint.set(false);
+  }
 
+  private markUnusable(reason: 'tilt' | 'accuracy'): void {
+    this.resetHeading();
+    this.compassQualityHint.set(reason);
+    this.compassNoDataHint.set(false);
+  }
+
+  private ingestHeadingSample(magneticHeading: number): void {
+    if (!Number.isFinite(magneticHeading)) return;
+    const declination = this.declinationDeg();
+    if (declination === null) return;
+    const screenAngle = this.getScreenAngleDeg();
+    if (screenAngle !== this.screenAngle) {
+      this.resetHeading();
+      this.screenAngle = screenAngle;
+    }
     const now = performance.now();
-    const dt = this.lastHeadingTs > 0 ? now - this.lastHeadingTs : 0;
+    if (this.lastHeadingTs !== null && now - this.lastHeadingTs >= COMPASS_STALE_MS)
+      this.resetHeading();
     this.lastHeadingTs = now;
+    const heading = normalizeDeg(magneticHeading + declination);
+    this.lastRawHeadingInternal = heading;
+    this.internalSmoothed = this.headingFilter.update(heading, now);
+    this.showCalibrationHint.set(false);
+    this.compassNoDataHint.set(false);
+    this.compassQualityHint.set(null);
+    if (this.sourceTimer) clearTimeout(this.sourceTimer);
+    this.sourceTimer = null;
+    if (this.staleTimer) clearTimeout(this.staleTimer);
+    const session = this.compassSession;
+    this.staleTimer = setTimeout(() => {
+      if (session !== this.compassSession) return;
+      this.resetHeading();
+      this.compassNoDataHint.set(true);
+      if (this.activeSource === 'events') this.tryStartAbsoluteOrientationSensor();
+      else if (this.activeSource === 'sensor') {
+        this.startHeadingSources(false);
+        this.compassNoDataHint.set(true);
+      }
+    }, COMPASS_STALE_MS);
 
-    let target = heading;
-    if (this.internalSmoothed !== null && dt > 0 && dt < SPIKE_FAST_DT_MS) {
-      const jump = Math.abs(((heading - this.internalSmoothed + 540) % 360) - 180);
-      if (jump > SPIKE_JUMP_DEG) {
-        target = lerpAngleDeg(this.internalSmoothed, heading, SPIKE_DAMP_ALPHA);
+    const bearing = this.bearingDeg();
+    const error =
+      bearing === null ? Infinity : Math.abs(angleDeltaDeg(bearing, this.internalSmoothed));
+    if (error >= ALIGN_EXIT_DEG) {
+      this.qiblaAligned.set(false);
+      this.alignedSince = null;
+    } else if (!this.qiblaAligned()) {
+      if (error <= ALIGN_ENTER_DEG) {
+        this.alignedSince ??= now;
+        if (now - this.alignedSince >= ALIGN_DWELL_MS) this.qiblaAligned.set(true);
+      } else {
+        this.alignedSince = null;
       }
     }
-
-    const prev = this.internalSmoothed;
-    if (prev === null || dt === 0) {
-      this.internalSmoothed = target;
-    } else {
-      const alpha = 1 - Math.exp(-dt / SMOOTH_TIME_CONSTANT_MS);
-      this.internalSmoothed = lerpAngleDeg(prev, target, alpha);
-    }
-
     this.scheduleHeadingFlush();
   }
 
@@ -224,71 +321,119 @@ export class QiblaPage implements OnInit {
       this.rafFlushScheduled = false;
       this.rafFlushHandle = 0;
       this.rawHeading.set(this.lastRawHeadingInternal);
-      this.smoothedHeading.set(this.internalSmoothed);
+      const displayed = this.smoothedHeading();
+      if (
+        displayed === null ||
+        this.internalSmoothed === null ||
+        Math.abs(this.internalSmoothed - displayed) >= DISPLAY_DEADBAND_DEG
+      ) {
+        this.smoothedHeading.set(this.internalSmoothed);
+      }
     });
   }
 
   private cancelHeadingFlush(): void {
-    if (this.rafFlushHandle !== 0) {
-      cancelAnimationFrame(this.rafFlushHandle);
-      this.rafFlushHandle = 0;
-    }
+    if (this.rafFlushHandle !== 0) cancelAnimationFrame(this.rafFlushHandle);
+    this.rafFlushHandle = 0;
     this.rafFlushScheduled = false;
   }
 
-  private stopAbsoluteSensor(): void {
-    if (!this.absoluteSensor) return;
-    try {
-      this.absoluteSensor.stop();
-    } catch {
-      /* ignore */
+  private stopHeadingSources(): void {
+    ++this.compassSession;
+    this.activeSource = null;
+    if (this.sourceTimer) clearTimeout(this.sourceTimer);
+    if (this.staleTimer) clearTimeout(this.staleTimer);
+    this.sourceTimer = this.staleTimer = null;
+    if (this.orientationListener) {
+      window.removeEventListener('deviceorientationabsolute', this.orientationListener, true);
+      window.removeEventListener('deviceorientation', this.orientationListener, true);
+      this.orientationListener = null;
     }
+    const sensor = this.absoluteSensor;
     this.absoluteSensor = null;
+    try {
+      sensor?.stop();
+    } catch {
+      /* Already stopped or disconnected. */
+    }
   }
 
-  private async tryStartAbsoluteOrientationSensor(): Promise<boolean> {
-    if (typeof window === 'undefined' || !window.isSecureContext) return false;
-    // iOS/iPadOS: rely on `deviceorientation` + `webkitCompassHeading`; fused sensor path is unreliable.
-    if (this.isIosLike()) return false;
+  private startHeadingSources(allowSensorFallback = true): void {
+    this.stopHeadingSources();
+    this.resetHeading();
+    this.screenAngle = this.getScreenAngleDeg();
+    if (document.hidden) return;
+    if (typeof DeviceOrientationEvent === 'undefined') {
+      if (!this.tryStartAbsoluteOrientationSensor()) this.compassNoDataHint.set(true);
+      return;
+    }
+    this.registerOrientationListeners();
+    const session = this.compassSession;
+    this.sourceTimer = setTimeout(() => {
+      if (session !== this.compassSession) return;
+      this.sourceTimer = null;
+      if (!allowSensorFallback || !this.tryStartAbsoluteOrientationSensor()) {
+        this.compassNoDataHint.set(true);
+        this.showCalibrationHint.set(false);
+      }
+    }, SOURCE_WAIT_MS);
+  }
 
+  private tryStartAbsoluteOrientationSensor(): boolean {
+    if (!window.isSecureContext || this.isIosLike() || !this.compassListening() || document.hidden)
+      return false;
     const ctor = (
-      globalThis as unknown as { AbsoluteOrientationSensor?: AbsoluteOrientationSensorConstructor }
+      globalThis as unknown as {
+        AbsoluteOrientationSensor?: AbsoluteOrientationSensorConstructor;
+      }
     ).AbsoluteOrientationSensor;
     if (!ctor) return false;
-
     try {
       const sensor = new ctor({ frequency: 50, referenceFrame: 'device' });
-
+      this.stopHeadingSources();
+      this.resetHeading();
+      this.absoluteSensor = sensor;
+      this.activeSource = 'sensor';
+      const session = this.compassSession;
       sensor.addEventListener('reading', () => {
-        const parsed = componentsFromOrientationQuaternion(sensor.quaternion);
-        if (!parsed) return;
-        const h = headingDegFromOrientationQuaternionBlended(
-          parsed.x,
-          parsed.y,
-          parsed.z,
-          parsed.w,
-          {
-            screenAngleDeg: this.getScreenAngleDeg(),
-            flatBlendStartDeg: FLAT_BLEND_START_DEG,
-            flatBlendEndDeg: FLAT_BLEND_END_DEG,
-          },
+        if (session !== this.compassSession || this.absoluteSensor !== sensor || document.hidden)
+          return;
+        const q = componentsFromOrientationQuaternion(sensor.quaternion);
+        if (!q) return;
+        const heading = headingDegFromOrientationQuaternionTopAxis(
+          q.x,
+          q.y,
+          q.z,
+          q.w,
+          this.getScreenAngleDeg(),
         );
-        if (h === null) return;
-        this.ingestHeadingSample(h);
+        if (heading === null) this.markUnusable('tilt');
+        else this.ingestHeadingSample(heading);
       });
-
       sensor.addEventListener('error', () => {
-        if (this.absoluteSensor !== sensor) return;
-        this.stopAbsoluteSensor();
-        if (this.compassListening()) {
-          this.registerOrientationListeners();
+        if (session !== this.compassSession || this.absoluteSensor !== sensor) return;
+        // Retry events without a loop between two unavailable APIs.
+        if (typeof DeviceOrientationEvent !== 'undefined') this.startHeadingSources(false);
+        else {
+          this.stopHeadingSources();
+          this.resetHeading();
+          this.compassNoDataHint.set(true);
         }
       });
-
-      await sensor.start();
-      this.absoluteSensor = sensor;
+      this.sourceTimer = setTimeout(() => {
+        if (session !== this.compassSession) return;
+        if (typeof DeviceOrientationEvent !== 'undefined') this.startHeadingSources(false);
+        this.compassNoDataHint.set(true);
+        this.showCalibrationHint.set(false);
+      }, SOURCE_WAIT_MS);
+      sensor.start(); // Activation is asynchronous; only a usable reading makes the compass live.
       return true;
     } catch {
+      if (this.activeSource === 'sensor') {
+        this.stopHeadingSources();
+        this.resetHeading();
+        if (typeof DeviceOrientationEvent !== 'undefined') this.startHeadingSources(false);
+      }
       return false;
     }
   }
@@ -309,16 +454,9 @@ export class QiblaPage implements OnInit {
     return computeQiblaBearingDeg(pt.lat, pt.lng);
   });
 
-  /**
-   * Magnetic bearing to the Kaaba (true bearing minus magnetic declination).
-   * This is what we compare against the compass heading (which reads magnetic north).
-   */
-  protected readonly magneticBearingDeg = computed(() => {
-    const b = this.bearingDeg();
+  private readonly declinationDeg = computed(() => {
     const pt = this.effectivePoint();
-    if (b == null || !pt) return null;
-    const decl = estimateMagneticDeclinationDeg(pt.lat, pt.lng);
-    return normalizeDeg(b - decl);
+    return pt ? estimateMagneticDeclinationDeg(pt.lat, pt.lng) : null;
   });
 
   protected readonly distanceKm = computed(() => {
@@ -327,22 +465,7 @@ export class QiblaPage implements OnInit {
     return computeDistanceToKaabaKm(pt.lat, pt.lng);
   });
 
-  protected readonly dialRotateDeg = computed(() => {
-    const b = this.magneticBearingDeg();
-    if (b == null) return 0;
-    const h = this.smoothedHeading();
-    // A north-up preview avoids implying alignment before a real sensor reading.
-    if (h == null) return 0;
-    return -h;
-  });
-
-  protected readonly qiblaAligned = computed(() => {
-    const b = this.magneticBearingDeg();
-    const h = this.smoothedHeading();
-    if (b == null || h == null) return false;
-    const diff = Math.abs(((b - h + 540) % 360) - 180);
-    return diff <= ALIGN_THRESHOLD_DEG;
-  });
+  protected readonly dialRotateDeg = computed(() => -(this.smoothedHeading() ?? 0));
 
   ngOnInit(): void {
     this.locationService.getLocations().subscribe((list) => this.locations.set(list));
@@ -351,6 +474,7 @@ export class QiblaPage implements OnInit {
   }
 
   protected setSource(mode: LocationSource): void {
+    this.resetHeading();
     this.source.set(mode);
     this.gpsError.set(null);
     if (mode === 'gps') {
@@ -382,10 +506,14 @@ export class QiblaPage implements OnInit {
         if (this.source() !== 'gps') return;
         this.gpsLoading.set(false);
         this.gpsError.set(null);
-        this.gpsCoords.set({
-          lat: pos.coords.latitude,
-          lng: pos.coords.longitude,
-        });
+        const { latitude: lat, longitude: lng } = pos.coords;
+        if (!isValidCoordinates(lat, lng)) {
+          this.gpsCoords.set(null);
+          this.resetHeading();
+          this.gpsError.set('qiblaGpsError');
+          return;
+        }
+        this.gpsCoords.set({ lat, lng });
       },
       (err: GeolocationPositionError) => {
         if (this.source() !== 'gps') return;
@@ -404,16 +532,11 @@ export class QiblaPage implements OnInit {
   }
 
   private teardownCompass(): void {
-    this.cancelHeadingFlush();
-    this.stopAbsoluteSensor();
-    window.removeEventListener('deviceorientationabsolute', this.orientationListener, true);
-    window.removeEventListener('deviceorientation', this.orientationListener, true);
+    this.stopHeadingSources();
+    this.resetHeading();
     this.compassListening.set(false);
-    this.rawHeading.set(null);
-    this.smoothedHeading.set(null);
-    this.internalSmoothed = null;
-    this.lastRawHeadingInternal = null;
-    this.lastHeadingTs = 0;
+    this.compassNoDataHint.set(false);
+    this.showCalibrationHint.set(false);
   }
 
   /** Show the calibration overlay; actual compass starts after user dismisses it. */
@@ -437,43 +560,39 @@ export class QiblaPage implements OnInit {
     if (!this.orientationSupported) return;
     this.teardownCompass();
     this.compassDenied.set(false);
-    this.compassNoDataHint.set(false);
-    const DO = DeviceOrientationEvent as unknown as {
-      requestPermission?: () => Promise<'granted' | 'denied' | 'default'>;
-    };
+    const session = this.compassSession;
+    const DO =
+      typeof DeviceOrientationEvent === 'undefined'
+        ? {}
+        : (DeviceOrientationEvent as unknown as {
+            requestPermission?: (absolute?: boolean) => Promise<'granted' | 'denied' | 'default'>;
+          });
     if (typeof DO.requestPermission === 'function') {
       try {
-        const status = await DO.requestPermission();
+        const status = await DO.requestPermission(true);
+        if (session !== this.compassSession) return;
         if (status !== 'granted') {
           this.compassDenied.set(true);
           return;
         }
       } catch {
-        this.compassDenied.set(true);
+        if (session === this.compassSession) this.compassDenied.set(true);
         return;
       }
     }
-    // Show calibration hint until the first real heading event arrives.
     this.showCalibrationHint.set(true);
-
-    const sensorStarted = await this.tryStartAbsoluteOrientationSensor();
-    if (!sensorStarted) {
-      this.registerOrientationListeners();
-    }
-
     this.compassListening.set(true);
-    if (this.orientationTimer) clearTimeout(this.orientationTimer);
-    this.orientationTimer = setTimeout(() => {
-      if (this.compassListening() && this.rawHeading() === null) {
-        this.compassNoDataHint.set(true);
-        this.showCalibrationHint.set(false);
-      }
-    }, 4000);
+    this.startHeadingSources();
   }
 
   protected bearingFmt(): string {
     const b = this.bearingDeg();
-    return b == null ? '—' : `${Math.round(b)}°`;
+    return b == null
+      ? '—'
+      : `${new Intl.NumberFormat(this.langService.lang() === 'bs' ? 'bs-BA' : 'en-GB', {
+          minimumFractionDigits: 1,
+          maximumFractionDigits: 1,
+        }).format(b)}°`;
   }
 
   protected distanceFmt(): string {

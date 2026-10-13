@@ -85,6 +85,10 @@ export interface AppLabels {
   qiblaUseCity: string;
   qiblaCompassIdle: string;
   qiblaCompassWaiting: string;
+  qiblaHoldFlat: string;
+  qiblaUncalibrated: string;
+  qiblaNorthUnavailable: string;
+  qiblaDirectionUnavailable: string;
   qiblaAlignedLabel: string;
   qiblaRecalibrate: string;
   qiblaGpsPending: string;
@@ -169,19 +173,35 @@ export const BS_LABELS: AppLabels = {
   },
 
   hijriMonths: [
-    'Muharrem', 'Safer', "Rebi'u-l-evvel", "Rebi'u-l-ahir",
-    "Džumade-l-ula", "Džumade-l-ahira", 'Redžeb', "Ša'ban",
-    'Ramazan', 'Ševval', "Zu-l-ka'de", "Zu-l-hidždže",
+    'Muharrem',
+    'Safer',
+    "Rebi'u-l-evvel",
+    "Rebi'u-l-ahir",
+    'Džumade-l-ula',
+    'Džumade-l-ahira',
+    'Redžeb',
+    "Ša'ban",
+    'Ramazan',
+    'Ševval',
+    "Zu-l-ka'de",
+    'Zu-l-hidždže',
   ],
 
-  dayNames: [
-    'nedjelja', 'ponedjeljak', 'utorak', 'srijeda',
-    'četvrtak', 'petak', 'subota',
-  ],
+  dayNames: ['nedjelja', 'ponedjeljak', 'utorak', 'srijeda', 'četvrtak', 'petak', 'subota'],
 
   monthNames: [
-    'januar', 'februar', 'mart', 'april', 'maj', 'juni',
-    'juli', 'august', 'septembar', 'oktobar', 'novembar', 'decembar',
+    'januar',
+    'februar',
+    'mart',
+    'april',
+    'maj',
+    'juni',
+    'juli',
+    'august',
+    'septembar',
+    'oktobar',
+    'novembar',
+    'decembar',
   ],
 
   relativeNow: 'sada',
@@ -205,6 +225,11 @@ export const BS_LABELS: AppLabels = {
   qiblaUseCity: 'Koristi odabrani grad',
   qiblaCompassIdle: 'Pregled smjera · kompas nije uključen',
   qiblaCompassWaiting: 'Čekam signal kompasa…',
+  qiblaHoldFlat: 'Držite telefon ravnije, s ekranom prema gore.',
+  qiblaUncalibrated: 'Kompas nije kalibriran. Odmaknite se od magneta i lagano nacrtajte osmicu.',
+  qiblaNorthUnavailable:
+    'Korekcija sjevera nije dostupna. Kompas trenutno ne može potvrditi smjer.',
+  qiblaDirectionUnavailable: 'Na ovoj lokaciji nije moguće odrediti jedinstven smjer kible.',
   qiblaAlignedLabel: 'Okrenuti ste prema kibli',
   qiblaRecalibrate: 'Kalibriši ponovo',
   qiblaGpsPending: 'Određujem lokaciju…',
@@ -215,15 +240,18 @@ export const BS_LABELS: AppLabels = {
   qiblaUnsupported:
     'Ovaj uređaj ili preglednik ne podržava orijentaciju (kompas). Pokušajte na mobilnom telefonu u Chromeu ili Safariju.',
   qiblaPermissionDenied: 'Pristup orijentaciji je odbijen. Dozvolite senzore u postavkama.',
-  qiblaNoEventsHint: 'Nema signala kompasa. Lagano nacrtajte osmicu.',
+  qiblaNoEventsHint:
+    'Signal kompasa nije dostupan. Držite telefon ravno i provjerite dozvole za senzore.',
   qiblaCalibrationHint: 'Držite telefon podalje od metala i magneta.',
-  qiblaBearingLabel: 'Azimut',
+  qiblaBearingLabel: 'Azimut · pravi sjever',
   qiblaDistanceLabel: 'Udaljenost',
   qiblaKaabaCaption: 'Kaaba',
-  qiblaFaceKaabaHint: 'Držite telefon mirno i polako se okrećite dok se oznaka Kabe ne poravna s vrhom kompasa.',
+  qiblaFaceKaabaHint:
+    'Držite telefon ravno, s ekranom prema gore. Okrećite se dok se oznaka Kabe ne poravna s vrhom ekrana.',
 
   qiblaCalibrateTitle: 'Kalibrišite kompas',
-  qiblaCalibrateBody: 'Lagano pomičite telefon u obliku osmice kako biste poboljšali tačnost kompasa.',
+  qiblaCalibrateBody:
+    'Odmaknite se od metala i magneta. Lagano pomičite telefon u obliku osmice, zatim ga držite ravno, s ekranom prema gore.',
   qiblaCalibrateSkip: 'Preskoči',
   qiblaCalibrateDone: 'Gotovo',
 
@@ -235,24 +263,23 @@ export const BS_LABELS: AppLabels = {
     },
     {
       q: 'Kako držati telefon pri očitavanju kompasa?',
-      a:
-        'Poravnajte oznaku s vrhom telefona i lagano se okrećite dok ne budete okrenuti prema kibli. Najpraktičnije je držati telefon uspravno (portretno) ispred sebe, s ekranom okrenutim prema licu — blagi nagib prema ili od sebe ne smeta. Telefon možete držati i vodoravno, s ekranom okrenutim prema gore, kao klasični kompas. Pri očitavanju smjera držite telefon mirno i polako se okrećite; izbjegavajte metalne površine, punjače i maske s magnetima.',
-      },
+      a: 'Držite telefon približno vodoravno, s ekranom prema gore, kao klasični kompas. Poravnajte oznaku Kabe s vrhom ekrana. Blagi nagib je u redu; kada je telefon previše uspravan ili okrenut ekranom prema dolje, potvrda smjera se zaustavlja. Izbjegavajte metalne površine, punjače i maske s magnetima.',
+    },
     {
       q: 'Zašto je potrebna lokacija za pronalaženje kible?',
       a: 'Smjer kible zavisi od vaše tačne fizičke lokacije. Alat privremeno pristupa GPS-u samo kako bi izračunao precizan matematički ugao između vaših koordinata i Kabe. Podaci o lokaciji obrađuju se lokalno u pregledniku i nigdje se ne pohranjuju niti prate.',
     },
     {
       q: 'Koliko je tačan ovaj kiblemetar?',
-      a: 'Naš digitalni kiblemetar koristi Karnijevu (Karney) geodetsku metodu, industrijsko-standardnu tehniku koja pruža profesionalnu preciznost za smjer kible. Preciznost je višestruko dovoljna za namaz i odgovara tačnosti koju koriste islamski autoriteti širom svijeta.',
+      a: 'Azimut i udaljenost računamo geodetskom metodom Karney na WGS84 elipsoidu, uz WMM korekciju magnetne deklinacije za kompas. Tačnost prikazanog smjera zavisi i od odabrane lokacije, senzora telefona i magnetnih smetnji.',
     },
     {
       q: 'Koliko je tačan digitalni kompas?',
-      a: 'Kompas postiže preciznost od ±0,5° kada je pravilno kalibriran. Kombinujemo podatke 3-osnog magnetometra sa WMM (World Magnetic Model) korekcijom deklinacije za preciznost nedostižnu fizičkim kompasima.',
+      a: 'Ne garantujemo fiksnu tačnost kompasa. Ona zavisi od senzora, kalibracije i okruženja. Mirna oznaka ne dokazuje tačnost. Korekcija deklinacije pretvara magnetni u pravi sjever; zeleno poravnanje označava toleranciju prikaza, a ne izmjerenu preciznost senzora.',
     },
     {
       q: 'Koji je najtačniji način za pronalaženje kible putem interneta?',
-      a: 'Najtačnija metoda je korištenje digitalnog kiblametra sa GPS-om. Pristupanjem tačnim geolokacijskim koordinatama, alat računa preciznu najkraću udaljenost (geodetska ruta Karnijevom metodom) do Kabe u Mekki, osiguravajući profesionalnu tačnost.',
+      a: 'Za proračun koristite svoju stvarnu lokaciju. Kalibrirajte telefon i udaljite ga od magneta. Kada je moguće, provjerite smjer prema poznatom pravcu ili karti orijentisanoj prema pravom sjeveru; poređenje s drugim kompasom samo po sebi ne potvrđuje tačnost.',
     },
     {
       q: 'Šta ako klanjam sa malim odstupanjem od smjera kible?',
