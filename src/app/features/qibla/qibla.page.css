@@ -491,7 +491,7 @@
 .calibration-animation {
   position: relative;
   width: 160px;
-  height: 100px;
+  height: 130px;
   margin: 16px auto;
 }
 .calibration-animation svg {
@@ -512,8 +512,8 @@
   border: 2px solid var(--gold);
   border-radius: 4px;
   background: var(--surface-elevated);
-  offset-path: path('M80 50C80 5 145 5 145 50S80 95 80 50 15 5 15 50 80 95 80 50');
-  offset-rotate: 0deg;
+  offset-path: path('M80 65C80 5 145 5 145 65S80 125 80 65 15 5 15 65 80 125 80 65');
+  offset-rotate: auto 90deg;
   animation: calibrate 4s linear infinite;
 }
 .calibration-actions {
