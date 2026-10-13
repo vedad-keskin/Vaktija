@@ -111,7 +111,13 @@
   white-space: nowrap;
 }
 
-/* Full-width Qibla row inside hamburger drawer (mobile) */
+.mobile-page-links {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.5rem;
+}
+
+/* Page links inside hamburger drawer (mobile) */
 .mobile-dropdown .header-qibla--mobile-drawer {
   width: 100%;
   display: flex;

@@ -73,6 +73,28 @@ export interface AppLabels {
   minFew: string;
   minPlural: string;
 
+  /** Duas */
+  duasTitle: string;
+  duasSubtitle: string;
+  duasDocTitle: string;
+  duasCollectionLabel: string;
+  duasAll: string;
+  duasSaved: string;
+  duasSave: string;
+  duasUnsave: string;
+  duasEmptyTitle: string;
+  duasEmptyBody: string;
+  duasBrowse: string;
+  duasStorageError: string;
+  duasPlay: string;
+  duasStop: string;
+  duasAudioNote: string;
+  duasAudioUnavailable: string;
+  duasAudioError: string;
+  duasTranscription: string;
+  duasTranslation: string;
+  duasSource: string;
+
   /** Qibla compass */
   qiblaPageDocTitle: string;
   qiblaTileTitle: string;
@@ -213,6 +235,28 @@ export const BS_LABELS: AppLabels = {
   minSingular: 'minutu',
   minFew: 'minute',
   minPlural: 'minuta',
+
+  duasTitle: 'Dove',
+  duasSubtitle: 'Dove za svaki dan',
+  duasDocTitle: 'Dove — Vaktija',
+  duasCollectionLabel: 'Zbirka dova',
+  duasAll: 'Sve dove',
+  duasSaved: 'Sačuvane',
+  duasSave: 'Sačuvaj dovu',
+  duasUnsave: 'Ukloni iz sačuvanih',
+  duasEmptyTitle: 'Vaše dove, na jednom mjestu',
+  duasEmptyBody: 'Dodirnite oznaku na kartici da sačuvate dovu za kasnije na ovom uređaju.',
+  duasBrowse: 'Pogledaj sve dove',
+  duasStorageError:
+    'Promjena vrijedi samo na ovoj stranici. Preglednik je nije mogao trajno sačuvati.',
+  duasPlay: 'Poslušaj dovu',
+  duasStop: 'Zaustavi čitanje',
+  duasAudioNote: 'Čitanje koristi arapski glas uređaja, a ne snimak učača.',
+  duasAudioUnavailable: 'Za čitanje je potreban arapski glas koji podržava vaš preglednik.',
+  duasAudioError: 'Čitanje nije uspjelo. Provjerite arapski glas uređaja i pokušajte ponovo.',
+  duasTranscription: 'Transkripcija',
+  duasTranslation: 'Prijevod značenja',
+  duasSource: 'Izvor',
 
   qiblaPageDocTitle: 'Kibla kompas — Vaktija',
   qiblaTileTitle: 'Kibla kompas',

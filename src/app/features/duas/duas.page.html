@@ -1,0 +1,155 @@
+<div class="duas-page" [attr.lang]="language.lang()">
+  <app-header>
+    <app-city-selector
+      [locations]="locations()"
+      [selected]="selectedCity()"
+      (selectionChange)="onCityChange($event)"
+    />
+  </app-header>
+
+  <main class="duas-main">
+    <header class="duas-heading">
+      <a
+        routerLink="/"
+        class="duas-back"
+        [attr.aria-label]="labels().qiblaBackToTimes"
+        [title]="labels().qiblaBackToTimes"
+      >
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m14 6-6 6 6 6M8 12h12" /></svg>
+      </a>
+      <h1>{{ labels().duasTitle }}</h1>
+      <span class="duas-divider" aria-hidden="true"></span>
+      <p>{{ labels().duasSubtitle }}</p>
+    </header>
+
+    <nav class="duas-collections" [attr.aria-label]="labels().duasCollectionLabel">
+      <a
+        routerLink="/duas"
+        [class.active]="!savedOnly()"
+        [attr.aria-current]="!savedOnly() ? 'page' : null"
+      >
+        {{ labels().duasAll }}
+      </a>
+      <a
+        routerLink="/duas"
+        [queryParams]="{ view: 'saved' }"
+        [class.active]="savedOnly()"
+        [attr.aria-current]="savedOnly() ? 'page' : null"
+      >
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h12v18l-6-4-6 4Z" /></svg>
+        {{ labels().duasSaved }} <span class="saved-count">{{ savedIds().length }}</span>
+      </a>
+    </nav>
+    <p class="duas-audio-note">
+      {{ audioAvailable() ? labels().duasAudioNote : labels().duasAudioUnavailable }}
+    </p>
+    <div class="duas-feedback" role="status">
+      @if (storageError()) {
+        <p>{{ labels().duasStorageError }}</p>
+      }
+      @if (audioError()) {
+        <p>{{ labels().duasAudioError }}</p>
+      }
+    </div>
+
+    <section
+      class="duas-list"
+      [attr.aria-label]="savedOnly() ? labels().duasSaved : labels().duasAll"
+    >
+      @for (dua of visibleDuas(); track dua.id) {
+        <article
+          class="dua-card"
+          [attr.aria-labelledby]="'dua-title-' + dua.id"
+          [attr.data-dua-id]="dua.id"
+        >
+          <header class="dua-card-header">
+            <img
+              class="dua-ornament"
+              src="/assets/ornaments/dua-medallion.svg"
+              alt=""
+              width="64"
+              height="64"
+            />
+            <h2 [id]="'dua-title-' + dua.id">{{ dua.title[language.lang()] }}</h2>
+            <div class="dua-actions">
+              <button
+                type="button"
+                class="dua-audio"
+                [class.active]="playingId() === dua.id"
+                [disabled]="!audioAvailable()"
+                [attr.aria-label]="
+                  (playingId() === dua.id ? labels().duasStop : labels().duasPlay) +
+                  ': ' +
+                  dua.title[language.lang()]
+                "
+                [title]="
+                  audioAvailable()
+                    ? playingId() === dua.id
+                      ? labels().duasStop
+                      : labels().duasPlay
+                    : labels().duasAudioUnavailable
+                "
+                [attr.aria-pressed]="playingId() === dua.id"
+                (click)="toggleAudio(dua)"
+              >
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  @if (playingId() === dua.id) {
+                    <rect
+                      x="6"
+                      y="6"
+                      width="12"
+                      height="12"
+                      rx="1"
+                      fill="currentColor"
+                      stroke="none"
+                    />
+                  } @else {
+                    <path d="m11 4-5 4H3v8h3l5 4ZM15 8a6 6 0 0 1 0 8m3-11a10 10 0 0 1 0 14" />
+                  }
+                </svg>
+              </button>
+              <button
+                type="button"
+                class="dua-bookmark"
+                [class.active]="savedIds().includes(dua.id)"
+                [attr.aria-label]="
+                  (savedIds().includes(dua.id) ? labels().duasUnsave : labels().duasSave) +
+                  ': ' +
+                  dua.title[language.lang()]
+                "
+                [title]="savedIds().includes(dua.id) ? labels().duasUnsave : labels().duasSave"
+                [attr.aria-pressed]="savedIds().includes(dua.id)"
+                (click)="toggleSaved(dua.id)"
+              >
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h12v18l-6-4-6 4Z" /></svg>
+              </button>
+            </div>
+          </header>
+          <p class="dua-arabic" lang="ar" dir="rtl">{{ dua.arabic }}</p>
+          <span class="duas-divider dua-card-divider" aria-hidden="true"></span>
+          <p class="dua-transcription" [attr.aria-label]="labels().duasTranscription">
+            {{ dua.transcription[language.lang()] }}
+          </p>
+          <p class="dua-translation" [attr.aria-label]="labels().duasTranslation">
+            {{ dua.translation[language.lang()] }}
+          </p>
+          <footer class="dua-source">
+            <a [href]="dua.sourceUrl" target="_blank" rel="noopener noreferrer">
+              {{ labels().duasSource }} · {{ dua.reference[language.lang()] }}
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M14 4h6v6m0-6-9 9M10 4H4v16h16v-6" />
+              </svg>
+            </a>
+          </footer>
+        </article>
+      } @empty {
+        <div class="duas-empty">
+          <img src="/assets/ornaments/dua-medallion.svg" alt="" width="72" height="72" />
+          <h2>{{ labels().duasEmptyTitle }}</h2>
+          <p>{{ labels().duasEmptyBody }}</p>
+          <a routerLink="/duas">{{ labels().duasBrowse }}</a>
+        </div>
+      }
+    </section>
+  </main>
+</div>
