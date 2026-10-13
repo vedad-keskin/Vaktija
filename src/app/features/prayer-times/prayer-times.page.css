@@ -243,6 +243,7 @@
   height: var(--trail-progress);
 }
 .trail-return {
+  display: none;
   position: absolute;
   top: 38px;
   left: 1px;
@@ -365,6 +366,7 @@
     margin-bottom: 36px;
   }
   .trail-return {
+    display: block;
     top: calc(100% - 10px);
     left: var(--half-stop);
     width: calc(100% - 2 * var(--half-stop));
