@@ -107,8 +107,12 @@ svg {
 }
 
 .saved-count {
+  display: inline-grid;
+  place-items: center;
   font-size: 13px;
+  line-height: 1;
   min-width: 20px;
+  min-height: 20px;
   padding: 1px 5px;
   border-radius: 12px;
   background: var(--surface);
