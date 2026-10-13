@@ -130,20 +130,26 @@
   top: 90.5%;
   left: 4%;
   right: 4%;
-  height: 2px;
+  height: 4px;
+  border-radius: 999px;
   background: var(--horizon-sage);
-  /* A fine keyline keeps the indicator legible over both bright and dark water. */
+  /* A fine keyline and soft seat keep the track legible over both bright and dark water. */
   outline: 1px solid var(--hero-sky);
+  box-shadow: 0 1px 4px color-mix(in srgb, var(--hero-sky) 55%, transparent);
 }
 .horizon-fill {
   display: block;
   width: var(--horizon-progress);
   height: 100%;
+  border-radius: inherit;
 }
 .horizon-fill,
 .trail-fill {
   background: var(--horizon-gold);
   box-shadow: 0 0 5px color-mix(in srgb, var(--horizon-gold) 35%, transparent);
+}
+.horizon-fill {
+  box-shadow: 0 0 8px color-mix(in srgb, var(--horizon-gold) 55%, transparent);
 }
 .horizon-marker {
   position: absolute;
