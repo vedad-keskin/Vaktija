@@ -34,7 +34,6 @@ export const EN_LABELS: AppLabels = {
   nextTime: 'Up next',
   nextBadge: 'Next',
   currentBadge: 'Current',
-  overnightInterval: 'Across midnight',
   changeLocation: 'Change location',
   selectCity: 'Select a city',
   searchCity: 'Search cities…',

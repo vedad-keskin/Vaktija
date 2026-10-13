@@ -23,15 +23,15 @@
     } @else {
       @if (countdown(); as cd) {
         <div class="countdown-wrap">
-          <div class="countdown-dates" id="date-display">
-            @if (dateLabel()) {
-              <span class="date-gregorian">{{ dateLabel() }}</span>
-            }
-            @if (hijriDate()) {
-              <span class="date-hijri">{{ hijriDate() }}</span>
-            }
-          </div>
           <section class="countdown-section" id="countdown" aria-labelledby="next-prayer-name">
+            <div class="countdown-dates" id="date-display">
+              @if (dateLabel()) {
+                <span class="date-gregorian">{{ dateLabel() }}</span>
+              }
+              @if (hijriDate()) {
+                <span class="date-hijri">{{ hijriDate() }}</span>
+              }
+            </div>
             <div class="countdown-heading">
               <span class="countdown-label">{{ labels().nextTime }}</span>
               <h2 id="next-prayer-name">{{ cd.name }}</h2>
@@ -115,26 +115,6 @@
                 </g>
               </svg>
             }
-          </div>
-          <div
-            class="trail-caption"
-            role="progressbar"
-            aria-valuemin="0"
-            aria-valuemax="100"
-            [attr.aria-valuenow]="interval.from.progress"
-            [attr.aria-label]="labels().countdownProgressAria"
-            [attr.aria-valuetext]="
-              interval.from.name + ' → ' + interval.to.name + ': ' + interval.from.progress + '%'
-            "
-          >
-            @if (interval.wraps) {
-              <span class="overnight-label">{{ labels().overnightInterval }}</span>
-            }
-            <span
-              >{{ interval.from.name }} <span aria-hidden="true">→</span>
-              {{ interval.to.name }}</span
-            >
-            <span class="interval-percent">{{ interval.from.progress }}%</span>
           </div>
         }
       </section>

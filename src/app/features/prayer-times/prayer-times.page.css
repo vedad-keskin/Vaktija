@@ -23,7 +23,7 @@
   position: relative;
   isolation: isolate;
   overflow: hidden;
-  padding: 1.1rem 0.75rem 3.5rem;
+  padding: 1.85rem 0.75rem 2.5rem;
   border: 1px solid var(--hero-border);
   border-radius: 18px;
   background: var(--hero-sky);
@@ -57,12 +57,14 @@
   pointer-events: none;
 }
 .countdown-dates {
+  position: relative;
+  z-index: 1;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
   gap: 0.1rem 0.6rem;
-  margin-bottom: 0.6rem;
+  margin-bottom: 0.4rem;
 }
 .date-gregorian {
   font-size: 0.8rem;
@@ -123,9 +125,9 @@
   padding: 0 0.15rem;
 }
 .countdown-horizon {
-  /* Same panorama geometry in both themes: the lake begins 90% down the artwork. */
+  /* Same panorama geometry in both themes: the shore meets the water 93% down the artwork. */
   position: absolute;
-  top: 90%;
+  top: 90.5%;
   left: 4%;
   right: 4%;
   height: 2px;
@@ -265,29 +267,12 @@
 .return-desktop {
   display: none;
 }
-.trail-caption {
-  display: flex;
-  align-items: baseline;
-  justify-content: center;
-  gap: 0.4rem 0.75rem;
-  flex-wrap: wrap;
-  margin: 1rem 0 0;
-  color: var(--text-secondary);
-  font-size: 0.8rem;
-}
-.interval-percent {
-  color: var(--gold);
-  font-variant-numeric: tabular-nums;
-}
-.overnight-label {
-  color: var(--gold);
-}
 @media (min-width: 600px) {
   .page-content {
     padding: 1.75rem 1.5rem 2.5rem;
   }
   .countdown-section {
-    padding: 1.5rem 2rem 4.5rem;
+    padding: 1rem 2rem 4.5rem;
   }
   .countdown-dates {
     gap: 0.8rem;
@@ -311,11 +296,7 @@
   .countdown-dates {
     position: absolute;
     inset: 1.5rem 0 auto;
-    z-index: 1;
     margin-bottom: 0;
-    --text-secondary: var(--hero-muted);
-    --text-muted: var(--hero-muted);
-    --gold: var(--hero-gold);
   }
   .date-gregorian {
     font-size: 0.9rem;

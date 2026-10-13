@@ -30,7 +30,6 @@ export interface AppLabels {
   nextTime: string;
   nextBadge: string;
   currentBadge: string;
-  overnightInterval: string;
   changeLocation: string;
   selectCity: string;
   searchCity: string;
@@ -140,7 +139,6 @@ export const BS_LABELS: AppLabels = {
   nextTime: 'Sljedeće vrijeme',
   nextBadge: 'Sljedeće',
   currentBadge: 'Trenutno',
-  overnightInterval: 'Preko ponoći',
   changeLocation: 'Promijeni lokaciju',
   selectCity: 'Odaberi grad',
   searchCity: 'Pretraži grad…',
