@@ -50,15 +50,15 @@ export class PrayerTimesPage implements OnInit, OnDestroy {
   /** Reactive labels shortcut */
   protected readonly labels = this.langService.labels;
 
-  /** All 8 prayer times with dynamic isPassed/isActive/isCurrent/isNext/progress/relativeText */
-  protected readonly displayTimes = computed<PrayerTime[]>(() => {
+  /** One elapsed-time calculation drives both the precise arc and the stepped schedule trail. */
+  private readonly currentInterval = computed(() => {
     const times = this.rawTimes();
     const current = this.now();
     const currentMin = current.getHours() * 60 + current.getMinutes();
     const currentTotalSec =
       current.getHours() * 3600 + current.getMinutes() * 60 + current.getSeconds();
 
-    if (!times.length) return [];
+    if (!times.length) return null;
 
     // Find the index of the next prayer (first whose minutes > currentMin)
     let nextIdx = times.findIndex((t) => t.minutes > currentMin);
@@ -88,8 +88,17 @@ export class PrayerTimesPage implements OnInit, OnDestroy {
     }
 
     const rawProgress = windowDurationSec > 0 ? (elapsedSec / windowDurationSec) * 100 : 0;
+    return { currentIdx, nextIdx, currentMin, progress: Math.min(100, Math.max(0, rawProgress)) };
+  });
+
+  /** All 8 prayer times with dynamic isPassed/isActive/isCurrent/isNext/progress/relativeText */
+  protected readonly displayTimes = computed<PrayerTime[]>(() => {
+    const times = this.rawTimes();
+    const interval = this.currentInterval();
+    if (!interval) return [];
+    const { currentIdx, nextIdx, currentMin } = interval;
     // Quantize to 2% steps for a clean visual
-    const progress = Math.min(100, Math.max(0, Math.round(rawProgress / 2) * 2));
+    const progress = Math.round(interval.progress / 2) * 2;
 
     return times.map((t, i) => {
       const isCurrent = i === currentIdx;
@@ -114,9 +123,13 @@ export class PrayerTimesPage implements OnInit, OnDestroy {
   /**
    * Time elapsed from the listed current time toward the next (wraps at midnight).
    */
-  protected readonly countdownWindowProgress = computed(() => {
-    const current = this.displayTimes().find((t) => t.isCurrent);
-    return current?.progress ?? 0;
+  protected readonly countdownWindowProgress = computed(() => this.currentInterval()?.progress ?? 0);
+
+  protected readonly arcMarker = computed(() => {
+    // Circular SVG arc: center (180, 250), radius 230, endpoints 160 units either side.
+    // A circular arc's angle and stroke length advance at the same rate.
+    const angle = (2 * this.countdownWindowProgress() / 100 - 1) * Math.asin(160 / 230);
+    return { x: 180 + 230 * Math.sin(angle), y: 250 - 230 * Math.cos(angle) };
   });
 
   /** The trail uses the same live interval as the countdown, including the midnight return. */

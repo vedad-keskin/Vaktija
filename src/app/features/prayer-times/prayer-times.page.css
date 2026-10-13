@@ -15,33 +15,33 @@
   position: relative;
 }
 .countdown-section {
-  /* Both themes retain ivory type on the illustrated emerald sky. */
-  --text-primary: #fff8e7;
-  --text-secondary: #d8e6d9;
-  --text-muted: #d8e6d9;
-  --gold: #f4d38c;
-  --progress-track: #163e35;
+  --text-primary: var(--hero-text);
+  --text-secondary: var(--hero-muted);
+  --text-muted: var(--hero-muted);
+  --gold: var(--hero-gold);
   color: var(--text-primary);
   position: relative;
   isolation: isolate;
   overflow: hidden;
-  padding: 1.1rem 0.75rem 1.4rem;
+  padding: 1.1rem 0.75rem 1.7rem;
   min-height: 278px;
   border: 1px solid var(--hero-border);
   border-radius: 18px;
-  background: #06312c;
+  background: var(--hero-sky);
   text-align: center;
   box-shadow: var(--home-shadow);
 }
 .countdown-section::before {
   content: '';
   position: absolute;
-  inset: 0;
+  inset: auto 0 0;
+  aspect-ratio: 3 / 1;
   z-index: -1;
   background:
-    linear-gradient(to bottom, #03272366, transparent 75%),
-    radial-gradient(ellipse 45% 68% at 50% 44%, var(--hero-scrim) 60%, transparent),
-    url('/assets/ornaments/mosque-valley.webp') right bottom / auto 100% no-repeat;
+    radial-gradient(ellipse 45% 100% at 50% 45%, var(--hero-scrim) 60%, transparent),
+    var(--hero-image) center bottom / cover no-repeat;
+  /* Preserve the whole panorama at every width and blend its sky into the panel. */
+  mask-image: linear-gradient(transparent, #000 28%);
   pointer-events: none;
 }
 .countdown-section::after {
@@ -73,17 +73,12 @@
   color: var(--text-muted);
 }
 .countdown-label {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
+  display: inline-block;
   color: var(--gold);
   font-size: 0.65rem;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.18em;
-}
-.countdown-label span {
-  font-size: 0.8rem;
 }
 .countdown-heading h2 {
   font-family: var(--font-display);
@@ -125,20 +120,38 @@
   color: var(--gold);
   padding: 0 0.15rem;
 }
-.countdown-progress {
-  height: 5px;
-  max-width: 340px;
-  margin: 4.2rem auto 0;
-  width: 70%;
-  border-radius: 9px;
-  overflow: hidden;
-  background: var(--progress-track);
+.countdown-arc {
+  display: block;
+  width: min(100%, 280px);
+  height: auto;
+  margin: 0.3rem auto 0;
+  overflow: visible;
 }
-.countdown-progress-fill {
-  height: 100%;
-  border-radius: inherit;
-  background: var(--gold);
-  transition: width 0.75s linear;
+.countdown-arc path {
+  fill: none;
+  stroke-width: 4;
+  stroke-linecap: round;
+}
+.arc-track {
+  stroke: var(--arc-sage);
+}
+.arc-fill {
+  stroke: var(--arc-gold);
+}
+.arc-start {
+  fill: var(--arc-gold);
+}
+.arc-end {
+  fill: var(--arc-sage);
+}
+.arc-marker-halo {
+  fill: var(--arc-gold);
+  opacity: 0.16;
+}
+.arc-marker {
+  fill: var(--arc-marker);
+  stroke: var(--arc-gold);
+  stroke-width: 2;
 }
 .schedule-section {
   margin-top: 1.1rem;
@@ -263,9 +276,6 @@
   .countdown-section {
     padding: 2rem 2rem 2rem;
   }
-  .countdown-section::before {
-    background-size: auto, auto, cover;
-  }
   .countdown-dates {
     gap: 0.8rem;
   }
@@ -277,8 +287,8 @@
   .countdown-timer {
     gap: 0.75rem;
   }
-  .countdown-progress {
-    max-width: 400px;
+  .countdown-arc {
+    width: min(100%, 360px);
   }
 }
 @media (min-width: 1100px) {
@@ -286,26 +296,22 @@
     padding: 1.5rem 2rem 3rem;
   }
   .countdown-section {
-    padding: 4.2rem 2rem 2rem;
+    padding: 4.2rem 2rem 1.5rem;
   }
   .countdown-dates {
     position: absolute;
     inset: 1.5rem 0 auto;
     z-index: 1;
     margin-bottom: 0;
-    --text-secondary: #d8e6d9;
-    --text-muted: #d8e6d9;
-    --gold: #f4d38c;
+    --text-secondary: var(--hero-muted);
+    --text-muted: var(--hero-muted);
+    --gold: var(--hero-gold);
   }
   .date-gregorian {
     font-size: 0.9rem;
   }
   .date-hijri {
     font-size: 0.8rem;
-  }
-  .countdown-progress {
-    max-width: 440px;
-    margin-top: 3rem;
   }
   .schedule-section {
     margin-top: 1.5rem;
@@ -363,10 +369,5 @@
   }
   .return-fill {
     clip-path: inset(-2px -2px -2px calc(100% - var(--wrap-progress)));
-  }
-}
-@media (prefers-reduced-motion: reduce) {
-  .countdown-progress-fill {
-    transition: none;
   }
 }

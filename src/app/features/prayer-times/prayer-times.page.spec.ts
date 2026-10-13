@@ -91,7 +91,10 @@ it('keeps all eight times, translated details and a future next-time label acros
   expect(element.querySelector('#next-prayer-name')?.textContent).toContain(
     BS_LABELS.prayerNames['Lastthird'],
   );
-  expect(element.querySelector('[role="progressbar"]')?.getAttribute('aria-valuenow')).toBe('38');
+  expect(
+    Number(element.querySelector('.countdown-arc')?.getAttribute('aria-valuenow')),
+  ).toBeCloseTo((58 / 150) * 100);
+  expect(element.querySelector('.countdown-label')?.textContent).toBe(BS_LABELS.nextTime);
   expect([...element.querySelectorAll('.countdown-value')].map((el) => el.textContent)).toEqual([
     '01',
     '32',
@@ -106,6 +109,9 @@ it('keeps all eight times, translated details and a future next-time label acros
   fixture.detectChanges();
   expect(element.querySelector('.prayer-card.next')?.textContent).toContain('in 1h 15min');
   expect(element.querySelector('[role="progressbar"]')?.getAttribute('aria-valuenow')).toBe('50');
+  expect(element.querySelector('.arc-fill')?.getAttribute('stroke-dasharray')).toBe('50 100');
+  expect(Number(element.querySelector('.arc-marker')?.getAttribute('cx'))).toBe(180);
+  expect(Number(element.querySelector('.arc-marker')?.getAttribute('cy'))).toBe(20);
   expect(element.querySelectorAll('.prayer-stop.elapsed')).toHaveLength(0);
   expect(
     (element.querySelector('.trail-return') as SVGElement).style.getPropertyValue(
@@ -123,6 +129,10 @@ it('keeps all eight times, translated details and a future next-time label acros
   expect(element.querySelector('.tooltip-content')).toBeNull();
 
   // The normal segment follows the current interval; the exact boundary advances the marker.
+  state.now.set(new Date(2026, 9, 14, 13, 15));
+  fixture.detectChanges();
+  expect(element.querySelector('.arc-fill')?.getAttribute('stroke-dasharray')).toBe('25 100');
+  expect(Number(element.querySelector('.arc-marker')?.getAttribute('cx'))).toBeLessThan(180);
   state.now.set(new Date(2026, 9, 14, 14, 0));
   fixture.detectChanges();
   expect(element.querySelector('.trail-return')).toBeNull();
@@ -133,6 +143,17 @@ it('keeps all eight times, translated details and a future next-time label acros
       '--trail-progress',
     ),
   ).toBe('50%');
+  state.now.set(new Date(2026, 9, 14, 15, 29, 59));
+  fixture.detectChanges();
+  expect(
+    Number(element.querySelector('.countdown-arc')?.getAttribute('aria-valuenow')),
+  ).toBeCloseTo(99.99074, 4);
+  expect(Number(element.querySelector('.arc-marker')?.getAttribute('cx'))).toBeCloseTo(340, 1);
+  expect([...element.querySelectorAll('.countdown-value')].map((el) => el.textContent)).toEqual([
+    '00',
+    '00',
+    '01',
+  ]);
   state.now.set(new Date(2026, 9, 14, 15, 30));
   fixture.detectChanges();
   expect(element.querySelector('.prayer-stop.current')?.textContent).toContain('Asr');
@@ -142,6 +163,9 @@ it('keeps all eight times, translated details and a future next-time label acros
       '--trail-progress',
     ),
   ).toBe('0%');
+  expect(element.querySelector('.arc-fill')?.getAttribute('visibility')).toBe('hidden');
+  expect(Number(element.querySelector('.arc-marker')?.getAttribute('cx'))).toBeCloseTo(20);
+  expect(Number(element.querySelector('.arc-marker')?.getAttribute('cy'))).toBeCloseTo(84.773);
   state.now.set(new Date(2026, 9, 14, 1, 30));
   fixture.detectChanges();
   expect(element.querySelector('.trail-return')).toBeNull();

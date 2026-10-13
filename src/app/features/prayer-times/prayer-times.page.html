@@ -33,9 +33,7 @@
           </div>
           <section class="countdown-section" id="countdown" aria-labelledby="next-prayer-name">
             <div class="countdown-heading">
-              <span class="countdown-label"
-                ><span aria-hidden="true">✦</span> {{ labels().nextTime }}</span
-              >
+              <span class="countdown-label">{{ labels().nextTime }}</span>
               <h2 id="next-prayer-name">{{ cd.name }}</h2>
             </div>
             <div class="countdown-timer" role="timer" aria-live="off">
@@ -54,19 +52,38 @@
                 <span class="countdown-unit">{{ labels().countdownSeconds }}</span>
               </div>
             </div>
-            <div
-              class="countdown-progress"
+            <svg
+              class="countdown-arc"
+              viewBox="0 0 360 110"
               role="progressbar"
               [attr.aria-valuenow]="countdownWindowProgress()"
               aria-valuemin="0"
               aria-valuemax="100"
               [attr.aria-label]="labels().countdownProgressAria"
             >
-              <div
-                class="countdown-progress-fill"
-                [style.width.%]="countdownWindowProgress()"
-              ></div>
-            </div>
+              <path class="arc-track" d="M20 84.773 A230 230 0 0 1 340 84.773" />
+              <path
+                class="arc-fill"
+                d="M20 84.773 A230 230 0 0 1 340 84.773"
+                pathLength="100"
+                [attr.stroke-dasharray]="countdownWindowProgress() + ' 100'"
+                [attr.visibility]="countdownWindowProgress() > 0 ? null : 'hidden'"
+              />
+              <circle class="arc-start" cx="20" cy="84.773" r="5" />
+              <circle class="arc-end" cx="340" cy="84.773" r="5" />
+              <circle
+                class="arc-marker-halo"
+                [attr.cx]="arcMarker().x"
+                [attr.cy]="arcMarker().y"
+                r="13"
+              />
+              <circle
+                class="arc-marker"
+                [attr.cx]="arcMarker().x"
+                [attr.cy]="arcMarker().y"
+                r="8"
+              />
+            </svg>
           </section>
         </div>
       }
