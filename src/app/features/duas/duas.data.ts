@@ -14,9 +14,9 @@ export type Dua = {
 export const DUAS: readonly Dua[] = [
   {
     id: 'knowledge',
-    title: { bs: 'Dova za znanje', en: 'For knowledge' },
+    title: { bs: 'Dova za znanje', en: 'Dua for knowledge' },
     arabic: 'رَبِّ زِدْنِي عِلْمًا',
-    transcription: { bs: 'Rabbi zidni ilma.', en: 'Rabbī zidnī ʿilmā.' },
+    transcription: { bs: 'Rabbi zidnī ʿilmā.', en: 'Rabbī zidnī ʿilmā.' },
     translation: {
       bs: 'Gospodaru moj, povećaj mi znanje.',
       en: 'My Lord, increase me in knowledge.',
@@ -26,10 +26,10 @@ export const DUAS: readonly Dua[] = [
   },
   {
     id: 'forgiveness',
-    title: { bs: 'Dova za oprost i milost', en: 'For forgiveness and mercy' },
+    title: { bs: 'Dova za oprost i milost', en: 'Dua for forgiveness and mercy' },
     arabic: 'اللَّهُمَّ اغْفِرْ لِي وَارْحَمْنِي وَاهْدِنِي وَعَافِنِي وَارْزُقْنِي',
     transcription: {
-      bs: 'Allahumme-gfir li, verhamni, vehdini, ve afini, verzukni.',
+      bs: 'Allāhumme-ġfir lī, verḥamnī, vehdinī, ve ʿāfinī, verzuqnī.',
       en: 'Allāhumma-ghfir lī, warḥamnī, wahdinī, wa ʿāfinī, warzuqnī.',
     },
     translation: {
@@ -41,11 +41,11 @@ export const DUAS: readonly Dua[] = [
   },
   {
     id: 'after-adhan',
-    title: { bs: 'Dova poslije ezana', en: 'After the adhan' },
+    title: { bs: 'Dova poslije ezana', en: 'Dua after the adhan' },
     arabic:
       'اللَّهُمَّ رَبَّ هَذِهِ الدَّعْوَةِ التَّامَّةِ وَالصَّلَاةِ الْقَائِمَةِ آتِ مُحَمَّدًا الْوَسِيلَةَ وَالْفَضِيلَةَ وَابْعَثْهُ مَقَامًا مَحْمُودًا الَّذِي وَعَدْتَهُ',
     transcription: {
-      bs: 'Allahumme Rabbe hazihid-da’vetit-tammeti ves-salatil-ka’imeti, ati Muhammedenil-vesilete vel-fadilete, veb’ashu mekamen mahmudenillezi ve’adteh.',
+      bs: 'Allāhumme Rabbe hāḏihid-daʿvetit-tāmmeti veṣ-ṣalātil-qāʾimeti, āti Muḥammedenil-vesīlete vel-faḍīlete, vebʿaṯhu meqāmen maḥmūdenilleḏī veʿadteh.',
       en: 'Allāhumma rabba hādhihid-daʿwatit-tāmmati waṣ-ṣalātil-qāʾimati, āti Muḥammadanil-wasīlata wal-faḍīlata, wabʿathhu maqāman maḥmūdan alladhī waʿadtah.',
     },
     translation: {
@@ -57,11 +57,11 @@ export const DUAS: readonly Dua[] = [
   },
   {
     id: 'both-worlds',
-    title: { bs: 'Dobro na oba svijeta', en: 'Good in both worlds' },
+    title: { bs: 'Dova za dobro na oba svijeta', en: 'Dua for good in both worlds' },
     arabic:
       'رَبَّنَا آتِنَا فِي الدُّنْيَا حَسَنَةً وَفِي الْآخِرَةِ حَسَنَةً وَقِنَا عَذَابَ النَّارِ',
     transcription: {
-      bs: 'Rabbena atina fid-dunja haseneten ve fil-ahireti haseneten ve kina azaben-nar.',
+      bs: 'Rabbenā ātinā fid-dunjā ḥaseneten ve fil-āḫireti ḥaseneten ve qinā ʿaḏāben-nār.',
       en: 'Rabbanā ātinā fid-dunyā ḥasanatan wa fil-ākhirati ḥasanatan wa qinā ʿadhāban-nār.',
     },
     translation: {
@@ -76,10 +76,10 @@ export const DUAS: readonly Dua[] = [
   },
   {
     id: 'before-sleep',
-    title: { bs: 'Prije spavanja', en: 'Before sleeping' },
+    title: { bs: 'Dova prije spavanja', en: 'Dua before sleeping' },
     arabic: 'بِاسْمِكَ اللَّهُمَّ أَمُوتُ وَأَحْيَا',
     transcription: {
-      bs: 'Bismike Allahumme emutu ve ahja.',
+      bs: 'Bismike Allāhumme emūtu ve aḥjā.',
       en: 'Bismika Allāhumma amūtu wa aḥyā.',
     },
     translation: {
@@ -91,10 +91,10 @@ export const DUAS: readonly Dua[] = [
   },
   {
     id: 'on-waking',
-    title: { bs: 'Nakon buđenja', en: 'On waking' },
+    title: { bs: 'Dova nakon buđenja', en: 'Dua on waking' },
     arabic: 'الْحَمْدُ لِلَّهِ الَّذِي أَحْيَانَا بَعْدَ مَا أَمَاتَنَا وَإِلَيْهِ النُّشُورُ',
     transcription: {
-      bs: 'El-hamdu lillahillezi ahjana ba’de ma ematena ve ilejhin-nušur.',
+      bs: 'El-ḥamdu lillāhilleḏī aḥjānā baʿde mā emātenā ve ilejhin-nušūr.',
       en: 'Al-ḥamdu lillāhilladhī aḥyānā baʿda mā amātanā wa ilayhin-nushūr.',
     },
     translation: {
