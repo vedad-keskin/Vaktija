@@ -7,7 +7,8 @@
     "build": "ng build && ngsw-config ./dist/Vaktija/browser ./ngsw-config.json && node -e \"require('fs').copyFileSync('node_modules/@angular/service-worker/ngsw-worker.js','dist/Vaktija/browser/ngsw-worker.js')\"",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "og-banner": "node scripts/make-og-banner.mjs"
+    "og-banner": "node scripts/make-og-banner.mjs",
+    "brand-assets": "node scripts/make-og-banner.mjs"
   },
   "private": true,
   "packageManager": "npm@10.9.3",

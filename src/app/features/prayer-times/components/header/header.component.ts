@@ -16,7 +16,7 @@ export class HeaderComponent {
   protected readonly labels = this.langService.labels;
   protected readonly currentLang = this.langService.lang;
   protected readonly menuOpen = signal(false);
-  protected readonly logoFilename = 'vaktija-icon-3.png';
+  protected readonly logoFilename = 'logo.png';
 
   private drawerTouchStartY = 0;
 
