@@ -78,7 +78,7 @@
   --trail-track: var(--horizon-sage);
   --trail-passed: var(--horizon-gold);
   --home-shadow: 0 12px 35px #00110c20;
-  --logo-filter: invert(1);
+  --logo-filter: brightness(0) invert(1);
 }
 
 [data-theme='light'] .prayer-times-page {
@@ -110,7 +110,7 @@
   --horizon-sage: #426853;
   --horizon-marker: #fff7db;
   --home-shadow: 0 12px 35px #33422605;
-  --logo-filter: invert(18%) sepia(23%) saturate(1161%) hue-rotate(110deg);
+  --logo-filter: none;
 }
 
 /* :root gives these scoped overrides priority over Angular's component selectors. */
@@ -133,12 +133,6 @@
 :root .prayer-times-page .header-logo {
   width: 30px;
   height: 34px;
-}
-:root .prayer-times-page .header-title {
-  font-family: var(--font-display);
-  font-size: 1.9rem;
-  font-weight: 600;
-  letter-spacing: -0.02em;
 }
 :root .prayer-times-page app-header app-city-selector {
   grid-column: 1 / -1;

@@ -40,7 +40,7 @@
   --error: #f87171;
 
   /* Logo filter */
-  --logo-filter: invert(1);
+  --logo-filter: brightness(0) invert(1);
 }
 
 /* ===== Light Theme ===== */
@@ -64,7 +64,7 @@
 
   --error: #dc3545;
 
-  --logo-filter: invert(0);
+  --logo-filter: none;
 }
 
 /* ===== Global Styles ===== */

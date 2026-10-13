@@ -11,7 +11,6 @@
       width="38"
       height="38"
     />
-    <h1 class="header-title">{{ labels().appTitle }}</h1>
   </a>
 
   <ng-content />
@@ -57,6 +56,7 @@
 
   <!-- Mobile controls -->
   <div class="header-mobile-controls">
+    <app-theme-switcher [directSelect]="true" />
     <!-- Language switcher (always visible on mobile, click-anywhere toggle) -->
     <div
       class="lang-switcher"
@@ -94,7 +94,7 @@
     </button>
   </div>
 
-  <!-- Mobile dropdown: Qibla + method + theme (directSelect mode, auto-close on pick) -->
+  <!-- Mobile dropdown: Qibla + method -->
   <div
     class="mobile-dropdown"
     id="header-mobile-menu"
@@ -118,7 +118,6 @@
         <span class="header-qibla-text">{{ labels().qiblaTileTitle }}</span>
       </span>
     </a>
-    <app-theme-switcher [directSelect]="true" (picked)="closeMenu()" />
     <app-method-switcher [directSelect]="true" (picked)="closeMenu()" />
   </div>
 </header>
