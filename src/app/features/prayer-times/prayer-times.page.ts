@@ -50,7 +50,7 @@ export class PrayerTimesPage implements OnInit, OnDestroy {
   /** Reactive labels shortcut */
   protected readonly labels = this.langService.labels;
 
-  /** One elapsed-time calculation drives both the precise arc and the stepped schedule trail. */
+  /** One elapsed-time calculation drives both the horizon and the stepped schedule trail. */
   private readonly currentInterval = computed(() => {
     const times = this.rawTimes();
     const current = this.now();
@@ -124,13 +124,6 @@ export class PrayerTimesPage implements OnInit, OnDestroy {
    * Time elapsed from the listed current time toward the next (wraps at midnight).
    */
   protected readonly countdownWindowProgress = computed(() => this.currentInterval()?.progress ?? 0);
-
-  protected readonly arcMarker = computed(() => {
-    // Circular SVG arc: center (180, 250), radius 230, endpoints 160 units either side.
-    // A circular arc's angle and stroke length advance at the same rate.
-    const angle = (2 * this.countdownWindowProgress() / 100 - 1) * Math.asin(160 / 230);
-    return { x: 180 + 230 * Math.sin(angle), y: 250 - 230 * Math.cos(angle) };
-  });
 
   /** The trail uses the same live interval as the countdown, including the midnight return. */
   protected readonly trailInterval = computed(() => {

@@ -72,11 +72,11 @@
   --hero-text: #fff8e7;
   --hero-muted: #c3d7c8;
   --hero-gold: #f4d38c;
-  --arc-gold: #f4d38c;
-  --arc-sage: #9bbfa9;
-  --arc-marker: #fff3cf;
-  --trail-track: #738d80;
-  --trail-passed: #89ab96;
+  --horizon-gold: #f4d38c;
+  --horizon-sage: #9bbfa9;
+  --horizon-marker: #fff3cf;
+  --trail-track: var(--horizon-sage);
+  --trail-passed: var(--horizon-gold);
   --home-shadow: 0 12px 35px #00110c20;
   --logo-filter: invert(1);
 }
@@ -106,11 +106,9 @@
   --hero-text: #123d33;
   --hero-muted: #426858;
   --hero-gold: #856020;
-  --arc-gold: #996c23;
-  --arc-sage: #527e66;
-  --arc-marker: #fff7db;
-  --trail-track: #819080;
-  --trail-passed: #497157;
+  --horizon-gold: #996c23;
+  --horizon-sage: #426853;
+  --horizon-marker: #fff7db;
   --home-shadow: 0 12px 35px #33422605;
   --logo-filter: invert(18%) sepia(23%) saturate(1161%) hue-rotate(110deg);
 }
