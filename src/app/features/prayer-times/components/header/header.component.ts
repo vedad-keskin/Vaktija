@@ -32,6 +32,11 @@ export class HeaderComponent {
     this.menuOpen.set(false);
   }
 
+  @HostListener('document:keydown.escape')
+  protected closeMenuOnEscape(): void {
+    this.closeMenu();
+  }
+
   protected onDrawerTouchStart(event: TouchEvent): void {
     if (!this.menuOpen()) return;
     this.drawerTouchStartY = event.touches[0].clientY;

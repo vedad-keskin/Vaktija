@@ -14,6 +14,8 @@
     <h1 class="header-title">{{ labels().appTitle }}</h1>
   </a>
 
+  <ng-content />
+
   <!-- Desktop controls (hidden on mobile) -->
   <div class="header-desktop-controls">
     <a
@@ -83,6 +85,7 @@
       (click)="toggleMenu()"
       aria-label="Toggle menu"
       id="nav-hamburger"
+      aria-controls="header-mobile-menu"
       [attr.aria-expanded]="menuOpen()"
     >
       <span></span>
@@ -94,6 +97,7 @@
   <!-- Mobile dropdown: Qibla + method + theme (directSelect mode, auto-close on pick) -->
   <div
     class="mobile-dropdown"
+    id="header-mobile-menu"
     [class.open]="menuOpen()"
     (touchstart)="onDrawerTouchStart($event)"
     (touchend)="onDrawerTouchEnd($event)"

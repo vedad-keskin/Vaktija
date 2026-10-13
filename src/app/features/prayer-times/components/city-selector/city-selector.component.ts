@@ -1,6 +1,7 @@
-import { Component, input, output, signal, computed, OnInit } from '@angular/core';
+import { Component, input, output, signal, computed, inject, HostListener } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Location } from '../../../../core/models/location.model';
+import { LanguageService } from '../../../../core/services/language.service';
 
 @Component({
   selector: 'app-city-selector',
@@ -9,7 +10,8 @@ import { Location } from '../../../../core/models/location.model';
   templateUrl: './city-selector.component.html',
   styleUrl: './city-selector.component.css',
 })
-export class CitySelectorComponent implements OnInit {
+export class CitySelectorComponent {
+  protected readonly labels = inject(LanguageService).labels;
   readonly locations = input<Location[]>([]);
   readonly selected = input<Location | null>(null);
   readonly compact = input(false);
@@ -26,14 +28,16 @@ export class CitySelectorComponent implements OnInit {
     );
   });
 
-  ngOnInit(): void {
-    // Close dropdown when clicking outside
-    document.addEventListener('click', (e) => {
-      const target = e.target as HTMLElement;
-      if (!target.closest('.city-selector')) {
-        this.isOpen.set(false);
-      }
-    });
+  @HostListener('document:click', ['$event'])
+  protected closeFromOutside(event: Event): void {
+    if (event.target instanceof Element && !event.target.closest('.city-selector')) {
+      this.isOpen.set(false);
+    }
+  }
+
+  @HostListener('keydown.escape')
+  protected closeOnEscape(): void {
+    this.isOpen.set(false);
   }
 
   protected toggleDropdown(): void {

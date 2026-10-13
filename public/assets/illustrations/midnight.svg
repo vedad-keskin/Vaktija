@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 132" fill="none">
+  <title>Midnight — a full moon and its reflection</title>
+  <style>@media(max-width:64px){.detail{display:none}.rim{stroke-width:2}}</style>
+  <defs>
+    <clipPath id="arch"><path d="M64 9C58 21 38 23 25 37C11 52 10 76 21 93C31 108 52 111 64 123C76 111 97 108 107 93C118 76 117 52 103 37C90 23 70 21 64 9Z"/></clipPath>
+    <linearGradient id="sky" x2="0" y2="1"><stop stop-color="#0a2335"/><stop offset=".68" stop-color="#214253"/><stop offset="1" stop-color="#486778"/></linearGradient>
+    <linearGradient id="sun" x2=".3" y2="1"><stop stop-color="#fff3c7"/><stop offset="1" stop-color="#f2ce80"/></linearGradient>
+    <linearGradient id="rim" x2=".4" y2="1"><stop stop-color="#edd99d"/><stop offset="1" stop-color="#b8944b"/></linearGradient>
+  </defs>
+  <g clip-path="url(#arch)">
+    <path fill="url(#sky)" d="M0 0h128v132H0Z"/>
+    <path d="m37 37 1.5 4 4 1.5-4 1.5-1.5 4-1.5-4-4-1.5 4-1.5ZM87 27l1 3 3 1-3 1-1 3-1-3-3-1 3-1Z" fill="#f3d899"/><g class="detail" fill="#cde0cf"><circle cx="54" cy="27" r=".8"/><circle cx="99" cy="50" r="1"/><circle cx="27" cy="61" r=".8"/><circle cx="72" cy="40" r=".8"/></g><circle cx="65" cy="51" r="23" fill="#e4deb0" opacity=".07"/><circle cx="65" cy="51" r="18" fill="url(#sun)"/><g class="detail" fill="#b9b48c" opacity=".45"><circle cx="59" cy="44" r="4"/><circle cx="72" cy="53" r="5"/><circle cx="60" cy="59" r="3"/><circle cx="69" cy="39" r="2"/></g>
+    <path d="m0 80 18-16 16 16 13-8 18 18 19-9 17-16 13 9 14-6v64H0Z" fill="#325464"/>
+    <path class="detail" d="m18 64 16 16 13-8 18 18m36-25-6 15 9-3" stroke="#eed49b" opacity=".25" stroke-width="1"/>
+    <path d="m0 94 17-14 15 10 15-6 18 15 13-8 16-3 18-9 16 7v46H0Z" fill="#183e4b"/>
+    <path d="M0 110q38-15 65-11 25-3 63 7v26H0Z" fill="#123f3b"/>
+    <path d="M61 97h14l-8 7 10 8-13 16H34l30-16-7-8 10-4Z" fill="#6d8585"/>
+    <path class="detail" d="M59 103h12m-14 9h16m-28 8h20" stroke="#e8d6a4" stroke-width="1" opacity=".5"/>
+    
+    <g fill="#082e2d"><path d="M80 108V94h25v14ZM78 94c0-11 14-11 14-20 0 9 15 9 15 20ZM110 108V64h4v44ZM109 64l3-14 3 14ZM108 78h8v3h-8ZM91 78v-9h2v9Z"/><path d="M70 110V99h10v11M68 99q7-12 14 0Z"/></g><g fill="#f6cc78"><path d="M89 108v-9q3-5 6 0v9Z"/><path class="detail" d="M82 100h2v4h-2m18-4h2v4h-2m11-31h2v5h-2"/></g><path class="detail" d="M79 93c0-9 13-12 13-19-4 9-7 11-8 19M110 65v12" fill="none" stroke="#b6995a" stroke-width=".8"/>
+    <path d="m17 108 3-21 4 21h-3v8h-2v-8Zm9 4 4-27 4 27h-3v6h-2v-6Z" fill="#082e2d"/>
+    <path class="detail" d="m7 119 5-25 5 25m91 3 6-21 6 21" fill="#072a29"/>
+  </g>
+  <path class="rim" d="M64 9C58 21 38 23 25 37C11 52 10 76 21 93C31 108 52 111 64 123C76 111 97 108 107 93C118 76 117 52 103 37C90 23 70 21 64 9Z" stroke="url(#rim)" stroke-width="1.2"/>
+  <path class="detail" d="m64 2 1.5 3L64 8l-1.5-3ZM64 115l4 4-4 4-4-4Z" fill="#d9bb75"/>
+</svg>

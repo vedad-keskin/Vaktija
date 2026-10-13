@@ -1,0 +1,156 @@
+﻿import { TestBed } from '@angular/core/testing';
+import { provideRouter } from '@angular/router';
+import { signal } from '@angular/core';
+import { of } from 'rxjs';
+import { PrayerTimesPage } from './prayer-times.page';
+import { PrayerCardComponent } from './components/prayer-card/prayer-card.component';
+import { PrayerTimeService } from '../../core/services/prayer-time.service';
+import { LanguageService } from '../../core/services/language.service';
+import { BS_LABELS, EN_LABELS } from '../../core/i18n';
+
+it('gives all eight times distinct illustrations across translations and Friday noon', async () => {
+  localStorage.clear();
+  await TestBed.configureTestingModule({ imports: [PrayerCardComponent] }).compileComponents();
+  const fixture = TestBed.createComponent(PrayerCardComponent);
+  const language = TestBed.inject(LanguageService);
+  const paths = new Map<string, string>();
+  for (const lang of ['bs', 'en'] as const) {
+    language.setLanguage(lang);
+    for (const [key, name] of Object.entries(language.labels().prayerNames)) {
+      fixture.componentRef.setInput('prayer', { name, time: '12:00', minutes: 720 });
+      fixture.detectChanges();
+      const path = fixture.nativeElement.querySelector('.prayer-symbol img').getAttribute('src');
+      expect(path).toBe(`/assets/illustrations/${key.toLowerCase()}.svg`);
+      if (lang === 'bs') paths.set(key, path);
+      else expect(path).toBe(paths.get(key));
+    }
+    fixture.componentRef.setInput('prayer', {
+      name: language.labels().dhuhrFridayName,
+      time: '12:00',
+      minutes: 720,
+    });
+    fixture.detectChanges();
+    expect(fixture.nativeElement.querySelector('.prayer-symbol img').getAttribute('src')).toBe(
+      paths.get('Dhuhr'),
+    );
+  }
+  expect(new Set(paths.values()).size).toBe(8);
+  fixture.destroy();
+  localStorage.clear();
+});
+
+it('keeps all eight times, translated details and a future next-time label across midnight', async () => {
+  localStorage.clear();
+  const keys = ['Lastthird', 'Fajr', 'Sunrise', 'Dhuhr', 'Asr', 'Maghrib', 'Isha', 'Midnight'];
+  const minutes = [90, 330, 420, 750, 930, 1080, 1200, 1380];
+  const snapshot = (labels: typeof EN_LABELS) => ({
+    prayerTimes: keys.map((key, i) => ({
+      name: labels.prayerNames[key],
+      minutes: minutes[i],
+      time: `${Math.floor(minutes[i] / 60)}:${String(minutes[i] % 60).padStart(2, '0')}`,
+      isCalculated: key === 'Midnight' || key === 'Lastthird',
+      tooltip: labels.prayerTooltips[key],
+    })),
+    locationName: 'Sarajevo',
+    dateLabel: '13 October 2026',
+    hijriDate: '',
+  });
+  await TestBed.configureTestingModule({
+    imports: [PrayerTimesPage],
+    providers: [
+      provideRouter([]),
+      {
+        provide: PrayerTimeService,
+        useValue: {
+          getTodayPrayerTimes: () =>
+            of({ snapshots: { bs: snapshot(BS_LABELS), en: snapshot(EN_LABELS) } }),
+        },
+      },
+    ],
+  }).compileComponents();
+  const fixture = TestBed.createComponent(PrayerTimesPage);
+  await fixture.whenStable();
+  const state = fixture.componentInstance as unknown as { now: ReturnType<typeof signal<Date>> };
+  state.now.set(new Date(2026, 9, 13, 23, 58));
+  fixture.detectChanges();
+  const element: HTMLElement = fixture.nativeElement;
+  expect(element.querySelectorAll('.trail-marker')).toHaveLength(8);
+  expect(element.querySelector('.trail-return')).toBeTruthy();
+  expect(
+    (element.querySelector('.trail-return') as SVGElement).style.getPropertyValue(
+      '--wrap-progress',
+    ),
+  ).toBe('38%');
+  expect(element.querySelector('#schedule-title, .location-note')).toBeNull();
+  expect(element.querySelector('.countdown-wrap')?.nextElementSibling?.className).toBe(
+    'schedule-section',
+  );
+  expect(element.querySelectorAll('.prayer-card')).toHaveLength(8);
+  expect(element.querySelectorAll('.prayer-card.next')).toHaveLength(1);
+  expect(element.querySelector('.prayer-card.next')?.textContent).toContain('za 1h 32min');
+  expect(element.querySelector('#next-prayer-name')?.textContent).toContain(
+    BS_LABELS.prayerNames['Lastthird'],
+  );
+  expect(element.querySelector('[role="progressbar"]')?.getAttribute('aria-valuenow')).toBe('38');
+  expect([...element.querySelectorAll('.countdown-value')].map((el) => el.textContent)).toEqual([
+    '01',
+    '32',
+    '00',
+  ]);
+
+  TestBed.inject(LanguageService).setLanguage('en');
+  await fixture.whenStable();
+  expect(element.querySelector('.prayer-card.next')?.textContent).toContain('in 1h 32min');
+  expect(element.querySelector('#next-prayer-name')?.textContent).toContain('Last Third');
+  state.now.set(new Date(2026, 9, 14, 0, 15));
+  fixture.detectChanges();
+  expect(element.querySelector('.prayer-card.next')?.textContent).toContain('in 1h 15min');
+  expect(element.querySelector('[role="progressbar"]')?.getAttribute('aria-valuenow')).toBe('50');
+  expect(element.querySelectorAll('.prayer-stop.elapsed')).toHaveLength(0);
+  expect(
+    (element.querySelector('.trail-return') as SVGElement).style.getPropertyValue(
+      '--wrap-progress',
+    ),
+  ).toBe('50%');
+  expect(element.querySelector('.prayer-card.current')?.textContent).toContain('1h 15min ago');
+  const info = element.querySelector<HTMLButtonElement>('.info-button')!;
+  info.click();
+  fixture.detectChanges();
+  expect(info.getAttribute('aria-expanded')).toBe('true');
+  expect(element.querySelector('.tooltip-content')?.textContent).toContain('last third');
+  info.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true }));
+  fixture.detectChanges();
+  expect(element.querySelector('.tooltip-content')).toBeNull();
+
+  // The normal segment follows the current interval; the exact boundary advances the marker.
+  state.now.set(new Date(2026, 9, 14, 14, 0));
+  fixture.detectChanges();
+  expect(element.querySelector('.trail-return')).toBeNull();
+  expect(element.querySelectorAll('.prayer-stop.elapsed')).toHaveLength(4);
+  expect(element.querySelector('.prayer-stop.current')?.textContent).toContain('Dhuhr');
+  expect(
+    (element.querySelector('.prayer-stop.current') as HTMLElement).style.getPropertyValue(
+      '--trail-progress',
+    ),
+  ).toBe('50%');
+  state.now.set(new Date(2026, 9, 14, 15, 30));
+  fixture.detectChanges();
+  expect(element.querySelector('.prayer-stop.current')?.textContent).toContain('Asr');
+  expect(element.querySelector('.prayer-stop.next')?.textContent).toContain('Maghrib');
+  expect(
+    (element.querySelector('.prayer-stop.current') as HTMLElement).style.getPropertyValue(
+      '--trail-progress',
+    ),
+  ).toBe('0%');
+  state.now.set(new Date(2026, 9, 14, 1, 30));
+  fixture.detectChanges();
+  expect(element.querySelector('.trail-return')).toBeNull();
+  expect(element.querySelector('.prayer-stop.current')?.textContent).toContain('Last Third');
+  expect(element.querySelector('.prayer-stop.next')?.textContent).toContain('Fajr');
+  state.now.set(new Date(2026, 9, 14, 23, 0));
+  fixture.detectChanges();
+  expect(element.querySelector('.trail-return')).toBeTruthy();
+  expect(element.querySelector('.trail-return.started')).toBeNull();
+  fixture.destroy();
+  localStorage.clear();
+});

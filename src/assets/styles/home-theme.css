@@ -1,0 +1,290 @@
+/* Locally hosted Latin and Bosnian glyphs; licenses live beside the font files. */
+@font-face {
+  font-family: 'Cormorant Garamond';
+  font-style: normal;
+  font-weight: 500 600;
+  font-display: swap;
+  src: url(/assets/fonts/cormorant-garamond-latin-ext.woff2) format('woff2');
+  unicode-range:
+    U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329,
+    U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F,
+    U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Cormorant Garamond';
+  font-style: normal;
+  font-weight: 500 600;
+  font-display: swap;
+  src: url(/assets/fonts/cormorant-garamond-latin.woff2) format('woff2');
+  unicode-range:
+    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329,
+    U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Source Sans 3';
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url(/assets/fonts/source-sans-3-latin-ext.woff2) format('woff2');
+  unicode-range:
+    U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329,
+    U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F,
+    U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Source Sans 3';
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url(/assets/fonts/source-sans-3-latin.woff2) format('woff2');
+  unicode-range:
+    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329,
+    U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* Home-only tokens keep the shared header and Qibla route on their existing theme. */
+.prayer-times-page {
+  color-scheme: dark;
+  --font-body: 'Source Sans 3', 'Segoe UI', sans-serif;
+  --font-heading: var(--font-body);
+  --font-display: 'Cormorant Garamond', Georgia, serif;
+  font-family: var(--font-body);
+  --surface: #041e1b;
+  --surface-elevated: #0c2d28;
+  --surface-hover: #193a32;
+  --border-color: #2c4840;
+  --accent: #a6d3bc;
+  --accent-light: #c7e5d4;
+  --accent-surface: #1c3e33;
+  --accent-glow: #a6d3bc20;
+  --text-primary: #f1f2e9;
+  --text-secondary: #b5c8bf;
+  --text-muted: #a0baac;
+  --gold: #e2c783;
+  --hero-surface: #0e2c26;
+  --hero-border: #7b713f;
+  --next-surface: #204737;
+  --progress-filled: #d2b777;
+  --progress-track: #345044;
+  --hero-scrim: #032723d1;
+  --trail-track: #738d80;
+  --trail-passed: #89ab96;
+  --home-shadow: 0 12px 35px #00110c20;
+  --logo-filter: invert(1);
+}
+
+[data-theme='light'] .prayer-times-page {
+  color-scheme: light;
+  --surface: #f7f5ee;
+  --surface-elevated: #fdfcf8;
+  --surface-hover: #efeee4;
+  --border-color: #d9ddcf;
+  --accent: #256047;
+  --accent-light: #194f39;
+  --accent-surface: #e8efdf;
+  --accent-glow: #25604715;
+  --text-primary: #153a30;
+  --text-secondary: #52655c;
+  --text-muted: #5d695e;
+  --gold: #7c5e23;
+  --hero-surface: #fafaf2;
+  --hero-border: #d4d8c4;
+  --next-surface: #e6eedc;
+  --progress-filled: #7c5e23;
+  --progress-track: #dce1d1;
+  --hero-scrim: #032723c9;
+  --trail-track: #819080;
+  --trail-passed: #497157;
+  --home-shadow: 0 12px 35px #33422605;
+  --logo-filter: invert(18%) sepia(23%) saturate(1161%) hue-rotate(110deg);
+}
+
+/* :root gives these scoped overrides priority over Angular's component selectors. */
+:root .prayer-times-page :is(button, a, input):focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+}
+:root .prayer-times-page .app-header {
+  height: auto;
+  min-height: 76px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 1rem 0.5rem;
+  padding: 1rem;
+  background: var(--surface);
+}
+:root .prayer-times-page .header-brand {
+  gap: 0.45rem;
+}
+:root .prayer-times-page .header-logo {
+  width: 30px;
+  height: 34px;
+}
+:root .prayer-times-page .header-title {
+  font-family: var(--font-display);
+  font-size: 1.9rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+:root .prayer-times-page app-header app-city-selector {
+  grid-column: 1 / -1;
+  grid-row: 2;
+  min-width: 0;
+}
+:root .prayer-times-page .city-selector {
+  max-width: none;
+}
+:root .prayer-times-page .selector-trigger {
+  min-height: 48px;
+  padding: 0.7rem 1rem;
+  border-radius: 11px;
+  font-weight: 500;
+}
+:root .prayer-times-page .selector-label {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+:root .prayer-times-page .selector-icon {
+  color: var(--accent);
+}
+:root .prayer-times-page .selector-dropdown {
+  box-shadow: var(--home-shadow);
+}
+:root .prayer-times-page .city-option {
+  min-height: 44px;
+}
+:root .prayer-times-page .search-input {
+  min-height: 44px;
+  font-size: 1rem;
+}
+:root .prayer-times-page .city-option.active {
+  background: var(--accent-surface);
+}
+:root .prayer-times-page .header-desktop-controls {
+  display: none;
+}
+:root .prayer-times-page .header-mobile-controls {
+  display: flex;
+  grid-row: 1;
+  grid-column: 2;
+  gap: 0.5rem;
+}
+:root .prayer-times-page :is(.lang-switcher, .theme-switcher, .method-switcher, .header-qibla) {
+  height: 44px;
+  background: var(--surface-elevated);
+  border-radius: 10px;
+}
+:root .prayer-times-page :is(.lang-btn, .theme-btn) {
+  align-self: stretch;
+}
+:root .prayer-times-page :is(.lang-slider, .theme-slider, .method-slider) {
+  border-color: var(--border-color);
+  box-shadow: none;
+  border-radius: 7px;
+}
+:root .prayer-times-page .lang-btn {
+  padding-inline: 0.45rem;
+}
+:root .prayer-times-page .lang-flag {
+  width: 16px;
+  height: 16px;
+}
+:root .prayer-times-page .hamburger {
+  width: 44px;
+  height: 44px;
+}
+:root .prayer-times-page .mobile-dropdown {
+  display: flex;
+  padding: 1rem;
+  gap: 0.75rem;
+  background: var(--surface-elevated);
+}
+:root .prayer-times-page .mobile-dropdown .header-qibla {
+  color: var(--text-primary);
+}
+:root .prayer-times-page .mobile-dropdown :is(.theme-switcher, .method-switcher) {
+  height: 48px;
+}
+:root .prayer-times-page .method-help-icon {
+  opacity: 1;
+}
+:root .prayer-times-page .method-tooltip {
+  z-index: 250;
+  left: 0;
+  right: 0;
+  width: auto;
+  max-width: none;
+  transform: none;
+}
+:root .prayer-times-page .method-tooltip-content,
+:root .prayer-times-page .method-tooltip::after {
+  background: var(--surface-elevated);
+  color: var(--text-primary);
+  border-color: var(--hero-border);
+  box-shadow: var(--home-shadow);
+}
+:root .prayer-times-page .state-panel {
+  margin-top: 2rem;
+  background: var(--hero-surface);
+  border-color: var(--hero-border);
+  padding-block: 3rem;
+}
+
+@media (min-width: 600px) {
+  :root .prayer-times-page .app-header {
+    padding: 1rem 1.5rem;
+    grid-template-columns: auto minmax(180px, 1fr) auto;
+    gap: 1.5rem;
+  }
+  :root .prayer-times-page app-header app-city-selector {
+    grid-row: 1;
+    grid-column: 2;
+    max-width: 380px;
+    width: 100%;
+    justify-self: center;
+  }
+  :root .prayer-times-page .header-mobile-controls {
+    grid-column: 3;
+  }
+  :root .prayer-times-page .mobile-dropdown {
+    left: auto;
+    width: 360px;
+    border-left: 1px solid var(--border-color);
+    border-bottom-left-radius: 14px;
+  }
+}
+@media (min-width: 1100px) {
+  :root .prayer-times-page .app-header {
+    padding: 1rem 2rem;
+    gap: 2rem;
+  }
+  :root .prayer-times-page .header-desktop-controls {
+    display: flex;
+    gap: 0.5rem;
+  }
+  :root .prayer-times-page :is(.header-mobile-controls, .mobile-dropdown) {
+    display: none;
+  }
+  :root .prayer-times-page .header-qibla {
+    color: var(--text-secondary);
+  }
+  :root .prayer-times-page .header-qibla:hover {
+    color: var(--accent);
+    border-color: var(--accent);
+  }
+  :root .prayer-times-page .method-tooltip {
+    left: 50%;
+    right: auto;
+    width: 340px;
+    transform: translateX(-50%);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  :root .prayer-times-page *,
+  :root .prayer-times-page *::before,
+  :root .prayer-times-page *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}

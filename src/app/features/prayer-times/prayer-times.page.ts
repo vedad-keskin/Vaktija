@@ -41,7 +41,6 @@ export class PrayerTimesPage implements OnInit, OnDestroy {
   protected readonly locations = signal<Location[]>([]);
   protected readonly selectedLocation = signal<Location | null>(null);
   protected readonly rawTimes = signal<PrayerTimeData[]>([]);
-  protected readonly locationName = signal('');
   protected readonly dateLabel = signal('');
   protected readonly isLoading = signal(true);
   protected readonly error = signal<string | null>(null);
@@ -104,18 +103,33 @@ export class PrayerTimesPage implements OnInit, OnDestroy {
         isCurrent,
         isNext,
         progress: isCurrent ? progress : 0,
-        relativeText: this.formatRelative(t.minutes - currentMin),
+        relativeText: this.formatRelative(
+          t.minutes - currentMin + (isNext && t.minutes <= currentMin ? 24 * 60 : 0)
+            - (isCurrent && t.minutes > currentMin ? 24 * 60 : 0),
+        ),
       };
     });
   });
 
   /**
-   * Same percentage as the current-prayer card ring: time elapsed from the listed
-   * “current” prayer toward the listed next prayer (wraps correctly after midnight).
+   * Time elapsed from the listed current time toward the next (wraps at midnight).
    */
   protected readonly countdownWindowProgress = computed(() => {
     const current = this.displayTimes().find((t) => t.isCurrent);
     return current?.progress ?? 0;
+  });
+
+  /** The trail uses the same live interval as the countdown, including the midnight return. */
+  protected readonly trailInterval = computed(() => {
+    const times = this.displayTimes();
+    const from = times.find((time) => time.isCurrent);
+    const to = times.find((time) => time.isNext);
+    if (!from || !to) return null;
+    return {
+      from, to,
+      wraps: times[0] === to,
+      nowMinutes: this.now().getHours() * 60 + this.now().getMinutes(),
+    };
   });
 
   /** Countdown to the next upcoming prayer */
@@ -221,7 +235,6 @@ export class PrayerTimesPage implements OnInit, OnDestroy {
 
     if (cached) {
       this.rawTimes.set(cached.prayerTimes);
-      this.locationName.set(cached.locationName);
       this.dateLabel.set(cached.dateLabel);
       this.hijriDate.set(cached.hijriDate);
       this.error.set(null);
@@ -257,7 +270,6 @@ export class PrayerTimesPage implements OnInit, OnDestroy {
 
         const active = snapshots[this.langService.lang()];
         this.rawTimes.set(active.prayerTimes);
-        this.locationName.set(active.locationName);
         this.dateLabel.set(active.dateLabel);
         this.hijriDate.set(active.hijriDate);
         this.isLoading.set(false);

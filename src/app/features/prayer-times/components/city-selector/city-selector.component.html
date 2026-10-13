@@ -4,12 +4,15 @@
     (click)="toggleDropdown()"
     type="button"
     id="city-selector-trigger"
+    [attr.aria-expanded]="isOpen()"
+    aria-controls="city-options"
+    [attr.aria-label]="labels().changeLocation + ': ' + (selected()?.name ?? labels().selectCity)"
   >
     <svg class="selector-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
       <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
       <circle cx="12" cy="10" r="3"/>
     </svg>
-    <span class="selector-label">{{ selected()?.name ?? 'Odaberi grad' }}</span>
+    <span class="selector-label">{{ selected()?.name ?? labels().selectCity }}</span>
     <svg
       class="selector-chevron"
       [class.open]="isOpen()"
@@ -28,13 +31,14 @@
         <input
           type="text"
           class="search-input"
-          placeholder="Pretraži grad..."
+          [placeholder]="labels().searchCity"
+          [attr.aria-label]="labels().searchCity"
           [ngModel]="searchTerm()"
           (ngModelChange)="searchTerm.set($event)"
           id="city-search-input"
         />
       </div>
-      <ul class="city-list">
+      <ul class="city-list" id="city-options">
         @for (location of filteredLocations(); track location.name) {
           <li>
             <button
@@ -47,7 +51,7 @@
             </button>
           </li>
         } @empty {
-          <li class="no-results">Nema rezultata</li>
+          <li class="no-results">{{ labels().noCities }}</li>
         }
       </ul>
     </div>

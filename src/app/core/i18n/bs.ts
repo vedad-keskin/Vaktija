@@ -27,6 +27,14 @@ export interface AppLabels {
   countdownLabelSuffix: string;
   /** aria-label for linear progress under countdown (same window as current-prayer ring) */
   countdownProgressAria: string;
+  nextTime: string;
+  nextBadge: string;
+  currentBadge: string;
+  overnightInterval: string;
+  changeLocation: string;
+  selectCity: string;
+  searchCity: string;
+  noCities: string;
 
   /** Loading / Error */
   loading: string;
@@ -129,6 +137,14 @@ export const BS_LABELS: AppLabels = {
   countdownSeconds: 'sek',
   countdownLabelSuffix: 'ZA',
   countdownProgressAria: 'Postotak proteklog vremena u intervalu do sljedećeg namaza',
+  nextTime: 'Sljedeće vrijeme',
+  nextBadge: 'Sljedeće',
+  currentBadge: 'Trenutno',
+  overnightInterval: 'Preko ponoći',
+  changeLocation: 'Promijeni lokaciju',
+  selectCity: 'Odaberi grad',
+  searchCity: 'Pretraži grad…',
+  noCities: 'Nema rezultata',
 
   dhuhrFridayName: 'Džuma',
 

@@ -1,259 +1,178 @@
+﻿:host {
+  display: block;
+  min-width: 0;
+}
 .prayer-card {
   position: relative;
-  isolation: isolate;
-  display: flex;
-  flex-direction: column;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 44px minmax(0, 1fr) auto;
+  align-items: center;
   gap: 0.5rem;
-  padding: 1.25rem 1.35rem;
-  background: var(--surface-elevated);
+  min-height: 76px;
+  padding: 0.6rem;
+  background: linear-gradient(130deg, var(--surface-elevated), var(--surface));
   border: 1px solid var(--border-color);
-  border-radius: 16px;
-  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
-  /* Progress custom property (0–100), set via [style.--progress] */
-  --progress: 0;
+  border-radius: 12px;
 }
-
-.prayer-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
-}
-
-.prayer-card.has-tooltip {
-  cursor: pointer;
-}
-
-/** Sit above neighbouring cards so upward tooltip clears their progress borders */
-.prayer-card.tooltip-open {
-  z-index: 100;
-}
-
-/* ===== Current — most recently started prayer ===== */
-.prayer-card.current {
-  border-color: transparent;
-  background: linear-gradient(
-    135deg,
-    rgba(45, 212, 168, 0.12) 0%,
-    rgba(45, 212, 168, 0.04) 100%
-  );
-  box-shadow: 0 0 24px var(--accent-glow), inset 0 1px 0 rgba(45, 212, 168, 0.15);
-}
-
-/*
- * Animated border fill via conic-gradient.
- * Starts from top-center (0deg), fills clockwise.
- * Uses thick (3px) fully opaque colors to stay visible
- * even under Samsung's forced dark-mode dimming layer.
- */
-.prayer-card.current::before {
-  content: '';
-  position: absolute;
-  inset: -2px;
-  border-radius: 18px;
-  padding: 3px;
-
-  background: conic-gradient(
-    from 0deg at 50% 50%,
-    var(--progress-filled) calc(var(--progress) * 3.6deg),
-    var(--progress-track) calc(var(--progress) * 3.6deg)
-  );
-
-  /* Mask trick: show only the border ring, not the filled interior */
-  -webkit-mask:
-    linear-gradient(#fff 0 0) content-box,
-    linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask:
-    linear-gradient(#fff 0 0) content-box,
-    linear-gradient(#fff 0 0);
-  mask-composite: exclude;
-
-  pointer-events: none;
-  z-index: 0;
-  transition: background 1s linear;
-
-  /* Glow around the border ring — survives forced dimming */
-  filter: drop-shadow(0 0 6px rgba(45, 212, 168, 0.5));
-}
-
-.prayer-card.current .prayer-name,
-.prayer-card.current .prayer-time {
-  color: var(--accent-light);
-}
-
-.prayer-card.current .prayer-relative {
-  color: var(--accent);
-}
-
-/* ===== Next — upcoming prayer ===== */
 .prayer-card.next {
-  border-color: rgba(45, 212, 168, 0.45);
-  background: linear-gradient(
-    135deg,
-    rgba(45, 212, 168, 0.06) 0%,
-    rgba(45, 212, 168, 0.02) 100%
-  );
-  box-shadow: 0 0 16px rgba(45, 212, 168, 0.1);
+  background: var(--next-surface);
+  border-color: var(--gold);
+  box-shadow: inset 2px 0 var(--gold);
 }
-
-.prayer-card.next .prayer-name {
-  color: var(--text-primary);
+.prayer-card.current {
+  border-color: var(--accent);
 }
-
-.prayer-card.next .prayer-time {
-  color: var(--accent);
-}
-
-.prayer-card.next .prayer-relative {
-  color: var(--accent);
-  font-weight: 500;
-}
-
-/* Active (kept for backward compat, same as next) */
-.prayer-card.active {
-  border-color: rgba(45, 212, 168, 0.45);
-}
-
-/* Passed — dim card content but NOT the tooltip */
-.prayer-card.passed > .card-top,
-.prayer-card.passed > .prayer-relative {
-  opacity: 0.4;
-}
-
-/* Calculated */
-.prayer-card.calculated {
-  border-style: dashed;
-}
-
-/* ===== Card layout ===== */
-.card-top {
-  position: relative;
-  z-index: 1;
+.prayer-symbol {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  justify-content: center;
 }
-
+.prayer-symbol img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
 .prayer-name {
-  display: flex;
-  align-items: center;
-  gap: 0.4rem;
-  font-size: 1rem;
+  font-size: 0.875rem;
   font-weight: 500;
-  color: var(--text-primary);
+  line-height: 1.4;
 }
-
-.info-icon {
+.prayer-status {
+  display: inline-block;
+  color: var(--gold);
+  text-transform: uppercase;
+  font-size: 0.625rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  margin-top: 0.3rem;
+}
+.current .prayer-status {
   color: var(--accent);
-  opacity: 0.5;
-  flex-shrink: 0;
-  transition: opacity 0.2s;
 }
-
-.prayer-card:hover .info-icon {
-  opacity: 1;
+.prayer-clock {
+  display: grid;
+  justify-items: end;
+  gap: 0.15rem;
 }
-
 .prayer-time {
   font-family: var(--font-heading);
-  font-size: 1.6rem;
-  font-weight: 700;
-  color: var(--text-primary);
+  font-size: 1.5rem;
+  font-weight: 600;
   font-variant-numeric: tabular-nums;
-  letter-spacing: 0.5px;
+  line-height: 1.2;
 }
-
 .prayer-relative {
-  position: relative;
-  z-index: 1;
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   color: var(--text-muted);
-  text-align: right;
+  white-space: nowrap;
 }
-
-/* ===== Tooltip ===== */
-.tooltip-overlay {
+.passed .prayer-time,
+.passed .prayer-name {
+  color: var(--text-secondary);
+}
+.next .prayer-time {
+  color: var(--accent-light);
+}
+.has-tooltip {
+  cursor: pointer;
+}
+.info-button {
   position: absolute;
-  left: 50%;
-  bottom: calc(100% + 12px);
-  z-index: 10;
-  pointer-events: none;
-  transform: translateX(-50%) translateY(0);
-  animation: tooltipIn 0.18s ease-out forwards;
+  top: 3px;
+  left: 3px;
+  width: 24px;
+  height: 24px;
+  display: grid;
+  place-items: center;
+  border: 0;
+  border-radius: 50%;
+  background: var(--surface-elevated);
+  color: var(--text-secondary);
+  cursor: pointer;
 }
-
+.info-button svg {
+  width: 16px;
+  height: 16px;
+}
+.info-button:hover {
+  color: var(--gold);
+}
 .tooltip-content {
-  background: #252a3a;
-  color: #e8eaed;
-  border: 1px solid rgba(45, 212, 168, 0.3);
-  border-radius: 12px;
-  padding: 1rem 1.15rem;
-  font-size: 0.82rem;
-  line-height: 1.65;
+  grid-column: 1 / -1;
+  font-size: 0.8rem;
+  line-height: 1.7;
   white-space: pre-line;
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.55);
-  max-width: 340px;
-  width: max-content;
+  border-top: 1px solid var(--border-color);
+  padding-top: 0.75rem;
+  color: var(--text-secondary);
+  text-align: left;
+  cursor: text;
 }
-
-/* Arrow */
-.tooltip-overlay::after {
-  content: '';
-  position: absolute;
-  bottom: -6px;
-  left: 50%;
-  margin-left: -6px;
-  width: 12px;
-  height: 12px;
-  background: #252a3a;
-  border-right: 1px solid rgba(45, 212, 168, 0.3);
-  border-bottom: 1px solid rgba(45, 212, 168, 0.3);
-  transform: rotate(45deg);
-}
-
-@keyframes tooltipIn {
-  from {
-    opacity: 0;
-    transform: translateX(-50%) translateY(6px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(-50%) translateY(0);
-  }
-}
-
-/* ===== Tablet+ : card centered layout ===== */
-@media (min-width: 580px) {
+@media (min-width: 380px) {
   .prayer-card {
-    padding: 1.5rem 1.5rem;
-    align-items: center;
+    grid-template-columns: 52px minmax(0, 1fr) auto;
+    gap: 0.65rem;
+    padding-inline: 0.75rem;
+  }
+}
+@media (min-width: 1200px) {
+  .prayer-card {
+    grid-template-columns: 1fr;
+    gap: 0.45rem;
+    justify-items: center;
     text-align: center;
+    min-height: 250px;
+    padding: 1rem 0.4rem 1.15rem;
+    align-content: start;
   }
-
-  .card-top {
+  .prayer-card.next {
+    box-shadow:
+      inset 0 2px var(--gold),
+      var(--home-shadow);
+  }
+  .prayer-symbol {
+    width: min(100%, 108px);
+  }
+  .prayer-details {
+    min-height: 43px;
+    display: flex;
     flex-direction: column;
-    gap: 0.35rem;
-  }
-
-  .prayer-name {
-    font-size: 0.9rem;
     justify-content: center;
   }
-
-  .prayer-time {
-    font-size: 1.85rem;
+  .prayer-name {
+    font-size: 0.9rem;
   }
-
-  .prayer-relative {
-    text-align: center;
+  .prayer-clock {
+    justify-items: center;
+    gap: 0.35rem;
   }
-}
-
-@media (min-width: 900px) {
-  .prayer-card {
-    padding: 1.75rem 1.5rem;
-  }
-
   .prayer-time {
     font-size: 2rem;
+  }
+  .prayer-relative {
+    font-size: 0.8rem;
+  }
+  .info-button {
+    left: auto;
+    right: 4px;
+    top: 4px;
+    width: 28px;
+    height: 28px;
+  }
+  .tooltip-content {
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    width: min(300px, calc(100vw - 3rem));
+    z-index: 10;
+    padding: 1rem;
+    border: 1px solid var(--hero-border);
+    border-radius: 12px;
+    background: var(--surface-elevated);
+    box-shadow: var(--home-shadow);
+  }
+  :host-context(.prayer-stop:first-child) .tooltip-content {
+    right: auto;
+    left: 0;
   }
 }

@@ -31,6 +31,14 @@ export const EN_LABELS: AppLabels = {
   countdownSeconds: 'sec',
   countdownLabelSuffix: 'IN',
   countdownProgressAria: 'Elapsed share of the current prayer-time window until the next prayer',
+  nextTime: 'Up next',
+  nextBadge: 'Next',
+  currentBadge: 'Current',
+  overnightInterval: 'Across midnight',
+  changeLocation: 'Change location',
+  selectCity: 'Select a city',
+  searchCity: 'Search cities…',
+  noCities: 'No results',
 
   dhuhrFridayName: "Jumu'ah",
 
