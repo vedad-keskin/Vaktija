@@ -58,6 +58,24 @@ export const DUAS: readonly Dua[] = [
     sourceUrl: 'https://quran.com/28/24',
   },
   {
+    id: 'yunus',
+    title: { bs: 'Junusova dova', en: 'Yunus’s dua' },
+    arabic: 'لَا إِلَٰهَ إِلَّا أَنْتَ سُبْحَانَكَ إِنِّي كُنْتُ مِنَ الظَّالِمِينَ',
+    transcription: {
+      bs: 'Lā ilāhe illā ente, subḥāneke innī kuntu mineẓ-ẓālimīn.',
+      en: 'Lā ilāha illā anta, subḥānaka innī kuntu minaẓ-ẓālimīn.',
+    },
+    translation: {
+      bs: 'Nema boga osim Tebe. Slavljen neka si, ja sam uistinu se prema sebi ogriješio.',
+      en: 'There is no god but You. Glory be to You! I was indeed among the wrongdoers.',
+    },
+    reference: {
+      bs: 'Kur’an, El-Enbija 21:87 (dio ajeta)',
+      en: 'Qur’an, Al-Anbiya 21:87 (excerpt)',
+    },
+    sourceUrl: 'https://quran.com/21/87',
+  },
+  {
     id: 'after-adhan',
     title: { bs: 'Dova poslije ezana', en: 'Dua after the adhan' },
     arabic:

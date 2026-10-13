@@ -8,6 +8,11 @@ export const routes: Routes = [
     loadComponent: () => import('./features/duas/duas.page').then((m) => m.DuasPage),
   },
   {
+    path: 'dhikr',
+    data: { collection: 'dhikr' },
+    loadComponent: () => import('./features/duas/duas.page').then((m) => m.DuasPage),
+  },
+  {
     path: 'qibla',
     loadComponent: () => import('./features/qibla/qibla.page').then((m) => m.QiblaPage),
   },

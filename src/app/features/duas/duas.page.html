@@ -17,39 +17,36 @@
       >
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m14 6-6 6 6 6M8 12h12" /></svg>
       </a>
-      <h1>{{ labels().duasTitle }}</h1>
+      <h1>{{ copy().title }}</h1>
       <span class="duas-divider" aria-hidden="true"></span>
-      <p>{{ labels().duasSubtitle }}</p>
+      <p>{{ copy().subtitle }}</p>
     </header>
 
-    <nav class="duas-collections" [attr.aria-label]="labels().duasCollectionLabel">
+    <nav class="duas-collections" [attr.aria-label]="copy().collectionLabel">
       <a
-        routerLink="/duas"
+        [routerLink]="collectionPath"
         [class.active]="!savedOnly()"
         [attr.aria-current]="!savedOnly() ? 'page' : null"
       >
-        {{ labels().duasAll }}
+        {{ copy().all }}
       </a>
       <a
-        routerLink="/duas"
+        [routerLink]="collectionPath"
         [queryParams]="{ view: 'saved' }"
         [class.active]="savedOnly()"
         [attr.aria-current]="savedOnly() ? 'page' : null"
       >
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h12v18l-6-4-6 4Z" /></svg>
-        {{ labels().duasSaved }} <span class="saved-count">{{ savedIds().length }}</span>
+        {{ copy().saved }} <span class="saved-count">{{ savedIds().length }}</span>
       </a>
     </nav>
     <div class="duas-feedback" role="status">
       @if (storageError()) {
-        <p>{{ labels().duasStorageError }}</p>
+        <p>{{ copy().storageError }}</p>
       }
     </div>
 
-    <section
-      class="duas-list"
-      [attr.aria-label]="savedOnly() ? labels().duasSaved : labels().duasAll"
-    >
+    <section class="duas-list" [attr.aria-label]="savedOnly() ? copy().saved : copy().all">
       @for (dua of visibleDuas(); track dua.id) {
         <article
           class="dua-card"
@@ -71,11 +68,11 @@
                 class="dua-bookmark"
                 [class.active]="savedIds().includes(dua.id)"
                 [attr.aria-label]="
-                  (savedIds().includes(dua.id) ? labels().duasUnsave : labels().duasSave) +
+                  (savedIds().includes(dua.id) ? copy().unsave : copy().save) +
                   ': ' +
                   dua.title[language.lang()]
                 "
-                [title]="savedIds().includes(dua.id) ? labels().duasUnsave : labels().duasSave"
+                [title]="savedIds().includes(dua.id) ? copy().unsave : copy().save"
                 [attr.aria-pressed]="savedIds().includes(dua.id)"
                 (click)="toggleSaved(dua.id)"
               >
@@ -103,9 +100,9 @@
       } @empty {
         <div class="duas-empty">
           <img src="/assets/ornaments/dua-crescent-rosette.webp" alt="" width="72" height="72" />
-          <h2>{{ labels().duasEmptyTitle }}</h2>
-          <p>{{ labels().duasEmptyBody }}</p>
-          <a routerLink="/duas">{{ labels().duasBrowse }}</a>
+          <h2>{{ copy().emptyTitle }}</h2>
+          <p>{{ copy().emptyBody }}</p>
+          <a [routerLink]="collectionPath">{{ copy().browse }}</a>
         </div>
       }
     </section>

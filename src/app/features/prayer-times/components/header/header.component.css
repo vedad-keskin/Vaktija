@@ -36,7 +36,7 @@
   object-fit: contain;
   filter: var(--logo-filter);
   flex-shrink: 0;
-  transform: scale(2.0);
+  transform: scale(2);
 }
 
 /* ===== Qibla — matches .lang-switcher / .theme-switcher / .method-switcher shell + inner segment ===== */
@@ -57,7 +57,9 @@
 }
 
 .app-header.motion .header-qibla {
-  transition: border-color 0.25s ease, color 0.25s ease;
+  transition:
+    border-color 0.25s ease,
+    color 0.25s ease;
 }
 
 .header-qibla:hover {
@@ -83,7 +85,11 @@
 }
 
 .app-header.motion .header-qibla-pad {
-  transition: background 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease, color 0.25s ease;
+  transition:
+    background 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease,
+    color 0.25s ease;
 }
 
 .header-qibla--active {
@@ -113,7 +119,7 @@
 
 .mobile-page-links {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 0.5rem;
 }
 
@@ -126,14 +132,14 @@
 
 .mobile-dropdown .header-qibla--mobile-drawer .header-qibla-pad {
   flex: 1 1 auto;
-  justify-content: flex-start;
+  justify-content: center;
   width: 100%;
-  padding-inline: 0.85rem;
+  padding-inline: 0.25rem;
 }
 
 .mobile-dropdown .header-qibla--mobile-drawer .header-qibla-text {
   white-space: normal;
-  text-align: start;
+  text-align: center;
   line-height: 1.2;
 }
 

@@ -34,6 +34,35 @@
       </span>
     </a>
     <a
+      routerLink="/dhikr"
+      routerLinkActive="header-qibla--active"
+      ariaCurrentWhenActive="page"
+      class="header-qibla header-dhikr"
+      [title]="labels().dhikrSubtitle"
+    >
+      <span class="header-qibla-pad">
+        <svg
+          class="header-qibla-icon"
+          viewBox="0 0 24 24"
+          width="18"
+          height="18"
+          aria-hidden="true"
+          fill="none"
+        >
+          <path
+            d="M5 7c4-4 10-4 14 0M5 17c4 4 10 4 14 0"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+          />
+          <circle cx="5" cy="12" r="2" stroke="currentColor" stroke-width="1.5" />
+          <circle cx="12" cy="12" r="2" stroke="currentColor" stroke-width="1.5" />
+          <circle cx="19" cy="12" r="2" stroke="currentColor" stroke-width="1.5" />
+        </svg>
+        <span class="header-qibla-text">{{ labels().dhikrTitle }}</span>
+      </span>
+    </a>
+    <a
       routerLink="/qibla"
       routerLinkActive="header-qibla--active"
       ariaCurrentWhenActive="page"
@@ -53,7 +82,7 @@
           <path d="M12 12V4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
           <circle cx="12" cy="12" r="2" fill="currentColor" />
         </svg>
-        <span class="header-qibla-text">{{ labels().qiblaTileTitle }}</span>
+        <span class="header-qibla-text">{{ labels().qiblaNavTitle }}</span>
       </span>
     </a>
     <app-method-switcher />
@@ -175,6 +204,36 @@
         </span>
       </a>
       <a
+        routerLink="/dhikr"
+        routerLinkActive="header-qibla--active"
+        ariaCurrentWhenActive="page"
+        class="header-qibla header-dhikr header-qibla--mobile-drawer"
+        [title]="labels().dhikrSubtitle"
+        (click)="closeMenu()"
+      >
+        <span class="header-qibla-pad">
+          <svg
+            class="header-qibla-icon"
+            viewBox="0 0 24 24"
+            width="18"
+            height="18"
+            aria-hidden="true"
+            fill="none"
+          >
+            <path
+              d="M5 7c4-4 10-4 14 0M5 17c4 4 10 4 14 0"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+            />
+            <circle cx="5" cy="12" r="2" stroke="currentColor" stroke-width="1.5" />
+            <circle cx="12" cy="12" r="2" stroke="currentColor" stroke-width="1.5" />
+            <circle cx="19" cy="12" r="2" stroke="currentColor" stroke-width="1.5" />
+          </svg>
+          <span class="header-qibla-text">{{ labels().dhikrTitle }}</span>
+        </span>
+      </a>
+      <a
         routerLink="/qibla"
         routerLinkActive="header-qibla--active"
         ariaCurrentWhenActive="page"
@@ -202,7 +261,7 @@
             <path d="M12 12V4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
             <circle cx="12" cy="12" r="2" fill="currentColor" />
           </svg>
-          <span class="header-qibla-text">{{ labels().qiblaTileTitle }}</span>
+          <span class="header-qibla-text">{{ labels().qiblaNavTitle }}</span>
         </span>
       </a>
     </div>

@@ -6,6 +6,7 @@ import { routes } from '../../app.routes';
 import { LanguageService } from '../../core/services/language.service';
 import { BS_LABELS, EN_LABELS } from '../../core/i18n';
 import { DUAS } from './duas.data';
+import { DHIKR } from './dhikr.data';
 import { DuasPage } from './duas.page';
 
 afterEach(() => {
@@ -33,7 +34,16 @@ it('routes the bilingual library, validates saved data and persists bookmark cha
   const desktopLinks = element().querySelectorAll<HTMLAnchorElement>(
     '.header-desktop-controls > a',
   );
-  expect([...desktopLinks].map((a) => a.getAttribute('href'))).toEqual(['/duas', '/qibla']);
+  expect([...desktopLinks].map((a) => a.getAttribute('href'))).toEqual([
+    '/duas',
+    '/dhikr',
+    '/qibla',
+  ]);
+  expect(
+    [...element().querySelectorAll<HTMLAnchorElement>('.mobile-page-links > a')].map((a) =>
+      a.getAttribute('href'),
+    ),
+  ).toEqual(['/duas', '/dhikr', '/qibla']);
   element().querySelector<HTMLButtonElement>('#nav-hamburger')!.click();
   harness.detectChanges();
   expect(element().querySelector('.mobile-dropdown')?.classList.contains('open')).toBe(true);
@@ -108,4 +118,48 @@ it('routes the bilingual library, validates saved data and persists bookmark cha
       .getAttribute('aria-pressed'),
   ).toBe('true');
   reloaded.destroy();
+});
+
+it('shows the sourced bilingual dhikr collection and keeps its saved items separate from duas', async () => {
+  localStorage.clear();
+  localStorage.setItem('vaktija_saved_duas', '["knowledge"]');
+  await TestBed.configureTestingModule({
+    imports: [DuasPage],
+    providers: [provideRouter(routes)],
+  }).compileComponents();
+  const harness = await RouterTestingHarness.create('/dhikr');
+  const element = () => harness.routeNativeElement!;
+  const cards = () => element().querySelectorAll<HTMLElement>('.dua-card');
+  expect(cards()).toHaveLength(DHIKR.length);
+  expect(cards()[0].querySelector('.dua-arabic')?.textContent).toBe(DHIKR[0].arabic);
+  expect(cards()[1].querySelector('.dua-arabic')?.textContent).toBe(DHIKR[1].arabic);
+
+  for (const lang of ['bs', 'en'] as const) {
+    TestBed.inject(LanguageService).setLanguage(lang);
+    harness.detectChanges();
+    expect(element().querySelector('h1')?.textContent).toBe(lang === 'bs' ? 'Zikrovi' : 'Dhikr');
+    expect(document.title).toBe(lang === 'bs' ? BS_LABELS.dhikrDocTitle : EN_LABELS.dhikrDocTitle);
+    for (const [index, card] of [...cards()].entries()) {
+      const item = DHIKR[index];
+      expect(card.querySelector('h2')?.textContent).toBe(item.title[lang]);
+      expect(card.querySelector('.dua-transcription')?.textContent?.trim()).toBe(
+        item.transcription[lang],
+      );
+      expect(card.querySelector('.dua-translation')?.textContent?.trim()).toBe(
+        item.translation[lang],
+      );
+      expect(card.querySelector('.dua-source a')?.getAttribute('href')).toBe(item.sourceUrl);
+    }
+  }
+
+  cards()[0].querySelector<HTMLButtonElement>('.dua-bookmark')!.click();
+  harness.detectChanges();
+  expect(JSON.parse(localStorage.getItem('vaktija_saved_dhikr')!)).toEqual(['tawhid']);
+  expect(JSON.parse(localStorage.getItem('vaktija_saved_duas')!)).toEqual(['knowledge']);
+  await harness.navigateByUrl('/dhikr?view=saved');
+  expect(cards()).toHaveLength(1);
+  expect(cards()[0].dataset['duaId']).toBe('tawhid');
+  await harness.navigateByUrl('/duas?view=saved');
+  expect(cards()).toHaveLength(1);
+  expect(cards()[0].dataset['duaId']).toBe('knowledge');
 });

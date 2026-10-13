@@ -90,9 +90,23 @@ export interface AppLabels {
   duasTranslation: string;
   duasSource: string;
 
+  /** Dhikr */
+  dhikrTitle: string;
+  dhikrSubtitle: string;
+  dhikrDocTitle: string;
+  dhikrCollectionLabel: string;
+  dhikrAll: string;
+  dhikrSaved: string;
+  dhikrSave: string;
+  dhikrUnsave: string;
+  dhikrEmptyTitle: string;
+  dhikrEmptyBody: string;
+  dhikrBrowse: string;
+
   /** Qibla compass */
   qiblaPageDocTitle: string;
   qiblaTileTitle: string;
+  qiblaNavTitle: string;
   qiblaTileSubtitle: string;
   qiblaBackToTimes: string;
   qiblaSectionTitle: string;
@@ -248,8 +262,21 @@ export const BS_LABELS: AppLabels = {
   duasTranslation: 'Prijevod značenja',
   duasSource: 'Izvor',
 
+  dhikrTitle: 'Zikrovi',
+  dhikrSubtitle: 'Zikr za svaki dan',
+  dhikrDocTitle: 'Zikrovi — Vaktija',
+  dhikrCollectionLabel: 'Zbirka zikrova',
+  dhikrAll: 'Svi zikrovi',
+  dhikrSaved: 'Sačuvani',
+  dhikrSave: 'Sačuvaj zikr',
+  dhikrUnsave: 'Ukloni iz sačuvanih',
+  dhikrEmptyTitle: 'Vaši zikrovi, na jednom mjestu',
+  dhikrEmptyBody: 'Dodirnite oznaku na kartici da sačuvate zikr za kasnije na ovom uređaju.',
+  dhikrBrowse: 'Pogledaj sve zikrove',
+
   qiblaPageDocTitle: 'Kibla kompas — Vaktija',
   qiblaTileTitle: 'Kibla kompas',
+  qiblaNavTitle: 'Kibla',
   qiblaTileSubtitle: 'Smjer prema Kabi u Mekki',
   qiblaBackToTimes: 'Natrag na vremena namaza',
   qiblaSectionTitle: 'Smjer kible',
