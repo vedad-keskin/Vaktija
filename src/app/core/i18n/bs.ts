@@ -160,8 +160,8 @@ export const BS_LABELS: AppLabels = {
   themeGroupLabel: 'Dan ili noć',
 
   methodGroupLabel: 'Metoda proračuna',
-  method146Label: '14.6°',
-  methodIzLabel: 'IZ',
+  method146Label: 'Metoda ugla 14,6°',
+  methodIzLabel: 'Islamska zajednica',
 
   method146Tooltip:
     'Metod 14,6° koristi ugao pri kojem se Sunce nalazi 14,6° ispod horizonta za određivanje početka zore.\n\n' +
@@ -173,11 +173,11 @@ export const BS_LABELS: AppLabels = {
 
   method146HelpAria: 'Objašnjenje metode 14,6°',
   methodIzHelpAria: 'Objašnjenje IZ vremena',
-  methodIntroTitle: 'Odaberite vaktiju',
-  methodIntroDescription: 'Odaberite vaktiju koja vam odgovara.',
+  methodIntroTitle: 'Metoda obračuna vaktije',
+  methodIntroDescription: 'Odaberite kako će se izračunavati namaska vremena.',
   methodIntroLater: 'Izbor možete promijeniti kasnije.',
-  method146Summary: 'Vremena izračunata prema uglu zore i jacije od 14,6°.',
-  methodIzSummary: 'Vremena Islamske zajednice u Bosni i Hercegovini.',
+  method146Summary: 'Koristi ugao od 14,6° za izračunavanje vremena sabaha i jacije.',
+  methodIzSummary: 'Prati oficijelnu vaktiju Islamske zajednice u Bosni i Hercegovini.',
 
   countdownHours: 'sati',
   countdownMinutes: 'min',

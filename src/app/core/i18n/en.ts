@@ -11,8 +11,8 @@ export const EN_LABELS: AppLabels = {
   themeGroupLabel: 'Day or night',
 
   methodGroupLabel: 'Calculation method',
-  method146Label: '14.6°',
-  methodIzLabel: 'IZ',
+  method146Label: '14.6° Angle Method',
+  methodIzLabel: 'Islamic Community',
 
   method146Tooltip:
     'The 14.6° method uses the solar depression angle of 14.6° below the horizon to determine the beginning of dawn.\n\n' +
@@ -24,11 +24,11 @@ export const EN_LABELS: AppLabels = {
 
   method146HelpAria: 'Explain the 14.6° method',
   methodIzHelpAria: 'Explain IZ (Islamic Community) times',
-  methodIntroTitle: 'Choose your prayer times',
-  methodIntroDescription: 'Choose the timetable you prefer.',
+  methodIntroTitle: 'Prayer Time Method',
+  methodIntroDescription: 'Choose how your prayer times are calculated.',
   methodIntroLater: 'You can change this later.',
-  method146Summary: 'Times calculated with a 14.6° dawn and nightfall angle.',
-  methodIzSummary: 'Times from the Islamic Community in Bosnia and Herzegovina.',
+  method146Summary: 'Uses a 14.6° angle to calculate Fajr and Isha.',
+  methodIzSummary: 'Follows the official prayer timetable for Bosnia and Herzegovina.',
 
   /** Countdown */
   countdownHours: 'hrs',
