@@ -6,16 +6,17 @@
 .method-intro {
   --method-gold: color-mix(in srgb, var(--gold) 72%, #e5bf71);
   position: relative;
+  isolation: isolate;
   width: min(44rem, calc(100vw - 1rem));
   max-height: calc(100dvh - 1rem);
   margin: auto;
   padding: 2rem 2.5rem 1.75rem;
   overflow: auto;
-  border: 2px solid var(--method-gold);
-  border-radius: 27px;
-  background: radial-gradient(circle at 50% 0, color-mix(in srgb, var(--surface-elevated) 91%, var(--gold)), var(--surface-elevated) 68%);
+  border: 1px solid var(--hero-border);
+  border-radius: 20px;
+  background: var(--hero-sky);
   color: var(--text-primary);
-  box-shadow: 0 28px 80px #00110c77;
+  box-shadow: var(--home-shadow), inset 0 0 0 5px var(--surface);
   text-align: center;
   scrollbar-width: thin;
 }
@@ -23,9 +24,12 @@
 .method-intro::before {
   content: '';
   position: absolute;
-  inset: 7px;
-  border: 1px solid color-mix(in srgb, var(--method-gold), transparent 35%);
-  border-radius: 20px;
+  inset: auto 0 0;
+  aspect-ratio: 3 / 1;
+  z-index: -1;
+  background: var(--hero-image) center bottom / 100% auto no-repeat;
+  mask-image: linear-gradient(to bottom, transparent, black 65%);
+  opacity: 0.35;
   pointer-events: none;
 }
 
@@ -38,18 +42,19 @@
 .method-intro-corners::after {
   content: '';
   position: absolute;
-  top: 9px;
-  width: 120px;
-  height: 120px;
-  background: url('/assets/ornaments/dua-card-corner.webp') top left / contain no-repeat;
-  opacity: 0.75;
+  top: 0;
+  z-index: -1;
+  width: 260px;
+  aspect-ratio: 1;
+  background: url('/assets/ornaments/dua-card-corner.webp') center / contain no-repeat;
+  opacity: 0.8;
   pointer-events: none;
 }
 
-.method-intro-corners::before { left: 9px; }
-.method-intro-corners::after { right: 9px; transform: scaleX(-1); }
-.method-intro-corners-bottom::before { top: auto; bottom: 9px; transform: scaleY(-1); }
-.method-intro-corners-bottom::after { top: auto; bottom: 9px; transform: rotate(180deg); }
+.method-intro-corners::before { left: 0; }
+.method-intro-corners::after { right: 0; transform: scaleX(-1); }
+.method-intro-corners-bottom::before { top: auto; bottom: 0; transform: scaleY(-1); }
+.method-intro-corners-bottom::after { top: auto; bottom: 0; transform: rotate(180deg); }
 
 .method-intro-emblem {
   display: block;
@@ -78,9 +83,6 @@
 }
 
 .method-intro-options button {
-  position: relative;
-  isolation: isolate;
-  overflow: hidden;
   display: grid;
   grid-template-columns: 5rem minmax(0, 1fr);
   align-items: center;
@@ -90,19 +92,12 @@
   padding: 1rem 1.3rem;
   border: 1px solid color-mix(in srgb, var(--method-gold) 70%, var(--hero-border));
   border-radius: 19px;
-  background: var(--hero-sky);
+  background: var(--surface-elevated);
   color: var(--text-primary);
   font: inherit;
   text-align: left;
   cursor: pointer;
   box-shadow: inset 0 0 0 4px var(--surface);
-}
-
-.method-intro-options button .method-intro-corners::before,
-.method-intro-options button .method-intro-corners::after {
-  width: 76px;
-  height: 76px;
-  opacity: 0.34;
 }
 
 .method-intro-options button:hover,
@@ -152,16 +147,16 @@
   width: 8px;
   height: 8px;
   border: 1px solid var(--method-gold);
-  background: var(--surface-elevated);
+  background: var(--hero-sky);
   transform: rotate(45deg);
 }
 
 .method-intro-footer p { margin-top: 0.8rem; font-size: 0.94rem; }
 
 @media (max-width: 480px) {
-  .method-intro { padding: 1.05rem 1rem 1.25rem; border-radius: 21px; }
-  .method-intro::before { inset: 5px; border-radius: 15px; }
-  .method-intro-corners::before, .method-intro-corners::after { width: 88px; height: 88px; }
+  .method-intro { padding: 1.05rem 1rem 1.25rem; border-radius: 16px; }
+  .method-intro::before { aspect-ratio: 4 / 3; opacity: 0.25; }
+  .method-intro-corners::before, .method-intro-corners::after { width: 190px; }
   .method-intro-emblem { width: 64px; height: 64px; margin: -0.2rem auto 0; }
   .method-intro h1 { font-size: clamp(2rem, 9vw, 2.45rem); }
   #method-intro-description { margin-top: 0.3rem; font-size: 0.94rem; line-height: 1.3; }
@@ -173,8 +168,6 @@
     padding: 0.7rem;
     border-radius: 14px;
   }
-  .method-intro-options button .method-intro-corners::before,
-  .method-intro-options button .method-intro-corners::after { width: 60px; height: 60px; }
   .method-intro-icon { width: 100%; height: 3.8rem; padding-right: 0.4rem; }
   .method-intro-icon svg { width: 2.5rem; height: 2.5rem; }
   .method-intro-name { font-size: 1.75rem; }
