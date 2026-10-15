@@ -14,10 +14,14 @@
         type="button"
         class="method-btn"
         [class.active]="method() === '14.6'"
+        [attr.aria-pressed]="method() === '14.6'"
         [attr.aria-label]="labels().method146Label"
         (click)="onBtnClick('14.6', $event)"
       >
-        <span class="method-label">{{ labels().method146Label }}</span>
+        <span class="method-label">
+          <span class="method-symbol method-symbol-angle" aria-hidden="true"></span>
+          <span>14.6°</span>
+        </span>
       </button>
       <button
         type="button"
@@ -40,10 +44,14 @@
         type="button"
         class="method-btn"
         [class.active]="method() === 'iz'"
+        [attr.aria-pressed]="method() === 'iz'"
         [attr.aria-label]="labels().methodIzLabel"
         (click)="onBtnClick('iz', $event)"
       >
-        <span class="method-label">{{ labels().methodIzLabel }}</span>
+        <span class="method-label">
+          <span class="method-symbol method-symbol-iz" aria-hidden="true"></span>
+          <span>IZ</span>
+        </span>
       </button>
       <button
         type="button"

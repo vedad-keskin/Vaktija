@@ -30,7 +30,7 @@
 
 @media (min-width: 581px) {
   .method-switcher {
-    min-width: 162px;
+    min-width: 210px;
   }
 }
 
@@ -115,7 +115,29 @@
 }
 
 .method-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  white-space: nowrap;
   pointer-events: none;
+}
+
+.method-symbol {
+  display: inline-block;
+  flex: 0 0 20px;
+  width: 20px;
+  height: 20px;
+  background: currentColor;
+}
+
+.method-symbol-angle {
+  -webkit-mask: url('/assets/icons/14-6-prayer-method-icon.webp') center / contain no-repeat;
+  mask: url('/assets/icons/14-6-prayer-method-icon.webp') center / contain no-repeat;
+}
+
+.method-symbol-iz {
+  -webkit-mask: url('/assets/icons/iz-logo.png') center / contain no-repeat;
+  mask: url('/assets/icons/iz-logo.png') center / contain no-repeat;
 }
 
 .method-help-trigger {
