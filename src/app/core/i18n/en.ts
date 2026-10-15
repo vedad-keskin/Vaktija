@@ -24,6 +24,10 @@ export const EN_LABELS: AppLabels = {
 
   method146HelpAria: 'Explain the 14.6° method',
   methodIzHelpAria: 'Explain IZ (Islamic Community) times',
+  methodIntroTitle: 'Choose your prayer times',
+  methodIntroDescription: 'Choose the timetable you prefer. You can change it later.',
+  method146Summary: 'Times calculated with a 14.6° dawn and nightfall angle.',
+  methodIzSummary: 'Times from the Islamic Community in Bosnia and Herzegovina, available offline.',
 
   /** Countdown */
   countdownHours: 'hrs',

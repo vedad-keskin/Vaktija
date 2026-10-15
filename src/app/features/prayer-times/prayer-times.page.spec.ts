@@ -56,7 +56,7 @@ it('loads fresh IZ times over a same-day cache while offline', async () => {
       imports: [PrayerTimesPage],
       providers: [
         provideRouter([]),
-        { provide: CalculationMethodService, useValue: { method: signal('iz') } },
+        { provide: CalculationMethodService, useValue: { method: signal('iz'), hasChosen: signal(true) } },
         { provide: PrayerTimeService, useValue: { getTodayPrayerTimes } },
       ],
     }).compileComponents();
@@ -81,6 +81,27 @@ it('loads fresh IZ times over a same-day cache while offline', async () => {
   }
 });
 
+it('waits for the first method choice before loading prayer times', async () => {
+  localStorage.clear();
+  const snapshot = { prayerTimes: [], locationName: 'Sarajevo', dateLabel: 'Today', hijriDate: '' };
+  const getTodayPrayerTimes = vi.fn(() => of({ snapshots: { bs: snapshot, en: snapshot } }));
+  await TestBed.configureTestingModule({
+    imports: [PrayerTimesPage],
+    providers: [
+      provideRouter([]),
+      { provide: PrayerTimeService, useValue: { getTodayPrayerTimes } },
+    ],
+  }).compileComponents();
+  const fixture = TestBed.createComponent(PrayerTimesPage);
+  await fixture.whenStable();
+  expect(getTodayPrayerTimes).not.toHaveBeenCalled();
+  TestBed.inject(CalculationMethodService).setMethod('iz');
+  await fixture.whenStable();
+  expect(getTodayPrayerTimes).toHaveBeenCalledOnce();
+  fixture.destroy();
+  localStorage.clear();
+});
+
 it('reloads IZ times when an open page reaches Sarajevo midnight', async () => {
   localStorage.clear();
   vi.useFakeTimers({ toFake: ['Date', 'setInterval', 'clearInterval'] });
@@ -96,7 +117,7 @@ it('reloads IZ times when an open page reaches Sarajevo midnight', async () => {
       imports: [PrayerTimesPage],
       providers: [
         provideRouter([]),
-        { provide: CalculationMethodService, useValue: { method: signal('iz') } },
+        { provide: CalculationMethodService, useValue: { method: signal('iz'), hasChosen: signal(true) } },
         { provide: PrayerTimeService, useValue: { getTodayPrayerTimes } },
       ],
     }).compileComponents();
@@ -115,6 +136,7 @@ it('reloads IZ times when an open page reaches Sarajevo midnight', async () => {
 
 it('keeps all eight times, translated details and a future next-time label across midnight', async () => {
   localStorage.clear();
+  localStorage.setItem('vaktija_lang', 'bs');
   const keys = ['Lastthird', 'Fajr', 'Sunrise', 'Dhuhr', 'Asr', 'Maghrib', 'Isha', 'Midnight'];
   const minutes = [90, 330, 420, 750, 930, 1080, 1200, 1380];
   const snapshot = (labels: typeof EN_LABELS) => ({
@@ -141,6 +163,7 @@ it('keeps all eight times, translated details and a future next-time label acros
       },
     ],
   }).compileComponents();
+  TestBed.inject(CalculationMethodService).setMethod('14.6');
   const fixture = TestBed.createComponent(PrayerTimesPage);
   await fixture.whenStable();
   const state = fixture.componentInstance as unknown as { now: ReturnType<typeof signal<Date>> };

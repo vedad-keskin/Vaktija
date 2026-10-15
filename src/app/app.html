@@ -1,1 +1,25 @@
 <router-outlet />
+<dialog
+  #methodIntro
+  class="method-intro"
+  [attr.lang]="language.lang()"
+  aria-labelledby="method-intro-title"
+  aria-describedby="method-intro-description"
+  (cancel)="keepMethodIntroOpen($event)"
+>
+  <span class="method-intro-kicker">Vaktija</span>
+  <h1 id="method-intro-title">{{ labels().methodIntroTitle }}</h1>
+  <p id="method-intro-description">{{ labels().methodIntroDescription }}</p>
+  <div class="method-intro-options">
+    <button type="button" (click)="chooseMethod('14.6')">
+      <span class="method-intro-name">{{ labels().method146Label }}</span>
+      <span class="method-intro-summary">{{ labels().method146Summary }}</span>
+      <span class="method-intro-arrow" aria-hidden="true">→</span>
+    </button>
+    <button type="button" (click)="chooseMethod('iz')">
+      <span class="method-intro-name">{{ labels().methodIzLabel }}</span>
+      <span class="method-intro-summary">{{ labels().methodIzSummary }}</span>
+      <span class="method-intro-arrow" aria-hidden="true">→</span>
+    </button>
+  </div>
+</dialog>

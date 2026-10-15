@@ -12,6 +12,7 @@ import { quaternionFromDeviceOrientationDeg } from '../../core/math/orientation-
 
 it('uses the navbar city, handles GPS denial and cancellation, and starts with an honest compass preview', async () => {
   localStorage.clear();
+  localStorage.setItem('vaktija_lang', 'bs');
   vi.stubGlobal(
     'DeviceOrientationEvent',
     class extends Event {

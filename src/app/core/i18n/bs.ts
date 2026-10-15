@@ -18,6 +18,10 @@ export interface AppLabels {
   methodIzTooltip: string;
   method146HelpAria: string;
   methodIzHelpAria: string;
+  methodIntroTitle: string;
+  methodIntroDescription: string;
+  method146Summary: string;
+  methodIzSummary: string;
 
   /** Countdown */
   countdownHours: string;
@@ -168,6 +172,10 @@ export const BS_LABELS: AppLabels = {
 
   method146HelpAria: 'Objašnjenje metode 14,6°',
   methodIzHelpAria: 'Objašnjenje IZ vremena',
+  methodIntroTitle: 'Odaberite način računanja vremena',
+  methodIntroDescription: 'Odaberite vaktiju koja vam odgovara. Izbor možete promijeniti kasnije.',
+  method146Summary: 'Vremena izračunata prema uglu zore i jacije od 14,6°.',
+  methodIzSummary: 'Vremena Islamske zajednice u BiH, dostupna i bez interneta.',
 
   countdownHours: 'sati',
   countdownMinutes: 'min',

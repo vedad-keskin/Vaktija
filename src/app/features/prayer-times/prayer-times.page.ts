@@ -177,8 +177,9 @@ export class PrayerTimesPage implements OnInit, OnDestroy {
     effect(() => {
       const _lang = this.langService.lang();
       const _method = this.methodService.method();
+      const hasChosen = this.methodService.hasChosen();
       const loc = this.selectedLocation();
-      if (!loc) return;
+      if (!loc || !hasChosen) return;
       untracked(() => this.loadPrayerTimes(loc));
     });
 
