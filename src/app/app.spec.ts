@@ -43,7 +43,14 @@ describe('App', () => {
     await fixture.whenStable();
     const dialog = fixture.nativeElement.querySelector('dialog') as HTMLDialogElement;
     expect(dialog.open).toBe(true);
-    dialog.querySelectorAll('button')[1].click();
+    const options = dialog.querySelectorAll<HTMLButtonElement>('.method-intro-options button');
+    expect(options[0].getAttribute('aria-pressed')).toBe('true');
+    options[1].click();
+    await fixture.whenStable();
+    expect(options[1].getAttribute('aria-pressed')).toBe('true');
+    expect(localStorage.getItem('vaktija_method')).toBeNull();
+    expect(dialog.open).toBe(true);
+    dialog.querySelector<HTMLButtonElement>('.method-intro-confirm')!.click();
     await fixture.whenStable();
     expect(localStorage.getItem('vaktija_method')).toBe('iz');
     expect(dialog.open).toBe(false);

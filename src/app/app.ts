@@ -1,4 +1,4 @@
-import { afterNextRender, Component, ElementRef, inject, viewChild } from '@angular/core';
+import { afterNextRender, Component, ElementRef, inject, signal, viewChild } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { CalculationMethod, CalculationMethodService } from './core/services/calculation-method.service';
 import { LanguageService } from './core/services/language.service';
@@ -16,6 +16,7 @@ export class App {
   private readonly methods = inject(CalculationMethodService);
   protected readonly language = inject(LanguageService);
   protected readonly labels = this.language.labels;
+  protected readonly selectedMethod = signal<CalculationMethod>('14.6');
   private readonly methodIntro = viewChild<ElementRef<HTMLDialogElement>>('methodIntro');
 
   constructor() {
@@ -24,8 +25,8 @@ export class App {
     });
   }
 
-  protected chooseMethod(method: CalculationMethod): void {
-    this.methods.setMethod(method);
+  protected chooseMethod(): void {
+    this.methods.setMethod(this.selectedMethod());
     this.methodIntro()?.nativeElement.close();
   }
 

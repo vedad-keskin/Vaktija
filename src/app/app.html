@@ -13,20 +13,21 @@
   <h1 id="method-intro-title">{{ labels().methodIntroTitle }}</h1>
   <p id="method-intro-description">{{ labels().methodIntroDescription }}</p>
   <div class="method-intro-options">
-    <button type="button" (click)="chooseMethod('14.6')">
+    <button type="button" [attr.aria-pressed]="selectedMethod() === '14.6'" (click)="selectedMethod.set('14.6')">
       <span class="method-intro-icon" aria-hidden="true">
-        <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M12 39h40M18 46h28M24 52h16" />
-          <path d="M20 36a12 12 0 0 1 24 0" fill="currentColor" fill-opacity=".22" />
-          <path d="M32 10v6M15 17l4 4M49 17l-4 4M8 31h6M50 31h6M22 10l2 5M42 10l-2 5" />
+        <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="32" cy="27" r="17" fill="currentColor" fill-opacity=".18" />
+          <path d="M3 47h58M12 54h40M22 60h20" />
+          <path d="M32 2v5M14 7l5 5M50 7l-5 5M4 27h6M54 27h6" />
         </svg>
       </span>
       <span class="method-intro-copy">
         <span class="method-intro-name">{{ labels().method146Label }}</span>
         <span class="method-intro-summary">{{ labels().method146Summary }}</span>
       </span>
+      <span class="method-intro-choice" aria-hidden="true"></span>
     </button>
-    <button type="button" (click)="chooseMethod('iz')">
+    <button type="button" [attr.aria-pressed]="selectedMethod() === 'iz'" (click)="selectedMethod.set('iz')">
       <span class="method-intro-icon" aria-hidden="true">
         <span class="method-intro-iz-mark"></span>
       </span>
@@ -34,8 +35,10 @@
         <span class="method-intro-name">{{ labels().methodIzLabel }}</span>
         <span class="method-intro-summary">{{ labels().methodIzSummary }}</span>
       </span>
+      <span class="method-intro-choice" aria-hidden="true"></span>
     </button>
   </div>
+  <button class="method-intro-confirm" type="button" (click)="chooseMethod()">{{ labels().methodIntroConfirm }}</button>
   <div class="method-intro-footer">
     <span class="method-intro-divider" aria-hidden="true"></span>
     <p>{{ labels().methodIntroLater }}</p>

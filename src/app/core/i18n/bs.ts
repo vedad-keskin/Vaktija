@@ -20,6 +20,7 @@ export interface AppLabels {
   methodIzHelpAria: string;
   methodIntroTitle: string;
   methodIntroDescription: string;
+  methodIntroConfirm: string;
   methodIntroLater: string;
   method146Summary: string;
   methodIzSummary: string;
@@ -173,11 +174,12 @@ export const BS_LABELS: AppLabels = {
 
   method146HelpAria: 'Objašnjenje metode 14,6°',
   methodIzHelpAria: 'Objašnjenje IZ vremena',
-  methodIntroTitle: 'Metoda obračuna vaktije',
+  methodIntroTitle: 'Metoda računanja',
   methodIntroDescription: 'Odaberite kako će se izračunavati namaska vremena.',
+  methodIntroConfirm: 'Potvrdi izbor',
   methodIntroLater: 'Izbor možete promijeniti kasnije.',
-  method146Summary: 'Koristi ugao od 14,6° za izračunavanje vremena sabaha i jacije.',
-  methodIzSummary: 'Prati oficijelnu vaktiju Islamske zajednice u Bosni i Hercegovini.',
+  method146Summary: 'Koristi ugao od 14,6° za računanje sabaha i jacije.',
+  methodIzSummary: 'Prati vaktiju Islamske zajednice u Bosni i Hercegovini.',
 
   countdownHours: 'sati',
   countdownMinutes: 'min',

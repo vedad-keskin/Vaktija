@@ -26,9 +26,10 @@ export const EN_LABELS: AppLabels = {
   methodIzHelpAria: 'Explain IZ (Islamic Community) times',
   methodIntroTitle: 'Prayer Time Method',
   methodIntroDescription: 'Choose how your prayer times are calculated.',
+  methodIntroConfirm: 'Confirm selection',
   methodIntroLater: 'You can change this later.',
   method146Summary: 'Uses a 14.6° angle to calculate Fajr and Isha.',
-  methodIzSummary: 'Follows the official prayer timetable for Bosnia and Herzegovina.',
+  methodIzSummary: 'Follows the prayer timetable for Bosnia and Herzegovina.',
 
   /** Countdown */
   countdownHours: 'hrs',
