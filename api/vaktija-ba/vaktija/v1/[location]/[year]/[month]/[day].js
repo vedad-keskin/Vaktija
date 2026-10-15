@@ -22,14 +22,8 @@ async function handler(req, res) {
     return;
   }
 
-  let search = '';
-  if (typeof req.url === 'string') {
-    const qi = req.url.indexOf('?');
-    if (qi !== -1) search = req.url.slice(qi);
-  }
-
   const path = `/vaktija/v1/${encodeURIComponent(location)}/${encodeURIComponent(year)}/${encodeURIComponent(month)}/${encodeURIComponent(day)}`;
-  const targetUrl = `${ORIGIN}${path}${search}`;
+  const targetUrl = `${ORIGIN}${path}`;
 
   try {
     const upstream = await fetch(targetUrl, {
@@ -45,7 +39,9 @@ async function handler(req, res) {
     res
       .status(upstream.status)
       .setHeader('Content-Type', ct)
-      .setHeader('Cache-Control', 'private, no-store');
+      .setHeader('Cache-Control', upstream.status === 200
+        ? 'public, s-maxage=86400, stale-while-revalidate=604800'
+        : 'no-store');
     res.send(body);
   } catch {
     res.status(502).json({ error: 'Upstream fetch failed' });

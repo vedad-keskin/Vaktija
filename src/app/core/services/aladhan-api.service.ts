@@ -2,6 +2,7 @@ import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { AladhanApiResponse } from '../models/prayer-time.model';
+import { sarajevoYmd } from '../utils/sarajevo-date';
 
 const BASE_URL = 'https://api.aladhan.com/v1/timings';
 
@@ -10,7 +11,7 @@ const BASE_URL = 'https://api.aladhan.com/v1/timings';
  * Fajr angle 14.6° = prava zora (fecr sadik).
  * Isha angle 14.6°.
  *
- * IZ / vaktija.ba authority uses `VaktijaBaApiService` instead.
+ * IZ / vaktija.ba authority uses the local published timetable instead.
  */
 const FAJR_ANGLE = 14.6;
 const ISHA_ANGLE = 14.6;
@@ -23,8 +24,8 @@ export class AladhanPrayerApiService {
    * Fetches prayer times for given coordinates on today's date (14.6° method).
    */
   getPrayerTimes(lat: number, lng: number): Observable<AladhanApiResponse> {
-    const today = new Date();
-    const date = `${today.getDate().toString().padStart(2, '0')}-${(today.getMonth() + 1).toString().padStart(2, '0')}-${today.getFullYear()}`;
+    const { y, m, d } = sarajevoYmd();
+    const date = `${d.toString().padStart(2, '0')}-${m.toString().padStart(2, '0')}-${y}`;
 
     const params: Record<string, string> = {
       latitude: lat.toString(),

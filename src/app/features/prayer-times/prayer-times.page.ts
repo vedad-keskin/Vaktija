@@ -13,6 +13,7 @@ import { LanguageService, type LangCode } from '../../core/services/language.ser
 import { CalculationMethodService } from '../../core/services/calculation-method.service';
 import { PrayerTimeData, PrayerTime } from '../../core/models/prayer-time.model';
 import { Location } from '../../core/models/location.model';
+import { sarajevoDayKey } from '../../core/utils/sarajevo-date';
 
 @Component({
   selector: 'app-prayer-times',
@@ -35,6 +36,7 @@ export class PrayerTimesPage implements OnInit, OnDestroy {
   protected readonly langService = inject(LanguageService);
   private readonly methodService = inject(CalculationMethodService);
   private tickInterval: ReturnType<typeof setInterval> | null = null;
+  private loadedDay = sarajevoDayKey();
   /** Cancels an in-flight load when a newer one starts (avoids stacked concurrent requests). */
   private prayerLoadSub: Subscription | null = null;
 
@@ -194,7 +196,17 @@ export class PrayerTimesPage implements OnInit, OnDestroy {
     // Prayer load is driven by the constructor effect when `selectedLocation` / lang / method change.
 
     // Tick every second for countdown + relative times
-    this.tickInterval = setInterval(() => this.now.set(new Date()), 1000);
+    this.tickInterval = setInterval(() => {
+      const now = new Date();
+      this.now.set(now);
+      const day = sarajevoDayKey(now);
+      if (day !== this.loadedDay) {
+        this.loadedDay = day;
+        this.prayerTimesCache.pruneStale();
+        const location = this.selectedLocation();
+        if (location) this.loadPrayerTimes(location);
+      }
+    }, 1000);
   }
 
   ngOnDestroy(): void {
@@ -231,8 +243,11 @@ export class PrayerTimesPage implements OnInit, OnDestroy {
     const method = this.methodService.method();
     const lang = this.langService.lang();
 
-    let cached = this.prayerTimesCache.read(location, method, lang);
+    const cached = method === '14.6'
+      ? this.prayerTimesCache.read(location, method, lang)
+      : null;
     if (
+      method === '14.6' &&
       this.prayerTimesCache.hasFetchedToday(location, method, lang) &&
       !cached
     ) {
@@ -251,7 +266,7 @@ export class PrayerTimesPage implements OnInit, OnDestroy {
 
     this.error.set(null);
 
-    if (!navigator.onLine) {
+    if (method === '14.6' && !navigator.onLine) {
       this.error.set(this.langService.labels().errorGeneric);
       this.isLoading.set(false);
       return;
@@ -261,17 +276,19 @@ export class PrayerTimesPage implements OnInit, OnDestroy {
 
     this.prayerLoadSub = this.prayerTimeService.getTodayPrayerTimes(location).subscribe({
       next: ({ snapshots }) => {
-        const codes: LangCode[] = ['bs', 'en'];
-        const primary = this.langService.lang();
-        const writeOrder = [primary, ...codes.filter((c) => c !== primary)];
-        for (const code of writeOrder) {
-          const snap = snapshots[code];
-          this.prayerTimesCache.write(location, method, code, {
-            prayerTimes: snap.prayerTimes,
-            locationName: snap.locationName,
-            dateLabel: snap.dateLabel,
-            hijriDate: snap.hijriDate,
-          });
+        if (method === '14.6') {
+          const codes: LangCode[] = ['bs', 'en'];
+          const primary = this.langService.lang();
+          const writeOrder = [primary, ...codes.filter((c) => c !== primary)];
+          for (const code of writeOrder) {
+            const snap = snapshots[code];
+            this.prayerTimesCache.write(location, method, code, {
+              prayerTimes: snap.prayerTimes,
+              locationName: snap.locationName,
+              dateLabel: snap.dateLabel,
+              hijriDate: snap.hijriDate,
+            });
+          }
         }
 
         const active = snapshots[this.langService.lang()];

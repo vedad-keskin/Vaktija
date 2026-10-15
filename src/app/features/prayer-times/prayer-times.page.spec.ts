@@ -5,6 +5,9 @@ import { of } from 'rxjs';
 import { PrayerTimesPage } from './prayer-times.page';
 import { PrayerCardComponent } from './components/prayer-card/prayer-card.component';
 import { PrayerTimeService } from '../../core/services/prayer-time.service';
+import { PrayerTimesCacheService } from '../../core/services/prayer-times-cache.service';
+import { LocationService } from '../../core/services/location.service';
+import { CalculationMethodService } from '../../core/services/calculation-method.service';
 import { LanguageService } from '../../core/services/language.service';
 import { BS_LABELS, EN_LABELS } from '../../core/i18n';
 
@@ -37,6 +40,77 @@ it('gives all eight times distinct illustrations across translations and Friday 
   expect(new Set(paths.values()).size).toBe(8);
   fixture.destroy();
   localStorage.clear();
+});
+
+it('loads fresh IZ times over a same-day cache while offline', async () => {
+  localStorage.clear();
+  const online = vi.spyOn(navigator, 'onLine', 'get').mockReturnValue(false);
+  const prayerTimes = ['Lastthird', 'Fajr', 'Sunrise', 'Dhuhr', 'Asr', 'Maghrib', 'Isha', 'Midnight'].map(
+    (key, i) => ({ name: BS_LABELS.prayerNames[key], time: `${i}:00`, minutes: i * 60, isCalculated: false }),
+  );
+  const snapshot = { prayerTimes, locationName: 'Sarajevo', dateLabel: 'Today', hijriDate: '' };
+  const getTodayPrayerTimes = vi.fn(() => of({ snapshots: { bs: snapshot, en: snapshot } }));
+
+  try {
+    await TestBed.configureTestingModule({
+      imports: [PrayerTimesPage],
+      providers: [
+        provideRouter([]),
+        { provide: CalculationMethodService, useValue: { method: signal('iz') } },
+        { provide: PrayerTimeService, useValue: { getTodayPrayerTimes } },
+      ],
+    }).compileComponents();
+    const location = TestBed.inject(LocationService).getSelectedLocation();
+    TestBed.inject(PrayerTimesCacheService).write(location, 'iz', 'bs', {
+      ...snapshot,
+      prayerTimes: prayerTimes.map((time) => ({ ...time, time: '23:59', minutes: 1439 })),
+    });
+    const fixture = TestBed.createComponent(PrayerTimesPage);
+    await fixture.whenStable();
+    expect(getTodayPrayerTimes).toHaveBeenCalledOnce();
+    expect(fixture.nativeElement.querySelectorAll('.prayer-card')).toHaveLength(8);
+    const displayedTimes = [...fixture.nativeElement.querySelectorAll('.prayer-time')].map(
+      (element: Element) => element.textContent,
+    );
+    expect(displayedTimes).toContain('0:00');
+    expect(displayedTimes).not.toContain('23:59');
+    fixture.destroy();
+  } finally {
+    online.mockRestore();
+    localStorage.clear();
+  }
+});
+
+it('reloads IZ times when an open page reaches Sarajevo midnight', async () => {
+  localStorage.clear();
+  vi.useFakeTimers({ toFake: ['Date', 'setInterval', 'clearInterval'] });
+  vi.setSystemTime(new Date('2026-10-15T21:59:59Z'));
+  const snapshot = {
+    prayerTimes: [{ name: 'Fajr', time: '5:00', minutes: 300, isCalculated: false }],
+    locationName: 'Sarajevo', dateLabel: 'Today', hijriDate: '',
+  };
+  const getTodayPrayerTimes = vi.fn(() => of({ snapshots: { bs: snapshot, en: snapshot } }));
+
+  try {
+    await TestBed.configureTestingModule({
+      imports: [PrayerTimesPage],
+      providers: [
+        provideRouter([]),
+        { provide: CalculationMethodService, useValue: { method: signal('iz') } },
+        { provide: PrayerTimeService, useValue: { getTodayPrayerTimes } },
+      ],
+    }).compileComponents();
+    const fixture = TestBed.createComponent(PrayerTimesPage);
+    await fixture.whenStable();
+    expect(getTodayPrayerTimes).toHaveBeenCalledOnce();
+    vi.advanceTimersByTime(1000);
+    await fixture.whenStable();
+    expect(getTodayPrayerTimes).toHaveBeenCalledTimes(2);
+    fixture.destroy();
+  } finally {
+    vi.useRealTimers();
+    localStorage.clear();
+  }
 });
 
 it('keeps all eight times, translated details and a future next-time label across midnight', async () => {

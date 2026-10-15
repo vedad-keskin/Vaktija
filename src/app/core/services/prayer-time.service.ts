@@ -1,16 +1,16 @@
 import { Injectable, inject } from '@angular/core';
-import { Observable, map, throwError } from 'rxjs';
+import { Observable, map, of, throwError } from 'rxjs';
 import { BS_LABELS, EN_LABELS, type AppLabels } from '../i18n';
 import { AladhanPrayerApiService } from './aladhan-api.service';
-import { VaktijaBaApiService } from './vaktija-ba-api.service';
+import { getIzPrayerTimes } from './iz-timetable';
 import { CalculationMethodService } from './calculation-method.service';
 import { LanguageService, type LangCode } from './language.service';
 import {
   PrayerTimeData,
   AladhanApiResponse,
-  VaktijaBaApiResponse,
 } from '../models/prayer-time.model';
 import { Location } from '../models/location.model';
+import { sarajevoYmd } from '../utils/sarajevo-date';
 
 /** Keys for the 8 prayer/timing entries we display */
 const TIMING_KEYS: { key: string; isCalculated: boolean }[] = [
@@ -42,13 +42,12 @@ export interface PrayerTimesDualLoadResult {
 @Injectable({ providedIn: 'root' })
 export class PrayerTimeService {
   private readonly aladhanApi = inject(AladhanPrayerApiService);
-  private readonly vaktijaBaApi = inject(VaktijaBaApiService);
   private readonly methodService = inject(CalculationMethodService);
   private readonly langService = inject(LanguageService);
 
   /**
-   * Returns localized snapshots for both languages from one HTTP response.
-   * `14.6` → Aladhan; `iz` → api.vaktija.ba (same-origin proxy).
+   * Returns localized snapshots for both languages from one set of times.
+   * `14.6` → Aladhan; `iz` → local copy of vaktija.ba's published timetable.
    */
   getTodayPrayerTimes(location: Location): Observable<PrayerTimesDualLoadResult> {
     const method = this.methodService.method();
@@ -68,10 +67,12 @@ export class PrayerTimeService {
       );
     }
 
-    return this.vaktijaBaApi.getPrayerTimesForToday(id).pipe(
-      map((res) => ({
-        snapshots: this.dualSnapshotsFromVaktija(res, location.name),
-      })),
+    return of(id).pipe(
+      map((locationId) => {
+        const { y, m, d } = sarajevoYmd();
+        const vakat = getIzPrayerTimes(locationId, y, m, d);
+        return { snapshots: this.dualSnapshotsFromVaktija(vakat, location.name) };
+      }),
     );
   }
 
@@ -96,21 +97,20 @@ export class PrayerTimeService {
   }
 
   private dualSnapshotsFromVaktija(
-    res: VaktijaBaApiResponse,
-    fallbackLocationName: string,
+    vakat: string[],
+    locationName: string,
   ): Record<LangCode, PrayerTimesLangSnapshot> {
-    const locationName = res.lokacija?.trim() || fallbackLocationName;
     return {
       bs: {
-        prayerTimes: this.buildVaktijaPrayerTimes(res, BS_LABELS),
+        prayerTimes: this.buildVaktijaPrayerTimes(vakat, BS_LABELS),
         locationName,
-        dateLabel: this.buildVaktijaDateLabel(res, BS_LABELS, 'bs'),
+        dateLabel: this.buildDateLabelFor(BS_LABELS, 'bs'),
         hijriDate: '',
       },
       en: {
-        prayerTimes: this.buildVaktijaPrayerTimes(res, EN_LABELS),
+        prayerTimes: this.buildVaktijaPrayerTimes(vakat, EN_LABELS),
         locationName,
-        dateLabel: this.buildVaktijaDateLabel(res, EN_LABELS, 'en'),
+        dateLabel: this.buildDateLabelFor(EN_LABELS, 'en'),
         hijriDate: '',
       },
     };
@@ -140,8 +140,7 @@ export class PrayerTimeService {
   }
 
   /** Six salat times from vakat[] plus Midnight / Lastthird derived from Maghrib→Fajr night window. */
-  private buildVaktijaPrayerTimes(res: VaktijaBaApiResponse, labels: AppLabels): PrayerTimeData[] {
-    const vakat = res.vakat;
+  private buildVaktijaPrayerTimes(vakat: string[], labels: AppLabels): PrayerTimeData[] {
     if (!Array.isArray(vakat) || vakat.length < 6) {
       throw new Error('Invalid vaktija.ba vakat payload');
     }
@@ -195,17 +194,6 @@ export class PrayerTimeService {
     );
   }
 
-  private buildVaktijaDateLabel(
-    res: VaktijaBaApiResponse,
-    labels: AppLabels,
-    lang: LangCode,
-  ): string {
-    const d = res.datum;
-    if (!Array.isArray(d)) return this.buildDateLabelFor(labels, lang);
-    const text = d.map(String).find((s) => s.trim().length > 0);
-    return text?.trim() ?? this.buildDateLabelFor(labels, lang);
-  }
-
   /** Friday in Europe/Sarajevo (Podne vs Jumu'a label). */
   private isFridaySarajevo(now = new Date()): boolean {
     const wd = new Intl.DateTimeFormat('en-US', {
@@ -232,14 +220,14 @@ export class PrayerTimeService {
   }
 
   private buildDateLabelFor(labels: AppLabels, lang: LangCode): string {
-    const now = new Date();
-    const day = labels.dayNames[now.getDay()];
-    const month = labels.monthNames[now.getMonth()];
+    const { y, m, d } = sarajevoYmd();
+    const day = labels.dayNames[new Date(Date.UTC(y, m - 1, d)).getUTCDay()];
+    const month = labels.monthNames[m - 1];
 
     if (lang === 'en') {
-      return `${day}, ${now.getDate()} ${month} ${now.getFullYear()}`;
+      return `${day}, ${d} ${month} ${y}`;
     }
-    return `${day}, ${now.getDate()}. ${month} ${now.getFullYear()}.`;
+    return `${day}, ${d}. ${month} ${y}.`;
   }
 
   buildHijriDate(res: AladhanApiResponse): string {
