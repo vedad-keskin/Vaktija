@@ -1,4 +1,4 @@
-import { Dua } from './duas.data';
+import type { Dua } from './duas.data';
 
 // Arabic follows the linked hadith; translations express the meaning of each phrase.
 export const DHIKR: readonly Dua[] = [

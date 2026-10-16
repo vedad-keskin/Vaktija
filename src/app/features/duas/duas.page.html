@@ -25,11 +25,21 @@
     <nav class="duas-collections" [attr.aria-label]="copy().collectionLabel">
       <a
         [routerLink]="collectionPath"
-        [class.active]="!savedOnly()"
-        [attr.aria-current]="!savedOnly() ? 'page' : null"
+        [class.active]="!savedOnly() && !activeCategory()"
+        [attr.aria-current]="!savedOnly() && !activeCategory() ? 'page' : null"
       >
         {{ copy().all }}
       </a>
+      @for (category of categories; track category.id) {
+        <a
+          [routerLink]="collectionPath"
+          [queryParams]="{ category: category.id }"
+          [class.active]="!savedOnly() && activeCategory()?.id === category.id"
+          [attr.aria-current]="!savedOnly() && activeCategory()?.id === category.id ? 'page' : null"
+        >
+          {{ category.label[language.lang()] }}
+        </a>
+      }
       <a
         [routerLink]="collectionPath"
         [queryParams]="{ view: 'saved' }"
@@ -46,7 +56,7 @@
       }
     </div>
 
-    <section class="duas-list" [attr.aria-label]="savedOnly() ? copy().saved : copy().all">
+    <section class="duas-list" [attr.aria-label]="listLabel()">
       @for (dua of visibleDuas(); track dua.id) {
         <article
           class="dua-card"
@@ -90,7 +100,7 @@
             {{ dua.translation[language.lang()] }}
           </p>
           <footer class="dua-source">
-            <a [href]="dua.sourceUrl" target="_blank" rel="noopener noreferrer">
+            <a [href]="language.lang() === 'bs' ? (dua.bosnianSourceUrl ?? dua.sourceUrl) : dua.sourceUrl" target="_blank" rel="noopener noreferrer">
               {{ labels().duasSource }} · {{ dua.reference[language.lang()] }}
               <svg viewBox="0 0 24 24" aria-hidden="true">
                 <path d="M14 4h6v6m0-6-9 9M10 4H4v16h16v-6" />

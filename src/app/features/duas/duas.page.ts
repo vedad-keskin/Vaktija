@@ -7,7 +7,7 @@ import { LocationService } from '../../core/services/location.service';
 import { Location } from '../../core/models/location.model';
 import { HeaderComponent } from '../prayer-times/components/header/header.component';
 import { CitySelectorComponent } from '../prayer-times/components/city-selector/city-selector.component';
-import { DUAS } from './duas.data';
+import { DUA_CATEGORIES, DUAS } from './duas.data';
 import { DHIKR } from './dhikr.data';
 
 @Component({
@@ -24,6 +24,7 @@ export class DuasPage {
   private readonly title = inject(Title);
   private readonly isDhikr = this.route.snapshot.data['collection'] === 'dhikr';
   private readonly items = this.isDhikr ? DHIKR : DUAS;
+  protected readonly categories = this.isDhikr ? [] : DUA_CATEGORIES;
   private readonly storageKey = this.isDhikr ? 'vaktija_saved_dhikr' : 'vaktija_saved_duas';
   protected readonly collectionPath = this.isDhikr ? '/dhikr' : '/duas';
   protected readonly copy = computed(() => {
@@ -66,8 +67,18 @@ export class DuasPage {
     initialValue: this.route.snapshot.queryParamMap,
   });
   protected readonly savedOnly = computed(() => this.queryParams().get('view') === 'saved');
+  protected readonly activeCategory = computed(() =>
+    this.categories.find((category) => category.id === this.queryParams().get('category')),
+  );
   protected readonly visibleDuas = computed(() =>
-    this.savedOnly() ? this.items.filter((dua) => this.savedIds().includes(dua.id)) : this.items,
+    this.savedOnly()
+      ? this.items.filter((dua) => this.savedIds().includes(dua.id))
+      : (this.activeCategory()?.items ?? this.items),
+  );
+  protected readonly listLabel = computed(() =>
+    this.savedOnly()
+      ? this.copy().saved
+      : (this.activeCategory()?.label[this.language.lang()] ?? this.copy().all),
   );
 
   constructor() {

@@ -1,5 +1,11 @@
 # Vaktija
 
+## Hisnul Muslim research
+
+- [Working title checklist: 267 numbered entries](docs/hisnul-muslim/README-titles.md)
+- [Printable A4 working title checklist (PDF)](output/pdf/hisnul-muslim-titles-checklist.pdf)
+- [Verified full text: three marriage entries with published Bosnian and English wording](docs/hisnul-muslim/README-full.md)
+
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.9.
 
 ## Development server
