@@ -1,6 +1,6 @@
 # Hisnul Muslim — selected full duas (BS / EN)
 
-This file grows one approved category at a time. It currently contains the Abdest entries (HM-12–13) and the three marriage entries. The [complete title checklist](README-titles.md) remains an editorial selection aid; its suggested labels are not published translations.
+This file grows one approved category at a time. It currently contains the toilet entries (HM-10–11), the Abdest entries (HM-12–13), and the three marriage entries. The [complete title checklist](README-titles.md) remains an editorial selection aid; its suggested labels are not published translations.
 
 ## Izvori i uredničke napomene / Sources and editorial notes
 
@@ -10,10 +10,46 @@ This file grows one approved category at a time. It currently contains the Abdes
   - line under: ث ṯ, خ ẖ, ذ ḏ
   - dot under: ح ḥ, ص ṣ, ض ḍ, ط ṭ, ظ ẓ
   - ق q ; long vowels ā ī ū
-- HM-192 / Bosnian 180’s basmala is copied from the reader’s photograph of page 114. The rest of that line, and HM-191, HM-190, HM-12, and HM-13, are **adaptations** of the published Bosnian recitation with this key. A matching digital copy of the photographed edition was not found.
+- HM-192 / Bosnian 180’s basmala is copied from the reader’s photograph of page 114. The rest of that line, and HM-191, HM-190, HM-10, HM-11, HM-12, and HM-13, are **adaptations** of the published Bosnian recitation with this key. A matching digital copy of the photographed edition was not found.
 - **English title, transliteration and meaning; Arabic text:** [Sunnah.com, *Hisn al-Muslim*](https://sunnah.com/hisn). Only the recited words and their published meanings are shown below. Line breaks on the Sunnah.com page are joined with spaces. Arabic orthography follows the linked entry, including HM-13’s unspaced وَأَشْهَدُأَنَّ.
-- Numbering matches for HM-12 and HM-13. The marriage items differ: BS 178 ↔ EN 190, BS 179 ↔ EN 191, BS 180 ↔ EN 192.
+- Numbering matches for HM-10 through HM-13. The marriage items differ: BS 178 ↔ EN 190, BS 179 ↔ EN 191, BS 180 ↔ EN 192.
 - Text from these editions is reproduced with attribution. [IslamHouse's reuse FAQ](https://d1.islamhouse.com/html/faq.htm) permits publishing its materials without changing the content and with a source citation. Do not create new BS or EN translations for future entries; copy and check a published edition.
+
+## Toalet / Toilet
+
+<a id="hm-10"></a>
+### HM-10 · Dova prije ulaska u zahod / Before entering the bathroom
+
+**Arapski / Arabic**
+
+<p lang="ar" dir="rtl">بِسْمِ الله اللّهُـمَّ إِنِّـي أَعـوذُ بِـكَ مِـنَ الْخُـبْثِ وَالْخَبائِث</p>
+
+**Bosanski — transkripcija (adapted):** Bismillāhi, Allāhumme innī e‘ūḏu bike mine-l-ẖubṯi ve-l-ẖabā’iṯi.
+
+**Bosanski — prijevod (IslamHouse 10):** U ime Allaha, Allahu moj, prizivam Te protiv zla muških i ženskih šejtana.
+
+**English — transliteration (Sunnah.com 10):** [Bismillāhi] Allāhumma 'innī 'a`ūdhu bika minal-khubthi walkhabā'ith.
+
+**English — meaning (Sunnah.com 10):** [In the Name of Allah]. O Allah, I seek protection in You from evil and the evil ones (or, from the evil male and female Jinn).
+
+**Sources:** [Bosnian PDF, page 14](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=14) · [English and Arabic](https://sunnah.com/hisn:10)
+
+<a id="hm-11"></a>
+### HM-11 · Dova poslije izlaska iz zahoda / After leaving the bathroom
+
+**Arapski / Arabic**
+
+<p lang="ar" dir="rtl">غُفْـرانَك</p>
+
+**Bosanski — transkripcija (adapted):** Gufrāneke.
+
+**Bosanski — prijevod (IslamHouse 11):** Za oprost Te molim.
+
+**English — transliteration (Sunnah.com 11):** Ghufrānaka
+
+**English — meaning (Sunnah.com 11):** I seek Your forgiveness.
+
+**Sources:** [Bosnian PDF, page 14](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=14) · [English and Arabic](https://sunnah.com/hisn:11)
 
 ## Abdest / Ablution
 
