@@ -4,7 +4,7 @@
 
 - [Working title checklist: 267 numbered entries](docs/hisnul-muslim/README-titles.md)
 - [Printable A4 working title checklist (PDF)](output/pdf/hisnul-muslim-titles-checklist.pdf)
-- [Verified full text: three marriage entries with published Bosnian and English wording](docs/hisnul-muslim/README-full.md)
+- [Verified full text: Abdest (HM-12–13) and marriage (HM-190–192)](docs/hisnul-muslim/README-full.md)
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.9.
 

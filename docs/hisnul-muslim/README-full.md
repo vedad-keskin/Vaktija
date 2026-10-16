@@ -1,14 +1,55 @@
 # Hisnul Muslim — selected full duas (BS / EN)
 
-This file grows one approved category at a time. It currently contains the three marriage entries selected for the app. The [complete title checklist](README-titles.md) remains an editorial selection aid; its suggested labels are not published translations.
+This file grows one approved category at a time. It currently contains the Abdest entries (HM-12–13) and the three marriage entries. The [complete title checklist](README-titles.md) remains an editorial selection aid; its suggested labels are not published translations.
 
 ## Izvori i uredničke napomene / Sources and editorial notes
 
-- **Bosanski prijevod:** [IslamHouse, *Hisnul-Muslimi* (PDF)](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf), entries 178–180. The meanings keep the published wording and punctuation; hadith reference abbreviations are omitted from the displayed meaning. The app headings use sentence case and shorten entry 179 to its marriage clause.
-- **Bosanska transkripcija:** HM-192 / Bosnian 180 is copied from the reader's photograph of page 114 of a 2017 print edition. HM-191 and HM-190 are **adaptations**, not quotations from that edition: they retain the published Bosnian recitation's pronunciation and use the long vowels in the linked English transliterations. A matching digital copy of the photographed edition was not found. The photographed edition could use different spellings for HM-191 and HM-190.
-- **English title, transliteration and meaning; Arabic text:** [Sunnah.com, *Hisn al-Muslim*](https://sunnah.com/hisn), entries 190–192. Only the recited words and their published meanings are shown below; surrounding narration is available through the entry links.
-- The editions number the same three items differently: BS 178 ↔ EN 190, BS 179 ↔ EN 191, BS 180 ↔ EN 192. Arabic orthography and punctuation can also differ between editions; the Arabic below follows the linked Sunnah.com entry exactly.
+- **Bosanski prijevod:** [IslamHouse, *Hisnul-Muslimi* (PDF)](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf). The meanings keep the published wording and punctuation; hadith reference abbreviations are omitted from the displayed meaning. App headings use sentence case. Entry 179 is shortened to its marriage clause.
+- **Bosanska transkripcija** follows the photographed 2017 “Napomena o transkripciji” for letters Bosnian does not have, plus the pronunciation already used on these cards (ج dž, ش š, و v, fatha often e, šadda with a hyphen):
+  - hamza ء = ’ ; ayn ع = ‘
+  - line under: ث ṯ, خ ẖ, ذ ḏ
+  - dot under: ح ḥ, ص ṣ, ض ḍ, ط ṭ, ظ ẓ
+  - ق q ; long vowels ā ī ū
+- HM-192 / Bosnian 180’s basmala is copied from the reader’s photograph of page 114. The rest of that line, and HM-191, HM-190, HM-12, and HM-13, are **adaptations** of the published Bosnian recitation with this key. A matching digital copy of the photographed edition was not found.
+- **English title, transliteration and meaning; Arabic text:** [Sunnah.com, *Hisn al-Muslim*](https://sunnah.com/hisn). Only the recited words and their published meanings are shown below. Line breaks on the Sunnah.com page are joined with spaces. Arabic orthography follows the linked entry, including HM-13’s unspaced وَأَشْهَدُأَنَّ.
+- Numbering matches for HM-12 and HM-13. The marriage items differ: BS 178 ↔ EN 190, BS 179 ↔ EN 191, BS 180 ↔ EN 192.
 - Text from these editions is reproduced with attribution. [IslamHouse's reuse FAQ](https://d1.islamhouse.com/html/faq.htm) permits publishing its materials without changing the content and with a source citation. Do not create new BS or EN translations for future entries; copy and check a published edition.
+
+## Abdest / Ablution
+
+<a id="hm-12"></a>
+### HM-12 · Dova prije uzimanja abdesta / Before ablution
+
+**Arapski / Arabic**
+
+<p lang="ar" dir="rtl">بِسْمِ الله</p>
+
+**Bosanski — transkripcija (adapted; basmala spelling from the photographed edition):** Bismillāh.
+
+**Bosanski — prijevod (IslamHouse 12):** U ime Allaha.
+
+**English — transliteration (Sunnah.com 12):** Bismillāhi
+
+**English — meaning (Sunnah.com 12):** In the Name of Allah
+
+**Sources:** [Bosnian PDF, page 14](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=14) · [English and Arabic](https://sunnah.com/hisn:12)
+
+<a id="hm-13"></a>
+### HM-13 · Dova nakon uzimanja abdesta / Upon completing the ablution
+
+**Arapski / Arabic**
+
+<p lang="ar" dir="rtl">أَشْهَدُ أَنْ لا إِلَـهَ إِلاّ اللهُ وَحْدَهُ لا شَريـكَ لَـهُ وَأَشْهَدُأَنَّ مُحَمّـداً عَبْـدُهُ وَرَسـولُـه</p>
+
+**Bosanski — transkripcija (adapted):** Ešhedu en lā ilāhe illellāhu vaḥdehu lā šerīke lehu ve ešhedu enne Muḥammeden ‘abduhu ve resūluhu.
+
+**Bosanski — prijevod (IslamHouse 13):** Svjedočim da nema boga osim Allaha i svjedočim da je Muhammed Njegov rob i Njegov Poslanik.
+
+**English — transliteration (Sunnah.com 13):** 'Ash-hadu 'an lā 'ilāha 'illallāhu waḥdahu lā sharīka lahu wa 'ash-hadu 'anna Muḥammadan `abduhu wa Rasūluhu.
+
+**English — meaning (Sunnah.com 13):** I bear witness that none has the right to be worshipped but Allah alone, Who has no partner; and I bear witness that Muhammad is His slave and His Messenger.
+
+**Sources:** [Bosnian PDF, page 14](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=14) · [English and Arabic](https://sunnah.com/hisn:13)
 
 ## Brak / Marriage
 
@@ -19,7 +60,7 @@ This file grows one approved category at a time. It currently contains the three
 
 <p lang="ar" dir="rtl">بِسْمِ الله اللّهُـمَّ جَنِّبْنا الشَّيْـطانَ، وَجَنِّبِ الشَّـيْطانَ ما رَزَقْـتَنا</p>
 
-**Bosanski — transkripcija (photographed print edition, p. 114):** Bismillāh. Allāhumme džennibne-š-šejtāne ve džennibi-š-šejtāne mā rezaqtenā.
+**Bosanski — transkripcija (basmala from the photographed print, p. 114; ط follows the letter key):** Bismillāh. Allāhumme džennibne-š-šejṭāne ve džennibi-š-šejṭāne mā rezaqtenā.
 
 **Bosanski — prijevod (IslamHouse 180):** Allahu, skloni nas od šejtana i skloni šejtana od onoga čime si nas opskrbio.
 
@@ -35,7 +76,7 @@ This file grows one approved category at a time. It currently contains the three
 
 <p lang="ar" dir="rtl">اللَّهُمَّ إِنِّي أَسْأَلُكَ خَيْرَهَا، وَخَيْرَ مَا جَبَلْتَهَا عَلَيْهِ، وَأَعُوذُ بِكَ مِنْ شَرِّهَا، وَشَرِّ مَا جَبَلْتَهَا عَلَيْهِ</p>
 
-**Bosanski — transkripcija (adapted):** Allāhumme innī es'eluke hajrehā ve hajre mā džebeltehā 'alejhi ve e'ūzu bike min šerrihā ve šerri mā džebeltehā 'alejhi.
+**Bosanski — transkripcija (adapted):** Allāhumme innī es’eluke ẖajrehā ve ẖajre mā džebeltehā ‘alejhi ve e‘ūḏu bike min šerrihā ve šerri mā džebeltehā ‘alejhi.
 
 **Bosanski — prijevod (IslamHouse 179):** Allahu, molim Te da mi u njoj (ili njemu) podariš dobro i da ono čemu je ona (ili on) po naravi sklon(a), bude dobro. I utičem Ti se od njenoga (njegovoga) zla i zla onoga čemu je po prirodi sklon(a).
 
@@ -52,7 +93,7 @@ This file grows one approved category at a time. It currently contains the three
 
 <p lang="ar" dir="rtl">بارَكَ اللّهُ لَك، وَبارَكَ عَلَـيْك، وَجَمَعَ بَيْـنَكُما في خَـيْر</p>
 
-**Bosanski — transkripcija (adapted):** Bārekallāhu leke ve bāreke 'alejke ve džeme'a bejnekumā fī hajrin.
+**Bosanski — transkripcija (adapted):** Bārekallāhu leke ve bāreke ‘alejke ve džeme‘a bejnekumā fī ẖajrin.
 
 **Bosanski — prijevod (IslamHouse 178):** Allah te blagoslovio i svakom te blagodati obasuo. Allah vas sjedinio u dobru.
 

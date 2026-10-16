@@ -2,15 +2,15 @@ import type { Dua } from './duas.data';
 
 // Bosnian meanings: IslamHouse Hisnul-Muslimi, entries 178–180.
 // English and Arabic: Sunnah.com Hisn al-Muslim, entries 190–192.
-// Bosnian transcription 180 follows the reader's photo of a 2017 print edition;
-// 178–179 adapt the published Bosnian recitations with long vowels from Sunnah.com.
+// Bosnian transcription uses the photographed 2017 letter key (see README-full).
+// Entry 180's basmala follows that print; the rest adapts the Bosnian recitation.
 export const MARRIAGE_DUAS: readonly Dua[] = [
   {
     id: 'hisn-192',
     title: { bs: 'Dova prije spolnog odnosa u braku', en: 'Before sexual intercourse with the wife' },
     arabic: 'بِسْمِ الله اللّهُـمَّ جَنِّبْنا الشَّيْـطانَ، وَجَنِّبِ الشَّـيْطانَ ما رَزَقْـتَنا',
     transcription: {
-      bs: 'Bismillāh. Allāhumme džennibne-š-šejtāne ve džennibi-š-šejtāne mā rezaqtenā.',
+      bs: 'Bismillāh. Allāhumme džennibne-š-šejṭāne ve džennibi-š-šejṭāne mā rezaqtenā.',
       en: 'Bismillāh. Allāhumma jannibnash-Shayṭān, wa jannibish-Shayṭāna mā razaqtanā.',
     },
     translation: {
@@ -30,7 +30,7 @@ export const MARRIAGE_DUAS: readonly Dua[] = [
     arabic:
       'اللَّهُمَّ إِنِّي أَسْأَلُكَ خَيْرَهَا، وَخَيْرَ مَا جَبَلْتَهَا عَلَيْهِ، وَأَعُوذُ بِكَ مِنْ شَرِّهَا، وَشَرِّ مَا جَبَلْتَهَا عَلَيْهِ',
     transcription: {
-      bs: "Allāhumme innī es'eluke hajrehā ve hajre mā džebeltehā 'alejhi ve e'ūzu bike min šerrihā ve šerri mā džebeltehā 'alejhi.",
+      bs: 'Allāhumme innī es’eluke ẖajrehā ve ẖajre mā džebeltehā ‘alejhi ve e‘ūḏu bike min šerrihā ve šerri mā džebeltehā ‘alejhi.',
       en: "Allāhumma innī as'aluka khayrahā wa khayra mā jabaltahā `alayh, wa a`ūdhu bika min sharrihā wa sharri mā jabaltahā `alayh.",
     },
     translation: {
@@ -46,7 +46,7 @@ export const MARRIAGE_DUAS: readonly Dua[] = [
     title: { bs: 'Dova oženjenom-udatoj', en: 'To the newlywed' },
     arabic: 'بارَكَ اللّهُ لَك، وَبارَكَ عَلَـيْك، وَجَمَعَ بَيْـنَكُما في خَـيْر',
     transcription: {
-      bs: "Bārekallāhu leke ve bāreke 'alejke ve džeme'a bejnekumā fī hajrin.",
+      bs: 'Bārekallāhu leke ve bāreke ‘alejke ve džeme‘a bejnekumā fī ẖajrin.',
       en: 'Bārakallāhu lak, wa bāraka `alayk, wa jama`a baynakumā fī khayr.',
     },
     translation: {

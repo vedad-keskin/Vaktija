@@ -18,8 +18,14 @@ afterEach(() => {
 it('routes the bilingual library, validates saved data and persists bookmark changes', async () => {
   localStorage.clear();
   localStorage.setItem('vaktija_saved_duas', '["hisn-190","hisn-190","knowledge",7,null]');
-  expect(DUA_CATEGORIES.map((category) => category.id)).toEqual(['marriage']);
-  expect(DUAS.map((dua) => dua.id)).toEqual(['hisn-192', 'hisn-191', 'hisn-190']);
+  expect(DUA_CATEGORIES.map((category) => category.id)).toEqual(['ablution', 'marriage']);
+  expect(DUAS.map((dua) => dua.id)).toEqual([
+    'hisn-12',
+    'hisn-13',
+    'hisn-192',
+    'hisn-191',
+    'hisn-190',
+  ]);
   await TestBed.configureTestingModule({
     imports: [DuasPage],
     providers: [provideRouter(routes)],
@@ -56,10 +62,11 @@ it('routes the bilingual library, validates saved data and persists bookmark cha
   await harness.fixture.whenStable();
   expect(element().querySelector('.mobile-dropdown')?.classList.contains('open')).toBe(false);
   expect(cards()).toHaveLength(DUAS.length);
+  const marriage = DUA_CATEGORIES.find((category) => category.id === 'marriage')!;
   await harness.navigateByUrl('/duas?category=marriage');
-  expect(cards()).toHaveLength(DUA_CATEGORIES[0].items.length);
+  expect(cards()).toHaveLength(marriage.items.length);
   expect(element().querySelector('.duas-collections a.active')?.textContent?.trim()).toBe(
-    DUA_CATEGORIES[0].label[TestBed.inject(LanguageService).lang()],
+    marriage.label[TestBed.inject(LanguageService).lang()],
   );
   await harness.navigateByUrl('/duas?category=unknown');
   expect(cards()).toHaveLength(DUAS.length);
