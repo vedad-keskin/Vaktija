@@ -18,7 +18,7 @@ export const TOILET_DUAS: readonly Dua[] = [
     },
     reference: { bs: 'Hisnul-Muslimi, 10', en: 'Hisn al-Muslim, 10' },
     sourceUrl: 'https://sunnah.com/hisn:10',
-    bosnianSourceUrl: 'https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=14',
+    bosnianSourceUrl: 'https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=10',
   },
   {
     id: 'hisn-11',
@@ -34,6 +34,6 @@ export const TOILET_DUAS: readonly Dua[] = [
     },
     reference: { bs: 'Hisnul-Muslimi, 11', en: 'Hisn al-Muslim, 11' },
     sourceUrl: 'https://sunnah.com/hisn:11',
-    bosnianSourceUrl: 'https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=14',
+    bosnianSourceUrl: 'https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=10',
   },
 ];

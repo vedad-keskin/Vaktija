@@ -32,7 +32,7 @@ This file grows one approved category at a time. It currently contains the toile
 
 **English — meaning (Sunnah.com 10):** [In the Name of Allah]. O Allah, I seek protection in You from evil and the evil ones (or, from the evil male and female Jinn).
 
-**Sources:** [Bosnian PDF, page 14](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=14) · [English and Arabic](https://sunnah.com/hisn:10)
+**Sources:** [Bosnian PDF, page 10](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=10) · [English and Arabic](https://sunnah.com/hisn:10)
 
 <a id="hm-11"></a>
 ### HM-11 · Dova poslije izlaska iz zahoda / After leaving the bathroom
@@ -49,7 +49,7 @@ This file grows one approved category at a time. It currently contains the toile
 
 **English — meaning (Sunnah.com 11):** I seek Your forgiveness.
 
-**Sources:** [Bosnian PDF, page 14](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=14) · [English and Arabic](https://sunnah.com/hisn:11)
+**Sources:** [Bosnian PDF, page 10](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=10) · [English and Arabic](https://sunnah.com/hisn:11)
 
 ## Abdest / Ablution
 
@@ -68,7 +68,7 @@ This file grows one approved category at a time. It currently contains the toile
 
 **English — meaning (Sunnah.com 12):** In the Name of Allah
 
-**Sources:** [Bosnian PDF, page 14](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=14) · [English and Arabic](https://sunnah.com/hisn:12)
+**Sources:** [Bosnian PDF, page 10](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=10) · [English and Arabic](https://sunnah.com/hisn:12)
 
 <a id="hm-13"></a>
 ### HM-13 · Dova nakon uzimanja abdesta / Upon completing the ablution
@@ -85,7 +85,7 @@ This file grows one approved category at a time. It currently contains the toile
 
 **English — meaning (Sunnah.com 13):** I bear witness that none has the right to be worshipped but Allah alone, Who has no partner; and I bear witness that Muhammad is His slave and His Messenger.
 
-**Sources:** [Bosnian PDF, page 14](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=14) · [English and Arabic](https://sunnah.com/hisn:13)
+**Sources:** [Bosnian PDF, page 10](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=10) · [English and Arabic](https://sunnah.com/hisn:13)
 
 ## Ezan / Adhan
 
@@ -104,7 +104,7 @@ This file grows one approved category at a time. It currently contains the toile
 
 **English — meaning (Sunnah.com 25):** O Allah , Lord of this perfect call and established prayer. Grant Muhammad the intercession and favor, and raise him to the honored station You have promised him.
 
-**Sources:** [Bosnian PDF, page 18](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=18) · [English and Arabic](https://sunnah.com/hisn:25)
+**Sources:** [Bosnian PDF, page 14](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=14) · [English and Arabic](https://sunnah.com/hisn:25)
 
 ## Brak / Marriage
 
@@ -176,7 +176,7 @@ This file grows one approved category at a time. It currently contains the toile
 
 **English — meaning (Sunnah.com 166):** O Allah, I ask You for the good of it, and seek refuge in You against its evil.
 
-**Sources:** [Bosnian PDF, page 65](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=65) · [English and Arabic](https://sunnah.com/hisn:166)
+**Sources:** [Bosnian PDF, page 61](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=61) · [English and Arabic](https://sunnah.com/hisn:166)
 
 <a id="hm-168"></a>
 ### HM-168 · Dova prilikom grmljavine / Upon hearing thunder
@@ -193,7 +193,7 @@ This file grows one approved category at a time. It currently contains the toile
 
 **English — meaning (Sunnah.com 168):** Glory is to Him Whom thunder and angels glorify due to fear of Him.
 
-**Sources:** [Bosnian PDF, page 65](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=65) · [English and Arabic](https://sunnah.com/hisn:168)
+**Sources:** [Bosnian PDF, page 61](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=61) · [English and Arabic](https://sunnah.com/hisn:168)
 
 <a id="hm-169"></a>
 ### HM-169 · Kišne dove / For rain
@@ -210,7 +210,7 @@ This file grows one approved category at a time. It currently contains the toile
 
 **English — meaning (Sunnah.com 169):** O Allah, shower upon us abundant rain, beneficial not harmful, swiftly and not delayed.
 
-**Sources:** [Bosnian PDF, page 66](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=66) · [English and Arabic](https://sunnah.com/hisn:169)
+**Sources:** [Bosnian PDF, page 62](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=62) · [English and Arabic](https://sunnah.com/hisn:169)
 
 <a id="hm-172"></a>
 ### HM-172 · Dova dok pada kiša / When it rains
@@ -227,7 +227,7 @@ This file grows one approved category at a time. It currently contains the toile
 
 **English — meaning (Sunnah.com 172):** O Allah, (bring) beneficial rain clouds.
 
-**Sources:** [Bosnian PDF, page 66](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=66) · [English and Arabic](https://sunnah.com/hisn:172)
+**Sources:** [Bosnian PDF, page 62](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=62) · [English and Arabic](https://sunnah.com/hisn:172)
 
 <a id="hm-173"></a>
 ### HM-173 · Dova nakon padanja kiše / After rainfall
@@ -244,7 +244,7 @@ This file grows one approved category at a time. It currently contains the toile
 
 **English — meaning (Sunnah.com 173):** We have been given rain by the grace and mercy of Allah.
 
-**Sources:** [Bosnian PDF, page 66](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=66) · [English and Arabic](https://sunnah.com/hisn:173)
+**Sources:** [Bosnian PDF, page 63](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=63) · [English and Arabic](https://sunnah.com/hisn:173)
 
 <a id="hm-174"></a>
 ### HM-174 · Dova za prestanak velikih kiša / Asking for clear skies
@@ -261,7 +261,7 @@ This file grows one approved category at a time. It currently contains the toile
 
 **English — meaning (Sunnah.com 174):** O Allah, let the rain fall around us and not upon us, O Allah, (let it fall) on the pastures, hills, valleys, and the roots of trees.
 
-**Sources:** [Bosnian PDF, page 66](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=66) · [English and Arabic](https://sunnah.com/hisn:174)
+**Sources:** [Bosnian PDF, page 63](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=63) · [English and Arabic](https://sunnah.com/hisn:174)
 
 <a id="hm-175"></a>
 ### HM-175 · Dova prilikom viđenja mladoga mjeseca / Upon sighting the crescent moon
@@ -278,7 +278,7 @@ This file grows one approved category at a time. It currently contains the toile
 
 **English — meaning (Sunnah.com 175):** Allah is the Most Great. O Allah, bring us the new moon with security and Faith, with peace and in Islam, and in harmony with what our Lord loves and what pleases Him. Our Lord and your Lord is Allah.
 
-**Sources:** [Bosnian PDF, page 67](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=67) · [English and Arabic](https://sunnah.com/hisn:175)
+**Sources:** [Bosnian PDF, page 63](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=63) · [English and Arabic](https://sunnah.com/hisn:175)
 
 
 ## Post i hrana / Fasting and food
@@ -298,7 +298,7 @@ This file grows one approved category at a time. It currently contains the toile
 
 **English — meaning (Sunnah.com 176):** The thirst is gone, the veins are moistened, and the reward is confirmed, if Allah wills.
 
-**Sources:** [Bosnian PDF, page 68](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=68) · [English and Arabic](https://sunnah.com/hisn:176)
+**Sources:** [Bosnian PDF, page 64](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=64) · [English and Arabic](https://sunnah.com/hisn:176)
 
 <a id="hm-177"></a>
 ### HM-177 · Iftarska dova / Upon breaking fast
@@ -332,7 +332,7 @@ This file grows one approved category at a time. It currently contains the toile
 
 **English — meaning (Sunnah.com 178):** When anyone of you begins eating, say: With the Name of Allah.
 
-**Sources:** [Bosnian PDF, page 68](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=68) · [English and Arabic](https://sunnah.com/hisn:178)
+**Sources:** [Bosnian PDF, page 64](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=64) · [English and Arabic](https://sunnah.com/hisn:178)
 
 <a id="hm-178-forgot"></a>
 ### HM-178 · Kad se zaboravi / When you forget
@@ -349,7 +349,7 @@ This file grows one approved category at a time. It currently contains the toile
 
 **English — meaning (Sunnah.com 178):** And if you forget then, when you remember, say: With the Name of Allah, in the beginning, and in the end.
 
-**Sources:** [Bosnian PDF, page 68](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=68) · [English and Arabic](https://sunnah.com/hisn:178)
+**Sources:** [Bosnian PDF, page 64](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=64) · [English and Arabic](https://sunnah.com/hisn:178)
 
 <a id="hm-179"></a>
 ### HM-179 · Dova pred početak obroka / Before eating
@@ -366,7 +366,7 @@ This file grows one approved category at a time. It currently contains the toile
 
 **English — meaning (Sunnah.com 179):** Whomever Allah has given food, should say: O Allah, bless us in it and provide us with better than it. Whomever Allah has given milk to drink, should say : O Allah, bless us in it and give us more of it.
 
-**Sources:** [Bosnian PDF, page 68](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=68) · [English and Arabic](https://sunnah.com/hisn:179)
+**Sources:** [Bosnian PDF, page 64](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=64) · [English and Arabic](https://sunnah.com/hisn:179)
 
 <a id="hm-180"></a>
 ### HM-180 · Dova poslije obroka / Upon completing the meal
@@ -383,7 +383,7 @@ This file grows one approved category at a time. It currently contains the toile
 
 **English — meaning (Sunnah.com 180):** Praise is to Allah Who has given me this food, and sustained me with it though I was unable to do it and powerless.
 
-**Sources:** [Bosnian PDF, page 69](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=69) · [English and Arabic](https://sunnah.com/hisn:180)
+**Sources:** [Bosnian PDF, page 65](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=65) · [English and Arabic](https://sunnah.com/hisn:180)
 
 <a id="hm-181"></a>
 ### HM-181 · Dova poslije obroka / Upon completing the meal
@@ -400,7 +400,7 @@ This file grows one approved category at a time. It currently contains the toile
 
 **English — meaning (Sunnah.com 181):** All praise is to Allah, praise in abundance, good and blessed. It cannot [be compensated for, nor can it] be left, nor can it be done without, our Lord.
 
-**Sources:** [Bosnian PDF, page 69](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=69) · [English and Arabic](https://sunnah.com/hisn:181)
+**Sources:** [Bosnian PDF, page 65](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=65) · [English and Arabic](https://sunnah.com/hisn:181)
 
 <a id="hm-182"></a>
 ### HM-182 · Dova gosta domaćinu / Of the guest for the host
@@ -417,7 +417,7 @@ This file grows one approved category at a time. It currently contains the toile
 
 **English — meaning (Sunnah.com 182):** O Allah, bless them in what You have provided for them, and forgive them and have mercy on them.
 
-**Sources:** [Bosnian PDF, page 69](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=69) · [English and Arabic](https://sunnah.com/hisn:182)
+**Sources:** [Bosnian PDF, page 65](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=65) · [English and Arabic](https://sunnah.com/hisn:182)
 
 <a id="hm-183"></a>
 ### HM-183 · Dova onome ko vas napoji / To one who intends to give food or drink
@@ -434,7 +434,7 @@ This file grows one approved category at a time. It currently contains the toile
 
 **English — meaning (Sunnah.com 183):** O Allah, feed the one who has fed me, and give drink to the one who has given me drink.
 
-**Sources:** [Bosnian PDF, page 70](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=70) · [English and Arabic](https://sunnah.com/hisn:183)
+**Sources:** [Bosnian PDF, page 65](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=65) · [English and Arabic](https://sunnah.com/hisn:183)
 
 <a id="hm-184"></a>
 ### HM-184 · Dova domaćinu za iftar / When breaking fast in someone’s home
@@ -451,7 +451,7 @@ This file grows one approved category at a time. It currently contains the toile
 
 **English — meaning (Sunnah.com 184):** With you, those who are fasting have broken their fast, you have fed those who are righteous, and the angels recite their prayers upon you.
 
-**Sources:** [Bosnian PDF, page 70](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=70) · [English and Arabic](https://sunnah.com/hisn:184)
+**Sources:** [Bosnian PDF, page 66](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=66) · [English and Arabic](https://sunnah.com/hisn:184)
 
 <a id="hm-185"></a>
 ### HM-185 · Dova postača koji ne prekine post / By one fasting when presented with food and does not break his fast
@@ -464,7 +464,7 @@ This file grows one approved category at a time. It currently contains the toile
 
 **English — meaning (Sunnah.com 185):** When you are invited (to eat) then reply to the invitation. If you are fasting then invoke Allah's blessings (on your host), and if you are not fasting then eat.
 
-**Sources:** [Bosnian PDF, page 70](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=70) · [English and Arabic](https://sunnah.com/hisn:185)
+**Sources:** [Bosnian PDF, page 66](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=66) · [English and Arabic](https://sunnah.com/hisn:185)
 
 <a id="hm-186"></a>
 ### HM-186 · Dova kad postača neko grdi / When insulted while fasting
@@ -481,5 +481,5 @@ This file grows one approved category at a time. It currently contains the toile
 
 **English — meaning (Sunnah.com 186):** I am fasting. I am fasting.
 
-**Sources:** [Bosnian PDF, page 93](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=93) · [English and Arabic](https://sunnah.com/hisn:186)
+**Sources:** [Bosnian PDF, page 90](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=90) · [English and Arabic](https://sunnah.com/hisn:186)
 

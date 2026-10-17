@@ -336,6 +336,18 @@ svg {
     gap: 6px;
     margin-inline: -8px;
   }
+
+  .duas-collections a {
+    padding-inline: 18px;
+    gap: 4px;
+    white-space: nowrap;
+
+  }
+  /* Compact chip sizing to restore:
+  .duas-collections {
+    gap: 6px;
+    margin-inline: -8px;
+  }
   .duas-collections a {
     min-height: 36px;
     padding: 4px 7px;
@@ -347,6 +359,8 @@ svg {
     width: 14px;
     height: 16px;
   }
+  */
+  
   .duas-list {
     gap: 16px;
   }

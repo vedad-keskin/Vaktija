@@ -18,7 +18,7 @@ export const ABLUTION_DUAS: readonly Dua[] = [
     },
     reference: { bs: 'Hisnul-Muslimi, 12', en: 'Hisn al-Muslim, 12' },
     sourceUrl: 'https://sunnah.com/hisn:12',
-    bosnianSourceUrl: 'https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=14',
+    bosnianSourceUrl: 'https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=10',
   },
   {
     id: 'hisn-13',
@@ -35,6 +35,6 @@ export const ABLUTION_DUAS: readonly Dua[] = [
     },
     reference: { bs: 'Hisnul-Muslimi, 13', en: 'Hisn al-Muslim, 13' },
     sourceUrl: 'https://sunnah.com/hisn:13',
-    bosnianSourceUrl: 'https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=14',
+    bosnianSourceUrl: 'https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=10',
   },
 ];

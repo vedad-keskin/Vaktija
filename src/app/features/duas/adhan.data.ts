@@ -19,6 +19,6 @@ export const ADHAN_DUAS: readonly Dua[] = [
     },
     reference: { bs: 'Hisnul-Muslimi, 25', en: 'Hisn al-Muslim, 25' },
     sourceUrl: 'https://sunnah.com/hisn:25',
-    bosnianSourceUrl: 'https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=18',
+    bosnianSourceUrl: 'https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=14',
   },
 ];

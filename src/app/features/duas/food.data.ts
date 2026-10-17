@@ -18,7 +18,7 @@ export const FOOD_DUAS: readonly Dua[] = [
     },
     reference: { bs: "Hisnul-Muslimi, 167", en: 'Hisn al-Muslim, 176' },
     sourceUrl: 'https://sunnah.com/hisn:176',
-    bosnianSourceUrl: 'https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=68',
+    bosnianSourceUrl: 'https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=64',
   },
   {
     id: 'hisn-178',
@@ -34,7 +34,7 @@ export const FOOD_DUAS: readonly Dua[] = [
     },
     reference: { bs: "Hisnul-Muslimi, 168", en: 'Hisn al-Muslim, 178' },
     sourceUrl: 'https://sunnah.com/hisn:178',
-    bosnianSourceUrl: 'https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=68',
+    bosnianSourceUrl: 'https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=64',
   },
   {
     id: 'hisn-178-forgot',
@@ -50,7 +50,7 @@ export const FOOD_DUAS: readonly Dua[] = [
     },
     reference: { bs: "Hisnul-Muslimi, 168", en: 'Hisn al-Muslim, 178' },
     sourceUrl: 'https://sunnah.com/hisn:178',
-    bosnianSourceUrl: 'https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=68',
+    bosnianSourceUrl: 'https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=64',
   },
   {
     id: 'hisn-180',
@@ -66,7 +66,7 @@ export const FOOD_DUAS: readonly Dua[] = [
     },
     reference: { bs: "Hisnul-Muslimi, 170", en: 'Hisn al-Muslim, 180' },
     sourceUrl: 'https://sunnah.com/hisn:180',
-    bosnianSourceUrl: 'https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=69',
+    bosnianSourceUrl: 'https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=65',
   },
   {
     id: 'hisn-182',
@@ -82,7 +82,7 @@ export const FOOD_DUAS: readonly Dua[] = [
     },
     reference: { bs: "Hisnul-Muslimi, 172", en: 'Hisn al-Muslim, 182' },
     sourceUrl: 'https://sunnah.com/hisn:182',
-    bosnianSourceUrl: 'https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=69',
+    bosnianSourceUrl: 'https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=65',
   },
   {
     id: 'hisn-183',
@@ -98,7 +98,7 @@ export const FOOD_DUAS: readonly Dua[] = [
     },
     reference: { bs: "Hisnul-Muslimi, 173", en: 'Hisn al-Muslim, 183' },
     sourceUrl: 'https://sunnah.com/hisn:183',
-    bosnianSourceUrl: 'https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=70',
+    bosnianSourceUrl: 'https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=65',
   },
   {
     id: 'hisn-184',
@@ -114,7 +114,7 @@ export const FOOD_DUAS: readonly Dua[] = [
     },
     reference: { bs: "Hisnul-Muslimi, 174", en: 'Hisn al-Muslim, 184' },
     sourceUrl: 'https://sunnah.com/hisn:184',
-    bosnianSourceUrl: 'https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=70',
+    bosnianSourceUrl: 'https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=66',
   },
   {
     id: 'hisn-186',
@@ -130,6 +130,6 @@ export const FOOD_DUAS: readonly Dua[] = [
     },
     reference: { bs: "Hisnul-Muslimi, 235", en: 'Hisn al-Muslim, 186' },
     sourceUrl: 'https://sunnah.com/hisn:186',
-    bosnianSourceUrl: 'https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=93',
+    bosnianSourceUrl: 'https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=90',
   },
 ];

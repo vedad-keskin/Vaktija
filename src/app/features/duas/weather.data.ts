@@ -18,7 +18,7 @@ export const WEATHER_DUAS: readonly Dua[] = [
     },
     reference: { bs: 'Hisnul-Muslimi, 157', en: 'Hisn al-Muslim, 166' },
     sourceUrl: 'https://sunnah.com/hisn:166',
-    bosnianSourceUrl: 'https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=65',
+    bosnianSourceUrl: 'https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=61',
   },
   {
     id: 'hisn-168',
@@ -34,7 +34,7 @@ export const WEATHER_DUAS: readonly Dua[] = [
     },
     reference: { bs: 'Hisnul-Muslimi, 159', en: 'Hisn al-Muslim, 168' },
     sourceUrl: 'https://sunnah.com/hisn:168',
-    bosnianSourceUrl: 'https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=65',
+    bosnianSourceUrl: 'https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=61',
   },
   {
     id: 'hisn-169',
@@ -50,7 +50,7 @@ export const WEATHER_DUAS: readonly Dua[] = [
     },
     reference: { bs: 'Hisnul-Muslimi, 160', en: 'Hisn al-Muslim, 169' },
     sourceUrl: 'https://sunnah.com/hisn:169',
-    bosnianSourceUrl: 'https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=66',
+    bosnianSourceUrl: 'https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=62',
   },
   {
     id: 'hisn-172',
@@ -66,7 +66,7 @@ export const WEATHER_DUAS: readonly Dua[] = [
     },
     reference: { bs: 'Hisnul-Muslimi, 163', en: 'Hisn al-Muslim, 172' },
     sourceUrl: 'https://sunnah.com/hisn:172',
-    bosnianSourceUrl: 'https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=66',
+    bosnianSourceUrl: 'https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=62',
   },
   {
     id: 'hisn-173',
@@ -82,7 +82,7 @@ export const WEATHER_DUAS: readonly Dua[] = [
     },
     reference: { bs: 'Hisnul-Muslimi, 164', en: 'Hisn al-Muslim, 173' },
     sourceUrl: 'https://sunnah.com/hisn:173',
-    bosnianSourceUrl: 'https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=66',
+    bosnianSourceUrl: 'https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=63',
   },
   {
     id: 'hisn-174',
@@ -98,7 +98,7 @@ export const WEATHER_DUAS: readonly Dua[] = [
     },
     reference: { bs: 'Hisnul-Muslimi, 165', en: 'Hisn al-Muslim, 174' },
     sourceUrl: 'https://sunnah.com/hisn:174',
-    bosnianSourceUrl: 'https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=66',
+    bosnianSourceUrl: 'https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=63',
   },
   {
     id: 'hisn-175',
@@ -114,6 +114,6 @@ export const WEATHER_DUAS: readonly Dua[] = [
     },
     reference: { bs: 'Hisnul-Muslimi, 166', en: 'Hisn al-Muslim, 175' },
     sourceUrl: 'https://sunnah.com/hisn:175',
-    bosnianSourceUrl: 'https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=67',
+    bosnianSourceUrl: 'https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=63',
   },
 ];
