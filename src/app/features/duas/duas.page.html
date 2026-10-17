@@ -93,9 +93,11 @@
           </header>
           <p class="dua-arabic" lang="ar" dir="rtl">{{ dua.arabic }}</p>
           <span class="duas-divider dua-card-divider" aria-hidden="true"></span>
-          <p class="dua-transcription" [attr.aria-label]="labels().duasTranscription">
-            {{ dua.transcription[language.lang()] }}
-          </p>
+          @if (dua.transcription[language.lang()]) {
+            <p class="dua-transcription" [attr.aria-label]="labels().duasTranscription">
+              {{ dua.transcription[language.lang()] }}
+            </p>
+          }
           <p class="dua-translation" [attr.aria-label]="labels().duasTranslation">
             {{ dua.translation[language.lang()] }}
           </p>

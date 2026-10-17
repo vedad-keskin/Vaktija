@@ -4,7 +4,7 @@
 
 - [Working title checklist: 267 numbered entries](docs/hisnul-muslim/README-titles.md)
 - [Printable A4 working title checklist (PDF)](output/pdf/hisnul-muslim-titles-checklist.pdf)
-- [Verified full text: toilet (HM-10–11), Abdest (HM-12–13), adhan (HM-25), marriage (HM-190–192), and weather (HM-166, 168, 169, 172–175)](docs/hisnul-muslim/README-full.md)
+- [Verified full text: toilet (HM-10–11), Abdest (HM-12–13), adhan (HM-25), marriage (HM-190–192), weather (HM-166, 168, 169, 172–175), and fasting and food (HM-176–186)](docs/hisnul-muslim/README-full.md)
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.9.
 

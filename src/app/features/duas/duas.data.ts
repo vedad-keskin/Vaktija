@@ -1,6 +1,7 @@
 import { LangCode } from '../../core/services/language.service';
 import { ABLUTION_DUAS } from './ablution.data';
 import { ADHAN_DUAS } from './adhan.data';
+import { FOOD_DUAS } from './food.data';
 import { MARRIAGE_DUAS } from './marriage.data';
 import { TOILET_DUAS } from './toilet.data';
 import { WEATHER_DUAS } from './weather.data';
@@ -23,6 +24,7 @@ export const DUA_CATEGORIES = [
   { id: 'adhan', label: { bs: 'Ezan', en: 'Adhan' }, items: ADHAN_DUAS },
   { id: 'marriage', label: { bs: 'Brak', en: 'Marriage' }, items: MARRIAGE_DUAS },
   { id: 'weather', label: { bs: 'Vrijeme', en: 'Weather' }, items: WEATHER_DUAS },
+  { id: 'fasting', label: { bs: 'Post i hrana', en: 'Fasting and food' }, items: FOOD_DUAS },
 ] as const;
 
 export const DUAS: readonly Dua[] = DUA_CATEGORIES.flatMap((category) => category.items);

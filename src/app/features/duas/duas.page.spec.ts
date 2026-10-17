@@ -24,6 +24,7 @@ it('routes the bilingual library, validates saved data and persists bookmark cha
     'adhan',
     'marriage',
     'weather',
+    'fasting',
   ]);
   expect(DUAS.map((dua) => dua.id)).toEqual([
     'hisn-10',
@@ -41,6 +42,17 @@ it('routes the bilingual library, validates saved data and persists bookmark cha
     'hisn-173',
     'hisn-174',
     'hisn-175',
+    'hisn-176',
+    'hisn-177',
+    'hisn-178',
+    'hisn-179',
+    'hisn-180',
+    'hisn-181',
+    'hisn-182',
+    'hisn-183',
+    'hisn-184',
+    'hisn-185',
+    'hisn-186',
   ]);
   await TestBed.configureTestingModule({
     imports: [DuasPage],
@@ -93,7 +105,7 @@ it('routes the bilingual library, validates saved data and persists bookmark cha
     for (const [index, card] of [...cards()].entries()) {
       const dua = DUAS[index];
       expect(card.querySelector('h2')?.textContent).toBe(dua.title[lang]);
-      expect(card.querySelector('.dua-transcription')?.textContent?.trim()).toBe(
+      expect(card.querySelector('.dua-transcription')?.textContent?.trim() ?? '').toBe(
         dua.transcription[lang],
       );
       expect(card.querySelector('.dua-translation')?.textContent?.trim()).toBe(

@@ -1,6 +1,6 @@
 # Hisnul Muslim — selected full duas (BS / EN)
 
-This file grows one approved category at a time. It currently contains the toilet entries (HM-10–11), the Abdest entries (HM-12–13), the adhan entry (HM-25), the three marriage entries, and the weather entries (HM-166, 168, 169, 172–175). The [complete title checklist](README-titles.md) remains an editorial selection aid; its suggested labels are not published translations.
+This file grows one approved category at a time. It currently contains the toilet entries (HM-10–11), the Abdest entries (HM-12–13), the adhan entry (HM-25), the three marriage entries, the weather entries (HM-166, 168, 169, 172–175), and the fasting and food entries (HM-176–186). The [complete title checklist](README-titles.md) remains an editorial selection aid; its suggested labels are not published translations.
 
 ## Izvori i uredničke napomene / Sources and editorial notes
 
@@ -12,7 +12,7 @@ This file grows one approved category at a time. It currently contains the toile
   - ق q ; long vowels ā ī ū
 - HM-192 / Bosnian 180’s basmala is copied from the reader’s photograph of page 114. The rest of that line, and the other Bosnian transcriptions in this file, are **adaptations** of the published Bosnian recitation with this key. A matching digital copy of the photographed edition was not found.
 - **English title, transliteration and meaning; Arabic text:** [Sunnah.com, *Hisn al-Muslim*](https://sunnah.com/hisn). Only the recited words and their published meanings are shown below. Line breaks on the Sunnah.com page are joined with spaces. Arabic orthography follows the linked entry, including HM-13’s unspaced وَأَشْهَدُأَنَّ.
-- Numbering matches for HM-10 through HM-13 and HM-25. The marriage items differ: BS 178 ↔ EN 190, BS 179 ↔ EN 191, BS 180 ↔ EN 192. The weather items differ by nine: BS 157, 159, 160, 163–166 ↔ EN 166, 168, 169, 172–175.
+- Numbering matches for HM-10 through HM-13 and HM-25. The marriage items differ: BS 178 ↔ EN 190, BS 179 ↔ EN 191, BS 180 ↔ EN 192. The weather items differ by nine: BS 157, 159, 160, 163–166 ↔ EN 166, 168, 169, 172–175. Fasting and food is BS 167–175 ↔ EN 176, 178–185; EN 177 is not in the Bosnian edition, and EN 186 is BS 235.
 - Text from these editions is reproduced with attribution. [IslamHouse's reuse FAQ](https://d1.islamhouse.com/html/faq.htm) permits publishing its materials without changing the content and with a source citation. Do not create new BS or EN translations for future entries; copy and check a published edition.
 
 ## Toalet / Toilet
@@ -279,4 +279,190 @@ This file grows one approved category at a time. It currently contains the toile
 **English — meaning (Sunnah.com 175):** Allah is the Most Great. O Allah, bring us the new moon with security and Faith, with peace and in Islam, and in harmony with what our Lord loves and what pleases Him. Our Lord and your Lord is Allah.
 
 **Sources:** [Bosnian PDF, page 67](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=67) · [English and Arabic](https://sunnah.com/hisn:175)
+
+
+## Post i hrana / Fasting and food
+
+<a id="hm-176"></a>
+### HM-176 · Iftarska dova / Upon breaking fast
+
+**Arapski / Arabic**
+
+<p lang="ar" dir="rtl">ذَهَـبَ الظَّمَـأُ، وَابْتَلَّـتِ العُـروق، وَثَبَـتَ الأجْـرُ إِنْ شـاءَ الله</p>
+
+**Bosanski — transkripcija (adapted):** Zehebe-ẓ-ẓama'u, vebtelleti-l-‘urūku, ve ṯebete-l-edžru, in šā'e-llāhu.
+
+**English — transliteration (Sunnah.com 176):** Dhahabaẓ-ẓama', wabtallati ‘l-`urūq, wa thabata ‘l-'ajru in shā Allāh.
+
+**Bosanski — prijevod (IslamHouse 167):** Nestala je žeđ, natopile se žile, a nagrada je osigurana, ako Allah htjedne.
+
+**English — meaning (Sunnah.com 176):** The thirst is gone, the veins are moistened, and the reward is confirmed, if Allah wills.
+
+**Sources:** [Bosnian PDF, page 68](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=68) · [English and Arabic](https://sunnah.com/hisn:176)
+
+<a id="hm-177"></a>
+### HM-177 · Iftarska dova / Upon breaking fast
+
+**Arapski / Arabic**
+
+<p lang="ar" dir="rtl">اللّهُـمَّ إِنَّـي أَسْـأَلُـكَ بِرَحْمَـتِكَ الّتي وَسِـعَت كُلَّ شيء، أَنْ تَغْـفِرَ لي</p>
+
+**Bosanski — transkripcija (adapted):** Allāhumme innī es’eluke bi raḥmetike-l-letī vesi‘at kulle šej'in, en tagfire lī.
+
+**English — transliteration (Sunnah.com 177):** Allāhumma innī as'aluka bi raḥmatika ‘l-latī wasi`at kulla shay' an taghfira lī.
+
+**Bosanski — prijevod (no Bosnian edition entry; English meaning shown):** O Allah, I ask You by Your mercy, which encompasses all things, that You forgive me.
+
+**English — meaning (Sunnah.com 177):** O Allah, I ask You by Your mercy, which encompasses all things, that You forgive me.
+
+**Sources:** [English and Arabic](https://sunnah.com/hisn:177)
+
+<a id="hm-178"></a>
+### HM-178 · Dova pred početak obroka / Before eating
+
+**Arapski / Arabic**
+
+<p lang="ar" dir="rtl">إِذَا أَكَلَ أَحَدُكُمْ طَعَاماً فَلْيَقُلْ بِسْمِ اللَّهِ، فَإِنْ نَسِيَ فِي أَوَّلِهِ فَلْيَقُلْ بسمِ اللَّهِ فِي أَوَّلِهِ وَآخِرِهِ</p>
+
+**Bosanski — transkripcija (adapted):** Bismillāhi. Bismillāhi fī evvelihi ve āẖirihi.
+
+**English — transliteration (Sunnah.com 178):** Bismillāhi. Bismillāhi fī awwalihi wa ākhirih.
+
+**Bosanski — prijevod (IslamHouse 168):** Prije početka obroka, proučiti: Bismi-l-Lahi, a ako zaboravi proučiti prije početka obroka, neka prouči kad se sjeti: Bismi-l-Lahi fi evvelihi ve ahirihi; Bismi-l-Lahi – za početak i za kraj.
+
+**English — meaning (Sunnah.com 178):** When anyone of you begins eating, say: With the Name of Allah. And if you forget then, when you remember, say: With the Name of Allah, in the beginning, and in the end.
+
+**Sources:** [Bosnian PDF, page 68](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=68) · [English and Arabic](https://sunnah.com/hisn:178)
+
+<a id="hm-179"></a>
+### HM-179 · Dova pred početak obroka / Before eating
+
+**Arapski / Arabic**
+
+<p lang="ar" dir="rtl">مَنْ أَطْعَمَهُ اللَّهُ الطَّعَامَ فَلْيَقُلْ: "اللَّهُمَّ بَارِكْ لَنَا فِيهِ وَأَطْعِمْنَا خَيْراً مِنْهُ"، وَمَنْ سَقَاهُ اللَّهُ لَبَناً فَلْيَقُلْ "اللَّهُمَّ بَارِكْ لَنَا فِيهِ وَزِدْنَا مِنْهُ"</p>
+
+**Bosanski — transkripcija (adapted):** Allāhumme bārik lenā fīhi ve aṭ‘imnā ẖajren minhu. Allāhumme bārik lenā fīhi ve zidnā minhu.
+
+**English — transliteration (Sunnah.com 179):** Allāhumma bārik lanā fīhi wa aṭ`imnā khayran minhu. Allāhumma bārik lanā fīhi wa zidnā minhu.
+
+**Bosanski — prijevod (IslamHouse 169):** Onaj koga Allah opskrbi hranom, neka se zahvali riječima: Allahumme barik lena fihi, ve at'imna hajren minhu. Allahu, blagoslov nam daj u hrani i hrani nas boljom od nje. A onaj koga Allah napoji mlijekom, neka se zahvali riječima: Allahumme barik lena fihi ve zidna minhu. Allahu moj, blagoslovi ovo mlijeko i povećaj nam njegovu količinu.
+
+**English — meaning (Sunnah.com 179):** Whomever Allah has given food, should say: O Allah, bless us in it and provide us with better than it. Whomever Allah has given milk to drink, should say : O Allah, bless us in it and give us more of it.
+
+**Sources:** [Bosnian PDF, page 68](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=68) · [English and Arabic](https://sunnah.com/hisn:179)
+
+<a id="hm-180"></a>
+### HM-180 · Dova poslije obroka / Upon completing the meal
+
+**Arapski / Arabic**
+
+<p lang="ar" dir="rtl">الْحَمْـدُ للهِ الَّذي أَطْعَمَنـي هـذا وَرَزَقَنـيهِ مِنْ غَـيْرِ حَوْلٍ مِنِّي وَلا قُوَّة</p>
+
+**Bosanski — transkripcija (adapted):** El-ḥamdu li-llāhi-l-leḏī eṭ‘amenī hāḏā ve rezaqanīhi min gajri ḥavlin minnī ve lā quvvetin.
+
+**English — transliteration (Sunnah.com 180):** Alhamdu lillāhi ‘l-ladhī aṭ`amanī hādhā, wa razaqanīhi min ghayri ḥawlin minnī wa lā quwwah.
+
+**Bosanski — prijevod (IslamHouse 170):** Hvala Allahu, Koji me nahrani i opskrbi bez moje snage i moći.
+
+**English — meaning (Sunnah.com 180):** Praise is to Allah Who has given me this food, and sustained me with it though I was unable to do it and powerless.
+
+**Sources:** [Bosnian PDF, page 69](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=69) · [English and Arabic](https://sunnah.com/hisn:180)
+
+<a id="hm-181"></a>
+### HM-181 · Dova poslije obroka / Upon completing the meal
+
+**Arapski / Arabic**
+
+<p lang="ar" dir="rtl">الْحَمْـدُ للهِ حَمْـداً كَثـيراً طَيِّـباً مُبـارَكاً فيه، غَيْرَ مَكْفِيٍّ وَلا مُوَدَّعٍ وَلا مُسْتَغْـنىً عَنْـهُ رَبَّـنا</p>
+
+**Bosanski — transkripcija (adapted):** El-ḥamdu li-llāhi ḥamden keṯīren ṭajjiben mubāreken fīhi, gajre mekfijjin ve lā muvadda‘in, ve lā mustagnen ‘anhu rabbenā.
+
+**English — transliteration (Sunnah.com 181):** Alhamdu lillāhi ḥamdan kathīran tayyiban mubārakan fīh, ghayra makfiyyin wa lā muwadda`in, wa lā mustaghnan `anhu Rabbanā.
+
+**Bosanski — prijevod (IslamHouse 171):** Allahu pripada velika, lijepa i blagoslovljena zahvalnost na ovoj nafaki. Časti nas redovno i ne učini nam ovu nafaku posljednjom. Gospodaru naš, mi ne možemo opstati bez hrane.
+
+**English — meaning (Sunnah.com 181):** All praise is to Allah, praise in abundance, good and blessed. It cannot [be compensated for, nor can it] be left, nor can it be done without, our Lord.
+
+**Sources:** [Bosnian PDF, page 69](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=69) · [English and Arabic](https://sunnah.com/hisn:181)
+
+<a id="hm-182"></a>
+### HM-182 · Dova gosta domaćinu / Of the guest for the host
+
+**Arapski / Arabic**
+
+<p lang="ar" dir="rtl">اللّهُـمَّ بارِكْ لَهُمْ فيما رَزَقْـتَهُم، وَاغْفِـرْ لَهُـمْ وَارْحَمْهُمْ</p>
+
+**Bosanski — transkripcija (adapted):** Allāhumme bārik lehum fīmā rezaqtehum, vagfir lehum verḥamhum.
+
+**English — transliteration (Sunnah.com 182):** Allāhumma bārik lahum fī mā razaqtahum, wagh’fir lahum warḥamhum.
+
+**Bosanski — prijevod (IslamHouse 172):** Allahu, blagoslovi im ono čime si ih opskrbio, oprosti im i smiluj im se.
+
+**English — meaning (Sunnah.com 182):** O Allah, bless them in what You have provided for them, and forgive them and have mercy on them.
+
+**Sources:** [Bosnian PDF, page 69](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=69) · [English and Arabic](https://sunnah.com/hisn:182)
+
+<a id="hm-183"></a>
+### HM-183 · Dova onome ko vas napoji / To one who intends to give food or drink
+
+**Arapski / Arabic**
+
+<p lang="ar" dir="rtl">اللّهُـمَّ أَطْعِمْ مَن أَطْعَمَني، وَاسْقِ مَن سقاني</p>
+
+**Bosanski — transkripcija (adapted):** Allāhumme aṭ‘im men aṭ‘amenī ve-sqi men seqānī.
+
+**English — transliteration (Sunnah.com 183):** Allāhumma aṭ`im man aṭ`amanī wasqi man saqānī.
+
+**Bosanski — prijevod (IslamHouse 173):** Allahu, nahrani onoga ko je mene nahranio i napoji onoga ko je mene napojio.
+
+**English — meaning (Sunnah.com 183):** O Allah, feed the one who has fed me, and give drink to the one who has given me drink.
+
+**Sources:** [Bosnian PDF, page 70](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=70) · [English and Arabic](https://sunnah.com/hisn:183)
+
+<a id="hm-184"></a>
+### HM-184 · Dova domaćinu za iftar / When breaking fast in someone’s home
+
+**Arapski / Arabic**
+
+<p lang="ar" dir="rtl">أَفْطَـرَ عِنْدَكُم الصّـائِمونَ وَأَكَلَ طَعامَـكُمُ الأبْـرار، وَصَلَّـتْ عَلَـيْكُمُ الملائِكَـة</p>
+
+**Bosanski — transkripcija (adapted):** Efṭara ‘indekumu-ṣ-ṣā'imūne ve ekele ṭa‘āmekumu-l-ebrāru, ve ṣallet ‘alejkumu-l-melā'iketu.
+
+**English — transliteration (Sunnah.com 184):** Afṭara `indakumuṣ-ṣā'imūn, wa akala ṭa`āmakumu ‘l-'abrār, wa ṣallat `alaykumu ‘l-malā'ikah.
+
+**Bosanski — prijevod (IslamHouse 174):** Postači kod vas iftarili, dobri jeli i meleki na vas salavate donosili.
+
+**English — meaning (Sunnah.com 184):** With you, those who are fasting have broken their fast, you have fed those who are righteous, and the angels recite their prayers upon you.
+
+**Sources:** [Bosnian PDF, page 70](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=70) · [English and Arabic](https://sunnah.com/hisn:184)
+
+<a id="hm-185"></a>
+### HM-185 · Dova postača koji ne prekine post / By one fasting when presented with food and does not break his fast
+
+**Arapski / Arabic**
+
+<p lang="ar" dir="rtl">(إِذَا دُعِيَ أَحَدُكُمْ فَلْيُجِبْ، فَإِنْ كَانَ صَائِماً فَلْيُصَلِّ، وَإِنْ كَانَ مُفْطِراً فَلْيَطْعَمْ) ، وَمَعْنَى فَلْيُصَلِّ أَيْ فَلْيَدْعُ.</p>
+
+**Bosanski — prijevod (IslamHouse 175):** Kad bilo ko od vas bude pozvan (na neku gozbu), neka se odazove. Ako posti, onda neka uči dove domaćinu, a ako ne bude postio, neka sjede za sofru. Fel-jusalli znači: fel-jed'u, to jest, neka uči dove.
+
+**English — meaning (Sunnah.com 185):** When you are invited (to eat) then reply to the invitation. If you are fasting then invoke Allah's blessings (on your host), and if you are not fasting then eat.
+
+**Sources:** [Bosnian PDF, page 70](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=70) · [English and Arabic](https://sunnah.com/hisn:185)
+
+<a id="hm-186"></a>
+### HM-186 · Dova kad postača neko grdi / When insulted while fasting
+
+**Arapski / Arabic**
+
+<p lang="ar" dir="rtl">إِنِّي صَائِمٌ، إِنِّي صَائِمٌ</p>
+
+**Bosanski — transkripcija (adapted):** Innī ṣā'imun, innī ṣā'imun.
+
+**English — transliteration (Sunnah.com 186):** Innī ṣā'im, innī ṣā'im.
+
+**Bosanski — prijevod (IslamHouse 235):** Ja postim, zaista, ja postim.
+
+**English — meaning (Sunnah.com 186):** I am fasting. I am fasting.
+
+**Sources:** [Bosnian PDF, page 93](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=93) · [English and Arabic](https://sunnah.com/hisn:186)
 
