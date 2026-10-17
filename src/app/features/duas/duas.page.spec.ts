@@ -23,6 +23,7 @@ it('routes the bilingual library, validates saved data and persists bookmark cha
     'ablution',
     'adhan',
     'marriage',
+    'weather',
   ]);
   expect(DUAS.map((dua) => dua.id)).toEqual([
     'hisn-10',
@@ -33,6 +34,12 @@ it('routes the bilingual library, validates saved data and persists bookmark cha
     'hisn-192',
     'hisn-191',
     'hisn-190',
+    'hisn-166',
+    'hisn-168',
+    'hisn-169',
+    'hisn-172',
+    'hisn-173',
+    'hisn-174',
   ]);
   await TestBed.configureTestingModule({
     imports: [DuasPage],

@@ -3,6 +3,7 @@ import { ABLUTION_DUAS } from './ablution.data';
 import { ADHAN_DUAS } from './adhan.data';
 import { MARRIAGE_DUAS } from './marriage.data';
 import { TOILET_DUAS } from './toilet.data';
+import { WEATHER_DUAS } from './weather.data';
 
 export type Dua = {
   id: string;
@@ -21,6 +22,7 @@ export const DUA_CATEGORIES = [
   { id: 'ablution', label: { bs: 'Abdest', en: 'Ablution' }, items: ABLUTION_DUAS },
   { id: 'adhan', label: { bs: 'Ezan', en: 'Adhan' }, items: ADHAN_DUAS },
   { id: 'marriage', label: { bs: 'Brak', en: 'Marriage' }, items: MARRIAGE_DUAS },
+  { id: 'weather', label: { bs: 'Vrijeme', en: 'Weather' }, items: WEATHER_DUAS },
 ] as const;
 
 export const DUAS: readonly Dua[] = DUA_CATEGORIES.flatMap((category) => category.items);
