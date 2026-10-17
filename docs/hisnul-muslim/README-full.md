@@ -318,19 +318,36 @@ This file grows one approved category at a time. It currently contains the toile
 **Sources:** [English and Arabic](https://sunnah.com/hisn:177)
 
 <a id="hm-178"></a>
-### HM-178 · Dova pred početak obroka / Before eating
+### HM-178 · Kad se počinje jesti / When starting to eat
 
 **Arapski / Arabic**
 
-<p lang="ar" dir="rtl">إِذَا أَكَلَ أَحَدُكُمْ طَعَاماً فَلْيَقُلْ بِسْمِ اللَّهِ، فَإِنْ نَسِيَ فِي أَوَّلِهِ فَلْيَقُلْ بسمِ اللَّهِ فِي أَوَّلِهِ وَآخِرِهِ</p>
+<p lang="ar" dir="rtl">بِسْمِ اللَّهِ</p>
 
-**Bosanski — transkripcija (adapted):** Bismillāhi. Bismillāhi fī evvelihi ve āẖirihi.
+**Bosanski — transkripcija (adapted):** Bismillāhi.
 
-**English — transliteration (Sunnah.com 178):** Bismillāhi. Bismillāhi fī awwalihi wa ākhirih.
+**English — transliteration (Sunnah.com 178):** Bismillāhi.
 
-**Bosanski — prijevod (IslamHouse 168):** Prije početka obroka, proučiti: Bismi-l-Lahi, a ako zaboravi proučiti prije početka obroka, neka prouči kad se sjeti: Bismi-l-Lahi fi evvelihi ve ahirihi; Bismi-l-Lahi – za početak i za kraj.
+**Bosanski — prijevod (IslamHouse 168):** Prije početka obroka, proučiti: Bismi-l-Lahi.
 
-**English — meaning (Sunnah.com 178):** When anyone of you begins eating, say: With the Name of Allah. And if you forget then, when you remember, say: With the Name of Allah, in the beginning, and in the end.
+**English — meaning (Sunnah.com 178):** When anyone of you begins eating, say: With the Name of Allah.
+
+**Sources:** [Bosnian PDF, page 68](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=68) · [English and Arabic](https://sunnah.com/hisn:178)
+
+<a id="hm-178-forgot"></a>
+### HM-178 · Kad se zaboravi / When you forget
+
+**Arapski / Arabic**
+
+<p lang="ar" dir="rtl">بسمِ اللَّهِ فِي أَوَّلِهِ وَآخِرِهِ</p>
+
+**Bosanski — transkripcija (adapted):** Bismillāhi fī evvelihi ve āẖirihi.
+
+**English — transliteration (Sunnah.com 178):** Bismillāhi fī awwalihi wa ākhirih.
+
+**Bosanski — prijevod (IslamHouse 168):** Ako zaboravi proučiti prije početka obroka, neka prouči kad se sjeti: Bismi-l-Lahi fi evvelihi ve ahirihi.
+
+**English — meaning (Sunnah.com 178):** And if you forget then, when you remember, say: With the Name of Allah, in the beginning, and in the end.
 
 **Sources:** [Bosnian PDF, page 68](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=68) · [English and Arabic](https://sunnah.com/hisn:178)
 
