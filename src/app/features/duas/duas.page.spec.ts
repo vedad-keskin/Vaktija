@@ -40,6 +40,7 @@ it('routes the bilingual library, validates saved data and persists bookmark cha
     'hisn-172',
     'hisn-173',
     'hisn-174',
+    'hisn-175',
   ]);
   await TestBed.configureTestingModule({
     imports: [DuasPage],

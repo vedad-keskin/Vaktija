@@ -1,6 +1,6 @@
 # Hisnul Muslim — selected full duas (BS / EN)
 
-This file grows one approved category at a time. It currently contains the toilet entries (HM-10–11), the Abdest entries (HM-12–13), the adhan entry (HM-25), the three marriage entries, and the weather entries (HM-166, 168, 169, 172–174). The [complete title checklist](README-titles.md) remains an editorial selection aid; its suggested labels are not published translations.
+This file grows one approved category at a time. It currently contains the toilet entries (HM-10–11), the Abdest entries (HM-12–13), the adhan entry (HM-25), the three marriage entries, and the weather entries (HM-166, 168, 169, 172–175). The [complete title checklist](README-titles.md) remains an editorial selection aid; its suggested labels are not published translations.
 
 ## Izvori i uredničke napomene / Sources and editorial notes
 
@@ -12,7 +12,7 @@ This file grows one approved category at a time. It currently contains the toile
   - ق q ; long vowels ā ī ū
 - HM-192 / Bosnian 180’s basmala is copied from the reader’s photograph of page 114. The rest of that line, and the other Bosnian transcriptions in this file, are **adaptations** of the published Bosnian recitation with this key. A matching digital copy of the photographed edition was not found.
 - **English title, transliteration and meaning; Arabic text:** [Sunnah.com, *Hisn al-Muslim*](https://sunnah.com/hisn). Only the recited words and their published meanings are shown below. Line breaks on the Sunnah.com page are joined with spaces. Arabic orthography follows the linked entry, including HM-13’s unspaced وَأَشْهَدُأَنَّ.
-- Numbering matches for HM-10 through HM-13 and HM-25. The marriage items differ: BS 178 ↔ EN 190, BS 179 ↔ EN 191, BS 180 ↔ EN 192. The weather items differ by nine: BS 157, 159, 160, 163–165 ↔ EN 166, 168, 169, 172–174.
+- Numbering matches for HM-10 through HM-13 and HM-25. The marriage items differ: BS 178 ↔ EN 190, BS 179 ↔ EN 191, BS 180 ↔ EN 192. The weather items differ by nine: BS 157, 159, 160, 163–166 ↔ EN 166, 168, 169, 172–175.
 - Text from these editions is reproduced with attribution. [IslamHouse's reuse FAQ](https://d1.islamhouse.com/html/faq.htm) permits publishing its materials without changing the content and with a source citation. Do not create new BS or EN translations for future entries; copy and check a published edition.
 
 ## Toalet / Toilet
@@ -262,4 +262,21 @@ This file grows one approved category at a time. It currently contains the toile
 **English — meaning (Sunnah.com 174):** O Allah, let the rain fall around us and not upon us, O Allah, (let it fall) on the pastures, hills, valleys, and the roots of trees.
 
 **Sources:** [Bosnian PDF, page 66](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=66) · [English and Arabic](https://sunnah.com/hisn:174)
+
+<a id="hm-175"></a>
+### HM-175 · Dova prilikom viđenja mladoga mjeseca / Upon sighting the crescent moon
+
+**Arapski / Arabic**
+
+<p lang="ar" dir="rtl">اللهُ أَكْـبَر، اللّهُمَّ أَهِلَّـهُ عَلَيْـنا بِالأمْـنِ وَالإيمـان، والسَّلامَـةِ والإسْلام، وَالتَّـوْفيـقِ لِما تُحِـبُّ رَبَّنـا وَتَـرْضـى، رَبُّنـا وَرَبُّكَ الله</p>
+
+**Bosanski — transkripcija (adapted):** Allāhu ekber, Allāhumme ehillehu ‘alejnā bi-l-emni ve-l-īmāni ve-s-selāmeti ve-l-islāmi ve-t-tevfīqi limā tuḥibbu ve terḍā, rabbenā ve rabbuke-llāhu.
+
+**Bosanski — prijevod (IslamHouse 166):** Allah je najveći, Allahu, učini da nam ovaj mjesec nastupi u znaku sigurnosti i imana, mira i islama, te pomoći u onome što Ti voliš i čime si zadovoljan. Naš Gospodar i tvoj Gospodar (Mjeseče) jest Allah.
+
+**English — transliteration (Sunnah.com 175):** Allāhu Akbar, Allāhumma ahillahu `alayna bi ‘l-amni wa ‘l-īmān, was-salāmati wa ‘l-'Islām, wat-tawfīqi limā tuḥibbu Rabbanā wa tarḍā, Rabbunā wa Rabbukallāh.
+
+**English — meaning (Sunnah.com 175):** Allah is the Most Great. O Allah, bring us the new moon with security and Faith, with peace and in Islam, and in harmony with what our Lord loves and what pleases Him. Our Lord and your Lord is Allah.
+
+**Sources:** [Bosnian PDF, page 67](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=67) · [English and Arabic](https://sunnah.com/hisn:175)
 
