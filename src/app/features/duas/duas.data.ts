@@ -22,9 +22,9 @@ export const DUA_CATEGORIES = [
   { id: 'toilet', label: { bs: 'Toalet', en: 'Toilet' }, items: TOILET_DUAS },
   { id: 'ablution', label: { bs: 'Abdest', en: 'Ablution' }, items: ABLUTION_DUAS },
   { id: 'adhan', label: { bs: 'Ezan', en: 'Adhan' }, items: ADHAN_DUAS },
+  { id: 'fasting', label: { bs: 'Post i hrana', en: 'Fasting and food' }, items: FOOD_DUAS },
   { id: 'marriage', label: { bs: 'Brak', en: 'Marriage' }, items: MARRIAGE_DUAS },
   { id: 'weather', label: { bs: 'Vrijeme', en: 'Weather' }, items: WEATHER_DUAS },
-  { id: 'fasting', label: { bs: 'Post i hrana', en: 'Fasting and food' }, items: FOOD_DUAS },
 ] as const;
 
 export const DUAS: readonly Dua[] = DUA_CATEGORIES.flatMap((category) => category.items);
