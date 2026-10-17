@@ -332,8 +332,20 @@ svg {
   .duas-heading p {
     font-size: 22px;
   }
+  .duas-collections {
+    gap: 6px;
+    margin-inline: -8px;
+  }
   .duas-collections a {
-    padding-inline: 18px;
+    min-height: 36px;
+    padding: 4px 7px;
+    gap: 4px;
+    font-size: 13px;
+    white-space: nowrap;
+  }
+  .duas-collections svg {
+    width: 14px;
+    height: 16px;
   }
   .duas-list {
     gap: 16px;
