@@ -11,13 +11,10 @@ export class ThemeService {
 
   constructor() {
     // Apply theme to DOM whenever signal changes
-    effect(() => {
-      const t = this.theme();
-      document.documentElement.setAttribute('data-theme', t);
-    });
+    effect(() => this.applyTheme(this.theme()));
 
     // Apply initial theme immediately
-    document.documentElement.setAttribute('data-theme', this.theme());
+    this.applyTheme(this.theme());
   }
 
   /** Toggle between light and dark */
@@ -38,6 +35,12 @@ export class ThemeService {
     } catch {
       // localStorage unavailable
     }
+  }
+
+  private applyTheme(mode: ThemeMode): void {
+    document.documentElement.setAttribute('data-theme', mode);
+    document.querySelector<HTMLMetaElement>('meta[name="theme-color"]')
+      ?.setAttribute('content', mode === 'dark' ? '#041e1b' : '#f7f5ee');
   }
 
   private loadTheme(): ThemeMode {

@@ -16,7 +16,7 @@
   --font-heading: 'Outfit', 'Inter', sans-serif;
 
   /* Dark theme palette (default) */
-  --surface: #0f1117;
+  --surface: #041e1b;
   --surface-elevated: #181b23;
   --surface-hover: #1f2330;
   --border-color: #2a2e3a;
@@ -45,7 +45,7 @@
 
 /* ===== Light Theme ===== */
 [data-theme="light"] {
-  --surface: #f4f5f7;
+  --surface: #f7f5ee;
   --surface-elevated: #ffffff;
   --surface-hover: #ebedf0;
   --border-color: #d4d7dd;
@@ -70,10 +70,16 @@
 /* ===== Global Styles ===== */
 html {
   font-size: 16px;
+  background: var(--surface);
+  color-scheme: dark;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   /* Remove default blue tap flash on mobile WebKit browsers */
   -webkit-tap-highlight-color: transparent;
+}
+
+html[data-theme="light"] {
+  color-scheme: light;
 }
 
 body {
@@ -82,6 +88,7 @@ body {
   color: var(--text-primary);
   line-height: 1.5;
   min-height: 100vh;
+  padding: env(safe-area-inset-top) env(safe-area-inset-right) 0 env(safe-area-inset-left);
 }
 
 /* Smooth scrolling */

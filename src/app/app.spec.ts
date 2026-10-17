@@ -1,6 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { provideRouter } from '@angular/router';
 import { App } from './app';
+import { ThemeService } from './core/services/theme.service';
 
 describe('App', () => {
   const showModal = HTMLDialogElement.prototype.showModal;
@@ -85,5 +86,25 @@ describe('App', () => {
     await fixture.whenStable();
     expect(document.documentElement.getAttribute('data-theme')).toBe('dark');
     fixture.destroy();
+  });
+
+  it('matches the phone theme color when the app theme changes', async () => {
+    const meta = document.createElement('meta');
+    meta.name = 'theme-color';
+    document.head.append(meta);
+    localStorage.setItem('vaktija_theme', 'dark');
+
+    try {
+      const fixture = TestBed.createComponent(App);
+      await fixture.whenStable();
+      expect(meta.content).toBe('#041e1b');
+
+      TestBed.inject(ThemeService).setTheme('light');
+      await fixture.whenStable();
+      expect(meta.content).toBe('#f7f5ee');
+      fixture.destroy();
+    } finally {
+      meta.remove();
+    }
   });
 });
