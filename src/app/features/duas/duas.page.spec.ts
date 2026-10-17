@@ -18,12 +18,18 @@ afterEach(() => {
 it('routes the bilingual library, validates saved data and persists bookmark changes', async () => {
   localStorage.clear();
   localStorage.setItem('vaktija_saved_duas', '["hisn-190","hisn-190","knowledge",7,null]');
-  expect(DUA_CATEGORIES.map((category) => category.id)).toEqual(['toilet', 'ablution', 'marriage']);
+  expect(DUA_CATEGORIES.map((category) => category.id)).toEqual([
+    'toilet',
+    'ablution',
+    'adhan',
+    'marriage',
+  ]);
   expect(DUAS.map((dua) => dua.id)).toEqual([
     'hisn-10',
     'hisn-11',
     'hisn-12',
     'hisn-13',
+    'hisn-25',
     'hisn-192',
     'hisn-191',
     'hisn-190',

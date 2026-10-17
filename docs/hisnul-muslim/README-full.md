@@ -1,6 +1,6 @@
 # Hisnul Muslim — selected full duas (BS / EN)
 
-This file grows one approved category at a time. It currently contains the toilet entries (HM-10–11), the Abdest entries (HM-12–13), and the three marriage entries. The [complete title checklist](README-titles.md) remains an editorial selection aid; its suggested labels are not published translations.
+This file grows one approved category at a time. It currently contains the toilet entries (HM-10–11), the Abdest entries (HM-12–13), the adhan entry (HM-25), and the three marriage entries. The [complete title checklist](README-titles.md) remains an editorial selection aid; its suggested labels are not published translations.
 
 ## Izvori i uredničke napomene / Sources and editorial notes
 
@@ -10,9 +10,9 @@ This file grows one approved category at a time. It currently contains the toile
   - line under: ث ṯ, خ ẖ, ذ ḏ
   - dot under: ح ḥ, ص ṣ, ض ḍ, ط ṭ, ظ ẓ
   - ق q ; long vowels ā ī ū
-- HM-192 / Bosnian 180’s basmala is copied from the reader’s photograph of page 114. The rest of that line, and HM-191, HM-190, HM-10, HM-11, HM-12, and HM-13, are **adaptations** of the published Bosnian recitation with this key. A matching digital copy of the photographed edition was not found.
+- HM-192 / Bosnian 180’s basmala is copied from the reader’s photograph of page 114. The rest of that line, and the other Bosnian transcriptions in this file, are **adaptations** of the published Bosnian recitation with this key. A matching digital copy of the photographed edition was not found.
 - **English title, transliteration and meaning; Arabic text:** [Sunnah.com, *Hisn al-Muslim*](https://sunnah.com/hisn). Only the recited words and their published meanings are shown below. Line breaks on the Sunnah.com page are joined with spaces. Arabic orthography follows the linked entry, including HM-13’s unspaced وَأَشْهَدُأَنَّ.
-- Numbering matches for HM-10 through HM-13. The marriage items differ: BS 178 ↔ EN 190, BS 179 ↔ EN 191, BS 180 ↔ EN 192.
+- Numbering matches for HM-10 through HM-13 and HM-25. The marriage items differ: BS 178 ↔ EN 190, BS 179 ↔ EN 191, BS 180 ↔ EN 192.
 - Text from these editions is reproduced with attribution. [IslamHouse's reuse FAQ](https://d1.islamhouse.com/html/faq.htm) permits publishing its materials without changing the content and with a source citation. Do not create new BS or EN translations for future entries; copy and check a published edition.
 
 ## Toalet / Toilet
@@ -86,6 +86,25 @@ This file grows one approved category at a time. It currently contains the toile
 **English — meaning (Sunnah.com 13):** I bear witness that none has the right to be worshipped but Allah alone, Who has no partner; and I bear witness that Muhammad is His slave and His Messenger.
 
 **Sources:** [Bosnian PDF, page 14](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=14) · [English and Arabic](https://sunnah.com/hisn:13)
+
+## Ezan / Adhan
+
+<a id="hm-25"></a>
+### HM-25 · Dova poslije ezana / Supplication after the adhan
+
+**Arapski / Arabic**
+
+<p lang="ar" dir="rtl">اللّهُـمَّ رَبَّ هَذِهِ الدّعْـوَةِ التّـامَّة وَالصّلاةِ القَـائِمَة آتِ محَـمَّداً الوَسيـلةَ وَالْفَضـيلَة وَابْعَـثْه مَقـامـاً مَحـموداً الَّذي وَعَـدْتَه</p>
+
+**Bosanski — transkripcija (adapted):** Allāhumme rabbe hāḏihi-d-da‘veti-t-tāmmeti ve-ṣ-ṣalāti-l-qā’imeti āti Muḥammedeni-l-vesīlete ve-l-faḍīlete ve-b‘aṯhu meqāmen maḥmūdeni-l-leḏī ve‘adtehu.
+
+**English — transliteration (Sunnah.com 25):** Allāhumma rabba hādhihi 'd-da'wati 't-tāmmah waṣ-ṣalāti 'l-qā'imah, 'āti Muhammadani 'l-wasīlata walfaḍīlata, wab 'ath-hu maqāma 'm-mahmūdani 'l-ladhī wa`adtahu.
+
+**Bosanski — prijevod (IslamHouse 25):** Uči se: Allahu moj, Gospodaru ove cjelovite molbe i namaza koji se upravo uspostavlja, podari Muhammedu veliki stepen u Džennetu, posebno dobro i uzdigni ga na uzvišeno mjesto, koje si mu obećao.
+
+**English — meaning (Sunnah.com 25):** O Allah , Lord of this perfect call and established prayer. Grant Muhammad the intercession and favor, and raise him to the honored station You have promised him.
+
+**Sources:** [Bosnian PDF, page 18](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=18) · [English and Arabic](https://sunnah.com/hisn:25)
 
 ## Brak / Marriage
 

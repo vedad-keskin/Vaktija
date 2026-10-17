@@ -1,5 +1,6 @@
 import { LangCode } from '../../core/services/language.service';
 import { ABLUTION_DUAS } from './ablution.data';
+import { ADHAN_DUAS } from './adhan.data';
 import { MARRIAGE_DUAS } from './marriage.data';
 import { TOILET_DUAS } from './toilet.data';
 
@@ -18,6 +19,7 @@ export type Dua = {
 export const DUA_CATEGORIES = [
   { id: 'toilet', label: { bs: 'Toalet', en: 'Toilet' }, items: TOILET_DUAS },
   { id: 'ablution', label: { bs: 'Abdest', en: 'Ablution' }, items: ABLUTION_DUAS },
+  { id: 'adhan', label: { bs: 'Ezan', en: 'Adhan' }, items: ADHAN_DUAS },
   { id: 'marriage', label: { bs: 'Brak', en: 'Marriage' }, items: MARRIAGE_DUAS },
 ] as const;
 
