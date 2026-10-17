@@ -147,6 +147,12 @@ Brojevi, poglavlja i vrste zapisa provjereni su prema [OpenDua datasetu v0.0.4](
 - [ ] [HM-191 · Dova koju mladoženja uči sebi / On the wedding night or when buying an animal](README-full.md#hm-191) · u aplikaciji / in app
 - [ ] ★ [HM-190 · Dova oženjenom-udatoj / To the newlywed](README-full.md#hm-190) · u aplikaciji / in app
 
+## Sijelo / Gathering
+
+- [ ] [HM-195 · Dova na sijelu / During a gathering](README-full.md#hm-195) · u aplikaciji / in app
+- [ ] [BS-184a · Dova kojom se završavaju svi skupovi (sijela) / When leaving a gathering](README-full.md#bs-184a) · u aplikaciji / in app
+- [ ] ★ [HM-196 · Dova za iskupljenje grijeha na skupu (sijelu) / At the end of a gathering](README-full.md#hm-196) · u aplikaciji / in app
+
 ## Putovanje / Travel
 
 - [ ] ★ [HM-206 · Pri sjedanju u prijevozno sredstvo / Boarding a vehicle](https://sunnah.com/hisn:206)
@@ -258,8 +264,6 @@ Brojevi, poglavlja i vrste zapisa provjereni su prema [OpenDua datasetu v0.0.4](
 
 - [ ] [HM-188 · Odgovor na kihanje / The exchange after sneezing](https://sunnah.com/hisn:188)
 - [ ] [HM-189 · Odgovor nemuslimanu koji kihne i zahvali Allahu / Reply to a non-Muslim who sneezes and praises Allah](https://sunnah.com/hisn:189)
-- [ ] [HM-195 · Tokom sijela / During a gathering](https://sunnah.com/hisn:195)
-- [ ] ★ [HM-196 · Dova na kraju sijela / At the end of a gathering](https://sunnah.com/hisn:196)
 - [ ] [HM-197 · Odgovor onome ko nam poželi oprost / Replying to a prayer for your forgiveness](https://sunnah.com/hisn:197)
 - [ ] [HM-198 · Zahvala onome ko učini dobro / Thanking someone who helped](https://sunnah.com/hisn:198)
 - [ ] [HM-199 · Zaštita od Dedždžala / Protection from the False Messiah](https://sunnah.com/hisn:199) · uputa / instruction

@@ -24,6 +24,7 @@ it('routes the bilingual library, validates saved data and persists bookmark cha
     'adhan',
     'fasting',
     'marriage',
+    'gathering',
     'weather',
   ]);
   expect(DUAS.map((dua) => dua.id)).toEqual([
@@ -43,6 +44,9 @@ it('routes the bilingual library, validates saved data and persists bookmark cha
     'hisn-192',
     'hisn-191',
     'hisn-190',
+    'hisn-195',
+    'bs-184a',
+    'hisn-196',
     'hisn-166',
     'hisn-168',
     'hisn-169',

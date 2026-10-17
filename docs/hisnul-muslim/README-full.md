@@ -1,6 +1,6 @@
 # Hisnul Muslim — selected full duas (BS / EN)
 
-This file grows one approved category at a time. It currently contains the toilet entries (HM-10–11), the Abdest entries (HM-12–13), the adhan entry (HM-25), the three marriage entries, the weather entries (HM-166, 168, 169, 172–175), and the fasting and food entries (HM-176–186). The [complete title checklist](README-titles.md) remains an editorial selection aid; its suggested labels are not published translations.
+This file grows one approved category at a time. It currently contains the toilet entries (HM-10–11), the Abdest entries (HM-12–13), the adhan entry (HM-25), the three marriage entries, the gathering entries (HM-195–196), the weather entries (HM-166, 168, 169, 172–175), and the fasting and food entries (HM-176–186). The [complete title checklist](README-titles.md) remains an editorial selection aid; its suggested labels are not published translations.
 
 ## Izvori i uredničke napomene / Sources and editorial notes
 
@@ -12,7 +12,7 @@ This file grows one approved category at a time. It currently contains the toile
   - ق q ; long vowels ā ī ū
 - HM-192 / Bosnian 180’s basmala is copied from the reader’s photograph of page 114. The rest of that line, and the other Bosnian transcriptions in this file, are **adaptations** of the published Bosnian recitation with this key. A matching digital copy of the photographed edition was not found.
 - **English title, transliteration and meaning; Arabic text:** [Sunnah.com, *Hisn al-Muslim*](https://sunnah.com/hisn). Only the recited words and their published meanings are shown below. Line breaks on the Sunnah.com page are joined with spaces. Arabic orthography follows the linked entry, including HM-13’s unspaced وَأَشْهَدُأَنَّ.
-- Numbering matches for HM-10 through HM-13 and HM-25. The marriage items differ: BS 178 ↔ EN 190, BS 179 ↔ EN 191, BS 180 ↔ EN 192. The weather items differ by nine: BS 157, 159, 160, 163–166 ↔ EN 166, 168, 169, 172–175. Fasting and food is BS 167–175 ↔ EN 176, 178–185; EN 177 is not in the Bosnian edition, and EN 186 is BS 235.
+- Numbering matches for HM-10 through HM-13 and HM-25. The marriage items differ: BS 178 ↔ EN 190, BS 179 ↔ EN 191, BS 180 ↔ EN 192. The gathering items are BS 183–184 ↔ EN 195–196. The weather items differ by nine: BS 157, 159, 160, 163–166 ↔ EN 166, 168, 169, 172–175. Fasting and food is BS 167–175 ↔ EN 176, 178–185; EN 177 is not in the Bosnian edition, and EN 186 is BS 235.
 - Text from these editions is reproduced with attribution. [IslamHouse's reuse FAQ](https://d1.islamhouse.com/html/faq.htm) permits publishing its materials without changing the content and with a source citation. Do not create new BS or EN translations for future entries; copy and check a published edition.
 
 ## Toalet / Toilet
@@ -157,6 +157,60 @@ This file grows one approved category at a time. It currently contains the toile
 **English — meaning (Sunnah.com 190):** May Allah bless you, and shower His blessings upon you, and join you together in goodness.
 
 **Sources:** [Bosnian PDF, page 67](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=67) · [English and Arabic](https://sunnah.com/hisn:190)
+
+
+## Sijelo / Gathering
+
+<a id="hm-195"></a>
+### HM-195 · Dova na sijelu / During a gathering
+
+**Arapski / Arabic**
+
+<p lang="ar" dir="rtl">رب اغفر لي وتب علي إنك أنت التواب الغفور</p>
+
+**Bosanski — transkripcija (adapted):** Rabbi-gfir lī ve tub ‘alejje inneke Ente-t-Tevvābu-l-Gafūr.
+
+**Bosanski — prijevod (IslamHouse 183):** Gospodaru moj, oprosti mi i primi moje pokajanje, jer Ti si, zaista, Onaj Koji primaš pokajanja i opraštaš grijehe.
+
+**English — transliteration (Sunnah.com 195):** Rabbigh’fir lī wa tub \`alayy innaka antat-Tawwābu ‘l-Ghafūr.
+
+**English — meaning (Sunnah.com 195):** My Lord, forgive me, and accept my repentance, You are the Ever-Relenting, the All-Forgiving.
+
+**Sources:** [Bosnian PDF, page 69](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=69) · [English and Arabic](https://sunnah.com/hisn:195)
+
+<a id="bs-184a"></a>
+### BS-184a · Dova kojom se završavaju svi skupovi (sijela) / When leaving a gathering
+
+**Arapski / Arabic**
+
+<p lang="ar" dir="rtl">سُبْحَانَكَ وَبِحَمْدِكَ لَا إِلَهَ إِلَّا أَنْتَ أَسْتَغْفِرُكَ وَأَتُوبُ إِلَيْكَ</p>
+
+**Bosanski — transkripcija (adapted):** Subḥāneke ve biḥamdike, lā ilāhe illā Ente, estagfiruke ve etūbu ilejke.
+
+**Bosanski — prijevod (IslamHouse 184a):** Neka si slavljen i hvaljen, Allahu moj. Nema Boga osim Tebe, Tebe ja molim za oprost grijeha i Tebi se iskreno kajem.
+
+**English — transliteration (Fath al-Rabbani 9520):** Subhanaka wa bihamdika la ilaha illa anta astaghfiruka wa atubu ilayk
+
+**English — meaning (Fath al-Rabbani 9520):** Glory is to You and with Your praise, there is no true deity except You, I seek Your forgiveness and turn to You
+
+**Sources:** [Bosnian PDF, page 70](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=70) · [English and Arabic](https://en.tohed.com/hadith/al-fath-al-rabbani/9520/)
+
+<a id="hm-196"></a>
+### HM-196 · Dova za iskupljenje grijeha na skupu (sijelu) / At the end of a gathering
+
+**Arapski / Arabic**
+
+<p lang="ar" dir="rtl">سُبْحـانَكَ اللّهُـمَّ وَبِحَمدِك، أَشْهَـدُ أَنْ لا إِلهَ إِلاّ أَنْتَ أَسْتَغْفِرُكَ وَأَتوبُ إِلَـيْك</p>
+
+**Bosanski — transkripcija (adapted):** Subḥāneke Allāhumme ve biḥamdike, ešhedu en lā ilāhe illā Ente, estagfiruke ve etūbu ilejke.
+
+**Bosanski — prijevod (IslamHouse 184):** Neka si slavljen, Allahu, i neka Ti je hvala. Svjedočim da nema boga osim Tebe. Od Tebe tražim oprost i Tebi se kajem.
+
+**English — transliteration (Sunnah.com 196):** Subhānaka Allāhumma wa biḥamdik, ash-hadu an lā ilāha illā ant, astaghfiruka wa atību ilayk.
+
+**English — meaning (Sunnah.com 196):** Glory is to You, O Allah, and praise is to You. I bear witness that there is none worthy of worship but You. I seek Your forgiveness and repent to You.
+
+**Sources:** [Bosnian PDF, page 69](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=69) · [English and Arabic](https://sunnah.com/hisn:196)
 
 
 ## Vrijeme / Weather
