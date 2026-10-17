@@ -1,4 +1,4 @@
-import { Component, computed, effect, inject, signal } from '@angular/core';
+import { afterNextRender, Component, computed, effect, ElementRef, inject, Injector, signal } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, RouterLink } from '@angular/router';
@@ -9,6 +9,8 @@ import { HeaderComponent } from '../prayer-times/components/header/header.compon
 import { CitySelectorComponent } from '../prayer-times/components/city-selector/city-selector.component';
 import { DUA_CATEGORIES, DUAS } from './duas.data';
 import { DHIKR } from './dhikr.data';
+
+const PAGE_SIZE = 10;
 
 @Component({
   selector: 'app-duas-page',
@@ -22,6 +24,8 @@ export class DuasPage {
   private readonly locationService = inject(LocationService);
   private readonly route = inject(ActivatedRoute);
   private readonly title = inject(Title);
+  private readonly host = inject(ElementRef<HTMLElement>);
+  private readonly injector = inject(Injector);
   private readonly isDhikr = this.route.snapshot.data['collection'] === 'dhikr';
   private readonly items = this.isDhikr ? DHIKR : DUAS;
   protected readonly categories = this.isDhikr ? [] : DUA_CATEGORIES;
@@ -66,15 +70,20 @@ export class DuasPage {
   private readonly queryParams = toSignal(this.route.queryParamMap, {
     initialValue: this.route.snapshot.queryParamMap,
   });
+  private readonly visibleCount = signal(PAGE_SIZE);
   protected readonly savedOnly = computed(() => this.queryParams().get('view') === 'saved');
   protected readonly activeCategory = computed(() =>
     this.categories.find((category) => category.id === this.queryParams().get('category')),
   );
-  protected readonly visibleDuas = computed(() =>
+  private readonly filteredDuas = computed(() =>
     this.savedOnly()
       ? this.items.filter((dua) => this.savedIds().includes(dua.id))
       : (this.activeCategory()?.items ?? this.items),
   );
+  protected readonly visibleDuas = computed(() =>
+    this.filteredDuas().slice(0, this.visibleCount()),
+  );
+  protected readonly hasMore = computed(() => this.visibleCount() < this.filteredDuas().length);
   protected readonly listLabel = computed(() =>
     this.savedOnly()
       ? this.copy().saved
@@ -84,6 +93,19 @@ export class DuasPage {
   constructor() {
     this.locationService.getLocations().subscribe((cities) => this.locations.set(cities));
     effect(() => this.title.setTitle(this.copy().docTitle));
+    effect(() => {
+      this.queryParams();
+      this.visibleCount.set(PAGE_SIZE);
+    });
+  }
+
+  protected showMore(): void {
+    const nextIndex = this.visibleCount();
+    this.visibleCount.update((count) => count + PAGE_SIZE);
+    afterNextRender(
+      () => (this.host.nativeElement as HTMLElement).querySelectorAll<HTMLElement>('.dua-card h2')[nextIndex]?.focus(),
+      { injector: this.injector },
+    );
   }
 
   protected onCityChange(city: Location): void {

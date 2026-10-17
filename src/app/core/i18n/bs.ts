@@ -91,6 +91,7 @@ export interface AppLabels {
   duasEmptyTitle: string;
   duasEmptyBody: string;
   duasBrowse: string;
+  showMore: string;
   duasStorageError: string;
   duasTranscription: string;
   duasTranslation: string;
@@ -268,6 +269,7 @@ export const BS_LABELS: AppLabels = {
   duasEmptyTitle: 'Vaše dove, na jednom mjestu',
   duasEmptyBody: 'Dodirnite oznaku na kartici da sačuvate dovu za kasnije na ovom uređaju.',
   duasBrowse: 'Pogledaj sve dove',
+  showMore: 'Prikaži još',
   duasStorageError:
     'Promjena vrijedi samo na ovoj stranici. Preglednik je nije mogao trajno sačuvati.',
   duasTranscription: 'Transkripcija',

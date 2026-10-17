@@ -80,7 +80,8 @@ svg {
   margin-bottom: 24px;
 }
 
-.duas-collections a {
+.duas-collections a,
+.duas-show-more {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -93,6 +94,14 @@ svg {
   background: var(--surface-elevated);
   text-decoration: none;
   font-weight: 600;
+}
+
+.duas-show-more {
+  justify-self: center;
+  margin-top: 4px;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
 }
 
 .duas-collections a.active {
@@ -203,6 +212,11 @@ svg {
   color: var(--hero-text);
 }
 
+.dua-card h2:focus {
+  outline: 2px solid var(--gold);
+  outline-offset: 4px;
+}
+
 .dua-actions {
   display: flex;
   gap: 6px;
@@ -231,7 +245,8 @@ svg {
 }
 
 .dua-actions button:hover,
-.duas-collections a:hover {
+.duas-collections a:hover,
+.duas-show-more:hover {
   background: var(--surface-hover);
   border-color: var(--gold);
 }

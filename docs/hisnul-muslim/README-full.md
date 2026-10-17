@@ -125,7 +125,7 @@ This file grows one approved category at a time. It currently contains the toile
 
 **Sources:** [Bosnian PDF, page 68](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=68) · [English and Arabic](https://sunnah.com/hisn:192)
 <a id="hm-191"></a>
-### HM-191 · Dova koju mladoženja uči sebi / On the wedding night or when buying an animal
+### HM-191 · Dova koju mladoženja uči sebi / On the wedding night
 
 **Arapski / Arabic**
 
@@ -212,6 +212,59 @@ This file grows one approved category at a time. It currently contains the toile
 
 **Sources:** [Bosnian PDF, page 69](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=69) · [English and Arabic](https://sunnah.com/hisn:196)
 
+
+## Životinje / Animals
+
+<a id="hm-228-rooster"></a>
+### HM-228 (1/2) · Kada čujemo horoza / Upon hearing a rooster crow
+
+**Arapski / Arabic**
+
+<p lang="ar" dir="rtl">اللَّهُمَّ إِنِّي أَسْأَلُكَ مِنْ فَضْلِكَ</p>
+
+**Bosanski — transkripcija (adapted):** Allāhumme innī es’eluke min faḍlike.
+
+**Bosanski — prijevod (Islamic Encyclopedia, section 110):** Allahu moj, podari mi svako dobro od Tebe.
+
+**English — transliteration (Deenhub):** Allahumma innee as'aluka min fadlik
+
+**English — meaning (Deenhub):** O Allah, I ask You from Your bounty.
+
+**Sources:** [Bosnian](https://islamenc.com/bs/books/24) · [English and Arabic](https://www.deenhub.ca/duas) · [HM-228](https://sunnah.com/hisn:228)
+
+<a id="hm-228-donkey"></a>
+### HM-228 (2/2) · Kada čujemo magarca / Upon hearing a donkey bray
+
+**Arapski / Arabic**
+
+<p lang="ar" dir="rtl">أَعُوذُ بِاللَّهِ مِنَ الشَّيْطَانِ الرَّجِيمِ</p>
+
+**Bosanski — transkripcija (adapted):** E‘ūḏu billāhi mineš-šejtāni-r-radžīm.
+
+**Bosanski — prijevod (Islamic Encyclopedia, section 110):** Utječem se Allahu od prokletog šejtana.
+
+**English — transliteration (Deenhub):** A'oodhu billahi minash-shaytanir-rajeem
+
+**English — meaning (Deenhub):** I seek refuge in Allah from the accursed Satan.
+
+**Sources:** [Bosnian](https://islamenc.com/bs/books/24) · [English and Arabic](https://www.deenhub.ca/duas) · [HM-228](https://sunnah.com/hisn:228)
+
+<a id="hm-229"></a>
+### HM-229 · Kada noću čujemo zavijanje pasa ili revanje magaraca / Upon hearing dogs bark or donkeys bray at night
+
+**Arapski / Arabic**
+
+<p lang="ar" dir="rtl">أَعُوذُ بِاللَّهِ مِنَ الشَّيْطَانِ الرَّجِيمِ</p>
+
+**Bosanski — transkripcija (adapted):** E‘ūḏu billāhi mineš-šejtāni-r-radžīm.
+
+**Bosanski — prijevod (Islamic Encyclopedia, section 111):** Utječem se Allahu od prokletog šejtana.
+
+**English — transliteration (Deenhub):** A'oodhu billahi minash-shaytanir-rajeem
+
+**English — meaning (Deenhub):** I seek refuge in Allah from the accursed Satan.
+
+**Sources:** [Bosnian](https://islamenc.com/bs/books/24) · [English and Arabic](https://www.deenhub.ca/duas) · [HM-229](https://sunnah.com/hisn:229)
 
 ## Vrijeme / Weather
 

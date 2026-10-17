@@ -15,6 +15,42 @@ afterEach(() => {
   localStorage.clear();
 });
 
+it('shows ten items at a time and resets on view changes', async () => {
+  localStorage.setItem('vaktija_saved_duas', JSON.stringify(DUAS.slice(0, 11).map((dua) => dua.id)));
+  await TestBed.configureTestingModule({
+    imports: [DuasPage],
+    providers: [provideRouter(routes)],
+  }).compileComponents();
+  const harness = await RouterTestingHarness.create('/duas');
+  const element = () => harness.routeNativeElement!;
+  const cards = () => element().querySelectorAll('.dua-card');
+  const more = () => element().querySelector<HTMLButtonElement>('.duas-show-more');
+
+  expect(cards()).toHaveLength(10);
+  expect(more()?.textContent?.trim()).toBe(EN_LABELS.showMore);
+  more()!.click();
+  harness.detectChanges();
+  expect(cards()).toHaveLength(20);
+  expect(document.activeElement).toBe(cards()[10].querySelector('h2'));
+  more()!.click();
+  harness.detectChanges();
+  expect(cards()).toHaveLength(DUAS.length);
+  expect(more()).toBeNull();
+  expect(document.activeElement).toBe(cards()[20].querySelector('h2'));
+
+  await harness.navigateByUrl('/duas?category=marriage');
+  expect(cards()).toHaveLength(3);
+  expect(more()).toBeNull();
+  await harness.navigateByUrl('/duas?view=saved');
+  expect(cards()).toHaveLength(10);
+  more()!.click();
+  harness.detectChanges();
+  expect(cards()).toHaveLength(11);
+  expect(more()).toBeNull();
+  await harness.navigateByUrl('/duas');
+  expect(cards()).toHaveLength(10);
+});
+
 it('routes the bilingual library, validates saved data and persists bookmark changes', async () => {
   localStorage.clear();
   localStorage.setItem('vaktija_saved_duas', '["hisn-190","hisn-190","knowledge",7,null]');
@@ -25,6 +61,7 @@ it('routes the bilingual library, validates saved data and persists bookmark cha
     'fasting',
     'marriage',
     'gathering',
+    'animals',
     'weather',
   ]);
   expect(DUAS.map((dua) => dua.id)).toEqual([
@@ -47,6 +84,9 @@ it('routes the bilingual library, validates saved data and persists bookmark cha
     'hisn-195',
     'bs-184a',
     'hisn-196',
+    'hisn-191-animal',
+    'hisn-228',
+    'hisn-229',
     'hisn-166',
     'hisn-168',
     'hisn-169',
@@ -62,6 +102,7 @@ it('routes the bilingual library, validates saved data and persists bookmark cha
   const harness = await RouterTestingHarness.create('/duas?view=saved');
   const element = () => harness.routeNativeElement!;
   const cards = () => element().querySelectorAll<HTMLElement>('.dua-card');
+  const showMore = () => element().querySelector<HTMLButtonElement>('.duas-show-more');
   const save = (id: string) =>
     element().querySelector<HTMLButtonElement>(`[data-dua-id="${id}"] .dua-bookmark`)!;
   expect(cards()).toHaveLength(1);
@@ -90,6 +131,10 @@ it('routes the bilingual library, validates saved data and persists bookmark cha
   mobileDuasLink.click();
   await harness.fixture.whenStable();
   expect(element().querySelector('.mobile-dropdown')?.classList.contains('open')).toBe(false);
+  showMore()!.click();
+  harness.detectChanges();
+  showMore()!.click();
+  harness.detectChanges();
   expect(cards()).toHaveLength(DUAS.length);
   const marriage = DUA_CATEGORIES.find((category) => category.id === 'marriage')!;
   await harness.navigateByUrl('/duas?category=marriage');
@@ -98,6 +143,10 @@ it('routes the bilingual library, validates saved data and persists bookmark cha
     marriage.label[TestBed.inject(LanguageService).lang()],
   );
   await harness.navigateByUrl('/duas?category=unknown');
+  showMore()!.click();
+  harness.detectChanges();
+  showMore()!.click();
+  harness.detectChanges();
   expect(cards()).toHaveLength(DUAS.length);
 
   for (const lang of ['bs', 'en'] as const) {
@@ -139,6 +188,8 @@ it('routes the bilingual library, validates saved data and persists bookmark cha
     throw new Error('quota');
   });
   await harness.navigateByUrl('/duas');
+  showMore()!.click();
+  harness.detectChanges();
   save('hisn-190').click();
   harness.detectChanges();
   expect(save('hisn-190').getAttribute('aria-pressed')).toBe('true');
@@ -156,6 +207,8 @@ it('routes the bilingual library, validates saved data and persists bookmark cha
   corrupted.destroy();
   localStorage.setItem('vaktija_saved_duas', '["hisn-191"]');
   const reloaded = TestBed.createComponent(DuasPage);
+  reloaded.detectChanges();
+  reloaded.nativeElement.querySelector('.duas-show-more').click();
   reloaded.detectChanges();
   expect(
     reloaded.nativeElement

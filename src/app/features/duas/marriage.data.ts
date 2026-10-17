@@ -23,10 +23,7 @@ export const MARRIAGE_DUAS: readonly Dua[] = [
   },
   {
     id: 'hisn-191',
-    title: {
-      bs: 'Dova koju mladoženja uči sebi',
-      en: 'On the wedding night or when buying an animal',
-    },
+    title: { bs: 'Dova koju mladoženja uči sebi', en: 'On the wedding night' },
     arabic:
       'اللَّهُمَّ إِنِّي أَسْأَلُكَ خَيْرَهَا، وَخَيْرَ مَا جَبَلْتَهَا عَلَيْهِ، وَأَعُوذُ بِكَ مِنْ شَرِّهَا، وَشَرِّ مَا جَبَلْتَهَا عَلَيْهِ',
     transcription: {

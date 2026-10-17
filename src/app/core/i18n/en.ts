@@ -125,6 +125,7 @@ export const EN_LABELS: AppLabels = {
   duasEmptyTitle: 'Your duas, together',
   duasEmptyBody: 'Tap the bookmark on a card to keep a dua for later on this device.',
   duasBrowse: 'Browse all duas',
+  showMore: 'Show more',
   duasStorageError:
     'This change applies to this page only. Your browser could not save it permanently.',
   duasTranscription: 'Transliteration',

@@ -144,7 +144,7 @@ Brojevi, poglavlja i vrste zapisa provjereni su prema [OpenDua datasetu v0.0.4](
 - [ ] [HM-145 · Čestitka roditeljima novorođenčeta i odgovor / Greeting new parents and their response](https://sunnah.com/hisn:145)
 - [ ] ★ [HM-146 · Zaštita za djecu / Seeking protection for children](https://sunnah.com/hisn:146)
 - [ ] [HM-192 · Dova prije spolnog odnosa u braku / Before sexual intercourse with the wife](README-full.md#hm-192) · u aplikaciji / in app
-- [ ] [HM-191 · Dova koju mladoženja uči sebi / On the wedding night or when buying an animal](README-full.md#hm-191) · u aplikaciji / in app
+- [ ] [HM-191 · Dova koju mladoženja uči sebi / On the wedding night](README-full.md#hm-191) · u aplikaciji / in app
 - [ ] ★ [HM-190 · Dova oženjenom-udatoj / To the newlywed](README-full.md#hm-190) · u aplikaciji / in app
 
 ## Sijelo / Gathering
@@ -152,6 +152,12 @@ Brojevi, poglavlja i vrste zapisa provjereni su prema [OpenDua datasetu v0.0.4](
 - [ ] [HM-195 · Dova na sijelu / During a gathering](README-full.md#hm-195) · u aplikaciji / in app
 - [ ] [BS-184a · Dova kojom se završavaju svi skupovi (sijela) / When leaving a gathering](README-full.md#bs-184a) · u aplikaciji / in app
 - [ ] ★ [HM-196 · Dova za iskupljenje grijeha na skupu (sijelu) / At the end of a gathering](README-full.md#hm-196) · u aplikaciji / in app
+
+## Životinje / Animals
+
+- [ ] [HM-228 (1/2) · Kada čujemo horoza / Upon hearing a rooster crow](README-full.md#hm-228-rooster) · u aplikaciji / in app
+- [ ] [HM-228 (2/2) · Kada čujemo magarca / Upon hearing a donkey bray](README-full.md#hm-228-donkey) · u aplikaciji / in app
+- [ ] [HM-229 · Kada noću čujemo zavijanje pasa ili revanje magaraca / Upon hearing dogs bark or donkeys bray at night](README-full.md#hm-229) · u aplikaciji / in app
 
 ## Putovanje / Travel
 
@@ -283,8 +289,6 @@ Brojevi, poglavlja i vrste zapisa provjereni su prema [OpenDua datasetu v0.0.4](
 - [ ] [HM-225 · Širenje selama (2/3) / Spreading the greeting of peace (2/3)](https://sunnah.com/hisn:225) · predaja / narration
 - [ ] [HM-226 · Širenje selama (3/3) / Spreading the greeting of peace (3/3)](https://sunnah.com/hisn:226) · predaja / narration
 - [ ] [HM-227 · Odgovor nemuslimanu na selam / Answering a non-Muslim's greeting](https://sunnah.com/hisn:227)
-- [ ] [HM-228 · Kada čujemo pijetla ili magarca / Hearing a rooster or donkey](https://sunnah.com/hisn:228) · uputa / instruction
-- [ ] [HM-229 · Kada noću čujemo lajanje psa / Hearing a dog bark at night](https://sunnah.com/hisn:229) · uputa / instruction
 - [ ] [HM-230 · Za onoga o kome smo loše govorili / For someone you have spoken ill of](https://sunnah.com/hisn:230)
 - [ ] [HM-231 · Kako pohvaliti drugog muslimana / How to praise another Muslim](https://sunnah.com/hisn:231)
 - [ ] [HM-232 · Kada nas neko pohvali / When someone praises you](https://sunnah.com/hisn:232)
