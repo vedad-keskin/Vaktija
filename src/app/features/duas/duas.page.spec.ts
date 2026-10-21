@@ -34,9 +34,12 @@ it('shows ten items at a time and resets on view changes', async () => {
   expect(document.activeElement).toBe(cards()[10].querySelector('h2'));
   more()!.click();
   harness.detectChanges();
+  expect(cards()).toHaveLength(30);
+  more()!.click();
+  harness.detectChanges();
   expect(cards()).toHaveLength(DUAS.length);
   expect(more()).toBeNull();
-  expect(document.activeElement).toBe(cards()[20].querySelector('h2'));
+  expect(document.activeElement).toBe(cards()[30].querySelector('h2'));
 
   await harness.navigateByUrl('/duas?category=marriage');
   expect(cards()).toHaveLength(3);
@@ -60,6 +63,7 @@ it('routes the bilingual library, validates saved data and persists bookmark cha
     'adhan',
     'fasting',
     'marriage',
+    'clothing',
     'gathering',
     'animals',
     'weather',
@@ -81,6 +85,10 @@ it('routes the bilingual library, validates saved data and persists bookmark cha
     'hisn-192',
     'hisn-191',
     'hisn-190',
+    'hisn-5',
+    'hisn-9',
+    'hisn-6',
+    'hisn-7',
     'hisn-195',
     'bs-184a',
     'hisn-196',
@@ -135,6 +143,8 @@ it('routes the bilingual library, validates saved data and persists bookmark cha
   harness.detectChanges();
   showMore()!.click();
   harness.detectChanges();
+  showMore()!.click();
+  harness.detectChanges();
   expect(cards()).toHaveLength(DUAS.length);
   const marriage = DUA_CATEGORIES.find((category) => category.id === 'marriage')!;
   await harness.navigateByUrl('/duas?category=marriage');
@@ -143,6 +153,8 @@ it('routes the bilingual library, validates saved data and persists bookmark cha
     marriage.label[TestBed.inject(LanguageService).lang()],
   );
   await harness.navigateByUrl('/duas?category=unknown');
+  showMore()!.click();
+  harness.detectChanges();
   showMore()!.click();
   harness.detectChanges();
   showMore()!.click();
@@ -188,6 +200,8 @@ it('routes the bilingual library, validates saved data and persists bookmark cha
     throw new Error('quota');
   });
   await harness.navigateByUrl('/duas');
+  showMore()!.click();
+  harness.detectChanges();
   showMore()!.click();
   harness.detectChanges();
   save('hisn-190').click();

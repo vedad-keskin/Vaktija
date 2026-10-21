@@ -1,10 +1,11 @@
 # Hisnul Muslim — selected full duas (BS / EN)
 
-This file grows one approved category at a time. It currently contains the toilet entries (HM-10–11), the Abdest entries (HM-12–13), the adhan entry (HM-25), the three marriage entries, the gathering entries (HM-195–196), the weather entries (HM-166, 168, 169, 172–175), and the fasting and food entries (HM-176–186). The [complete title checklist](README-titles.md) remains an editorial selection aid; its suggested labels are not published translations.
+This file grows one approved category at a time. It currently contains the clothing entries (HM-5, 9, 6, 7), the toilet entries (HM-10–11), the Abdest entries (HM-12–13), the adhan entry (HM-25), the three marriage entries, the gathering entries (HM-195–196), the weather entries (HM-166, 168, 169, 172–175), and the fasting and food entries (HM-176–186). The [complete title checklist](README-titles.md) remains an editorial selection aid; its suggested labels are not published translations.
 
 ## Izvori i uredničke napomene / Sources and editorial notes
 
 - **Bosanski prijevod:** [IslamHouse, *Hisnul-Muslimi* (PDF)](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf). The meanings keep the published wording and punctuation; hadith reference abbreviations are omitted from the displayed meaning. App headings use sentence case. Entry 179 is shortened to its marriage clause.
+- **Odjeća / Clothing (HM-5, 9, 6, 7):** HM-5's Bosnian transcription and meaning follow the reader's photograph of the 2017 edition; the linked IslamHouse PDF has a shorter transcription and different wording. The other Bosnian entries follow that PDF. Arabic HM-5 displays the recited word الثّوب without the source's editorial parentheses. English comes from the linked Sunnah.com entries.
 - **Bosanska transkripcija** follows the photographed 2017 “Napomena o transkripciji” for letters Bosnian does not have, plus the pronunciation already used on these cards (ج dž, ش š, و v, fatha often e, šadda with a hyphen):
   - hamza ء = ’ ; ayn ع = ‘
   - line under: ث ṯ, خ ẖ, ذ ḏ
@@ -14,6 +15,76 @@ This file grows one approved category at a time. It currently contains the toile
 - **English title, transliteration and meaning; Arabic text:** [Sunnah.com, *Hisn al-Muslim*](https://sunnah.com/hisn). Only the recited words and their published meanings are shown below. Line breaks on the Sunnah.com page are joined with spaces. Arabic orthography follows the linked entry, including HM-13’s unspaced وَأَشْهَدُأَنَّ.
 - Numbering matches for HM-10 through HM-13 and HM-25. The marriage items differ: BS 178 ↔ EN 190, BS 179 ↔ EN 191, BS 180 ↔ EN 192. The gathering items are BS 183–184 ↔ EN 195–196. The weather items differ by nine: BS 157, 159, 160, 163–166 ↔ EN 166, 168, 169, 172–175. Fasting and food is BS 167–175 ↔ EN 176, 178–185; EN 177 is not in the Bosnian edition, and EN 186 is BS 235.
 - Text from these editions is reproduced with attribution. [IslamHouse's reuse FAQ](https://d1.islamhouse.com/html/faq.htm) permits publishing its materials without changing the content and with a source citation. Do not create new BS or EN translations for future entries; copy and check a published edition.
+
+## Odjeća / Clothing
+
+<a id="hm-5"></a>
+### HM-5 · Dova pri odijevanju odjeće / When wearing a garment
+
+**Arapski / Arabic**
+
+<p lang="ar" dir="rtl">الحمدُ للهِ الّذي كَساني هذا الثّوب وَرَزَقَنيه مِنْ غَـيـْرِ حَولٍ مِنّي وَلا قـوّة</p>
+
+**Bosanski — transkripcija (2017 edition):** El-ḥamdu lillāhi-lleḏī kesānī hāḏā eṯ-ṯevbe ve rezaqanīhi min gajri ḥavlin minnī ve lā quvvetin...
+
+**Bosanski — prijevod (2017 edition):** Hvala Allahu, Koji me odjenuo ovom odjećom i Koji me opskrbio bez moje snage i moći...
+
+**English — transliteration (Sunnah.com 5):** Alḥamdu lillāhil-ladhī kasānī hādhā (aththawba) wa razaqanīhi min ghayri hawlim-minnī wa lā quwwah.
+
+**English — meaning (Sunnah.com 5):** Praise is to Allah Who has clothed me with this (garment) and provided it for me, though I was powerless myself and incapable
+
+**Sources:** [Bosnian PDF, page 8](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=8) · [English and Arabic](https://sunnah.com/hisn:5)
+
+<a id="hm-9"></a>
+### HM-9 · Dova pri odlaganju odjeće / Before undressing
+
+**Arapski / Arabic**
+
+<p lang="ar" dir="rtl">بِسْمِ الله</p>
+
+**Bosanski — transkripcija (adapted):** Bismi-l-Lāh.
+
+**Bosanski — prijevod (IslamHouse 9):** U ime Allaha.
+
+**English — transliteration (Sunnah.com 9):** Bismillāhi
+
+**English — meaning (Sunnah.com 9):** In the Name of Allah.
+
+**Sources:** [Bosnian PDF, page 9](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=9) · [English and Arabic](https://sunnah.com/hisn:9)
+
+<a id="hm-6"></a>
+### HM-6 · Dova pri odijevanju nove odjeće / When wearing a new garment
+
+**Arapski / Arabic**
+
+<p lang="ar" dir="rtl">اللّهُـمَّ لَـكَ الحَـمْـدُ أنْـتَ كَسَـوْتَنيهِ، أََسْأََلُـكَ مِـنْ خَـيرِهِ وَخَـيْرِ مَا صُنِعَ لَـه، وَأَعوذُ بِكَ مِـنْ شَـرِّهِ وَشَـرِّ مـا صُنِعَ لَـهُ</p>
+
+**Bosanski — transkripcija (adapted):** Allāhumme leke-l-ḥamdu, Ente kesevtenīhi. Es’ eluke min ẖajrihi ve ẖajri mā ṣuni‘a lehu. Ve e‘ūḏu bike min šerrihi ve šerri mā ṣuni‘a lehu.
+
+**Bosanski — prijevod (IslamHouse 6):** Allahu moj, Tebi hvala. Ti si me ovim odjenuo. Molim Te da mi u tome daš dobro i dobro u onom zbog čega je spravljena, a utječem Ti se od protiv zla njegova i zla onoga zbog čega je spravljena.
+
+**English — transliteration (Sunnah.com 6):** Allāhumma lakal-ḥamdu 'anta kasawtanīhi, 'as'aluka min khayrihi wa khayri mā ṣuni`a lahu, wa 'a`oothu bika min sharrihi wa sharri mā ṣuni`a lahu.
+
+**English — meaning (Sunnah.com 6):** O Allah, praise is to You. You have clothed me. I ask You for its goodness and the goodness of what it has been made for, and I seek Your protection from the evil of it and the evil of what it has been made for.
+
+**Sources:** [Bosnian PDF, page 9](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=9) · [English and Arabic](https://sunnah.com/hisn:6)
+
+<a id="hm-7"></a>
+### HM-7 · Dova onome ko odjene novu odjeću (1/2) / To someone wearing a new garment (1/2)
+
+**Arapski / Arabic**
+
+<p lang="ar" dir="rtl">تُبْـلي وَيُـخْلِفُ اللهُ تَعَالى</p>
+
+**Bosanski — transkripcija (adapted):** Tublā ve juẖlifu-l-Lāhu te‘ālā.
+
+**Bosanski — prijevod (IslamHouse 7):** Iznosio je, a novom ti Allah nadomjestio.
+
+**English — transliteration (Sunnah.com 7):** Tublī wa yukhliful-lāhu ta`ālā.
+
+**English — meaning (Sunnah.com 7):** May Allah replace it when it is worn out.
+
+**Sources:** [Bosnian PDF, page 9](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=9) · [English and Arabic](https://sunnah.com/hisn:7)
 
 ## Toalet / Toilet
 

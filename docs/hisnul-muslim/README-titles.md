@@ -10,17 +10,20 @@ This checklist covers **all 267 numbered entries in 132 chapters**. Categories a
 
 Brojevi, poglavlja i vrste zapisa provjereni su prema [OpenDua datasetu v0.0.4](https://opendua.org/v0.0.4/catalogue.json) (Ihsan Labs / Human Development Fund; [CC BY 4.0 za uredničke podatke](https://opendua.org/developers)). Većina kratkih BS/EN naslova ovdje su **uredničke oznake za izbor, ne tekst objavljenog prijevoda**; za aplikaciju koristi samo provjerene objavljene tekstove i [napomene o izvorima](README-full.md#izvori-i-uredničke-napomene--sources-and-editorial-notes). HM-097 i HM-216 imaju isti arapski tekst u različitim okolnostima / share the same Arabic wording in different contexts.
 
+## Odjeća / Clothing
+
+- [ ] [HM-005 · Dova pri odijevanju odjeće / When wearing a garment](README-full.md#hm-5) · u aplikaciji / in app
+- [ ] [HM-009 · Dova pri odlaganju odjeće / Before undressing](README-full.md#hm-9) · u aplikaciji / in app
+- [ ] [HM-006 · Dova pri odijevanju nove odjeće / When wearing a new garment](README-full.md#hm-6) · u aplikaciji / in app
+- [ ] [HM-007 · Dova onome ko odjene novu odjeću (1/2) / To someone wearing a new garment (1/2)](README-full.md#hm-7) · u aplikaciji / in app
+
 ## Svakodnevni zikr i lične navike / Daily remembrance and routines
 
 - [ ] ★ [HM-001 · Zahvala pri buđenju / Praise upon waking](https://sunnah.com/hisn:1)
 - [ ] [HM-002 · Pri buđenju (2/4) / Upon waking (2/4)](https://sunnah.com/hisn:2)
 - [ ] [HM-003 · Pri buđenju (3/4) / Upon waking (3/4)](https://sunnah.com/hisn:3)
 - [ ] [HM-004 · Pri buđenju (4/4) / Upon waking (4/4)](https://sunnah.com/hisn:4)
-- [ ] [HM-005 · Pri oblačenju / Getting dressed](https://sunnah.com/hisn:5)
-- [ ] [HM-006 · Pri oblačenju nove odjeće / Putting on new clothes](https://sunnah.com/hisn:6)
-- [ ] [HM-007 · Čestitka za novu odjeću (1/2) / Greeting someone in new clothes (1/2)](https://sunnah.com/hisn:7)
-- [ ] [HM-008 · Čestitka za novu odjeću (2/2) / Greeting someone in new clothes (2/2)](https://sunnah.com/hisn:8)
-- [ ] [HM-009 · Pri skidanju odjeće / Taking off clothes](https://sunnah.com/hisn:9)
+- [ ] [HM-008 · Dova onome ko odjene novu odjeću (2/2) / To someone wearing a new garment (2/2)](https://sunnah.com/hisn:8)
 - [ ] [HM-010 · Pri ulasku u toalet / Entering the restroom](https://sunnah.com/hisn:10)
 - [ ] [HM-011 · Pri izlasku iz toaleta / Leaving the restroom](https://sunnah.com/hisn:11)
 - [ ] [HM-075 · Jutarnji i večernji zikr (1/24) / Morning and evening remembrance (1/24)](https://sunnah.com/hisn:75)

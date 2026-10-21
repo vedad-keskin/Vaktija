@@ -37,7 +37,7 @@ for line in SOURCE.read_text(encoding="utf-8").splitlines():
     if line.startswith("## "):
         bs, en = line[3:].split(" / ", 1)
         sections.append((bs, en, []))
-    match = re.match(r"- \[ \] (?:(★|⚠) )?\[HM-(\d{3}) · (.*?)\]\([^)]+\)(.*)", line)
+    match = re.match(r"- \[ \] (?:(★|⚠) )?\[HM-(\d{3})(?: \([12]/2\))? · (.*?)\]\([^)]+\)(.*)", line)
     if match:
         flag, number, title, tail = match.groups()
         bs, en = title.split(" / ", 1)
@@ -49,8 +49,7 @@ for line in SOURCE.read_text(encoding="utf-8").splitlines():
         sections[-1][2].append((int(number), bs, en + kind, flag, "in app" in tail))
 
 numbers = [item[0] for _, _, entries in sections for item in entries]
-assert len(sections) == 10
-assert len(numbers) == len(set(numbers)) == 267
+assert len(numbers) == 268 and len(set(numbers)) == 267 and numbers.count(228) == 2
 assert set(numbers) == set(range(1, 268))
 
 OUTPUT.parent.mkdir(parents=True, exist_ok=True)
@@ -97,7 +96,7 @@ def category(y, bs, en, continued=False):
 
 def row_height(item):
     _, bs, en, _, _ = item
-    return 7 + 11 * len(wrap(bs, "Arial-Bold", 9, text_width)) + 10 * len(wrap(en, "Arial", 8.2, text_width))
+    return 6 + 11 * len(wrap(bs, "Arial-Bold", 9, text_width)) + 10 * len(wrap(en, "Arial", 8.2, text_width))
 
 
 def row(y, item):
@@ -139,7 +138,7 @@ y = new_page()
 pdf.setFont("Arial", 8)
 pdf.setFillColorRGB(0.2, 0.25, 0.28)
 pdf.drawString(left, y - 2, "Kvadratići za izbor / Tick to select   |   * prvi krug / first pass   |   ! provjera izvora / source review")
-pdf.drawString(left, y - 15, "APP = već u aplikaciji / already in app   |   Puni tekst: 3 provjerena zapisa / Full text: 3 verified entries")
+pdf.drawString(left, y - 15, "APP = već u aplikaciji / already in app")
 y -= 30
 
 for bs, en, entries in sections:
