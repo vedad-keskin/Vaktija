@@ -19,8 +19,8 @@ Brojevi, poglavlja i vrste zapisa provjereni su prema [OpenDua datasetu v0.0.4](
 
 ## Svakodnevni zikr i lične navike / Daily remembrance and routines
 
-- [ ] ★ [HM-001 · Zahvala pri buđenju / Praise upon waking](README-full.md#hm-1) · u aplikaciji / in app
-- [ ] [HM-002 · Pri buđenju (2/4) / Upon waking (2/4)](README-full.md#hm-2) · u aplikaciji / in app
+- [ ] ★ [HM-001 · Dova pri buđenju iz sna / Upon waking up](README-full.md#hm-1) · u aplikaciji / in app
+- [ ] [HM-002 · Pri buđenju (2/4) / Upon waking (2/4)](https://sunnah.com/hisn:2)
 - [ ] [HM-003 · Pri buđenju (3/4) / Upon waking (3/4)](https://sunnah.com/hisn:3)
 - [ ] [HM-004 · Pri buđenju (4/4) / Upon waking (4/4)](https://sunnah.com/hisn:4)
 - [ ] [HM-008 · Dova onome ko odjene novu odjeću (2/2) / To someone wearing a new garment (2/2)](https://sunnah.com/hisn:8)
@@ -53,7 +53,7 @@ Brojevi, poglavlja i vrste zapisa provjereni su prema [OpenDua datasetu v0.0.4](
 - [ ] [HM-099 · Prije spavanja (1/13) / Before sleep (1/13)](https://sunnah.com/hisn:99)
 - [ ] [HM-100 · Prije spavanja (2/13) / Before sleep (2/13)](https://sunnah.com/hisn:100)
 - [ ] [HM-101 · Prije spavanja (3/13) / Before sleep (3/13)](https://sunnah.com/hisn:101)
-- [ ] [HM-102 · Povjeravanje duše prije spavanja / Entrusting the soul before sleep](https://sunnah.com/hisn:102)
+- [ ] [HM-102 · Dova pri povratku u postelju / When returning to bed](https://sunnah.com/hisn:102)
 - [ ] [HM-103 · Prije spavanja (5/13) / Before sleep (5/13)](https://sunnah.com/hisn:103)
 - [ ] [HM-104 · Prije spavanja (6/13) / Before sleep (6/13)](https://sunnah.com/hisn:104)
 - [ ] ★ [HM-105 · Kratki zikr pred spavanje / Short remembrance before sleep](https://sunnah.com/hisn:105)
@@ -62,10 +62,10 @@ Brojevi, poglavlja i vrste zapisa provjereni su prema [OpenDua datasetu v0.0.4](
 - [ ] [HM-108 · Prije spavanja (10/13) / Before sleep (10/13)](https://sunnah.com/hisn:108)
 - [ ] [HM-109 · Prije spavanja (11/13) / Before sleep (11/13)](https://sunnah.com/hisn:109)
 - [ ] [HM-110 · Prije spavanja (12/13) / Before sleep (12/13)](https://sunnah.com/hisn:110) · uputa / instruction
-- [ ] [HM-111 · Prije spavanja (13/13) / Before sleep (13/13)](https://sunnah.com/hisn:111)
-- [ ] [HM-112 · Pri buđenju tokom noći / Waking during the night](https://sunnah.com/hisn:112)
-- [ ] [HM-113 · Pri strahu od spavanja ili osjećaju usamljenosti / Fear or loneliness at bedtime](https://sunnah.com/hisn:113)
-- [ ] [HM-114 · Poslije ružnog sna (1/2) / After a bad dream (1/2)](https://sunnah.com/hisn:114) · uputa / instruction
+- [ ] [HM-111 · Dova prije spavanja / Before sleeping](README-full.md#hm-111) · u aplikaciji / in app
+- [ ] [HM-112 · Dova pri prevrtanju u snu / When turning over during the night](README-full.md#hm-112) · u aplikaciji / in app
+- [ ] [HM-113 · Dova protiv nemira i straha u snu / When afraid during sleep](README-full.md#hm-113) · u aplikaciji / in app
+- [ ] [HM-114 · Dova poslije ružnog snoviđenja / After a bad dream](README-full.md#hm-114) · u aplikaciji / in app · uputa / instruction
 - [ ] [HM-115 · Poslije ružnog sna (2/2) / After a bad dream (2/2)](https://sunnah.com/hisn:115) · uputa / instruction
 
 ## Namaz, abdest i džamija / Prayer, ablution and mosque

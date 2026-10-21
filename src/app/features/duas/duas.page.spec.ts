@@ -45,7 +45,13 @@ it('shows ten items at a time and resets on view changes', async () => {
   expect(cards()).toHaveLength(3);
   expect(more()).toBeNull();
   await harness.navigateByUrl('/duas?category=sleep');
-  expect(cards()).toHaveLength(2);
+  expect([...cards()].map((card) => card.getAttribute('data-dua-id'))).toEqual([
+    'hisn-111',
+    'hisn-1',
+    'hisn-114',
+    'hisn-113',
+    'hisn-112',
+  ]);
   await harness.navigateByUrl('/duas?view=saved');
   expect(cards()).toHaveLength(10);
   more()!.click();
@@ -85,8 +91,11 @@ it('routes the bilingual library, validates saved data and persists bookmark cha
     'hisn-183',
     'hisn-184',
     'hisn-186',
+    'hisn-111',
     'hisn-1',
-    'hisn-2',
+    'hisn-114',
+    'hisn-113',
+    'hisn-112',
     'hisn-192',
     'hisn-191',
     'hisn-190',
@@ -175,7 +184,13 @@ it('routes the bilingual library, validates saved data and persists bookmark cha
       expect(card.querySelector('.dua-transcription')?.textContent?.trim() ?? '').toBe(
         dua.transcription[lang],
       );
-      expect(card.querySelector('.dua-translation')?.textContent?.trim()).toBe(
+      expect(card.querySelector('.dua-instructions p')?.textContent?.trim() ?? '').toBe(
+        dua.instructions?.[lang] ?? '',
+      );
+      expect(card.querySelector('.dua-instructions-label')?.textContent?.trim() ?? '').toBe(
+        dua.instructions ? (lang === 'bs' ? BS_LABELS.duasInstructions : EN_LABELS.duasInstructions) : '',
+      );
+      expect(card.querySelector('.dua-translation')?.textContent?.trim() ?? '').toBe(
         dua.translation[lang],
       );
       expect(card.querySelector('.dua-arabic')?.textContent).toBe(dua.arabic);
@@ -227,8 +242,13 @@ it('routes the bilingual library, validates saved data and persists bookmark cha
   localStorage.setItem('vaktija_saved_duas', '["hisn-191"]');
   const reloaded = TestBed.createComponent(DuasPage);
   reloaded.detectChanges();
-  reloaded.nativeElement.querySelector('.duas-show-more').click();
-  reloaded.detectChanges();
+  while (
+    !reloaded.nativeElement.querySelector('[data-dua-id="hisn-191"]') &&
+    reloaded.nativeElement.querySelector('.duas-show-more')
+  ) {
+    reloaded.nativeElement.querySelector('.duas-show-more').click();
+    reloaded.detectChanges();
+  }
   expect(
     reloaded.nativeElement
       .querySelector('[data-dua-id="hisn-191"] .dua-bookmark')

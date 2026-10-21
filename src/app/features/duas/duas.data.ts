@@ -14,6 +14,7 @@ export type Dua = {
   id: string;
   title: Record<LangCode, string>;
   arabic: string;
+  instructions?: Record<LangCode, string>;
   transcription: Record<LangCode, string>;
   translation: Record<LangCode, string>;
   reference: Record<LangCode, string>;

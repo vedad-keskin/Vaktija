@@ -1,6 +1,6 @@
 # Hisnul Muslim — selected full duas (BS / EN)
 
-This file grows one approved category at a time. It currently contains the clothing entries (HM-5, 9, 6, 7), the toilet entries (HM-10–11), the Abdest entries (HM-12–13), the adhan entry (HM-25), the sleeping entries (HM-1–2), the three marriage entries, the gathering entries (HM-195–196), the animal entries, the weather entries (HM-166, 168, 169, 172–175), and the fasting and food entries (HM-176–186). The [complete title checklist](README-titles.md) remains an editorial selection aid; its suggested labels are not published translations.
+This file grows one approved category at a time. It currently contains the clothing entries (HM-5, 9, 6, 7), the toilet entries (HM-10–11), the Abdest entries (HM-12–13), the adhan entry (HM-25), the sleeping entries (HM-111, 1, 114, 113, 112), the three marriage entries, the gathering entries (HM-195–196), the animal entries, the weather entries (HM-166, 168, 169, 172–175), and the fasting and food entries (HM-176–186). The [complete title checklist](README-titles.md) remains an editorial selection aid; its suggested labels are not published translations.
 
 ## Izvori i uredničke napomene / Sources and editorial notes
 
@@ -12,10 +12,10 @@ This file grows one approved category at a time. It currently contains the cloth
   - dot under: ح ḥ, ص ṣ, ض ḍ, ط ṭ, ظ ẓ
   - ق q ; long vowels ā ī ū
 - HM-192 / Bosnian 180’s basmala is copied from the reader’s photograph of page 114. Most other Bosnian transcriptions in this file are **adaptations** of the published Bosnian recitation with this key. A matching digital copy of the photographed edition was not found.
-- **Spavanje / Sleep (HM-1–2):** Bosnian transcriptions follow the reader’s photograph of page 13 of the 2017 edition. Its HM-2 ends “Allahumma-gfir li”; the linked English/Arabic Sunnah.com edition ends “rabbighfir lī”. The Bosnian meanings remain from the linked IslamHouse PDF.
+- **Spavanje / Sleep:** Bosnian 103–105 correspond to English 111–113; Bosnian 107–109 make up English 114; HM-1 matches Bosnian 1. Bosnian transcriptions follow the reader’s photographs of pages 13 and 75–77 of the 2017 edition; linked IslamHouse pages provide the published digital counterpart. HM-114 shows the short refuge phrase from Bosnian 107. Its Bosnian instruction is a concise summary requested by the reader, retaining the three recitations specified in the book; its English instruction follows that summary. Its short BS/EN meanings are excerpts of published renderings linked below. The English transcription is the opening of the published wording in [Riyad as-Salihin 841](https://sunnah.com/riyadussalihin:841). HM-99–101 are Qur’anic recitations; the partly visible Bosnian 95–97 are not included.
 - **English title, transliteration and meaning; Arabic text:** [Sunnah.com, *Hisn al-Muslim*](https://sunnah.com/hisn). Only the recited words and their published meanings are shown below. Line breaks on the Sunnah.com page are joined with spaces. Arabic orthography follows the linked entry, including HM-13’s unspaced وَأَشْهَدُأَنَّ.
 - Numbering matches for HM-10 through HM-13 and HM-25. The marriage items differ: BS 178 ↔ EN 190, BS 179 ↔ EN 191, BS 180 ↔ EN 192. The gathering items are BS 183–184 ↔ EN 195–196. The weather items differ by nine: BS 157, 159, 160, 163–166 ↔ EN 166, 168, 169, 172–175. Fasting and food is BS 167–175 ↔ EN 176, 178–185; EN 177 is not in the Bosnian edition, and EN 186 is BS 235.
-- Sleep HM-1–2 matches BS 1–2. The Bosnian HM-2 meaning quotes the recited words and the source's instruction “Zatim zamoli” from its longer narration.
+- Sleep HM-1 matches BS 1.
 - Text from these editions is reproduced with attribution. [IslamHouse's reuse FAQ](https://d1.islamhouse.com/html/faq.htm) permits publishing its materials without changing the content and with a source citation. Do not create new BS or EN translations for future entries; copy and check a published edition.
 
 ## Odjeća / Clothing
@@ -665,6 +665,27 @@ This file grows one approved category at a time. It currently contains the cloth
 
 ## Spavanje / Sleep
 
+<a id="hm-111"></a>
+### HM-111 · Dova prije spavanja / Before sleeping
+
+**Arapski / Arabic**
+
+<p lang="ar" dir="rtl">اللّهُـمَّ أَسْـلَمْتُ نَفْـسي إِلَـيْكَ، وَفَوَّضْـتُ أَمْـري إِلَـيْكَ، وَوَجَّـهْتُ وَجْـهي إِلَـيْكَ، وَأَلْـجَـاْتُ ظَهـري إِلَـيْكَ، رَغْبَـةً وَرَهْـبَةً إِلَـيْكَ، لا مَلْجَـأَ وَلا مَنْـجـا مِنْـكَ إِلاّ إِلَـيْكَ، آمَنْـتُ بِكِتـابِكَ الّـذي أَنْزَلْـتَ وَبِنَبِـيِّـكَ الّـذي أَرْسَلْـت</p>
+
+**Bosanski — uputa (2017 edition, page 75):** Kad se odlučiš ići u postelju, prethodno uzmi abdest kao za namaz, potom lezi na desni bok i prouči dovu:
+
+**English — instruction (Sunnah.com 111):** Before you go to bed perform ablutions as you would for prayer, then lie down on your right side and say. . .
+
+**Bosanski — transkripcija (2017 edition, page 75):** Allāhumme eslemtu nefsī ilejke ve fevvaḍtu emrī ilejke ve vedždžehtu vedžhī ilejke ve eldže’tu ẓahrī ilejke ragbeten ve rehbeten ilejke, lā meldžee ve lā mendžā minke illā ilejke. Āmentu bi Kitābike-l-leḏī enzelte ve bi Nebijjike-l-leḏī erselte.
+
+**Bosanski — prijevod (2017 edition, page 75):** Allahu, Tebi predadoh svoju dušu, i oporučih svoje stanje, i upravih lice svoje, i prepustih (sklonih) svoja leđa iz želje i straha, jer nema skloništa ni spasilišta pred Tobom osim kod Tebe. Vjerujem u Tvoju Knjigu, koju si spustio, i u Tvoga Vjerovjesnika, koga si poslao.
+
+**English — transliteration (Sunnah.com 111):** Allāhumma aslamtu nafsī ilayk, wa fawwaḍtu amrī ilayk, wa wajjahtu wajhī ilayk, wa alja'tu ẓahrī ilayk, raghbatan wa rahbatan ilayk, lā malja'a wa la manjā minka illā ilayk, āmantu bikitābika ‘l-ladhī anzalt, wa bi-nabiyyika ‘l-ladhī arsalt.
+
+**English — meaning (Sunnah.com 111):** O Allah, I submit myself to You, entrust my affairs to You, turn my face to You, and lay myself down depending upon You, hoping in You and fearing You. There is no refuge, and no escape, except to You. I believe in Your Book (the Qur'an) that You revealed, and the Prophet whom You sent.
+
+**Sources:** [Bosnian PDF, page 43](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=43) · [English and Arabic](https://sunnah.com/hisn:111)
+
 <a id="hm-1"></a>
 ### HM-1 · Dova pri buđenju iz sna / Upon waking up
 
@@ -682,20 +703,58 @@ This file grows one approved category at a time. It currently contains the cloth
 
 **Sources:** [Bosnian PDF, page 7](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=7) · [English and Arabic](https://sunnah.com/hisn:1)
 
-<a id="hm-2"></a>
-### HM-2 · Dova pri buđenju tokom noći / Upon waking during the night
+<a id="hm-114"></a>
+### HM-114 · Dova poslije ružnog snoviđenja / After a bad dream
+
+**Arapski / Arabic — kratka fraza iz Bosnian 107:**
+
+<p lang="ar" dir="rtl">أعوذ بالله</p>
+
+**Bosanski — sažeta uputa (Bosnian 107–109):** Onaj ko sanja san koji mu nije drag neka ga ne priča nikome. Neka u lijevu stranu puhne tri puta, potom prouči ovu dovu tri puta i prevrne se na drugu stranu.
+
+**English — instruction (following the shortened Bosnian wording):** Whoever has a dream they dislike should not tell anyone about it. They should blow to their left three times, then recite this dua three times and turn onto their other side.
+
+**Bosanski — transkripcija (2017 edition, page 77):** E‘ūḏu billāhi.
+
+**Bosanski — prijevod (početak objavljenog prijevoda istiaze):** Utječem se Allahu.
+
+**English — transliteration (opening words from Riyad as-Salihin 841):** A'udhu billahi.
+
+**English — meaning (opening of published rendering):** I seek refuge in Allah.
+
+**Sources:** [Bosnian PDF, page 45](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=45) · [English instructions](https://sunnah.com/hisn:114) · [English transliteration](https://sunnah.com/riyadussalihin:841) · [Bosnian meaning](https://www.islam.ba/pojmovnik/i/istiaza) · [English meaning](https://d1.islamhouse.com/data/en/ih_books/single2/en-authentic-supplications-for-morning-and-evening.pdf#page=5)
+
+<a id="hm-113"></a>
+### HM-113 · Dova protiv nemira i straha u snu / When afraid during sleep
 
 **Arapski / Arabic**
 
-<p lang="ar" dir="rtl">لا إلهَ إلاّ اللّهُ وَحْـدَهُ لا شَـريكَ له، لهُ المُلـكُ ولهُ الحَمـد، وهوَ على كلّ شيءٍ قدير، سُـبْحانَ اللهِ، والحمْـدُ لله، ولا إلهَ إلاّ اللهُ واللهُ أكبَر، وَلا حَولَ وَلا قوّة إلاّ باللّهِ العليّ العظيم، رَبِّ اغْفرْ لي</p>
+<p lang="ar" dir="rtl">أَعـوذُ بِكَلِمـاتِ اللّهِ التّـامّـاتِ مِن غَضَـبِهِ وَعِـقابِهِ وَشَـرِّ عِبـادِهِ وَمِنْ هَمَـزاتِ الشَّـياطينِ وَأَنْ يَحْضـرون</p>
 
-**Bosanski — transkripcija (2017 edition, page 13):** Lā ilāhe illellāhu vaḥdehū lā šerīke leh, lehu-l-mulku ve lehu-l-ḥamdu, ve huve ‘alā kulli šej’in qadīr. Subḥānallāhi ve-l-ḥamdu lillāhi ve lā ilāhe illellāhu vallāhu ekber, ve lā ḥavle ve lā quvvete illā billāhi-l-‘Alijji-l-‘Aẓīm. Allahumma-gfir li.
+**Bosanski — transkripcija (2017 edition, page 77):** E‘ūḏu bi kelimātillāhi-t-tāmmāti min gaḍabihi ve ‘iqābihi ve šerri ‘ibādihi ve min hemezāti-š-šejāṭīni ve en jaḥḍurūn.
 
-**Bosanski — prijevod (IslamHouse 2, recited words):** Nema boga osim Allaha, Jedinoga, Koji Sebi ravnoga nema. Njemu vlast pripada i Njemu pripada svaka zahvalnost. Njegova je moć iznad svake druge moći, neka je slavljen Allah i neka Mu je hvala; nema boga osim Allaha. Allah je najveći. Nema moći i sile osim Allahove, Moćnog i Velikog. Zatim zamoli: Gospodaru moj, oprosti mi.
+**Bosanski — prijevod (IslamHouse 105):** Zaštitu tražim pomoću Allahovih savršenih Riječi pred Njegovom srdžbom i Njegovom kaznom, protiv zla robova Njegovih te protiv šejtanskih nagovaranja na zlo i njihova prisustva.
 
-**English — transliteration (Sunnah.com 2):** Lā 'ilāha 'illallāhu waḥdahu la sharīka lahu, lahul-mulku wa lahul-ḥamdu, wa huwa 'alā kulli shay'in qadīr Subḥānallāhi, walḥamdu lillāhi, wa lā 'ilāha 'illallāhu, wallāhu 'akbar, wa lā ḥaula wa lā quwwata 'illā billāhil-`aliyyil-`aẓīm, rabbighfir lī.
+**English — transliteration (Sunnah.com 113):** A`ūdhu bikalimāti ‘llāhit-tāmmāti min ghaḍabihi wa `iqābihi wa sharri `ibādih, wa min hamazātish-shayāṭīni wa an yaḥḍurūn.
 
-**English — meaning (Sunnah.com 2):** There is none worthy of worship but Allah alone, Who has no partner, His is the dominion and to Him belongs all praise, and He is able to do all things. Glory is to Allah. Praise is to Allah. There is none worthy of worship but Allah. Allah is the Most Great. There is no might and no power except by Allah's leave, the Exalted, the Mighty. My Lord, forgive me.
+**English — meaning (Sunnah.com 113):** I seek refuge in the Perfect Words of Allah from His anger and His punishment, from the evil of His slaves, and from the taunts of devils and from their presence.
 
-**Sources:** [Bosnian PDF, page 7](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=7) · [English and Arabic](https://sunnah.com/hisn:2)
+**Sources:** [Bosnian PDF, page 44](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=44) · [English and Arabic](https://sunnah.com/hisn:113)
+
+<a id="hm-112"></a>
+### HM-112 · Dova pri prevrtanju u snu / When turning over during the night
+
+**Arapski / Arabic**
+
+<p lang="ar" dir="rtl">لا إِلـهَ إِلاّ اللهُ الـواحِدُ القَهّـار رَبُّ السَّـمواتِ وَالأرْضِ وَما بَيْـنَهـما العَزيـزُ الغَـفّار</p>
+
+**Bosanski — transkripcija (2017 edition, page 76):** Lā ilāhe illellāhu-l-Vāḥidu-l-Qahhāru Rabbi-s-semāvāti ve-l-erḍi ve mā bejnehume-l-Azīzu-l-Gaffār.
+
+**Bosanski — prijevod (2017 edition, page 76):** Nema boga osim Allaha, Jednog i Silnog, Gospodara nebesa i Zemlje i prostora među njima, Silnog Oproštavatelja.
+
+**English — transliteration (Sunnah.com 112):** Lā ilāha illallāh al-Wāḥidul-Qahhār, Rabbus-samāwāti wa ‘l-arḍi wa mā baynahuma al-`Azīzul-Ghaffār.
+
+**English — meaning (Sunnah.com 112):** There is none worthy of worship but Allah, the One, the Victorious, Lord of the heavens and the earth and all that is between them, the All-Mighty, the All-Forgiving.
+
+**Sources:** [Bosnian PDF, page 44](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=44) · [English and Arabic](https://sunnah.com/hisn:112)
 

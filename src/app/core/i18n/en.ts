@@ -129,6 +129,7 @@ export const EN_LABELS: AppLabels = {
   duasStorageError:
     'This change applies to this page only. Your browser could not save it permanently.',
   duasTranscription: 'Transliteration',
+  duasInstructions: 'Instruction',
   duasTranslation: 'Translation of the meaning',
   duasSource: 'Source',
 

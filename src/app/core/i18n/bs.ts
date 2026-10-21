@@ -94,6 +94,7 @@ export interface AppLabels {
   showMore: string;
   duasStorageError: string;
   duasTranscription: string;
+  duasInstructions: string;
   duasTranslation: string;
   duasSource: string;
 
@@ -273,6 +274,7 @@ export const BS_LABELS: AppLabels = {
   duasStorageError:
     'Promjena vrijedi samo na ovoj stranici. Preglednik je nije mogao trajno sačuvati.',
   duasTranscription: 'Transkripcija',
+  duasInstructions: 'Uputa',
   duasTranslation: 'Prijevod značenja',
   duasSource: 'Izvor',
 

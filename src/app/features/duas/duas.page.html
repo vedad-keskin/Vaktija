@@ -93,14 +93,22 @@
           </header>
           <p class="dua-arabic" lang="ar" dir="rtl">{{ dua.arabic }}</p>
           <span class="duas-divider dua-card-divider" aria-hidden="true"></span>
+          @if (dua.instructions?.[language.lang()]; as instruction) {
+            <div class="dua-instructions" role="note">
+              <span class="dua-instructions-label">{{ labels().duasInstructions }}</span>
+              <p>{{ instruction }}</p>
+            </div>
+          }
           @if (dua.transcription[language.lang()]) {
             <p class="dua-transcription" [attr.aria-label]="labels().duasTranscription">
               {{ dua.transcription[language.lang()] }}
             </p>
           }
-          <p class="dua-translation" [attr.aria-label]="labels().duasTranslation">
-            {{ dua.translation[language.lang()] }}
-          </p>
+          @if (dua.translation[language.lang()]) {
+            <p class="dua-translation" [attr.aria-label]="labels().duasTranslation">
+              {{ dua.translation[language.lang()] }}
+            </p>
+          }
           <footer class="dua-source">
             <a [href]="language.lang() === 'bs' ? (dua.bosnianSourceUrl ?? dua.sourceUrl) : dua.sourceUrl" target="_blank" rel="noopener noreferrer">
               {{ labels().duasSource }} · {{ dua.reference[language.lang()] }}
