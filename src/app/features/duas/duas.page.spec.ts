@@ -44,6 +44,8 @@ it('shows ten items at a time and resets on view changes', async () => {
   await harness.navigateByUrl('/duas?category=marriage');
   expect(cards()).toHaveLength(3);
   expect(more()).toBeNull();
+  await harness.navigateByUrl('/duas?category=sleep');
+  expect(cards()).toHaveLength(2);
   await harness.navigateByUrl('/duas?view=saved');
   expect(cards()).toHaveLength(10);
   more()!.click();
@@ -62,6 +64,7 @@ it('routes the bilingual library, validates saved data and persists bookmark cha
     'ablution',
     'adhan',
     'fasting',
+    'sleep',
     'marriage',
     'clothing',
     'gathering',
@@ -82,6 +85,8 @@ it('routes the bilingual library, validates saved data and persists bookmark cha
     'hisn-183',
     'hisn-184',
     'hisn-186',
+    'hisn-1',
+    'hisn-2',
     'hisn-192',
     'hisn-191',
     'hisn-190',

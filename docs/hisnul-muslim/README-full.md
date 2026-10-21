@@ -1,6 +1,6 @@
 # Hisnul Muslim — selected full duas (BS / EN)
 
-This file grows one approved category at a time. It currently contains the clothing entries (HM-5, 9, 6, 7), the toilet entries (HM-10–11), the Abdest entries (HM-12–13), the adhan entry (HM-25), the three marriage entries, the gathering entries (HM-195–196), the weather entries (HM-166, 168, 169, 172–175), and the fasting and food entries (HM-176–186). The [complete title checklist](README-titles.md) remains an editorial selection aid; its suggested labels are not published translations.
+This file grows one approved category at a time. It currently contains the clothing entries (HM-5, 9, 6, 7), the toilet entries (HM-10–11), the Abdest entries (HM-12–13), the adhan entry (HM-25), the sleeping entries (HM-1–2), the three marriage entries, the gathering entries (HM-195–196), the animal entries, the weather entries (HM-166, 168, 169, 172–175), and the fasting and food entries (HM-176–186). The [complete title checklist](README-titles.md) remains an editorial selection aid; its suggested labels are not published translations.
 
 ## Izvori i uredničke napomene / Sources and editorial notes
 
@@ -11,9 +11,11 @@ This file grows one approved category at a time. It currently contains the cloth
   - line under: ث ṯ, خ ẖ, ذ ḏ
   - dot under: ح ḥ, ص ṣ, ض ḍ, ط ṭ, ظ ẓ
   - ق q ; long vowels ā ī ū
-- HM-192 / Bosnian 180’s basmala is copied from the reader’s photograph of page 114. The rest of that line, and the other Bosnian transcriptions in this file, are **adaptations** of the published Bosnian recitation with this key. A matching digital copy of the photographed edition was not found.
+- HM-192 / Bosnian 180’s basmala is copied from the reader’s photograph of page 114. Most other Bosnian transcriptions in this file are **adaptations** of the published Bosnian recitation with this key. A matching digital copy of the photographed edition was not found.
+- **Spavanje / Sleep (HM-1–2):** Bosnian transcriptions follow the reader’s photograph of page 13 of the 2017 edition. Its HM-2 ends “Allahumma-gfir li”; the linked English/Arabic Sunnah.com edition ends “rabbighfir lī”. The Bosnian meanings remain from the linked IslamHouse PDF.
 - **English title, transliteration and meaning; Arabic text:** [Sunnah.com, *Hisn al-Muslim*](https://sunnah.com/hisn). Only the recited words and their published meanings are shown below. Line breaks on the Sunnah.com page are joined with spaces. Arabic orthography follows the linked entry, including HM-13’s unspaced وَأَشْهَدُأَنَّ.
 - Numbering matches for HM-10 through HM-13 and HM-25. The marriage items differ: BS 178 ↔ EN 190, BS 179 ↔ EN 191, BS 180 ↔ EN 192. The gathering items are BS 183–184 ↔ EN 195–196. The weather items differ by nine: BS 157, 159, 160, 163–166 ↔ EN 166, 168, 169, 172–175. Fasting and food is BS 167–175 ↔ EN 176, 178–185; EN 177 is not in the Bosnian edition, and EN 186 is BS 235.
+- Sleep HM-1–2 matches BS 1–2. The Bosnian HM-2 meaning quotes the recited words and the source's instruction “Zatim zamoli” from its longer narration.
 - Text from these editions is reproduced with attribution. [IslamHouse's reuse FAQ](https://d1.islamhouse.com/html/faq.htm) permits publishing its materials without changing the content and with a source citation. Do not create new BS or EN translations for future entries; copy and check a published edition.
 
 ## Odjeća / Clothing
@@ -660,4 +662,40 @@ This file grows one approved category at a time. It currently contains the cloth
 **English — meaning (Sunnah.com 186):** I am fasting. I am fasting.
 
 **Sources:** [Bosnian PDF, page 90](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=90) · [English and Arabic](https://sunnah.com/hisn:186)
+
+## Spavanje / Sleep
+
+<a id="hm-1"></a>
+### HM-1 · Dova pri buđenju iz sna / Upon waking up
+
+**Arapski / Arabic**
+
+<p lang="ar" dir="rtl">الحَمْـدُ لِلّهِ الّذي أَحْـيانا بَعْـدَ ما أَماتَـنا وَإليه النُّـشور</p>
+
+**Bosanski — transkripcija (2017 edition, page 13):** El-ḥamdu lillāhi-lleḏī aḥjānā ba‘de mā emātenā ve ilejhi-n-nušūr.
+
+**Bosanski — prijevod (IslamHouse 1):** Hvala Allahu, Koji nas oživi nakon što nas usmrti, i Njemu se, konačno, sve vraća.
+
+**English — transliteration (Sunnah.com 1):** Alḥamdu lillāhil-ladhī 'aḥyānā ba`da mā 'amātanā wa 'ilayhin-nushūr.
+
+**English — meaning (Sunnah.com 1):** Praise is to Allah Who gives us life after He has caused us to die and to Him is the return.
+
+**Sources:** [Bosnian PDF, page 7](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=7) · [English and Arabic](https://sunnah.com/hisn:1)
+
+<a id="hm-2"></a>
+### HM-2 · Dova pri buđenju tokom noći / Upon waking during the night
+
+**Arapski / Arabic**
+
+<p lang="ar" dir="rtl">لا إلهَ إلاّ اللّهُ وَحْـدَهُ لا شَـريكَ له، لهُ المُلـكُ ولهُ الحَمـد، وهوَ على كلّ شيءٍ قدير، سُـبْحانَ اللهِ، والحمْـدُ لله، ولا إلهَ إلاّ اللهُ واللهُ أكبَر، وَلا حَولَ وَلا قوّة إلاّ باللّهِ العليّ العظيم، رَبِّ اغْفرْ لي</p>
+
+**Bosanski — transkripcija (2017 edition, page 13):** Lā ilāhe illellāhu vaḥdehū lā šerīke leh, lehu-l-mulku ve lehu-l-ḥamdu, ve huve ‘alā kulli šej’in qadīr. Subḥānallāhi ve-l-ḥamdu lillāhi ve lā ilāhe illellāhu vallāhu ekber, ve lā ḥavle ve lā quvvete illā billāhi-l-‘Alijji-l-‘Aẓīm. Allahumma-gfir li.
+
+**Bosanski — prijevod (IslamHouse 2, recited words):** Nema boga osim Allaha, Jedinoga, Koji Sebi ravnoga nema. Njemu vlast pripada i Njemu pripada svaka zahvalnost. Njegova je moć iznad svake druge moći, neka je slavljen Allah i neka Mu je hvala; nema boga osim Allaha. Allah je najveći. Nema moći i sile osim Allahove, Moćnog i Velikog. Zatim zamoli: Gospodaru moj, oprosti mi.
+
+**English — transliteration (Sunnah.com 2):** Lā 'ilāha 'illallāhu waḥdahu la sharīka lahu, lahul-mulku wa lahul-ḥamdu, wa huwa 'alā kulli shay'in qadīr Subḥānallāhi, walḥamdu lillāhi, wa lā 'ilāha 'illallāhu, wallāhu 'akbar, wa lā ḥaula wa lā quwwata 'illā billāhil-`aliyyil-`aẓīm, rabbighfir lī.
+
+**English — meaning (Sunnah.com 2):** There is none worthy of worship but Allah alone, Who has no partner, His is the dominion and to Him belongs all praise, and He is able to do all things. Glory is to Allah. Praise is to Allah. There is none worthy of worship but Allah. Allah is the Most Great. There is no might and no power except by Allah's leave, the Exalted, the Mighty. My Lord, forgive me.
+
+**Sources:** [Bosnian PDF, page 7](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=7) · [English and Arabic](https://sunnah.com/hisn:2)
 

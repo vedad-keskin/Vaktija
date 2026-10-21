@@ -73,7 +73,7 @@ export const WEATHER_DUAS: readonly Dua[] = [
     title: { bs: "Dova nakon padanja kiše", en: "After rainfall" },
     arabic: "مُطِـرْنا بِفَضْـلِ اللهِ وَرَحْمَـتِه",
     transcription: {
-      bs: "Muṭirnā bi faḍli-l-Lāhi ve raḥmetih.",
+      bs: "Muṭirnā bi faḍlillāhi ve raḥmetihī.",
       en: "Muṭirnā bifaḍlillāhi wa raḥmatih.",
     },
     translation: {
