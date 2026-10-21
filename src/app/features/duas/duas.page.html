@@ -30,7 +30,7 @@
       >
         {{ copy().all }}
       </a>
-      @for (category of categories; track category.id) {
+      @for (category of categories(); track category.id) {
         <a
           [routerLink]="collectionPath"
           [queryParams]="{ category: category.id }"

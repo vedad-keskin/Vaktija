@@ -74,9 +74,9 @@ Brojevi, poglavlja i vrste zapisa provjereni su prema [OpenDua datasetu v0.0.4](
 - [ ] ★ [HM-013 · Šehadet poslije abdesta / Testimony after ablution](https://sunnah.com/hisn:13)
 - [ ] [HM-014 · Poslije abdesta (2/3) / After ablution (2/3)](https://sunnah.com/hisn:14)
 - [ ] [HM-015 · Poslije abdesta (3/3) / After ablution (3/3)](https://sunnah.com/hisn:15)
-- [ ] [HM-019 · Na putu u džamiju / Going to the mosque](https://sunnah.com/hisn:19)
-- [ ] [HM-020 · Ulazak u džamiju / Entering the mosque](https://sunnah.com/hisn:20)
-- [ ] [HM-021 · Pri izlasku iz džamije / Leaving the mosque](https://sunnah.com/hisn:21)
+- [ ] [HM-019 · Dova pri odlasku u džamiju / Going to the mosque](README-full.md#hm-19) · u aplikaciji / in app
+- [ ] [HM-020 · Dova pri ulasku u džamiju / Entering the mosque](README-full.md#hm-20) · u aplikaciji / in app
+- [ ] [HM-021 · Dova pri izlasku iz džamije / Leaving the mosque](README-full.md#hm-21) · u aplikaciji / in app
 - [ ] [HM-022 · Pri slušanju ezana (1/5) / Hearing the adhan (1/5)](https://sunnah.com/hisn:22)
 - [ ] [HM-023 · Pri slušanju ezana (2/5) / Hearing the adhan (2/5)](https://sunnah.com/hisn:23)
 - [ ] [HM-024 · Pri slušanju ezana (3/5) / Hearing the adhan (3/5)](https://sunnah.com/hisn:24) · uputa / instruction

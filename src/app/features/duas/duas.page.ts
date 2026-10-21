@@ -1,4 +1,13 @@
-import { afterNextRender, Component, computed, effect, ElementRef, inject, Injector, signal } from '@angular/core';
+import {
+  afterNextRender,
+  Component,
+  computed,
+  effect,
+  ElementRef,
+  inject,
+  Injector,
+  signal,
+} from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, RouterLink } from '@angular/router';
@@ -28,7 +37,16 @@ export class DuasPage {
   private readonly injector = inject(Injector);
   private readonly isDhikr = this.route.snapshot.data['collection'] === 'dhikr';
   private readonly items = this.isDhikr ? DHIKR : DUAS;
-  protected readonly categories = this.isDhikr ? [] : DUA_CATEGORIES;
+  protected readonly categories = computed(() =>
+    this.isDhikr
+      ? []
+      : [...DUA_CATEGORIES].sort((a, b) =>
+          a.label[this.language.lang()].localeCompare(
+            b.label[this.language.lang()],
+            this.language.lang(),
+          ),
+        ),
+  );
   private readonly storageKey = this.isDhikr ? 'vaktija_saved_dhikr' : 'vaktija_saved_duas';
   protected readonly collectionPath = this.isDhikr ? '/dhikr' : '/duas';
   protected readonly copy = computed(() => {
@@ -73,7 +91,7 @@ export class DuasPage {
   private readonly visibleCount = signal(PAGE_SIZE);
   protected readonly savedOnly = computed(() => this.queryParams().get('view') === 'saved');
   protected readonly activeCategory = computed(() =>
-    this.categories.find((category) => category.id === this.queryParams().get('category')),
+    this.categories().find((category) => category.id === this.queryParams().get('category')),
   );
   private readonly filteredDuas = computed(() =>
     this.savedOnly()
@@ -103,7 +121,10 @@ export class DuasPage {
     const nextIndex = this.visibleCount();
     this.visibleCount.update((count) => count + PAGE_SIZE);
     afterNextRender(
-      () => (this.host.nativeElement as HTMLElement).querySelectorAll<HTMLElement>('.dua-card h2')[nextIndex]?.focus(),
+      () =>
+        (this.host.nativeElement as HTMLElement)
+          .querySelectorAll<HTMLElement>('.dua-card h2')
+          [nextIndex]?.focus(),
       { injector: this.injector },
     );
   }

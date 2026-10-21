@@ -16,7 +16,10 @@ afterEach(() => {
 });
 
 it('shows ten items at a time and resets on view changes', async () => {
-  localStorage.setItem('vaktija_saved_duas', JSON.stringify(DUAS.slice(0, 11).map((dua) => dua.id)));
+  localStorage.setItem(
+    'vaktija_saved_duas',
+    JSON.stringify(DUAS.slice(0, 11).map((dua) => dua.id)),
+  );
   await TestBed.configureTestingModule({
     imports: [DuasPage],
     providers: [provideRouter(routes)],
@@ -37,13 +40,22 @@ it('shows ten items at a time and resets on view changes', async () => {
   expect(cards()).toHaveLength(30);
   more()!.click();
   harness.detectChanges();
+  expect(cards()).toHaveLength(40);
+  more()!.click();
+  harness.detectChanges();
   expect(cards()).toHaveLength(DUAS.length);
   expect(more()).toBeNull();
-  expect(document.activeElement).toBe(cards()[30].querySelector('h2'));
+  expect(document.activeElement).toBe(cards()[40].querySelector('h2'));
 
   await harness.navigateByUrl('/duas?category=marriage');
   expect(cards()).toHaveLength(3);
   expect(more()).toBeNull();
+  await harness.navigateByUrl('/duas?category=mosque');
+  expect([...cards()].map((card) => card.getAttribute('data-dua-id'))).toEqual([
+    'hisn-19',
+    'hisn-20',
+    'hisn-21',
+  ]);
   await harness.navigateByUrl('/duas?category=sleep');
   expect([...cards()].map((card) => card.getAttribute('data-dua-id'))).toEqual([
     'hisn-111',
@@ -68,6 +80,7 @@ it('routes the bilingual library, validates saved data and persists bookmark cha
   expect(DUA_CATEGORIES.map((category) => category.id)).toEqual([
     'toilet',
     'ablution',
+    'mosque',
     'adhan',
     'fasting',
     'sleep',
@@ -82,6 +95,9 @@ it('routes the bilingual library, validates saved data and persists bookmark cha
     'hisn-11',
     'hisn-12',
     'hisn-13',
+    'hisn-19',
+    'hisn-20',
+    'hisn-21',
     'hisn-25',
     'hisn-176',
     'hisn-178',
@@ -159,6 +175,8 @@ it('routes the bilingual library, validates saved data and persists bookmark cha
   harness.detectChanges();
   showMore()!.click();
   harness.detectChanges();
+  showMore()!.click();
+  harness.detectChanges();
   expect(cards()).toHaveLength(DUAS.length);
   const marriage = DUA_CATEGORIES.find((category) => category.id === 'marriage')!;
   await harness.navigateByUrl('/duas?category=marriage');
@@ -173,11 +191,45 @@ it('routes the bilingual library, validates saved data and persists bookmark cha
   harness.detectChanges();
   showMore()!.click();
   harness.detectChanges();
+  showMore()!.click();
+  harness.detectChanges();
   expect(cards()).toHaveLength(DUAS.length);
 
   for (const lang of ['bs', 'en'] as const) {
     TestBed.inject(LanguageService).setLanguage(lang);
     harness.detectChanges();
+    const categoryLabels = [...element().querySelectorAll('.duas-collections a')]
+      .slice(1, -1)
+      .map((link) => link.textContent?.trim());
+    expect(categoryLabels).toEqual(
+      lang === 'bs'
+        ? [
+            'Abdest',
+            'Brak',
+            'Džamija',
+            'Ezan',
+            'Odjeća',
+            'Post i hrana',
+            'Sijelo',
+            'Spavanje',
+            'Toalet',
+            'Vrijeme',
+            'Životinje',
+          ]
+        : [
+            'Ablution',
+            'Adhan',
+            'Animals',
+            'Clothing',
+            'Fasting and food',
+            'Gathering',
+            'Marriage',
+            'Mosque',
+            'Sleep',
+            'Toilet',
+            'Weather',
+          ],
+    );
     for (const [index, card] of [...cards()].entries()) {
       const dua = DUAS[index];
       expect(card.querySelector('h2')?.textContent).toBe(dua.title[lang]);
@@ -188,7 +240,11 @@ it('routes the bilingual library, validates saved data and persists bookmark cha
         dua.instructions?.[lang] ?? '',
       );
       expect(card.querySelector('.dua-instructions-label')?.textContent?.trim() ?? '').toBe(
-        dua.instructions ? (lang === 'bs' ? BS_LABELS.duasInstructions : EN_LABELS.duasInstructions) : '',
+        dua.instructions
+          ? lang === 'bs'
+            ? BS_LABELS.duasInstructions
+            : EN_LABELS.duasInstructions
+          : '',
       );
       expect(card.querySelector('.dua-translation')?.textContent?.trim() ?? '').toBe(
         dua.translation[lang],

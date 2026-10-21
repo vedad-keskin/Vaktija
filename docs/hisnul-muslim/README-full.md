@@ -1,6 +1,6 @@
 # Hisnul Muslim — selected full duas (BS / EN)
 
-This file grows one approved category at a time. It currently contains the clothing entries (HM-5, 9, 6, 7), the toilet entries (HM-10–11), the Abdest entries (HM-12–13), the adhan entry (HM-25), the sleeping entries (HM-111, 1, 114, 113, 112), the three marriage entries, the gathering entries (HM-195–196), the animal entries, the weather entries (HM-166, 168, 169, 172–175), and the fasting and food entries (HM-176–186). The [complete title checklist](README-titles.md) remains an editorial selection aid; its suggested labels are not published translations.
+This file grows one approved category at a time. It currently contains the clothing entries (HM-5, 9, 6, 7), the toilet entries (HM-10–11), the Abdest entries (HM-12–13), the mosque entries (HM-19–21), the adhan entry (HM-25), the sleeping entries (HM-111, 1, 114, 113, 112), the three marriage entries, the gathering entries (HM-195–196), the animal entries, the weather entries (HM-166, 168, 169, 172–175), and the fasting and food entries (HM-176–186). The [complete title checklist](README-titles.md) remains an editorial selection aid; its suggested labels are not published translations.
 
 ## Izvori i uredničke napomene / Sources and editorial notes
 
@@ -13,8 +13,9 @@ This file grows one approved category at a time. It currently contains the cloth
   - ق q ; long vowels ā ī ū
 - HM-192 / Bosnian 180’s basmala is copied from the reader’s photograph of page 114. Most other Bosnian transcriptions in this file are **adaptations** of the published Bosnian recitation with this key. A matching digital copy of the photographed edition was not found.
 - **Spavanje / Sleep:** Bosnian 103–105 correspond to English 111–113; Bosnian 107–109 make up English 114; HM-1 matches Bosnian 1. Bosnian transcriptions follow the reader’s photographs of pages 13 and 75–77 of the 2017 edition; linked IslamHouse pages provide the published digital counterpart. HM-114 shows the short refuge phrase from Bosnian 107. Its Bosnian instruction is a concise summary requested by the reader, retaining the three recitations specified in the book; its English instruction follows that summary. Its short BS/EN meanings are excerpts of published renderings linked below. The English transcription is the opening of the published wording in [Riyad as-Salihin 841](https://sunnah.com/riyadussalihin:841). HM-99–101 are Qur’anic recitations; the partly visible Bosnian 95–97 are not included.
-- **English title, transliteration and meaning; Arabic text:** [Sunnah.com, *Hisn al-Muslim*](https://sunnah.com/hisn). Only the recited words and their published meanings are shown below. Line breaks on the Sunnah.com page are joined with spaces. Arabic orthography follows the linked entry, including HM-13’s unspaced وَأَشْهَدُأَنَّ.
-- Numbering matches for HM-10 through HM-13 and HM-25. The marriage items differ: BS 178 ↔ EN 190, BS 179 ↔ EN 191, BS 180 ↔ EN 192. The gathering items are BS 183–184 ↔ EN 195–196. The weather items differ by nine: BS 157, 159, 160, 163–166 ↔ EN 166, 168, 169, 172–175. Fasting and food is BS 167–175 ↔ EN 176, 178–185; EN 177 is not in the Bosnian edition, and EN 186 is BS 235.
+- **Džamija / Mosque:** Bosnian transcriptions follow the reader's photographs of pages 21–23 of the 2017 edition; Bosnian meanings follow the linked IslamHouse PDF. HM-19 uses the shorter published Arabic/English wording matching that edition, rather than the longer variant on Sunnah.com. Its English transliteration is from [Sahih Muslim 1799](https://www.alim.org/hadith/sahih-muslim/6/1799/). HM-20's English transliteration is from the [English Hisnul Muslim edition of the Presidency of Religious Affairs](https://risala.prh.gov.sa/en/content/51); its three source segments are displayed together. HM-21's English transliteration is from [Sunnah.com HM-21](https://sunnah.com/hisn:21).
+- **English title, transliteration and meaning; Arabic text:** [Sunnah.com, *Hisn al-Muslim*](https://sunnah.com/hisn), except where an entry has its own source note. Only the recited words and their published meanings are shown below. Line breaks on the Sunnah.com page are joined with spaces. Arabic orthography follows the linked entry, including HM-13’s unspaced وَأَشْهَدُأَنَّ.
+- Numbering matches for HM-10 through HM-13, HM-19 through HM-21, and HM-25. The marriage items differ: BS 178 ↔ EN 190, BS 179 ↔ EN 191, BS 180 ↔ EN 192. The gathering items are BS 183–184 ↔ EN 195–196. The weather items differ by nine: BS 157, 159, 160, 163–166 ↔ EN 166, 168, 169, 172–175. Fasting and food is BS 167–175 ↔ EN 176, 178–185; EN 177 is not in the Bosnian edition, and EN 186 is BS 235.
 - Sleep HM-1 matches BS 1.
 - Text from these editions is reproduced with attribution. [IslamHouse's reuse FAQ](https://d1.islamhouse.com/html/faq.htm) permits publishing its materials without changing the content and with a source citation. Do not create new BS or EN translations for future entries; copy and check a published edition.
 
@@ -159,6 +160,59 @@ This file grows one approved category at a time. It currently contains the cloth
 **English — meaning (Sunnah.com 13):** I bear witness that none has the right to be worshipped but Allah alone, Who has no partner; and I bear witness that Muhammad is His slave and His Messenger.
 
 **Sources:** [Bosnian PDF, page 10](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=10) · [English and Arabic](https://sunnah.com/hisn:13)
+
+## Džamija / Mosque
+
+<a id="hm-19"></a>
+### HM-19 · Dova pri odlasku u džamiju / When going to the mosque
+
+**Arapski / Arabic**
+
+<p lang="ar" dir="rtl">اللَّهُمَّ اجْعَلْ فِي قَلْبِي نُورًا، وَفِي لِسَانِي نُورًا، وَاجْعَلْ فِي سَمْعِي نُورًا، وَاجْعَلْ فِي بَصَرِي نُورًا، وَاجْعَلْ مِنْ خَلْفِي نُورًا، وَمِنْ أَمَامِي نُورًا، وَاجْعَلْ مِنْ فَوْقِي نُورًا، وَمِنْ تَحْتِي نُورًا، اللَّهُمَّ أَعْطِنِي نُورًا</p>
+
+**Bosanski — transkripcija (2017 edition, page 21):** Allāhumme-dž‘al fī qalbī nūren, ve fī lisānī nūren, ve-dž‘al fī sem‘ī nūren, ve-dž‘al fī besarī nūren, ve-dž‘al min halfī nūren ve min emāmī nūren, ve-dž‘al min fevqī nūren ve min tahtī nūren. Allāhumme ‘atinī nūren.
+
+**Bosanski — prijevod (IslamHouse 19):** Allahu moj, podari mi u srce svjetlo i u jezik svjetlo, osvijetli mi sluh i vid, daruj mi svjetlo iza mene i ispred mene, podari mi iznad mene i ispod mene svjetlo. Allahu moj, svjetlo mi daruj.
+
+**English — transliteration (Sahih Muslim 1799):** Allahummaj'al fi qalbi nuran, wa fi lisani nuran waj'al fi sam'i nuran waj'al fi basari nuran waj'al min khalfi nuran wa min amami nuran waj'al min fawqi nuran wa min tahti nuran. Allahumma a'tini nura.
+
+**English — meaning (Hisnul Muslim 19, short wording):** O Allah, place within my heart light, and upon my tongue light, and within my ears light, and within my eyes light, and place behind me light and in front of me light and above me light and beneath me light. O Allah, bestow upon me light.
+
+**Sources:** [Bosnian PDF, page 12](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=12) · [English and Arabic](https://ahadith.co.uk/permalink-hadith-27/hisnulmuslim-dua-12) · [English transliteration](https://www.alim.org/hadith/sahih-muslim/6/1799/)
+
+<a id="hm-20"></a>
+### HM-20 · Dova pri ulasku u džamiju / Upon entering the mosque
+
+**Arapski / Arabic**
+
+<p lang="ar" dir="rtl">أَعُوذُ بِاللَّهِ الْعَظِيمِ وَبِوَجْهِهِ الْكَرِيمِ وَسُلْطَانِهِ الْقَدِيمِ مِنَ الشَّيْطَانِ الرَّجِيمِ. بِسْمِ اللَّهِ، وَالصَّلَاةُ وَالسَّلَامُ عَلَى رَسُولِ اللَّهِ. اللَّهُمَّ افْتَحْ لِي أَبْوَابَ رَحْمَتِكَ</p>
+
+**Bosanski — transkripcija (2017 edition, page 22):** E‘ūḏu billāhi-l-‘azīmi ve bi vedžhihi-l-kerīmi ve sultānihi-l-qadīmi mine-š-šejtāni-r-radžīm. Bismillāh, ve-ṣ-ṣalātu ve-s-selāmu ‘alā Resūlillāh. Allāhumme-ftaḥ li ebvābe raḥmetike.
+
+**Bosanski — prijevod (IslamHouse 20):** Sklanjam se u okrilje Velikog Allaha, pred Njegovo lice časno, Njegovu vlast pravječnu, pred prokletim šejtanom. U ime Allaha, blagoslovi i spas i mir Njegovu Poslaniku. Allahu moj, otvori mi vrata milosti Tvoje.
+
+**English — transliteration (Presidency's Hisnul Muslim, segments joined):** A‘ūdhu billāh-il ‘azhīm, wa bi-wajhihi-l-karīm, wa sultānihi-l-qadīm, min-ash-shaytān-ir-rajīm. Bismillāhi, was-salātu was-salāmu ‘ala rasūlillāh. Allāhumma iftah li abwāba rahmatik.
+
+**English — meaning (Hisnul Muslim 20):** I take refuge with Allah, The Supreme and with His Noble Face, and His eternal authority from the accursed devil. In the name of Allah, and prayers and peace be upon the Messenger of Allah. O Allah, open the gates of Your mercy for me.
+
+**Sources:** [Bosnian PDF, page 13](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=13) · [English and Arabic](https://ahadith.co.uk/permalink-hadith-27/hisnulmuslim-dua-13) · [English transliteration](https://risala.prh.gov.sa/en/content/51)
+
+<a id="hm-21"></a>
+### HM-21 · Dova pri izlasku iz džamije / Upon leaving the mosque
+
+**Arapski / Arabic**
+
+<p lang="ar" dir="rtl">بِسمِ الله وَالصّلاةُ وَالسّلامُ عَلى رَسولِ الله، اللّهُـمَّ إِنّـي أَسْأَلُكَ مِـنْ فَضْـلِك، اللّهُـمَّ اعصِمْنـي مِنَ الشَّيْـطانِ الرَّجـيم</p>
+
+**Bosanski — transkripcija (2017 edition, page 23):** Bismillāhi ve-s-salātu ve-s-selāmu ‘alā Resūlillāhi, Allāhumme innī es’eluke min faḍlike, Allāhumme-‘ṣimnī mine-š-šejtāni-r-radžīm.
+
+**Bosanski — prijevod (IslamHouse 21):** U ime Allaha, blagoslov i mir i spas Allahovu Poslaniku; Allahu moj, molim Ti se da me obaspeš dobrom; Allahu moj, zaštiti me od prokletog šejtana.
+
+**English — transliteration (Sunnah.com 21):** Bismillāhi waṣṣalātu wassalāmu 'alā Rasūlillāhi, Allāhumma 'innī 'as'aluka min faḍlika, Allāhumma`ṣimnī min ash-shaytānir-rajīm.
+
+**English — meaning (Hisnul Muslim 21):** In the name of Allah, and prayers and peace be upon the Messenger of Allah. O Allah, I ask You from Your favour. O Allah, guard me from the accursed devil.
+
+**Sources:** [Bosnian PDF, page 13](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=13) · [English and Arabic](https://ahadith.co.uk/hisnulmuslim-dua-14) · [English transliteration](https://sunnah.com/hisn:21)
 
 ## Ezan / Adhan
 

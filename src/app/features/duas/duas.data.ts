@@ -6,6 +6,7 @@ import { CLOTHING_DUAS } from './clothing.data';
 import { FOOD_DUAS } from './food.data';
 import { GATHERING_DUAS } from './gathering.data';
 import { MARRIAGE_DUAS } from './marriage.data';
+import { MOSQUE_DUAS } from './mosque.data';
 import { SLEEP_DUAS } from './sleep.data';
 import { TOILET_DUAS } from './toilet.data';
 import { WEATHER_DUAS } from './weather.data';
@@ -26,6 +27,7 @@ export type Dua = {
 export const DUA_CATEGORIES = [
   { id: 'toilet', label: { bs: 'Toalet', en: 'Toilet' }, items: TOILET_DUAS },
   { id: 'ablution', label: { bs: 'Abdest', en: 'Ablution' }, items: ABLUTION_DUAS },
+  { id: 'mosque', label: { bs: 'Džamija', en: 'Mosque' }, items: MOSQUE_DUAS },
   { id: 'adhan', label: { bs: 'Ezan', en: 'Adhan' }, items: ADHAN_DUAS },
   { id: 'fasting', label: { bs: 'Post i hrana', en: 'Fasting and food' }, items: FOOD_DUAS },
   { id: 'sleep', label: { bs: 'Spavanje', en: 'Sleep' }, items: SLEEP_DUAS },
