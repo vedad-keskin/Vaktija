@@ -5,10 +5,13 @@ import { ANIMAL_DUAS } from './animals.data';
 import { CLOTHING_DUAS } from './clothing.data';
 import { FOOD_DUAS } from './food.data';
 import { GATHERING_DUAS } from './gathering.data';
+import { GENERAL_DUAS } from './general.data';
+import { HOME_DUAS } from './home.data';
 import { MARRIAGE_DUAS } from './marriage.data';
 import { MOSQUE_DUAS } from './mosque.data';
 import { SLEEP_DUAS } from './sleep.data';
 import { TOILET_DUAS } from './toilet.data';
+import { TRAVEL_DUAS } from './travel.data';
 import { WEATHER_DUAS } from './weather.data';
 
 export type Dua = {
@@ -36,6 +39,9 @@ export const DUA_CATEGORIES = [
   { id: 'gathering', label: { bs: 'Sijelo', en: 'Gathering' }, items: GATHERING_DUAS },
   { id: 'animals', label: { bs: 'Životinje', en: 'Animals' }, items: ANIMAL_DUAS },
   { id: 'weather', label: { bs: 'Vrijeme', en: 'Weather' }, items: WEATHER_DUAS },
+  { id: 'home', label: { bs: 'Kuća', en: 'Home' }, items: HOME_DUAS },
+  { id: 'travel', label: { bs: 'Putovanje', en: 'Travel' }, items: TRAVEL_DUAS },
+  { id: 'general', label: { bs: 'Opće', en: 'General' }, items: GENERAL_DUAS },
 ] as const;
 
 export const DUAS: readonly Dua[] = DUA_CATEGORIES.flatMap((category) => category.items);

@@ -43,9 +43,12 @@ it('shows ten items at a time and resets on view changes', async () => {
   expect(cards()).toHaveLength(40);
   more()!.click();
   harness.detectChanges();
+  expect(cards()).toHaveLength(50);
+  more()!.click();
+  harness.detectChanges();
   expect(cards()).toHaveLength(DUAS.length);
   expect(more()).toBeNull();
-  expect(document.activeElement).toBe(cards()[40].querySelector('h2'));
+  expect(document.activeElement).toBe(cards()[50].querySelector('h2'));
 
   await harness.navigateByUrl('/duas?category=marriage');
   expect(cards()).toHaveLength(3);
@@ -56,6 +59,25 @@ it('shows ten items at a time and resets on view changes', async () => {
     'hisn-20',
     'hisn-21',
   ]);
+  await harness.navigateByUrl('/duas?category=general');
+  expect([...cards()].map((card) => card.getAttribute('data-dua-id'))).toEqual([
+    'hisn-79',
+    'hisn-84',
+    'hisn-86',
+    'hisn-97',
+  ]);
+  await harness.navigateByUrl('/duas?category=home');
+  expect([...cards()].map((card) => card.getAttribute('data-dua-id'))).toEqual([
+    'hisn-16', 'hisn-18',
+  ]);
+  expect(more()).toBeNull();
+  expect(cards()[0].querySelector('h2')?.textContent).toBe('When leaving home');
+  await harness.navigateByUrl('/duas?category=travel');
+  expect([...cards()].map((card) => card.getAttribute('data-dua-id'))).toEqual([
+    'hisn-211', 'hisn-212', 'hisn-213', 'hisn-206',
+    'hisn-208', 'hisn-209', 'hisn-210', 'hisn-215', 'hisn-216', 'hisn-217',
+  ]);
+  expect(more()).toBeNull();
   await harness.navigateByUrl('/duas?category=sleep');
   expect([...cards()].map((card) => card.getAttribute('data-dua-id'))).toEqual([
     'hisn-111',
@@ -89,6 +111,9 @@ it('routes the bilingual library, validates saved data and persists bookmark cha
     'gathering',
     'animals',
     'weather',
+    'home',
+    'travel',
+    'general',
   ]);
   expect(DUAS.map((dua) => dua.id)).toEqual([
     'hisn-10',
@@ -132,6 +157,22 @@ it('routes the bilingual library, validates saved data and persists bookmark cha
     'hisn-173',
     'hisn-174',
     'hisn-175',
+    'hisn-16',
+    'hisn-18',
+    'hisn-211',
+    'hisn-212',
+    'hisn-213',
+    'hisn-206',
+    'hisn-208',
+    'hisn-209',
+    'hisn-210',
+    'hisn-215',
+    'hisn-216',
+    'hisn-217',
+    'hisn-79',
+    'hisn-84',
+    'hisn-86',
+    'hisn-97',
   ]);
   await TestBed.configureTestingModule({
     imports: [DuasPage],
@@ -177,6 +218,8 @@ it('routes the bilingual library, validates saved data and persists bookmark cha
   harness.detectChanges();
   showMore()!.click();
   harness.detectChanges();
+  showMore()!.click();
+  harness.detectChanges();
   expect(cards()).toHaveLength(DUAS.length);
   const marriage = DUA_CATEGORIES.find((category) => category.id === 'marriage')!;
   await harness.navigateByUrl('/duas?category=marriage');
@@ -185,6 +228,8 @@ it('routes the bilingual library, validates saved data and persists bookmark cha
     marriage.label[TestBed.inject(LanguageService).lang()],
   );
   await harness.navigateByUrl('/duas?category=unknown');
+  showMore()!.click();
+  harness.detectChanges();
   showMore()!.click();
   harness.detectChanges();
   showMore()!.click();
@@ -208,13 +253,16 @@ it('routes the bilingual library, validates saved data and persists bookmark cha
             'Brak',
             'Džamija',
             'Ezan',
+            'Kuća',
             'Odjeća',
             'Post i hrana',
+            'Putovanje',
             'Sijelo',
             'Spavanje',
             'Toalet',
             'Vrijeme',
             'Životinje',
+            'Opće',
           ]
         : [
             'Ablution',
@@ -223,11 +271,14 @@ it('routes the bilingual library, validates saved data and persists bookmark cha
             'Clothing',
             'Fasting and food',
             'Gathering',
+            'Home',
             'Marriage',
             'Mosque',
             'Sleep',
             'Toilet',
+            'Travel',
             'Weather',
+            'General',
           ],
     );
     for (const [index, card] of [...cards()].entries()) {

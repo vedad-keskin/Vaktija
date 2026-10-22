@@ -1,10 +1,10 @@
 # Instruction notes for the current duas — review draft
 
-**Status:** For review only. No app cards or recited texts have been changed.
+**Status:** For review only. The notes proposed here have not been added as card instructions.
 
-This audit covers the **41 cards currently in the app's dua categories**. An instruction note is useful when the source gives a step, sequence, or repetition that the title and recited words do not already explain. The proposed BS/EN notes below are **editorial summaries for review**, not published dua translations or verbatim quotations. The Arabic, transcription, and meaning of each dua are outside this proposal.
+This audit covers the **57 cards currently in the app's dua categories**. An instruction note is useful when the source gives a step, sequence, or repetition that the title and recited words do not already explain. The proposed BS/EN notes below are **editorial summaries for review**, not published dua translations or verbatim quotations. The Arabic, transcription, and meaning of each dua are outside this proposal.
 
-**Result:** 2 recommended notes, 5 cases to decide, 2 notes already present, and 32 cards needing no new note.
+**Result:** 2 recommended notes, 11 cases to decide, 2 notes already present, and 42 cards needing no new note. HM-214 is a separate instruction-only source entry, not an app card.
 
 ## Recommended
 
@@ -31,6 +31,50 @@ This audit covers the **41 cards currently in the app's dua categories**. An ins
 **Sources:** [BS, entry 168](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=64); [EN, HM-178](https://sunnah.com/hisn:178).
 
 ## Needs a decision
+
+### [ ] HM-79 — Sejjidul-istigfar · Opće
+
+**Source detail:** This appears among the morning and evening remembrances. The English entry adds that it is recited with conviction; its promised outcome is a report, not part of the recited words.
+
+**If you want a contextual note (editorial):**
+
+- **BS:** Uči se ujutro i navečer, s uvjerenjem u značenje dove.
+- **EN:** Recite in the morning and evening with conviction in the meaning of the supplication.
+
+**Sources:** [BS, entry 77](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=34); [EN, HM-79](https://sunnah.com/hisn:79).
+
+### [ ] HM-84 — Dova za oprost i zaštitu · Opće
+
+**Source detail:** Both editions place this dua in the morning and evening chapter, but the entry itself gives no extra step or count. A note would supply context missing from the general card title.
+
+**If you want a contextual note (editorial):**
+
+- **BS:** Uči se ujutro i navečer.
+- **EN:** Recite in the morning and evening.
+
+**Sources:** [BS, entry 80](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=35); [EN, HM-84](https://sunnah.com/hisn:84).
+
+### [ ] HM-86 — Dova za zaštitu Allahovim imenom · Opće
+
+**Source detail:** Both editions specify **three recitations** in the morning and evening. The current BS/EN meanings reproduce the published count; an instruction note could present it separately above the transcription.
+
+**If you want an instruction note (editorial):**
+
+- **BS:** Prouči ovu dovu tri puta ujutro i tri puta navečer.
+- **EN:** Recite this supplication three times in the morning and three times in the evening.
+
+**Sources:** [BS, entry 82](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=36); [EN, HM-86](https://sunnah.com/hisn:86).
+
+### [ ] HM-97 — Utočište u Allahovim riječima · Opće
+
+**Source detail:** English HM-97 specifies **three recitations in the evening**. The Bosnian edition's matching wording is entry 79 and says three times in its morning and evening chapter. The same Arabic wording appears elsewhere for stopping at a place; the selected card follows HM-97's evening context.
+
+**If you want an instruction note (editorial):**
+
+- **BS:** Navečer prouči ovu dovu tri puta.
+- **EN:** Recite this supplication three times in the evening.
+
+**Sources:** [BS, entry 79](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=35); [EN, HM-97](https://sunnah.com/hisn:97).
 
 ### [ ] HM-20 — Dova pri ulasku u džamiju · Džamija
 
@@ -89,6 +133,32 @@ This audit covers the **41 cards currently in the app's dua categories**. An ins
 
 **Sources:** [BS, entry 159](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=61); [EN, HM-168](https://sunnah.com/hisn:168).
 
+### [ ] HM-18 — Dova pri ulasku u kuću · Kuća
+
+**Source detail:** The English Hisn entry says to greet the people present after the recited words. The Bosnian entry prints the dua without that extra sentence.
+
+**If you want an instruction note (editorial):**
+
+- **BS:** Nakon ove dove nazovi selam ukućanima.
+- **EN:** After this supplication, greet those at home with salam.
+
+**Sources:** [BS, entry 18](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=12); [EN, HM-18](https://sunnah.com/hisn:18).
+
+### [ ] HM-217 — Dova pri povratku s puta · Putovanje
+
+**Source detail:** Both editions describe the return wording at each elevation. The current card includes the three opening takbirs, but does not say where to repeat them.
+
+**If you want an instruction note (editorial):**
+
+- **BS:** Pri povratku s puta, na svakom uzvišenju prouči tekbir tri puta, pa ovu dovu.
+- **EN:** On the return journey, say the takbir three times at each elevation, then recite this supplication.
+
+**Sources:** [BS, entry 205](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=79); [EN, HM-217](https://sunnah.com/hisn:217).
+
+### HM-214 — Remembrance when ascending and descending · Putovanje
+
+The [Bosnian 202](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=77) and [English HM-214](https://sunnah.com/hisn:214) entries report saying “Allahu ekber” when ascending and “Subhanallah” when descending. They do not supply a standalone dua, so HM-214 remains in the complete title checklist rather than becoming a dua card.
+
 ## Already covered
 
 - **HM-111 · Dova prije spavanja:** Ablution and lying on the right side are already in the card's instruction note. [BS](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=43) · [EN](https://sunnah.com/hisn:111)
@@ -108,6 +178,8 @@ These entries give no extra action beyond the title and recited wording, or the 
 - **Sijelo:** BS-184a, HM-196
 - **Životinje:** HM-228, HM-229
 - **Vrijeme:** HM-166, HM-169, HM-172, HM-173, HM-174, HM-175
+- **Kuća:** HM-16.
+- **Putovanje:** HM-206, HM-208–213, HM-215, and HM-216.
 
 The current entries and their individual source links are in the [category data files](../../src/app/features/duas/duas.data.ts). The separate dhikr catalog is outside this dua-card audit.
 

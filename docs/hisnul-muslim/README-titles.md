@@ -30,14 +30,14 @@ Brojevi, poglavlja i vrste zapisa provjereni su prema [OpenDua datasetu v0.0.4](
 - [ ] [HM-076 · Jutarnji i večernji zikr (2/24) / Morning and evening remembrance (2/24)](https://sunnah.com/hisn:76)
 - [ ] [HM-077 · Jutarnji i večernji zikr (3/24) / Morning and evening remembrance (3/24)](https://sunnah.com/hisn:77)
 - [ ] [HM-078 · Jutarnji i večernji zikr (4/24) / Morning and evening remembrance (4/24)](https://sunnah.com/hisn:78)
-- [ ] ★ [HM-079 · Sejjidul-istigfar: traženje oprosta / Master supplication for forgiveness](https://sunnah.com/hisn:79)
+- [ ] ★ [HM-079 · Sejjidul-istigfar: traženje oprosta / Master supplication for forgiveness](README-full.md#hm-79) · u aplikaciji / in app
 - [ ] [HM-080 · Jutarnji i večernji zikr (6/24) / Morning and evening remembrance (6/24)](https://sunnah.com/hisn:80)
 - [ ] [HM-081 · Jutarnji i večernji zikr (7/24) / Morning and evening remembrance (7/24)](https://sunnah.com/hisn:81)
 - [ ] [HM-082 · Jutarnji i večernji zikr (8/24) / Morning and evening remembrance (8/24)](https://sunnah.com/hisn:82)
 - [ ] [HM-083 · Jutarnji i večernji zikr (9/24) / Morning and evening remembrance (9/24)](https://sunnah.com/hisn:83)
-- [ ] ★ [HM-084 · Oprost i zdravlje na oba svijeta / Pardon and well-being in both worlds](https://sunnah.com/hisn:84)
+- [ ] ★ [HM-084 · Oprost i zdravlje na oba svijeta / Pardon and well-being in both worlds](README-full.md#hm-84) · u aplikaciji / in app
 - [ ] [HM-085 · Jutarnji i večernji zikr (11/24) / Morning and evening remembrance (11/24)](https://sunnah.com/hisn:85)
-- [ ] ★ [HM-086 · Zaštita Allahovim imenom / Protection by Allah's name](https://sunnah.com/hisn:86)
+- [ ] ★ [HM-086 · Zaštita Allahovim imenom / Protection by Allah's name](README-full.md#hm-86) · u aplikaciji / in app
 - [ ] [HM-087 · Jutarnji i večernji zikr (13/24) / Morning and evening remembrance (13/24)](https://sunnah.com/hisn:87)
 - [ ] [HM-088 · Jutarnji i večernji zikr (14/24) / Morning and evening remembrance (14/24)](https://sunnah.com/hisn:88)
 - [ ] [HM-089 · Jutarnji i večernji zikr (15/24) / Morning and evening remembrance (15/24)](https://sunnah.com/hisn:89)
@@ -48,7 +48,7 @@ Brojevi, poglavlja i vrste zapisa provjereni su prema [OpenDua datasetu v0.0.4](
 - [ ] [HM-094 · Jutarnji i večernji zikr (20/24) / Morning and evening remembrance (20/24)](https://sunnah.com/hisn:94)
 - [ ] [HM-095 · Jutarnji i večernji zikr (21/24) / Morning and evening remembrance (21/24)](https://sunnah.com/hisn:95)
 - [ ] [HM-096 · Jutarnji i večernji zikr (22/24) / Morning and evening remembrance (22/24)](https://sunnah.com/hisn:96)
-- [ ] [HM-097 · Utočište u Allahovim riječima / Refuge in Allah's perfect words](https://sunnah.com/hisn:97)
+- [ ] [HM-097 · Utočište u Allahovim riječima / Refuge in Allah's perfect words](README-full.md#hm-97) · u aplikaciji / in app
 - [ ] [HM-098 · Jutarnji i večernji zikr (24/24) / Morning and evening remembrance (24/24)](https://sunnah.com/hisn:98)
 - [ ] [HM-099 · Prije spavanja (1/13) / Before sleep (1/13)](https://sunnah.com/hisn:99)
 - [ ] [HM-100 · Prije spavanja (2/13) / Before sleep (2/13)](https://sunnah.com/hisn:100)
@@ -136,12 +136,6 @@ Brojevi, poglavlja i vrste zapisa provjereni su prema [OpenDua datasetu v0.0.4](
 - [ ] [HM-119 · Poslije vitr-namaza / After the Witr prayer](https://sunnah.com/hisn:119)
 - [ ] [HM-138 · Protiv šejtanskih smetnji u namazu i učenju Kur'ana / Distractions during prayer or Quran recitation](https://sunnah.com/hisn:138)
 
-## Dom / Home
-
-- [ ] ★ [HM-016 · Pri izlasku iz kuće / Leaving home](https://sunnah.com/hisn:16)
-- [ ] [HM-017 · Pri izlasku iz kuće (2/2) / Leaving home (2/2)](https://sunnah.com/hisn:17)
-- [ ] ⚠ [HM-018 · Pri ulasku u kuću / Entering home](https://sunnah.com/hisn:18)
-
 ## Brak i porodica / Marriage and family
 
 - [ ] [HM-145 · Čestitka roditeljima novorođenčeta i odgovor / Greeting new parents and their response](https://sunnah.com/hisn:145)
@@ -162,20 +156,26 @@ Brojevi, poglavlja i vrste zapisa provjereni su prema [OpenDua datasetu v0.0.4](
 - [ ] [HM-228 (2/2) · Kada čujemo magarca / Upon hearing a donkey bray](README-full.md#hm-228-donkey) · u aplikaciji / in app
 - [ ] [HM-229 · Kada noću čujemo zavijanje pasa ili revanje magaraca / Upon hearing dogs bark or donkeys bray at night](README-full.md#hm-229) · u aplikaciji / in app
 
+## Kuća / Home
+
+- [ ] ★ [HM-016 · Dova pri izlasku iz kuće / Leaving home](README-full.md#hm-16) · u aplikaciji / in app
+- [ ] ⚠ [HM-018 · Dova pri ulasku u kuću / Entering home](README-full.md#hm-18) · u aplikaciji / in app
+- [ ] [HM-017 · Pri izlasku iz kuće (2/2) / Leaving home (2/2)](https://sunnah.com/hisn:17)
+
 ## Putovanje / Travel
 
-- [ ] ★ [HM-206 · Pri sjedanju u prijevozno sredstvo / Boarding a vehicle](https://sunnah.com/hisn:206)
+- [ ] [HM-211 · Putnikova dova onima koji ostaju / Traveler's farewell](README-full.md#hm-211) · u aplikaciji / in app
+- [ ] [HM-212 · Dova onih koji ostaju putniku (1/2) / A farewell to the traveler (1/2)](README-full.md#hm-212) · u aplikaciji / in app
+- [ ] [HM-213 · Dova onih koji ostaju putniku (2/2) / A farewell to the traveler (2/2)](README-full.md#hm-213) · u aplikaciji / in app
+- [ ] ★ [HM-206 · Pri sjedanju u prijevozno sredstvo / Boarding a vehicle](README-full.md#hm-206) · u aplikaciji / in app
+- [ ] [HM-208 · Pri ulasku u grad / Entering a city](README-full.md#hm-208) · u aplikaciji / in app
+- [ ] [HM-209 · Pri ulasku na pijacu / Entering a market](README-full.md#hm-209) · u aplikaciji / in app
+- [ ] [HM-210 · Kada prijevozno sredstvo zakaže / When transport fails](README-full.md#hm-210) · u aplikaciji / in app
+- [ ] [HM-215 · Putnikova dova u zoru / The traveler's dawn prayer](README-full.md#hm-215) · u aplikaciji / in app
+- [ ] [HM-216 · Pri zaustavljanju na putu / Stopping along the journey](README-full.md#hm-216) · u aplikaciji / in app
+- [ ] [HM-217 · Povratak s putovanja / Returning from a journey](README-full.md#hm-217) · u aplikaciji / in app
 - [ ] ★ [HM-207 · Dova za putovanje / Travel supplication](https://sunnah.com/hisn:207)
-- [ ] [HM-208 · Pri ulasku u grad / Entering a city](https://sunnah.com/hisn:208)
-- [ ] [HM-209 · Pri ulasku na pijacu / Entering a market](https://sunnah.com/hisn:209)
-- [ ] [HM-210 · Kada prijevozno sredstvo zakaže / When transport fails](https://sunnah.com/hisn:210)
-- [ ] [HM-211 · Putnikova dova onima koji ostaju / Traveler's farewell](https://sunnah.com/hisn:211)
-- [ ] [HM-212 · Dova onih koji ostaju putniku (1/2) / A farewell to the traveler (1/2)](https://sunnah.com/hisn:212)
-- [ ] [HM-213 · Dova onih koji ostaju putniku (2/2) / A farewell to the traveler (2/2)](https://sunnah.com/hisn:213)
 - [ ] [HM-214 · Zikr tokom putovanja / Remembrance while traveling](https://sunnah.com/hisn:214) · uputa / instruction
-- [ ] [HM-215 · Putnikova dova u zoru / The traveler's dawn prayer](https://sunnah.com/hisn:215)
-- [ ] [HM-216 · Pri zaustavljanju na putu / Stopping along the journey](https://sunnah.com/hisn:216)
-- [ ] [HM-217 · Povratak s putovanja / Returning from a journey](https://sunnah.com/hisn:217)
 
 ## Teškoće, zaštita, bolest i gubitak / Hardship, protection, illness and loss
 

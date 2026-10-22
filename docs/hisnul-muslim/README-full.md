@@ -1,6 +1,6 @@
 # Hisnul Muslim — selected full duas (BS / EN)
 
-This file grows one approved category at a time. It currently contains the clothing entries (HM-5, 9, 6, 7), the toilet entries (HM-10–11), the Abdest entries (HM-12–13), the mosque entries (HM-19–21), the adhan entry (HM-25), the sleeping entries (HM-111, 1, 114, 113, 112), the three marriage entries, the gathering entries (HM-195–196), the animal entries, the weather entries (HM-166, 168, 169, 172–175), and the fasting and food entries (HM-176–186). The [complete title checklist](README-titles.md) remains an editorial selection aid; its suggested labels are not published translations.
+This file grows one approved category at a time. It currently contains the clothing entries (HM-5, 9, 6, 7), the toilet entries (HM-10–11), the Abdest entries (HM-12–13), the mosque entries (HM-19–21), the adhan entry (HM-25), the sleeping entries (HM-111, 1, 114, 113, 112), the three marriage entries, the gathering entries (HM-195–196), the animal entries, the weather entries (HM-166, 168, 169, 172–175), the fasting and food entries (HM-176–186), the home entries (HM-16, 18), the travel entries (HM-206, 208–213, 215–217), and the general entries (HM-79, 84, 86, 97). The [complete title checklist](README-titles.md) remains an editorial selection aid; its suggested labels are not published translations.
 
 ## Izvori i uredničke napomene / Sources and editorial notes
 
@@ -14,7 +14,10 @@ This file grows one approved category at a time. It currently contains the cloth
 - HM-192 / Bosnian 180’s basmala is copied from the reader’s photograph of page 114. Most other Bosnian transcriptions in this file are **adaptations** of the published Bosnian recitation with this key. A matching digital copy of the photographed edition was not found.
 - **Spavanje / Sleep:** Bosnian 103–105 correspond to English 111–113; Bosnian 107–109 make up English 114; HM-1 matches Bosnian 1. Bosnian transcriptions follow the reader’s photographs of pages 13 and 75–77 of the 2017 edition; linked IslamHouse pages provide the published digital counterpart. HM-114 shows the short refuge phrase from Bosnian 107. Its Bosnian instruction is a concise summary requested by the reader, retaining the three recitations specified in the book; its English instruction follows that summary. Its short BS/EN meanings are excerpts of published renderings linked below. The English transcription is the opening of the published wording in [Riyad as-Salihin 841](https://sunnah.com/riyadussalihin:841). HM-99–101 are Qur’anic recitations; the partly visible Bosnian 95–97 are not included.
 - **Džamija / Mosque:** Bosnian transcriptions follow the reader's photographs of pages 21–23 of the 2017 edition; Bosnian meanings follow the linked IslamHouse PDF. HM-19 uses the shorter published Arabic/English wording matching that edition, rather than the longer variant on Sunnah.com. Its English transliteration is from [Sahih Muslim 1799](https://www.alim.org/hadith/sahih-muslim/6/1799/). HM-20's English transliteration is from the [English Hisnul Muslim edition of the Presidency of Religious Affairs](https://risala.prh.gov.sa/en/content/51); its three source segments are displayed together. HM-21's English transliteration is from [Sunnah.com HM-21](https://sunnah.com/hisn:21).
-- **English title, transliteration and meaning; Arabic text:** [Sunnah.com, *Hisn al-Muslim*](https://sunnah.com/hisn), except where an entry has its own source note. Only the recited words and their published meanings are shown below. Line breaks on the Sunnah.com page are joined with spaces. Arabic orthography follows the linked entry, including HM-13’s unspaced وَأَشْهَدُأَنَّ.
+- **Opće / General:** HM-79 ↔ Bosnian 77; HM-84 ↔ Bosnian 80; HM-86 ↔ Bosnian 82; HM-97 ↔ Bosnian 79. Bosnian transcriptions are adaptations of the published PDF using the letter key above. The Bosnian HM-86 meaning is shorter than the English published meaning; it is reproduced as printed. The Bosnian edition gives three recitations for its 79 and 82; English HM-97 specifies the evening.
+- **Kuća / Home:** HM-16 and HM-18 retain the same Bosnian numbers. Bosnian transcriptions and meanings follow the reader’s photograph of pages 20–21 of the 2017 edition; the linked IslamHouse PDF provides the digital counterpart. HM-17 remains in the complete title checklist. HM-18 Arabic follows the complete word in the Bosnian edition; Sunnah.com drops its final alif.
+- **Putovanje / Travel:** The selected HM-206, 208–213, and 215–217 correspond to Bosnian 194, 196–201, and 203–205. HM-207 remains in the complete title checklist. HM-214 / Bosnian 202 reports an ascent/descent practice rather than a standalone dua. HM-206 contains Qur’anic words as part of its published recitation. HM-217 includes the three opening takbirs from the published return instructions.
+- **English title, transliteration and meaning; Arabic text:** [Sunnah.com, *Hisn al-Muslim*](https://sunnah.com/hisn), except where an entry has its own source note. Only the recited words and their published meanings are shown below. Line breaks on the Sunnah.com page are joined with spaces. Arabic orthography follows the linked entry, including HM-13’s unspaced وَأَشْهَدُأَنَّ; HM-18 uses the complete final word from the Bosnian edition.
 - Numbering matches for HM-10 through HM-13, HM-19 through HM-21, and HM-25. The marriage items differ: BS 178 ↔ EN 190, BS 179 ↔ EN 191, BS 180 ↔ EN 192. The gathering items are BS 183–184 ↔ EN 195–196. The weather items differ by nine: BS 157, 159, 160, 163–166 ↔ EN 166, 168, 169, 172–175. Fasting and food is BS 167–175 ↔ EN 176, 178–185; EN 177 is not in the Bosnian edition, and EN 186 is BS 235.
 - Sleep HM-1 matches BS 1.
 - Text from these editions is reproduced with attribution. [IslamHouse's reuse FAQ](https://d1.islamhouse.com/html/faq.htm) permits publishing its materials without changing the content and with a source citation. Do not create new BS or EN translations for future entries; copy and check a published edition.
@@ -811,4 +814,284 @@ This file grows one approved category at a time. It currently contains the cloth
 **English — meaning (Sunnah.com 112):** There is none worthy of worship but Allah, the One, the Victorious, Lord of the heavens and the earth and all that is between them, the All-Mighty, the All-Forgiving.
 
 **Sources:** [Bosnian PDF, page 44](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=44) · [English and Arabic](https://sunnah.com/hisn:112)
+
+## Kuća / Home
+
+<a id="hm-16"></a>
+### HM-16 · Dova pri izlasku iz kuće / When leaving home
+
+**Arapski / Arabic**
+
+<p lang="ar" dir="rtl">بِسْمِ اللهِ ، تَوَكَّلْـتُ عَلى اللهِ وَلا حَوْلَ وَلا قُـوَّةَ إِلاّ بِالله</p>
+
+**Bosanski — transkripcija (2017 edition, page 20):** Bismillāhi, tevekkeltu ‘alellāhi, ve lā ḥavle ve lā quvvete illā billāhi.
+
+**Bosanski — prijevod (2017 edition, page 20):** U ime Allaha, u Allaha se pouzdavam, nema snage niti moći bez Allahove snage i moći.
+
+**English — transliteration (Sunnah.com 16):** Bismillāhi, tawakkaltu `alallāhi, wa lā ḥawla wa lā quwwata illā billāh.
+
+**English — meaning (Sunnah.com 16):** In the Name of Allah, I have placed my trust in Allah, there is no might and no power except by Allah.
+
+**Sources:** [Bosnian PDF, page 11](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=11) · [English and Arabic](https://sunnah.com/hisn:16)
+
+<a id="hm-18"></a>
+### HM-18 · Dova pri ulasku u kuću / When entering home
+
+**Arapski / Arabic**
+
+<p lang="ar" dir="rtl">بِسْمِ اللهِ وَلَجْنَا، وَبِسْمِ اللهِ خَرَجْنَا، وَعَلَى رَبِّنَا تَوَكَّلْنَا</p>
+
+**Bosanski — transkripcija (2017 edition, page 21):** Bismillāhi veledžnā ve bismillāhi ẖaredžnā ve ‘alā Rabbinā tevekkelnā.
+
+**Bosanski — prijevod (2017 edition, page 21):** S Allahovim imenom ulazimo i s Allahovim imenom izlazimo. Na Gospodara našega se oslanjamo.
+
+**English — transliteration (Sunnah.com 18):** Bismillāhi walajnā, wa bismillāhi kharajnā, wa `ala Rabbinā tawakkalnā
+
+**English — meaning (Sunnah.com 18):** In the Name of Allah we enter , in the Name of Allah we leave , and upon our Lord we depend
+
+**Sources:** [Bosnian PDF, page 12](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=12) · [English](https://sunnah.com/hisn:18)
+
+## Putovanje / Travel
+
+HM-207 and HM-214 remain in the complete title checklist. BS transcriptions are adaptations using the 2017 letter key; BS/EN meanings below reproduce the linked published editions.
+
+<a id="hm-211"></a>
+### HM-211 · Dova musafira za one koji ostaju / Traveler's farewell to those staying
+
+**Arapski / Arabic**
+
+<p lang="ar" dir="rtl">أَسْتَـوْدِعُكُـمُ اللَّهَ الَّذي لا تَضـيعُ وَدائِعُـه</p>
+
+**Bosanski — transkripcija (adapted):** Estevdi‘ukumu-l-Lāhe-l-leḏī lā teḍī‘u vedā’i‘uhu.
+
+**Bosanski — prijevod (IslamHouse 199):** Ostavljam vas u amanet (na čuvanje) Allahu, Čiji se amanet ne može izgubiti.
+
+**English — transliteration (Sunnah.com 211):** Astawdi`ukumu ‘llāha ‘l-ladhi lā taḍī`u wadā'i`uh.
+
+**English — meaning (Sunnah.com 211):** I place you in the trust of Allah, whose trust is never misplaced.
+
+**Sources:** [Bosnian PDF, page 77](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=77) · [English and Arabic](https://sunnah.com/hisn:211)
+
+<a id="hm-212"></a>
+### HM-212 · Dova onih koji ostaju musafiru (1/2) / Farewell to a traveler (1/2)
+
+**Arapski / Arabic**
+
+<p lang="ar" dir="rtl">أَسْتَـوْدِعُ اللَّهَ ديـنَكَ وَأَمانَتَـكَ، وَخَـواتيـمَ عَمَـلِك</p>
+
+**Bosanski — transkripcija (adapted):** Estevdi‘u-l-Lāhe dīneke, ve emāneteke ve ẖavātime ‘amelike.
+
+**Bosanski — prijevod (IslamHouse 200):** Allahu povjeravam vjeru tvoju, amanet (polog) tvoj i završetke djela tvojih.
+
+**English — transliteration (Sunnah.com 212):** Astawdi`ullāha dīnak, wa amānatak, wa khawātīma `amalik.
+
+**English — meaning (Sunnah.com 212):** I leave your religion in the care of Allah, as well as your safety, and the last of your deeds.
+
+**Sources:** [Bosnian PDF, page 77](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=77) · [English and Arabic](https://sunnah.com/hisn:212)
+
+<a id="hm-213"></a>
+### HM-213 · Dova onih koji ostaju musafiru (2/2) / Farewell to a traveler (2/2)
+
+**Arapski / Arabic**
+
+<p lang="ar" dir="rtl">زَوَّدَكَ اللَّهُ التقْوى، وَغَفَـرَذَنْـبَكَ، وَيَسَّـرَ لَكَ الخَـيْرَ حَيْـثُما كُنْـت</p>
+
+**Bosanski — transkripcija (adapted):** Zevvedeke-l-Lāhu-t-taqvā ve gafere ḏenbeke ve jessere leke-l-ẖajre ḥajṯu mā kunte.
+
+**Bosanski — prijevod (IslamHouse 201):** Allah ti uvećao tvoju bogobojaznost, oprostio ti grijehe i olakšao ti činjenje dobrih djela gdje god da se nađeš.
+
+**English — transliteration (Sunnah.com 213):** Zawwadaka ‘llāhut-taqwā, wa ghafara dhanbak, wa yassara laka ‘l-khayra ḥaythu mā kunt.
+
+**English — meaning (Sunnah.com 213):** May Allah give you piety as your provision, forgive your sins, and make goodness easy for you wherever you are.
+
+**Sources:** [Bosnian PDF, page 77](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=77) · [English and Arabic](https://sunnah.com/hisn:213)
+
+<a id="hm-206"></a>
+### HM-206 · Dova pri sjedanju u prijevozno sredstvo / When boarding a vehicle
+
+**Arapski / Arabic**
+
+<p lang="ar" dir="rtl">بِسْـمِ اللهِ وَالْحَمْـدُ لله، ﴿سُبْحَانَ الَّذِي سَخَّرَ لَنَا هَذَا وَمَا كُنَّا لَهُ مُقْرِنِينَ * وَإِنَّا إِلَى رَبِّنَا لَمُنقَلِبُونَ﴾ الحَمْـدُ لله، الحَمْـدُ لله، الحَمْـدُ لله، اللهُ أكْـبَر، اللهُ أكْـبَر، اللهُ أكْـبَر، سُـبْحانَكَ اللّهُـمَّ إِنّي ظَلَـمْتُ نَفْسي فَاغْـفِرْ لي، فَإِنَّهُ لا يَغْفِـرُ الذُّنوبَ إِلاّ أَنْـت</p>
+
+**Bosanski — transkripcija (adapted):** Bismi-l-Lāh. El-ḥamdu li-l-Lāh. Subḥāne-l-leḏī seẖẖare lenā hāḏā ve mā kunnā lehū muqrinīne, ve innā ilā Rabbinā le munkalibūn. El-ḥamdu li-l-Lāhi, el-ḥamdu li-l-Lāhi, el-ḥamdu li-l-Lāhi. Allāhu ekber, Allāhu ekber, Allāhu ekber. Subḥāneke-l-Lāhumme innī ẓalemtu nefsī, fagfir lī, fe innehu lā jagfiru-ḏ-ḏunūbe illā Ente.
+
+**Bosanski — prijevod (IslamHouse 194):** S Allahovim imenom (polazim). Hvala Allahu. Slavljen neka je Onaj Koji nam je ovo omogućio, sami to ne bismo bili sposobni. Mi se zaista Gospodaru našem vraćamo. Hvala Allahu, hvala Allahu, hvala Allahu. Allah je najveći, Allah je najveći, Allah je najveći. Neka si slavljen, Allahu. Zaista sam počinio nasilje prema sebi, zato mi oprosti. Jer, grijehe, zasigurno, ne oprašta niko drugi osim Tebe.
+
+**English — transliteration (Sunnah.com 206):** Bismillāh, walḥamdulillāh. Subḥāna ‘lladhī sakhkhara lanā hādhā wa mā kunnā lahu muqrinīn. Wa innā ilā Rabbinā lamunqalibūn. Alḥamdulillāh, alḥamdulillāh, alḥamdulillāh, Allāhu Akbar, Allāhu Akbar, Allāhu Akbar, Subḥānaka ‘llāhumma innī ẓalamtu nafsī, faghfir lī, fa innahu lā yaghfirudh-dhunūba illā ant.
+
+**English — meaning (Sunnah.com 206):** With the Name of Allah. Praise is to Allah. Glory is to Him Who has provided this for us though we could never have had it by our efforts. Surely, unto our Lord, we are returning. Praise is to Allah. Praise is to Allah. Praise is to Allah. Allah is the Most Great. Allah is the Most Great. Allah is the Most Great. Glory is to You. O Allah, I have wronged my own soul. Forgive me, for surely none forgives sins but You.
+
+**Sources:** [Bosnian PDF, page 74](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=74) · [English and Arabic](https://sunnah.com/hisn:206)
+
+<a id="hm-208"></a>
+### HM-208 · Dova pri ulasku u neko selo ili grad / Upon entering a town or village
+
+**Arapski / Arabic**
+
+<p lang="ar" dir="rtl">أللّـهُمَّ رَبَّ السَّـمواتِ السّـبْعِ وَما أَظْلَلَـن، وَرَبَّ الأَراضيـنَ السّـبْعِ وَما أقْلَلْـن، وَرَبَّ الشَّيـاطينِ وَما أَضْلَلْـن، وَرَبَّ الرِّياحِ وَما ذَرَيْـن، أَسْـأَلُـكَ خَيْـرَ هذهِ الْقَـرْيَةِ وَخَيْـرَ أَهْلِـها، وَخَيْـرَ ما فيها، وَأَعـوذُ بِكَ مِنْ شَـرِّها وَشَـرِّ أَهْلِـها، وَشَـرِّ ما فيها</p>
+
+**Bosanski — transkripcija (adapted):** Allāhumme Rabbe-s-semāvāti-s-seb‘i ve mā aẓlelne ve Rabbe-l-ereḍīne-s-seb‘i ve mā aqlelne ve Rabbe-š-šejāṭīni ve mā aḍlelne ve Rabbe-r-rijāḥi ve mā ḏerejne: Es’eluke ẖajre hāḏihi-l-qarjeti ve ẖajre ehlihā ve ẖajre mā fīhā, ve e‘ūḏu bike min šerrihā ve šerri ehlihā, ve šerri mā fīhā.
+
+**Bosanski — prijevod (IslamHouse 196):** Allahu, Gospodaru sedam nebesa i onoga što ona natkriljuju, Gospodaru sedam Zemalja i onoga što one drže, Gospodaru šejtana i onog koga su oni zaveli, Gospodaru vjetrova i onoga što oni nose, molim Te za dobrobit ovoga naselja i za dobrobit njegovih žitelja, te za dobrobit svega što se u njemu nalazi. Tražim Tvoju zaštitu od zla ovoga naselja te od zla njegovih mještana i svega onoga što je u njemu.
+
+**English — transliteration (Sunnah.com 208):** Allāhumma Rabbas-samāwātis-sab`i wa mā aẓlaln, Wa Rabba ‘l-arāḍīnas-sab`i wa mā aqlaln, wa Rabbash-shayāṭīni wa mā aḍlaln, wa Rabbar-riyāḥi wa mā dharayn. As'aluka khayra hādhihi ‘l-qaryah, wa khayra ahlihā, wa khayra māfīhā, wa a`ūdhu bika min sharrihā, wa sharri ahlihā, wa sharri mā fīhā.
+
+**English — meaning (Sunnah.com 208):** O Allah, Lord of the seven heavens and all they overshadow, Lord of the seven worlds and all they uphold, Lord of the devils and all they lead astray, Lord of the winds and all they scatter. I ask You for the goodness of this town, and for the goodness of its people, and for the goodness it contains. I seek refuge in You from its evil, from the evil of its people, and from the evil it contains.
+
+**Sources:** [Bosnian PDF, page 75](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=75) · [English and Arabic](https://sunnah.com/hisn:208)
+
+<a id="hm-209"></a>
+### HM-209 · Dova pri ulasku u tržnicu / Upon entering the market
+
+**Arapski / Arabic**
+
+<p lang="ar" dir="rtl">لا إلهَ إلاّ اللّه وحدَهُ لا شريكَ لهُ، لهُ المُلْـكُ ولهُ الحَمْـد، يُحْيـي وَيُميـتُ وَهُوَ حَيٌّ لا يَمـوت، بِيَـدِهِ الْخَـيْرُ وَهوَ على كلّ شيءٍ قدير</p>
+
+**Bosanski — transkripcija (adapted):** Lā ilāhe ille-l-Lāhu vaḥdehu lā šerīke lehu. Lehu-l-mulku ve lehu-l-ḥamdu, juḥjī ve jumītu ve Huve Ḥajjun lā jemūtu. Bi jedihi-l-ẖajru ve Huve ‘alā kulli šej’in Qadīr.
+
+**Bosanski — prijevod (IslamHouse 197):** Nema boga osim Allaha, Jedinoga, Koji Sebi ravnog nema. Njemu pripada sva vlast i zahvalnost. On proživljava i usmrćuje, i On je Živi, Koji ne umire. U Njegovoj je ruci (On posjeduje) svako dobro i On nad svime ima moć.
+
+**English — transliteration (Sunnah.com 209):** Lā ilāha illallāh waḥdahu lā sharīka lah, Lahu ‘l-mulku wa lahu ‘l-ḥamd, Yuḥyī wa yumīt, wa huwa ḥayyun lā yamūt, Biyadihi ‘l-khayr, wa huwa `alā kulli shay'in Qadīr.
+
+**English — meaning (Sunnah.com 209):** None has the right to be worshipped but Allah alone, Who has no partner. His is the dominion and His is the praise. He brings life and He causes death, and He is living and does not die. In His Hand is all good, and He is Able to do all things.
+
+**Sources:** [Bosnian PDF, page 76](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=76) · [English and Arabic](https://sunnah.com/hisn:209)
+
+<a id="hm-210"></a>
+### HM-210 · Dova kad posrne jahaća životinja ili pri problemu s prijevoznim sredstvom / When transport falters
+
+**Arapski / Arabic**
+
+<p lang="ar" dir="rtl">بِسْـمِ اللهِ</p>
+
+**Bosanski — transkripcija (adapted):** Bismi-l-Lāh.
+
+**Bosanski — prijevod (IslamHouse 198):** S Allahovim imenom.
+
+**English — transliteration (Sunnah.com 210):** Bismillāh.
+
+**English — meaning (Sunnah.com 210):** With the Name of Allah.
+
+**Sources:** [Bosnian PDF, page 76](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=76) · [English and Arabic](https://sunnah.com/hisn:210)
+
+<a id="hm-215"></a>
+### HM-215 · Dova musafira koji porani na put / Traveler's prayer at dawn
+
+**Arapski / Arabic**
+
+<p lang="ar" dir="rtl">سَمِـعَ سـامِعٌ بِحَمْـدِ اللهِ وَحُسْـنِ بَلائِـهِ عَلَيْـنا. رَبَّنـا صـاحِبْـنا وَأَفْـضِل عَلَيْـنا عائِذاً باللهِ مِنَ النّـار</p>
+
+**Bosanski — transkripcija (adapted):** Semi‘a sāmi‘un bi ḥamdi-l-Lāhi ve ḥusni belā’ihi ‘alejnā. Rabbenā ṣāḥibnā ve efḍil ‘alejnā ‘ā’iḏen bi-l-Lāhi mine-n-nāri.
+
+**Bosanski — prijevod (IslamHouse 203):** Neka čuje (onaj koji sluša) naše hvaljenje Allaha, na lijepim blagodatima. Gospodaru naš, budi nam Pratilac (Zaštitnik) i obaspi nas Svojim obiljem. Allahu se utječemo od džehenemske vatre.
+
+**English — transliteration (Sunnah.com 215):** Sami`a sāmi`un biḥamdillāhi wa ḥusni balā'ihi `alaynā. Rabbanā ṣāḥibnā, wa afḍil `alaynā, `ā'idhan billāhi minan-nār.
+
+**English — meaning (Sunnah.com 215):** He Who listens has heard that we praise Allah for the good things He gives us. Our Lord, be with us and bestow Your favor upon us. I seek the protection of Allah from the Fire.
+
+**Sources:** [Bosnian PDF, page 78](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=78) · [English and Arabic](https://sunnah.com/hisn:215)
+
+<a id="hm-216"></a>
+### HM-216 · Dova pri zaustavljanju na putovanju / When stopping during travel
+
+**Arapski / Arabic**
+
+<p lang="ar" dir="rtl">أَعـوذُ بِكَلِـماتِ اللّهِ التّـامّاتِ مِنْ شَـرِّ ما خَلَـق</p>
+
+**Bosanski — transkripcija (adapted):** E‘ūḏu bi kelimāti-l-Lāhi-t-tāmmāti min šerri mā ẖaleqa.
+
+**Bosanski — prijevod (IslamHouse 204):** Pomoću Allahovih savršenih riječi, utječem se protiv zla svega što je stvorio.
+
+**English — transliteration (Sunnah.com 216):** A`ūdhu bikalimāti ‘llāhit-tāmmāti min sharri mā khalaq.
+
+**English — meaning (Sunnah.com 216):** I seek refuge in the Perfect Words of Allah from the evil of what He has created.
+
+**Sources:** [Bosnian PDF, page 78](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=78) · [English and Arabic](https://sunnah.com/hisn:216)
+
+<a id="hm-217"></a>
+### HM-217 · Dova pri povratku s puta / When returning from a journey
+
+**Arapski / Arabic**
+
+<p lang="ar" dir="rtl">اللَّهُ أَكْبَرُ، اللَّهُ أَكْبَرُ، اللَّهُ أَكْبَرُ، لاَ إِلَهَ إِلاَّ اللَّهُ وَحْدَهُ لاَ شَرِيكَ لَهُ، لَهُ الْمُلْكُ، وَلَهُ الْحَمْدُ، وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ، آيِبُونَ، تَائِبُونَ، عَابِدُونَ، لِرَبِّنا حَامِدُونَ، صَدَقَ اللَّهُ وَعْدَهُ، وَنَصَرَ عَبْدَهُ، وَهَزَمَ الْأَحْزابَ وَحْدَهُ</p>
+
+**Bosanski — transkripcija (adapted):** Allāhu ekber (3X). Lā ilāhe ille-l-Lāhu vaḥdehu lā šerīke lehu, lehu-l-mulku ve lehu-l-ḥamdu ve Huve ‘alā kulli šej’in Qadīr. Ājibūne, Tā’ibūne, ‘Ābidūne li Rabbinā ḥāmidūne. Ṣadeqa-l-Lāhu va‘dehu ve neṣare ‘abdehu ve hezzeme-l-aḥzābe vaḥdehu.
+
+**Bosanski — prijevod (IslamHouse 205):** Nema boga osim Allaha, Jedinoga, Koji Sebi nema ravnoga. Njemu pripada sva vlast i zahvalnost. On je iznad svega drugoga. Vraćamo se i kajemo se obožavajući našega Gospodara i hvaleći Ga. Allah je obistinio Svoje obećanje, pomogao je Svome robu i sve protivnike Sam porazio.
+
+**English — transliteration (Sunnah.com 217):** Allāhu Akbar (three times). Lā ilāha illallāh waḥdahu lā sharīka lah, lahu ‘l-mulku, walahu ‘l-ḥamd, wa Huwa `alā kulli shay'in Qadīr, ā'ibūna, tā'ibūna,`ābidūn, li Rabbinā ḥāmidūn, sadaqallāhu wa`dah, wa nasara `abdah, wa hazama ‘l-'aḥzāba waḥdah.
+
+**English — meaning (Sunnah.com 217):** Allah is the Most Great. None has the right to be worshipped but Allah alone, Who has no partner. His is the dominion and His is the praise, and He is Able to do all things. We return repentant to our Lord, worshipping our Lord, and praising our Lord. He fulfilled His Promise, He aided His slave, and He alone defeated the Confederates.
+
+**Sources:** [Bosnian PDF, page 79](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=79) · [English and Arabic](https://sunnah.com/hisn:217)
+
+## Opće / General
+
+<a id="hm-79"></a>
+### HM-79 · Sejjidul-istigfar / Master supplication for forgiveness
+
+**Arapski / Arabic**
+
+<p lang="ar" dir="rtl">اللّهـمَّ أَنْتَ رَبِّـي لا إلهَ إلاّ أَنْتَ خَلَقْتَنـي وَأَنا عَبْـدُك وَأَنا عَلـى عَهْـدِكَ وَوَعْـدِكَ ما اسْتَـطَعْـت أَعـوذُ بِكَ مِنْ شَـرِّ ما صَنَـعْت أَبـوءُ لَـكَ بِنِعْـمَتِـكَ عَلَـيَّ وَأَبـوءُ بِذَنْـبي فَاغْفـِرْ لي فَإِنَّـهُ لا يَغْـفِرُ الذُّنـوبَ إِلاّ أَنْتَ</p>
+
+**Bosanski — transkripcija (adapted from Bosnian 77):** Allāhumme Ente Rabbī, lā ilāhe illā Ente, ẖalaqtenī ve ene ‘abduke, ve ene ‘alā ‘ahdike ve va‘dike mesteṭa‘tu, e‘ūḏu bike min šerri mā ṣana‘tu, ebū’u leke bi ni‘metike ‘alejje, ve ebū’u bi ḏenbī, fagfir lī, fe innehu lā jagfiru-ḏ-ḏunūbe illā Ente.
+
+**Bosanski — prijevod (IslamHouse 77):** Allahu, Ti si Gospodar moj, nema boga osim Tebe, stvorio si me i ja sam Tvoj rob, ja sam na tragu zavjeta Tebi datog, i obećanja Tvog u svojim granicama. Tebi se sklanjam pred zlom koje sam počinio, priznajem blagodati Tvoje prema meni, Tebi priznajem svoje grijehe. Stoga, oprosti mi, jer osim Tebe niko drugi grijehe ne oprašta.
+
+**English — transliteration (Sunnah.com 79):** Allāhumma anta Rabbī lā ilāha illā ant, khalaqtanī wa anā &#96;abduk, wa anā &#96;alā &#96;ahdika wa wa&#96;dika mastaṭa&#96;t, a&#96;ūdhu bika min sharri mā ṣana&#96;t, abū'u laka bi ni&#96;matika &#96;alay, wa abū'u bidhanbī faghfir lī fa'innahu lā yaghfirudh-dhunūba illā ant.
+
+**English — meaning (Sunnah.com 79):** O Allah, You are my Lord, there is none worthy of worship but You. You created me and I am your slave. I keep Your covenant, and my pledge to You so far as I am able. I seek refuge in You from the evil of what I have done. I admit to Your blessings upon me, and I admit to my misdeeds. Forgive me, for there is none who may forgive sins but You.
+
+**Sources:** [Bosnian PDF, pages 34–35](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=34) · [English and Arabic](https://sunnah.com/hisn:79)
+
+<a id="hm-84"></a>
+### HM-84 · Dova za oprost i zaštitu / For forgiveness and protection
+
+**Arapski / Arabic**
+
+<p lang="ar" dir="rtl">اللّهُـمَّ إِنِّـي أسْـأَلُـكَ العَـفْوَ وَالعـافِـيةَ في الدُّنْـيا وَالآخِـرَة ، اللّهُـمَّ إِنِّـي أسْـأَلُـكَ العَـفْوَ وَالعـافِـيةَ في ديني وَدُنْـيايَ وَأهْـلي وَمالـي ، اللّهُـمَّ اسْتُـرْ عـوْراتي وَآمِـنْ رَوْعاتـي ، اللّهُـمَّ احْفَظْـني مِن بَـينِ يَدَيَّ وَمِن خَلْفـي وَعَن يَمـيني وَعَن شِمـالي ، وَمِن فَوْقـي ، وَأَعـوذُ بِعَظَمَـتِكَ أَن أُغْـتالَ مِن تَحْتـي</p>
+
+**Bosanski — transkripcija (adapted from Bosnian 80):** Allāhumme innī es’eluke-l-‘afve ve-l-‘āfijete fī-d-dunjā ve-l-āẖireti. Allāhumme innī es’eluke-l-‘afve ve-l-‘āfijete fī dīnī ve dunjāje ve ehlī ve mālī. Allāhumme-stur ‘avrātī ve āmin rev‘ātī. Allāhumme-ḥfaẓnī min bejni jedejje ve min ẖalfī ve ‘an jemīnī ve ‘an šimālī ve min fevqī ve e‘ūḏu bi ‘aẓametike en ugtāle min taḥtī.
+
+**Bosanski — prijevod (IslamHouse 80):** Allahu, molim Te za oprost i Tvoju zaštitu na dunjaluku i na ahiretu. Allahu, molim Te za oprost i zaštitu Tvoju u vjeri, na dunjaluku, u porodici i mojoj imovini. Allahu, zakloni moja sramna djela, a umiri moju bojazan. Allahu, sačuvaj me sa moje prednje strane, te od svega što me može zadesiti sa leđa, zdesne ili lijeve strane i odozgo. Prizivam Tvoju Veličinu da ne budem ščepan odozdo.
+
+**English — transliteration (Sunnah.com 84):** Allāhumma innī as'aluka 'l-&#96;afwa wal-&#96;āfiyah fid-dunyā wal-ākhirah, Allāhumma innī as'aluka 'l-&#96;afwa wal-&#96;āfiyah fī dīnī wa dunyāya, wa ahlī, wa mālī, Allāhummastur &#96;awrātī, wa āmin raw&#96;ātī, Allāhummaḥfaẓnī min bayni yadayya, wa min khalfī, wa &#96;an yamīnī, wa &#96;an shimālī, wa min fawqī, wa a&#96;ūdhu bi&#96;aẓamatika an 'ughtāla min taḥtī.
+
+**English — meaning (Sunnah.com 84):** O Allah, I seek Your forgiveness and Your protection in this world and the next. O Allah, I seek Your forgiveness and Your protection in my religion, in my worldly affairs, in my family and in my wealth. O Allah, conceal my secrets and preserve me from anguish. O Allah, guard me from what is in front of me and behind me, from my left, and from my right, and from above me. I seek refuge in Your Greatness from being struck down from beneath me.
+
+**Sources:** [Bosnian PDF, pages 35–36](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=35) · [English and Arabic](https://sunnah.com/hisn:84)
+
+<a id="hm-86"></a>
+### HM-86 · Dova za zaštitu Allahovim imenom / Protection through Allah's name
+
+**Arapski / Arabic**
+
+<p lang="ar" dir="rtl">بِسـمِ اللهِ الذي لا يَضُـرُّ مَعَ اسمِـهِ شَيءٌ في الأرْضِ وَلا في السّمـاءِ وَهـوَ السّمـيعُ العَلـيم .</p>
+
+**Bosanski — transkripcija (adapted from Bosnian 82):** Bismillāhi-l-leḏī lā jeḍurru me‘a-smihi šej’un fī-l-erḍi ve lā fī-s-semā’i ve Huve-s-Semī‘u-l-‘Alīm.
+
+**Bosanski — prijevod (IslamHouse 82):** S Allahovim imenom; kad se Njegovo ime spomene, nikakvo zlo na Zemlji ni na nebesima ne može štetiti (3X).
+
+**English — transliteration (Sunnah.com 86):** Bismillāhi ‘l-ladhī lā yaḍurru ma&#96;a-smihi shay'un fil-'arḍi wa lā fis-samā' wa huwas-Samī &#96;ul-&#96;Alīm.
+
+**English — meaning (Sunnah.com 86):** In the Name of Allah, Who with His Name nothing can cause harm in the earth nor in the heavens, and He is the All-Hearing, the All-Knowing. (Recite three times in Arabic).
+
+**Sources:** [Bosnian PDF, page 36](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=36) · [English and Arabic](https://sunnah.com/hisn:86)
+
+<a id="hm-97"></a>
+### HM-97 · Utočište u Allahovim riječima / Refuge in Allah's perfect words
+
+**Arapski / Arabic**
+
+<p lang="ar" dir="rtl">أَعـوذُ بِكَلِمـاتِ اللّهِ التّـامّـاتِ مِنْ شَـرِّ ما خَلَـق</p>
+
+**Bosanski — transkripcija (adapted from Bosnian 79):** E‘ūḏu bi kelimāti-l-Lāhi-t-tāmmāti min šerri mā ẖaleqa.
+
+**Bosanski — prijevod (IslamHouse 79):** Pomoću savršenih Allahovih riječi, zaštićujem se od zla svega onoga što je On stvorio (3X).
+
+**English — transliteration (Sunnah.com 97):** A&#96;ūdhu bikalimāti-llāhit-tāmmāti min sharri mā khalaq.
+
+**English — meaning (Sunnah.com 97):** I seek refuge in the Perfect Words of Allah from the evil of what He has created. (Recite three times in Arabic in the evening.)
+
+**Sources:** [Bosnian PDF, page 35](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=35) · [English and Arabic](https://sunnah.com/hisn:97)
 

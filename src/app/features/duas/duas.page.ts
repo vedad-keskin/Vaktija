@@ -41,10 +41,14 @@ export class DuasPage {
     this.isDhikr
       ? []
       : [...DUA_CATEGORIES].sort((a, b) =>
-          a.label[this.language.lang()].localeCompare(
-            b.label[this.language.lang()],
-            this.language.lang(),
-          ),
+          a.id === 'general'
+            ? 1
+            : b.id === 'general'
+              ? -1
+              : a.label[this.language.lang()].localeCompare(
+                  b.label[this.language.lang()],
+                  this.language.lang(),
+                ),
         ),
   );
   private readonly storageKey = this.isDhikr ? 'vaktija_saved_dhikr' : 'vaktija_saved_duas';
