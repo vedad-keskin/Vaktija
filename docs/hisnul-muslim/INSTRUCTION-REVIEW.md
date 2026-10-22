@@ -4,7 +4,7 @@
 
 This audit covers the **57 cards currently in the app's dua categories**. An instruction note is useful when the source gives a step, sequence, or repetition that the title and recited words do not already explain. The proposed BS/EN notes below are **editorial summaries for review**, not published dua translations or verbatim quotations. The Arabic, transcription, and meaning of each dua are outside this proposal.
 
-**Result:** 2 recommended notes, 11 cases to decide, 2 notes already present, and 42 cards needing no new note. HM-214 is a separate instruction-only source entry, not an app card.
+**Result:** 2 recommended notes, 12 cases to decide, 2 notes already present, and 41 cards needing no new note. HM-214 is a separate instruction-only source entry, not an app card.
 
 ## Recommended
 
@@ -144,6 +144,17 @@ This audit covers the **57 cards currently in the app's dua categories**. An ins
 
 **Sources:** [BS, entry 18](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=12); [EN, HM-18](https://sunnah.com/hisn:18).
 
+### [ ] HM-207 — Putna dova · Putovanje
+
+**Source detail:** Both editions say to recite the travel supplication again on returning and add a short phrase. HM-217 separately provides a return supplication containing that phrase. The card currently shows the travel wording only.
+
+**If you want an instruction note (editorial):**
+
+- **BS:** Pri povratku ponovo prouči putnu dovu i dodaj završnu dovu navedenu u izvoru.
+- **EN:** On returning, recite the travel supplication again and add the closing words given in the source.
+
+**Sources:** [BS, entry 195](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=75); [EN, HM-207](https://sunnah.com/hisn:207).
+
 ### [ ] HM-217 — Dova pri povratku s puta · Putovanje
 
 **Source detail:** Both editions describe the return wording at each elevation. The current card includes the three opening takbirs, but does not say where to repeat them.
@@ -179,7 +190,7 @@ These entries give no extra action beyond the title and recited wording, or the 
 - **Životinje:** HM-228, HM-229
 - **Vrijeme:** HM-166, HM-169, HM-172, HM-173, HM-174, HM-175
 - **Kuća:** HM-16.
-- **Putovanje:** HM-206, HM-208–213, HM-215, and HM-216.
+- **Putovanje:** HM-206, HM-208–212, HM-215, and HM-216.
 
 The current entries and their individual source links are in the [category data files](../../src/app/features/duas/duas.data.ts). The separate dhikr catalog is outside this dua-card audit.
 

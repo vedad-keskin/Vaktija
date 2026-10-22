@@ -164,17 +164,17 @@ Brojevi, poglavlja i vrste zapisa provjereni su prema [OpenDua datasetu v0.0.4](
 
 ## Putovanje / Travel
 
-- [ ] [HM-211 · Putnikova dova onima koji ostaju / Traveler's farewell](README-full.md#hm-211) · u aplikaciji / in app
-- [ ] [HM-212 · Dova onih koji ostaju putniku (1/2) / A farewell to the traveler (1/2)](README-full.md#hm-212) · u aplikaciji / in app
-- [ ] [HM-213 · Dova onih koji ostaju putniku (2/2) / A farewell to the traveler (2/2)](README-full.md#hm-213) · u aplikaciji / in app
+- [ ] ★ [HM-207 · Putna dova / Travel supplication](README-full.md#hm-207) · u aplikaciji / in app
+- [ ] [HM-215 · Putnikova dova u zoru / The traveler's dawn prayer](README-full.md#hm-215) · u aplikaciji / in app
+- [ ] [HM-217 · Povratak s putovanja / Returning from a journey](README-full.md#hm-217) · u aplikaciji / in app
+- [ ] [HM-216 · Pri zaustavljanju na putu / Stopping along the journey](README-full.md#hm-216) · u aplikaciji / in app
 - [ ] ★ [HM-206 · Pri sjedanju u prijevozno sredstvo / Boarding a vehicle](README-full.md#hm-206) · u aplikaciji / in app
 - [ ] [HM-208 · Pri ulasku u grad / Entering a city](README-full.md#hm-208) · u aplikaciji / in app
 - [ ] [HM-209 · Pri ulasku na pijacu / Entering a market](README-full.md#hm-209) · u aplikaciji / in app
+- [ ] [HM-211 · Putnikova dova onima koji ostaju / Traveler's farewell](README-full.md#hm-211) · u aplikaciji / in app
+- [ ] [HM-212 · Dova onih koji ostaju musafiru / Farewell to a traveler](README-full.md#hm-212) · u aplikaciji / in app
 - [ ] [HM-210 · Kada prijevozno sredstvo zakaže / When transport fails](README-full.md#hm-210) · u aplikaciji / in app
-- [ ] [HM-215 · Putnikova dova u zoru / The traveler's dawn prayer](README-full.md#hm-215) · u aplikaciji / in app
-- [ ] [HM-216 · Pri zaustavljanju na putu / Stopping along the journey](README-full.md#hm-216) · u aplikaciji / in app
-- [ ] [HM-217 · Povratak s putovanja / Returning from a journey](README-full.md#hm-217) · u aplikaciji / in app
-- [ ] ★ [HM-207 · Dova za putovanje / Travel supplication](https://sunnah.com/hisn:207)
+- [ ] [HM-213 · Dova onih koji ostaju musafiru (2/2) / A farewell to the traveler (2/2)](https://sunnah.com/hisn:213)
 - [ ] [HM-214 · Zikr tokom putovanja / Remembrance while traveling](https://sunnah.com/hisn:214) · uputa / instruction
 
 ## Teškoće, zaštita, bolest i gubitak / Hardship, protection, illness and loss

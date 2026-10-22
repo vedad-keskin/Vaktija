@@ -74,8 +74,8 @@ it('shows ten items at a time and resets on view changes', async () => {
   expect(cards()[0].querySelector('h2')?.textContent).toBe('When leaving home');
   await harness.navigateByUrl('/duas?category=travel');
   expect([...cards()].map((card) => card.getAttribute('data-dua-id'))).toEqual([
-    'hisn-211', 'hisn-212', 'hisn-213', 'hisn-206',
-    'hisn-208', 'hisn-209', 'hisn-210', 'hisn-215', 'hisn-216', 'hisn-217',
+    'hisn-207', 'hisn-215', 'hisn-217', 'hisn-216', 'hisn-206',
+    'hisn-208', 'hisn-209', 'hisn-211', 'hisn-212', 'hisn-210',
   ]);
   expect(more()).toBeNull();
   await harness.navigateByUrl('/duas?category=sleep');
@@ -159,16 +159,16 @@ it('routes the bilingual library, validates saved data and persists bookmark cha
     'hisn-175',
     'hisn-16',
     'hisn-18',
-    'hisn-211',
-    'hisn-212',
-    'hisn-213',
+    'hisn-207',
+    'hisn-215',
+    'hisn-217',
+    'hisn-216',
     'hisn-206',
     'hisn-208',
     'hisn-209',
+    'hisn-211',
+    'hisn-212',
     'hisn-210',
-    'hisn-215',
-    'hisn-216',
-    'hisn-217',
     'hisn-79',
     'hisn-84',
     'hisn-86',
