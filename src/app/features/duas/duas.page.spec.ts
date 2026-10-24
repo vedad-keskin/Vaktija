@@ -138,13 +138,18 @@ it('shows ten items at a time and resets on view changes', async () => {
     'hisn-193',
     'hisn-194',
     'hisn-199',
+    'hisn-203',
   ]);
   expect(more()).toBeNull();
   await harness.navigateByUrl('/duas?category=children');
   expect([...cards()].map((card) => card.getAttribute('data-dua-id'))).toEqual(['hisn-146']);
   expect(more()).toBeNull();
   await harness.navigateByUrl('/duas?category=debt');
-  expect([...cards()].map((card) => card.getAttribute('data-dua-id'))).toEqual(['hisn-136']);
+  expect([...cards()].map((card) => card.getAttribute('data-dua-id'))).toEqual([
+    'hisn-136',
+    'hisn-201',
+    'hisn-202',
+  ]);
   expect(more()).toBeNull();
   await harness.navigateByUrl('/duas?view=saved');
   expect(cards()).toHaveLength(10);
@@ -226,8 +231,11 @@ it('routes the bilingual library, validates saved data and persists bookmark cha
     'hisn-193',
     'hisn-194',
     'hisn-199',
+    'hisn-203',
     'hisn-146',
     'hisn-136',
+    'hisn-201',
+    'hisn-202',
     'hisn-192',
     'hisn-191',
     'hisn-190',

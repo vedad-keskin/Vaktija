@@ -1,6 +1,6 @@
 import type { Dua } from './duas.data';
 
-// Bosnian wording: reader's Hisnul-Muslimi photographs (116, 119, 121, 124, 130–132, 135).
+// Bosnian wording: reader's Hisnul-Muslimi photographs (116, 119, 121, 124, 130–132, 135, 191).
 // English: linked Sunnah.com entries; HM-133, HM-140 and HM-141 include a recited phrase within an instruction.
 export const PROTECTION_DUAS: readonly Dua[] = [
   {
@@ -200,5 +200,25 @@ export const PROTECTION_DUAS: readonly Dua[] = [
     sourceUrl: 'https://sunnah.com/hisn:56',
     bosnianSourceUrl:
       'https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=71',
+  },
+  {
+    id: 'hisn-203',
+    title: {
+      bs: 'Dova za zaštitu od straha pred širkom',
+      en: 'Fear of associating partners with Allah',
+    },
+    arabic: 'اللّهُـمَّ إِنّـي أَعـوذُبِكَ أَنْ أُشْـرِكَ بِكَ وَأَنا أَعْـلَمْ، وَأَسْتَـغْفِرُكَ لِما لا أَعْـلَم',
+    transcription: {
+      bs: 'Allāhumme innī e‘ūdu bike en ušrike bike ve ene a’lemu ve estagfiruke limā lā a’lemu.',
+      en: 'Allāhumma innī a`ūdhu bika an ushrika bika wa anā a`lam, wa astaghfiruka limā lā a`lam.',
+    },
+    translation: {
+      bs: 'Allahu, zaštiti me da prema Tebi ne počinim svjesno širk i molim Te da mi oprostiš za ono što počinim nesvjesno.',
+      en: 'O Allah, I seek refuge in You lest I associate anything with You knowingly, and I seek Your forgiveness for what I know not.',
+    },
+    reference: { bs: 'Hisnul-Muslimi, 191', en: 'Hisn al-Muslim, 203' },
+    sourceUrl: 'https://sunnah.com/hisn:203',
+    bosnianSourceUrl:
+      'https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=72',
   },
 ];
