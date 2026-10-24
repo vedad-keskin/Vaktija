@@ -1,6 +1,6 @@
 # Hisnul Muslim — selected full duas (BS / EN)
 
-This file grows one approved category at a time. It currently contains the clothing entries (HM-5, 9, 6, 7), the toilet entries (HM-10–11), the Abdest entries (HM-12–13), the mosque entries (HM-19–21), the adhan entry (HM-25), the sleeping entries (HM-111, 1, 114, 113, 112), the three marriage entries, the gathering entries (HM-195–196), the animal entries, the weather entries (HM-166, 168, 169, 172–175), the fasting and food entries (HM-176–186), the home entries (HM-16, 18), the travel entries (HM-206–212, 215–217), the general entries (HM-79, 84, 86, 97), the illness entries (HM-147, 148, 150–152, 243), and the death entries (HM-153–163, 165). The [complete title checklist](README-titles.md) remains an editorial selection aid; its suggested labels are not published translations.
+This file grows one approved category at a time. It currently contains the clothing entries (HM-5, 9, 6, 7), the toilet entries (HM-10–11), the Abdest entries (HM-12–13), the mosque entries (HM-19–21), the adhan entry (HM-25), the sleeping entries (HM-111, 1, 114, 113, 112), the three marriage entries, the gathering entries (HM-195–196), the animal entries, the weather entries (HM-166, 168, 169, 172–175), the fasting and food entries (HM-176–186), the home entries (HM-16, 18), the travel entries (HM-206–212, 215–217), the general entries (HM-79, 84, 86, 97), the illness entries (HM-147, 148, 150–152, 243), the death entries (HM-153–163, 165), and the Hajj and Umrah entries (HM-234–239). The [complete title checklist](README-titles.md) remains an editorial selection aid; its suggested labels are not published translations.
 
 ## Izvori i uredničke napomene / Sources and editorial notes
 
@@ -19,6 +19,7 @@ This file grows one approved category at a time. It currently contains the cloth
 - **Putovanje / Travel:** The selected HM-206–212 and 215–217 correspond to Bosnian 194–200 and 203–205. Bosnian transcriptions and meanings follow the reader’s photographs of pages 122–130 of the 2017 edition; linked IslamHouse pages provide the digital counterpart. HM-213 remains in the complete title checklist. HM-214 / Bosnian 202 reports an ascent/descent practice rather than a standalone dua. HM-206 and HM-207 contain Qur’anic words as part of their published recitations. The short return phrase after HM-207 also appears in HM-217; the HM-207 card shows the travel wording only. HM-217 includes the three opening takbirs from the published return instructions.
 - **Bolest i bol / Illness and pain:** HM-147–152 correspond to Bosnian 137–142. Their Bosnian transcriptions and meanings follow the reader’s photographs of pages 90–93 of the 2017 edition; the linked IslamHouse PDF is a published digital counterpart. HM-149 / Bosnian 139 is a narration about visiting the sick, so it remains only in the checklist. HM-150–152 belong to the source chapter about a sick person nearing death. HM-151’s photo transcribes only its opening phrase; its second clause is adapted from the printed Arabic using the letter key above. The source reports the Prophet wiping his face with wet hands as context, not a required step for this card. The published Bosnian meaning of HM-152 omits the clause about dominion and praise although its recitation contains it; the English meaning includes that clause. HM-243 corresponds to Bosnian 228; its Bosnian transcription, instruction, and meaning follow the reader’s later photograph of the 2017 edition. Its opening Bosnian meaning, “U ime Allaha,” comes from Bosnian 9 in the linked IslamHouse PDF.
 - **Smrt / Death:** HM-153–165 correspond to Bosnian 143–156; HM-162 is Bosnian 152 only. The photographed alternative (Bosnian 153) stays out of the app. Bosnian 143–146 follow the linked PDF because those pages were not photographed. Bosnian 147–156 follow the reader’s photographs of pages 96–102 of the 2017 edition, retaining the photo’s ḫ where it differs from the adaptation key above. HM-153 displays the recited declaration from a narration; its Bosnian meaning comes from the published Bosnian 141 on PDF page 54. HM-160 displays the child funeral prayer shared by the Bosnian edition and Sunnah.com; Sunnah.com also has a short alternative and two extra closing clauses that are absent from the photographed Bosnian edition. HM-164 / Bosnian 155 gives an instruction after burial without fixed Bosnian recited wording, so it remains in the checklist only. The photographed Bosnian 156 / HM-165 includes a mercy clause in its Arabic and transcription that the PDF and Sunnah.com Arabic omit; Sunnah.com includes its English meaning in brackets. The photographed Bosnian meaning does not translate that clause, and is reproduced as printed.
+- **Hadž i umra / Hajj and Umrah:** HM-235, 236, 237, 238, 239, and 234 correspond to Bosnian 107–112, in that book order. Bosnian titles, transcriptions, and meanings follow the reader’s photographs of pages 136–141 of the 2017 edition. HM-233, the talbiyah, is not on those pages. Bosnian 113–115 are the following chapters and are not in this category. HM-234 and HM-239 show the photographed takbir; their Bosnian instructions are the printed practice. HM-236 shows the recited words quoted in Bosnian 108. English and Arabic follow the linked Sunnah.com entries.
 - **English title, transliteration and meaning; Arabic text:** [Sunnah.com, *Hisn al-Muslim*](https://sunnah.com/hisn), except where an entry has its own source note. Only the recited words and their published meanings are shown below. Line breaks on the Sunnah.com page are joined with spaces. Arabic orthography follows the linked entry, including HM-13’s unspaced وَأَشْهَدُأَنَّ; HM-18 uses the complete final word from the Bosnian edition.
 - Numbering matches for HM-10 through HM-13, HM-19 through HM-21, and HM-25. The marriage items differ: BS 178 ↔ EN 190, BS 179 ↔ EN 191, BS 180 ↔ EN 192. The gathering items are BS 183–184 ↔ EN 195–196. The weather items differ by nine: BS 157, 159, 160, 163–166 ↔ EN 166, 168, 169, 172–175. Fasting and food is BS 167–175 ↔ EN 176, 178–185; EN 177 is not in the Bosnian edition, and EN 186 is BS 235.
 - Sleep HM-1 matches BS 1.
@@ -1436,4 +1437,94 @@ The source places this supplication after al-Fatihah in the funeral prayer for a
 The photographed Bosnian recitation includes the bracketed mercy clause, while its printed Bosnian meaning omits that clause. The linked Bosnian PDF and Sunnah.com Arabic also omit it; Sunnah.com includes it in the English meaning.
 
 **Sources:** [Bosnian PDF, pages 60–61](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=60) · [English and Arabic](https://sunnah.com/hisn:165)
+
+## Hadž i umra / Hajj and Umrah
+
+<a id="hm-235"></a>
+### HM-235 · Dova koja se uči između Jemenskog ugla Kabe i Crnoga kamena (El-Hadžeru-l-esveda) / Between the Yemeni corner and the black stone
+
+**Bosanski — transkripcija (2017 edition, page 136):** Rabbenā ātinā fi-d-dunjā ḥaseneten ve fi-l-āḫireti ḥaseneten ve qinā ‘aḏābe-n-nār.
+
+**Bosanski — prijevod (2017 edition, page 136):** Gospodaru naš, daj nam dobro na ovome svijetu i dobro na drugome svijetu. Sačuvaj nas džehenemske vatre.
+
+**English — transliteration (Sunnah.com 235):** Rabbanā ātinā fid-dunyā ḥasanah wa fi ‘l-ākhirati ḥasanah wa qinā &#96;adhāban-nār.
+
+**English — meaning (Sunnah.com 235):** Our Lord, grant us the good things in this world, and the good things in the next life, and save us from the punishment of the Fire.
+
+**Sources:** [Bosnian PDF, page 83](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=83) · [English and Arabic](https://sunnah.com/hisn:235)
+
+<a id="hm-236"></a>
+### HM-236 · Dova prilikom boravka na Safi i Mervi / When at Mount Safa and Mount Marwah
+
+**Bosanski — uputa (2017 edition, pages 136–137):** Počeo bi od Saffe i to ponovio tri puta. Isto je obavljao na Mervi.
+
+**Bosanski — transkripcija (2017 edition, pages 136–137):** Inne-s-Safā ve-l-Mervete min še‘āiri-l-Lāhi. Ebde’u bimā bede’allāhu bih. Lā ilāhe illellāhu va-l-Lāhu ekber, lā ilāhe illellāhu vaḥdehū lā šerīke lehū, lehū-l-mulku ve lehū-l-ḥamdu ve huve ‘alā kulli šej’in qadīr, lā ilāhe illellāhu vaḥdehū, endžeze va‘dehū ve nesare ‘abdehū, ve hezeme-l-aḥzābe vaḥdehū.
+
+**Bosanski — prijevod (2017 edition, pages 136–137):** Safa i Merva su Allahova časna mjesta. Počeo je na način kako je Allah počeo. Nema boga osim Allaha, Jedinoga, Koji Sebi ravnoga nema. Njemu pripada sva vlast i zahvalnost i On je iznad svega. Nema boga osim Allaha, Jedinoga, Koji ispunjava Svoje obećanje i pomaže Svojem robu, i sve protivnike Sam porazi.
+
+**English — transliteration (Sunnah.com 236):** Innaṣ-Ṣafā wa ‘l-Marwata min sha&#96;ā'irillāh. Abda'u bimā bada'allāhu bih. Lā ilāha illallāh, Allāhu Akbar. Lā ilāha illallāhu waḥdahu lā sharīka lah, lahu ‘l-mulku wa lahu ‘l-ḥamdu wa huwa &#96;alā kulli shay'in qadīr, lā ilāha illallāhu waḥdahu, anjaza wa&#96;dahu, wa naṣara &#96;abdahu, wa hazama ‘l-aḥzāba waḥdah.
+
+**English — meaning (Sunnah.com 236):** Surely Safa and Marwah are among the signs of Allah. I begin by that which Allah began. There is none worthy of worship but Allah, and Allah is the Most Great. None has the right to be worshipped but Allah alone, Who has no partner, His is the dominion and His is the praise, and He is Able to do all things. None has the right to be worshipped but Allah alone, He fulfilled His Promise, He aided His slave, and He alone defeated the Confederates.
+
+**Sources:** [Bosnian PDF, pages 83–84](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=83) · [English and Arabic](https://sunnah.com/hisn:236)
+
+<a id="hm-237"></a>
+### HM-237 · Dova na dan Arefata / The Day of 'Arafah
+
+**Bosanski — uputa (2017 edition, page 138):** Najbolja dova je ona koja se izgovara na Dan Arefata te je najbolje što sam ja učio i poslanici prije mene.
+
+**Bosanski — transkripcija (2017 edition, page 138):** Lā ilāhe illellāhu vaḥdehū lā šerīke leh, lehu-l-mulku ve lehu-l-ḥamdu ve huve ‘alā kulli šej’in qadīr.
+
+**Bosanski — prijevod (2017 edition, page 138):** Nema boga osim Allaha, Jedinoga, Koji Sebi ravnoga nema. Njemu pripada sva vlast i zahvalnost. On nad svime ima moć.
+
+**English — transliteration (Sunnah.com 237):** Lā ilāha illallāhu waḥdahu lā sharīka lahu, lahul-mulku wa lahul-ḥamdu wa huwa &#96;alā kulli shay'in qadīr.
+
+**English — meaning (Sunnah.com 237):** None has the right to be worshipped but Allah Alone, Who has no partner. His is the dominion and His is the praise, and He is Able to do all things.
+
+**Sources:** [Bosnian PDF, page 84](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=84) · [English and Arabic](https://sunnah.com/hisn:237)
+
+<a id="hm-238"></a>
+### HM-238 · Dova koja se uči kod Meš'ari-l-harama (na Muzdelifi) / Remembrance at Muzdalifah
+
+**Bosanski — transkripcija (2017 edition, pages 138–139):** Allāhu ekber. Lā ilāhe illellāhu vaḥdehū lā šerīke leh. Lehu-l-mulku ve lehu-l-ḥamdu ve huve ‘alā kulli šej’in qadīr.
+
+**Bosanski — prijevod:** Allah je najveći. Nema boga osim Allaha, Jedinoga, Koji Sebi ravnoga nema. Njemu pripada sva vlast i zahvalnost. On nad svime ima moć.
+
+**English — transliteration (Sunnah.com 237):** Allāhu Akbar. Lā ilāha illallāhu waḥdahu lā sharīka lahu, lahul-mulku wa lahul-ḥamdu wa huwa &#96;alā kulli shay'in qadīr.
+
+**English — meaning (Sunnah.com 237):** Allah is the Most Great. None has the right to be worshipped but Allah Alone, Who has no partner. His is the dominion and His is the praise, and He is Able to do all things.
+
+Sunnah.com 238 describes standing at Muzdalifah and does not give this supplication. The wording is the one published at Sunnah.com 237. The opening takbir is in the photographed Bosnian recitation.
+
+**Sources:** [Bosnian PDF, page 85](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=85) · [English and Arabic](https://sunnah.com/hisn:237)
+
+<a id="hm-239"></a>
+### HM-239 · Izgovaranje tekbira sa svakim bacanjem kamenčića na džemretima / Takbir when throwing each pebble at the Jamarat
+
+**Bosanski — uputa (2017 edition, page 139):** Allahov Poslanik je prilikom bacanja svakoga kamenčića na svakom od tri džemreta izgovorio tekbir, potom bi iskoračio naprijed, stao i proučio dovu okrenuvši se podignutih ruku prema kibli. Tako je postupao pri prvom i drugom bacanju. Prilikom trećega kamenovanja, poslije svakog bačenog kamenčića bi izgovorio tekbir i udaljio se bez zaustavljanja.
+
+**Bosanski — transkripcija:** Allāhu ekber.
+
+**Bosanski — prijevod:** Allah je najveći.
+
+**English — transliteration (Sunnah.com 239):** Allāhu Akbar.
+
+**English — meaning (Sunnah.com 239):** Allah is the Most Great.
+
+**Sources:** [Bosnian PDF, page 85](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=85) · [English and Arabic](https://sunnah.com/hisn:239)
+
+<a id="hm-234"></a>
+### HM-234 · Izgovaranje tekbira (prilikom tavafa) u nivou ugla Kabe u kome je Crni kamen / The takbir passing the black stone
+
+**Bosanski — uputa (2017 edition, page 140):** Poslanik je obavljao tavaf i na devi. Kad god bi stigao do ugla s Crnim kamenom, upravio bi prema njemu svoj štap i izgovorio tekbir.
+
+**Bosanski — transkripcija:** Allāhu ekber.
+
+**Bosanski — prijevod:** Allah je najveći.
+
+**English — transliteration (Sunnah.com 234):** Allāhu Akbar.
+
+**English — meaning (Sunnah.com 234):** Allah is the Most Great.
+
+**Sources:** [Bosnian PDF, page 86](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=86) · [English and Arabic](https://sunnah.com/hisn:234)
 

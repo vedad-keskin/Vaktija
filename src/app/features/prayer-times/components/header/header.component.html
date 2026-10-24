@@ -91,7 +91,6 @@
       class="lang-switcher"
       [class.en-active]="currentLang() === 'en'"
       id="lang-switcher-desktop"
-      (click)="toggleLang()"
       role="group"
       aria-label="Language"
     >
@@ -101,6 +100,7 @@
         class="lang-btn"
         [class.active]="currentLang() === 'bs'"
         title="Bosanski"
+        (click)="setLang('bs')"
       >
         <img src="assets/icons/bih.png" alt="BiH" class="lang-flag" />
         <span class="lang-code">BS</span>
@@ -110,6 +110,7 @@
         class="lang-btn"
         [class.active]="currentLang() === 'en'"
         title="English"
+        (click)="setLang('en')"
       >
         <img src="assets/icons/uk.png" alt="UK" class="lang-flag" />
         <span class="lang-code">EN</span>
@@ -120,12 +121,10 @@
   <!-- Mobile controls -->
   <div class="header-mobile-controls">
     <app-theme-switcher [directSelect]="true" />
-    <!-- Language switcher (always visible on mobile, click-anywhere toggle) -->
     <div
       class="lang-switcher"
       [class.en-active]="currentLang() === 'en'"
       id="lang-switcher-mobile"
-      (click)="toggleLang()"
       role="group"
       aria-label="Language"
     >
@@ -135,6 +134,7 @@
         class="lang-btn"
         [class.active]="currentLang() === 'bs'"
         title="Bosanski"
+        (click)="setLang('bs')"
       >
         <img src="assets/icons/bih.png" alt="BiH" class="lang-flag" />
         <span class="lang-code">BS</span>
@@ -144,6 +144,7 @@
         class="lang-btn"
         [class.active]="currentLang() === 'en'"
         title="English"
+        (click)="setLang('en')"
       >
         <img src="assets/icons/uk.png" alt="UK" class="lang-flag" />
         <span class="lang-code">EN</span>

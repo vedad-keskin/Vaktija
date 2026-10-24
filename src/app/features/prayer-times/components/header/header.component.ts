@@ -28,9 +28,9 @@ export class HeaderComponent {
     });
   }
 
-  /** Any click on the language control flips BS ↔ EN (including tapping the active side again). */
-  protected toggleLang(): void {
-    this.langService.setLanguage(this.currentLang() === 'bs' ? 'en' : 'bs');
+  /** Selects the language on the button that was clicked. */
+  protected setLang(code: 'bs' | 'en'): void {
+    this.langService.setLanguage(code);
   }
 
   protected toggleMenu(): void {

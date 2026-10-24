@@ -268,12 +268,12 @@ Brojevi, poglavlja i vrste zapisa provjereni su prema [OpenDua datasetu v0.0.4](
 ## Hadž i umra / Hajj and Umrah
 
 - [ ] [HM-233 · Telbija za hadž ili umru / The Hajj or Umrah talbiyah](https://sunnah.com/hisn:233)
-- [ ] [HM-234 · Tekbir kod Crnog kamena / At the Black Stone](https://sunnah.com/hisn:234) · uputa / instruction
-- [ ] [HM-235 · Između Jemenskog ugla i Crnog kamena / Between the Yemeni Corner and Black Stone](https://sunnah.com/hisn:235)
-- [ ] [HM-236 · Na Safi i Mervi / At Safa and Marwah](https://sunnah.com/hisn:236)
-- [ ] [HM-237 · Na dan Arefata / On the Day of Arafah](https://sunnah.com/hisn:237)
-- [ ] [HM-238 · Na Muzdelifi / At Muzdalifah](https://sunnah.com/hisn:238) · uputa / instruction
-- [ ] [HM-239 · Pri bacanju kamenčića na Mini / At the pillars of Mina](https://sunnah.com/hisn:239) · uputa / instruction
+- [ ] [HM-234 · Izgovaranje tekbira (prilikom tavafa) u nivou ugla Kabe u kome je Crni kamen / The takbir passing the black stone](README-full.md#hm-234) · u aplikaciji / in app
+- [ ] [HM-235 · Dova koja se uči između Jemenskog ugla Kabe i Crnoga kamena (El-Hadžeru-l-esveda) / Between the Yemeni corner and the black stone](README-full.md#hm-235) · u aplikaciji / in app
+- [ ] [HM-236 · Dova prilikom boravka na Safi i Mervi / When at Mount Safa and Mount Marwah](README-full.md#hm-236) · u aplikaciji / in app
+- [ ] [HM-237 · Dova na dan Arefata / The Day of 'Arafah](README-full.md#hm-237) · u aplikaciji / in app
+- [ ] [HM-238 · Dova koja se uči kod Meš'ari-l-harama (na Muzdelifi) / Remembrance at Muzdalifah](README-full.md#hm-238) · u aplikaciji / in app
+- [ ] [HM-239 · Izgovaranje tekbira sa svakim bacanjem kamenčića na džemretima / Takbir when throwing each pebble at the Jamarat](README-full.md#hm-239) · u aplikaciji / in app
 
 ## Općenite dove, zikr i adab / General supplications, remembrance and manners
 
