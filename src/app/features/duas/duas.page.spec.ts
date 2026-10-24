@@ -113,6 +113,19 @@ it('shows ten items at a time and resets on view changes', async () => {
     'hisn-165',
   ]);
   expect(more()).toBeNull();
+  await harness.navigateByUrl('/duas?category=protection');
+  expect([...cards()].map((card) => card.getAttribute('data-dua-id'))).toEqual([
+    'hisn-124',
+    'hisn-121',
+    'hisn-146',
+    'hisn-126',
+    'hisn-133',
+    'hisn-139',
+  ]);
+  expect(more()).toBeNull();
+  await harness.navigateByUrl('/duas?category=debt');
+  expect([...cards()].map((card) => card.getAttribute('data-dua-id'))).toEqual(['hisn-136']);
+  expect(more()).toBeNull();
   await harness.navigateByUrl('/duas?view=saved');
   expect(cards()).toHaveLength(10);
   more()!.click();
@@ -135,6 +148,8 @@ it('routes the bilingual library, validates saved data and persists bookmark cha
     'sleep',
     'illness',
     'death',
+    'protection',
+    'debt',
     'marriage',
     'clothing',
     'gathering',
@@ -179,6 +194,13 @@ it('routes the bilingual library, validates saved data and persists bookmark cha
     'hisn-155',
     'hisn-163',
     'hisn-165',
+    'hisn-124',
+    'hisn-121',
+    'hisn-146',
+    'hisn-126',
+    'hisn-133',
+    'hisn-139',
+    'hisn-136',
     'hisn-192',
     'hisn-191',
     'hisn-190',
@@ -212,11 +234,8 @@ it('routes the bilingual library, validates saved data and persists bookmark cha
     'hisn-212',
     'hisn-210',
     'hisn-235',
-    'hisn-236',
     'hisn-237',
     'hisn-238',
-    'hisn-239',
-    'hisn-234',
   ]);
   await TestBed.configureTestingModule({
     imports: [DuasPage],
@@ -284,6 +303,7 @@ it('routes the bilingual library, validates saved data and persists bookmark cha
             'Abdest',
             'Bolest i bol',
             'Brak',
+            'Dug',
             'Džamija',
             'Ezan',
             'Hadž i umra',
@@ -296,6 +316,7 @@ it('routes the bilingual library, validates saved data and persists bookmark cha
             'Smrt',
             'Spavanje i snovi',
             'Toalet',
+            'Zaštita',
             'Životinje',
             'Opće',
           ]
@@ -305,6 +326,7 @@ it('routes the bilingual library, validates saved data and persists bookmark cha
             'Animals',
             'Clothing',
             'Death',
+            'Debt',
             'Fasting and food',
             'Gathering',
             'Hajj and Umrah',
@@ -313,6 +335,7 @@ it('routes the bilingual library, validates saved data and persists bookmark cha
             'Marriage',
             'Mosque',
             'Nature and weather',
+            'Protection',
             'Sleep and dreams',
             'Toilet',
             'Travel',

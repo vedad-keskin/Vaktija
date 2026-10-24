@@ -102,7 +102,10 @@ export const DEATH_DUAS: readonly Dua[] = [
   },
   {
     id: 'hisn-163',
-    title: { bs: 'Dova prilikom spuštanja umrlog u kabur', en: 'When placing the deceased in the grave' },
+    title: {
+      bs: 'Dova prilikom spuštanja umrlog u kabur',
+      en: 'When placing the deceased in the grave',
+    },
     arabic: 'بِسْمِ اللَّهِ وَعَلَى سُنَّةِ رَسُولِ اللَّهِ',
     transcription: {
       bs: 'Bismillāhi ve ‘alā sunneti Resulillāhi.',

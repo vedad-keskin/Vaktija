@@ -388,7 +388,6 @@ svg {
     padding-inline: 18px;
     gap: 4px;
     white-space: nowrap;
-
   }
   /* Compact chip sizing to restore:
   .duas-collections {
@@ -407,7 +406,7 @@ svg {
     height: 16px;
   }
   */
-  
+
   .duas-list {
     gap: 16px;
   }

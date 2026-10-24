@@ -4,6 +4,7 @@ import { ADHAN_DUAS } from './adhan.data';
 import { ANIMAL_DUAS } from './animals.data';
 import { CLOTHING_DUAS } from './clothing.data';
 import { DEATH_DUAS } from './death.data';
+import { DEBT_DUAS } from './debt.data';
 import { FOOD_DUAS } from './food.data';
 import { GATHERING_DUAS } from './gathering.data';
 import { GENERAL_DUAS } from './general.data';
@@ -12,6 +13,7 @@ import { HOME_DUAS } from './home.data';
 import { ILLNESS_DUAS } from './illness.data';
 import { MARRIAGE_DUAS } from './marriage.data';
 import { MOSQUE_DUAS } from './mosque.data';
+import { PROTECTION_DUAS } from './protection.data';
 import { SLEEP_DUAS } from './sleep.data';
 import { TOILET_DUAS } from './toilet.data';
 import { TRAVEL_DUAS } from './travel.data';
@@ -39,6 +41,8 @@ export const DUA_CATEGORIES = [
   { id: 'sleep', label: { bs: 'Spavanje i snovi', en: 'Sleep and dreams' }, items: SLEEP_DUAS },
   { id: 'illness', label: { bs: 'Bolest i bol', en: 'Illness and pain' }, items: ILLNESS_DUAS },
   { id: 'death', label: { bs: 'Smrt', en: 'Death' }, items: DEATH_DUAS },
+  { id: 'protection', label: { bs: 'Zaštita', en: 'Protection' }, items: PROTECTION_DUAS },
+  { id: 'debt', label: { bs: 'Dug', en: 'Debt' }, items: DEBT_DUAS },
   { id: 'marriage', label: { bs: 'Brak', en: 'Marriage' }, items: MARRIAGE_DUAS },
   { id: 'clothing', label: { bs: 'Odjeća', en: 'Clothing' }, items: CLOTHING_DUAS },
   { id: 'gathering', label: { bs: 'Sijelo', en: 'Gathering' }, items: GATHERING_DUAS },

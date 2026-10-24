@@ -139,7 +139,6 @@ Brojevi, poglavlja i vrste zapisa provjereni su prema [OpenDua datasetu v0.0.4](
 ## Brak i porodica / Marriage and family
 
 - [ ] [HM-145 · Čestitka roditeljima novorođenčeta i odgovor / Greeting new parents and their response](https://sunnah.com/hisn:145)
-- [ ] ★ [HM-146 · Zaštita za djecu / Seeking protection for children](https://sunnah.com/hisn:146)
 - [ ] [HM-192 · Dova prije spolnog odnosa u braku / Before sexual intercourse with the wife](README-full.md#hm-192) · u aplikaciji / in app
 - [ ] [HM-191 · Dova koju mladoženja uči sebi / On the wedding night](README-full.md#hm-191) · u aplikaciji / in app
 - [ ] ★ [HM-190 · Dova oženjenom-udatoj / To the newlywed](README-full.md#hm-190) · u aplikaciji / in app
@@ -180,24 +179,18 @@ Brojevi, poglavlja i vrste zapisa provjereni su prema [OpenDua datasetu v0.0.4](
 ## Teškoće i zaštita / Hardship and protection
 
 - [ ] [HM-120 · Pri brizi i tuzi (1/2) / Worry and grief (1/2)](https://sunnah.com/hisn:120)
-- [ ] ★ [HM-121 · Protiv brige, tuge i nemoći / Against worry, grief and helplessness](https://sunnah.com/hisn:121)
 - [ ] [HM-122 · U teškoj nevolji (1/4) / Distress (1/4)](https://sunnah.com/hisn:122)
 - [ ] [HM-123 · Kada nas pritisne nevolja / When facing distress](https://sunnah.com/hisn:123)
-- [ ] ★ [HM-124 · Junusova dova u nevolji / Yunus's supplication in distress](https://sunnah.com/hisn:124)
 - [ ] [HM-125 · U teškoj nevolji (4/4) / Distress (4/4)](https://sunnah.com/hisn:125)
-- [ ] [HM-126 · Pri susretu s protivnikom ili moćnim vladarom (1/3) / Facing an adversary or ruler (1/3)](https://sunnah.com/hisn:126)
 - [ ] [HM-127 · Pri susretu s protivnikom ili moćnim vladarom (2/3) / Facing an adversary or ruler (2/3)](https://sunnah.com/hisn:127)
 - [ ] [HM-128 · Pri susretu s protivnikom ili moćnim vladarom (3/3) / Facing an adversary or ruler (3/3)](https://sunnah.com/hisn:128)
 - [ ] [HM-129 · Protiv tlačenja vladara (1/2) / Oppression by rulers (1/2)](https://sunnah.com/hisn:129)
 - [ ] [HM-130 · Protiv tlačenja vladara (2/2) / Oppression by rulers (2/2)](https://sunnah.com/hisn:130)
 - [ ] [HM-131 · Protiv neprijatelja / Against an enemy](https://sunnah.com/hisn:131)
 - [ ] [HM-132 · Pri strahu od tuđe štete / Fear of harm from others](https://sunnah.com/hisn:132)
-- [ ] [HM-133 · Pri sumnji u vjeri (1/3) / Doubts about faith (1/3)](https://sunnah.com/hisn:133) · uputa / instruction
 - [ ] [HM-134 · Pri sumnji u vjeri (2/3) / Doubts about faith (2/3)](https://sunnah.com/hisn:134)
 - [ ] [HM-135 · Pri sumnji u vjeri (3/3) / Doubts about faith (3/3)](https://sunnah.com/hisn:135)
-- [ ] [HM-136 · Za izlaz iz duga / For relief from debt](https://sunnah.com/hisn:136)
 - [ ] [HM-137 · Za otplatu duga (2/2) / Repaying a debt (2/2)](https://sunnah.com/hisn:137)
-- [ ] ★ [HM-139 · Kada je nešto teško / When something is difficult](https://sunnah.com/hisn:139)
 - [ ] [HM-140 · Nakon učinjenog grijeha / After committing a sin](https://sunnah.com/hisn:140) · uputa / instruction
 - [ ] [HM-141 · Protiv šejtana i njegovih došaptavanja (1/3) / Satanic suggestions (1/3)](https://sunnah.com/hisn:141) · uputa / instruction
 - [ ] [HM-142 · Protiv šejtana i njegovih došaptavanja (2/3) / Satanic suggestions (2/3)](https://sunnah.com/hisn:142) · uputa / instruction
@@ -205,10 +198,23 @@ Brojevi, poglavlja i vrste zapisa provjereni su prema [OpenDua datasetu v0.0.4](
 - [ ] [HM-144 · Kada se dogodi nešto nepoželjno / When something unwelcome happens](https://sunnah.com/hisn:144)
 - [ ] ★ [HM-193 · Pri srdžbi / When angry](https://sunnah.com/hisn:193)
 - [ ] [HM-194 · Kada vidimo osobu pogođenu nevoljom / Seeing someone struck by misfortune](https://sunnah.com/hisn:194)
-- [ ] [HM-240 · Pri iznenađenju ili zaprepaštenju (1/2) / When startled (1/2)](https://sunnah.com/hisn:240)
-- [ ] [HM-241 · Pri iznenađenju ili zaprepaštenju (2/2) / When startled (2/2)](https://sunnah.com/hisn:241)
+- [ ] [HM-240 · Pri čuđenju ili radosnom događaju (1/2) / At amazement or a happy event (1/2)](https://sunnah.com/hisn:240)
+- [ ] [HM-241 · Pri čuđenju ili radosnom događaju (2/2) / At amazement or a happy event (2/2)](https://sunnah.com/hisn:241)
 - [ ] [HM-244 · Kada se bojimo uroka / Fear of casting the evil eye](https://sunnah.com/hisn:244) · uputa / instruction
 - [ ] [HM-245 · Pri strahu / When frightened](https://sunnah.com/hisn:245)
+
+## Zaštita / Protection
+
+- [ ] ★ [HM-124 · Junusova dova u nevolji / Yunus's supplication in distress](README-full.md#hm-124) · u aplikaciji / in app
+- [ ] ★ [HM-121 · Dova protiv zabrinutosti i žalosti / Against anxiety and sorrow](README-full.md#hm-121) · u aplikaciji / in app
+- [ ] ★ [HM-146 · Dova kojom se zaštićuju djeca / Seeking protection for children](README-full.md#hm-146) · u aplikaciji / in app
+- [ ] [HM-126 · Pri susretu s neprijateljem ili osobom na vlasti (1/3) / Facing an adversary or ruler (1/3)](README-full.md#hm-126) · u aplikaciji / in app
+- [ ] [HM-133 · Pri sumnji u vjeri / When doubting one’s faith](README-full.md#hm-133) · uputa / instruction · u aplikaciji / in app
+- [ ] ★ [HM-139 · Kada je nešto teško / When something is difficult](README-full.md#hm-139) · u aplikaciji / in app
+
+## Dug / Debt
+
+- [ ] [HM-136 · Dova za oslobađanje od duga / For relief from debt](README-full.md#hm-136) · u aplikaciji / in app
 
 ## Bolest i bol / Illness and pain
 

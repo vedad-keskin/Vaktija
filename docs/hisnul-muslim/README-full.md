@@ -1438,6 +1438,141 @@ The photographed Bosnian recitation includes the bracketed mercy clause, while i
 
 **Sources:** [Bosnian PDF, pages 60–61](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=60) · [English and Arabic](https://sunnah.com/hisn:165)
 
+## Zaštita / Protection
+
+<a id="hm-124"></a>
+### HM-124 · Junusova dova u nevolji / Yunus's supplication in distress
+
+**Arapski / Arabic**
+
+<p lang="ar" dir="rtl">لَا إِلَهَ إِلَّا أَنْتَ سُبْحَانَكَ إِنِّي كُنْتُ مِنَ الظَّالِمِينَ</p>
+
+**Bosanski — transkripcija (2017 edition, page 84):** Lā ilāhe illā Ente, subḥāneke innī kuntu mine-ẓ-ẓālimīne.
+
+**Bosanski — prijevod (2017 edition, page 84):** Nema boga osim Tebe. Neka si slavljen Ti, zaista sam ja bio među griješnicima.
+
+**English — transliteration (Sunnah.com 124):** Lā ilāha illā anta subḥānaka innī kuntu minaẓ-ẓālimīn.
+
+**English — meaning (Sunnah.com 124):** There is none worthy of worship but You, glory is to You. Surely, I was among the wrongdoers.
+
+The reader's 2017 photograph supplies the Bosnian spelling above; the linked Bosnian PDF has the same wording without its diacritics.
+
+**Sources:** [Bosnian PDF, page 49](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=49) · [English and Arabic](https://sunnah.com/hisn:124)
+
+<a id="hm-121"></a>
+### HM-121 · Dova protiv zabrinutosti i žalosti / Against anxiety and sorrow
+
+**Arapski / Arabic**
+
+<p lang="ar" dir="rtl">اللَّهُمَّ إِنِّي أَعُوذُ بِكَ مِنَ الْهَمِّ وَالْحُزْنِ، وَالْعَجْزِ وَالْكَسَلِ، وَالْبُخْلِ وَالْجُبْنِ، وَضَلَعِ الدَّيْنِ وَغَلَبَةِ الرِّجَالِ</p>
+
+**Bosanski — transkripcija (reader's photograph, Bosnian 116):** Allāhumme innī e‘ūdu bike mine-l-hemmi vel-hazeni ve-l-‘adžzi ve-l-keseli ve-l-buhli ve-l-džubni ve dal‘i-d-dejni ve galebeti-r-ridžāli.
+
+**Bosanski — prijevod (reader's 2017 photograph, Bosnian 116):** Allahu, tražim od Tebe zaštitu od brige i žalosti, od iznemoglosti i lijenosti, tvrdičluka i uspaničenosti te pred teretom dugovanja i ljudske nadmoći.
+
+**English — transliteration (Sunnah.com 121):** Allāhumma 'innī 'a&#96;ūdhu bika mina ‘l-ḥammi wa ‘l-ḥuzn, wa ‘l-&#96;ajzi wa ‘l-kasal, wa ‘l-bukhli wa ‘l-jubn, wa ḍala&#96;id-dayn, wa ghalabatir-rijāl.
+
+**English — meaning (Sunnah.com 121):** O Allah, I seek refuge in You from grief and sadness, from weakness and laziness, from miserliness and cowardice, from being overcome by debt and overpowered by others.
+
+The photographed edition supplies the Bosnian spelling above; the linked Bosnian PDF has the same wording without its diacritics.
+
+**Sources:** [Bosnian PDF, page 48](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=48) · [English and Arabic](https://sunnah.com/hisn:121)
+
+<a id="hm-146"></a>
+### HM-146 · Dova kojom se zaštićuju djeca / Seeking protection for children
+
+**Arapski / Arabic**
+
+<p lang="ar" dir="rtl">أُعِيذُكُمَا بِكَلِمَاتِ اللَّهِ التَّامَّةِ مِنْ كُلِّ شَيْطَانٍ وَهَامَّةٍ، وَمِنْ كُلِّ عَيْنٍ لَامَّةٍ</p>
+
+**Bosanski — transkripcija (reader's photograph, Bosnian 136):** U‘īdukumā bi kelimātillāhi-t-tāmmāti min kulli šejtānin ve hāmmetin, ve min kulli ‘ajnin lāmmetin.
+
+**Bosanski — prijevod (reader's photograph, Bosnian 136):** Zaštitu Allahovu molim za vas pomoću Allahovih savršenih riječi od svakog šejtana, zloslutnje (zbog ptice i sl.) i od zloga pogleda.
+
+**English — transliteration (Sunnah.com 146):** U&#96;īthukumā bikalimāti ‘llāhit-tāmmati min kulli shayṭānin wa hāmmah, wa min kulli &#96;aynin lāmmah.
+
+**English — meaning (Sunnah.com 146):** I seek protection for you in the Perfect Words of Allah from every devil and every beast, and from every envious blameworthy eye.
+
+The Prophet used this supplication to seek protection for Al-Hasan and Al-Husain.
+
+**Sources:** [Bosnian PDF, page 53](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=53) · [English and Arabic](https://sunnah.com/hisn:146)
+
+<a id="hm-126"></a>
+### HM-126 · Pri susretu s neprijateljem ili osobom na vlasti (1/3) / Facing an adversary or ruler (1/3)
+
+**Arapski / Arabic**
+
+<p lang="ar" dir="rtl">اللَّهُمَّ إِنَّا نَجْعَلُكَ فِي نُحُورِهِمْ، وَنَعُوذُ بِكَ مِنْ شُرُورِهِمْ</p>
+
+**Bosanski — transkripcija (reader's photograph, Bosnian 121):** Allāhumme innā nedž‘aluke fī nuḥūrihim ve ne‘ūdu bike min šurūrihim.
+
+**Bosanski — prijevod (reader's photograph, Bosnian 121):** Allahu, molimo Te da njihove spletke usmjeriš na njih i kod Tebe se sklanjamo pred njihovim zlima.
+
+**English — transliteration (Sunnah.com 126):** Allāhumma innā naj&#96;aluka fī nuḥūrihim wa na&#96;ūdhu bika min shurūrihim.
+
+**English — meaning (Sunnah.com 126):** O Allah, we ask You to restrain them by their necks, and we seek refuge in You from their evil.
+
+**Sources:** [Bosnian PDF, page 49](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=49) · [English and Arabic](https://sunnah.com/hisn:126)
+
+<a id="hm-133"></a>
+### HM-133 · Pri sumnji u vjeri / When doubting one’s faith
+
+**Arapski / Arabic**
+
+<p lang="ar" dir="rtl">أَعُوذُ بِاللَّهِ</p>
+
+**Bosanski — uputa (reader's photograph, Bosnian 124):** Prouči E‘ūdu billāhi; tako će doći kraj onome u šta sumnjaš.
+
+**Bosanski — transkripcija (reader's photograph, Bosnian 124):** E‘ūdu billāhi.
+
+**Bosanski — doslovno značenje izraza:** Utječem se Allahu.
+
+**English — transliteration (Sunnah.com 133):** A&#96;ūdhu billāh.
+
+**English — meaning (Sunnah.com 133):** I seek refuge in Allah.
+
+Sunnah.com gives the instruction to seek refuge in Allah and stop dwelling on the doubt; the photographed Bosnian edition prints the Arabic phrase to recite.
+
+**Sources:** [Bosnian PDF, page 50](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=50) · [English and Arabic](https://sunnah.com/hisn:133)
+
+<a id="hm-139"></a>
+### HM-139 · Kada je nešto teško / When something is difficult
+
+**Arapski / Arabic**
+
+<p lang="ar" dir="rtl">اللَّهُمَّ لَا سَهْلَ إِلَّا مَا جَعَلْتَهُ سَهْلًا، وَأَنْتَ تَجْعَلُ الْحَزْنَ إِذَا شِئْتَ سَهْلًا</p>
+
+**Bosanski — transkripcija (reader's photograph, Bosnian 130):** Allāhumme lā sehle illā mā dže‘altehū sehlen ve Ente tedže‘alu-l-ḥazene, iḏā ši‘te sehlen.
+
+**Bosanski — prijevod (reader's photograph, Bosnian 130):** Allahu moj, ne može biti lahkoće mimo onog što Ti ne učiniš. Ti, ako hoćeš, i teško učiniš lahkim.
+
+**English — transliteration (Sunnah.com 139):** Allāhumma lā saḥla illā ma ja&#96;altahu saḥla wa anta taj&#96;alu ‘l-ḥazna idhā shi'ta saḥla.
+
+**English — meaning (Sunnah.com 139):** O Allah, there is no ease other than what You make easy. If You please You ease sorrow.
+
+The Bosnian meaning retains “što Ti ne učiniš” as printed in the photograph.
+
+**Sources:** [Bosnian PDF, page 52](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=52) · [English and Arabic](https://sunnah.com/hisn:139)
+
+## Dug / Debt
+
+<a id="hm-136"></a>
+### HM-136 · Dova za oslobađanje od duga / For relief from debt
+
+**Arapski / Arabic**
+
+<p lang="ar" dir="rtl">اللَّهُمَّ اكْفِنِي بِحَلَالِكَ عَنْ حَرَامِكَ، وَأَغْنِنِي بِفَضْلِكَ عَمَّنْ سِوَاكَ</p>
+
+**Bosanski — transkripcija (reader's photograph, Bosnian 127):** Allāhumme-kfinī bi ḥalālike ‘an ḥarāmike, ve agninī bi faḍlike ‘ammen sivāke.
+
+**Bosanski — prijevod (reader's photograph, Bosnian 127):** Allahu, zaštiti me Svojim halalom od Svoga harama i iz obilja Tvoga me učini bogatim (neovisnim) od svakoga drugog osim Tebe.
+
+**English — transliteration (Sunnah.com 136):** Allāhummak-finī biḥalālika &#96;an ḥarāmik, wa 'aghninī bi faḍlika &#96;amman siwāk.
+
+**English — meaning (Sunnah.com 136):** O Allah, suffice me with what You have allowed instead of what You have forbidden, and make me independent of all others besides You.
+
+**Sources:** [Bosnian PDF, page 50](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=50) · [English and Arabic](https://sunnah.com/hisn:136)
+
 ## Hadž i umra / Hajj and Umrah
 
 <a id="hm-235"></a>
