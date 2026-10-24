@@ -26,7 +26,7 @@ export const GENERAL_DUAS: readonly Dua[] = [
       {
         arabic: 'يَهْدِيكُمُ اللَّهُ وَيُصْلِحُ بَالَكُمْ',
         instructions: {
-          bs: 'Nakon neko to čuje neka uzvrati sa:',
+          bs: 'Kad osoba koja je kihnula čuje „Jerḥamukellāhu”, neka uzvrati:',
           en: 'When someone responds to your sneeze with “Yarḥamukallāh”, say:',
         },
         transcription: {

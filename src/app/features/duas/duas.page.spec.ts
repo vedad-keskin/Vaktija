@@ -367,23 +367,41 @@ it('routes the bilingual library, validates saved data and persists bookmark cha
     for (const [index, card] of [...cards()].entries()) {
       const dua = DUAS[index];
       expect(card.querySelector('h2')?.textContent).toBe(dua.title[lang]);
-      expect(card.querySelector('.dua-transcription')?.textContent?.trim() ?? '').toBe(
-        dua.transcription[lang],
-      );
-      expect(card.querySelector('.dua-instructions p')?.textContent?.trim() ?? '').toBe(
-        dua.instructions?.[lang] ?? '',
-      );
-      expect(card.querySelector('.dua-instructions-label')?.textContent?.trim() ?? '').toBe(
-        dua.instructions
-          ? lang === 'bs'
-            ? BS_LABELS.duasInstructions
-            : EN_LABELS.duasInstructions
-          : '',
-      );
-      expect(card.querySelector('.dua-translation')?.textContent?.trim() ?? '').toBe(
-        dua.translation[lang],
-      );
-      expect(card.querySelector('.dua-arabic')?.textContent).toBe(dua.arabic);
+      if (dua.sayings) {
+        const rows = [...card.querySelectorAll('.dua-saying')];
+        expect(rows).toHaveLength(dua.sayings.length);
+        for (const [sayingIndex, row] of rows.entries()) {
+          const saying = dua.sayings[sayingIndex];
+          expect(row.querySelector('.dua-arabic')?.textContent).toBe(saying.arabic);
+          expect(row.querySelector('.dua-transcription')?.textContent?.trim()).toBe(
+            saying.transcription[lang],
+          );
+          expect(row.querySelector('.dua-translation')?.textContent?.trim()).toBe(
+            saying.translation[lang],
+          );
+          expect(row.querySelector('.dua-instructions p')?.textContent?.trim()).toBe(
+            saying.instructions[lang],
+          );
+        }
+      } else {
+        expect(card.querySelector('.dua-transcription')?.textContent?.trim() ?? '').toBe(
+          dua.transcription[lang],
+        );
+        expect(card.querySelector('.dua-instructions p')?.textContent?.trim() ?? '').toBe(
+          dua.instructions?.[lang] ?? '',
+        );
+        expect(card.querySelector('.dua-instructions-label')?.textContent?.trim() ?? '').toBe(
+          dua.instructions
+            ? lang === 'bs'
+              ? BS_LABELS.duasInstructions
+              : EN_LABELS.duasInstructions
+            : '',
+        );
+        expect(card.querySelector('.dua-translation')?.textContent?.trim() ?? '').toBe(
+          dua.translation[lang],
+        );
+        expect(card.querySelector('.dua-arabic')?.textContent).toBe(dua.arabic);
+      }
       expect(card.querySelector('.dua-arabic')?.getAttribute('dir')).toBe('rtl');
       expect(card.querySelector('.dua-source a')?.getAttribute('href')).toBe(
         lang === 'bs' ? (dua.bosnianSourceUrl ?? dua.sourceUrl) : dua.sourceUrl,
@@ -470,10 +488,10 @@ it('shows the sourced bilingual dhikr collection and keeps its saved items separ
       const item = DHIKR[index];
       expect(card.querySelector('h2')?.textContent).toBe(item.title[lang]);
       expect(card.querySelector('.dua-transcription')?.textContent?.trim()).toBe(
-        item.transcription[lang],
+        item.transcription?.[lang],
       );
       expect(card.querySelector('.dua-translation')?.textContent?.trim()).toBe(
-        item.translation[lang],
+        item.translation?.[lang],
       );
       expect(card.querySelector('.dua-source a')?.getAttribute('href')).toBe(item.sourceUrl);
     }
