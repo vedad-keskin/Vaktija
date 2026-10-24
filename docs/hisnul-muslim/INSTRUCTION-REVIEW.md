@@ -120,7 +120,7 @@ This audit covers the **57 cards currently in the app's dua categories**. An ins
 
 **Sources:** [BS, entry 183](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=69); EN [HM-195](https://sunnah.com/hisn:195), [Jamiʿ at-Tirmidhi 3434](https://sunnah.com/tirmidhi:3434).
 
-### [ ] HM-168 — Dova prilikom grmljavine · Vrijeme
+### [ ] HM-168 — Dova prilikom grmljavine · Priroda i vrijeme
 
 **Source detail:** The report says Abdullah ibn Zubejr stopped speaking when he heard thunder and recited this dua. The English source explicitly identifies it as his statement/practice. It should not be phrased as a universal requirement to stop talking.
 
@@ -183,12 +183,12 @@ These entries give no extra action beyond the title and recited wording, or the 
 - **Abdest:** HM-12, HM-13
 - **Džamija:** HM-19
 - **Post i hrana:** HM-176, HM-178 (regular start-of-meal card), HM-180, HM-182, HM-183, HM-184, HM-186
-- **Spavanje:** HM-1, HM-112, HM-113. In particular, HM-112 only describes turning over during sleep; no separate instruction is needed.
+- **Spavanje i snovi:** HM-1, HM-112, HM-113. In particular, HM-112 only describes turning over during sleep; no separate instruction is needed.
 - **Brak:** HM-190, HM-191 (marriage card), HM-192
 - **Odjeća:** HM-5, HM-6, HM-7, HM-9
 - **Sijelo:** BS-184a, HM-196
 - **Životinje:** HM-228, HM-229
-- **Vrijeme:** HM-166, HM-169, HM-172, HM-173, HM-174, HM-175
+- **Priroda i vrijeme:** HM-166, HM-169, HM-172, HM-173, HM-174, HM-175
 - **Kuća:** HM-16.
 - **Putovanje:** HM-206, HM-208–212, HM-215, and HM-216.
 

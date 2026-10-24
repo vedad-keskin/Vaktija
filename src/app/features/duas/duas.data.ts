@@ -7,6 +7,7 @@ import { FOOD_DUAS } from './food.data';
 import { GATHERING_DUAS } from './gathering.data';
 import { GENERAL_DUAS } from './general.data';
 import { HOME_DUAS } from './home.data';
+import { ILLNESS_DUAS } from './illness.data';
 import { MARRIAGE_DUAS } from './marriage.data';
 import { MOSQUE_DUAS } from './mosque.data';
 import { SLEEP_DUAS } from './sleep.data';
@@ -33,12 +34,17 @@ export const DUA_CATEGORIES = [
   { id: 'mosque', label: { bs: 'Džamija', en: 'Mosque' }, items: MOSQUE_DUAS },
   { id: 'adhan', label: { bs: 'Ezan', en: 'Adhan' }, items: ADHAN_DUAS },
   { id: 'fasting', label: { bs: 'Post i hrana', en: 'Fasting and food' }, items: FOOD_DUAS },
-  { id: 'sleep', label: { bs: 'Spavanje', en: 'Sleep' }, items: SLEEP_DUAS },
+  { id: 'sleep', label: { bs: 'Spavanje i snovi', en: 'Sleep and dreams' }, items: SLEEP_DUAS },
+  { id: 'illness', label: { bs: 'Bolest i bol', en: 'Illness and pain' }, items: ILLNESS_DUAS },
   { id: 'marriage', label: { bs: 'Brak', en: 'Marriage' }, items: MARRIAGE_DUAS },
   { id: 'clothing', label: { bs: 'Odjeća', en: 'Clothing' }, items: CLOTHING_DUAS },
   { id: 'gathering', label: { bs: 'Sijelo', en: 'Gathering' }, items: GATHERING_DUAS },
   { id: 'animals', label: { bs: 'Životinje', en: 'Animals' }, items: ANIMAL_DUAS },
-  { id: 'weather', label: { bs: 'Vrijeme', en: 'Weather' }, items: WEATHER_DUAS },
+  {
+    id: 'weather',
+    label: { bs: 'Priroda i vrijeme', en: 'Nature and weather' },
+    items: WEATHER_DUAS,
+  },
   { id: 'home', label: { bs: 'Kuća', en: 'Home' }, items: HOME_DUAS },
   { id: 'travel', label: { bs: 'Putovanje', en: 'Travel' }, items: TRAVEL_DUAS },
   { id: 'general', label: { bs: 'Opće', en: 'General' }, items: GENERAL_DUAS },

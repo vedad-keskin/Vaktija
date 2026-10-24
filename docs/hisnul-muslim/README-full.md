@@ -1,6 +1,6 @@
 # Hisnul Muslim — selected full duas (BS / EN)
 
-This file grows one approved category at a time. It currently contains the clothing entries (HM-5, 9, 6, 7), the toilet entries (HM-10–11), the Abdest entries (HM-12–13), the mosque entries (HM-19–21), the adhan entry (HM-25), the sleeping entries (HM-111, 1, 114, 113, 112), the three marriage entries, the gathering entries (HM-195–196), the animal entries, the weather entries (HM-166, 168, 169, 172–175), the fasting and food entries (HM-176–186), the home entries (HM-16, 18), the travel entries (HM-206–212, 215–217), and the general entries (HM-79, 84, 86, 97). The [complete title checklist](README-titles.md) remains an editorial selection aid; its suggested labels are not published translations.
+This file grows one approved category at a time. It currently contains the clothing entries (HM-5, 9, 6, 7), the toilet entries (HM-10–11), the Abdest entries (HM-12–13), the mosque entries (HM-19–21), the adhan entry (HM-25), the sleeping entries (HM-111, 1, 114, 113, 112), the three marriage entries, the gathering entries (HM-195–196), the animal entries, the weather entries (HM-166, 168, 169, 172–175), the fasting and food entries (HM-176–186), the home entries (HM-16, 18), the travel entries (HM-206–212, 215–217), the general entries (HM-79, 84, 86, 97), and the illness entries (HM-147, 148, 150–152, 243). The [complete title checklist](README-titles.md) remains an editorial selection aid; its suggested labels are not published translations.
 
 ## Izvori i uredničke napomene / Sources and editorial notes
 
@@ -12,11 +12,12 @@ This file grows one approved category at a time. It currently contains the cloth
   - dot under: ح ḥ, ص ṣ, ض ḍ, ط ṭ, ظ ẓ
   - ق q ; long vowels ā ī ū
 - HM-192 / Bosnian 180’s basmala is copied from the reader’s photograph of page 114. Most other Bosnian transcriptions in this file are **adaptations** of the published Bosnian recitation with this key. A matching digital copy of the photographed edition was not found.
-- **Spavanje / Sleep:** Bosnian 103–105 correspond to English 111–113; Bosnian 107–109 make up English 114; HM-1 matches Bosnian 1. Bosnian transcriptions follow the reader’s photographs of pages 13 and 75–77 of the 2017 edition; linked IslamHouse pages provide the published digital counterpart. HM-114 shows the short refuge phrase from Bosnian 107. Its Bosnian instruction is a concise summary requested by the reader, retaining the three recitations specified in the book; its English instruction follows that summary. Its short BS/EN meanings are excerpts of published renderings linked below. The English transcription is the opening of the published wording in [Riyad as-Salihin 841](https://sunnah.com/riyadussalihin:841). HM-99–101 are Qur’anic recitations; the partly visible Bosnian 95–97 are not included.
+- **Spavanje i snovi / Sleep and dreams:** Bosnian 103–105 correspond to English 111–113; Bosnian 107–109 make up English 114; HM-1 matches Bosnian 1. Bosnian transcriptions follow the reader’s photographs of pages 13 and 75–77 of the 2017 edition; linked IslamHouse pages provide the published digital counterpart. HM-114 shows the short refuge phrase from Bosnian 107. Its Bosnian instruction is a concise summary requested by the reader, retaining the three recitations specified in the book; its English instruction follows that summary. Its short BS/EN meanings are excerpts of published renderings linked below. The English transcription is the opening of the published wording in [Riyad as-Salihin 841](https://sunnah.com/riyadussalihin:841). HM-99–101 are Qur’anic recitations; the partly visible Bosnian 95–97 are not included.
 - **Džamija / Mosque:** Bosnian transcriptions follow the reader's photographs of pages 21–23 of the 2017 edition; Bosnian meanings follow the linked IslamHouse PDF. HM-19 uses the shorter published Arabic/English wording matching that edition, rather than the longer variant on Sunnah.com. Its English transliteration is from [Sahih Muslim 1799](https://www.alim.org/hadith/sahih-muslim/6/1799/). HM-20's English transliteration is from the [English Hisnul Muslim edition of the Presidency of Religious Affairs](https://risala.prh.gov.sa/en/content/51); its three source segments are displayed together. HM-21's English transliteration is from [Sunnah.com HM-21](https://sunnah.com/hisn:21).
 - **Opće / General:** HM-79 ↔ Bosnian 77; HM-84 ↔ Bosnian 80; HM-86 ↔ Bosnian 82; HM-97 ↔ Bosnian 79. Bosnian transcriptions are adaptations of the published PDF using the letter key above. The Bosnian HM-86 meaning is shorter than the English published meaning; it is reproduced as printed. The Bosnian edition gives three recitations for its 79 and 82; English HM-97 specifies the evening.
 - **Kuća / Home:** HM-16 and HM-18 retain the same Bosnian numbers. Bosnian transcriptions and meanings follow the reader’s photograph of pages 20–21 of the 2017 edition; the linked IslamHouse PDF provides the digital counterpart. HM-17 remains in the complete title checklist. HM-18 Arabic follows the complete word in the Bosnian edition; Sunnah.com drops its final alif.
 - **Putovanje / Travel:** The selected HM-206–212 and 215–217 correspond to Bosnian 194–200 and 203–205. Bosnian transcriptions and meanings follow the reader’s photographs of pages 122–130 of the 2017 edition; linked IslamHouse pages provide the digital counterpart. HM-213 remains in the complete title checklist. HM-214 / Bosnian 202 reports an ascent/descent practice rather than a standalone dua. HM-206 and HM-207 contain Qur’anic words as part of their published recitations. The short return phrase after HM-207 also appears in HM-217; the HM-207 card shows the travel wording only. HM-217 includes the three opening takbirs from the published return instructions.
+- **Bolest i bol / Illness and pain:** HM-147–152 correspond to Bosnian 137–142. Their Bosnian transcriptions and meanings follow the reader’s photographs of pages 90–93 of the 2017 edition; the linked IslamHouse PDF is a published digital counterpart. HM-149 / Bosnian 139 is a narration about visiting the sick, so it remains only in the checklist. HM-150–152 belong to the source chapter about a sick person nearing death. HM-151’s photo transcribes only its opening phrase; its second clause is adapted from the printed Arabic using the letter key above. The source reports the Prophet wiping his face with wet hands as context, not a required step for this card. The published Bosnian meaning of HM-152 omits the clause about dominion and praise although its recitation contains it; the English meaning includes that clause. HM-243 corresponds to Bosnian 228; its Bosnian transcription, instruction, and meaning follow the reader’s later photograph of the 2017 edition. Its opening Bosnian meaning, “U ime Allaha,” comes from Bosnian 9 in the linked IslamHouse PDF.
 - **English title, transliteration and meaning; Arabic text:** [Sunnah.com, *Hisn al-Muslim*](https://sunnah.com/hisn), except where an entry has its own source note. Only the recited words and their published meanings are shown below. Line breaks on the Sunnah.com page are joined with spaces. Arabic orthography follows the linked entry, including HM-13’s unspaced وَأَشْهَدُأَنَّ; HM-18 uses the complete final word from the Bosnian edition.
 - Numbering matches for HM-10 through HM-13, HM-19 through HM-21, and HM-25. The marriage items differ: BS 178 ↔ EN 190, BS 179 ↔ EN 191, BS 180 ↔ EN 192. The gathering items are BS 183–184 ↔ EN 195–196. The weather items differ by nine: BS 157, 159, 160, 163–166 ↔ EN 166, 168, 169, 172–175. Fasting and food is BS 167–175 ↔ EN 176, 178–185; EN 177 is not in the Bosnian edition, and EN 186 is BS 235.
 - Sleep HM-1 matches BS 1.
@@ -396,7 +397,7 @@ This file grows one approved category at a time. It currently contains the cloth
 
 **Sources:** [Bosnian](https://islamenc.com/bs/books/24) · [English and Arabic](https://www.deenhub.ca/duas) · [HM-229](https://sunnah.com/hisn:229)
 
-## Vrijeme / Weather
+## Priroda i vrijeme / Nature and weather
 
 <a id="hm-166"></a>
 ### HM-166 · Dova prilikom puhanja vjetra / During a wind storm
@@ -720,7 +721,7 @@ This file grows one approved category at a time. It currently contains the cloth
 
 **Sources:** [Bosnian PDF, page 90](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=90) · [English and Arabic](https://sunnah.com/hisn:186)
 
-## Spavanje / Sleep
+## Spavanje i snovi / Sleep and dreams
 
 <a id="hm-111"></a>
 ### HM-111 · Dova prije spavanja / Before sleeping
@@ -1094,4 +1095,118 @@ BS transcriptions and meanings follow the photographed 2017 edition. The short r
 **English — meaning (Sunnah.com 97):** I seek refuge in the Perfect Words of Allah from the evil of what He has created. (Recite three times in Arabic in the evening.)
 
 **Sources:** [Bosnian PDF, page 35](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=35) · [English and Arabic](https://sunnah.com/hisn:97)
+
+## Bolest i bol / Illness and pain
+
+<a id="hm-147"></a>
+### HM-147 · Riječi pri posjeti bolesniku / Words when visiting the sick
+
+**Arapski / Arabic**
+
+<p lang="ar" dir="rtl">لا بأْسَ طَهـورٌ إِنْ شـاءَ الله</p>
+
+**Bosanski — transkripcija (2017 edition, page 90):** Lā be’se, ṭahūrun inšā’ Allāh.
+
+**Bosanski — prijevod (2017 edition, page 90):** Ne bilo opasno. Allah ti s ovim grijehe očistio, ako Allah da.
+
+**English — transliteration (Sunnah.com 147):** Lā ba'sa ṭahūrun in shā Allāh.
+
+**English — meaning (Sunnah.com 147):** Do not worry, it will be a purification (for you), Allah willing.
+
+**Sources:** [Bosnian PDF, page 53](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=53) · [English and Arabic](https://sunnah.com/hisn:147)
+
+<a id="hm-148"></a>
+### HM-148 · Dova za ozdravljenje bolesnika / For the sick person's recovery
+
+**Arapski / Arabic**
+
+<p lang="ar" dir="rtl">أَسْـأَلُ اللهَ العَـظيـم، رَبَّ العَـرْشِ العَـظيـم أَنْ يَشْفـيك</p>
+
+**Bosanski — uputa (2017 edition, page 91):** Prilikom posjete bolesniku prouči ovu dovu sedam puta.
+
+**English — instruction (Sunnah.com 148):** Recite seven times when visiting someone who is ill.
+
+**Bosanski — transkripcija (2017 edition, page 91):** Es’elullāhe-l-‘aẓīm Rabbe-l-‘Arši-l-‘aẓīmi en ješfijeke.
+
+**Bosanski — prijevod (2017 edition, page 91; recited words only):** Molim Uzvišenog Allaha, Gospodara Prijestolja velikog, da ti da zdravlje.
+
+**English — transliteration (Sunnah.com 148):** As'alullāha ‘l-&#96;Aẓīma Rabba ‘l-&#96;Arshil-&#96;Aẓīmi an yashfiyak.
+
+**English — meaning (Sunnah.com 148):** I ask Almighty Allah, Lord of the Magnificent Throne, to make you well.
+
+**Sources:** [Bosnian PDF, page 54](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=54) · [English and Arabic](https://sunnah.com/hisn:148)
+
+<a id="hm-150"></a>
+### HM-150 · Dova teško bolesne osobe (1/3) / For a seriously ill person (1/3)
+
+**Arapski / Arabic**
+
+<p lang="ar" dir="rtl">أللّهُـمَّ اغْفِـرْ لي وَارْحَمْـني وَأَلْحِقْـني بِالرَّفـيقِ الأّعْلـى</p>
+
+**Bosanski — transkripcija (2017 edition, page 92):** Allāhumma-gfir lī ve-rḥamnī ve elḥiqnī bi-r-refīqi-l-a‘lā.
+
+**Bosanski — prijevod (2017 edition, page 92):** Allahu, oprosti mi i smiluj mi se. Pridruži me društvu najvišem.
+
+**English — transliteration (Sunnah.com 150):** Allāhumma’ghfir lī warḥamnī wa alḥiqnī bir-rafīqi ‘l-'A&#96;alā.
+
+**English — meaning (Sunnah.com 150):** O Allah, forgive me and have mercy upon me, and join me with the highest companions (in Paradise).
+
+**Sources:** [Bosnian PDF, pages 54–55](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=54) · [English and Arabic](https://sunnah.com/hisn:150)
+
+<a id="hm-151"></a>
+### HM-151 · Dova teško bolesne osobe (2/3) / For a seriously ill person (2/3)
+
+**Arapski / Arabic**
+
+<p lang="ar" dir="rtl">لا إله إلا الله إن للموت لسكرات</p>
+
+**Bosanski — transkripcija (2017 edition, page 92; second clause adapted):** Lā ilāhe illellāh, inne li-l-mevti le-sekerāt.
+
+**Bosanski — prijevod (2017 edition, page 92):** Nema boga osim Allaha – smrti zaista prethode stanja agonije.
+
+**English — transliteration (Sunnah.com 151):** Lā ilāha illallāh inna li ‘lmawti la’sakarāt.
+
+**English — meaning (Sunnah.com 151):** There is none worthy of worship but Allah, surely death has agonies.
+
+The source reports that the Prophet wiped his face with wet hands while saying these words. This is context, not a prescribed step for this card.
+
+**Sources:** [Bosnian PDF, page 55](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=55) · [English and Arabic](https://sunnah.com/hisn:151)
+
+<a id="hm-152"></a>
+### HM-152 · Dova teško bolesne osobe (3/3) / For a seriously ill person (3/3)
+
+**Arapski / Arabic**
+
+<p lang="ar" dir="rtl">لا إلهَ إلاّ اللّهُ وَاللّهُ أَكْبَـر، لا إلهَ إلاّ اللّهُ وحْـدَهُ، لا إلهَ إلاّ اللّهُ وحْـدَهُ لا شَريكَ لهُ، لا إلهَ إلاّ اللّهُ لهُ المُلكُ ولهُ الحَمْد، لا إلهَ إلاّ اللّهُ وَلا حَـوْلَ وَلا قُـوَّةَ إِلاّ بِالله</p>
+
+**Bosanski — transkripcija (2017 edition, page 93):** Lā ilāhe illellāhu vallāhu ekber, lā ilāhe illellāhu vaḥdehū, lā ilāhe illellāhu vaḥdehū lā šerīke lehū, lā ilāhe illellāhu lehu-l-mulku ve lehu-l-ḥamdu, lā ilāhe illellāhu ve lā ḥavle ve lā quvvete illā billāh.
+
+**Bosanski — prijevod (2017 edition, page 93):** Nema boga osim Allaha, Allah je najveći, nema boga osim Allaha, Jedinoga, nema boga osim Allaha Jedinoga, Koji druga nema, nema boga osim Allaha, snage i moć su samo s Allahom.
+
+**English — transliteration (Sunnah.com 152):** Lā ilāha illallāh wallāhu Akbar, lā ilāha illallāhu waḥdah, lā ilāha illallāh waḥdahu lā sharīka lah, lā ilāha illallāh lahu ‘l-mulku wa lahu ‘l-ḥamd, lā ilāha illallāh wa lā ḥawla wa lā quwwata illā billāh.
+
+**English — meaning (Sunnah.com 152):** There is none worthy of worship but Allah, Allah is the Most Great. None has the right to be worshipped but Allah alone. None has the right to be worshipped but Allah alone, Who has no partner. There is none worthy of worship but Allah, His is the dominion and His is the praise. There is none worthy of worship but Allah, there is no power and no might but by Allah.
+
+**Sources:** [Bosnian PDF, page 55](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=55) · [English and Arabic](https://sunnah.com/hisn:152)
+
+<a id="hm-243"></a>
+### HM-243 · Dova pri tjelesnoj boli / For bodily pain
+
+**Arapski / Arabic — recited words only**
+
+<p lang="ar" dir="rtl">بِسْمِ اللَّهِ. أَعُوذُ بِاللَّهِ وَقُدْرَتِهِ مِنْ شَرِّ مَا أَجِدُ وَأُحَاذِرُ</p>
+
+**Bosanski — uputa (2017 edition, Bosnian 228):** Stavi ruku na površinu tijela gdje osjećaš bol. Izgovori „Bismillāh” tri puta, zatim „E‘ūḏu billāhi…” sedam puta.
+
+**English — instruction (Sunnah.com 243):** Put your hand on the place where you feel pain. Say “Bismillāh” three times, then say the second phrase seven times.
+
+**Bosanski — transkripcija (2017 edition, Bosnian 228):** Bismillāh. E‘ūḏu billāhi ve qudretihī min šerri mā edžidu ve uḥāḏiru.
+
+**Bosanski — prijevod (2017 edition, Bosnian 228; opening from IslamHouse 9):** U ime Allaha. Tražim zaštitu od Allaha i Njegove svemoći protiv zla koga nalazim i koga se plašim.
+
+**English — transliteration (Sunnah.com 243):** Bismillāh. A&#96;ūdhu billāhi wa qudratihi min sharri mā ajidu wa uḥādhir.
+
+**English — meaning (Sunnah.com 243):** With the Name of Allah. I seek refuge in Allah and in His Power from the evil of what I find and of what I guard against.
+
+**Sources:** [Bosnian PDF, pages 87–88](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=87) · [Bosnian Bismillah meaning, page 9](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=9) · [English and Arabic](https://sunnah.com/hisn:243)
 

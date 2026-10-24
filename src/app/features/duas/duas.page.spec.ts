@@ -60,22 +60,26 @@ it('shows ten items at a time and resets on view changes', async () => {
     'hisn-21',
   ]);
   await harness.navigateByUrl('/duas?category=general');
-  expect([...cards()].map((card) => card.getAttribute('data-dua-id'))).toEqual([
-    'hisn-79',
-    'hisn-84',
-    'hisn-86',
-    'hisn-97',
-  ]);
+  expect(cards()).toHaveLength(0);
   await harness.navigateByUrl('/duas?category=home');
   expect([...cards()].map((card) => card.getAttribute('data-dua-id'))).toEqual([
-    'hisn-16', 'hisn-18',
+    'hisn-16',
+    'hisn-18',
   ]);
   expect(more()).toBeNull();
   expect(cards()[0].querySelector('h2')?.textContent).toBe('When leaving home');
   await harness.navigateByUrl('/duas?category=travel');
   expect([...cards()].map((card) => card.getAttribute('data-dua-id'))).toEqual([
-    'hisn-207', 'hisn-215', 'hisn-217', 'hisn-216', 'hisn-206',
-    'hisn-208', 'hisn-209', 'hisn-211', 'hisn-212', 'hisn-210',
+    'hisn-207',
+    'hisn-215',
+    'hisn-217',
+    'hisn-216',
+    'hisn-206',
+    'hisn-208',
+    'hisn-209',
+    'hisn-211',
+    'hisn-212',
+    'hisn-210',
   ]);
   expect(more()).toBeNull();
   await harness.navigateByUrl('/duas?category=sleep');
@@ -85,6 +89,13 @@ it('shows ten items at a time and resets on view changes', async () => {
     'hisn-114',
     'hisn-113',
     'hisn-112',
+  ]);
+  await harness.navigateByUrl('/duas?category=illness');
+  expect([...cards()].map((card) => card.getAttribute('data-dua-id'))).toEqual([
+    'hisn-243',
+    'hisn-147',
+    'hisn-148',
+    'hisn-150',
   ]);
   await harness.navigateByUrl('/duas?view=saved');
   expect(cards()).toHaveLength(10);
@@ -106,6 +117,7 @@ it('routes the bilingual library, validates saved data and persists bookmark cha
     'adhan',
     'fasting',
     'sleep',
+    'illness',
     'marriage',
     'clothing',
     'gathering',
@@ -137,6 +149,10 @@ it('routes the bilingual library, validates saved data and persists bookmark cha
     'hisn-114',
     'hisn-113',
     'hisn-112',
+    'hisn-243',
+    'hisn-147',
+    'hisn-148',
+    'hisn-150',
     'hisn-192',
     'hisn-191',
     'hisn-190',
@@ -169,10 +185,6 @@ it('routes the bilingual library, validates saved data and persists bookmark cha
     'hisn-211',
     'hisn-212',
     'hisn-210',
-    'hisn-79',
-    'hisn-84',
-    'hisn-86',
-    'hisn-97',
   ]);
   await TestBed.configureTestingModule({
     imports: [DuasPage],
@@ -250,17 +262,18 @@ it('routes the bilingual library, validates saved data and persists bookmark cha
       lang === 'bs'
         ? [
             'Abdest',
+            'Bolest i bol',
             'Brak',
             'Džamija',
             'Ezan',
             'Kuća',
             'Odjeća',
             'Post i hrana',
+            'Priroda i vrijeme',
             'Putovanje',
             'Sijelo',
-            'Spavanje',
+            'Spavanje i snovi',
             'Toalet',
-            'Vrijeme',
             'Životinje',
             'Opće',
           ]
@@ -272,12 +285,13 @@ it('routes the bilingual library, validates saved data and persists bookmark cha
             'Fasting and food',
             'Gathering',
             'Home',
+            'Illness and pain',
             'Marriage',
             'Mosque',
-            'Sleep',
+            'Nature and weather',
+            'Sleep and dreams',
             'Toilet',
             'Travel',
-            'Weather',
             'General',
           ],
     );

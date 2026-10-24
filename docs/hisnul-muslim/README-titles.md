@@ -177,7 +177,7 @@ Brojevi, poglavlja i vrste zapisa provjereni su prema [OpenDua datasetu v0.0.4](
 - [ ] [HM-213 · Dova onih koji ostaju musafiru (2/2) / A farewell to the traveler (2/2)](https://sunnah.com/hisn:213)
 - [ ] [HM-214 · Zikr tokom putovanja / Remembrance while traveling](https://sunnah.com/hisn:214) · uputa / instruction
 
-## Teškoće, zaštita, bolest i gubitak / Hardship, protection, illness and loss
+## Teškoće, zaštita i gubitak / Hardship, protection and loss
 
 - [ ] [HM-120 · Pri brizi i tuzi (1/2) / Worry and grief (1/2)](https://sunnah.com/hisn:120)
 - [ ] ★ [HM-121 · Protiv brige, tuge i nemoći / Against worry, grief and helplessness](https://sunnah.com/hisn:121)
@@ -203,12 +203,6 @@ Brojevi, poglavlja i vrste zapisa provjereni su prema [OpenDua datasetu v0.0.4](
 - [ ] [HM-142 · Protiv šejtana i njegovih došaptavanja (2/3) / Satanic suggestions (2/3)](https://sunnah.com/hisn:142) · uputa / instruction
 - [ ] [HM-143 · Protiv šejtana i njegovih došaptavanja (3/3) / Satanic suggestions (3/3)](https://sunnah.com/hisn:143) · uputa / instruction
 - [ ] [HM-144 · Kada se dogodi nešto nepoželjno / When something unwelcome happens](https://sunnah.com/hisn:144)
-- [ ] [HM-147 · Riječi pri posjeti bolesniku / Words when visiting the sick](https://sunnah.com/hisn:147)
-- [ ] ★ [HM-148 · Dova za ozdravljenje bolesnika / For the sick person's recovery](https://sunnah.com/hisn:148)
-- [ ] [HM-149 · Vrijednost posjete bolesniku / Merit of visiting someone ill](https://sunnah.com/hisn:149) · predaja / narration
-- [ ] [HM-150 · Dove teško bolesne osobe (1/3) / For a seriously ill person (1/3)](https://sunnah.com/hisn:150)
-- [ ] [HM-151 · Dove teško bolesne osobe (2/3) / For a seriously ill person (2/3)](https://sunnah.com/hisn:151)
-- [ ] [HM-152 · Dove teško bolesne osobe (3/3) / For a seriously ill person (3/3)](https://sunnah.com/hisn:152)
 - [ ] [HM-153 · Šta podsjetiti osobu na samrti da kaže / Words for a dying person](https://sunnah.com/hisn:153)
 - [ ] ★ [HM-154 · Kada nas zadesi gubitak / When a loss strikes](https://sunnah.com/hisn:154)
 - [ ] [HM-155 · Pri zatvaranju očiju umrloj osobi / Closing the eyes of someone deceased](https://sunnah.com/hisn:155)
@@ -226,9 +220,18 @@ Brojevi, poglavlja i vrste zapisa provjereni su prema [OpenDua datasetu v0.0.4](
 - [ ] [HM-194 · Kada vidimo osobu pogođenu nevoljom / Seeing someone struck by misfortune](https://sunnah.com/hisn:194)
 - [ ] [HM-240 · Pri iznenađenju ili zaprepaštenju (1/2) / When startled (1/2)](https://sunnah.com/hisn:240)
 - [ ] [HM-241 · Pri iznenađenju ili zaprepaštenju (2/2) / When startled (2/2)](https://sunnah.com/hisn:241)
-- [ ] ★ [HM-243 · Dova pri tjelesnoj boli / For bodily pain](https://sunnah.com/hisn:243)
 - [ ] [HM-244 · Kada se bojimo uroka / Fear of casting the evil eye](https://sunnah.com/hisn:244) · uputa / instruction
 - [ ] [HM-245 · Pri strahu / When frightened](https://sunnah.com/hisn:245)
+
+## Bolest i bol / Illness and pain
+
+- [ ] [HM-147 · Riječi pri posjeti bolesniku / Words when visiting the sick](README-full.md#hm-147) · u aplikaciji / in app
+- [ ] ★ [HM-148 · Dova za ozdravljenje bolesnika / For the sick person's recovery](README-full.md#hm-148) · u aplikaciji / in app
+- [ ] [HM-149 · Vrijednost posjete bolesniku / Merit of visiting someone ill](https://sunnah.com/hisn:149) · predaja / narration
+- [ ] [HM-150 · Dove teško bolesne osobe (1/3) / For a seriously ill person (1/3)](README-full.md#hm-150) · u aplikaciji / in app
+- [ ] [HM-151 · Dove teško bolesne osobe (2/3) / For a seriously ill person (2/3)](README-full.md#hm-151)
+- [ ] [HM-152 · Dove teško bolesne osobe (3/3) / For a seriously ill person (3/3)](README-full.md#hm-152)
+- [ ] ★ [HM-243 · Dova pri tjelesnoj boli / For bodily pain](README-full.md#hm-243) · u aplikaciji / in app · uputa / instruction
 
 ## Post i hrana / Fasting and food
 
@@ -247,7 +250,7 @@ Brojevi, poglavlja i vrste zapisa provjereni su prema [OpenDua datasetu v0.0.4](
 - [ ] [HM-187 · Pri viđenju prvih hurmi sezone / First dates of the season](https://sunnah.com/hisn:187)
 - [ ] [HM-246 · Pri klanju ili žrtvovanju životinje / Slaughtering or sacrificing an animal](https://sunnah.com/hisn:246)
 
-## Vrijeme i priroda / Weather and nature
+## Priroda i vrijeme / Nature and weather
 
 - [ ] [HM-166 · Kada puše vjetar (1/2) / When wind blows (1/2)](https://sunnah.com/hisn:166)
 - [ ] [HM-167 · Kada puše vjetar (2/2) / When wind blows (2/2)](https://sunnah.com/hisn:167)
