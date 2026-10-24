@@ -193,8 +193,8 @@ Brojevi, poglavlja i vrste zapisa provjereni su prema [OpenDua datasetu v0.0.4](
 - [ ] [HM-137 · Za otplatu duga (2/2) / Repaying a debt (2/2)](https://sunnah.com/hisn:137)
 - [ ] [HM-142 · Protiv šejtana i njegovih došaptavanja (2/3) / Satanic suggestions (2/3)](https://sunnah.com/hisn:142) · uputa / instruction
 - [ ] [HM-143 · Protiv šejtana i njegovih došaptavanja (3/3) / Satanic suggestions (3/3)](https://sunnah.com/hisn:143) · uputa / instruction
-- [ ] ★ [HM-193 · Pri srdžbi / When angry](https://sunnah.com/hisn:193)
-- [ ] [HM-194 · Kada vidimo osobu pogođenu nevoljom / Seeing someone struck by misfortune](https://sunnah.com/hisn:194)
+- [ ] ★ [HM-193 · Dova protiv izljeva srdžbe / When angry](README-full.md#hm-193) · u aplikaciji / in app
+- [ ] [HM-194 · Dova kad ugledamo nesretnika / Upon seeing someone in trial or tribulation](README-full.md#hm-194) · u aplikaciji / in app
 - [ ] [HM-240 · Pri čuđenju ili radosnom događaju (1/2) / At amazement or a happy event (1/2)](https://sunnah.com/hisn:240)
 - [ ] [HM-241 · Pri čuđenju ili radosnom događaju (2/2) / At amazement or a happy event (2/2)](https://sunnah.com/hisn:241)
 - [ ] [HM-244 · Kada se bojimo uroka / Fear of casting the evil eye](https://sunnah.com/hisn:244) · uputa / instruction
@@ -290,7 +290,7 @@ Brojevi, poglavlja i vrste zapisa provjereni su prema [OpenDua datasetu v0.0.4](
 - [ ] [HM-189 · Odgovor nemuslimanu koji kihne i zahvali Allahu / Reply to a non-Muslim who sneezes and praises Allah](https://sunnah.com/hisn:189)
 - [ ] [HM-197 · Odgovor onome ko nam poželi oprost / Replying to a prayer for your forgiveness](https://sunnah.com/hisn:197)
 - [ ] [HM-198 · Zahvala onome ko učini dobro / Thanking someone who helped](https://sunnah.com/hisn:198)
-- [ ] [HM-199 · Zaštita od Dedždžala / Protection from the False Messiah](https://sunnah.com/hisn:199) · uputa / instruction
+- [ ] [HM-199 · Dova kojom se moli Allahova zaštita od Dedžala / Protection from the Dajjal](README-full.md#hm-199) · uputa / instruction · u aplikaciji / in app
 - [ ] [HM-200 · Odgovor onome ko nas voli radi Allaha / Replying to love for Allah's sake](https://sunnah.com/hisn:200)
 - [ ] [HM-201 · Za onoga ko nam ponudi svoj imetak / For someone who offers wealth](https://sunnah.com/hisn:201)
 - [ ] [HM-202 · Za onoga ko nam pozajmi novac / For someone who lends money](https://sunnah.com/hisn:202)

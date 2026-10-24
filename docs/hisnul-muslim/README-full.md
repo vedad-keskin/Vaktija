@@ -1647,6 +1647,59 @@ The photographed narration also counsels seeking Allah's help and striving for w
 
 **Sources:** [Bosnian PDF, page 53](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=53) · [English and Arabic](https://sunnah.com/hisn:144)
 
+<a id="hm-193"></a>
+### HM-193 · Dova protiv izljeva srdžbe / When angry
+
+**Arapski / Arabic**
+
+<p lang="ar" dir="rtl">أَعُوذُ بِاللَّهِ مِنَ الشَّيْطَانِ الرَّجِيمِ</p>
+
+**Bosanski — transkripcija (2017 edition, page 114):** E‘ūzu billāhi mine-š-šejtān-r-radžīm.
+
+**Bosanski — prijevod (2017 edition, page 114):** Allaha prizivam protiv prokletog šejtana.
+
+**English — transliteration (Sunnah.com 193):** A&#96;ūdhu billāhi minash-Shayṭānir-rajīm.
+
+**English — meaning (Sunnah.com 193):** I seek refuge in Allah from Satan the outcast.
+
+**Sources:** [Bosnian PDF, page 68](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=68) · [English and Arabic](https://sunnah.com/hisn:193)
+
+<a id="hm-194"></a>
+### HM-194 · Dova kad ugledamo nesretnika / Upon seeing someone in trial or tribulation
+
+**Arapski / Arabic**
+
+<p lang="ar" dir="rtl">الْحَمْدُ لِلَّهِ الَّذِي عَافَانِي مِمَّا ابْتَلَاكَ بِهِ، وَفَضَّلَنِي عَلَى كَثِيرٍ مِمَّنْ خَلَقَ تَفْضِيلًا</p>
+
+**Bosanski — transkripcija (2017 edition, page 115):** El-ḥamdu lillāhi-l-leḏī ‘āfānī mimmab-telāke bihī ve feḍḍalenī ‘alā kešīrin mimmen ḫaleka tafḍīlā.
+
+**Bosanski — prijevod (2017 edition, page 115):** Hvala Allahu, Koji me zaštiti od onoga što je tebe zadesilo i dade mi prednost nad mnogo čime što je stvorio.
+
+**English — transliteration (Sunnah.com 194):** Alhamdu lillāhi ‘l-ladhī &#96;āfānī mimmab-talāka bihi wa faḍḍalanī &#96;alā kathīrin mimman khalaqa tafḍīlā.
+
+**English — meaning (Sunnah.com 194):** Praise is to Allah Who has spared me what He has afflicted you with, and preferred me greatly above much of what He has created.
+
+**Sources:** [Bosnian PDF, page 69](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=69) · [English and Arabic](https://sunnah.com/hisn:194)
+
+<a id="hm-199"></a>
+### HM-199 · Dova kojom se moli Allahova zaštita od Dedžala / Protection from the Dajjal
+
+**Bosanski — uputa (2017 edition, page 118):** Ko nauči napamet prvih deset ajeta iz sure El-Kehf, bit će sačuvan od Dedžala. Za zaštitu od Dedžalove smutnje, može se proučiti i ova dova.
+
+**Bosanski — transkripcija (2017 edition, page 118):** E‘ūdu billāhi min fitnetil-mesīhi-d-dedždžāli.
+
+**Bosanski — prijevod (Bosnian 55, the Dajjal clause):** Allahu, prizivam Te da me sačuvaš od kušnji Mesiha Dedžala.
+
+**English — instruction (Sunnah.com 199):** Whoever memorizes ten verses from the beginning of Surat Al-Kahf will be protected from the False Messiah. Seek the protection of Allah from his trial after the final tashahhud, before ending the prayer.
+
+**English — transliteration (Sunnah.com 56, the Dajjal clause):** A&#96;ūdhu billāhi min fitnati ‘l-masīḥid-dajjāl.
+
+**English — meaning (Sunnah.com 56, the Dajjal clause):** I seek refuge in You from the trial of the False Messiah.
+
+Sunnah.com 199 gives the Kahf instruction and points to Hisn 55 and 56 for the refuge. The photographed Bosnian recitation is the short phrase; Hisn 56 publishes it inside the longer tashahhud supplication.
+
+**Sources:** [Bosnian PDF, page 71](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=71) · [English wording](https://sunnah.com/hisn:56) · [Chapter instruction](https://sunnah.com/hisn:199)
+
 ## Djeca / Children
 
 <a id="hm-146"></a>

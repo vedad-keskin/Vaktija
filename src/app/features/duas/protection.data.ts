@@ -107,7 +107,7 @@ export const PROTECTION_DUAS: readonly Dua[] = [
   {
     id: 'hisn-141',
     title: {
-      bs: 'Zaštita od šejtana i njegovih došaptavanja',
+      bs: 'Dova za zaštitu od šejtana i njegovih došaptavanja',
       en: 'Protection from Satan and his whisperings',
     },
     arabic: 'أَعُوذُ بِاللَّهِ مِنَ الشَّيْطَانِ الرَّجِيمِ',
@@ -126,7 +126,7 @@ export const PROTECTION_DUAS: readonly Dua[] = [
   },
   {
     id: 'hisn-144',
-    title: { bs: 'Kada se dogodi nešto nepoželjno', en: 'When something unwelcome happens' },
+    title: { bs: 'Dova kada se dogodi nešto nepoželjno', en: 'When something unwelcome happens' },
     arabic: 'قَدَّرَ اللَّهُ وَمَا شَاءَ فَعَلَ',
     instructions: {
       bs: 'Kad te nešto zadesi, ne reci „Da učinih tako i tako”, nego prouči ovu dovu.',
@@ -141,5 +141,64 @@ export const PROTECTION_DUAS: readonly Dua[] = [
     sourceUrl: 'https://sunnah.com/hisn:144',
     bosnianSourceUrl:
       'https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=53',
+  },
+  {
+    id: 'hisn-193',
+    title: { bs: 'Dova protiv izljeva srdžbe', en: 'When angry' },
+    arabic: 'أَعُوذُ بِاللَّهِ مِنَ الشَّيْطَانِ الرَّجِيمِ',
+    transcription: {
+      bs: 'E‘ūzu billāhi mine-š-šejtān-r-radžīm.',
+      en: 'A`ūdhu billāhi minash-Shayṭānir-rajīm.',
+    },
+    translation: {
+      bs: 'Allaha prizivam protiv prokletog šejtana.',
+      en: 'I seek refuge in Allah from Satan the outcast.',
+    },
+    reference: { bs: 'Hisnul-Muslimi, 181', en: 'Hisn al-Muslim, 193' },
+    sourceUrl: 'https://sunnah.com/hisn:193',
+    bosnianSourceUrl:
+      'https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=68',
+  },
+  {
+    id: 'hisn-194',
+    title: {
+      bs: 'Dova kad ugledamo nesretnika',
+      en: 'Upon seeing someone in trial or tribulation',
+    },
+    arabic:
+      'الْحَمْدُ لِلَّهِ الَّذِي عَافَانِي مِمَّا ابْتَلَاكَ بِهِ، وَفَضَّلَنِي عَلَى كَثِيرٍ مِمَّنْ خَلَقَ تَفْضِيلًا',
+    transcription: {
+      bs: 'El-ḥamdu lillāhi-l-leḏī ‘āfānī mimmab-telāke bihī ve feḍḍalenī ‘alā kešīrin mimmen ḫaleka tafḍīlā.',
+      en: "Alhamdu lillāhi ‘l-ladhī `āfānī mimmab-talāka bihi wa faḍḍalanī `alā kathīrin mimman khalaqa tafḍīlā.",
+    },
+    translation: {
+      bs: 'Hvala Allahu, Koji me zaštiti od onoga što je tebe zadesilo i dade mi prednost nad mnogo čime što je stvorio.',
+      en: 'Praise is to Allah Who has spared me what He has afflicted you with, and preferred me greatly above much of what He has created.',
+    },
+    reference: { bs: 'Hisnul-Muslimi, 182', en: 'Hisn al-Muslim, 194' },
+    sourceUrl: 'https://sunnah.com/hisn:194',
+    bosnianSourceUrl:
+      'https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=69',
+  },
+  {
+    id: 'hisn-199',
+    title: {
+      bs: 'Dova kojom se moli Allahova zaštita od Dedžala',
+      en: 'Protection from the Dajjal',
+    },
+    arabic: 'أَعُوذُ بِاللَّهِ مِنْ فِتْنَةِ الْمَسِيحِ الدَّجَّالِ',
+
+    transcription: {
+      bs: 'E‘ūdu billāhi min fitnetil-mesīhi-d-dedždžāli.',
+      en: "A`ūdhu billāhi min fitnati ‘l-masīḥid-dajjāl.",
+    },
+    translation: {
+      bs: 'Allahu, prizivam Te da me sačuvaš od kušnji Mesiha Dedžala.',
+      en: 'I seek refuge in You from the trial of the False Messiah.',
+    },
+    reference: { bs: 'Hisnul-Muslimi, 187', en: 'Hisn al-Muslim, 56' },
+    sourceUrl: 'https://sunnah.com/hisn:56',
+    bosnianSourceUrl:
+      'https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=71',
   },
 ];

@@ -124,6 +124,8 @@ it('shows ten items at a time and resets on view changes', async () => {
   ]);
   expect(more()).toBeNull();
   await harness.navigateByUrl('/duas?category=protection');
+  more()!.click();
+  harness.detectChanges();
   expect([...cards()].map((card) => card.getAttribute('data-dua-id'))).toEqual([
     'hisn-124',
     'hisn-121',
@@ -133,6 +135,9 @@ it('shows ten items at a time and resets on view changes', async () => {
     'hisn-140',
     'hisn-141',
     'hisn-144',
+    'hisn-193',
+    'hisn-194',
+    'hisn-199',
   ]);
   expect(more()).toBeNull();
   await harness.navigateByUrl('/duas?category=children');
@@ -218,6 +223,9 @@ it('routes the bilingual library, validates saved data and persists bookmark cha
     'hisn-140',
     'hisn-141',
     'hisn-144',
+    'hisn-193',
+    'hisn-194',
+    'hisn-199',
     'hisn-146',
     'hisn-136',
     'hisn-192',

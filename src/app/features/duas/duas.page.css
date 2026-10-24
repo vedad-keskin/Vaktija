@@ -213,8 +213,7 @@ svg {
 }
 
 .dua-card h2:focus {
-  outline: 2px solid var(--gold);
-  outline-offset: 4px;
+  outline: none;
 }
 
 .dua-actions {
