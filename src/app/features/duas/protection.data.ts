@@ -1,7 +1,7 @@
 import type { Dua } from './duas.data';
 
-// Bosnian transcriptions and meanings: reader's Hisnul-Muslimi photographs (116, 119, 121, 124, 130, 136).
-// English and Arabic: the linked Sunnah.com entries; HM-133 recitation is printed in the Bosnian photo.
+// Bosnian transcriptions and meanings: reader's Hisnul-Muslimi photographs (116, 119, 121, 124, 130, 131, 136).
+// English and Arabic: the linked Sunnah.com entries; HM-133 and HM-140 recitations are printed in the Bosnian photos.
 export const PROTECTION_DUAS: readonly Dua[] = [
   {
     id: 'hisn-124',
@@ -21,24 +21,6 @@ export const PROTECTION_DUAS: readonly Dua[] = [
       'https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=49',
   },
   {
-    id: 'hisn-121',
-    title: { bs: 'Dova protiv zabrinutosti i žalosti', en: 'Against anxiety and sorrow' },
-    arabic:
-      'اللَّهُمَّ إِنِّي أَعُوذُ بِكَ مِنَ الْهَمِّ وَالْحُزْنِ، وَالْعَجْزِ وَالْكَسَلِ، وَالْبُخْلِ وَالْجُبْنِ، وَضَلَعِ الدَّيْنِ وَغَلَبَةِ الرِّجَالِ',
-    transcription: {
-      bs: 'Allāhumme innī e‘ūdu bike mine-l-hemmi vel-hazeni ve-l-‘adžzi ve-l-keseli ve-l-buhli ve-l-džubni ve dal‘i-d-dejni ve galebeti-r-ridžāli.',
-      en: "Allāhumma 'innī 'a`ūdhu bika mina ‘l-ḥammi wa ‘l-ḥuzn, wa ‘l-`ajzi wa ‘l-kasal, wa ‘l-bukhli wa ‘l-jubn, wa ḍala`id-dayn, wa ghalabatir-rijāl.",
-    },
-    translation: {
-      bs: 'Allahu, tražim od Tebe zaštitu od brige i žalosti, od iznemoglosti i lijenosti, tvrdičluka i uspaničenosti te pred teretom dugovanja i ljudske nadmoći.',
-      en: 'O Allah, I seek refuge in You from grief and sadness, from weakness and laziness, from miserliness and cowardice, from being overcome by debt and overpowered by others.',
-    },
-    reference: { bs: 'Hisnul-Muslimi, 116', en: 'Hisn al-Muslim, 121' },
-    sourceUrl: 'https://sunnah.com/hisn:121',
-    bosnianSourceUrl:
-      'https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=48',
-  },
-  {
     id: 'hisn-146',
     title: { bs: 'Dova za zaštitu djece', en: 'Protection for children' },
     arabic:
@@ -56,6 +38,25 @@ export const PROTECTION_DUAS: readonly Dua[] = [
     bosnianSourceUrl:
       'https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=53',
   },
+  {
+    id: 'hisn-121',
+    title: { bs: 'Dova protiv zabrinutosti i žalosti', en: 'Against anxiety and sorrow' },
+    arabic:
+      'اللَّهُمَّ إِنِّي أَعُوذُ بِكَ مِنَ الْهَمِّ وَالْحُزْنِ، وَالْعَجْزِ وَالْكَسَلِ، وَالْبُخْلِ وَالْجُبْنِ، وَضَلَعِ الدَّيْنِ وَغَلَبَةِ الرِّجَالِ',
+    transcription: {
+      bs: 'Allāhumme innī e‘ūdu bike mine-l-hemmi vel-hazeni ve-l-‘adžzi ve-l-keseli ve-l-buhli ve-l-džubni ve dal‘i-d-dejni ve galebeti-r-ridžāli.',
+      en: "Allāhumma 'innī 'a`ūdhu bika mina ‘l-ḥammi wa ‘l-ḥuzn, wa ‘l-`ajzi wa ‘l-kasal, wa ‘l-bukhli wa ‘l-jubn, wa ḍala`id-dayn, wa ghalabatir-rijāl.",
+    },
+    translation: {
+      bs: 'Allahu, tražim od Tebe zaštitu od brige i žalosti, od iznemoglosti i lijenosti, tvrdičluka i uspaničenosti te pred teretom dugovanja i ljudske nadmoći.',
+      en: 'O Allah, I seek refuge in You from grief and sadness, from weakness and laziness, from miserliness and cowardice, from being overcome by debt and overpowered by others.',
+    },
+    reference: { bs: 'Hisnul-Muslimi, 116', en: 'Hisn al-Muslim, 121' },
+    sourceUrl: 'https://sunnah.com/hisn:121',
+    bosnianSourceUrl:
+      'https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=48',
+  },
+
   {
     id: 'hisn-126',
     title: {
@@ -103,6 +104,21 @@ export const PROTECTION_DUAS: readonly Dua[] = [
     },
     reference: { bs: 'Hisnul-Muslimi, 130', en: 'Hisn al-Muslim, 139' },
     sourceUrl: 'https://sunnah.com/hisn:139',
+    bosnianSourceUrl:
+      'https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=52',
+  },
+  {
+    id: 'hisn-140',
+    title: { bs: 'Dova nakon počinjenog grijeha', en: 'After committing a sin' },
+    arabic: 'أَسْتَغْفِرُ اللَّهَ',
+    instructions: {
+      bs: 'Svakome vjerniku koji počini grijeh, pa potom lijepo uzme abdest, klanja dva rekata i zatim zamoli Allaha za oprost ovim riječima, Allah mu oprosti počinjeni grijeh.',
+      en: 'After committing a sin, perform ablution well, pray two rak‘ahs, then ask Allah for forgiveness.',
+    },
+    transcription: { bs: 'Estagfirullāh.', en: 'Astaghfirullāh.' },
+    translation: { bs: 'Tražim oprost od Allaha.', en: 'I seek Allah’s forgiveness.' },
+    reference: { bs: 'Hisnul-Muslimi, 131', en: 'Hisn al-Muslim, 140' },
+    sourceUrl: 'https://sunnah.com/hisn:140',
     bosnianSourceUrl:
       'https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=52',
   },

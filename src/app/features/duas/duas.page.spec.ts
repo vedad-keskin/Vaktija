@@ -116,11 +116,12 @@ it('shows ten items at a time and resets on view changes', async () => {
   await harness.navigateByUrl('/duas?category=protection');
   expect([...cards()].map((card) => card.getAttribute('data-dua-id'))).toEqual([
     'hisn-124',
-    'hisn-121',
     'hisn-146',
+    'hisn-121',
     'hisn-126',
     'hisn-133',
     'hisn-139',
+    'hisn-140',
   ]);
   expect(more()).toBeNull();
   await harness.navigateByUrl('/duas?category=debt');
@@ -195,11 +196,12 @@ it('routes the bilingual library, validates saved data and persists bookmark cha
     'hisn-163',
     'hisn-165',
     'hisn-124',
-    'hisn-121',
     'hisn-146',
+    'hisn-121',
     'hisn-126',
     'hisn-133',
     'hisn-139',
+    'hisn-140',
     'hisn-136',
     'hisn-192',
     'hisn-191',

@@ -1554,6 +1554,29 @@ The Bosnian meaning retains “što Ti ne učiniš” as printed in the photogra
 
 **Sources:** [Bosnian PDF, page 52](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=52) · [English and Arabic](https://sunnah.com/hisn:139)
 
+<a id="hm-140"></a>
+### HM-140 · Nakon počinjenog grijeha / After committing a sin
+
+**Arapski — izgovorena fraza / Arabic phrase to say**
+
+<p lang="ar" dir="rtl">أَسْتَغْفِرُ اللَّهَ</p>
+
+**Bosanski — uputa (reader's photograph, Bosnian 131):** Svakome vjerniku koji počini grijeh, pa potom lijepo uzme abdest, klanja dva rekata i zatim zamoli Allaha za oprost (rekavši estagfirullāh), Allah oprosti počinjeni grijeh.
+
+**Bosanski — transkripcija (reader's photograph, Bosnian 131):** estagfirullāh
+
+**Bosanski — doslovno značenje fraze:** Tražim oprost od Allaha.
+
+**English — instruction (Sunnah.com 140):** After committing a sin, perform ablution well, pray two rak‘ahs, then ask Allah for forgiveness.
+
+**English — transliteration of the photographed phrase:** Astaghfirullāh.
+
+**English — literal meaning of the phrase:** I seek Allah’s forgiveness.
+
+The photographed Bosnian edition explicitly prints this phrase. Sunnah.com presents the wider narration about purification, prayer and seeking forgiveness.
+
+**Sources:** [Bosnian PDF, page 52](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=52) · [Hadith and English](https://sunnah.com/hisn:140)
+
 ## Dug / Debt
 
 <a id="hm-136"></a>
