@@ -44,11 +44,15 @@ it('shows ten items at a time and resets on view changes', async () => {
   more()!.click();
   harness.detectChanges();
   expect(cards()).toHaveLength(50);
-  more()!.click();
-  harness.detectChanges();
+  while (more()) {
+    more()!.click();
+    harness.detectChanges();
+  }
   expect(cards()).toHaveLength(DUAS.length);
   expect(more()).toBeNull();
-  expect(document.activeElement).toBe(cards()[50].querySelector('h2'));
+  expect(document.activeElement).toBe(
+    cards()[Math.floor((DUAS.length - 1) / 10) * 10].querySelector('h2'),
+  );
 
   await harness.navigateByUrl('/duas?category=marriage');
   expect(cards()).toHaveLength(3);
@@ -97,6 +101,14 @@ it('shows ten items at a time and resets on view changes', async () => {
     'hisn-148',
     'hisn-150',
   ]);
+  await harness.navigateByUrl('/duas?category=death');
+  expect(cards()).toHaveLength(10);
+  more()!.click();
+  harness.detectChanges();
+  expect(new Set([...cards()].map((card) => card.getAttribute('data-dua-id')))).toEqual(
+    new Set(Array.from({ length: 13 }, (_, i) => i + 153).filter((n) => n !== 164).map((n) => `hisn-${n}`)),
+  );
+  expect(more()).toBeNull();
   await harness.navigateByUrl('/duas?view=saved');
   expect(cards()).toHaveLength(10);
   more()!.click();
@@ -118,6 +130,7 @@ it('routes the bilingual library, validates saved data and persists bookmark cha
     'fasting',
     'sleep',
     'illness',
+    'death',
     'marriage',
     'clothing',
     'gathering',
@@ -153,6 +166,18 @@ it('routes the bilingual library, validates saved data and persists bookmark cha
     'hisn-147',
     'hisn-148',
     'hisn-150',
+    'hisn-153',
+    'hisn-154',
+    'hisn-155',
+    'hisn-156',
+    'hisn-157',
+    'hisn-158',
+    'hisn-159',
+    'hisn-160',
+    'hisn-161',
+    'hisn-162',
+    'hisn-163',
+    'hisn-165',
     'hisn-192',
     'hisn-191',
     'hisn-190',
@@ -222,16 +247,10 @@ it('routes the bilingual library, validates saved data and persists bookmark cha
   mobileDuasLink.click();
   await harness.fixture.whenStable();
   expect(element().querySelector('.mobile-dropdown')?.classList.contains('open')).toBe(false);
-  showMore()!.click();
-  harness.detectChanges();
-  showMore()!.click();
-  harness.detectChanges();
-  showMore()!.click();
-  harness.detectChanges();
-  showMore()!.click();
-  harness.detectChanges();
-  showMore()!.click();
-  harness.detectChanges();
+  while (showMore()) {
+    showMore()!.click();
+    harness.detectChanges();
+  }
   expect(cards()).toHaveLength(DUAS.length);
   const marriage = DUA_CATEGORIES.find((category) => category.id === 'marriage')!;
   await harness.navigateByUrl('/duas?category=marriage');
@@ -240,16 +259,10 @@ it('routes the bilingual library, validates saved data and persists bookmark cha
     marriage.label[TestBed.inject(LanguageService).lang()],
   );
   await harness.navigateByUrl('/duas?category=unknown');
-  showMore()!.click();
-  harness.detectChanges();
-  showMore()!.click();
-  harness.detectChanges();
-  showMore()!.click();
-  harness.detectChanges();
-  showMore()!.click();
-  harness.detectChanges();
-  showMore()!.click();
-  harness.detectChanges();
+  while (showMore()) {
+    showMore()!.click();
+    harness.detectChanges();
+  }
   expect(cards()).toHaveLength(DUAS.length);
 
   for (const lang of ['bs', 'en'] as const) {
@@ -272,6 +285,7 @@ it('routes the bilingual library, validates saved data and persists bookmark cha
             'Priroda i vrijeme',
             'Putovanje',
             'Sijelo',
+            'Smrt',
             'Spavanje i snovi',
             'Toalet',
             'Životinje',
@@ -282,6 +296,7 @@ it('routes the bilingual library, validates saved data and persists bookmark cha
             'Adhan',
             'Animals',
             'Clothing',
+            'Death',
             'Fasting and food',
             'Gathering',
             'Home',
@@ -341,10 +356,10 @@ it('routes the bilingual library, validates saved data and persists bookmark cha
     throw new Error('quota');
   });
   await harness.navigateByUrl('/duas');
-  showMore()!.click();
-  harness.detectChanges();
-  showMore()!.click();
-  harness.detectChanges();
+  while (!element().querySelector('[data-dua-id="hisn-190"]') && showMore()) {
+    showMore()!.click();
+    harness.detectChanges();
+  }
   save('hisn-190').click();
   harness.detectChanges();
   expect(save('hisn-190').getAttribute('aria-pressed')).toBe('true');

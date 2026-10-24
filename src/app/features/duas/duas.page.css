@@ -314,6 +314,12 @@ svg {
   color: var(--text-primary);
 }
 
+.dua-arabic,
+.dua-transcription,
+.dua-translation {
+  white-space: pre-line;
+}
+
 .dua-source {
   margin-top: 20px;
   text-align: center;

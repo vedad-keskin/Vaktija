@@ -177,7 +177,7 @@ Brojevi, poglavlja i vrste zapisa provjereni su prema [OpenDua datasetu v0.0.4](
 - [ ] [HM-213 · Dova onih koji ostaju musafiru (2/2) / A farewell to the traveler (2/2)](https://sunnah.com/hisn:213)
 - [ ] [HM-214 · Zikr tokom putovanja / Remembrance while traveling](https://sunnah.com/hisn:214) · uputa / instruction
 
-## Teškoće, zaštita i gubitak / Hardship, protection and loss
+## Teškoće i zaštita / Hardship and protection
 
 - [ ] [HM-120 · Pri brizi i tuzi (1/2) / Worry and grief (1/2)](https://sunnah.com/hisn:120)
 - [ ] ★ [HM-121 · Protiv brige, tuge i nemoći / Against worry, grief and helplessness](https://sunnah.com/hisn:121)
@@ -203,19 +203,6 @@ Brojevi, poglavlja i vrste zapisa provjereni su prema [OpenDua datasetu v0.0.4](
 - [ ] [HM-142 · Protiv šejtana i njegovih došaptavanja (2/3) / Satanic suggestions (2/3)](https://sunnah.com/hisn:142) · uputa / instruction
 - [ ] [HM-143 · Protiv šejtana i njegovih došaptavanja (3/3) / Satanic suggestions (3/3)](https://sunnah.com/hisn:143) · uputa / instruction
 - [ ] [HM-144 · Kada se dogodi nešto nepoželjno / When something unwelcome happens](https://sunnah.com/hisn:144)
-- [ ] [HM-153 · Šta podsjetiti osobu na samrti da kaže / Words for a dying person](https://sunnah.com/hisn:153)
-- [ ] ★ [HM-154 · Kada nas zadesi gubitak / When a loss strikes](https://sunnah.com/hisn:154)
-- [ ] [HM-155 · Pri zatvaranju očiju umrloj osobi / Closing the eyes of someone deceased](https://sunnah.com/hisn:155)
-- [ ] [HM-156 · Za umrlu osobu u dženaza-namazu (1/4) / For the deceased in funeral prayer (1/4)](https://sunnah.com/hisn:156)
-- [ ] [HM-157 · Za umrlu osobu u dženaza-namazu (2/4) / For the deceased in funeral prayer (2/4)](https://sunnah.com/hisn:157)
-- [ ] [HM-158 · Za umrlu osobu u dženaza-namazu (3/4) / For the deceased in funeral prayer (3/4)](https://sunnah.com/hisn:158)
-- [ ] [HM-159 · Za umrlu osobu u dženaza-namazu (4/4) / For the deceased in funeral prayer (4/4)](https://sunnah.com/hisn:159)
-- [ ] [HM-160 · Za umrlo dijete u dženaza-namazu (1/2) / For a child in funeral prayer (1/2)](https://sunnah.com/hisn:160)
-- [ ] [HM-161 · Za umrlo dijete u dženaza-namazu (2/2) / For a child in funeral prayer (2/2)](https://sunnah.com/hisn:161)
-- [ ] [HM-162 · Utjeha ožalošćenima / Comforting the bereaved](https://sunnah.com/hisn:162)
-- [ ] [HM-163 · Pri spuštanju umrle osobe u mezar / Placing the deceased in the grave](https://sunnah.com/hisn:163)
-- [ ] [HM-164 · Nakon ukopa / After burial](https://sunnah.com/hisn:164)
-- [ ] [HM-165 · Pri posjeti mezarju / Visiting graves](https://sunnah.com/hisn:165)
 - [ ] ★ [HM-193 · Pri srdžbi / When angry](https://sunnah.com/hisn:193)
 - [ ] [HM-194 · Kada vidimo osobu pogođenu nevoljom / Seeing someone struck by misfortune](https://sunnah.com/hisn:194)
 - [ ] [HM-240 · Pri iznenađenju ili zaprepaštenju (1/2) / When startled (1/2)](https://sunnah.com/hisn:240)
@@ -232,6 +219,22 @@ Brojevi, poglavlja i vrste zapisa provjereni su prema [OpenDua datasetu v0.0.4](
 - [ ] [HM-151 · Dove teško bolesne osobe (2/3) / For a seriously ill person (2/3)](README-full.md#hm-151)
 - [ ] [HM-152 · Dove teško bolesne osobe (3/3) / For a seriously ill person (3/3)](README-full.md#hm-152)
 - [ ] ★ [HM-243 · Dova pri tjelesnoj boli / For bodily pain](README-full.md#hm-243) · u aplikaciji / in app · uputa / instruction
+
+## Smrt / Death
+
+- [ ] [HM-153 · Podsjećanje čovjeka na samrti da izgovori šehadet / Instruction for the one nearing death](README-full.md#hm-153) · u aplikaciji / in app
+- [ ] ★ [HM-154 · Dova onoga koga pogodi musibet (preseljenje na ahiret neke bliske osobe) / For one afflicted by a calamity](README-full.md#hm-154) · u aplikaciji / in app
+- [ ] [HM-155 · Dova pri sklapanju očiju umrlom / When closing the eyes of the deceased](README-full.md#hm-155) · u aplikaciji / in app
+- [ ] [HM-156 · Dženazetske dove / For the deceased at the funeral prayer](README-full.md#hm-156) · u aplikaciji / in app
+- [ ] [HM-157 · Za umrlu osobu u dženaza-namazu (2/4) / For the deceased in funeral prayer (2/4)](README-full.md#hm-157) · u aplikaciji / in app
+- [ ] [HM-158 · Za umrlu osobu u dženaza-namazu (3/4) / For the deceased in funeral prayer (3/4)](README-full.md#hm-158) · u aplikaciji / in app
+- [ ] [HM-159 · Za umrlu osobu u dženaza-namazu (4/4) / For the deceased in funeral prayer (4/4)](README-full.md#hm-159) · u aplikaciji / in app
+- [ ] [HM-160 · Dženazetska dova za maloljetno dijete da bude predvodnik (svojim roditeljima) / When the deceased is a child, during the funeral prayer](README-full.md#hm-160) · u aplikaciji / in app
+- [ ] [HM-161 · Za umrlo dijete u dženaza-namazu (2/2) / For a child in funeral prayer (2/2)](README-full.md#hm-161) · u aplikaciji / in app
+- [ ] [HM-162 · Utjeha ožalošćenima / Comforting the bereaved](README-full.md#hm-162) · u aplikaciji / in app
+- [ ] [HM-163 · Pri spuštanju umrle osobe u mezar / Placing the deceased in the grave](README-full.md#hm-163) · u aplikaciji / in app
+- [ ] [HM-164 · Nakon ukopa / After burial](https://sunnah.com/hisn:164) · uputa / instruction
+- [ ] [HM-165 · Dova prilikom posjete mezaristanima / Visiting the graves](README-full.md#hm-165) · u aplikaciji / in app
 
 ## Post i hrana / Fasting and food
 

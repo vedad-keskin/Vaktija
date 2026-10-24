@@ -1,6 +1,6 @@
 # Hisnul Muslim — selected full duas (BS / EN)
 
-This file grows one approved category at a time. It currently contains the clothing entries (HM-5, 9, 6, 7), the toilet entries (HM-10–11), the Abdest entries (HM-12–13), the mosque entries (HM-19–21), the adhan entry (HM-25), the sleeping entries (HM-111, 1, 114, 113, 112), the three marriage entries, the gathering entries (HM-195–196), the animal entries, the weather entries (HM-166, 168, 169, 172–175), the fasting and food entries (HM-176–186), the home entries (HM-16, 18), the travel entries (HM-206–212, 215–217), the general entries (HM-79, 84, 86, 97), and the illness entries (HM-147, 148, 150–152, 243). The [complete title checklist](README-titles.md) remains an editorial selection aid; its suggested labels are not published translations.
+This file grows one approved category at a time. It currently contains the clothing entries (HM-5, 9, 6, 7), the toilet entries (HM-10–11), the Abdest entries (HM-12–13), the mosque entries (HM-19–21), the adhan entry (HM-25), the sleeping entries (HM-111, 1, 114, 113, 112), the three marriage entries, the gathering entries (HM-195–196), the animal entries, the weather entries (HM-166, 168, 169, 172–175), the fasting and food entries (HM-176–186), the home entries (HM-16, 18), the travel entries (HM-206–212, 215–217), the general entries (HM-79, 84, 86, 97), the illness entries (HM-147, 148, 150–152, 243), and the death entries (HM-153–163, 165). The [complete title checklist](README-titles.md) remains an editorial selection aid; its suggested labels are not published translations.
 
 ## Izvori i uredničke napomene / Sources and editorial notes
 
@@ -18,6 +18,7 @@ This file grows one approved category at a time. It currently contains the cloth
 - **Kuća / Home:** HM-16 and HM-18 retain the same Bosnian numbers. Bosnian transcriptions and meanings follow the reader’s photograph of pages 20–21 of the 2017 edition; the linked IslamHouse PDF provides the digital counterpart. HM-17 remains in the complete title checklist. HM-18 Arabic follows the complete word in the Bosnian edition; Sunnah.com drops its final alif.
 - **Putovanje / Travel:** The selected HM-206–212 and 215–217 correspond to Bosnian 194–200 and 203–205. Bosnian transcriptions and meanings follow the reader’s photographs of pages 122–130 of the 2017 edition; linked IslamHouse pages provide the digital counterpart. HM-213 remains in the complete title checklist. HM-214 / Bosnian 202 reports an ascent/descent practice rather than a standalone dua. HM-206 and HM-207 contain Qur’anic words as part of their published recitations. The short return phrase after HM-207 also appears in HM-217; the HM-207 card shows the travel wording only. HM-217 includes the three opening takbirs from the published return instructions.
 - **Bolest i bol / Illness and pain:** HM-147–152 correspond to Bosnian 137–142. Their Bosnian transcriptions and meanings follow the reader’s photographs of pages 90–93 of the 2017 edition; the linked IslamHouse PDF is a published digital counterpart. HM-149 / Bosnian 139 is a narration about visiting the sick, so it remains only in the checklist. HM-150–152 belong to the source chapter about a sick person nearing death. HM-151’s photo transcribes only its opening phrase; its second clause is adapted from the printed Arabic using the letter key above. The source reports the Prophet wiping his face with wet hands as context, not a required step for this card. The published Bosnian meaning of HM-152 omits the clause about dominion and praise although its recitation contains it; the English meaning includes that clause. HM-243 corresponds to Bosnian 228; its Bosnian transcription, instruction, and meaning follow the reader’s later photograph of the 2017 edition. Its opening Bosnian meaning, “U ime Allaha,” comes from Bosnian 9 in the linked IslamHouse PDF.
+- **Smrt / Death:** HM-153–165 correspond to Bosnian 143–156; HM-162 is Bosnian 152 only. The photographed alternative (Bosnian 153) stays out of the app. Bosnian 143–146 follow the linked PDF because those pages were not photographed. Bosnian 147–156 follow the reader’s photographs of pages 96–102 of the 2017 edition, retaining the photo’s ḫ where it differs from the adaptation key above. HM-153 displays the recited declaration from a narration; its Bosnian meaning comes from the published Bosnian 141 on PDF page 54. HM-160 displays the child funeral prayer shared by the Bosnian edition and Sunnah.com; Sunnah.com also has a short alternative and two extra closing clauses that are absent from the photographed Bosnian edition. HM-164 / Bosnian 155 gives an instruction after burial without fixed Bosnian recited wording, so it remains in the checklist only. The photographed Bosnian 156 / HM-165 includes a mercy clause in its Arabic and transcription that the PDF and Sunnah.com Arabic omit; Sunnah.com includes its English meaning in brackets. The photographed Bosnian meaning does not translate that clause, and is reproduced as printed.
 - **English title, transliteration and meaning; Arabic text:** [Sunnah.com, *Hisn al-Muslim*](https://sunnah.com/hisn), except where an entry has its own source note. Only the recited words and their published meanings are shown below. Line breaks on the Sunnah.com page are joined with spaces. Arabic orthography follows the linked entry, including HM-13’s unspaced وَأَشْهَدُأَنَّ; HM-18 uses the complete final word from the Bosnian edition.
 - Numbering matches for HM-10 through HM-13, HM-19 through HM-21, and HM-25. The marriage items differ: BS 178 ↔ EN 190, BS 179 ↔ EN 191, BS 180 ↔ EN 192. The gathering items are BS 183–184 ↔ EN 195–196. The weather items differ by nine: BS 157, 159, 160, 163–166 ↔ EN 166, 168, 169, 172–175. Fasting and food is BS 167–175 ↔ EN 176, 178–185; EN 177 is not in the Bosnian edition, and EN 186 is BS 235.
 - Sleep HM-1 matches BS 1.
@@ -1209,4 +1210,230 @@ The source reports that the Prophet wiped his face with wet hands while saying t
 **English — meaning (Sunnah.com 243):** With the Name of Allah. I seek refuge in Allah and in His Power from the evil of what I find and of what I guard against.
 
 **Sources:** [Bosnian PDF, pages 87–88](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=87) · [Bosnian Bismillah meaning, page 9](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=9) · [English and Arabic](https://sunnah.com/hisn:243)
+
+## Smrt / Death
+
+<a id="hm-153"></a>
+### HM-153 · Podsjećanje čovjeka na samrti da izgovori šehadet / Instruction for the one nearing death
+
+**Arapski / Arabic — recited words only**
+
+<p lang="ar" dir="rtl">لا إله إلا الله</p>
+
+**Bosanski — uputa (IslamHouse chapter 48):** Podsjeti osobu na samrti da izgovori šehadet.
+
+**English — instruction (Sunnah.com 153):** Prompt the person nearing death to say the declaration of faith.
+
+**Bosanski — transkripcija (IslamHouse 143; recited words only):** Lā ilāhe ille-l-Lāh.
+
+**Bosanski — prijevod (IslamHouse 141):** Nema boga osim Allaha.
+
+**English — transliteration (Sunnah.com 153):** Lā ilāha illallāh.
+
+**English — meaning (Sunnah.com 153; recited words only):** There is none worthy of worship but Allah.
+
+The source says that whoever dies with these as their last words will enter Paradise.
+
+**Sources:** [Bosnian PDF, pages 54–55](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=55) · [English and Arabic](https://sunnah.com/hisn:153)
+
+<a id="hm-154"></a>
+### HM-154 · Dova onoga koga pogodi musibet (preseljenje na ahiret neke bliske osobe) / For one afflicted by a calamity
+
+**Arapski / Arabic**
+
+<p lang="ar" dir="rtl">إِنّا للهِ وَإِنَا إِلَـيْهِ راجِعـون ، اللهُـمِّ اْجُـرْني في مُصـيبَتي، وَاخْلُـفْ لي خَيْـراً مِنْـها</p>
+
+**Bosanski — transkripcija (IslamHouse 144):** Innā li-l-Lāhi ve innā ilejhi rādži‘ūn. Allāhumme’džurnī fī muṣībetī vaẖluf lī ẖajren minhā.
+
+**Bosanski — prijevod (IslamHouse 144):** Mi zaista pripadamo Allahu i svi Mu se, bez dvoumljenja, vraćamo. Allahu, daruj mi u ovome mom musibetu (nesreći) nagradu (za sabur) i nakon toga mi podari veće dobro.
+
+**English — transliteration (Sunnah.com 154):** Innā lillāhi wa innā ilayhi rāji&#96;ūn, Allāhumma-jurni fī muṣībatī wa 'khluf lī khayran minhā.
+
+**English — meaning (Sunnah.com 154):** We are from Allah and unto Him we return. O Allah take me out of my plight and bring to me after it something better.
+
+**Sources:** [Bosnian PDF, page 56](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=56) · [English and Arabic](https://sunnah.com/hisn:154)
+
+<a id="hm-155"></a>
+### HM-155 · Dova pri sklapanju očiju umrlom / When closing the eyes of the deceased
+
+**Arapski / Arabic**
+
+<p lang="ar" dir="rtl">اللهُـمِّ اغْفِـرْ لِـفلان (باسـمه) وَارْفَعْ دَرَجَتَـهُ في المَهْـدِييـن ، وَاخْـلُفْـهُ في عَقِـبِهِ في الغابِـرين، وَاغْفِـرْ لَنـا وَلَـهُ يا رَبَّ العـالَمـين، وَافْسَـحْ لَهُ في قَبْـرِهِ وَنَـوِّرْ لَهُ فيه</p>
+
+**Bosanski — uputa (IslamHouse 145):** Umjesto „fulān” izgovori ime umrle osobe.
+
+**English — instruction (Sunnah.com 155):** Say the deceased person's name in place of “fulān.”
+
+**Bosanski — transkripcija (IslamHouse 145):** Allāhumma-gfir li fulān (bismihī) ve-rfa‘ deredžetehū fī-l-mehdijjīne vaẖlufhu fī ‘aqibihī fī-l-gābirīne va-gfir lenā ve lehū, jā Rabbe-l-‘ālemīne, vefsaḥ lehū fī qabrihī ve nevvīr lehū fīhī.
+
+**Bosanski — prijevod (IslamHouse 145):** Allahu, oprosti (tome i tome, po imenu), uzdigni njegovo mjesto među onima koji su zaradili Tvoju uputu (Džennet) i odredi mu nasljednika među onima koji ostaju (od njegovih potomaka). Oprosti nama i njemu, Gospodaru svjetova. Kabur mu učini širokim prostorom i udobnim i osvijetli mu ga.
+
+**English — transliteration (Sunnah.com 155):** Allāhumma’ghfir li (name of the person) warfa&#96; darajatahu fi ‘l-mahdiyyīn, wakhlufhu fī &#96;aqibihi fi ‘l-ghābirīn, wagh’fir-lanā wa lahu yā Rabba ‘l-&#96;ālamīn, wafsaḥ lahu fī qabrihi wa nawwir lahu fīh.
+
+**English — meaning (Sunnah.com 155):** O Allah, forgive [name of the person] and elevate his station among those who are guided. Send him along the path of those who came before, and forgive us and him, O Lord of the worlds. Enlarge for him his grave, and shed light upon him in it.
+
+**Sources:** [Bosnian PDF, page 56](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=56) · [English and Arabic](https://sunnah.com/hisn:155)
+
+<a id="hm-156"></a>
+### HM-156 · Dženazetske dove / For the deceased at the funeral prayer
+
+**Arapski / Arabic**
+
+<p lang="ar" dir="rtl">اللهُـمِّ اغْفِـرْ لَهُ وَارْحَمْـه ، وَعافِهِ وَاعْفُ عَنْـه ، وَأَكْـرِمْ نُزُلَـه ، وَوَسِّـعْ مُدْخَـلَه ، وَاغْسِلْـهُ بِالْمـاءِ وَالثَّـلْجِ وَالْبَـرَدْ ، وَنَقِّـهِ مِنَ الْخطـايا كَما نَـقّيْتَ الـثَّوْبَ الأَبْيَـضَ مِنَ الدَّنَـسْ ، وَأَبْـدِلْهُ داراً خَـيْراً مِنْ دارِه ، وَأَهْلاً خَـيْراً مِنْ أَهْلِـه ، وَزَوْجَـاً خَـيْراً مِنْ زَوْجِه ، وَأَدْخِـلْهُ الْجَـنَّة ، وَأَعِـذْهُ مِنْ عَذابِ القَـبْر [وَعَذابِ النّـار]</p>
+
+**Bosanski — transkripcija (IslamHouse 146):** Allāhumma-gfir lehū ve-rḥamhū ve ‘āfihī va‘fu ‘anhū ve ekrim nuzulehū ve vessi‘ mudẖalehū vagsilhū bi-l-māi ve-s-ṯeldži ve-l-berdi ve neqqihī mine-l-ẖaṭājā kemā neqqajte-s-ṯevbe-l-ebjeda mine-d-denisi ve ebdilhū dāren ẖajren min dārihī ve ehlen ẖajren min ehlihī ve zevdžen ẖajren min zevdžihī ve edẖilhū-l-džennete ve e‘iḏhū min ‘aḏābi-l-qabri (ve ‘aḏābi-n-nāri).
+
+**Bosanski — prijevod (IslamHouse 146):** Allahu, oprosti mu i smiluj se, grijehe mu pobriši i sačuvaj ga, nagradi ga počasnim mjestom i učini širokim njegov ulaz (kabur), očisti ga vodom, snijegom i ledom, očisti ga od grijeha kao što bijelu odjeću čistiš od prljavštine. Zamijeni mu njegovu dunjalučku kuću za bolju od nje (ahiretsku), i njegovu porodicu za bolju, i njegovu suprugu za bolju od njegove dunjalučke. U Džennet ga uvedi i zaštiti ga od zagrobne kazne (i od džehenemske vatre).
+
+**English — transliteration (Sunnah.com 156):** Allāhumma’ghfir lahu warḥamh, wa &#96;āfihi, wa&#96;fu &#96;anh, wa akrim nuzulah, wa wassi&#96; mudkhalah, wagh’silhu bi ‘lmā'i wath-thalji walbarad, wa naqqihi mina ‘l-khaṭāyā kamā naqqaytath-thawba ‘l-abyaḍa minad-danas, wa abdilhu dāran khayran min dārih, wa ahlan khayran min ahlih, wa zawjan khayran min zawjih, wa adkhilhu ‘l-jannah, wa a&#96;idhhu min &#96;adhābi ‘l-qabri [wa &#96;adhābin-nār].
+
+**English — meaning (Sunnah.com 156):** O Allah, forgive him and have mercy on him, and give him strength and pardon him. Be generous to him, and cause his entrance to be wide, and wash him with water and snow and hail. Cleanse him of his transgressions as white cloth is cleansed of stains. Give him an abode better than his home, and a family better than his family, and a wife better than his wife. Take him into Paradise, and protect him from the punishment of the grave [and from the punishment of Hell-fire].
+
+**Sources:** [Bosnian PDF, pages 56–57](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=56) · [English and Arabic](https://sunnah.com/hisn:156)
+
+<a id="hm-157"></a>
+### HM-157 · Za umrlu osobu u dženaza-namazu (2/4) / For the deceased in funeral prayer (2/4)
+
+**Arapski / Arabic**
+
+<p lang="ar" dir="rtl">اللهُـمِّ اغْفِـرْ لِحَيِّـنا وَمَيِّتِـنا، وَشـاهِدِنا وَغائِبِـنا ، وَصَغيـرِنا وَكَبيـرِنا ، وَذَكَـرِنا وَأُنْثـانا . اللهُـمِّ مَنْ أَحْيَيْـتَهُ مِنّا فَأَحْيِـهِ عَلى الإِسْلام ، وَمَنْ تَوَفَّـيْتَهُ مِنّا فَتَوَفَّـهُ عَلى الإِيـمان ، اللهُـمِّ لا تَحْـرِمْنـا أَجْـرَه ، وَلا تُضِـلَّنا بَعْـدَه</p>
+
+**Bosanski — transkripcija (2017 edition, page 96):** Allāhumma-gfir li ḥajjinā ve mejjitinā ve šāhidinā ve gāibinā ve ṣagirinā ve kebīrinā ve ḏekerinā ve unṯānā. Allāhumme men aḥjejtehū minnā fe aḥjihī ‘ale-l-islāmi ve men teveffejtehū minnā fe teveffehū ‘ale-l-īmāni. Allāhumme lā taḥrimnā edžrehū ve lā tuḍillenā ba‘dehū.
+
+**Bosanski — prijevod (2017 edition, pages 96–97):** Allahu, oprosti našim živima i našim mrtvima, našim prisutnim i našim odsutnim, našim mlađima i našim starima, muškim i ženskim. Allahu, onoga koga poživiš među nama, učini da živi u islamu, a onoga koga na ahiret preseliš, preseli ga u imanu. Allahu, ne uskrati nam Svoje nagrade njemu i poslije njega nas ne skreni s Pravoga puta.
+
+**English — transliteration (Sunnah.com 157):** Allāhumma’ghfir liḥayyinā, wa mayyitinā, wa shāhidinā, wa ghā'ibinā, wa ṣaghīrinā wa kabīrinā, wa dhakarinā wa unthānā. Allāhumma man aḥyaytahu minnā fa aḥyihi &#96;ala ‘l-Islām, wa man tawaffaytahu minnā fatawaffahu &#96;alal-īmān, Allāhumma lā taḥrimnā ajrah wa lā tuḍillanā ba&#96;dah.
+
+**English — meaning (Sunnah.com 157):** O Allah forgive our living and our dead, those who are with us and those who are absent, our young and our old, our menfolk and our womenfolk. O Allah, whomever you give life from among us give him life in Islam, and whomever you take away from us take him away in Faith. O Allah, do not forbid us their reward and do not send us astray after them.
+
+**Sources:** [Bosnian PDF, pages 57–58](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=57) · [English and Arabic](https://sunnah.com/hisn:157)
+
+<a id="hm-158"></a>
+### HM-158 · Za umrlu osobu u dženaza-namazu (3/4) / For the deceased in funeral prayer (3/4)
+
+**Arapski / Arabic**
+
+<p lang="ar" dir="rtl">اللهُـمِّ إِنَّ فُلانَ بْنَ فُلانٍ في ذِمَّـتِك ، وَحَبْـلِ جِـوارِك ، فَقِـهِ مِنْ فِتْـنَةِ الْقَـبْرِ وَعَذابِ النّـار ، وَأَنْتَ أَهْلُ الْوَفـاءِ وَالْـحَقِّ ، فَاغْفِـرْ لَهُ وَارْحَمْـهُ ، إِنَّكَ أَنْتَ الغَـفورُ الـرَّحيم</p>
+
+**Bosanski — uputa (2017 edition, page 97):** Na mjestu „taj sin toga” navedi ime umrle osobe.
+
+**English — instruction (Sunnah.com 158):** Say the deceased person's name in place of “fulān.”
+
+**Bosanski — transkripcija (2017 edition, page 97):** Allāhumme inne… (taj sin toga) fi ḏimmetike ve ḥabli dživarike, fe qihī min fitneti-l-qabri ve ‘aḏābi-n-nāri. Ve Ente ehlu-l-vefāi ve-l-ḥaqqi, fa-gfir lehū ve-rḥamhu, inneke Ente-l-Gafūru-r-Raḥīmu.
+
+**Bosanski — prijevod (2017 edition, page 97):** Allahu, on je u Tvojoj zaštiti i u dosegu Tvoje blizine. Zato, zaštiti ga od stradanja u kaburu i od džehenemske kazne. Ti si dostojan naše odanosti i Ti si Posjedovatelj iskrenosti i Istine te mu zbog toga oprosti i smiluj mu Se, jer si Ti zaista Oprostitelj Milosrdni.
+
+**English — transliteration (Sunnah.com 158):** Allāhumma inna [name the person] fī dhimmatik, wa ḥabli jiwārik, faqihi min fitnati ‘l-qabri wa &#96;adhābin-nār, wa anta ahlu ‘l-wafā'i wa ‘l-ḥaqq. Faghfir lahu warḥamh innaka anta ‘l-Ghafūrur-Raḥīm.
+
+**English — meaning (Sunnah.com 158):** O Allah, surely [name the person] is under Your protection, and in the rope of Your security, so save him from the trial of the grave and from the punishment of the Fire. You fulfill promises and grant rights, so forgive him and have mercy on him. Surely You are Most Forgiving, Most Merciful.
+
+**Sources:** [Bosnian PDF, page 58](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=58) · [English and Arabic](https://sunnah.com/hisn:158)
+
+<a id="hm-159"></a>
+### HM-159 · Za umrlu osobu u dženaza-namazu (4/4) / For the deceased in funeral prayer (4/4)
+
+**Arapski / Arabic**
+
+<p lang="ar" dir="rtl">اللهُـمِّ عَبْـدُكَ وَابْنُ أَمَـتِك، احْتـاجَ إِلى رَحْمَـتِك، وَأَنْتَ غَنِـيٌّ عَنْ عَذابِـه، إِنْ كانَ مُحْـسِناً فَزِدْ في حَسَـناتِه، وَإِنْ كانَ مُسـيئاً فَتَـجاوَزْ عَنْـه</p>
+
+**Bosanski — transkripcija (2017 edition, page 98):** Allāhumme ‘abduke ve-bnu emetike iḥtādže ilā raḥmetike ve Ente Ganijjun ‘an ‘aḏābihī, in kāne muḥsinen fe zid fī ḥasenātihī, ve in kāne musīen fe tedžāvez ‘anhu.
+
+**Bosanski — prijevod (2017 edition, page 98):** Allahu, robu Tvojem, sinu robinje Tvoje, potrebna je Tvoja milost, a Tebi ne treba njegova kazna. Ako bude dobročinitelj, povećaj broj njegovih djela, a ako bude grješnik, ne obaziri se na njegove grijehe.
+
+**English — transliteration (Sunnah.com 159):** Allāhumma &#96;abduka wabnu 'amatik iḥtāja ilā raḥmatik, wa anta ghaniyyun &#96;an &#96;adhābih, in kāna muḥsinan fazid fī ḥasanātih, wa in kāna musī'an fatajāwaz &#96;anh.
+
+**English — meaning (Sunnah.com 159):** O Allah, Your male slave and the child of Your female slave is in need of Your mercy, and You are not in need of his torment. If he was pious then increase his rewards and if he was a transgressor then pardon him.
+
+**Sources:** [Bosnian PDF, page 58](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=58) · [English and Arabic](https://sunnah.com/hisn:159)
+
+<a id="hm-160"></a>
+### HM-160 · Dženazetska dova za maloljetno dijete da bude predvodnik (svojim roditeljima) / When the deceased is a child, during the funeral prayer
+
+**Arapski / Arabic — prayer shared by the 2017 edition and Sunnah.com**
+
+<p lang="ar" dir="rtl">اللَّهُمَّ اجْعَلْهُ فَرَطًا وَذُخْرًا لِوَالِدَيْهِ، وَشَفِيعًا مُجَابًا. اللَّهُمَّ ثَقِّلْ بِهِ مَوَازِينَهُمَا، وَأَعْظِمْ بِهِ أُجُورَهُمَا، وَأَلْحِقْهُ بِصَالِحِ الْمُؤْمِنِينَ، وَاجْعَلْهُ فِي كَفَالَةِ إِبْرَاهِيمَ، وَقِهِ بِرَحْمَتِكَ عَذَابَ الْجَحِيمِ</p>
+
+**Bosanski — uputa (2017 edition, pages 98–99):** Uči se nakon dove za oprost.
+
+**Bosanski — transkripcija (2017 edition, pages 98–99):** Allāhumme-dž‘alhu fereṭan ve ḏuhren li-vālidejhi ve šefi‘an mudžāben. Allāhumme ṯeqqil bihī mevāzīnehumā ve e‘ẓim bihī udžūrehumā ve elḥiqhu bi ṣāliḥi-l-mu’minīne ve-dž‘alhu fī kefāleti Ibrāhīme ve qihī bi Raḥmetike ‘aḏābe-l-džehīm.
+
+**Bosanski — prijevod (2017 edition, pages 98–99):** Allahu, učini ovo maloljetno dijete predvodnikom i zalihom njegovim roditeljima i zagovornikom čijem će zagovaranju biti udovoljeno. Allahu, učini da, s njegovim zagovaranjem, dobra djela njegovih roditelja budu teža na vrijednosti te povećaj nagradu njegovim roditeljima radi njega. Sjedini ga s dobrim vjernicima i učini da bude u okrilju Ibrahima, a.s. Svojom milošću ga zaštiti od (džehenemske) vatre.
+
+**English — transliteration (Sunnah.com 160; matching prayer excerpt):** Allāhumma ‘j&#96;alhu faraṭan wa dhukhran liwālidayh, wa shafī&#96;an mujāban. Allāhumma thaqqil bihi mawāzīnahumā wa a&#96;ẓim bihi ujūrahumā, wa alḥiqhu biṣāliḥi ‘l-mu'minīn, waj&#96;alhu fī kafālati Ibrāhīm, wa qihi biraḥmatika &#96;adhāba ‘l-jaḥīm.
+
+**English — meaning (Sunnah.com 160; matching prayer excerpt):** O Allah, make him a precursor, a forerunner and a treasure for his parents and an answered intercessor. O Allah, make him weigh heavily in their scales (of good) and magnify their reward. Make him join the righteous of the believers. Place him in the care of Ibrahim. Save him by Your mercy from the torment of Hell.
+
+**Sources:** [Bosnian PDF, pages 58–59](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=58) · [English and Arabic](https://sunnah.com/hisn:160)
+
+<a id="hm-161"></a>
+### HM-161 · Za umrlo dijete u dženaza-namazu (2/2) / For a child in funeral prayer (2/2)
+
+**Arapski / Arabic — recited words only**
+
+<p lang="ar" dir="rtl">اللهُـمِّ اجْعَلْـهُ لَنا فَرَطـاً، وَسَلَـفاً وَأَجْـراً</p>
+
+**Bosanski — transkripcija (2017 edition, page 99):** Allāhumme-dž‘alhu lenā fereṭan ve selefen ve edžrā.
+
+**Bosanski — prijevod (2017 edition, page 99):** Allahu moj, učini ga našim predvodnikom (u Džennet), te našim prethodnikom i nagradom.
+
+**English — transliteration (Sunnah.com 161):** Allāhumma’j&#96;alhu lanā faraṭan, wa salafan, wa ajra.
+
+**English — meaning (Sunnah.com 161):** O Allah, make him for us a precursor, a forerunner and a cause of reward.
+
+The source places this supplication after al-Fatihah in the funeral prayer for a child.
+
+**Sources:** [Bosnian PDF, page 59](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=59) · [English and Arabic](https://sunnah.com/hisn:161)
+
+<a id="hm-162"></a>
+### HM-162 · Utjeha ožalošćenima / Comforting the bereaved
+
+**Arapski / Arabic**
+
+<p lang="ar" dir="rtl">إِنَّ لِلَّهِ مَا أَخَذَ وَلَهُ مَا أَعْطَى، وَكُلُّ شَيْءٍ عِنْدَهُ بِأَجَلٍ مُسَمًّى، فَلْتَصْبِرْ وَلْتَحْتَسِبْ</p>
+
+**Bosanski — transkripcija (2017 edition, Bosnian 152):** Inne lillāhi mā eḫaḏe, ve lehū mā e‘ṭā ve kullu šej’in ‘indehū bi edželin musemmā, fe-l-taṣbir ve-l-taḥtesib.
+
+**Bosanski — prijevod (2017 edition, Bosnian 152):** Allahu pripada ono što je uzeo i Njegovo je ono što je On dao. Kod Njega sve ima određeni rok. Zato, strpi se i nadaj se nagradi.
+
+**English — transliteration (Sunnah.com 162):** Inna lillāhi mā akhadh, wa lahu mā a&#96;tā, wa kullu shay'in &#96;indahu bi ajalin musammā . . . faltaṣbir wa ‘l-taḥtasib.
+
+**English — meaning (Sunnah.com 162):** Surely, Allah takes what is His, and what He gives is His, and to all things He has appointed a time... so have patience and be rewarded.
+
+**Sources:** [Bosnian PDF, page 59](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=59) · [English and Arabic](https://sunnah.com/hisn:162)
+
+<a id="hm-163"></a>
+### HM-163 · Pri spuštanju umrle osobe u mezar / Placing the deceased in the grave
+
+**Arapski / Arabic**
+
+<p lang="ar" dir="rtl">بِسْـمِ اللهِ وَعَلـى سُـنَّةِ رَسـولِ الله</p>
+
+**Bosanski — transkripcija (2017 edition, page 101):** Bismillāhi ve ‘alā sunneti Resulillāhi.
+
+**Bosanski — prijevod (2017 edition, page 101):** S Allahovim imenom i po sunnetu Allahova Poslanika (postupamo).
+
+**English — transliteration (Sunnah.com 163):** Bismillāh wa &#96;alā sunnati Rasūlillāh.
+
+**English — meaning (Sunnah.com 163):** With the Name of Allah, and according to the Sunnah of the Messenger of Allah.
+
+**Sources:** [Bosnian PDF, page 60](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=60) · [English and Arabic](https://sunnah.com/hisn:163)
+
+<a id="hm-165"></a>
+### HM-165 · Dova prilikom posjete mezaristanima / Visiting the graves
+
+**Arapski / Arabic — photographed 2017 edition, including its bracketed mercy clause**
+
+<p lang="ar" dir="rtl">السَّلَامُ عَلَيْكُمْ أَهْلَ الدِّيَارِ مِنَ الْمُؤْمِنِينَ وَالْمُسْلِمِينَ، وَإِنَّا إِنْ شَاءَ اللَّهُ بِكُمْ لَاحِقُونَ، [وَيَرْحَمُ اللَّهُ الْمُسْتَقْدِمِينَ مِنَّا وَالْمُسْتَأْخِرِينَ] نَسْأَلُ اللَّهَ لَنَا وَلَكُمُ الْعَافِيَةَ</p>
+
+**Bosanski — transkripcija (2017 edition, page 102):** Es-selāmu ‘alejkum ehle-l-dijāri mine-l-mu’minīne ve-l-muslimīne ve innā, in šā’ Allāhu bikum lāḥiqune. Ve jerḥamullāhu el-mustaqdimīne minnā vel-muste’ḫirīne. Nes’elullāhe lenā ve lekumu-l-‘āfije.
+
+**Bosanski — prijevod (2017 edition, page 102):** Selam vama, stanovnici smrtničkih domova vjernika muslimana. Mi ćemo se, ako Allah da, priključiti vama. Allaha molimo da nama i vama oprost Svoj dadne.
+
+**English — transliteration (Sunnah.com 165):** Assalāmu &#96;alaykum ahlad-diyāri minal-mu'minīna wa ‘l-muslimīn, wa innā in shā' Allāhu bikum lāḥiqūn nas'alullāha lanā wa lakumul-&#96;āfiyah.
+
+**English — meaning (Sunnah.com 165):** Peace be upon you, people of this abode, from among the believers and those who are Muslims, and we, by the Will of Allah, shall be joining you. [May Allah have mercy on the first of us and the last of us] I ask Allah to grant us and you well-being.
+
+The photographed Bosnian recitation includes the bracketed mercy clause, while its printed Bosnian meaning omits that clause. The linked Bosnian PDF and Sunnah.com Arabic also omit it; Sunnah.com includes it in the English meaning.
+
+**Sources:** [Bosnian PDF, pages 60–61](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=60) · [English and Arabic](https://sunnah.com/hisn:165)
 

@@ -3,6 +3,7 @@ import { ABLUTION_DUAS } from './ablution.data';
 import { ADHAN_DUAS } from './adhan.data';
 import { ANIMAL_DUAS } from './animals.data';
 import { CLOTHING_DUAS } from './clothing.data';
+import { DEATH_DUAS } from './death.data';
 import { FOOD_DUAS } from './food.data';
 import { GATHERING_DUAS } from './gathering.data';
 import { GENERAL_DUAS } from './general.data';
@@ -36,6 +37,7 @@ export const DUA_CATEGORIES = [
   { id: 'fasting', label: { bs: 'Post i hrana', en: 'Fasting and food' }, items: FOOD_DUAS },
   { id: 'sleep', label: { bs: 'Spavanje i snovi', en: 'Sleep and dreams' }, items: SLEEP_DUAS },
   { id: 'illness', label: { bs: 'Bolest i bol', en: 'Illness and pain' }, items: ILLNESS_DUAS },
+  { id: 'death', label: { bs: 'Smrt', en: 'Death' }, items: DEATH_DUAS },
   { id: 'marriage', label: { bs: 'Brak', en: 'Marriage' }, items: MARRIAGE_DUAS },
   { id: 'clothing', label: { bs: 'Odjeća', en: 'Clothing' }, items: CLOTHING_DUAS },
   { id: 'gathering', label: { bs: 'Sijelo', en: 'Gathering' }, items: GATHERING_DUAS },
