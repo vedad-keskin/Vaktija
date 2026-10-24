@@ -20,17 +20,35 @@ import { TOILET_DUAS } from './toilet.data';
 import { TRAVEL_DUAS } from './travel.data';
 import { WEATHER_DUAS } from './weather.data';
 
+type DuaSaying = {
+  arabic: string;
+  instructions: Record<LangCode, string>;
+  transcription: Record<LangCode, string>;
+  translation: Record<LangCode, string>;
+};
+
 export type Dua = {
   id: string;
   title: Record<LangCode, string>;
-  arabic: string;
-  instructions?: Record<LangCode, string>;
-  transcription: Record<LangCode, string>;
-  translation: Record<LangCode, string>;
   reference: Record<LangCode, string>;
   sourceUrl: string;
   bosnianSourceUrl?: string;
-};
+} & (
+  | {
+      arabic: string;
+      instructions?: Record<LangCode, string>;
+      transcription: Record<LangCode, string>;
+      translation: Record<LangCode, string>;
+      sayings?: never;
+    }
+  | {
+      sayings: readonly DuaSaying[];
+      arabic?: never;
+      instructions?: never;
+      transcription?: never;
+      translation?: never;
+    }
+);
 
 // Add each new category here; All is the combined list of its category files.
 export const DUA_CATEGORIES = [

@@ -268,6 +268,12 @@ svg {
   width: min(240px, 70%);
 }
 
+.dua-saying + .dua-saying {
+  margin-top: 28px;
+  padding-top: 20px;
+  border-top: 1px solid color-mix(in srgb, var(--gold) 28%, transparent);
+}
+
 .dua-instructions {
   max-width: 720px;
   margin: 0 auto 20px;

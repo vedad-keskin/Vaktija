@@ -1,6 +1,6 @@
 import type { Dua } from './duas.data';
 
-// Bosnian wording: reader's Hisnul-Muslimi photographs (116, 119, 121, 124, 130–132).
+// Bosnian wording: reader's Hisnul-Muslimi photographs (116, 119, 121, 124, 130–132, 135).
 // English: linked Sunnah.com entries; HM-133, HM-140 and HM-141 include a recited phrase within an instruction.
 export const PROTECTION_DUAS: readonly Dua[] = [
   {
@@ -123,5 +123,23 @@ export const PROTECTION_DUAS: readonly Dua[] = [
     sourceUrl: 'https://sunnah.com/hisn:141',
     bosnianSourceUrl:
       'https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=52',
+  },
+  {
+    id: 'hisn-144',
+    title: { bs: 'Kada se dogodi nešto nepoželjno', en: 'When something unwelcome happens' },
+    arabic: 'قَدَّرَ اللَّهُ وَمَا شَاءَ فَعَلَ',
+    instructions: {
+      bs: 'Kad te nešto zadesi, ne reci „Da učinih tako i tako”, nego prouči ovu dovu.',
+      en: 'When a setback occurs, do not say “If only I had done such and such”, rather say this supplication.',
+    },
+    transcription: { bs: 'Qadderellāhu ve mā šāe fe‘al.', en: "Qaddarallāhu wa mā shā'a fa`al." },
+    translation: {
+      bs: 'Allah je to odredio i, što je htio, učinio je.',
+      en: 'It is the Decree of Allah and He does whatever He wills.',
+    },
+    reference: { bs: 'Hisnul-Muslimi, 135', en: 'Hisn al-Muslim, 144' },
+    sourceUrl: 'https://sunnah.com/hisn:144',
+    bosnianSourceUrl:
+      'https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=53',
   },
 ];

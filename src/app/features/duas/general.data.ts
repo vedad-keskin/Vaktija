@@ -1,9 +1,49 @@
 import type { Dua } from './duas.data';
 
-// Bosnian meanings: IslamHouse Hisnul-Muslimi, entries 77, 80, 82, and 79.
+// Bosnian meanings: IslamHouse Hisnul-Muslimi, entries 77, 80, 82, 79, and 177.
 // Bosnian transcription adapts that edition using the reader's 2017 letter key.
-// English and Arabic: Sunnah.com Hisn al-Muslim, entries 79, 84, 86, and 97.
+// English and Arabic: Sunnah.com Hisn al-Muslim, entries 79, 84, 86, 97, and 188.
 export const GENERAL_DUAS: readonly Dua[] = [
+  {
+    id: 'hisn-188',
+    title: { bs: 'Dova prilikom kihanja', en: 'Upon sneezing' },
+    sayings: [
+      {
+        arabic: 'الْحَمْدُ لِلَّهِ',
+        instructions: { bs: 'Kad kihneš, reci:', en: 'When you sneeze, say:' },
+        transcription: { bs: 'El-ḥamdu lillāhi.', en: 'Alḥamdulillāh.' },
+        translation: { bs: 'Hvala Allahu.', en: 'All praises and thanks are to Allah.' },
+      },
+      {
+        arabic: 'يَرْحَمُكَ اللَّهُ',
+        instructions: {
+          bs: 'Kad neko kihne i zahvali Allahu, reci:',
+          en: 'When someone sneezes and praises Allah, reply:',
+        },
+        transcription: { bs: 'Jerḥamukellāhu.', en: 'Yarḥamukallāh.' },
+        translation: { bs: 'Allah ti se smilovao.', en: 'May Allah have mercy upon you.' },
+      },
+      {
+        arabic: 'يَهْدِيكُمُ اللَّهُ وَيُصْلِحُ بَالَكُمْ',
+        instructions: {
+          bs: 'Nakon neko to čuje neka uzvrati sa:',
+          en: 'When someone responds to your sneeze with “Yarḥamukallāh”, say:',
+        },
+        transcription: {
+          bs: 'Jehdikumullāhu ve juṣliḥ bālekum.',
+          en: 'Yahdīkumu ‘llāhu wa yuṣliḥu bālakum.',
+        },
+        translation: {
+          bs: 'Allah te uputio i popravio tvoje stanje.',
+          en: 'May Allah guide you and set your affairs in order.',
+        },
+      },
+    ],
+    reference: { bs: 'Hisnul-Muslimi, 177', en: 'Hisn al-Muslim, 188' },
+    sourceUrl: 'https://sunnah.com/hisn:188',
+    bosnianSourceUrl:
+      'https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=67',
+  },
   // {
   //   id: 'hisn-79',
   //   title: { bs: 'Sejjidul-istigfar', en: 'Master supplication for forgiveness' },

@@ -193,7 +193,6 @@ Brojevi, poglavlja i vrste zapisa provjereni su prema [OpenDua datasetu v0.0.4](
 - [ ] [HM-137 · Za otplatu duga (2/2) / Repaying a debt (2/2)](https://sunnah.com/hisn:137)
 - [ ] [HM-142 · Protiv šejtana i njegovih došaptavanja (2/3) / Satanic suggestions (2/3)](https://sunnah.com/hisn:142) · uputa / instruction
 - [ ] [HM-143 · Protiv šejtana i njegovih došaptavanja (3/3) / Satanic suggestions (3/3)](https://sunnah.com/hisn:143) · uputa / instruction
-- [ ] [HM-144 · Kada se dogodi nešto nepoželjno / When something unwelcome happens](https://sunnah.com/hisn:144)
 - [ ] ★ [HM-193 · Pri srdžbi / When angry](https://sunnah.com/hisn:193)
 - [ ] [HM-194 · Kada vidimo osobu pogođenu nevoljom / Seeing someone struck by misfortune](https://sunnah.com/hisn:194)
 - [ ] [HM-240 · Pri čuđenju ili radosnom događaju (1/2) / At amazement or a happy event (1/2)](https://sunnah.com/hisn:240)
@@ -210,6 +209,7 @@ Brojevi, poglavlja i vrste zapisa provjereni su prema [OpenDua datasetu v0.0.4](
 - [ ] ★ [HM-139 · Kada je nešto teško / When something is difficult](README-full.md#hm-139) · u aplikaciji / in app
 - [ ] [HM-140 · Nakon počinjenog grijeha / After committing a sin](README-full.md#hm-140) · uputa / instruction · u aplikaciji / in app
 - [ ] [HM-141 · Zaštita od šejtana i njegovih došaptavanja / Protection from Satan and his whisperings](README-full.md#hm-141) · uputa / instruction · u aplikaciji / in app
+- [ ] [HM-144 · Kada se dogodi nešto nepoželjno / When something unwelcome happens](README-full.md#hm-144) · u aplikaciji / in app
 
 ## Djeca / Children
 
@@ -286,7 +286,7 @@ Brojevi, poglavlja i vrste zapisa provjereni su prema [OpenDua datasetu v0.0.4](
 
 ## Općenite dove, zikr i adab / General supplications, remembrance and manners
 
-- [ ] [HM-188 · Odgovor na kihanje / The exchange after sneezing](https://sunnah.com/hisn:188)
+- [ ] [HM-188 · Dova prilikom kihanja / Upon sneezing](README-full.md#hm-188) · u aplikaciji / in app (3 izgovora / 3 sayings)
 - [ ] [HM-189 · Odgovor nemuslimanu koji kihne i zahvali Allahu / Reply to a non-Muslim who sneezes and praises Allah](https://sunnah.com/hisn:189)
 - [ ] [HM-197 · Odgovor onome ko nam poželi oprost / Replying to a prayer for your forgiveness](https://sunnah.com/hisn:197)
 - [ ] [HM-198 · Zahvala onome ko učini dobro / Thanking someone who helped](https://sunnah.com/hisn:198)

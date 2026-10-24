@@ -1,6 +1,6 @@
 # Hisnul Muslim — selected full duas (BS / EN)
 
-This file grows one approved category at a time. It currently contains the clothing entries (HM-5, 9, 6, 7), the toilet entries (HM-10–11), the Abdest entries (HM-12–13), the mosque entries (HM-19–21), the adhan entry (HM-25), the sleeping entries (HM-111, 1, 114, 113, 112), the three marriage entries, the gathering entries (HM-195–196), the animal entries, the weather entries (HM-166, 168, 169, 172–175), the fasting and food entries (HM-176–186), the home entries (HM-16, 18), the travel entries (HM-206–212, 215–217), the general entries (HM-79, 84, 86, 97), the illness entries (HM-147, 148, 150–152, 243), the death entries (HM-153–163, 165), and the Hajj and Umrah entries (HM-234–239). The [complete title checklist](README-titles.md) remains an editorial selection aid; its suggested labels are not published translations.
+This file grows one approved category at a time. It currently contains the clothing entries (HM-5, 9, 6, 7), the toilet entries (HM-10–11), the Abdest entries (HM-12–13), the mosque entries (HM-19–21), the adhan entry (HM-25), the sleeping entries (HM-111, 1, 114, 113, 112), the three marriage entries, the gathering entries (HM-195–196), the animal entries, the weather entries (HM-166, 168, 169, 172–175), the fasting and food entries (HM-176–186), the home entries (HM-16, 18), the travel entries (HM-206–212, 215–217), the general entries (HM-79, 84, 86, 97, 188), the illness entries (HM-147, 148, 150–152, 243), the death entries (HM-153–163, 165), and the Hajj and Umrah entries (HM-234–239). The [complete title checklist](README-titles.md) remains an editorial selection aid; its suggested labels are not published translations.
 
 ## Izvori i uredničke napomene / Sources and editorial notes
 
@@ -1030,6 +1030,53 @@ BS transcriptions and meanings follow the photographed 2017 edition. The short r
 
 ## Opće / General
 
+<a id="hm-188"></a>
+### HM-188 · Dova prilikom kihanja / Upon sneezing
+
+Jedna kartica prikazuje tri izgovora, svaki u svom redu s uputom kada se koristi. / One card shows the three sayings in separate rows, each with its own usage instruction.
+
+#### 1. Kad kihneš / When you sneeze
+
+**Arapski / Arabic:** <span lang="ar" dir="rtl">الْحَمْدُ لِلَّهِ</span>
+
+**Bosanski — transkripcija (photographed edition, 177):** El-ḥamdu lillāhi
+
+**English — transliteration (Sunnah.com 188):** Alḥamdulillāh
+
+**Bosanski — prijevod:** Hvala Allahu.
+
+**English — meaning:** All praises and thanks are to Allah.
+
+#### 2. Odgovor osobi koja je kihnula / Reply to someone who sneezed
+
+**Uputa / Instruction:** Reci kad osoba koja je kihnula zahvali Allahu. / Say this after the person who sneezed praises Allah.
+
+**Arapski / Arabic:** <span lang="ar" dir="rtl">يَرْحَمُكَ اللَّهُ</span>
+
+**Bosanski — transkripcija (photographed edition, 177):** Jerḥamukellāhu
+
+**English — transliteration (Sunnah.com 188):** Yarḥamukallāh
+
+**Bosanski — prijevod:** Allah ti se smilovao.
+
+**English — meaning:** May Allah have mercy upon you.
+
+#### 3. Odgovor na dovu / Response after the blessing
+
+**Uputa / Instruction:** Reci kad ti nakon kihanja neko kaže „Jerḥamukellāhu”. / Say this after someone responds to your sneeze with “Yarḥamukallāh”.
+
+**Arapski / Arabic:** <span lang="ar" dir="rtl">يَهْدِيكُمُ اللَّهُ وَيُصْلِحُ بَالَكُمْ</span>
+
+**Bosanski — transkripcija (photographed edition, 177):** Jehdikumullāhu ve juṣliḥ bālekum
+
+**English — transliteration (Sunnah.com 188):** Yahdīkumu ‘llāhu wa yuṣliḥu bālakum
+
+**Bosanski — prijevod:** Allah vas /te/ uputio i popravio vaše /tvoje/ stanje.
+
+**English — meaning:** May Allah guide you and set your affairs in order.
+
+**Sources:** [Bosnian PDF, page 67](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=67) · [English and Arabic](https://sunnah.com/hisn:188)
+
 <a id="hm-79"></a>
 ### HM-79 · Sejjidul-istigfar / Master supplication for forgiveness
 
@@ -1576,6 +1623,29 @@ The photographed Bosnian edition explicitly prints this phrase. Sunnah.com prese
 The photographed Bosnian entry gives this phrase as an instruction for seeking Allah's protection. Sunnah.com lists the instruction and the English transliteration.
 
 **Sources:** [Bosnian PDF, page 52](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=52) · [English and instruction](https://sunnah.com/hisn:141)
+
+<a id="hm-144"></a>
+### HM-144 · Kada se dogodi nešto nepoželjno / When something unwelcome happens
+
+**Arapski / Arabic**
+
+<p lang="ar" dir="rtl">قَدَّرَ اللَّهُ وَمَا شَاءَ فَعَلَ</p>
+
+**Bosanski — uputa (reader's photograph, Bosnian 135):** Kad te nešto zadesi, ne reci „Da učinih tako i tako”, nego prouči ovu dovu.
+
+**Bosanski — transkripcija (reader's photograph, Bosnian 135):** Qadderellāhu ve mā šāe fe‘al.
+
+**Bosanski — prijevod (reader's photograph, Bosnian 135):** Allah je to odredio i, što je htio, učinio je.
+
+**English — instruction (Sunnah.com 144):** When a setback occurs, do not say “If only I had done such and such”; say this supplication.
+
+**English — transliteration (Sunnah.com 144):** Qaddarallāhu wa mā shā'a fa&#96;al.
+
+**English — meaning (Sunnah.com 144):** It is the Decree of Allah and He does whatever He wills.
+
+The photographed narration also counsels seeking Allah's help and striving for what is beneficial.
+
+**Sources:** [Bosnian PDF, page 53](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=53) · [English and Arabic](https://sunnah.com/hisn:144)
 
 ## Djeca / Children
 
