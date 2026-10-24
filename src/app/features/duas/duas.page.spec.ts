@@ -100,14 +100,18 @@ it('shows ten items at a time and resets on view changes', async () => {
     'hisn-147',
     'hisn-148',
     'hisn-150',
+    'hisn-153',
   ]);
   await harness.navigateByUrl('/duas?category=death');
-  expect(cards()).toHaveLength(10);
-  more()!.click();
-  harness.detectChanges();
-  expect(new Set([...cards()].map((card) => card.getAttribute('data-dua-id')))).toEqual(
-    new Set(Array.from({ length: 13 }, (_, i) => i + 153).filter((n) => n !== 164).map((n) => `hisn-${n}`)),
-  );
+  expect([...cards()].map((card) => card.getAttribute('data-dua-id'))).toEqual([
+    'hisn-162',
+    'hisn-154',
+    'hisn-156',
+    'hisn-160',
+    'hisn-155',
+    'hisn-163',
+    'hisn-165',
+  ]);
   expect(more()).toBeNull();
   await harness.navigateByUrl('/duas?view=saved');
   expect(cards()).toHaveLength(10);
@@ -167,15 +171,11 @@ it('routes the bilingual library, validates saved data and persists bookmark cha
     'hisn-148',
     'hisn-150',
     'hisn-153',
-    'hisn-154',
-    'hisn-155',
-    'hisn-156',
-    'hisn-157',
-    'hisn-158',
-    'hisn-159',
-    'hisn-160',
-    'hisn-161',
     'hisn-162',
+    'hisn-154',
+    'hisn-156',
+    'hisn-160',
+    'hisn-155',
     'hisn-163',
     'hisn-165',
     'hisn-192',

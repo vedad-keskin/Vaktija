@@ -1243,7 +1243,7 @@ The source says that whoever dies with these as their last words will enter Para
 
 <p lang="ar" dir="rtl">إِنّا للهِ وَإِنَا إِلَـيْهِ راجِعـون ، اللهُـمِّ اْجُـرْني في مُصـيبَتي، وَاخْلُـفْ لي خَيْـراً مِنْـها</p>
 
-**Bosanski — transkripcija (IslamHouse 144):** Innā li-l-Lāhi ve innā ilejhi rādži‘ūn. Allāhumme’džurnī fī muṣībetī vaẖluf lī ẖajren minhā.
+**Bosanski — transkripcija (2017 edition, page 94):** Innā lillāhi ve innā ilejhi rādži‘ūn. Allāhumme’džurnī fī muṣībetī vaẖluf lī ẖajren minhā.
 
 **Bosanski — prijevod (IslamHouse 144):** Mi zaista pripadamo Allahu i svi Mu se, bez dvoumljenja, vraćamo. Allahu, daruj mi u ovome mom musibetu (nesreći) nagradu (za sabur) i nakon toga mi podari veće dobro.
 
@@ -1264,7 +1264,7 @@ The source says that whoever dies with these as their last words will enter Para
 
 **English — instruction (Sunnah.com 155):** Say the deceased person's name in place of “fulān.”
 
-**Bosanski — transkripcija (IslamHouse 145):** Allāhumma-gfir li fulān (bismihī) ve-rfa‘ deredžetehū fī-l-mehdijjīne vaẖlufhu fī ‘aqibihī fī-l-gābirīne va-gfir lenā ve lehū, jā Rabbe-l-‘ālemīne, vefsaḥ lehū fī qabrihī ve nevvīr lehū fīhī.
+**Bosanski — transkripcija (2017 edition, page 94):** Allāhumma-gfir li ..(spomenuti ime umrlog) ve-rfa‘ deredžetehū fī-l-mehdijjīne vaẖlufhu fī ‘aqibihī fī-l-gābirīne va-gfir lenā ve lehū, jā Rabbe-l-‘ālemīne, vefsaḥ lehū fī qabrihī ve nevvīr lehū fīhī.
 
 **Bosanski — prijevod (IslamHouse 145):** Allahu, oprosti (tome i tome, po imenu), uzdigni njegovo mjesto među onima koji su zaradili Tvoju uputu (Džennet) i odredi mu nasljednika među onima koji ostaju (od njegovih potomaka). Oprosti nama i njemu, Gospodaru svjetova. Kabur mu učini širokim prostorom i udobnim i osvijetli mu ga.
 

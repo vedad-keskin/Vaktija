@@ -79,4 +79,22 @@ export const ILLNESS_DUAS: readonly Dua[] = [
     bosnianSourceUrl:
       'https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=54',
   },
+  {
+    id: 'hisn-153',
+    title: {
+      bs: 'Podsjećanje čovjeka na samrti da izgovori šehadet',
+      en: 'Instruction for the one nearing death',
+    },
+    arabic: 'لَا إِلَهَ إِلَّا اللَّهُ',
+    instructions: {
+      bs: 'Ući će u Džennet onaj čije posljednje riječi budu:',
+      en: 'Will enter Paradise he whose last words are:',
+    },
+    transcription: { bs: 'Lā ilāhe illellāh.', en: 'Lā ilāha illallāh.' },
+    translation: { bs: 'Nema boga osim Allaha.', en: 'There is none worthy of worship but Allah.' },
+    reference: { bs: 'Hisnul-Muslimi, 143', en: 'Hisn al-Muslim, 153' },
+    sourceUrl: 'https://sunnah.com/hisn:153',
+    bosnianSourceUrl:
+      'https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=55',
+  },
 ];

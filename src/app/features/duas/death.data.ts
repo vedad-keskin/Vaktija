@@ -4,22 +4,22 @@ import type { Dua } from './duas.data';
 // and the linked Bosnian edition (143–146). English and Arabic: linked Sunnah.com entries.
 export const DEATH_DUAS: readonly Dua[] = [
   {
-    id: 'hisn-153',
-    title: {
-      bs: 'Podsjećanje čovjeka na samrti da izgovori šehadet',
-      en: 'Instruction for the one nearing death',
+    id: 'hisn-162',
+    title: { bs: 'Dova kao izraz saosjećanja', en: 'Words of condolence' },
+    arabic:
+      'إِنَّ لِلَّهِ مَا أَخَذَ وَلَهُ مَا أَعْطَى، وَكُلُّ شَيْءٍ عِنْدَهُ بِأَجَلٍ مُسَمًّى، فَلْتَصْبِرْ وَلْتَحْتَسِبْ',
+    transcription: {
+      bs: 'Inne lillāhi mā eḫaḏe, ve lehū mā e‘ṭā ve kullu šej’in ‘indehū bi edželin musemmā, fe-l-taṣbir ve-l-taḥtesib.',
+      en: "Inna lillāhi mā akhadh, wa lahu mā a`tā, wa kullu shay'in `indahu bi ajalin musammā . . . faltaṣbir wa ‘l-taḥtasib.",
     },
-    arabic: 'لَا إِلَهَ إِلَّا اللَّهُ',
-    instructions: {
-      bs: 'Ući će u Džennet onaj čije posljednje riječi budu:',
-      en: 'Will enter Paradise he whose last words are:',
+    translation: {
+      bs: 'Allahu pripada ono što je uzeo i Njegovo je ono što je On dao. Kod Njega sve ima određeni rok. Zato, strpi se i nadaj se nagradi.',
+      en: 'Surely, Allah takes what is His, and what He gives is His, and to all things He has appointed a time... so have patience and be rewarded.',
     },
-    transcription: { bs: 'Lā ilāhe illellāh.', en: 'Lā ilāha illallāh.' },
-    translation: { bs: 'Nema boga osim Allaha.', en: 'There is none worthy of worship but Allah.' },
-    reference: { bs: 'Hisnul-Muslimi, 143', en: 'Hisn al-Muslim, 153' },
-    sourceUrl: 'https://sunnah.com/hisn:153',
+    reference: { bs: 'Hisnul-Muslimi, 152', en: 'Hisn al-Muslim, 162' },
+    sourceUrl: 'https://sunnah.com/hisn:162',
     bosnianSourceUrl:
-      'https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=55',
+      'https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=59',
   },
   {
     id: 'hisn-154',
@@ -27,7 +27,7 @@ export const DEATH_DUAS: readonly Dua[] = [
     arabic:
       'إِنَّا لِلَّهِ وَإِنَّا إِلَيْهِ رَاجِعُونَ، اللَّهُمَّ أْجُرْنِي فِي مُصِيبَتِي وَاخْلُفْ لِي خَيْرًا مِنْهَا',
     transcription: {
-      bs: 'Innā li-l-Lāhi ve innā ilejhi rādži‘ūn. Allāhumme’džurnī fī muṣībetī vaẖluf lī ẖajren minhā.',
+      bs: 'Innā lillāhi ve innā ilejhi rādži‘ūn. Allāhumme’džurnī fī muṣībetī vaẖluf lī ẖajren minhā.',
       en: "Innā lillāhi wa innā ilayhi rāji`ūn, Allāhumma-jurni fī muṣībatī wa 'khluf lī khayran minhā.",
     },
     translation: {
@@ -40,35 +40,11 @@ export const DEATH_DUAS: readonly Dua[] = [
       'https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=56',
   },
   {
-    id: 'hisn-155',
-    title: {
-      bs: 'Dova pri sklapanju očiju umrlom',
-      en: 'When closing the eyes of the deceased',
-    },
-    arabic:
-      'اللَّهُمَّ اغْفِرْ لِفُلَانٍ وَارْفَعْ دَرَجَتَهُ فِي الْمَهْدِيِّينَ، وَاخْلُفْهُ فِي عَقِبِهِ فِي الْغَابِرِينَ، وَاغْفِرْ لَنَا وَلَهُ يَا رَبَّ الْعَالَمِينَ، وَافْسَحْ لَهُ فِي قَبْرِهِ وَنَوِّرْ لَهُ فِيهِ',
-    instructions: {
-      bs: 'Umjesto „fulān” izgovori ime umrle osobe.',
-      en: 'Replace “fulān” with the name of the deceased.',
-    },
-    transcription: {
-      bs: 'Allāhumma-gfir li fulān (bismihī) ve-rfa‘ deredžetehū fī-l-mehdijjīne vaẖlufhu fī ‘aqibihī fī-l-gābirīne va-gfir lenā ve lehū, jā Rabbe-l-‘ālemīne, vefsaḥ lehū fī qabrihī ve nevvīr lehū fīhī.',
-      en: 'Allāhumma’ghfir li (name of the person) warfa` darajatahu fi ‘l-mahdiyyīn, wakhlufhu fī `aqibihi fi ‘l-ghābirīn, wagh’fir-lanā wa lahu yā Rabba ‘l-`ālamīn, wafsaḥ lahu fī qabrihi wa nawwir lahu fīh.',
-    },
-    translation: {
-      bs: 'Allahu, oprosti (tome i tome, po imenu), uzdigni njegovo mjesto među onima koji su zaradili Tvoju uputu (Džennet) i odredi mu nasljednika među onima koji ostaju (od njegovih potomaka). Oprosti nama i njemu, Gospodaru svjetova. Kabur mu učini širokim prostorom i udobnim i osvijetli mu ga.',
-      en: 'O Allah, forgive [name of the person] and elevate his station among those who are guided. Send him along the path of those who came before, and forgive us and him, O Lord of the worlds. Enlarge for him his grave, and shed light upon him in it.',
-    },
-    reference: { bs: 'Hisnul-Muslimi, 145', en: 'Hisn al-Muslim, 155' },
-    sourceUrl: 'https://sunnah.com/hisn:155',
-    bosnianSourceUrl:
-      'https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=56',
-  },
-  {
     id: 'hisn-156',
     title: { bs: 'Dženazetska dova za umrlog', en: 'Funeral prayer for the deceased' },
+    // Amiri draws ")" as "(" in RTL. Isolates keep a real closing mark; joiners keep the pair on one line.
     arabic:
-      'اللَّهُمَّ اغْفِرْ لَهُ وَارْحَمْهُ، وَعَافِهِ وَاعْفُ عَنْهُ، وَأَكْرِمْ نُزُلَهُ، وَوَسِّعْ مُدْخَلَهُ، وَاغْسِلْهُ بِالْمَاءِ وَالثَّلْجِ وَالْبَرَدِ، وَنَقِّهِ مِنَ الْخَطَايَا كَمَا نَقَّيْتَ الثَّوْبَ الْأَبْيَضَ مِنَ الدَّنَسِ، وَأَبْدِلْهُ دَارًا خَيْرًا مِنْ دَارِهِ، وَأَهْلًا خَيْرًا مِنْ أَهْلِهِ، وَزَوْجًا خَيْرًا مِنْ زَوْجِهِ، وَأَدْخِلْهُ الْجَنَّةَ، وَأَعِذْهُ مِنْ عَذَابِ الْقَبْرِ (وَعَذَابِ النَّارِ)',
+      'اللَّهُمَّ اغْفِرْ لَهُ وَارْحَمْهُ، وَعَافِهِ وَاعْفُ عَنْهُ، وَأَكْرِمْ نُزُلَهُ، وَوَسِّعْ مُدْخَلَهُ، وَاغْسِلْهُ بِالْمَاءِ وَالثَّلْجِ وَالْبَرَدِ، وَنَقِّهِ مِنَ الْخَطَايَا كَمَا نَقَّيْتَ الثَّوْبَ الْأَبْيَضَ مِنَ الدَّنَسِ، وَأَبْدِلْهُ دَارًا خَيْرًا مِنْ دَارِهِ، وَأَهْلًا خَيْرًا مِنْ أَهْلِهِ، وَزَوْجًا خَيْرًا مِنْ زَوْجِهِ، وَأَدْخِلْهُ الْجَنَّةَ، وَأَعِذْهُ مِنْ عَذَابِ الْقَبْرِ \u2060\u2066)\u2069\u2060وَعَذَابِ\u00A0النَّارِ\u2060\u2066(\u2069\u2060',
     transcription: {
       bs: 'Allāhumma-gfir lehū ve-rḥamhū ve ‘āfihī va‘fu ‘anhū ve ekrim nuzulehū ve vessi‘ mudẖalehū vagsilhū bi-l-māi ve-s-ṯeldži ve-l-berdi ve neqqihī mine-l-ẖaṭājā kemā neqqajte-s-ṯevbe-l-ebjeda mine-d-denisi ve ebdilhū dāren ẖajren min dārihī ve ehlen ẖajren min ehlihī ve zevdžen ẖajren min zevdžihī ve edẖilhū-l-džennete ve e‘iḏhū min ‘aḏābi-l-qabri (ve ‘aḏābi-n-nāri).',
       en: "Allāhumma’ghfir lahu warḥamh, wa `āfihi, wa`fu `anh, wa akrim nuzulah, wa wassi` mudkhalah, wagh’silhu bi ‘lmā'i wath-thalji walbarad, wa naqqihi mina ‘l-khaṭāyā kamā naqqaytath-thawba ‘l-abyaḍa minad-danas, wa abdilhu dāran khayran min dārih, wa ahlan khayran min ahlih, wa zawjan khayran min zawjih, wa adkhilhu ‘l-jannah, wa a`idhhu min `adhābi ‘l-qabri [wa `adhābin-nār].",
@@ -104,22 +80,25 @@ export const DEATH_DUAS: readonly Dua[] = [
       'https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=58',
   },
   {
-    id: 'hisn-162',
-    title: { bs: 'Dova kao izraz saosjećanja', en: 'Words of condolence' },
+    id: 'hisn-155',
+    title: {
+      bs: 'Dova pri sklapanju očiju umrlom',
+      en: 'When closing the eyes of the deceased',
+    },
     arabic:
-      'إِنَّ لِلَّهِ مَا أَخَذَ وَلَهُ مَا أَعْطَى، وَكُلُّ شَيْءٍ عِنْدَهُ بِأَجَلٍ مُسَمًّى، فَلْتَصْبِرْ وَلْتَحْتَسِبْ',
+      'اللَّهُمَّ اغْفِرْ لِفُلَانٍ وَارْفَعْ دَرَجَتَهُ فِي الْمَهْدِيِّينَ، وَاخْلُفْهُ فِي عَقِبِهِ فِي الْغَابِرِينَ، وَاغْفِرْ لَنَا وَلَهُ يَا رَبَّ الْعَالَمِينَ، وَافْسَحْ لَهُ فِي قَبْرِهِ وَنَوِّرْ لَهُ فِيهِ',
     transcription: {
-      bs: 'Inne lillāhi mā eḫaḏe, ve lehū mā e‘ṭā ve kullu šej’in ‘indehū bi edželin musemmā, fe-l-taṣbir ve-l-taḥtesib.',
-      en: "Inna lillāhi mā akhadh, wa lahu mā a`tā, wa kullu shay'in `indahu bi ajalin musammā . . . faltaṣbir wa ‘l-taḥtasib.",
+      bs: 'Allāhumma-gfir li ..(spomenuti ime umrlog) ve-rfa‘ deredžetehū fī-l-mehdijjīne vaẖlufhu fī ‘aqibihī fī-l-gābirīne va-gfir lenā ve lehū, jā Rabbe-l-‘ālemīne, vefsaḥ lehū fī qabrihī ve nevvīr lehū fīhī.',
+      en: 'Allāhumma’ghfir li (name of the person) warfa` darajatahu fi ‘l-mahdiyyīn, wakhlufhu fī `aqibihi fi ‘l-ghābirīn, wagh’fir-lanā wa lahu yā Rabba ‘l-`ālamīn, wafsaḥ lahu fī qabrihi wa nawwir lahu fīh.',
     },
     translation: {
-      bs: 'Allahu pripada ono što je uzeo i Njegovo je ono što je On dao. Kod Njega sve ima određeni rok. Zato, strpi se i nadaj se nagradi.',
-      en: 'Surely, Allah takes what is His, and what He gives is His, and to all things He has appointed a time... so have patience and be rewarded.',
+      bs: 'Allahu, oprosti (tome i tome, po imenu), uzdigni njegovo mjesto među onima koji su zaradili Tvoju uputu (Džennet) i odredi mu nasljednika među onima koji ostaju (od njegovih potomaka). Oprosti nama i njemu, Gospodaru svjetova. Kabur mu učini širokim prostorom i udobnim i osvijetli mu ga.',
+      en: 'O Allah, forgive [name of the person] and elevate his station among those who are guided. Send him along the path of those who came before, and forgive us and him, O Lord of the worlds. Enlarge for him his grave, and shed light upon him in it.',
     },
-    reference: { bs: 'Hisnul-Muslimi, 152', en: 'Hisn al-Muslim, 162' },
-    sourceUrl: 'https://sunnah.com/hisn:162',
+    reference: { bs: 'Hisnul-Muslimi, 145', en: 'Hisn al-Muslim, 155' },
+    sourceUrl: 'https://sunnah.com/hisn:155',
     bosnianSourceUrl:
-      'https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=59',
+      'https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=56',
   },
   {
     id: 'hisn-163',
