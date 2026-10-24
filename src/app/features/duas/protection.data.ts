@@ -1,6 +1,6 @@
 import type { Dua } from './duas.data';
 
-// Bosnian wording: reader's Hisnul-Muslimi photographs (116, 119, 121, 124, 130–132, 135, 191).
+// Bosnian wording: reader's Hisnul-Muslimi photographs (116, 119, 121, 124, 130–132, 135, 191, 223–224).
 // English: linked Sunnah.com entries; HM-133, HM-140 and HM-141 include a recited phrase within an instruction.
 export const PROTECTION_DUAS: readonly Dua[] = [
   {
@@ -220,5 +220,43 @@ export const PROTECTION_DUAS: readonly Dua[] = [
     sourceUrl: 'https://sunnah.com/hisn:203',
     bosnianSourceUrl:
       'https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=72',
+  },
+  {
+    id: 'hisn-131',
+    title: { bs: 'Dova protiv neprijatelja', en: 'Against an enemy' },
+    arabic:
+      'اللَّهُمَّ مُنْزِلَ الْكِتَاب سَرِيعَ الْحِسَاب اهْزِم الأَحْزَاب اللَّهُمَّ اهْزِمْهُمْ وَ زَلْزِلْهُم',
+    transcription: {
+      bs: 'Allāhumme Munzile-l-Kitābi, Serī‘a-l-ḥisābi ihzimi-l-aḥzābe. Allāhumme, ihzimhum ve zelzilhum.',
+      en: "Allāhumma munzila ‘l-kitāb, sarī`a ‘l-ḥisāb, ihzimi ‘l-aḥzāb, Allāhumma-hzimhum wa zalzilhum.",
+    },
+    translation: {
+      bs: 'Allahu, Dostavitelju Knjige, Koji brzo svodiš račune, porazi protivnike. Allahu, porazi ih sve i uzdrmaj ih (razori ih).',
+      en: 'O Allah, Revealer of the Book, Swift to account, defeat the groups (of disbelievers). O Allah, defeat them and shake them.',
+    },
+    reference: { bs: 'Hisnul-Muslimi, 223', en: 'Hisn al-Muslim, 131' },
+    sourceUrl: 'https://sunnah.com/hisn:131',
+    bosnianSourceUrl:
+      'https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=86',
+  },
+  {
+    id: 'hisn-132',
+    title: {
+      bs: 'Dova prilikom straha od grupe ljudi',
+      en: 'When afraid of a group of people',
+    },
+    arabic: 'اللَّهُمَّ اكْفِنِيهِم بمَا شِئْت',
+    transcription: {
+      bs: 'Allāhumme-kfinīhim bi mā ši’te.',
+      en: "Allāhummak-finīhim bimā shi't.",
+    },
+    translation: {
+      bs: 'Allahu, sačuvaj me od njih čime Ti je volja.',
+      en: 'O Allah, suffice (i.e. protect) me against them however You wish.',
+    },
+    reference: { bs: 'Hisnul-Muslimi, 224', en: 'Hisn al-Muslim, 132' },
+    sourceUrl: 'https://sunnah.com/hisn:132',
+    bosnianSourceUrl:
+      'https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=86',
   },
 ];

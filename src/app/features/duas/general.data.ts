@@ -1,8 +1,8 @@
 import type { Dua } from './duas.data';
 
-// Bosnian meanings: IslamHouse Hisnul-Muslimi, entries 77, 80, 82, 79, and 177.
-// Bosnian transcription adapts that edition using the reader's 2017 letter key.
-// English and Arabic: Sunnah.com Hisn al-Muslim, entries 79, 84, 86, 97, and 188.
+// Bosnian meanings: IslamHouse Hisnul-Muslimi, entries 77, 80, 82, 79, 177, 215, and 225.
+// Bosnian 215 and 225 follow the reader's photographs; 215's Latin line is adapted from the Arabic.
+// English and Arabic: Sunnah.com Hisn al-Muslim, entries 79, 84, 86, 97, 188, 230, and 240.
 export const GENERAL_DUAS: readonly Dua[] = [
   {
     id: 'hisn-188',
@@ -43,6 +43,37 @@ export const GENERAL_DUAS: readonly Dua[] = [
     sourceUrl: 'https://sunnah.com/hisn:188',
     bosnianSourceUrl:
       'https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=67',
+  },
+  {
+    id: 'hisn-230',
+    title: { bs: 'Dova za onoga koga si grdio', en: 'For someone you have spoken ill of' },
+    arabic: 'اللَّهُم فأيما مؤمن سببته فاجعل ذلك له قربة إليك يوم القيامة',
+    transcription: {
+      bs: 'Allāhumme fe-ejjumā mu’minin sebebtuhū fedž‘al ḏālike lehū qurben ilejke jevme-l-qijāmeti.',
+      en: "Allāhumma fa'ayyumā mu'minin sababtuhu faj`al dhālika lahu qurbatan ilayka yawma ‘l-qiyāmah.",
+    },
+    translation: {
+      bs: 'Allahu, kojega god da sam vjernika grdio približi ga time Sebi na Sudnjem danu.',
+      en: 'O Allah, whomever of the believers I have abused, give him the reward of a sacrificial slaughter for it on the Day of Resurrection.',
+    },
+    reference: { bs: 'Hisnul-Muslimi, 215', en: 'Hisn al-Muslim, 230' },
+    sourceUrl: 'https://sunnah.com/hisn:230',
+    bosnianSourceUrl:
+      'https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=82',
+  },
+  {
+    id: 'hisn-240',
+    title: {
+      bs: 'Dova prilikom čuđenja ili radosnoga događaja',
+      en: 'At amazement or a happy event',
+    },
+    arabic: 'سُـبْحانَ الله',
+    transcription: { bs: 'Subḥānallah.', en: 'Subḥānallāh.' },
+    translation: { bs: 'Slavljen neka je Allah.', en: 'Glory is to Allah.' },
+    reference: { bs: 'Hisnul-Muslimi, 225', en: 'Hisn al-Muslim, 240' },
+    sourceUrl: 'https://sunnah.com/hisn:240',
+    bosnianSourceUrl:
+      'https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=87',
   },
   // {
   //   id: 'hisn-79',
