@@ -1,7 +1,7 @@
 import type { Dua } from './duas.data';
 
-// Bosnian transcriptions and meanings: reader's Hisnul-Muslimi photographs (116, 119, 121, 124, 130, 131, 136).
-// English and Arabic: the linked Sunnah.com entries; HM-133 and HM-140 recitations are printed in the Bosnian photos.
+// Bosnian wording: reader's Hisnul-Muslimi photographs (116, 119, 121, 124, 130–132).
+// English: linked Sunnah.com entries; HM-133, HM-140 and HM-141 include a recited phrase within an instruction.
 export const PROTECTION_DUAS: readonly Dua[] = [
   {
     id: 'hisn-124',
@@ -19,24 +19,6 @@ export const PROTECTION_DUAS: readonly Dua[] = [
     sourceUrl: 'https://sunnah.com/hisn:124',
     bosnianSourceUrl:
       'https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=49',
-  },
-  {
-    id: 'hisn-146',
-    title: { bs: 'Dova za zaštitu djece', en: 'Protection for children' },
-    arabic:
-      'أُعِيذُكُمَا بِكَلِمَاتِ اللَّهِ التَّامَّةِ مِنْ كُلِّ شَيْطَانٍ وَهَامَّةٍ، وَمِنْ كُلِّ عَيْنٍ لَامَّةٍ',
-    transcription: {
-      bs: 'U‘īdukumā bi kelimātillāhi-t-tāmmāti min kulli šejtānin ve hāmmetin, ve min kulli ‘ajnin lāmmetin.',
-      en: 'U`īthukumā bikalimāti ‘llāhit-tāmmati min kulli shayṭānin wa hāmmah, wa min kulli `aynin lāmmah.',
-    },
-    translation: {
-      bs: 'Zaštitu Allahovu molim za vas pomoću Allahovih savršenih riječi od svakog šejtana, zloslutnje i od zloga pogleda.',
-      en: 'I seek protection for you in the Perfect Words of Allah from every devil and every beast, and from every envious blameworthy eye.',
-    },
-    reference: { bs: 'Hisnul-Muslimi, 136', en: 'Hisn al-Muslim, 146' },
-    sourceUrl: 'https://sunnah.com/hisn:146',
-    bosnianSourceUrl:
-      'https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=53',
   },
   {
     id: 'hisn-121',
@@ -119,6 +101,26 @@ export const PROTECTION_DUAS: readonly Dua[] = [
     translation: { bs: 'Tražim oprost od Allaha.', en: 'I seek Allah’s forgiveness.' },
     reference: { bs: 'Hisnul-Muslimi, 131', en: 'Hisn al-Muslim, 140' },
     sourceUrl: 'https://sunnah.com/hisn:140',
+    bosnianSourceUrl:
+      'https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=52',
+  },
+  {
+    id: 'hisn-141',
+    title: {
+      bs: 'Zaštita od šejtana i njegovih došaptavanja',
+      en: 'Protection from Satan and his whisperings',
+    },
+    arabic: 'أَعُوذُ بِاللَّهِ مِنَ الشَّيْطَانِ الرَّجِيمِ',
+    transcription: {
+      bs: 'E‘ūdu billāhi mineš-šejṭānir-radžīm.',
+      en: 'A`ūdhu billāhi minash-shayṭānir-rajīm.',
+    },
+    translation: {
+      bs: 'Utječem se Allahu od prokletog šejtana.',
+      en: 'I seek refuge in Allah from Satan the outcast.',
+    },
+    reference: { bs: 'Hisnul-Muslimi, 132', en: 'Hisn al-Muslim, 141' },
+    sourceUrl: 'https://sunnah.com/hisn:141',
     bosnianSourceUrl:
       'https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=52',
   },

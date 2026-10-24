@@ -1478,25 +1478,6 @@ The photographed edition supplies the Bosnian spelling above; the linked Bosnian
 
 **Sources:** [Bosnian PDF, page 48](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=48) · [English and Arabic](https://sunnah.com/hisn:121)
 
-<a id="hm-146"></a>
-### HM-146 · Dova kojom se zaštićuju djeca / Seeking protection for children
-
-**Arapski / Arabic**
-
-<p lang="ar" dir="rtl">أُعِيذُكُمَا بِكَلِمَاتِ اللَّهِ التَّامَّةِ مِنْ كُلِّ شَيْطَانٍ وَهَامَّةٍ، وَمِنْ كُلِّ عَيْنٍ لَامَّةٍ</p>
-
-**Bosanski — transkripcija (reader's photograph, Bosnian 136):** U‘īdukumā bi kelimātillāhi-t-tāmmāti min kulli šejtānin ve hāmmetin, ve min kulli ‘ajnin lāmmetin.
-
-**Bosanski — prijevod (reader's photograph, Bosnian 136):** Zaštitu Allahovu molim za vas pomoću Allahovih savršenih riječi od svakog šejtana, zloslutnje (zbog ptice i sl.) i od zloga pogleda.
-
-**English — transliteration (Sunnah.com 146):** U&#96;īthukumā bikalimāti ‘llāhit-tāmmati min kulli shayṭānin wa hāmmah, wa min kulli &#96;aynin lāmmah.
-
-**English — meaning (Sunnah.com 146):** I seek protection for you in the Perfect Words of Allah from every devil and every beast, and from every envious blameworthy eye.
-
-The Prophet used this supplication to seek protection for Al-Hasan and Al-Husain.
-
-**Sources:** [Bosnian PDF, page 53](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=53) · [English and Arabic](https://sunnah.com/hisn:146)
-
 <a id="hm-126"></a>
 ### HM-126 · Pri susretu s neprijateljem ili osobom na vlasti (1/3) / Facing an adversary or ruler (1/3)
 
@@ -1576,6 +1557,46 @@ The Bosnian meaning retains “što Ti ne učiniš” as printed in the photogra
 The photographed Bosnian edition explicitly prints this phrase. Sunnah.com presents the wider narration about purification, prayer and seeking forgiveness.
 
 **Sources:** [Bosnian PDF, page 52](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=52) · [Hadith and English](https://sunnah.com/hisn:140)
+
+<a id="hm-141"></a>
+### HM-141 · Zaštita od šejtana i njegovih došaptavanja / Protection from Satan and his whisperings
+
+**Arapski — izgovorena fraza / Arabic phrase to say**
+
+<p lang="ar" dir="rtl">أَعُوذُ بِاللَّهِ مِنَ الشَّيْطَانِ الرَّجِيمِ</p>
+
+**Bosanski — transkripcija (reader's photograph, Bosnian 132):** E‘ūdu billāhi mineš-šejṭānir-radžīm.
+
+**Bosanski — doslovno značenje fraze:** Utječem se Allahu od prokletog šejtana.
+
+**English — transliteration (Sunnah.com 141):** A&#96;ūdhu billāhi minash-shayṭānir-rajīm.
+
+**English — meaning:** I seek refuge in Allah from Satan the outcast.
+
+The photographed Bosnian entry gives this phrase as an instruction for seeking Allah's protection. Sunnah.com lists the instruction and the English transliteration.
+
+**Sources:** [Bosnian PDF, page 52](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=52) · [English and instruction](https://sunnah.com/hisn:141)
+
+## Djeca / Children
+
+<a id="hm-146"></a>
+### HM-146 · Dova kojom se zaštićuju djeca / Seeking protection for children
+
+**Arapski / Arabic**
+
+<p lang="ar" dir="rtl">أُعِيذُكُمَا بِكَلِمَاتِ اللَّهِ التَّامَّةِ مِنْ كُلِّ شَيْطَانٍ وَهَامَّةٍ، وَمِنْ كُلِّ عَيْنٍ لَامَّةٍ</p>
+
+**Bosanski — transkripcija (reader's photograph, Bosnian 136):** U‘īdukumā bi kelimātillāhi-t-tāmmāti min kulli šejtānin ve hāmmetin, ve min kulli ‘ajnin lāmmetin.
+
+**Bosanski — prijevod (reader's photograph, Bosnian 136):** Zaštitu Allahovu molim za vas pomoću Allahovih savršenih riječi od svakog šejtana, zloslutnje (zbog ptice i sl.) i od zloga pogleda.
+
+**English — transliteration (Sunnah.com 146):** U&#96;īthukumā bikalimāti ‘llāhit-tāmmati min kulli shayṭānin wa hāmmah, wa min kulli &#96;aynin lāmmah.
+
+**English — meaning (Sunnah.com 146):** I seek protection for you in the Perfect Words of Allah from every devil and every beast, and from every envious blameworthy eye.
+
+The Prophet used this supplication to seek protection for Al-Hasan and Al-Husain.
+
+**Sources:** [Bosnian PDF, page 53](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=53) · [English and Arabic](https://sunnah.com/hisn:146)
 
 ## Dug / Debt
 

@@ -2,6 +2,7 @@ import { LangCode } from '../../core/services/language.service';
 import { ABLUTION_DUAS } from './ablution.data';
 import { ADHAN_DUAS } from './adhan.data';
 import { ANIMAL_DUAS } from './animals.data';
+import { CHILDREN_DUAS } from './children.data';
 import { CLOTHING_DUAS } from './clothing.data';
 import { DEATH_DUAS } from './death.data';
 import { DEBT_DUAS } from './debt.data';
@@ -42,6 +43,7 @@ export const DUA_CATEGORIES = [
   { id: 'illness', label: { bs: 'Bolest i bol', en: 'Illness and pain' }, items: ILLNESS_DUAS },
   { id: 'death', label: { bs: 'Smrt', en: 'Death' }, items: DEATH_DUAS },
   { id: 'protection', label: { bs: 'Zaštita', en: 'Protection' }, items: PROTECTION_DUAS },
+  { id: 'children', label: { bs: 'Djeca', en: 'Children' }, items: CHILDREN_DUAS },
   { id: 'debt', label: { bs: 'Dug', en: 'Debt' }, items: DEBT_DUAS },
   { id: 'marriage', label: { bs: 'Brak', en: 'Marriage' }, items: MARRIAGE_DUAS },
   { id: 'clothing', label: { bs: 'Odjeća', en: 'Clothing' }, items: CLOTHING_DUAS },

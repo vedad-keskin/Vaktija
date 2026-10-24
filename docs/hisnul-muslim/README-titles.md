@@ -191,7 +191,6 @@ Brojevi, poglavlja i vrste zapisa provjereni su prema [OpenDua datasetu v0.0.4](
 - [ ] [HM-134 · Pri sumnji u vjeri (2/3) / Doubts about faith (2/3)](https://sunnah.com/hisn:134)
 - [ ] [HM-135 · Pri sumnji u vjeri (3/3) / Doubts about faith (3/3)](https://sunnah.com/hisn:135)
 - [ ] [HM-137 · Za otplatu duga (2/2) / Repaying a debt (2/2)](https://sunnah.com/hisn:137)
-- [ ] [HM-141 · Protiv šejtana i njegovih došaptavanja (1/3) / Satanic suggestions (1/3)](https://sunnah.com/hisn:141) · uputa / instruction
 - [ ] [HM-142 · Protiv šejtana i njegovih došaptavanja (2/3) / Satanic suggestions (2/3)](https://sunnah.com/hisn:142) · uputa / instruction
 - [ ] [HM-143 · Protiv šejtana i njegovih došaptavanja (3/3) / Satanic suggestions (3/3)](https://sunnah.com/hisn:143) · uputa / instruction
 - [ ] [HM-144 · Kada se dogodi nešto nepoželjno / When something unwelcome happens](https://sunnah.com/hisn:144)
@@ -206,11 +205,15 @@ Brojevi, poglavlja i vrste zapisa provjereni su prema [OpenDua datasetu v0.0.4](
 
 - [ ] ★ [HM-124 · Junusova dova u nevolji / Yunus's supplication in distress](README-full.md#hm-124) · u aplikaciji / in app
 - [ ] ★ [HM-121 · Dova protiv zabrinutosti i žalosti / Against anxiety and sorrow](README-full.md#hm-121) · u aplikaciji / in app
-- [ ] ★ [HM-146 · Dova kojom se zaštićuju djeca / Seeking protection for children](README-full.md#hm-146) · u aplikaciji / in app
 - [ ] [HM-126 · Pri susretu s neprijateljem ili osobom na vlasti (1/3) / Facing an adversary or ruler (1/3)](README-full.md#hm-126) · u aplikaciji / in app
 - [ ] [HM-133 · Pri sumnji u vjeri / When doubting one’s faith](README-full.md#hm-133) · uputa / instruction · u aplikaciji / in app
 - [ ] ★ [HM-139 · Kada je nešto teško / When something is difficult](README-full.md#hm-139) · u aplikaciji / in app
 - [ ] [HM-140 · Nakon počinjenog grijeha / After committing a sin](README-full.md#hm-140) · uputa / instruction · u aplikaciji / in app
+- [ ] [HM-141 · Zaštita od šejtana i njegovih došaptavanja / Protection from Satan and his whisperings](README-full.md#hm-141) · uputa / instruction · u aplikaciji / in app
+
+## Djeca / Children
+
+- [ ] ★ [HM-146 · Dova kojom se zaštićuju djeca / Seeking protection for children](README-full.md#hm-146) · u aplikaciji / in app
 
 ## Dug / Debt
 
