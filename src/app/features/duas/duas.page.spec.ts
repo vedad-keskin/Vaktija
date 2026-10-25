@@ -139,7 +139,6 @@ it('shows ten items at a time and resets on view changes', async () => {
     'hisn-126',
     'hisn-133',
     'hisn-139',
-    'hisn-141',
     'hisn-193',
     'hisn-194',
     'hisn-199',
@@ -191,7 +190,7 @@ it('routes the bilingual library, validates saved data and persists bookmark cha
     'travel',
     'hajj',
     'kurban',
-    'oprost',
+    'forgiveness',
     'general',
   ]);
   expect(DUAS.map((dua) => dua.id)).toEqual([
@@ -233,7 +232,6 @@ it('routes the bilingual library, validates saved data and persists bookmark cha
     'hisn-126',
     'hisn-133',
     'hisn-139',
-    'hisn-141',
     'hisn-193',
     'hisn-194',
     'hisn-199',

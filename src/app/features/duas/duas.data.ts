@@ -15,7 +15,7 @@ import { ILLNESS_DUAS } from './illness.data';
 import { KURBAN_DUAS } from './kurban.data';
 import { MARRIAGE_DUAS } from './marriage.data';
 import { MOSQUE_DUAS } from './mosque.data';
-import { OPROST_DUAS } from './oprost.data';
+import { FORGIVENESS_DUAS } from './forgiveness.data';
 import { PROTECTION_DUAS } from './protection.data';
 import { SLEEP_DUAS } from './sleep.data';
 import { TOILET_DUAS } from './toilet.data';
@@ -78,7 +78,7 @@ export const DUA_CATEGORIES = [
   { id: 'travel', label: { bs: 'Putovanje', en: 'Travel' }, items: TRAVEL_DUAS },
   { id: 'hajj', label: { bs: 'Hadž i umra', en: 'Hajj and Umrah' }, items: HAJJ_DUAS },
   { id: 'kurban', label: { bs: 'Kurban', en: 'Qurbani' }, items: KURBAN_DUAS },
-  { id: 'oprost', label: { bs: 'Oprost', en: 'Forgiveness' }, items: OPROST_DUAS },
+  { id: 'forgiveness', label: { bs: 'Oprost', en: 'Forgiveness' }, items: FORGIVENESS_DUAS },
   { id: 'general', label: { bs: 'Opće', en: 'General' }, items: GENERAL_DUAS },
 ] as const;
 

@@ -3,7 +3,7 @@ import type { Dua } from './duas.data';
 // Bosnian 131 moved from Zaštita: it is the forgiveness said after a sin.
 // Bosnian 240: reader's photograph of the repentance chapter. Its Arabic omits al-'Azim, as printed.
 // English: Sunnah.com Hisn 140 and 250, with 250's "the Mighty" left out to match that printing.
-export const OPROST_DUAS: readonly Dua[] = [
+export const FORGIVENESS_DUAS: readonly Dua[] = [
   {
     id: 'hisn-140',
     title: { bs: 'Dova nakon počinjenog grijeha', en: 'After committing a sin' },
