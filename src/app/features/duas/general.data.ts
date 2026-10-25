@@ -17,7 +17,7 @@ export const GENERAL_DUAS: readonly Dua[] = [
       {
         arabic: 'يَرْحَمُكَ اللَّهُ',
         instructions: {
-          bs: 'Kad neko kihne i zahvali Allahu, reci:',
+          bs: 'Kada druga osoba čuje da neko kihne i zahvali Allahu, neka uzvrati:',
           en: 'When someone sneezes and praises Allah, reply:',
         },
         transcription: { bs: 'Jerḥamukellāhu.', en: 'Yarḥamukallāh.' },
@@ -26,11 +26,11 @@ export const GENERAL_DUAS: readonly Dua[] = [
       {
         arabic: 'يَهْدِيكُمُ اللَّهُ وَيُصْلِحُ بَالَكُمْ',
         instructions: {
-          bs: 'Kad osoba koja je kihnula čuje „Jerḥamukellāhu”, neka uzvrati:',
+          bs: 'Naposljetku osoba koja je kihnula neka uzvrati sa:',
           en: 'When someone responds to your sneeze with “Yarḥamukallāh”, say:',
         },
         transcription: {
-          bs: 'Jehdikumullāhu ve juṣliḥ bālekum.',
+          bs: 'Jehdīkumullāhu ve juṣliḥ bālekum.',
           en: 'Yahdīkumu ‘llāhu wa yuṣliḥu bālakum.',
         },
         translation: {
@@ -52,7 +52,7 @@ export const GENERAL_DUAS: readonly Dua[] = [
     },
     arabic: 'يَهْـديكُـمُ اللهُ وَيُصْـلِحُ بالَـكُم',
     transcription: {
-      bs: 'Jehdikumullāhu ve juṣliḥu bālekum.',
+      bs: 'Jehdīkumullāhu ve juṣliḥu bālekum.',
       en: 'Yahdīkumullāhu wa yuṣliḥu bālakum.',
     },
     translation: {
@@ -70,7 +70,7 @@ export const GENERAL_DUAS: readonly Dua[] = [
     title: { bs: 'Dova za onoga koga si grdio', en: 'For someone you have spoken ill of' },
     arabic: 'اللَّهُم فأيما مؤمن سببته فاجعل ذلك له قربة إليك يوم القيامة',
     transcription: {
-      bs: 'Allāhumme fe-ejjumā mu’minin sebebtuhū fedž‘al ḏālike lehū qurben ilejke jevme-l-qijāmeti.',
+      bs: 'Allāhumme fe-ejjumā mu’minin sebebtuhū fedž‘al ḏālike lehū qurbeten ilejke jevme-l-qijāmeti.',
       en: "Allāhumma fa'ayyumā mu'minin sababtuhu faj`al dhālika lahu qurbatan ilayka yawma ‘l-qiyāmah.",
     },
     translation: {
@@ -89,7 +89,7 @@ export const GENERAL_DUAS: readonly Dua[] = [
       en: 'At amazement or a happy event',
     },
     arabic: 'سُـبْحانَ الله',
-    transcription: { bs: 'Subḥānallah.', en: 'Subḥānallāh.' },
+    transcription: { bs: 'Subḥānallāh.', en: 'Subḥānallāh.' },
     translation: { bs: 'Slavljen neka je Allah.', en: 'Glory is to Allah.' },
     reference: { bs: 'Hisnul-Muslimi, 225', en: 'Hisn al-Muslim, 240' },
     sourceUrl: 'https://sunnah.com/hisn:240',
@@ -118,7 +118,7 @@ export const GENERAL_DUAS: readonly Dua[] = [
       bs: 'Kad te nešto zadesi, ne reci „Da učinih tako i tako”, nego prouči ovu dovu.',
       en: 'When a setback occurs, do not say “If only I had done such and such”, rather say this supplication.',
     },
-    transcription: { bs: 'Qadderellāhu ve mā šāe fe‘al.', en: "Qaddarallāhu wa mā shā'a fa`al." },
+    transcription: { bs: 'Qadderellāhu ve mā šā’e fe‘al.', en: "Qaddarallāhu wa mā shā'a fa`al." },
     translation: {
       bs: 'Allah je to odredio i, što je htio, učinio je.',
       en: 'It is the Decree of Allah and He does whatever He wills.',
@@ -134,7 +134,7 @@ export const GENERAL_DUAS: readonly Dua[] = [
   //   arabic:
   //     'اللّهـمَّ أَنْتَ رَبِّـي لا إلهَ إلاّ أَنْتَ خَلَقْتَنـي وَأَنا عَبْـدُك وَأَنا عَلـى عَهْـدِكَ وَوَعْـدِكَ ما اسْتَـطَعْـت أَعـوذُ بِكَ مِنْ شَـرِّ ما صَنَـعْت أَبـوءُ لَـكَ بِنِعْـمَتِـكَ عَلَـيَّ وَأَبـوءُ بِذَنْـبي فَاغْفـِرْ لي فَإِنَّـهُ لا يَغْـفِرُ الذُّنـوبَ إِلاّ أَنْتَ',
   //   transcription: {
-  //     bs: 'Allāhumme Ente Rabbī, lā ilāhe illā Ente, ẖalaqtenī ve ene ‘abduke, ve ene ‘alā ‘ahdike ve va‘dike mesteṭa‘tu, e‘ūḏu bike min šerri mā ṣana‘tu, ebū’u leke bi ni‘metike ‘alejje, ve ebū’u bi ḏenbī, fagfir lī, fe innehu lā jagfiru-ḏ-ḏunūbe illā Ente.',
+  //     bs: 'Allāhumme Ente Rabbī, lā ilāhe illā Ente, ḫalaqtenī ve ene ‘abduke, ve ene ‘alā ‘ahdike ve va‘dike mesteṭa‘tu, e‘ūḏu bike min šerri mā ṣana‘tu, ebū’u leke bi ni‘metike ‘alejje, ve ebū’u bi ḏenbī, fagfir lī, fe innehu lā jagfiru-ḏ-ḏunūbe illā Ente.',
   //     en: "Allāhumma anta Rabbī lā ilāha illā ant, khalaqtanī wa anā `abduk, wa anā `alā `ahdika wa wa`dika mastaṭa`t, a`ūdhu bika min sharri mā ṣana`t, abū'u laka bi ni`matika `alay, wa abū'u bidhanbī faghfir lī fa'innahu lā yaghfirudh-dhunūba illā ant.",
   //   },
   //   translation: {
@@ -152,7 +152,7 @@ export const GENERAL_DUAS: readonly Dua[] = [
   //   arabic:
   //     'اللّهُـمَّ إِنِّـي أسْـأَلُـكَ العَـفْوَ وَالعـافِـيةَ في الدُّنْـيا وَالآخِـرَة ، اللّهُـمَّ إِنِّـي أسْـأَلُـكَ العَـفْوَ وَالعـافِـيةَ في ديني وَدُنْـيايَ وَأهْـلي وَمالـي ، اللّهُـمَّ اسْتُـرْ عـوْراتي وَآمِـنْ رَوْعاتـي ، اللّهُـمَّ احْفَظْـني مِن بَـينِ يَدَيَّ وَمِن خَلْفـي وَعَن يَمـيني وَعَن شِمـالي ، وَمِن فَوْقـي ، وَأَعـوذُ بِعَظَمَـتِكَ أَن أُغْـتالَ مِن تَحْتـي',
   //   transcription: {
-  //     bs: 'Allāhumme innī es’eluke-l-‘afve ve-l-‘āfijete fī-d-dunjā ve-l-āẖireti. Allāhumme innī es’eluke-l-‘afve ve-l-‘āfijete fī dīnī ve dunjāje ve ehlī ve mālī. Allāhumme-stur ‘avrātī ve āmin rev‘ātī. Allāhumme-ḥfaẓnī min bejni jedejje ve min ẖalfī ve ‘an jemīnī ve ‘an šimālī ve min fevqī ve e‘ūḏu bi ‘aẓametike en ugtāle min taḥtī.',
+  //     bs: 'Allāhumme innī es’eluke-l-‘afve ve-l-‘āfijete fī-d-dunjā ve-l-āḫireti. Allāhumme innī es’eluke-l-‘afve ve-l-‘āfijete fī dīnī ve dunjāje ve ehlī ve mālī. Allāhumme-stur ‘avrātī ve āmin rev‘ātī. Allāhumme-ḥfaẓnī min bejni jedejje ve min ḫalfī ve ‘an jemīnī ve ‘an šimālī ve min fevqī ve e‘ūḏu bi ‘aẓametike en ugtāle min taḥtī.',
   //     en: "Allāhumma innī as'aluka 'l-`afwa wal-`āfiyah fid-dunyā wal-ākhirah, Allāhumma innī as'aluka 'l-`afwa wal-`āfiyah fī dīnī wa dunyāya, wa ahlī, wa mālī, Allāhummastur `awrātī, wa āmin raw`ātī, Allāhummaḥfaẓnī min bayni yadayya, wa min khalfī, wa `an yamīnī, wa `an shimālī, wa min fawqī, wa a`ūdhu bi`aẓamatika an 'ughtāla min taḥtī.",
   //   },
   //   translation: {
@@ -187,7 +187,7 @@ export const GENERAL_DUAS: readonly Dua[] = [
   //   title: { bs: 'Utočište u Allahovim riječima', en: "Refuge in Allah's perfect words" },
   //   arabic: 'أَعـوذُ بِكَلِمـاتِ اللّهِ التّـامّـاتِ مِنْ شَـرِّ ما خَلَـق',
   //   transcription: {
-  //     bs: 'E‘ūḏu bi kelimāti-l-Lāhi-t-tāmmāti min šerri mā ẖaleqa.',
+  //     bs: 'E‘ūḏu bi kelimāti-l-Lāhi-t-tāmmāti min šerri mā ḫaleqa.',
   //     en: 'A`ūdhu bikalimāti-llāhit-tāmmāti min sharri mā khalaq.',
   //   },
   //   translation: {

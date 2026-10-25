@@ -10,7 +10,7 @@ export const MOSQUE_DUAS: readonly Dua[] = [
     arabic:
       'اللَّهُمَّ اجْعَلْ فِي قَلْبِي نُورًا، وَفِي لِسَانِي نُورًا، وَاجْعَلْ فِي سَمْعِي نُورًا، وَاجْعَلْ فِي بَصَرِي نُورًا، وَاجْعَلْ مِنْ خَلْفِي نُورًا، وَمِنْ أَمَامِي نُورًا، وَاجْعَلْ مِنْ فَوْقِي نُورًا، وَمِنْ تَحْتِي نُورًا، اللَّهُمَّ أَعْطِنِي نُورًا',
     transcription: {
-      bs: 'Allāhumme-dž‘al fī qalbī nūren, ve fī lisānī nūren, ve-dž‘al fī sem‘ī nūren, ve-dž‘al fī besarī nūren, ve-dž‘al min halfī nūren ve min emāmī nūren, ve-dž‘al min fevqī nūren ve min tahtī nūren. Allāhumme ‘atinī nūren.',
+      bs: 'Allāhumme-dž‘al fī qalbī nūren, ve fī lisānī nūren, ve-dž‘al fī sem‘ī nūren, ve-dž‘al fī beṣarī nūren, ve-dž‘al min ḫalfī nūren ve min emāmī nūren, ve-dž‘al min fevqī nūren ve min taḥtī nūren. Allāhumme a‘ṭinī nūren.',
       en: "Allahummaj'al fi qalbi nuran, wa fi lisani nuran waj'al fi sam'i nuran waj'al fi basari nuran waj'al min khalfi nuran wa min amami nuran waj'al min fawqi nuran wa min tahti nuran. Allahumma a'tini nura.",
     },
     translation: {
@@ -28,7 +28,7 @@ export const MOSQUE_DUAS: readonly Dua[] = [
     arabic:
       'أَعُوذُ بِاللَّهِ الْعَظِيمِ وَبِوَجْهِهِ الْكَرِيمِ وَسُلْطَانِهِ الْقَدِيمِ مِنَ الشَّيْطَانِ الرَّجِيمِ. بِسْمِ اللَّهِ، وَالصَّلَاةُ وَالسَّلَامُ عَلَى رَسُولِ اللَّهِ. اللَّهُمَّ افْتَحْ لِي أَبْوَابَ رَحْمَتِكَ',
     transcription: {
-      bs: 'E‘ūḏu billāhi-l-‘azīmi ve bi vedžhihi-l-kerīmi ve sultānihi-l-qadīmi mine-š-šejtāni-r-radžīm. Bismillāh, ve-ṣ-ṣalātu ve-s-selāmu ‘alā Resūlillāh. Allāhumme-ftaḥ li ebvābe raḥmetike.',
+      bs: 'E‘ūḏu billāhi-l-‘aẓīmi ve bi vedžhihi-l-kerīmi ve sulṭānihi-l-qadīmi mine-š-šejṭāni-r-radžīm. Bismillāh, ve-ṣ-ṣalātu ve-s-selāmu ‘alā Resūlillāh. Allāhumme-ftaḥ li ebvābe raḥmetike.',
       en: 'A‘ūdhu billāh-il ‘azhīm, wa bi-wajhihi-l-karīm, wa sultānihi-l-qadīm, min-ash-shaytān-ir-rajīm. Bismillāhi, was-salātu was-salāmu ‘ala rasūlillāh. Allāhumma iftah li abwāba rahmatik.',
     },
     translation: {
@@ -46,7 +46,7 @@ export const MOSQUE_DUAS: readonly Dua[] = [
     arabic:
       'بِسمِ الله وَالصّلاةُ وَالسّلامُ عَلى رَسولِ الله، اللّهُـمَّ إِنّـي أَسْأَلُكَ مِـنْ فَضْـلِك، اللّهُـمَّ اعصِمْنـي مِنَ الشَّيْـطانِ الرَّجـيم',
     transcription: {
-      bs: 'Bismillāhi ve-s-salātu ve-s-selāmu ‘alā Resūlillāhi, Allāhumme innī es’eluke min faḍlike, Allāhumme-‘ṣimnī mine-š-šejtāni-r-radžīm.',
+      bs: 'Bismillāhi ve-ṣ-ṣalātu ve-s-selāmu ‘alā Resūlillāhi, Allāhumme innī es’eluke min faḍlike, Allāhumme-‘ṣimnī mine-š-šejṭāni-r-radžīm.',
       en: "Bismillāhi waṣṣalātu wassalāmu 'alā Rasūlillāhi, Allāhumma 'innī 'as'aluka min faḍlika, Allāhumma`ṣimnī min ash-shaytānir-rajīm.",
     },
     translation: {

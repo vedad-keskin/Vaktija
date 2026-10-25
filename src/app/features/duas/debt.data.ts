@@ -29,7 +29,7 @@ export const DEBT_DUAS: readonly Dua[] = [
     },
     arabic: 'بارَكَ اللهُ لَكَ في أَهْلِكَ وَمالِك',
     transcription: {
-      bs: 'Bārekellāhu leke fī ehlīke ve mālike.',
+      bs: 'Bārekellāhu leke fī ehlike ve mālike.',
       en: 'Bārakallāhu laka fī ahlika wa mālik.',
     },
     translation: {

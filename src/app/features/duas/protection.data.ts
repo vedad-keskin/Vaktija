@@ -26,7 +26,7 @@ export const PROTECTION_DUAS: readonly Dua[] = [
     arabic:
       'اللَّهُمَّ إِنِّي أَعُوذُ بِكَ مِنَ الْهَمِّ وَالْحُزْنِ، وَالْعَجْزِ وَالْكَسَلِ، وَالْبُخْلِ وَالْجُبْنِ، وَضَلَعِ الدَّيْنِ وَغَلَبَةِ الرِّجَالِ',
     transcription: {
-      bs: 'Allāhumme innī e‘ūdu bike mine-l-hemmi vel-hazeni ve-l-‘adžzi ve-l-keseli ve-l-buhli ve-l-džubni ve dal‘i-d-dejni ve galebeti-r-ridžāli.',
+      bs: 'Allāhumme innī e‘ūḏu bike mine-l-hemmi vel-ḥazeni ve-l-‘adžzi ve-l-keseli ve-l-buḫli ve-l-džubni ve ḍal‘i-d-dejni ve galebeti-r-ridžāli.',
       en: "Allāhumma 'innī 'a`ūdhu bika mina ‘l-ḥammi wa ‘l-ḥuzn, wa ‘l-`ajzi wa ‘l-kasal, wa ‘l-bukhli wa ‘l-jubn, wa ḍala`id-dayn, wa ghalabatir-rijāl.",
     },
     translation: {
@@ -47,7 +47,7 @@ export const PROTECTION_DUAS: readonly Dua[] = [
     },
     arabic: 'اللَّهُمَّ إِنَّا نَجْعَلُكَ فِي نُحُورِهِمْ، وَنَعُوذُ بِكَ مِنْ شُرُورِهِمْ',
     transcription: {
-      bs: 'Allāhumme innā nedž‘aluke fī nuḥūrihim ve ne‘ūdu bike min šurūrihim.',
+      bs: 'Allāhumme innā nedž‘aluke fī nuḥūrihim ve ne‘ūḏu bike min šurūrihim.',
       en: 'Allāhumma innā naj`aluka fī nuḥūrihim wa na`ūdhu bika min shurūrihim.',
     },
     translation: {
@@ -64,7 +64,7 @@ export const PROTECTION_DUAS: readonly Dua[] = [
     title: { bs: 'Dova pri sumnji u vjeri', en: 'When doubting one’s faith' },
     arabic: 'أَعُوذُ بِاللَّهِ',
 
-    transcription: { bs: 'E‘ūdu billāhi.', en: 'A`ūdhu billāh.' },
+    transcription: { bs: 'E‘ūḏu billāhi.', en: 'A`ūdhu billāh.' },
     translation: { bs: 'Utječem se Allahu.', en: 'I seek refuge in Allah.' },
     reference: { bs: 'Hisnul-Muslimi, 124', en: 'Hisn al-Muslim, 133' },
     sourceUrl: 'https://sunnah.com/hisn:133',
@@ -77,7 +77,7 @@ export const PROTECTION_DUAS: readonly Dua[] = [
     arabic:
       'اللَّهُمَّ لَا سَهْلَ إِلَّا مَا جَعَلْتَهُ سَهْلًا، وَأَنْتَ تَجْعَلُ الْحَزْنَ إِذَا شِئْتَ سَهْلًا',
     transcription: {
-      bs: 'Allāhumme lā sehle illā mā dže‘altehū sehlen ve Ente tedže‘alu-l-ḥazene, iḏā ši‘te sehlen.',
+      bs: 'Allāhumme lā sehle illā mā dže‘altehū sehlen ve Ente tedže‘alu-l-ḥazene, iḏā ši’te sehlen.',
       en: "Allāhumma lā saḥla illā ma ja`altahu saḥla wa anta taj`alu ‘l-ḥazna idhā shi'ta saḥla.",
     },
     translation: {
@@ -94,7 +94,7 @@ export const PROTECTION_DUAS: readonly Dua[] = [
     title: { bs: 'Dova protiv izljeva srdžbe', en: 'When angry' },
     arabic: 'أَعُوذُ بِاللَّهِ مِنَ الشَّيْطَانِ الرَّجِيمِ',
     transcription: {
-      bs: 'E‘ūḏu billāhi mine-š-šejṭān-r-rādžīm.',
+      bs: 'E‘ūḏu billāhi mine-š-šejṭāni-r-radžīm.',
       en: 'A`ūdhu billāhi minash-Shayṭānir-rajīm.',
     },
     translation: {
@@ -115,7 +115,7 @@ export const PROTECTION_DUAS: readonly Dua[] = [
     arabic:
       'الْحَمْدُ لِلَّهِ الَّذِي عَافَانِي مِمَّا ابْتَلَاكَ بِهِ، وَفَضَّلَنِي عَلَى كَثِيرٍ مِمَّنْ خَلَقَ تَفْضِيلًا',
     transcription: {
-      bs: 'El-ḥamdu lillāhi-l-leḏī ‘āfānī mimmab-telāke bihī ve feḍḍalenī ‘alā kešīrin mimmen ḫaleka tafḍīlā.',
+      bs: 'El-ḥamdu lillāhi-l-leḏī ‘āfānī mimmab-telāke bihī ve feḍḍalenī ‘alā keṯīrin mimmen ḫaleqa tafḍīlā.',
       en: "Alhamdu lillāhi ‘l-ladhī `āfānī mimmab-talāka bihi wa faḍḍalanī `alā kathīrin mimman khalaqa tafḍīlā.",
     },
     translation: {
@@ -136,7 +136,7 @@ export const PROTECTION_DUAS: readonly Dua[] = [
     arabic: 'أَعُوذُ بِاللَّهِ مِنْ فِتْنَةِ الْمَسِيحِ الدَّجَّالِ',
 
     transcription: {
-      bs: 'E‘ūḏu billāhi min fitnetil-mesīhi-d-dedždžāli.',
+      bs: 'E‘ūḏu billāhi min fitnetil-mesīḥi-d-dedždžāli.',
       en: "A`ūdhu billāhi min fitnati ‘l-masīḥid-dajjāl.",
     },
     translation: {
@@ -156,7 +156,7 @@ export const PROTECTION_DUAS: readonly Dua[] = [
     },
     arabic: 'اللّهُـمَّ إِنّـي أَعـوذُبِكَ أَنْ أُشْـرِكَ بِكَ وَأَنا أَعْـلَمْ، وَأَسْتَـغْفِرُكَ لِما لا أَعْـلَم',
     transcription: {
-      bs: 'Allāhumme innī e‘ūdu bike en ušrike bike ve ene a’lemu ve estagfiruke limā lā a’lemu.',
+      bs: 'Allāhumme innī e‘ūḏu bike en ušrike bike ve ene a‘lemu ve estagfiruke limā lā a‘lemu.',
       en: 'Allāhumma innī a`ūdhu bika an ushrika bika wa anā a`lam, wa astaghfiruka limā lā a`lam.',
     },
     translation: {

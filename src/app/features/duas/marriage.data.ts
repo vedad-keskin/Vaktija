@@ -27,7 +27,7 @@ export const MARRIAGE_DUAS: readonly Dua[] = [
     arabic:
       'اللَّهُمَّ إِنِّي أَسْأَلُكَ خَيْرَهَا، وَخَيْرَ مَا جَبَلْتَهَا عَلَيْهِ، وَأَعُوذُ بِكَ مِنْ شَرِّهَا، وَشَرِّ مَا جَبَلْتَهَا عَلَيْهِ',
     transcription: {
-      bs: 'Allāhumme innī es’eluke ẖajrehā ve ẖajre mā džebeltehā ‘alejhi ve e‘ūḏu bike min šerrihā ve šerri mā džebeltehā ‘alejhi.',
+      bs: 'Allāhumme innī es’eluke ḫajrehā ve ḫajre mā džebeltehā ‘alejhi ve e‘ūḏu bike min šerrihā ve šerri mā džebeltehā ‘alejhi.',
       en: "Allāhumma innī as'aluka khayrahā wa khayra mā jabaltahā `alayh, wa a`ūdhu bika min sharrihā wa sharri mā jabaltahā `alayh.",
     },
     translation: {
@@ -43,7 +43,7 @@ export const MARRIAGE_DUAS: readonly Dua[] = [
     title: { bs: 'Dova oženjenom-udatoj', en: 'To the newlywed' },
     arabic: 'بارَكَ اللّهُ لَك، وَبارَكَ عَلَـيْك، وَجَمَعَ بَيْـنَكُما في خَـيْر',
     transcription: {
-      bs: 'Bārekallāhu leke ve bāreke ‘alejke ve džeme‘a bejnekumā fī ẖajrin.',
+      bs: 'Bārekallāhu leke ve bāreke ‘alejke ve džeme‘a bejnekumā fī ḫajrin.',
       en: 'Bārakallāhu lak, wa bāraka `alayk, wa jama`a baynakumā fī khayr.',
     },
     translation: {

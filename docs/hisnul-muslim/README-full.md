@@ -8,7 +8,8 @@ This file grows one approved category at a time. It currently contains the cloth
 - **Odjeća / Clothing (HM-5, 9, 6, 7):** HM-5's Bosnian transcription and meaning follow the reader's photograph of the 2017 edition; the linked IslamHouse PDF has a shorter transcription and different wording. The other Bosnian entries follow that PDF. Arabic HM-5 displays the recited word الثّوب without the source's editorial parentheses. English comes from the linked Sunnah.com entries.
 - **Bosanska transkripcija** follows the photographed 2017 “Napomena o transkripciji” for letters Bosnian does not have, plus the pronunciation already used on these cards (ج dž, ش š, و v, fatha often e, šadda with a hyphen):
   - hamza ء = ’ ; ayn ع = ‘
-  - line under: ث ṯ, خ ẖ, ذ ḏ
+  - line under: ث ṯ, ذ ḏ
+  - breve under: خ ḫ
   - dot under: ح ḥ, ص ṣ, ض ḍ, ط ṭ, ظ ẓ
   - ق q ; long vowels ā ī ū
 - HM-192 / Bosnian 180’s basmala is copied from the reader’s photograph of page 114. Most other Bosnian transcriptions in this file are **adaptations** of the published Bosnian recitation with this key. A matching digital copy of the photographed edition was not found.
@@ -68,7 +69,7 @@ This file grows one approved category at a time. It currently contains the cloth
 
 <p lang="ar" dir="rtl">اللّهُـمَّ لَـكَ الحَـمْـدُ أنْـتَ كَسَـوْتَنيهِ، أََسْأََلُـكَ مِـنْ خَـيرِهِ وَخَـيْرِ مَا صُنِعَ لَـه، وَأَعوذُ بِكَ مِـنْ شَـرِّهِ وَشَـرِّ مـا صُنِعَ لَـهُ</p>
 
-**Bosanski — transkripcija (adapted):** Allāhumme leke-l-ḥamdu, Ente kesevtenīhi. Es’ eluke min ẖajrihi ve ẖajri mā ṣuni‘a lehu. Ve e‘ūḏu bike min šerrihi ve šerri mā ṣuni‘a lehu.
+**Bosanski — transkripcija (adapted):** Allāhumme leke-l-ḥamdu, Ente kesevtenīhi. Es’ eluke min ḫajrihi ve ḫajri mā ṣuni‘a lehu. Ve e‘ūḏu bike min šerrihi ve šerri mā ṣuni‘a lehu.
 
 **Bosanski — prijevod (IslamHouse 6):** Allahu moj, Tebi hvala. Ti si me ovim odjenuo. Molim Te da mi u tome daš dobro i dobro u onom zbog čega je spravljena, a utječem Ti se od protiv zla njegova i zla onoga zbog čega je spravljena.
 
@@ -85,7 +86,7 @@ This file grows one approved category at a time. It currently contains the cloth
 
 <p lang="ar" dir="rtl">تُبْـلي وَيُـخْلِفُ اللهُ تَعَالى</p>
 
-**Bosanski — transkripcija (adapted):** Tublā ve juẖlifu-l-Lāhu te‘ālā.
+**Bosanski — transkripcija (adapted):** Tublī ve juḫlifu-l-Lāhu te‘ālā.
 
 **Bosanski — prijevod (IslamHouse 7):** Iznosio je, a novom ti Allah nadomjestio.
 
@@ -104,7 +105,7 @@ This file grows one approved category at a time. It currently contains the cloth
 
 <p lang="ar" dir="rtl">بِسْمِ الله اللّهُـمَّ إِنِّـي أَعـوذُ بِـكَ مِـنَ الْخُـبْثِ وَالْخَبائِث</p>
 
-**Bosanski — transkripcija (adapted):** Bismillāhi, Allāhumme innī e‘ūḏu bike mine-l-ẖubṯi ve-l-ẖabā’iṯi.
+**Bosanski — transkripcija (adapted):** Bismillāhi, Allāhumme innī e‘ūḏu bike mine-l-ḫubṯi ve-l-ḫabā’iṯi.
 
 **Bosanski — prijevod (IslamHouse 10):** U ime Allaha, Allahu moj, prizivam Te protiv zla muških i ženskih šejtana.
 
@@ -264,7 +265,7 @@ This file grows one approved category at a time. It currently contains the cloth
 
 <p lang="ar" dir="rtl">اللَّهُمَّ إِنِّي أَسْأَلُكَ خَيْرَهَا، وَخَيْرَ مَا جَبَلْتَهَا عَلَيْهِ، وَأَعُوذُ بِكَ مِنْ شَرِّهَا، وَشَرِّ مَا جَبَلْتَهَا عَلَيْهِ</p>
 
-**Bosanski — transkripcija (adapted):** Allāhumme innī es’eluke ẖajrehā ve ẖajre mā džebeltehā ‘alejhi ve e‘ūḏu bike min šerrihā ve šerri mā džebeltehā ‘alejhi.
+**Bosanski — transkripcija (adapted):** Allāhumme innī es’eluke ḫajrehā ve ḫajre mā džebeltehā ‘alejhi ve e‘ūḏu bike min šerrihā ve šerri mā džebeltehā ‘alejhi.
 
 **Bosanski — prijevod (IslamHouse 179):** Allahu, molim Te da mi u njoj (ili njemu) podariš dobro i da ono čemu je ona (ili on) po naravi sklon(a), bude dobro. I utičem Ti se od njenoga (njegovoga) zla i zla onoga čemu je po prirodi sklon(a).
 
@@ -281,7 +282,7 @@ This file grows one approved category at a time. It currently contains the cloth
 
 <p lang="ar" dir="rtl">بارَكَ اللّهُ لَك، وَبارَكَ عَلَـيْك، وَجَمَعَ بَيْـنَكُما في خَـيْر</p>
 
-**Bosanski — transkripcija (adapted):** Bārekallāhu leke ve bāreke ‘alejke ve džeme‘a bejnekumā fī ẖajrin.
+**Bosanski — transkripcija (adapted):** Bārekallāhu leke ve bāreke ‘alejke ve džeme‘a bejnekumā fī ḫajrin.
 
 **Bosanski — prijevod (IslamHouse 178):** Allah te blagoslovio i svakom te blagodati obasuo. Allah vas sjedinio u dobru.
 
@@ -408,7 +409,7 @@ This file grows one approved category at a time. It currently contains the cloth
 
 <p lang="ar" dir="rtl">اللّهُـمَّ إِنَّـي أَسْـأَلُـكَ خَيْـرَها، وَأَعـوذُ بِكَ مِنْ شَـرِّها</p>
 
-**Bosanski — transkripcija (adapted):** Allāhumme innī es’eluke ẖajrehā, ve e‘ūḏu bike min šerrihā.
+**Bosanski — transkripcija (adapted):** Allāhumme innī es’eluke ḫajrehā, ve e‘ūḏu bike min šerrihā.
 
 **Bosanski — prijevod (IslamHouse 157):** Allahu, molim Te da nam u njemu daš dobro i zaštitu Tvoju tražim od zla njegova.
 
@@ -425,7 +426,7 @@ This file grows one approved category at a time. It currently contains the cloth
 
 <p lang="ar" dir="rtl">سُبْـحانَ الّذي يُسَبِّـحُ الـرَّعْدُ بِحَمْـدِهِ، وَالملائِكـةُ مِنْ خيـفَته</p>
 
-**Bosanski — transkripcija (adapted):** Subḥāne-l-leḏī jusebbiḥu-r-ra‘du biḥamdihi, vel-melā’iketu min ẖīfetih.
+**Bosanski — transkripcija (adapted):** Subḥāne-l-leḏī jusebbiḥu-r-ra‘du biḥamdihi, vel-melā’iketu min ḫīfetih.
 
 **Bosanski — prijevod (IslamHouse 159):** Slava Onome Kojega grom slavi hvalom, a i meleki iz straha prema njemu.
 
@@ -581,7 +582,7 @@ This file grows one approved category at a time. It currently contains the cloth
 
 <p lang="ar" dir="rtl">بسمِ اللَّهِ فِي أَوَّلِهِ وَآخِرِهِ</p>
 
-**Bosanski — transkripcija (adapted):** Bismillāhi fī evvelihi ve āẖirihi.
+**Bosanski — transkripcija (adapted):** Bismillāhi fī evvelihi ve āḫirihi.
 
 **English — transliteration (Sunnah.com 178):** Bismillāhi fī awwalihi wa ākhirih.
 
@@ -598,7 +599,7 @@ This file grows one approved category at a time. It currently contains the cloth
 
 <p lang="ar" dir="rtl">مَنْ أَطْعَمَهُ اللَّهُ الطَّعَامَ فَلْيَقُلْ: "اللَّهُمَّ بَارِكْ لَنَا فِيهِ وَأَطْعِمْنَا خَيْراً مِنْهُ"، وَمَنْ سَقَاهُ اللَّهُ لَبَناً فَلْيَقُلْ "اللَّهُمَّ بَارِكْ لَنَا فِيهِ وَزِدْنَا مِنْهُ"</p>
 
-**Bosanski — transkripcija (adapted):** Allāhumme bārik lenā fīhi ve aṭ‘imnā ẖajren minhu. Allāhumme bārik lenā fīhi ve zidnā minhu.
+**Bosanski — transkripcija (adapted):** Allāhumme bārik lenā fīhi ve aṭ‘imnā ḫajren minhu. Allāhumme bārik lenā fīhi ve zidnā minhu.
 
 **English — transliteration (Sunnah.com 179):** Allāhumma bārik lanā fīhi wa aṭ`imnā khayran minhu. Allāhumma bārik lanā fīhi wa zidnā minhu.
 
@@ -844,7 +845,7 @@ This file grows one approved category at a time. It currently contains the cloth
 
 <p lang="ar" dir="rtl">بِسْمِ اللهِ وَلَجْنَا، وَبِسْمِ اللهِ خَرَجْنَا، وَعَلَى رَبِّنَا تَوَكَّلْنَا</p>
 
-**Bosanski — transkripcija (2017 edition, page 21):** Bismillāhi veledžnā ve bismillāhi ẖaredžnā ve ‘alā Rabbinā tevekkelnā.
+**Bosanski — transkripcija (2017 edition, page 21):** Bismillāhi veledžnā ve bismillāhi ḫaredžnā ve ‘alā Rabbinā tevekkelnā.
 
 **Bosanski — prijevod (2017 edition, page 21):** S Allahovim imenom ulazimo i s Allahovim imenom izlazimo. Na Gospodara našega se oslanjamo.
 
@@ -865,7 +866,7 @@ BS transcriptions and meanings follow the photographed 2017 edition. The short r
 
 <p lang="ar" dir="rtl">اللَّهُ أَكْبَرُ، اللَّهُ أَكْبَرُ، اللَّهُ أَكْبَرُ، ﴿سُبْحَانَ الَّذِي سَخَّرَ لَنَا هَذَا وَمَا كُنَّا لَهُ مُقْرِنِينَ * وَإِنَّا إِلَى رَبِّنَا لَمُنقَلِبُونَ﴾ اللَّهُمَّ إِنّا نَسْأَلُكَ فِي سَفَرِنَا هَذَا البِرَّ وَالتَّقْوَى، وَمِنَ الْعَمَلِ مَا تَرْضَى، اللَّهُمَّ هَوِّنْ عَلَيْنَا سَفَرَنَا هَذَا وَاطْوِ عَنَّا بُعْدَهُ، اللَّهُمَّ أَنْتَ الصَّاحِبُ فِي السَّفَرِ، وَالْخَليفَةُ فِي الْأَهْلِ، اللَّهُمَّ إِنِّي أَعُوذُ بِكَ مِنْ وَعْثَاءِ السَّفَرِ، وَكَآبَةِ الْمَنْظَرِ، وَسُوءِ الْمُنْقَلَبِ فِي الْمَالِ وَالْأَهْلِ</p>
 
-**Bosanski — transkripcija (2017 edition, pages 123–124):** Allāhu ekber, Allāhu ekber, Allāhu ekber. Subḥāne-l-leḏī seẖẖare lenā hāḏā ve mā kunnā lehū muqrinīne, ve innā ilā Rabbinā le munqalibūn. Allāhumme innā nes’eluke fī seferinā hāḏā el-birre, ve-t-taqvā ve mine-l-‘ameli mā terḍā. Allāhumme hevvin ‘alejnā seferenā hāḏā va-ṭvi‘ ‘annā bu‘dehū. Allāhumme Ente-ṣ-Ṣāḥibu fī-s-seferi ve-l-ẖalīfetu fī-l-ehli. Allāhumme innī e‘ūḏu bike min ve‘atāi-s-seferi ve keābeti-l-menzari ve sūi-l-munqalebi fī-l-māli ve-l-ehli.
+**Bosanski — transkripcija (2017 edition, pages 123–124):** Allāhu ekber, Allāhu ekber, Allāhu ekber. Subḥāne-l-leḏī seḫḫare lenā hāḏā ve mā kunnā lehū muqrinīne, ve innā ilā Rabbinā le munqalibūn. Allāhumme innā nes’eluke fī seferinā hāḏā el-birre, ve-t-taqvā ve mine-l-‘ameli mā terḍā. Allāhumme hevvin ‘alejnā seferenā hāḏā va-ṭvi‘ ‘annā bu‘dehū. Allāhumme Ente-ṣ-Ṣāḥibu fī-s-seferi ve-l-ḫalīfetu fī-l-ehli. Allāhumme innī e‘ūḏu bike min ve‘atāi-s-seferi ve keābeti-l-menzari ve sūi-l-munqalebi fī-l-māli ve-l-ehli.
 
 **Bosanski — prijevod (2017 edition, page 124):** Allah je najveći, Allah je najveći, Allah je najveći. Neka je slavljen Onaj Koji nam je ovo omogućio, a mi to ne bismo bili sposobni sami učiniti. Mi se, zaista, Gospodaru našem vraćamo. Allahu, molimo Te za dobročinstvo i bogobojaznost na ovom našem putu, i za djela kojima si Ti zadovoljan. Allahu, olakšaj nam ovo putovanje, a razdaljinu njegovu skrati. Ti si Pratioc na putu i Čuvar u porodici. Allahu, molim Te da me zaštitiš od teškoće na putu, ružnih prizora, te zla u imetku i (porodici kada se vratim).
 
@@ -916,7 +917,7 @@ BS transcriptions and meanings follow the photographed 2017 edition. The short r
 
 <p lang="ar" dir="rtl">أَعـوذُ بِكَلِـماتِ اللّهِ التّـامّاتِ مِنْ شَـرِّ ما خَلَـق</p>
 
-**Bosanski — transkripcija (2017 edition, page 129):** E‘ūḏu bi kelimātillāhi-t-tāmmāti min šerri mā ẖaleqa.
+**Bosanski — transkripcija (2017 edition, page 129):** E‘ūḏu bi kelimātillāhi-t-tāmmāti min šerri mā ḫaleqa.
 
 **Bosanski — prijevod (2017 edition, page 129):** Pomoću Allahovih savršenih riječi, utječem se protiv zla svega što je stvorio.
 
@@ -933,7 +934,7 @@ BS transcriptions and meanings follow the photographed 2017 edition. The short r
 
 <p lang="ar" dir="rtl">بِسْـمِ اللهِ وَالْحَمْـدُ لله، ﴿سُبْحَانَ الَّذِي سَخَّرَ لَنَا هَذَا وَمَا كُنَّا لَهُ مُقْرِنِينَ * وَإِنَّا إِلَى رَبِّنَا لَمُنقَلِبُونَ﴾ الحَمْـدُ لله، الحَمْـدُ لله، الحَمْـدُ لله، اللهُ أكْـبَر، اللهُ أكْـبَر، اللهُ أكْـبَر، سُـبْحانَكَ اللّهُـمَّ إِنّي ظَلَـمْتُ نَفْسي فَاغْـفِرْ لي، فَإِنَّهُ لا يَغْفِـرُ الذُّنوبَ إِلاّ أَنْـت</p>
 
-**Bosanski — transkripcija (2017 edition, pages 122-123):** Bismillāh. El-ḥamdu lillāh. Subḥāne-l-leḏī seẖẖare lenā hāḏā ve mā kunnā lehū muqrinīne, ve innā ilā Rabbinā le munqalibūn. El-ḥamdu lillāhi, el-ḥamdu lillāhi, el-ḥamdu lillāhi. Allāhu ekber, Allāhu ekber, Allāhu ekber. Subḥānekellāhumme innī ẓalemtu nefsī, fa-gfir lī, fe innehu lā jagfiru-ḏ-ḏunūbe illā Ente.
+**Bosanski — transkripcija (2017 edition, pages 122-123):** Bismillāh. El-ḥamdu lillāh. Subḥāne-l-leḏī seḫḫare lenā hāḏā ve mā kunnā lehū muqrinīne, ve innā ilā Rabbinā le munqalibūn. El-ḥamdu lillāhi, el-ḥamdu lillāhi, el-ḥamdu lillāhi. Allāhu ekber, Allāhu ekber, Allāhu ekber. Subḥānekellāhumme innī ẓalemtu nefsī, fa-gfir lī, fe innehu lā jagfiru-ḏ-ḏunūbe illā Ente.
 
 **Bosanski — prijevod (2017 edition, pages 122-123):** S Allahovim imenom (polazim). Hvala Allahu. Slavljen neka je Onaj Koji nam je ovo omogućio, sami to ne bismo bili sposobni. Mi se zaista Gospodaru našem vraćamo. Hvala Allahu, hvala Allahu, hvala Allahu. Allah je najveći, Allah je najveći, Allah je najveći. Neka si slavljen, Allahu. Zaista sam počinio nasilje prema sebi, zato mi oprosti. Jer, grijehe, zasigurno, ne oprašta niko drugi osim Tebe.
 
@@ -950,7 +951,7 @@ BS transcriptions and meanings follow the photographed 2017 edition. The short r
 
 <p lang="ar" dir="rtl">أللّـهُمَّ رَبَّ السَّـمواتِ السّـبْعِ وَما أَظْلَلَـن، وَرَبَّ الأَراضيـنَ السّـبْعِ وَما أقْلَلْـن، وَرَبَّ الشَّيـاطينِ وَما أَضْلَلْـن، وَرَبَّ الرِّياحِ وَما ذَرَيْـن، أَسْـأَلُـكَ خَيْـرَ هذهِ الْقَـرْيَةِ وَخَيْـرَ أَهْلِـها، وَخَيْـرَ ما فيها، وَأَعـوذُ بِكَ مِنْ شَـرِّها وَشَـرِّ أَهْلِـها، وَشَـرِّ ما فيها</p>
 
-**Bosanski — transkripcija (2017 edition, page 125):** Allāhumme Rabbe-s-semāvāti-s-seb‘i ve mā aẓlelne ve Rabbe-l-ereḍīne-s-seb‘i ve mā aqlelne ve Rabbe-š-šejāṭīni ve mā aḍlelne ve Rabbe-r-rijāḥi ve mā ḏerejne: Es’eluke ẖajre hāḏihi-l-qarjeti ve ẖajre ehlihā ve ẖajre mā fīhā, ve e‘ūḏu bike min šerrihā ve šerri ehlihā, ve šerri mā fīhā.
+**Bosanski — transkripcija (2017 edition, page 125):** Allāhumme Rabbe-s-semāvāti-s-seb‘i ve mā aẓlelne ve Rabbe-l-ereḍīne-s-seb‘i ve mā aqlelne ve Rabbe-š-šejāṭīni ve mā aḍlelne ve Rabbe-r-rijāḥi ve mā ḏerejne: Es’eluke ḫajre hāḏihi-l-qarjeti ve ḫajre ehlihā ve ḫajre mā fīhā, ve e‘ūḏu bike min šerrihā ve šerri ehlihā, ve šerri mā fīhā.
 
 **Bosanski — prijevod (2017 edition, page 125):** Allahu, Gospodaru sedam nebesa i onoga što ona natkriljuju, Gospodaru sedam Zemalja i onoga što one drže, Gospodaru šejtana i onog koga su oni zaveli, Gospodaru vjetrova i onoga što oni nose, molim Te za dobrobit ovoga naselja i za dobrobit njegovih žitelja, te za dobrobit svega što se u njemu nalazi. Tražim Tvoju zaštitu od zla ovoga naselja te od zla njegovih mještana i svega onoga što je u njemu.
 
@@ -967,7 +968,7 @@ BS transcriptions and meanings follow the photographed 2017 edition. The short r
 
 <p lang="ar" dir="rtl">لا إلهَ إلاّ اللّه وحدَهُ لا شريكَ لهُ، لهُ المُلْـكُ ولهُ الحَمْـد، يُحْيـي وَيُميـتُ وَهُوَ حَيٌّ لا يَمـوت، بِيَـدِهِ الْخَـيْرُ وَهوَ على كلّ شيءٍ قدير</p>
 
-**Bosanski — transkripcija (2017 edition, page 126):** Lā ilāhe illellāhu vaḥdehū lā šerīke leh. Lehu-l-mulku ve lehu-l-ḥamdu, juḥji ve jumītu ve Huve Ḥajjun lā jemūtu. Bi jedihi-l-ẖajru ve Huve ‘alā kulli šej’in Qadīr.
+**Bosanski — transkripcija (2017 edition, page 126):** Lā ilāhe illellāhu vaḥdehū lā šerīke leh. Lehu-l-mulku ve lehu-l-ḥamdu, juḥji ve jumītu ve Huve Ḥajjun lā jemūtu. Bi jedihi-l-ḫajru ve Huve ‘alā kulli šej’in Qadīr.
 
 **Bosanski — prijevod (2017 edition, page 126):** Nema boga osim Allaha, Jedinoga, Koji Sebi ravnog nema. Njemu pripada sva vlast i zahvalnost. On proživljava i usmrćuje, i On je Živi, Koji ne umire. U Njegovoj je ruci (On posjeduje) svako dobro i On nad svime ima moć.
 
@@ -1001,7 +1002,7 @@ BS transcriptions and meanings follow the photographed 2017 edition. The short r
 
 <p lang="ar" dir="rtl">أَسْتَـوْدِعُ اللَّهَ ديـنَكَ وَأَمانَتَـكَ، وَخَـواتيـمَ عَمَـلِك</p>
 
-**Bosanski — transkripcija (2017 edition, page 127):** Estevdi‘ullāhe dīneke, ve emāneteke ve ẖavātime ‘amelike.
+**Bosanski — transkripcija (2017 edition, page 127):** Estevdi‘ullāhe dīneke, ve emāneteke ve ḫavātime ‘amelike.
 
 **Bosanski — prijevod (2017 edition, page 127):** Allahu povjeravam vjeru tvoju, amanet (polog) tvoj i završetke djela tvojih.
 
@@ -1084,7 +1085,7 @@ Jedna kartica prikazuje tri izgovora, svaki u svom redu s uputom kada se koristi
 
 <p lang="ar" dir="rtl">اللّهـمَّ أَنْتَ رَبِّـي لا إلهَ إلاّ أَنْتَ خَلَقْتَنـي وَأَنا عَبْـدُك وَأَنا عَلـى عَهْـدِكَ وَوَعْـدِكَ ما اسْتَـطَعْـت أَعـوذُ بِكَ مِنْ شَـرِّ ما صَنَـعْت أَبـوءُ لَـكَ بِنِعْـمَتِـكَ عَلَـيَّ وَأَبـوءُ بِذَنْـبي فَاغْفـِرْ لي فَإِنَّـهُ لا يَغْـفِرُ الذُّنـوبَ إِلاّ أَنْتَ</p>
 
-**Bosanski — transkripcija (adapted from Bosnian 77):** Allāhumme Ente Rabbī, lā ilāhe illā Ente, ẖalaqtenī ve ene ‘abduke, ve ene ‘alā ‘ahdike ve va‘dike mesteṭa‘tu, e‘ūḏu bike min šerri mā ṣana‘tu, ebū’u leke bi ni‘metike ‘alejje, ve ebū’u bi ḏenbī, fagfir lī, fe innehu lā jagfiru-ḏ-ḏunūbe illā Ente.
+**Bosanski — transkripcija (adapted from Bosnian 77):** Allāhumme Ente Rabbī, lā ilāhe illā Ente, ḫalaqtenī ve ene ‘abduke, ve ene ‘alā ‘ahdike ve va‘dike mesteṭa‘tu, e‘ūḏu bike min šerri mā ṣana‘tu, ebū’u leke bi ni‘metike ‘alejje, ve ebū’u bi ḏenbī, fagfir lī, fe innehu lā jagfiru-ḏ-ḏunūbe illā Ente.
 
 **Bosanski — prijevod (IslamHouse 77):** Allahu, Ti si Gospodar moj, nema boga osim Tebe, stvorio si me i ja sam Tvoj rob, ja sam na tragu zavjeta Tebi datog, i obećanja Tvog u svojim granicama. Tebi se sklanjam pred zlom koje sam počinio, priznajem blagodati Tvoje prema meni, Tebi priznajem svoje grijehe. Stoga, oprosti mi, jer osim Tebe niko drugi grijehe ne oprašta.
 
@@ -1101,7 +1102,7 @@ Jedna kartica prikazuje tri izgovora, svaki u svom redu s uputom kada se koristi
 
 <p lang="ar" dir="rtl">اللّهُـمَّ إِنِّـي أسْـأَلُـكَ العَـفْوَ وَالعـافِـيةَ في الدُّنْـيا وَالآخِـرَة ، اللّهُـمَّ إِنِّـي أسْـأَلُـكَ العَـفْوَ وَالعـافِـيةَ في ديني وَدُنْـيايَ وَأهْـلي وَمالـي ، اللّهُـمَّ اسْتُـرْ عـوْراتي وَآمِـنْ رَوْعاتـي ، اللّهُـمَّ احْفَظْـني مِن بَـينِ يَدَيَّ وَمِن خَلْفـي وَعَن يَمـيني وَعَن شِمـالي ، وَمِن فَوْقـي ، وَأَعـوذُ بِعَظَمَـتِكَ أَن أُغْـتالَ مِن تَحْتـي</p>
 
-**Bosanski — transkripcija (adapted from Bosnian 80):** Allāhumme innī es’eluke-l-‘afve ve-l-‘āfijete fī-d-dunjā ve-l-āẖireti. Allāhumme innī es’eluke-l-‘afve ve-l-‘āfijete fī dīnī ve dunjāje ve ehlī ve mālī. Allāhumme-stur ‘avrātī ve āmin rev‘ātī. Allāhumme-ḥfaẓnī min bejni jedejje ve min ẖalfī ve ‘an jemīnī ve ‘an šimālī ve min fevqī ve e‘ūḏu bi ‘aẓametike en ugtāle min taḥtī.
+**Bosanski — transkripcija (adapted from Bosnian 80):** Allāhumme innī es’eluke-l-‘afve ve-l-‘āfijete fī-d-dunjā ve-l-āḫireti. Allāhumme innī es’eluke-l-‘afve ve-l-‘āfijete fī dīnī ve dunjāje ve ehlī ve mālī. Allāhumme-stur ‘avrātī ve āmin rev‘ātī. Allāhumme-ḥfaẓnī min bejni jedejje ve min ḫalfī ve ‘an jemīnī ve ‘an šimālī ve min fevqī ve e‘ūḏu bi ‘aẓametike en ugtāle min taḥtī.
 
 **Bosanski — prijevod (IslamHouse 80):** Allahu, molim Te za oprost i Tvoju zaštitu na dunjaluku i na ahiretu. Allahu, molim Te za oprost i zaštitu Tvoju u vjeri, na dunjaluku, u porodici i mojoj imovini. Allahu, zakloni moja sramna djela, a umiri moju bojazan. Allahu, sačuvaj me sa moje prednje strane, te od svega što me može zadesiti sa leđa, zdesne ili lijeve strane i odozgo. Prizivam Tvoju Veličinu da ne budem ščepan odozdo.
 
@@ -1135,7 +1136,7 @@ Jedna kartica prikazuje tri izgovora, svaki u svom redu s uputom kada se koristi
 
 <p lang="ar" dir="rtl">أَعـوذُ بِكَلِمـاتِ اللّهِ التّـامّـاتِ مِنْ شَـرِّ ما خَلَـق</p>
 
-**Bosanski — transkripcija (adapted from Bosnian 79):** E‘ūḏu bi kelimāti-l-Lāhi-t-tāmmāti min šerri mā ẖaleqa.
+**Bosanski — transkripcija (adapted from Bosnian 79):** E‘ūḏu bi kelimāti-l-Lāhi-t-tāmmāti min šerri mā ḫaleqa.
 
 **Bosanski — prijevod (IslamHouse 79):** Pomoću savršenih Allahovih riječi, zaštićujem se od zla svega onoga što je On stvorio (3X).
 
@@ -1291,7 +1292,7 @@ The source says that whoever dies with these as their last words will enter Para
 
 <p lang="ar" dir="rtl">إِنّا للهِ وَإِنَا إِلَـيْهِ راجِعـون ، اللهُـمِّ اْجُـرْني في مُصـيبَتي، وَاخْلُـفْ لي خَيْـراً مِنْـها</p>
 
-**Bosanski — transkripcija (2017 edition, page 94):** Innā lillāhi ve innā ilejhi rādži‘ūn. Allāhumme’džurnī fī muṣībetī vaẖluf lī ẖajren minhā.
+**Bosanski — transkripcija (2017 edition, page 94):** Innā lillāhi ve innā ilejhi rādži‘ūn. Allāhumme’džurnī fī muṣībetī vaḫluf lī ḫajren minhā.
 
 **Bosanski — prijevod (IslamHouse 144):** Mi zaista pripadamo Allahu i svi Mu se, bez dvoumljenja, vraćamo. Allahu, daruj mi u ovome mom musibetu (nesreći) nagradu (za sabur) i nakon toga mi podari veće dobro.
 
@@ -1312,7 +1313,7 @@ The source says that whoever dies with these as their last words will enter Para
 
 **English — instruction (Sunnah.com 155):** Say the deceased person's name in place of “fulān.”
 
-**Bosanski — transkripcija (2017 edition, page 94):** Allāhumma-gfir li ..(spomenuti ime umrlog) ve-rfa‘ deredžetehū fī-l-mehdijjīne vaẖlufhu fī ‘aqibihī fī-l-gābirīne va-gfir lenā ve lehū, jā Rabbe-l-‘ālemīne, vefsaḥ lehū fī qabrihī ve nevvīr lehū fīhī.
+**Bosanski — transkripcija (2017 edition, page 94):** Allāhumma-gfir li ..(spomenuti ime umrlog) ve-rfa‘ deredžetehū fī-l-mehdijjīne vaḫlufhu fī ‘aqibihī fī-l-gābirīne va-gfir lenā ve lehū, jā Rabbe-l-‘ālemīne, vefsaḥ lehū fī qabrihī ve nevvīr lehū fīhī.
 
 **Bosanski — prijevod (IslamHouse 145):** Allahu, oprosti (tome i tome, po imenu), uzdigni njegovo mjesto među onima koji su zaradili Tvoju uputu (Džennet) i odredi mu nasljednika među onima koji ostaju (od njegovih potomaka). Oprosti nama i njemu, Gospodaru svjetova. Kabur mu učini širokim prostorom i udobnim i osvijetli mu ga.
 
@@ -1329,7 +1330,7 @@ The source says that whoever dies with these as their last words will enter Para
 
 <p lang="ar" dir="rtl">اللهُـمِّ اغْفِـرْ لَهُ وَارْحَمْـه ، وَعافِهِ وَاعْفُ عَنْـه ، وَأَكْـرِمْ نُزُلَـه ، وَوَسِّـعْ مُدْخَـلَه ، وَاغْسِلْـهُ بِالْمـاءِ وَالثَّـلْجِ وَالْبَـرَدْ ، وَنَقِّـهِ مِنَ الْخطـايا كَما نَـقّيْتَ الـثَّوْبَ الأَبْيَـضَ مِنَ الدَّنَـسْ ، وَأَبْـدِلْهُ داراً خَـيْراً مِنْ دارِه ، وَأَهْلاً خَـيْراً مِنْ أَهْلِـه ، وَزَوْجَـاً خَـيْراً مِنْ زَوْجِه ، وَأَدْخِـلْهُ الْجَـنَّة ، وَأَعِـذْهُ مِنْ عَذابِ القَـبْر [وَعَذابِ النّـار]</p>
 
-**Bosanski — transkripcija (IslamHouse 146):** Allāhumma-gfir lehū ve-rḥamhū ve ‘āfihī va‘fu ‘anhū ve ekrim nuzulehū ve vessi‘ mudẖalehū vagsilhū bi-l-māi ve-s-ṯeldži ve-l-berdi ve neqqihī mine-l-ẖaṭājā kemā neqqajte-s-ṯevbe-l-ebjeda mine-d-denisi ve ebdilhū dāren ẖajren min dārihī ve ehlen ẖajren min ehlihī ve zevdžen ẖajren min zevdžihī ve edẖilhū-l-džennete ve e‘iḏhū min ‘aḏābi-l-qabri (ve ‘aḏābi-n-nāri).
+**Bosanski — transkripcija (IslamHouse 146):** Allāhumma-gfir lehū ve-rḥamhū ve ‘āfihī va‘fu ‘anhū ve ekrim nuzulehū ve vessi‘ mudḫalehū vagsilhū bi-l-māi ve-s-ṯeldži ve-l-berdi ve neqqihī mine-l-ḫaṭājā kemā neqqajte-s-ṯevbe-l-ebjeda mine-d-denisi ve ebdilhū dāren ḫajren min dārihī ve ehlen ḫajren min ehlihī ve zevdžen ḫajren min zevdžihī ve edḫilhū-l-džennete ve e‘iḏhū min ‘aḏābi-l-qabri (ve ‘aḏābi-n-nāri).
 
 **Bosanski — prijevod (IslamHouse 146):** Allahu, oprosti mu i smiluj se, grijehe mu pobriši i sačuvaj ga, nagradi ga počasnim mjestom i učini širokim njegov ulaz (kabur), očisti ga vodom, snijegom i ledom, očisti ga od grijeha kao što bijelu odjeću čistiš od prljavštine. Zamijeni mu njegovu dunjalučku kuću za bolju od nje (ahiretsku), i njegovu porodicu za bolju, i njegovu suprugu za bolju od njegove dunjalučke. U Džennet ga uvedi i zaštiti ga od zagrobne kazne (i od džehenemske vatre).
 

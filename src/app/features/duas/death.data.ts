@@ -27,7 +27,7 @@ export const DEATH_DUAS: readonly Dua[] = [
     arabic:
       'إِنَّا لِلَّهِ وَإِنَّا إِلَيْهِ رَاجِعُونَ، اللَّهُمَّ أْجُرْنِي فِي مُصِيبَتِي وَاخْلُفْ لِي خَيْرًا مِنْهَا',
     transcription: {
-      bs: 'Innā lillāhi ve innā ilejhi rādži‘ūn. Allāhumme’džurnī fī muṣībetī vaẖluf lī ẖajren minhā.',
+      bs: 'Innā lillāhi ve innā ilejhi rādži‘ūn. Allāhumme’džurnī fī muṣībetī vaḫluf lī ḫajren minhā.',
       en: "Innā lillāhi wa innā ilayhi rāji`ūn, Allāhumma-jurni fī muṣībatī wa 'khluf lī khayran minhā.",
     },
     translation: {
@@ -46,7 +46,7 @@ export const DEATH_DUAS: readonly Dua[] = [
     arabic:
       'اللَّهُمَّ اغْفِرْ لَهُ وَارْحَمْهُ، وَعَافِهِ وَاعْفُ عَنْهُ، وَأَكْرِمْ نُزُلَهُ، وَوَسِّعْ مُدْخَلَهُ، وَاغْسِلْهُ بِالْمَاءِ وَالثَّلْجِ وَالْبَرَدِ، وَنَقِّهِ مِنَ الْخَطَايَا كَمَا نَقَّيْتَ الثَّوْبَ الْأَبْيَضَ مِنَ الدَّنَسِ، وَأَبْدِلْهُ دَارًا خَيْرًا مِنْ دَارِهِ، وَأَهْلًا خَيْرًا مِنْ أَهْلِهِ، وَزَوْجًا خَيْرًا مِنْ زَوْجِهِ، وَأَدْخِلْهُ الْجَنَّةَ، وَأَعِذْهُ مِنْ عَذَابِ الْقَبْرِ \u2060\u2066)\u2069\u2060وَعَذَابِ\u00A0النَّارِ\u2060\u2066(\u2069\u2060',
     transcription: {
-      bs: 'Allāhumma-gfir lehū ve-rḥamhū ve ‘āfihī va‘fu ‘anhū ve ekrim nuzulehū ve vessi‘ mudẖalehū vagsilhū bi-l-māi ve-s-ṯeldži ve-l-berdi ve neqqihī mine-l-ẖaṭājā kemā neqqajte-s-ṯevbe-l-ebjeda mine-d-denisi ve ebdilhū dāren ẖajren min dārihī ve ehlen ẖajren min ehlihī ve zevdžen ẖajren min zevdžihī ve edẖilhū-l-džennete ve e‘iḏhū min ‘aḏābi-l-qabri (ve ‘aḏābi-n-nāri).',
+      bs: 'Allāhumma-gfir lehū ve-rḥamhū ve ‘āfihī va‘fu ‘anhū ve ekrim nuzulehū ve vessi‘ mudḫalehū vagsilhū bi-l-māi ve-s-ṯeldži ve-l-berdi ve neqqihī mine-l-ḫaṭājā kemā neqqajte-s-ṯevbe-l-ebjeḍa mine-d-denisi ve ebdilhū dāren ḫajren min dārihī ve ehlen ḫajren min ehlihī ve zevdžen ḫajren min zevdžihī ve edḫilhū-l-džennete ve e‘iḏhū min ‘aḏābi-l-qabri (ve ‘aḏābi-n-nāri).',
       en: "Allāhumma’ghfir lahu warḥamh, wa `āfihi, wa`fu `anh, wa akrim nuzulah, wa wassi` mudkhalah, wagh’silhu bi ‘lmā'i wath-thalji walbarad, wa naqqihi mina ‘l-khaṭāyā kamā naqqaytath-thawba ‘l-abyaḍa minad-danas, wa abdilhu dāran khayran min dārih, wa ahlan khayran min ahlih, wa zawjan khayran min zawjih, wa adkhilhu ‘l-jannah, wa a`idhhu min `adhābi ‘l-qabri [wa `adhābin-nār].",
     },
     translation: {
@@ -67,7 +67,7 @@ export const DEATH_DUAS: readonly Dua[] = [
     arabic:
       'اللَّهُمَّ اجْعَلْهُ فَرَطًا وَذُخْرًا لِوَالِدَيْهِ، وَشَفِيعًا مُجَابًا. اللَّهُمَّ ثَقِّلْ بِهِ مَوَازِينَهُمَا وَأَعْظِمْ بِهِ أُجُورَهُمَا، وَأَلْحِقْهُ بِصَالِحِ الْمُؤْمِنِينَ، وَاجْعَلْهُ فِي كَفَالَةِ إِبْرَاهِيمَ، وَقِهِ بِرَحْمَتِكَ عَذَابَ الْجَحِيمِ',
     transcription: {
-      bs: 'Allāhumme-dž‘alhu fereṭan ve ḏuhren li-vālidejhi ve šefi‘an mudžāben. Allāhumme ṯeqqil bihī mevāzīnehumā ve e‘ẓim bihī udžūrehumā ve elḥiqhu bi ṣāliḥi-l-mu’minīne ve-dž‘alhu fī kefāleti Ibrāhīme ve qihī bi Raḥmetike ‘aḏābe-l-džehīm.',
+      bs: 'Allāhumme-dž‘alhu fereṭan ve ḏuḫren li-vālidejhi ve šefi‘an mudžāben. Allāhumme ṯeqqil bihī mevāzīnehumā ve e‘ẓim bihī udžūrehumā ve elḥiqhu bi ṣāliḥi-l-mu’minīne ve-dž‘alhu fī kefāleti Ibrāhīme ve qihī bi Raḥmetike ‘aḏābe-l-džeḥīm.',
       en: "Allāhumma ‘j`alhu faraṭan wa dhukhran liwālidayh, wa shafī`an mujāban. Allāhumma thaqqil bihi mawāzīnahumā wa a`ẓim bihi ujūrahumā, wa alḥiqhu biṣāliḥi ‘l-mu'minīn, waj`alhu fī kafālati Ibrāhīm, wa qihi biraḥmatika `adhāba ‘l-jaḥīm.",
     },
     translation: {
@@ -88,7 +88,7 @@ export const DEATH_DUAS: readonly Dua[] = [
     arabic:
       'اللَّهُمَّ اغْفِرْ لِفُلَانٍ وَارْفَعْ دَرَجَتَهُ فِي الْمَهْدِيِّينَ، وَاخْلُفْهُ فِي عَقِبِهِ فِي الْغَابِرِينَ، وَاغْفِرْ لَنَا وَلَهُ يَا رَبَّ الْعَالَمِينَ، وَافْسَحْ لَهُ فِي قَبْرِهِ وَنَوِّرْ لَهُ فِيهِ',
     transcription: {
-      bs: 'Allāhumma-gfir li ..(spomenuti ime umrlog) ve-rfa‘ deredžetehū fī-l-mehdijjīne vaẖlufhu fī ‘aqibihī fī-l-gābirīne va-gfir lenā ve lehū, jā Rabbe-l-‘ālemīne, vefsaḥ lehū fī qabrihī ve nevvīr lehū fīhī.',
+      bs: 'Allāhumma-gfir li ..(spomenuti ime umrlog) ve-rfa‘ deredžetehū fī-l-mehdijjīne vaḫlufhu fī ‘aqibihī fī-l-gābirīne va-gfir lenā ve lehū, jā Rabbe-l-‘ālemīne, vefsaḥ lehū fī qabrihī ve nevvir lehū fīhī.',
       en: 'Allāhumma’ghfir li (name of the person) warfa` darajatahu fi ‘l-mahdiyyīn, wakhlufhu fī `aqibihi fi ‘l-ghābirīn, wagh’fir-lanā wa lahu yā Rabba ‘l-`ālamīn, wafsaḥ lahu fī qabrihi wa nawwir lahu fīh.',
     },
     translation: {
@@ -108,7 +108,7 @@ export const DEATH_DUAS: readonly Dua[] = [
     },
     arabic: 'بِسْمِ اللَّهِ وَعَلَى سُنَّةِ رَسُولِ اللَّهِ',
     transcription: {
-      bs: 'Bismillāhi ve ‘alā sunneti Resulillāhi.',
+      bs: 'Bismillāhi ve ‘alā sunneti Resūlillāhi.',
       en: 'Bismillāh wa `alā sunnati Rasūlillāh.',
     },
     translation: {
@@ -127,7 +127,7 @@ export const DEATH_DUAS: readonly Dua[] = [
       'السَّلَامُ عَلَيْكُمْ أَهْلَ الدِّيَارِ مِنَ الْمُؤْمِنِينَ وَالْمُسْلِمِينَ، وَإِنَّا إِنْ شَاءَ اللَّهُ بِكُمْ لَاحِقُونَ، [وَيَرْحَمُ اللَّهُ الْمُسْتَقْدِمِينَ مِنَّا وَالْمُسْتَأْخِرِينَ] نَسْأَلُ اللَّهَ لَنَا وَلَكُمُ الْعَافِيَةَ',
     // The photographed edition includes the mercy clause in Arabic/transcription but omits it in its Bosnian meaning.
     transcription: {
-      bs: 'Es-selāmu ‘alejkum ehle-l-dijāri mine-l-mu’minīne ve-l-muslimīne ve innā, in šā’ Allāhu bikum lāḥiqune. Ve jerḥamullāhu el-mustaqdimīne minnā vel-muste’ḫirīne. Nes’elullāhe lenā ve lekumu-l-‘āfije.',
+      bs: 'Es-selāmu ‘alejkum ehle-l-dijāri mine-l-mu’minīne ve-l-muslimīne ve innā, in šā’ Allāhu bikum lāḥiqūne. Ve jerḥamullāhu el-mustaqdimīne minnā vel-muste’ḫirīne. Nes’elullāhe lenā ve lekumu-l-‘āfije.',
       en: "Assalāmu `alaykum ahlad-diyāri minal-mu'minīna wa ‘l-muslimīn, wa innā in shā' Allāhu bikum lāḥiqūn nas'alullāha lanā wa lakumul-`āfiyah.",
     },
     translation: {

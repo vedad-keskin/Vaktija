@@ -28,7 +28,7 @@ export const FORGIVENESS_DUAS: readonly Dua[] = [
       en: 'Allah will forgive him even if he has deserted the army’s ranks.',
     },
     transcription: {
-      bs: 'Estagfirullāhe-l-leḏi lā ilāhe illā Huve-l-Hajju-l-Qajjūmu ve etūbu ilejhi.',
+      bs: 'Estagfirullāhe-l-leḏī lā ilāhe illā Huve-l-Ḥajju-l-Qajjūmu ve etūbu ilejhi.',
       en: "Astaghfirullāha ‘lladhī lā ilāha illā huwa ‘l-ḥayyul-Qayyūm wa atūbu ilayh.",
     },
     translation: {

@@ -12,7 +12,7 @@ export const SLEEP_DUAS: readonly Dua[] = [
       en: 'Before you go to bed perform ablutions as you would for prayer, then lie down on your right side and say. . .',
     },
     transcription: {
-      bs: 'Allāhumme eslemtu nefsī ilejke ve fevvaḍtu emrī ilejke ve vedždžehtu vedžhī ilejke ve eldže’tu ẓahrī ilejke ragbeten ve rehbeten ilejke, lā meldžee ve lā mendžā minke illā ilejke. Āmentu bi Kitābike-l-leḏī enzelte ve bi Nebijjike-l-leḏī erselte.',
+      bs: 'Allāhumme eslemtu nefsī ilejke ve fevvaḍtu emrī ilejke ve vedždžehtu vedžhī ilejke ve eldže’tu ẓahrī ilejke ragbeten ve rehbeten ilejke, lā meldže’e ve lā mendžā minke illā ilejke. Āmentu bi Kitābike-l-leḏī enzelte ve bi Nebijjike-l-leḏī erselte.',
       en: 'Allāhumma aslamtu nafsī ilayk, wa fawwaḍtu amrī ilayk, wa wajjahtu wajhī ilayk, wa alja\'tu ẓahrī ilayk, raghbatan wa rahbatan ilayk, lā malja\'a wa la manjā minka illā ilayk, āmantu bikitābika ‘l-ladhī anzalt, wa bi-nabiyyika ‘l-ladhī arsalt.',
     },
     translation: {
@@ -77,7 +77,7 @@ export const SLEEP_DUAS: readonly Dua[] = [
     title: { bs: 'Dova pri prevrtanju u snu', en: 'When turning over during the night' },
     arabic: 'لا إِلـهَ إِلاّ اللهُ الـواحِدُ القَهّـار رَبُّ السَّـمواتِ وَالأرْضِ وَما بَيْـنَهـما العَزيـزُ الغَـفّار',
     transcription: {
-      bs: 'Lā ilāhe illellāhu-l-Vāḥidu-l-Qahhāru Rabbi-s-semāvāti ve-l-erḍi ve mā bejnehume-l-Azīzu-l-Gaffār.',
+      bs: 'Lā ilāhe illellāhu-l-Vāḥidu-l-Qahhāru Rabbi-s-semāvāti ve-l-erḍi ve mā bejnehume-l-‘Azīzu-l-Gaffār.',
       en: 'Lā ilāha illallāh al-Wāḥidul-Qahhār, Rabbus-samāwāti wa ‘l-arḍi wa mā baynahuma al-`Azīzul-Ghaffār.',
     },
     translation: {

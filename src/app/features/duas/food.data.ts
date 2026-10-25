@@ -9,7 +9,7 @@ export const FOOD_DUAS: readonly Dua[] = [
     title: { bs: "Dova za prekid posta", en: "Upon breaking fast" },
     arabic: "ذَهَـبَ الظَّمَـأُ، وَابْتَلَّـتِ العُـروق، وَثَبَـتَ الأجْـرُ إِنْ شـاءَ الله",
     transcription: {
-      bs: "Zehebe-ẓ-ẓama'u, vebtelleti-l-‘urūku, ve ṯebete-l-edžru, in šā'e-llāhu.",
+      bs: "Ḏehebe-ẓ-ẓama’u, vebtelleti-l-‘urūqu, ve ṯebete-l-edžru, in šā’e-llāhu.",
       en: "Dhahabaẓ-ẓama', wabtallati ‘l-`urūq, wa thabata ‘l-'ajru in shā Allāh.",
     },
     translation: {
@@ -41,7 +41,7 @@ export const FOOD_DUAS: readonly Dua[] = [
     title: { bs: "Dova kada se sjetimo da smo počeli jesti", en: "When we remember that we started eating" },
     arabic: "بسمِ اللَّهِ فِي أَوَّلِهِ وَآخِرِهِ",
     transcription: {
-      bs: "Bismillāhi fī evvelihi ve āẖirihi.",
+      bs: "Bismillāhi fī evvelihi ve āḫirihi.",
       en: "Bismillāhi fī awwalihi wa ākhirih.",
     },
     translation: {
@@ -105,7 +105,7 @@ export const FOOD_DUAS: readonly Dua[] = [
     title: { bs: "Dova domaćinu za iftar", en: "When breaking fast in someone’s home" },
     arabic: "أَفْطَـرَ عِنْدَكُم الصّـائِمونَ وَأَكَلَ طَعامَـكُمُ الأبْـرار، وَصَلَّـتْ عَلَـيْكُمُ الملائِكَـة",
     transcription: {
-      bs: "Efṭara ‘indekumu-ṣ-ṣā'imūne ve ekele ṭa‘āmekumu-l-ebrāru, ve ṣallet ‘alejkumu-l-melā'iketu.",
+      bs: "Efṭara ‘indekumu-ṣ-ṣā’imūne ve ekele ṭa‘āmekumu-l-ebrāru, ve ṣallet ‘alejkumu-l-melā’iketu.",
       en: "Afṭara `indakumuṣ-ṣā'imūn, wa akala ṭa`āmakumu ‘l-'abrār, wa ṣallat `alaykumu ‘l-malā'ikah.",
     },
     translation: {
@@ -121,7 +121,7 @@ export const FOOD_DUAS: readonly Dua[] = [
     title: { bs: "Dova kad postača neko grdi", en: "When insulted while fasting" },
     arabic: "إِنِّي صَائِمٌ، إِنِّي صَائِمٌ",
     transcription: {
-      bs: "Innī ṣā'imun, innī ṣā'imun.",
+      bs: "Innī ṣā’imun, innī ṣā’imun.",
       en: "Innī ṣā'im, innī ṣā'im.",
     },
     translation: {

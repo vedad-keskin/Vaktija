@@ -8,7 +8,7 @@ export const DHIKR: readonly Dua[] = [
     arabic:
       'لَا إِلَٰهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ، وَهُوَ عَلَىٰ كُلِّ شَيْءٍ قَدِيرٌ',
     transcription: {
-      bs: 'Lā ilāhe illallāhu vaḥdehu lā šerīke leh, lehul-mulku ve lehul-ḥamdu, ve huve ʿalā kulli šejʾin kadīr.',
+      bs: 'Lā ilāhe illallāhu vaḥdehu lā šerīke leh, lehul-mulku ve lehul-ḥamdu, ve huve ‘alā kulli šej’in qadīr.',
       en: 'Lā ilāha illallāhu waḥdahu lā sharīka lahu, lahul-mulku wa lahul-ḥamdu, wa huwa ʿalā kulli shayʾin qadīr.',
     },
     translation: {
@@ -23,7 +23,7 @@ export const DHIKR: readonly Dua[] = [
     title: { bs: 'Dvije lahke riječi', en: 'Two beloved phrases' },
     arabic: 'سُبْحَانَ اللَّهِ وَبِحَمْدِهِ، سُبْحَانَ اللَّهِ الْعَظِيمِ',
     transcription: {
-      bs: 'Subḥānallāhi ve biḥamdihi, subḥānallāhil-ʿaẓīm.',
+      bs: 'Subḥānallāhi ve biḥamdihi, subḥānallāhil-‘aẓīm.',
       en: 'Subḥānallāhi wa biḥamdihi, subḥānallāhil-ʿaẓīm.',
     },
     translation: {
@@ -69,7 +69,7 @@ export const DHIKR: readonly Dua[] = [
     title: { bs: 'Istigfar', en: 'Seeking forgiveness' },
     arabic: 'أَسْتَغْفِرُ اللَّهَ وَأَتُوبُ إِلَيْهِ',
     transcription: {
-      bs: 'Estaġfirullāhe ve etūbu ilejh.',
+      bs: 'Estagfirullāhe ve etūbu ilejhi.',
       en: 'Astaghfirullāha wa atūbu ilayh.',
     },
     translation: {

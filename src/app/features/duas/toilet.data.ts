@@ -9,7 +9,7 @@ export const TOILET_DUAS: readonly Dua[] = [
     title: { bs: 'Dova prije ulaska u toalet', en: 'Before entering the bathroom' },
     arabic: 'بِسْمِ الله اللّهُـمَّ إِنِّـي أَعـوذُ بِـكَ مِـنَ الْخُـبْثِ وَالْخَبائِث',
     transcription: {
-      bs: 'Bismillāhi, Allāhumme innī e‘ūḏu bike mine-l-ẖubṯi ve-l-ẖabā’iṯi.',
+      bs: 'Bismillāhi, Allāhumme innī e‘ūḏu bike mine-l-ḫubṯi ve-l-ḫabā’iṯi.',
       en: "[Bismillāhi] Allāhumma 'innī 'a`ūdhu bika minal-khubthi walkhabā'ith.",
     },
     translation: {

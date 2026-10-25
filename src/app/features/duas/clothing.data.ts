@@ -35,7 +35,7 @@ export const CLOTHING_DUAS: readonly Dua[] = [
     title: { bs: 'Dova pri odijevanju nove odjeće', en: 'When wearing a new garment' },
     arabic: 'اللّهُـمَّ لَـكَ الحَـمْـدُ أنْـتَ كَسَـوْتَنيهِ، أََسْأََلُـكَ مِـنْ خَـيرِهِ وَخَـيْرِ مَا صُنِعَ لَـه، وَأَعوذُ بِكَ مِـنْ شَـرِّهِ وَشَـرِّ مـا صُنِعَ لَـهُ',
     transcription: {
-      bs: 'Allāhumme leke-l-ḥamdu, Ente kesevtenīhi. Es’ eluke min ẖajrihi ve ẖajri mā ṣuni‘a lehu. Ve e‘ūḏu bike min šerrihi ve šerri mā ṣuni‘a lehu.',
+      bs: 'Allāhumme leke-l-ḥamdu, Ente kesevtenīhi. Es’eluke min ḫajrihi ve ḫajri mā ṣuni‘a lehu. Ve e‘ūḏu bike min šerrihi ve šerri mā ṣuni‘a lehu.',
       en: "Allāhumma lakal-ḥamdu 'anta kasawtanīhi, 'as'aluka min khayrihi wa khayri mā ṣuni`a lahu, wa 'a`oothu bika min sharrihi wa sharri mā ṣuni`a lahu.",
     },
     translation: {
@@ -51,7 +51,7 @@ export const CLOTHING_DUAS: readonly Dua[] = [
     title: { bs: 'Dova onome ko odjene novu odjeću', en: 'To someone wearing a new garment' },
     arabic: 'تُبْـلي وَيُـخْلِفُ اللهُ تَعَالى',
     transcription: {
-      bs: 'Tublā ve juẖlifullāhu te‘ālā.',
+      bs: 'Tublī ve juḫlifullāhu te‘ālā.',
       en: 'Tublī wa yukhliful-lāhu ta`ālā.',
     },
     translation: {

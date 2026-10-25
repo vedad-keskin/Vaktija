@@ -9,7 +9,7 @@ export const CHILDREN_DUAS: readonly Dua[] = [
     arabic:
       'أُعِيذُكُمَا بِكَلِمَاتِ اللَّهِ التَّامَّةِ مِنْ كُلِّ شَيْطَانٍ وَهَامَّةٍ، وَمِنْ كُلِّ عَيْنٍ لَامَّةٍ',
     transcription: {
-      bs: 'U‘īdukumā bi kelimātillāhi-t-tāmmāti min kulli šejtānin ve hāmmetin, ve min kulli ‘ajnin lāmmetin.',
+      bs: 'U‘īḏukumā bi kelimātillāhi-t-tāmmāti min kulli šejtānin ve hāmmetin, ve min kulli ‘ajnin lāmmetin.',
       en: 'U`īthukumā bikalimāti ‘llāhit-tāmmati min kulli shayṭānin wa hāmmah, wa min kulli `aynin lāmmah.',
     },
     translation: {

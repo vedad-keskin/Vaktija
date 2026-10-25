@@ -9,7 +9,7 @@ export const TRAVEL_DUAS: readonly Dua[] = [
     title: { bs: 'Putna dova', en: 'Travel supplication' },
     arabic: 'اللَّهُ أَكْبَرُ، اللَّهُ أَكْبَرُ، اللَّهُ أَكْبَرُ، ﴿سُبْحَانَ الَّذِي سَخَّرَ لَنَا هَذَا وَمَا كُنَّا لَهُ مُقْرِنِينَ * وَإِنَّا إِلَى رَبِّنَا لَمُنقَلِبُونَ﴾ اللَّهُمَّ إِنّا نَسْأَلُكَ فِي سَفَرِنَا هَذَا البِرَّ وَالتَّقْوَى، وَمِنَ الْعَمَلِ مَا تَرْضَى، اللَّهُمَّ هَوِّنْ عَلَيْنَا سَفَرَنَا هَذَا وَاطْوِ عَنَّا بُعْدَهُ، اللَّهُمَّ أَنْتَ الصَّاحِبُ فِي السَّفَرِ، وَالْخَليفَةُ فِي الْأَهْلِ، اللَّهُمَّ إِنِّي أَعُوذُ بِكَ مِنْ وَعْثَاءِ السَّفَرِ، وَكَآبَةِ الْمَنْظَرِ، وَسُوءِ الْمُنْقَلَبِ فِي الْمَالِ وَالْأَهْلِ',
     transcription: {
-      bs: 'Allāhu ekber, Allāhu ekber, Allāhu ekber. Subḥāne-l-leḏī seẖẖare lenā hāḏā ve mā kunnā lehū muqrinīne, ve innā ilā Rabbinā le munqalibūn. Allāhumme innā nes’eluke fī seferinā hāḏā el-birre, ve-t-taqvā ve mine-l-‘ameli mā terḍā. Allāhumme hevvin ‘alejnā seferenā hāḏā va-ṭvi‘ ‘annā bu‘dehū. Allāhumme Ente-ṣ-Ṣāḥibu fī-s-seferi ve-l-ẖalīfetu fī-l-ehli. Allāhumme innī e‘ūḏu bike min ve‘atāi-s-seferi ve keābeti-l-menzari ve sūi-l-munqalebi fī-l-māli ve-l-ehli.',
+      bs: 'Allāhu ekber, Allāhu ekber, Allāhu ekber. Subḥāne-l-leḏī seḫḫare lenā hāḏā ve mā kunnā lehū muqrinīne, ve innā ilā Rabbinā le munqalibūn. Allāhumme innā nes’eluke fī seferinā hāḏā el-birre, ve-t-taqvā ve mine-l-‘ameli mā terḍā. Allāhumme hevvin ‘alejnā seferenā hāḏā va-ṭvi ‘annā bu‘dehū. Allāhumme Ente-ṣ-Ṣāḥibu fī-s-seferi ve-l-ḫalīfetu fī-l-ehli. Allāhumme innī e‘ūḏu bike min ve‘ṯā’i-s-seferi ve ke’ābeti-l-menzari ve sū’i-l-munqalebi fī-l-māli ve-l-ehli.',
       en: "Allāhu Akbar, Allāhu Akbar, Allāhu Akbar, Subḥāna ‘l-ladhi sakhkhara lanā hādhā wa mā kunnā lahu muqrinīn. Wa innā ilā Rabbinā lamunqalibūn. Allāhumma innā nas'aluka fī safarinā hādha ‘l-birra wat-taqwā, Wa mina ‘l-`amali mā tarḍā, Allāhumma hawwin `alaynā safaranā hādhā waṭwi `annā bu`dah, Allāhumma antas-sāḥibu fis-safar, wa ‘l-khalīfatu fil-ahl, Allāhumma innī a`ūdhu bika min wa`thā'is-safar, wa ka'ābati ‘l-manẓar, wa sū'il-munqalabi fil-māli wa ‘l-ahl.",
     },
     translation: {
@@ -41,7 +41,7 @@ export const TRAVEL_DUAS: readonly Dua[] = [
     title: { bs: 'Dova pri povratku s puta', en: 'When returning from a journey' },
     arabic: 'اللَّهُ أَكْبَرُ، اللَّهُ أَكْبَرُ، اللَّهُ أَكْبَرُ، لاَ إِلَهَ إِلاَّ اللَّهُ وَحْدَهُ لاَ شَرِيكَ لَهُ، لَهُ الْمُلْكُ، وَلَهُ الْحَمْدُ، وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ، آيِبُونَ، تَائِبُونَ، عَابِدُونَ، لِرَبِّنا حَامِدُونَ، صَدَقَ اللَّهُ وَعْدَهُ، وَنَصَرَ عَبْدَهُ، وَهَزَمَ الْأَحْزابَ وَحْدَهُ',
     transcription: {
-      bs: 'Allāhu ekber (tri puta). Lā ilāhe illellāhu vaḥdehū lā šerīke leh, lehu-l-mulku ve lehu-l-ḥamdu ve Huve ‘alā kulli šej’in Qadīr. Ājibūne, Tāibūne, ‘Ābidūne li Rabbinā ḥāmidūne. Ṣadeqallāhu va‘dehū ve neṣare ‘abdehū ve hezeme-l-aḥzābe vaḥdehū.',
+      bs: 'Allāhu ekber (tri puta). Lā ilāhe illellāhu vaḥdehū lā šerīke leh, lehu-l-mulku ve lehu-l-ḥamdu ve Huve ‘alā kulli šej’in Qadīr. Ājibūne, Tā’ibūne, ‘Ābidūne li Rabbinā ḥāmidūne. Ṣadeqallāhu va‘dehū ve neṣare ‘abdehū ve hezeme-l-aḥzābe vaḥdehū.',
       en: "Allāhu Akbar (three times). Lā ilāha illallāh waḥdahu lā sharīka lah, lahu ‘l-mulku, walahu ‘l-ḥamd, wa Huwa `alā kulli shay'in Qadīr, ā'ibūna, tā'ibūna,`ābidūn, li Rabbinā ḥāmidūn, sadaqallāhu wa`dah, wa nasara `abdah, wa hazama ‘l-'aḥzāba waḥdah.",
     },
     translation: {
@@ -57,7 +57,7 @@ export const TRAVEL_DUAS: readonly Dua[] = [
     title: { bs: 'Dova pri zaustavljanju na putovanju', en: 'When stopping during travel' },
     arabic: 'أَعـوذُ بِكَلِـماتِ اللّهِ التّـامّاتِ مِنْ شَـرِّ ما خَلَـق',
     transcription: {
-      bs: 'E‘ūḏu bi kelimātillāhi-t-tāmmāti min šerri mā ẖaleqa.',
+      bs: 'E‘ūḏu bi kelimātillāhi-t-tāmmāti min šerri mā ḫaleqa.',
       en: 'A`ūdhu bikalimāti ‘llāhit-tāmmāti min sharri mā khalaq.',
     },
     translation: {
@@ -73,7 +73,7 @@ export const TRAVEL_DUAS: readonly Dua[] = [
     title: { bs: 'Dova pri sjedanju u prijevozno sredstvo', en: 'When boarding a vehicle' },
     arabic: 'بِسْـمِ اللهِ وَالْحَمْـدُ لله، ﴿سُبْحَانَ الَّذِي سَخَّرَ لَنَا هَذَا وَمَا كُنَّا لَهُ مُقْرِنِينَ * وَإِنَّا إِلَى رَبِّنَا لَمُنقَلِبُونَ﴾ الحَمْـدُ لله، الحَمْـدُ لله، الحَمْـدُ لله، اللهُ أكْـبَر، اللهُ أكْـبَر، اللهُ أكْـبَر، سُـبْحانَكَ اللّهُـمَّ إِنّي ظَلَـمْتُ نَفْسي فَاغْـفِرْ لي، فَإِنَّهُ لا يَغْفِـرُ الذُّنوبَ إِلاّ أَنْـت',
     transcription: {
-      bs: 'Bismillāh. El-ḥamdu lillāh. Subḥāne-l-leḏī seẖẖare lenā hāḏā ve mā kunnā lehū muqrinīne, ve innā ilā Rabbinā le munqalibūn. El-ḥamdu lillāhi, el-ḥamdu lillāhi, el-ḥamdu lillāhi. Allāhu ekber, Allāhu ekber, Allāhu ekber. Subḥānekellāhumme innī ẓalemtu nefsī, fa-gfir lī, fe innehu lā jagfiru-ḏ-ḏunūbe illā Ente.',
+      bs: 'Bismillāh. El-ḥamdu lillāh. Subḥāne-l-leḏī seḫḫare lenā hāḏā ve mā kunnā lehū muqrinīne, ve innā ilā Rabbinā le munqalibūn. El-ḥamdu lillāhi, el-ḥamdu lillāhi, el-ḥamdu lillāhi. Allāhu ekber, Allāhu ekber, Allāhu ekber. Subḥānekellāhumme innī ẓalemtu nefsī, fa-gfir lī, fe innehu lā jagfiru-ḏ-ḏunūbe illā Ente.',
       en: 'Bismillāh, walḥamdulillāh. Subḥāna ‘lladhī sakhkhara lanā hādhā wa mā kunnā lahu muqrinīn. Wa innā ilā Rabbinā lamunqalibūn. Alḥamdulillāh, alḥamdulillāh, alḥamdulillāh, Allāhu Akbar, Allāhu Akbar, Allāhu Akbar, Subḥānaka ‘llāhumma innī ẓalamtu nafsī, faghfir lī, fa innahu lā yaghfirudh-dhunūba illā ant.',
     },
     translation: {
@@ -89,7 +89,7 @@ export const TRAVEL_DUAS: readonly Dua[] = [
     title: { bs: 'Dova pri ulasku u neko selo ili grad', en: 'Upon entering a town or village' },
     arabic: 'أللّـهُمَّ رَبَّ السَّـمواتِ السّـبْعِ وَما أَظْلَلَـن، وَرَبَّ الأَراضيـنَ السّـبْعِ وَما أقْلَلْـن، وَرَبَّ الشَّيـاطينِ وَما أَضْلَلْـن، وَرَبَّ الرِّياحِ وَما ذَرَيْـن، أَسْـأَلُـكَ خَيْـرَ هذهِ الْقَـرْيَةِ وَخَيْـرَ أَهْلِـها، وَخَيْـرَ ما فيها، وَأَعـوذُ بِكَ مِنْ شَـرِّها وَشَـرِّ أَهْلِـها، وَشَـرِّ ما فيها',
     transcription: {
-      bs: 'Allāhumme Rabbe-s-semāvāti-s-seb‘i ve mā aẓlelne ve Rabbe-l-ereḍīne-s-seb‘i ve mā aqlelne ve Rabbe-š-šejāṭīni ve mā aḍlelne ve Rabbe-r-rijāḥi ve mā ḏerejne: Es’eluke ẖajre hāḏihi-l-qarjeti ve ẖajre ehlihā ve ẖajre mā fīhā, ve e‘ūḏu bike min šerrihā ve šerri ehlihā, ve šerri mā fīhā.',
+      bs: 'Allāhumme Rabbe-s-semāvāti-s-seb‘i ve mā aẓlelne ve Rabbe-l-ereḍīne-s-seb‘i ve mā aqlelne ve Rabbe-š-šejāṭīni ve mā aḍlelne ve Rabbe-r-rijāḥi ve mā ḏerejne: Es’eluke ḫajre hāḏihi-l-qarjeti ve ḫajre ehlihā ve ḫajre mā fīhā, ve e‘ūḏu bike min šerrihā ve šerri ehlihā, ve šerri mā fīhā.',
       en: "Allāhumma Rabbas-samāwātis-sab`i wa mā aẓlaln, Wa Rabba ‘l-arāḍīnas-sab`i wa mā aqlaln, wa Rabbash-shayāṭīni wa mā aḍlaln, wa Rabbar-riyāḥi wa mā dharayn. As'aluka khayra hādhihi ‘l-qaryah, wa khayra ahlihā, wa khayra māfīhā, wa a`ūdhu bika min sharrihā, wa sharri ahlihā, wa sharri mā fīhā.",
     },
     translation: {
@@ -105,7 +105,7 @@ export const TRAVEL_DUAS: readonly Dua[] = [
     title: { bs: 'Dova pri ulasku u tržnicu', en: 'Upon entering the market' },
     arabic: 'لا إلهَ إلاّ اللّه وحدَهُ لا شريكَ لهُ، لهُ المُلْـكُ ولهُ الحَمْـد، يُحْيـي وَيُميـتُ وَهُوَ حَيٌّ لا يَمـوت، بِيَـدِهِ الْخَـيْرُ وَهوَ على كلّ شيءٍ قدير',
     transcription: {
-      bs: 'Lā ilāhe illellāhu vaḥdehū lā šerīke leh. Lehu-l-mulku ve lehu-l-ḥamdu, juḥji ve jumītu ve Huve Ḥajjun lā jemūtu. Bi jedihi-l-ẖajru ve Huve ‘alā kulli šej’in Qadīr.',
+      bs: 'Lā ilāhe illellāhu vaḥdehū lā šerīke leh. Lehu-l-mulku ve lehu-l-ḥamdu, juḥji ve jumītu ve Huve Ḥajjun lā jemūtu. Bi jedihi-l-ḫajru ve Huve ‘alā kulli šej’in Qadīr.',
       en: "Lā ilāha illallāh waḥdahu lā sharīka lah, Lahu ‘l-mulku wa lahu ‘l-ḥamd, Yuḥyī wa yumīt, wa huwa ḥayyun lā yamūt, Biyadihi ‘l-khayr, wa huwa `alā kulli shay'in Qadīr.",
     },
     translation: {
@@ -137,7 +137,7 @@ export const TRAVEL_DUAS: readonly Dua[] = [
     title: { bs: 'Dova onih koji ostaju musafiru', en: 'Farewell to a traveler' },
     arabic: 'أَسْتَـوْدِعُ اللَّهَ ديـنَكَ وَأَمانَتَـكَ، وَخَـواتيـمَ عَمَـلِك',
     transcription: {
-      bs: 'Estevdi‘ullāhe dīneke, ve emāneteke ve ẖavātime ‘amelike.',
+      bs: 'Estevdi‘ullāhe dīneke, ve emāneteke ve ḫavātime ‘amelike.',
       en: 'Astawdi`ullāha dīnak, wa amānatak, wa khawātīma `amalik.',
     },
     translation: {

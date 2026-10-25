@@ -11,7 +11,7 @@ export const KURBAN_DUAS: readonly Dua[] = [
     },
     arabic: 'بِسْمِ اللَّهِ وَاللَّهُ أَكْبَرُ [اللَّهُمَّ مِنْكَ وَلَكَ] اللَّهُمَّ تَقَبَّلْ مِنِّي',
     transcription: {
-      bs: 'Bismillāhi vallāhu ekber. (Allāhumme minke ve leke.) Allāhumme teqabbel minni.',
+      bs: 'Bismillāhi vallāhu ekber. (Allāhumme minke ve leke.) Allāhumme teqabbel minnī.',
       en: 'Bismillāh wallāhu Akbar [Allāhumma minka wa lak] Allāhumma taqabbal minnī.',
     },
     translation: {

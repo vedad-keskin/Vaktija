@@ -24,7 +24,7 @@ export const HOME_DUAS: readonly Dua[] = [
     title: { bs: 'Dova pri ulasku u kuću', en: 'When entering home' },
     arabic: 'بِسْمِ اللهِ وَلَجْنَا، وَبِسْمِ اللهِ خَرَجْنَا، وَعَلَى رَبِّنَا تَوَكَّلْنَا',
     transcription: {
-      bs: 'Bismillāhi veledžnā ve bismillāhi ẖaredžnā ve ‘alā Rabbinā tevekkelnā.',
+      bs: 'Bismillāhi veledžnā ve bismillāhi ḫaredžnā ve ‘alā Rabbinā tevekkelnā.',
       en: 'Bismillāhi walajnā, wa bismillāhi kharajnā, wa `ala Rabbinā tawakkalnā',
     },
     translation: {

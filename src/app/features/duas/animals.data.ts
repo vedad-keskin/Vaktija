@@ -10,7 +10,7 @@ export const ANIMAL_DUAS: readonly Dua[] = [
     arabic:
       'اللَّهُمَّ إِنِّي أَسْأَلُكَ خَيْرَهَا، وَخَيْرَ مَا جَبَلْتَهَا عَلَيْهِ، وَأَعُوذُ بِكَ مِنْ شَرِّهَا، وَشَرِّ مَا جَبَلْتَهَا عَلَيْهِ',
     transcription: {
-      bs: 'Allāhumme innī es’eluke ẖajrehā ve ẖajre mā džebeltehā ‘alejhi ve e‘ūḏu bike min šerrihā ve šerri mā džebeltehā ‘alejhi.',
+      bs: 'Allāhumme innī es’eluke ḫajrehā ve ḫajre mā džebeltehā ‘alejhi ve e‘ūḏu bike min šerrihā ve šerri mā džebeltehā ‘alejhi.',
       en: "Allāhumma innī as'aluka khayrahā wa khayra mā jabaltahā `alayh, wa a`ūdhu bika min sharrihā wa sharri mā jabaltahā `alayh.",
     },
     translation: {
@@ -43,7 +43,7 @@ export const ANIMAL_DUAS: readonly Dua[] = [
     title: { bs: 'Dova kada noću čujemo zavijanje pasa ili revanje magaraca', en: 'Upon hearing dogs bark or donkeys bray at night' },
     arabic: 'أَعُوذُ بِاللَّهِ مِنَ الشَّيْطَانِ الرَّجِيمِ',
     transcription: {
-      bs: 'E‘ūḏu billāhi mineš-šejtāni-r-radžīm.',
+      bs: 'E‘ūḏu billāhi mineš-šejṭāni-r-radžīm.',
       en: "A'oodhu billahi minash-shaytanir-rajeem",
     },
     translation: {

@@ -9,7 +9,7 @@ export const WEATHER_DUAS: readonly Dua[] = [
     title: { bs: "Dova prilikom puhanja vjetra", en: "During a wind storm" },
     arabic: "اللّهُـمَّ إِنَّـي أَسْـأَلُـكَ خَيْـرَها، وَأَعـوذُ بِكَ مِنْ شَـرِّها",
     transcription: {
-      bs: "Allāhumme innī es’eluke ẖajrehā, ve e‘ūḏu bike min šerrihā.",
+      bs: "Allāhumme innī es’eluke ḫajrehā, ve e‘ūḏu bike min šerrihā.",
       en: "Allāhumma innī as'aluka khayrahā, wa a`ūdhu bika min sharrihā.",
     },
     translation: {
@@ -25,7 +25,7 @@ export const WEATHER_DUAS: readonly Dua[] = [
     title: { bs: "Dova prilikom grmljavine", en: "Upon hearing thunder" },
     arabic: "سُبْـحانَ الّذي يُسَبِّـحُ الـرَّعْدُ بِحَمْـدِهِ، وَالملائِكـةُ مِنْ خيـفَته",
     transcription: {
-      bs: "Subḥāne-l-leḏī jusebbiḥu-r-ra‘du biḥamdihi, vel-melā’iketu min ẖīfetih.",
+      bs: "Subḥāne-l-leḏī jusebbiḥu-r-ra‘du biḥamdihi, vel-melā’iketu min ḫīfetih.",
       en: "Subḥāna ‘l-ladhī yusabbiḥur-ra`du bi ḥamdihi wa ‘l-malā'ikatu min khīfatih.",
     },
     translation: {
@@ -105,7 +105,7 @@ export const WEATHER_DUAS: readonly Dua[] = [
     title: { bs: "Dova prilikom viđenja mladoga mjeseca", en: "Upon sighting the crescent moon" },
     arabic: "اللهُ أَكْـبَر، اللّهُمَّ أَهِلَّـهُ عَلَيْـنا بِالأمْـنِ وَالإيمـان، والسَّلامَـةِ والإسْلام، وَالتَّـوْفيـقِ لِما تُحِـبُّ رَبَّنـا وَتَـرْضـى، رَبُّنـا وَرَبُّكَ الله",
     transcription: {
-      bs: "Allāhu ekber, Allāhumme ehillehu ‘alejnā bi-l-emni ve-l-īmāni ve-s-selāmeti ve-l-islāmi ve-t-tevfīqi limā tuḥibbu ve terḍā, rabbenā ve rabbuke-llāhu.",
+      bs: "Allāhu ekber, Allāhumme ehillehu ‘alejnā bi-l-emni ve-l-īmāni ve-s-selāmeti ve-l-islāmi ve-t-tevfīqi limā tuḥibbu rabbenā ve terḍā, rabbunā ve rabbuke-llāhu.",
       en: "Allāhu Akbar, Allāhumma ahillahu `alayna bi ‘l-amni wa ‘l-īmān, was-salāmati wa ‘l-'Islām, wat-tawfīqi limā tuḥibbu Rabbanā wa tarḍā, Rabbunā wa Rabbukallāh.",
     },
     translation: {
