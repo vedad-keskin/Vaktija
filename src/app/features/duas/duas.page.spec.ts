@@ -55,7 +55,7 @@ it('shows ten items at a time and resets on view changes', async () => {
   );
 
   await harness.navigateByUrl('/duas?category=marriage');
-  expect(cards()).toHaveLength(3);
+  expect(cards()).toHaveLength(4);
   expect(more()).toBeNull();
   await harness.navigateByUrl('/duas?category=mosque');
   expect([...cards()].map((card) => card.getAttribute('data-dua-id'))).toEqual([
@@ -244,6 +244,7 @@ it('routes the bilingual library, validates saved data and persists bookmark cha
     'hisn-146',
     'hisn-136',
     'hisn-201',
+    'quran-25-74',
     'hisn-192',
     'hisn-191',
     'hisn-190',

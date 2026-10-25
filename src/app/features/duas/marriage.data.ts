@@ -6,6 +6,21 @@ import type { Dua } from './duas.data';
 // Entry 180's basmala follows that print; the rest adapts the Bosnian recitation.
 export const MARRIAGE_DUAS: readonly Dua[] = [
   {
+    id: 'quran-25-74',
+    title: { bs: 'Dova za brak', en: 'Supplication for marriage' },
+    arabic: 'رَبَّنَا هَبْ لَنَا مِنْ أَزْوَاجِنَا وَذُرِّيَّاتِنَا قُرَّةَ أَعْيُنٍ وَاجْعَلْنَا لِلْمُتَّقِينَ إِمَامًا',
+    transcription: {
+      bs: 'Rabbenā heb lenā min ezvādžinā ve ḏurrijjātinā qurrate e‘junin ve-dž‘alnā li-l-muttaqīne imāmā.',
+      en: 'Rabbanā hab lanā min azwājinā wa dhurriyyātinā qurrata a`yunin wa-j`alnā lil-muttaqīna imāmā.',
+    },
+    translation: {
+      bs: 'Gospodaru naš, podari nam u ženama našim i potomstvu našem radost očiju i učini nas predvodnicima bogobojaznih.',
+      en: 'Our Lord, grant us from among our wives and offspring comfort to our eyes and make us an example for the righteous.',
+    },
+    reference: { bs: 'Kur’an, 25:74', en: 'Quran, 25:74' },
+    sourceUrl: 'https://quran.com/25/74',
+  },
+  {
     id: 'hisn-192',
     title: { bs: 'Dova prije spolnog odnosa u braku', en: 'Before sexual intercourse with the wife' },
     arabic: 'بِسْمِ الله اللّهُـمَّ جَنِّبْنا الشَّيْـطانَ، وَجَنِّبِ الشَّـيْطانَ ما رَزَقْـتَنا',

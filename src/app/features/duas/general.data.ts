@@ -9,7 +9,7 @@ export const GENERAL_DUAS: readonly Dua[] = [
     title: { bs: 'Dova potrebe', en: 'Supplication of need' },
     arabic: 'رَبِّ إِنِّي لِمَا أَنزَلْتَ إِلَيَّ مِنْ خَيْرٍ فَقِيرٌ',
     transcription: {
-      bs: 'Rabbi innī limā enzalte ilejje min ḫajrin faqīr.',
+      bs: 'Rabbi innī limā enzelte ilejje min ḫajrin faqīr.',
       en: 'Rabbi innī limā anzalta ilayya min khayrin faqīr.',
     },
     translation: {
