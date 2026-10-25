@@ -66,8 +66,11 @@ it('shows ten items at a time and resets on view changes', async () => {
   await harness.navigateByUrl('/duas?category=general');
   expect([...cards()].map((card) => card.getAttribute('data-dua-id'))).toEqual([
     'hisn-188',
+    'hisn-189',
     'hisn-230',
     'hisn-240',
+    'hisn-245',
+    'hisn-144',
   ]);
   expect(
     [...cards()[0].querySelectorAll('.dua-saying .dua-arabic')].map((phrase) =>
@@ -138,7 +141,6 @@ it('shows ten items at a time and resets on view changes', async () => {
     'hisn-139',
     'hisn-140',
     'hisn-141',
-    'hisn-144',
     'hisn-193',
     'hisn-194',
     'hisn-199',
@@ -189,6 +191,7 @@ it('routes the bilingual library, validates saved data and persists bookmark cha
     'home',
     'travel',
     'hajj',
+    'kurban',
     'general',
   ]);
   expect(DUAS.map((dua) => dua.id)).toEqual([
@@ -232,7 +235,6 @@ it('routes the bilingual library, validates saved data and persists bookmark cha
     'hisn-139',
     'hisn-140',
     'hisn-141',
-    'hisn-144',
     'hisn-193',
     'hisn-194',
     'hisn-199',
@@ -274,12 +276,17 @@ it('routes the bilingual library, validates saved data and persists bookmark cha
     'hisn-211',
     'hisn-212',
     'hisn-210',
+    'hisn-233',
     'hisn-235',
     'hisn-237',
     'hisn-238',
+    'hisn-246',
     'hisn-188',
+    'hisn-189',
     'hisn-230',
     'hisn-240',
+    'hisn-245',
+    'hisn-144',
   ]);
   await TestBed.configureTestingModule({
     imports: [DuasPage],
@@ -353,6 +360,7 @@ it('routes the bilingual library, validates saved data and persists bookmark cha
             'Ezan',
             'Hadž i umra',
             'Kuća',
+            'Kurban',
             'Odjeća',
             'Post i hrana',
             'Priroda i vrijeme',
@@ -382,6 +390,7 @@ it('routes the bilingual library, validates saved data and persists bookmark cha
             'Mosque',
             'Nature and weather',
             'Protection',
+            'Qurbani',
             'Sleep and dreams',
             'Toilet',
             'Travel',

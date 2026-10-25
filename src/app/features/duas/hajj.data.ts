@@ -1,8 +1,29 @@
 import type { Dua } from './duas.data';
 
-// Bosnian titles, transcriptions and meanings: reader's 2017 Hisnul-Muslimi photographs, pages 136–141.
-// English and Arabic: linked Sunnah.com entries. Hisn 233 is not on those pages.
+// Bosnian titles, transcriptions and meanings: reader's 2017 photographs, pages 136–141 and 144.
+// English and Arabic: linked Sunnah.com entries.
 export const HAJJ_DUAS: readonly Dua[] = [
+  {
+    id: 'hisn-233',
+    title: {
+      bs: 'Telbijja hadža ili umre',
+      en: 'The Hajj or Umrah talbiyah',
+    },
+    arabic:
+      'لَبَّيْكَ اللَّهُمَّ لَبَّيْكَ، لَبَّيْكَ لاَ شَرِيكَ لَكَ لَبَّيْكَ، إِنَّ الْحَمْدَ والنِّعْمَة لَكَ والمُلْكُ، لَا شَرِيكَ لَكَ',
+    transcription: {
+      bs: 'Lebbejke-llāhumme lebbejk, lebbejke lā šerīke leke lebbejke. Inne-l-ḥamde ven-ni‘mete leke ve-l-mulk, lā šerīke lek.',
+      en: "Labbayk-Allāhumma labbayk, labbayka lā sharīka laka labbayk, inna ‘l-ḥamda, wanni`mata, laka wa ‘l-mulk, lā sharīka lak.",
+    },
+    translation: {
+      bs: 'Odazivam Ti se, Allahu moj, odazivam. Odazivam se Tebi, Koji ravnoga Sebi nemaš, odazivam. Doista, zahvalnost i sve blagodati pripadaju Tebi, kao i sva vlast. Ti Sebi nemaš ravnoga.',
+      en: 'I am here at Your service, O Allah, I am here at Your service. I am here at Your service, You have no partner, I am here at Your service. Surely the praise, and blessings are Yours, and the dominion. You have no partner.',
+    },
+    reference: { bs: 'Hisnul-Muslimi, 231', en: 'Hisn al-Muslim, 233' },
+    sourceUrl: 'https://sunnah.com/hisn:233',
+    bosnianSourceUrl:
+      'https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=89',
+  },
   {
     id: 'hisn-235',
     title: {

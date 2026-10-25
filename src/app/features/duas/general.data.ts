@@ -1,8 +1,8 @@
 import type { Dua } from './duas.data';
 
-// Bosnian meanings: IslamHouse Hisnul-Muslimi, entries 77, 80, 82, 79, 177, 215, and 225.
-// Bosnian 215 and 225 follow the reader's photographs; 215's Latin line is adapted from the Arabic.
-// English and Arabic: Sunnah.com Hisn al-Muslim, entries 79, 84, 86, 97, 188, 230, and 240.
+// Bosnian meanings: IslamHouse Hisnul-Muslimi, entries 77, 80, 82, 79, 177, 215, 225, 232, and 233.
+// Bosnian 215, 225, 232, and 233 follow the reader's photographs; 215's Latin line is adapted from the Arabic.
+// English and Arabic: Sunnah.com Hisn al-Muslim, entries 79, 84, 86, 97, 188, 189, 230, 240, and 245.
 export const GENERAL_DUAS: readonly Dua[] = [
   {
     id: 'hisn-188',
@@ -45,6 +45,27 @@ export const GENERAL_DUAS: readonly Dua[] = [
       'https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=67',
   },
   {
+    id: 'hisn-189',
+    title: {
+      bs: 'Šta se izgovara kad nevjernik kihne',
+      en: 'Reply to a non-Muslim who sneezes and praises Allah',
+    },
+    arabic: 'يَهْـديكُـمُ اللهُ وَيُصْـلِحُ بالَـكُم',
+    transcription: {
+      bs: 'Jehdikumullāhu ve juṣliḥu bālekum.',
+      en: 'Yahdīkumullāhu wa yuṣliḥu bālakum.',
+    },
+    translation: {
+      bs: 'Allah vas uputio i popravio vaše stanje.',
+      en: 'May Allah guide you and set your affairs in order.',
+    },
+    reference: { bs: 'Hisnul-Muslimi, 233', en: 'Hisn al-Muslim, 189' },
+    sourceUrl: 'https://sunnah.com/hisn:189',
+    bosnianSourceUrl:
+      'https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=89',
+  },
+
+  {
     id: 'hisn-230',
     title: { bs: 'Dova za onoga koga si grdio', en: 'For someone you have spoken ill of' },
     arabic: 'اللَّهُم فأيما مؤمن سببته فاجعل ذلك له قربة إليك يوم القيامة',
@@ -74,6 +95,38 @@ export const GENERAL_DUAS: readonly Dua[] = [
     sourceUrl: 'https://sunnah.com/hisn:240',
     bosnianSourceUrl:
       'https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=87',
+  },
+  {
+    id: 'hisn-245',
+    title: { bs: 'Dova prilikom jezovitoga događaja', en: 'When startled' },
+    arabic: 'لا إلهَ إلاّ اللّهُ',
+    transcription: { bs: 'Lā ilāhe illellāhu.', en: 'Lā ilāha illallāh.' },
+    translation: {
+      bs: 'Nema boga osim Allaha.',
+      en: 'There is none worthy of worship but Allah.',
+    },
+    reference: { bs: 'Hisnul-Muslimi, 232', en: 'Hisn al-Muslim, 245' },
+    sourceUrl: 'https://sunnah.com/hisn:245',
+    bosnianSourceUrl:
+      'https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=89',
+  },
+  {
+    id: 'hisn-144',
+    title: { bs: 'Dova kada se dogodi nešto nepoželjno', en: 'When something unwelcome happens' },
+    arabic: 'قَدَّرَ اللَّهُ وَمَا شَاءَ فَعَلَ',
+    instructions: {
+      bs: 'Kad te nešto zadesi, ne reci „Da učinih tako i tako”, nego prouči ovu dovu.',
+      en: 'When a setback occurs, do not say “If only I had done such and such”, rather say this supplication.',
+    },
+    transcription: { bs: 'Qadderellāhu ve mā šāe fe‘al.', en: "Qaddarallāhu wa mā shā'a fa`al." },
+    translation: {
+      bs: 'Allah je to odredio i, što je htio, učinio je.',
+      en: 'It is the Decree of Allah and He does whatever He wills.',
+    },
+    reference: { bs: 'Hisnul-Muslimi, 135', en: 'Hisn al-Muslim, 144' },
+    sourceUrl: 'https://sunnah.com/hisn:144',
+    bosnianSourceUrl:
+      'https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=53',
   },
   // {
   //   id: 'hisn-79',

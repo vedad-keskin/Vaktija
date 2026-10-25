@@ -12,6 +12,7 @@ import { GENERAL_DUAS } from './general.data';
 import { HAJJ_DUAS } from './hajj.data';
 import { HOME_DUAS } from './home.data';
 import { ILLNESS_DUAS } from './illness.data';
+import { KURBAN_DUAS } from './kurban.data';
 import { MARRIAGE_DUAS } from './marriage.data';
 import { MOSQUE_DUAS } from './mosque.data';
 import { PROTECTION_DUAS } from './protection.data';
@@ -75,6 +76,7 @@ export const DUA_CATEGORIES = [
   { id: 'home', label: { bs: 'Kuća', en: 'Home' }, items: HOME_DUAS },
   { id: 'travel', label: { bs: 'Putovanje', en: 'Travel' }, items: TRAVEL_DUAS },
   { id: 'hajj', label: { bs: 'Hadž i umra', en: 'Hajj and Umrah' }, items: HAJJ_DUAS },
+  { id: 'kurban', label: { bs: 'Kurban', en: 'Qurbani' }, items: KURBAN_DUAS },
   { id: 'general', label: { bs: 'Opće', en: 'General' }, items: GENERAL_DUAS },
 ] as const;
 
