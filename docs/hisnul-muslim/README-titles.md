@@ -227,7 +227,7 @@ Brojevi, poglavlja i vrste zapisa provjereni su prema [OpenDua datasetu v0.0.4](
 - [ ] [HM-150 · Dove teško bolesne osobe (1/3) / For a seriously ill person (1/3)](README-full.md#hm-150) · u aplikaciji / in app
 - [ ] [HM-151 · Dove teško bolesne osobe (2/3) / For a seriously ill person (2/3)](README-full.md#hm-151)
 - [ ] [HM-152 · Dove teško bolesne osobe (3/3) / For a seriously ill person (3/3)](README-full.md#hm-152)
-- [ ] ★ [HM-243 · Dova pri tjelesnoj boli / For bodily pain](README-full.md#hm-243) · u aplikaciji / in app · uputa / instruction
+- [ ] ★ [HM-243 · Dova pri tjelesnoj boli / For bodily pain](README-full.md#hm-243) · u aplikaciji / in app · uputa / instruction (2 izgovora / 2 sayings)
 
 ## Smrt / Death
 

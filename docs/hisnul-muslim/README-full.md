@@ -1242,21 +1242,35 @@ The source reports that the Prophet wiped his face with wet hands while saying t
 <a id="hm-243"></a>
 ### HM-243 · Dova pri tjelesnoj boli / For bodily pain
 
-**Arapski / Arabic — recited words only**
+Jedna kartica prikazuje dva izgovora, svaki u svom redu sa svojim brojem ponavljanja. / One card shows the two sayings in separate rows, each with its own repeat count.
 
-<p lang="ar" dir="rtl">بِسْمِ اللَّهِ. أَعُوذُ بِاللَّهِ وَقُدْرَتِهِ مِنْ شَرِّ مَا أَجِدُ وَأُحَاذِرُ</p>
+#### 1. Bismillāh / With the Name of Allah
 
-**Bosanski — uputa (2017 edition, Bosnian 228):** Stavi ruku na površinu tijela gdje osjećaš bol. Izgovori „Bismillāh” tri puta, zatim „E‘ūḏu billāhi…” sedam puta.
+**Uputa / Instruction:** Stavi ruku na površinu tijela gdje osjećaš bol. Izgovori tri puta. / Place your hand on the painful area. Say this three times.
 
-**English — instruction (Sunnah.com 243):** Put your hand on the place where you feel pain. Say “Bismillāh” three times, then say the second phrase seven times.
+**Arapski / Arabic:** <span lang="ar" dir="rtl">بِسْمِ اللَّهِ</span>
 
-**Bosanski — transkripcija (2017 edition, Bosnian 228):** Bismillāh. E‘ūḏu billāhi ve qudretihī min šerri mā edžidu ve uḥāḏiru.
+**Bosanski — transkripcija (2017 edition, Bosnian 228):** Bismillāh.
 
-**Bosanski — prijevod (2017 edition, Bosnian 228; opening from IslamHouse 9):** U ime Allaha. Tražim zaštitu od Allaha i Njegove svemoći protiv zla koga nalazim i koga se plašim.
+**English — transliteration (Sunnah.com 243):** Bismillāh.
 
-**English — transliteration (Sunnah.com 243):** Bismillāh. A&#96;ūdhu billāhi wa qudratihi min sharri mā ajidu wa uḥādhir.
+**Bosanski — prijevod (IslamHouse 9):** U ime Allaha.
 
-**English — meaning (Sunnah.com 243):** With the Name of Allah. I seek refuge in Allah and in His Power from the evil of what I find and of what I guard against.
+**English — meaning:** With the Name of Allah.
+
+#### 2. Utječem se Allahu / I seek refuge in Allah
+
+**Uputa / Instruction:** Zatim izgovori sedam puta. / Then say this seven times.
+
+**Arapski / Arabic:** <span lang="ar" dir="rtl">أَعُوذُ بِاللَّهِ وَقُدْرَتِهِ مِنْ شَرِّ مَا أَجِدُ وَأُحَاذِرُ</span>
+
+**Bosanski — transkripcija (2017 edition, Bosnian 228):** E‘ūḏu billāhi ve qudretihī min šerri mā edžidu ve uḥāḏiru.
+
+**English — transliteration (Sunnah.com 243):** A&#96;ūdhu billāhi wa qudratihi min sharri mā ajidu wa uḥādhir.
+
+**Bosanski — prijevod (2017 edition, Bosnian 228):** Tražim zaštitu od Allaha i Njegove svemoći protiv zla koga nalazim i koga se plašim.
+
+**English — meaning:** I seek refuge in Allah and in His Power from the evil of what I find and of what I guard against.
 
 **Sources:** [Bosnian PDF, pages 87–88](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=87) · [Bosnian Bismillah meaning, page 9](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=9) · [English and Arabic](https://sunnah.com/hisn:243)
 

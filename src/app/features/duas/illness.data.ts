@@ -6,19 +6,32 @@ export const ILLNESS_DUAS: readonly Dua[] = [
   {
     id: 'hisn-243',
     title: { bs: 'Dova pri tjelesnoj boli', en: 'For bodily pain' },
-    arabic: 'بِسْمِ اللَّهِ. أَعُوذُ بِاللَّهِ وَقُدْرَتِهِ مِنْ شَرِّ مَا أَجِدُ وَأُحَاذِرُ',
-    instructions: {
-      bs: 'Stavi ruku na površinu tijela gdje osjećaš bol. Izgovori „Bismillāh” tri puta, zatim ostatak dove sedam puta.',
-      en: 'Place your hand on the painful area. Say “Bismillāh” three times, then recite the rest seven times.',
-    },
-    transcription: {
-      bs: 'Bismillāh. E‘ūḏu billāhi ve qudretihī min šerri mā edžidu ve uḥāḏiru.',
-      en: 'Bismillāh. A`ūdhu billāhi wa qudratihi min sharri mā ajidu wa uḥādhir.',
-    },
-    translation: {
-      bs: 'U ime Allaha. Tražim zaštitu od Allaha i Njegove svemoći protiv zla koga nalazim i koga se plašim.',
-      en: 'With the Name of Allah. I seek refuge in Allah and in His Power from the evil of what I find and of what I guard against.',
-    },
+    sayings: [
+      {
+        arabic: 'بِسْمِ اللَّهِ',
+        instructions: {
+          bs: 'Stavi ruku na površinu tijela gdje osjećaš bol. Izgovori tri puta.',
+          en: 'Place your hand on the painful area. Say this three times.',
+        },
+        transcription: { bs: 'Bismillāh.', en: 'Bismillāh.' },
+        translation: { bs: 'U ime Allaha.', en: 'With the Name of Allah.' },
+      },
+      {
+        arabic: 'أَعُوذُ بِاللَّهِ وَقُدْرَتِهِ مِنْ شَرِّ مَا أَجِدُ وَأُحَاذِرُ',
+        instructions: {
+          bs: 'Zatim izgovori sedam puta.',
+          en: 'Then say this seven times.',
+        },
+        transcription: {
+          bs: 'E‘ūḏu billāhi ve qudretihī min šerri mā edžidu ve uḥāḏiru.',
+          en: 'A`ūdhu billāhi wa qudratihi min sharri mā ajidu wa uḥādhir.',
+        },
+        translation: {
+          bs: 'Tražim zaštitu od Allaha i Njegove svemoći protiv zla koga nalazim i koga se plašim.',
+          en: 'I seek refuge in Allah and in His Power from the evil of what I find and of what I guard against.',
+        },
+      },
+    ],
     reference: { bs: 'Hisnul-Muslimi, 228', en: 'Hisn al-Muslim, 243' },
     sourceUrl: 'https://sunnah.com/hisn:243',
     bosnianSourceUrl:

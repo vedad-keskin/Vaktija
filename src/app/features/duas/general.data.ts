@@ -5,6 +5,54 @@ import type { Dua } from './duas.data';
 // English and Arabic: Sunnah.com Hisn al-Muslim, entries 79, 84, 86, 97, 188, 189, 230, 240, and 245.
 export const GENERAL_DUAS: readonly Dua[] = [
   {
+    id: 'quran-28-24',
+    title: { bs: 'Dova potrebe', en: 'Supplication of need' },
+    arabic: 'رَبِّ إِنِّي لِمَا أَنزَلْتَ إِلَيَّ مِنْ خَيْرٍ فَقِيرٌ',
+    transcription: {
+      bs: 'Rabbi innī limā enzalte ilejje min ḫajrin faqīr.',
+      en: 'Rabbi innī limā anzalta ilayya min khayrin faqīr.',
+    },
+    translation: {
+      bs: 'Gospodaru moj, meni je zaista potrebno svako dobro koje mi Ti spustiš.',
+      en: 'My Lord, I am truly in need of whatever good You send down to me.',
+    },
+    reference: { bs: 'Kur’an, 28:24', en: 'Quran, 28:24' },
+    sourceUrl: 'https://quran.com/28/24',
+    bosnianSourceUrl: 'https://quranenc.com/bs/browse/bosnian_korkut/28/24',
+  },
+  {
+    id: 'quran-20-114',
+    title: { bs: 'Dova za znanje', en: 'Supplication for knowledge' },
+    arabic: 'رَبِّ زِدْنِي عِلْمًا',
+    transcription: {
+      bs: 'Rabbi zidnī ‘ilmā.',
+      en: 'Rabbi zidnī `ilmā.',
+    },
+    translation: {
+      bs: 'Gospodaru moj, Ti znanje moje proširi!',
+      en: 'My Lord, increase me in knowledge.',
+    },
+    reference: { bs: 'Kur’an, 20:114', en: 'Quran, 20:114' },
+    sourceUrl: 'https://quran.com/20/114',
+    bosnianSourceUrl: 'https://quranenc.com/bs/browse/bosnian_korkut/20/114',
+  },
+  {
+    id: 'quran-20-25',
+    title: { bs: 'Dova za olakšanje govora', en: 'Supplication for ease of speech' },
+    arabic:
+      'رَبِّ اشْرَحْ لِي صَدْرِي وَيَسِّرْ لِي أَمْرِي وَاحْلُلْ عُقْدَةً مِنْ لِسَانِي يَفْقَهُوا قَوْلِي',
+    transcription: {
+      bs: 'Rabbi-šraḥ lī ṣadrī, ve jessir lī emrī, vaḥlul ‘uqdeten min lisānī, jefqahū qavlī.',
+      en: 'Rabbi-shraḥ lī ṣadrī, wa yassir lī amrī, waḥlul `uqdatan min lisānī, yafqahū qawlī.',
+    },
+    translation: {
+      bs: 'Gospodaru moj, učini prostranim prsa moja, i olakšaj zadatak moj. Odriješi uzao s jezika mog, da bi razumjeli govor moj.',
+      en: 'My Lord, expand for me my breast and ease for me my task and untie the knot from my tongue that they may understand my speech.',
+    },
+    reference: { bs: 'Kur’an, 20:25–28', en: 'Quran, 20:25–28' },
+    sourceUrl: 'https://quran.com/20/25',
+  },
+  {
     id: 'hisn-188',
     title: { bs: 'Dova prilikom kihanja', en: 'Upon sneezing' },
     sayings: [

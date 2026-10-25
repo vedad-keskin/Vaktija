@@ -12,7 +12,7 @@ export const PROTECTION_DUAS: readonly Dua[] = [
       en: 'Lā ilāha illā anta subḥānaka innī kuntu minaẓ-ẓālimīn.',
     },
     translation: {
-      bs: 'Nema boga osim Tebe. Neka si slavljen Ti, zaista sam ja bio među griješnicima.',
+      bs: 'Nema boga osim Tebe, slavljen neka si, ja sam se uistinu prema sebi ogriješio.',
       en: 'There is none worthy of worship but You, glory is to You. Surely, I was among the wrongdoers.',
     },
     reference: { bs: 'Hisnul-Muslimi, 119', en: 'Hisn al-Muslim, 124' },
