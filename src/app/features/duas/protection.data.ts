@@ -90,47 +90,11 @@ export const PROTECTION_DUAS: readonly Dua[] = [
       'https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=52',
   },
   {
-    id: 'hisn-140',
-    title: { bs: 'Dova nakon počinjenog grijeha', en: 'After committing a sin' },
-    arabic: 'أَسْتَغْفِرُ اللَّهَ',
-    instructions: {
-      bs: 'Svakome vjerniku koji počini grijeh, pa potom lijepo uzme abdest, klanja dva rekata i zatim zamoli Allaha za oprost ovim riječima, Allah mu oprosti počinjeni grijeh.',
-      en: 'After committing a sin, perform ablution well, pray two rak‘ahs, then ask Allah for forgiveness.',
-    },
-    transcription: { bs: 'Estagfirullāh.', en: 'Astaghfirullāh.' },
-    translation: { bs: 'Tražim oprost od Allaha.', en: 'I seek Allah’s forgiveness.' },
-    reference: { bs: 'Hisnul-Muslimi, 131', en: 'Hisn al-Muslim, 140' },
-    sourceUrl: 'https://sunnah.com/hisn:140',
-    bosnianSourceUrl:
-      'https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=52',
-  },
-  {
-    id: 'hisn-141',
-    title: {
-      bs: 'Dova za zaštitu od šejtana i njegovih došaptavanja',
-      en: 'Protection from Satan and his whisperings',
-    },
-    arabic: 'أَعُوذُ بِاللَّهِ مِنَ الشَّيْطَانِ الرَّجِيمِ',
-    transcription: {
-      bs: 'E‘ūdu billāhi mineš-šejṭānir-radžīm.',
-      en: 'A`ūdhu billāhi minash-shayṭānir-rajīm.',
-    },
-    translation: {
-      bs: 'Utječem se Allahu od prokletog šejtana.',
-      en: 'I seek refuge in Allah from Satan the outcast.',
-    },
-    reference: { bs: 'Hisnul-Muslimi, 132', en: 'Hisn al-Muslim, 141' },
-    sourceUrl: 'https://sunnah.com/hisn:141',
-    bosnianSourceUrl:
-      'https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=52',
-  },
-
-  {
     id: 'hisn-193',
     title: { bs: 'Dova protiv izljeva srdžbe', en: 'When angry' },
     arabic: 'أَعُوذُ بِاللَّهِ مِنَ الشَّيْطَانِ الرَّجِيمِ',
     transcription: {
-      bs: 'E‘ūzu billāhi mine-š-šejtān-r-radžīm.',
+      bs: 'E‘ūḏu billāhi mine-š-šejṭān-r-rādžīm.',
       en: 'A`ūdhu billāhi minash-Shayṭānir-rajīm.',
     },
     translation: {
@@ -172,7 +136,7 @@ export const PROTECTION_DUAS: readonly Dua[] = [
     arabic: 'أَعُوذُ بِاللَّهِ مِنْ فِتْنَةِ الْمَسِيحِ الدَّجَّالِ',
 
     transcription: {
-      bs: 'E‘ūdu billāhi min fitnetil-mesīhi-d-dedždžāli.',
+      bs: 'E‘ūḏu billāhi min fitnetil-mesīhi-d-dedždžāli.',
       en: "A`ūdhu billāhi min fitnati ‘l-masīḥid-dajjāl.",
     },
     translation: {
