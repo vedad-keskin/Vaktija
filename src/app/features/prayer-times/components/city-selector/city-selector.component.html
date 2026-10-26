@@ -29,12 +29,14 @@
     <div class="selector-dropdown">
       <div class="search-wrapper">
         <input
+          #searchInput
           type="text"
           class="search-input"
           [placeholder]="labels().searchCity"
           [attr.aria-label]="labels().searchCity"
           [ngModel]="searchTerm()"
           (ngModelChange)="searchTerm.set($event)"
+          (keydown.enter)="selectFirstMatch()"
           id="city-search-input"
         />
       </div>

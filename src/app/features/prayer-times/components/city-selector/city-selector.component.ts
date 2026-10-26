@@ -1,4 +1,4 @@
-import { Component, input, output, signal, computed, inject, HostListener } from '@angular/core';
+import { afterNextRender, Component, computed, ElementRef, HostListener, inject, Injector, input, output, signal, viewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Location } from '../../../../core/models/location.model';
 import { LanguageService } from '../../../../core/services/language.service';
@@ -12,6 +12,8 @@ import { LanguageService } from '../../../../core/services/language.service';
 })
 export class CitySelectorComponent {
   protected readonly labels = inject(LanguageService).labels;
+  private readonly injector = inject(Injector);
+  private readonly searchInput = viewChild<ElementRef<HTMLInputElement>>('searchInput');
   readonly locations = input<Location[]>([]);
   readonly selected = input<Location | null>(null);
   readonly compact = input(false);
@@ -44,6 +46,9 @@ export class CitySelectorComponent {
     this.isOpen.update((v) => !v);
     if (this.isOpen()) {
       this.searchTerm.set('');
+      if (window.matchMedia?.('(hover: hover) and (pointer: fine)').matches) {
+        afterNextRender(() => this.searchInput()?.nativeElement.focus(), { injector: this.injector });
+      }
     }
   }
 
@@ -51,5 +56,10 @@ export class CitySelectorComponent {
     this.selectionChange.emit(location);
     this.isOpen.set(false);
     this.searchTerm.set('');
+  }
+
+  protected selectFirstMatch(): void {
+    const location = this.filteredLocations()[0];
+    if (location) this.selectCity(location);
   }
 }
