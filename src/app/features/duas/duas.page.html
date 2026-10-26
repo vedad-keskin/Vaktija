@@ -1,5 +1,5 @@
 <div class="duas-page" [attr.lang]="language.lang()">
-  <app-header>
+  <app-header [city]="selectedCity()">
     <app-city-selector
       [locations]="locations()"
       [selected]="selectedCity()"
@@ -10,7 +10,7 @@
   <main class="duas-main">
     <header class="duas-heading">
       <a
-        routerLink="/"
+        [routerLink]="timesPath()"
         class="duas-back"
         [attr.aria-label]="labels().qiblaBackToTimes"
         [title]="labels().qiblaBackToTimes"

@@ -3,6 +3,7 @@ import { By } from '@angular/platform-browser';
 import { provideRouter } from '@angular/router';
 import { vi } from 'vitest';
 import { QiblaPage } from './qibla.page';
+import { routes } from '../../app.routes';
 import { CitySelectorComponent } from '../prayer-times/components/city-selector/city-selector.component';
 import { LanguageService } from '../../core/services/language.service';
 import { LocationService } from '../../core/services/location.service';
@@ -45,7 +46,7 @@ it('uses the navbar city, handles GPS denial and cancellation, and starts with a
 
   await TestBed.configureTestingModule({
     imports: [QiblaPage],
-    providers: [provideRouter([])],
+    providers: [provideRouter(routes)],
   }).compileComponents();
   const fixture = TestBed.createComponent(QiblaPage);
   try {

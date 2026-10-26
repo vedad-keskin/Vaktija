@@ -87,6 +87,7 @@ export class DuasPage {
   });
   protected readonly locations = signal<Location[]>([]);
   protected readonly selectedCity = signal(this.locationService.getSelectedLocation());
+  protected readonly timesPath = computed(() => `/${this.locationService.citySlug(this.selectedCity())}`);
   protected readonly savedIds = signal(this.readSavedIds());
   protected readonly storageError = signal(false);
   private readonly queryParams = toSignal(this.route.queryParamMap, {

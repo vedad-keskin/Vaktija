@@ -1,6 +1,8 @@
-import { Component, inject, OnInit, OnDestroy, signal, computed, effect, untracked } from '@angular/core';
+import { Component, DestroyRef, inject, OnInit, OnDestroy, signal, computed, effect, untracked } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Subscription } from 'rxjs';
 import { Title } from '@angular/platform-browser';
+import { ActivatedRoute, Router } from '@angular/router';
 import { HeaderComponent } from './components/header/header.component';
 import { CitySelectorComponent } from './components/city-selector/city-selector.component';
 import { PrayerCardComponent } from './components/prayer-card/prayer-card.component';
@@ -32,6 +34,9 @@ export class PrayerTimesPage implements OnInit, OnDestroy {
   private readonly prayerTimeService = inject(PrayerTimeService);
   private readonly prayerTimesCache = inject(PrayerTimesCacheService);
   private readonly locationService = inject(LocationService);
+  private readonly destroyRef = inject(DestroyRef);
+  private readonly route = inject(ActivatedRoute);
+  private readonly router = inject(Router);
   private readonly titleService = inject(Title);
   protected readonly langService = inject(LanguageService);
   private readonly methodService = inject(CalculationMethodService);
@@ -192,8 +197,9 @@ export class PrayerTimesPage implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.prayerTimesCache.pruneStale();
     this.loadLocations();
-    const saved = this.locationService.getSelectedLocation();
-    this.selectedLocation.set(saved);
+    this.route.paramMap.pipe(takeUntilDestroyed(this.destroyRef)).subscribe(() => {
+      this.selectedLocation.set(this.locationService.getSelectedLocation());
+    });
     // Prayer load is driven by the constructor effect when `selectedLocation` / lang / method change.
 
     // Tick every second for countdown + relative times
@@ -218,6 +224,7 @@ export class PrayerTimesPage implements OnInit, OnDestroy {
   protected onCityChange(location: Location): void {
     this.selectedLocation.set(location);
     this.locationService.setSelectedLocation(location);
+    void this.router.navigateByUrl(`/${this.locationService.citySlug(location)}`);
     // Reload via effect (tracks selectedLocation).
   }
 

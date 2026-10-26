@@ -1,5 +1,5 @@
 ﻿<div class="prayer-times-page" [attr.lang]="langService.lang()">
-  <app-header>
+  <app-header [city]="selectedLocation()">
     <app-city-selector
       [locations]="locations()"
       [selected]="selectedLocation()"

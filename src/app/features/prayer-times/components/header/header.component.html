@@ -1,5 +1,5 @@
 <header class="app-header" [class.motion]="motion()">
-  <a routerLink="/" class="header-brand" [attr.aria-label]="labels().appTitle">
+  <a [routerLink]="timesPath()" class="header-brand" [attr.aria-label]="labels().appTitle">
     <img [src]="'assets/icons/' + logoFilename" alt="" class="header-logo" width="38" height="38" />
   </a>
 
@@ -63,7 +63,7 @@
       </span>
     </a>
     <a
-      routerLink="/qibla"
+      [routerLink]="qiblaPath()"
       routerLinkActive="header-qibla--active"
       ariaCurrentWhenActive="page"
       class="header-qibla"
@@ -235,7 +235,7 @@
         </span>
       </a>
       <a
-        routerLink="/qibla"
+        [routerLink]="qiblaPath()"
         routerLinkActive="header-qibla--active"
         ariaCurrentWhenActive="page"
         class="header-qibla header-qibla--mobile-drawer"

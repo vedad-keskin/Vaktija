@@ -11,7 +11,8 @@ import {
   viewChild,
 } from '@angular/core';
 import { Title } from '@angular/platform-browser';
-import { RouterLink } from '@angular/router';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { HeaderComponent } from '../prayer-times/components/header/header.component';
 import { CitySelectorComponent } from '../prayer-times/components/city-selector/city-selector.component';
 import { LocationService } from '../../core/services/location.service';
@@ -72,6 +73,8 @@ export class QiblaPage implements OnInit {
   protected readonly tickMarks = Array.from({ length: 72 }, (_, i) => i);
 
   private readonly locationService = inject(LocationService);
+  private readonly route = inject(ActivatedRoute);
+  private readonly router = inject(Router);
   private readonly title = inject(Title);
   protected readonly langService = inject(LanguageService);
   private readonly destroyRef = inject(DestroyRef);
@@ -80,6 +83,9 @@ export class QiblaPage implements OnInit {
   protected readonly locations = signal<Location[]>([]);
   protected readonly source = signal<LocationSource>('preset');
   protected readonly selectedPreset = signal<Location | null>(null);
+  protected readonly timesPath = computed(() =>
+    this.selectedPreset() ? `/${this.locationService.citySlug(this.selectedPreset()!)}` : '/',
+  );
   protected readonly gpsCoords = signal<{ lat: number; lng: number } | null>(null);
   private readonly gpsError = signal<'qiblaGpsDenied' | 'qiblaGpsError' | null>(null);
   protected readonly gpsMessage = computed(() => {
@@ -469,8 +475,13 @@ export class QiblaPage implements OnInit {
 
   ngOnInit(): void {
     this.locationService.getLocations().subscribe((list) => this.locations.set(list));
-    const sel = this.locationService.getSelectedLocation();
-    this.selectedPreset.set(sel);
+    this.route.paramMap.pipe(takeUntilDestroyed(this.destroyRef)).subscribe(() => {
+      const city = this.locationService.getSelectedLocation();
+      if (this.selectedPreset()?.name !== city.name) {
+        this.setSource('preset');
+        this.selectedPreset.set(city);
+      }
+    });
   }
 
   protected setSource(mode: LocationSource): void {
@@ -490,6 +501,7 @@ export class QiblaPage implements OnInit {
     this.setSource('preset');
     this.selectedPreset.set(loc);
     this.locationService.setSelectedLocation(loc);
+    void this.router.navigateByUrl(`/qibla/${this.locationService.citySlug(loc)}`);
   }
 
   private startGps(): void {

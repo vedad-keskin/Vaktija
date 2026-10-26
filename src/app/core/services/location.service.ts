@@ -8,6 +8,15 @@ const DEFAULT_LOCATION: Location = { name: 'Sarajevo', lat: 43.8486, lng: 18.356
 
 @Injectable({ providedIn: 'root' })
 export class LocationService {
+  citySlug(location: Location): string {
+    return location.name.normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+      .toLowerCase().replace(/đ/g, 'dj').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+  }
+
+  getLocationBySlug(slug: string): Location | undefined {
+    return BOSNIA_PRESET_CITIES.find((city) => this.citySlug(city) === slug);
+  }
+
   getLocations(): Observable<Location[]> {
     return of([...BOSNIA_PRESET_CITIES]);
   }

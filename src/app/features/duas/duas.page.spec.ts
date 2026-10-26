@@ -314,13 +314,13 @@ it('routes the bilingual library, validates saved data and persists bookmark cha
   expect([...desktopLinks].map((a) => a.getAttribute('href'))).toEqual([
     '/duas',
     '/dhikr',
-    '/qibla',
+    '/qibla/sarajevo',
   ]);
   expect(
     [...element().querySelectorAll<HTMLAnchorElement>('.mobile-page-links > a')].map((a) =>
       a.getAttribute('href'),
     ),
-  ).toEqual(['/duas', '/dhikr', '/qibla']);
+  ).toEqual(['/duas', '/dhikr', '/qibla/sarajevo']);
   element().querySelector<HTMLButtonElement>('#nav-hamburger')!.click();
   harness.detectChanges();
   expect(element().querySelector('.mobile-dropdown')?.classList.contains('open')).toBe(true);
