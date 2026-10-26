@@ -18,6 +18,19 @@ it('keeps city URLs, saved selection, prayer times, and Qibla in sync', async ()
     en: { prayerTimes: [], locationName: 'Jablanica', dateLabel: 'Today', hijriDate: '' },
   };
   const getTodayPrayerTimes = vi.fn(() => of({ snapshots }));
+  const originalGeo = Object.getOwnPropertyDescriptor(navigator, 'geolocation');
+  let gpsSuccess: PositionCallback;
+  const clearWatch = vi.fn();
+  Object.defineProperty(navigator, 'geolocation', {
+    configurable: true,
+    value: {
+      watchPosition: vi.fn((success: PositionCallback) => {
+        gpsSuccess = success;
+        return 42;
+      }),
+      clearWatch,
+    },
+  });
 
   try {
     await TestBed.configureTestingModule({
@@ -52,11 +65,32 @@ it('keeps city URLs, saved selection, prayer times, and Qibla in sync', async ()
     expect(TestBed.inject(Router).url).toBe('/jablanica');
 
     await harness.navigateByUrl('/qibla');
-    expect(TestBed.inject(Router).url).toBe('/qibla/jablanica');
+    expect(TestBed.inject(Router).url).toBe('/qibla');
     expect(harness.routeNativeElement!.querySelector('#qibla-location-title')!.textContent)
       .toContain('Jablanica');
+    await harness.navigateByUrl('/qibla/jablanica');
     expect(harness.routeNativeElement!.querySelector('a.qibla-back')!.getAttribute('href'))
       .toBe('/jablanica');
+
+    const qiblaPage = harness.routeDebugElement!.componentInstance;
+    harness.routeNativeElement!.querySelector<HTMLButtonElement>('.qibla-gps')!.click();
+    await harness.fixture.whenStable();
+    expect(TestBed.inject(Router).url).toBe('/qibla');
+    expect(harness.routeDebugElement!.componentInstance).toBe(qiblaPage);
+    gpsSuccess!({ coords: { latitude: 43.6622, longitude: 17.7573 } } as GeolocationPosition);
+    await harness.fixture.whenStable();
+    expect(harness.routeNativeElement!.querySelector('.qibla-coords')!.textContent)
+      .toContain('43.6622');
+    expect(clearWatch).not.toHaveBeenCalled();
+    expect(locations.getSelectedLocation().name).toBe('Jablanica');
+
+    harness.routeNativeElement!.querySelector<HTMLButtonElement>('.qibla-gps')!.click();
+    await harness.fixture.whenStable();
+    expect(TestBed.inject(Router).url).toBe('/qibla/jablanica');
+    expect(harness.routeDebugElement!.componentInstance).toBe(qiblaPage);
+    expect(clearWatch).toHaveBeenCalledWith(42);
+    expect(harness.routeNativeElement!.querySelector('#qibla-location-title')!.textContent)
+      .toContain('Jablanica');
 
     const qiblaSelector = harness.routeDebugElement!.query(By.directive(CitySelectorComponent))
       .componentInstance as CitySelectorComponent;
@@ -74,6 +108,8 @@ it('keeps city URLs, saved selection, prayer times, and Qibla in sync', async ()
     expect(TestBed.inject(Router).url).toBe('/jablanica');
     expect(locations.getSelectedLocation().name).toBe('Jablanica');
   } finally {
+    if (originalGeo) Object.defineProperty(navigator, 'geolocation', originalGeo);
+    else Reflect.deleteProperty(navigator, 'geolocation');
     localStorage.clear();
   }
 });

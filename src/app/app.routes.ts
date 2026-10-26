@@ -4,8 +4,10 @@ import { PrayerTimesPage } from './features/prayer-times/prayer-times.page';
 import { LocationService } from './core/services/location.service';
 
 const selectCityFromUrl: CanActivateFn = (route) => {
+  const slug = route.paramMap.get('city');
+  if (!slug) return true;
   const locations = inject(LocationService);
-  const city = locations.getLocationBySlug(route.paramMap.get('city') ?? '');
+  const city = locations.getLocationBySlug(slug);
   if (!city) return inject(Router).parseUrl('/');
   locations.setSelectedLocation(city);
   return true;
@@ -29,12 +31,12 @@ export const routes: Routes = [
     loadComponent: () => import('./features/duas/duas.page').then((m) => m.DuasPage),
   },
   {
-    path: 'qibla',
-    pathMatch: 'full',
-    redirectTo: () => `/qibla/${savedCitySlug()}`,
-  },
-  {
-    path: 'qibla/:city',
+    matcher: (segments) => {
+      if (segments[0]?.path !== 'qibla' || segments.length > 2) return null;
+      return segments[1]
+        ? { consumed: segments, posParams: { city: segments[1] } }
+        : { consumed: segments };
+    },
     canActivate: [selectCityFromUrl],
     loadComponent: () => import('./features/qibla/qibla.page').then((m) => m.QiblaPage),
   },

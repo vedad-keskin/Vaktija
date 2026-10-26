@@ -475,8 +475,9 @@ export class QiblaPage implements OnInit {
 
   ngOnInit(): void {
     this.locationService.getLocations().subscribe((list) => this.locations.set(list));
-    this.route.paramMap.pipe(takeUntilDestroyed(this.destroyRef)).subscribe(() => {
+    this.route.paramMap.pipe(takeUntilDestroyed(this.destroyRef)).subscribe((params) => {
       const city = this.locationService.getSelectedLocation();
+      if (params.has('city') && this.source() === 'gps') this.setSource('preset');
       if (this.selectedPreset()?.name !== city.name) {
         this.setSource('preset');
         this.selectedPreset.set(city);
@@ -495,6 +496,15 @@ export class QiblaPage implements OnInit {
       this.gpsCoords.set(null);
       this.gpsLoading.set(false);
     }
+  }
+
+  protected toggleGps(): void {
+    const mode = this.source() === 'gps' ? 'preset' : 'gps';
+    this.setSource(mode);
+    const city = this.selectedPreset();
+    void this.router.navigateByUrl(
+      mode === 'gps' || !city ? '/qibla' : `/qibla/${this.locationService.citySlug(city)}`,
+    );
   }
 
   protected onPresetChange(loc: Location): void {
