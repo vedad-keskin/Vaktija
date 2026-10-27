@@ -22,6 +22,24 @@ export const DEBT_DUAS: readonly Dua[] = [
       'https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=50',
   },
   {
+    id: 'hisn-121',
+    title: { bs: 'Dova protiv brige i dugova', en: 'Against sorrow and debt' },
+    arabic:
+      'اللَّهُمَّ إِنِّي أَعُوذُ بِكَ مِنَ الْهَمِّ وَالْحُزْنِ، وَالْعَجْزِ وَالْكَسَلِ، وَالْبُخْلِ وَالْجُبْنِ، وَضَلَعِ الدَّيْنِ وَغَلَبَةِ الرِّجَالِ',
+    transcription: {
+      bs: 'Allāhumme innī e‘ūḏu bike mine-l-hemmi vel-ḥazeni ve-l-‘adžzi ve-l-keseli ve-l-buḫli ve-l-džubni ve ḍal‘i-d-dejni ve galebeti-r-ridžāli.',
+      en: "Allāhumma 'innī 'a`ūdhu bika mina ‘l-ḥammi wa ‘l-ḥuzn, wa ‘l-`ajzi wa ‘l-kasal, wa ‘l-bukhli wa ‘l-jubn, wa ḍala`id-dayn, wa ghalabatir-rijāl.",
+    },
+    translation: {
+      bs: 'Allahu, tražim od Tebe zaštitu od brige i žalosti, od iznemoglosti i lijenosti, tvrdičluka i uspaničenosti te pred teretom dugovanja i ljudske nadmoći.',
+      en: 'O Allah, I seek refuge in You from grief and sadness, from weakness and laziness, from miserliness and cowardice, from being overcome by debt and overpowered by others.',
+    },
+    reference: { bs: 'Hisnul-Muslimi, 116', en: 'Hisn al-Muslim, 121' },
+    sourceUrl: 'https://sunnah.com/hisn:121',
+    bosnianSourceUrl:
+      'https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=48',
+  },
+  {
     id: 'hisn-201',
     title: {
       bs: 'Dova prilikom vraćanja duga za onoga ko ti je posudio',
