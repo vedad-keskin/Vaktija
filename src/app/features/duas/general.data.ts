@@ -2,8 +2,41 @@ import type { Dua } from './duas.data';
 
 // Bosnian meanings: IslamHouse Hisnul-Muslimi, entries 77, 80, 82, 79, 177, 215, 225, 232, and 233.
 // Bosnian 215, 225, 232, and 233 follow the reader's photographs; 215's Latin line is adapted from the Arabic.
-// English and Arabic: Sunnah.com Hisn al-Muslim, entries 79, 84, 86, 97, 188, 189, 230, 240, and 245.
+// Bosnian 75/75a follow the reader's photographs of Hisnul-Muslimi, pages 57–59.
+// English and Arabic: Sunnah.com Hisn al-Muslim, entries 77, 79, 84, 86, 97, 188, 189, 230, 240, and 245.
 export const GENERAL_DUAS: readonly Dua[] = [
+  {
+    id: 'hisn-77-morning',
+    title: { bs: 'Dova koja se uči ujutro', en: 'Morning supplication' },
+    arabic:
+      'أَصْبَحْنَا وَأَصْبَحَ الْمُلْكُ لِلَّهِ وَالْحَمْدُ لِلَّهِ، لَا إِلَهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ، رَبِّ أَسْأَلُكَ خَيْرَ مَا فِي هَذَا الْيَوْمِ وَخَيْرَ مَا بَعْدَهُ، وَأَعُوذُ بِكَ مِنْ شَرِّ مَا فِي هَذَا الْيَوْمِ وَشَرِّ مَا بَعْدَهُ، رَبِّ أَعُوذُ بِكَ مِنَ الْكَسَلِ وَسُوءِ الْكِبَرِ، رَبِّ أَعُوذُ بِكَ مِنْ عَذَابٍ فِي النَّارِ وَعَذَابٍ فِي الْقَبْرِ.',
+    transcription: {
+      bs: 'Aṣbaḥnā ve aṣbeḥa-l-mulku lillāhi, ve-l-ḥamdu lillāhi, lā ilāhe illellāhu vaḥdehu lā šerīke leh. Lehu-l-mulku ve lehu-l-ḥamdu ve huve ‘alā kulli šej’in qadīr. Rabbi es’eluke ḫajre mā fī hāḏe-l-jevmi ve ḫajre mā ba‘dehū, ve e‘ūḏu bike min šerri hāḏe-l-jevmi ve šerri mā ba‘dehū. Rabbi e‘ūḏu bike mine-l-keseli ve sūi-l-kiber. Rabbi e‘ūḏu bike min ‘aḏābin fī-n-nāri ve ‘aḏābin fī-l-qabri.',
+      en: 'Aṣbaḥnā wa aṣbaḥal-mulku lillāh, wal-ḥamdu lillāh, lā ilāha illallāhu waḥdahu lā sharīka lah. Lahul-mulku wa lahul-ḥamdu wa huwa ‘alā kulli shay’in qadīr. Rabbi as’aluka khayra mā fī hādhal-yawmi wa khayra mā ba‘dahu, wa a‘ūdhu bika min sharri mā fī hādhal-yawmi wa sharri mā ba‘dahu. Rabbi a‘ūdhu bika minal-kasali wa sū’il-kibar. Rabbi a‘ūdhu bika min ‘adhābin fin-nāri wa ‘adhābin fil-qabr.',
+    },
+    translation: {
+      bs: 'Jutro dočekasmo i jutro dočeka svekolika vlast Allahova. Hvala Allahu i nema boga osim Njega Jedinog, Koji druga nema. Njemu pripada sva vlast i svaka pohvala i on nad svačim ima moć. Allahu, molim Te za sva dobra ovog jutra i za dobra poslije njega. Gospodaru moj, Tebi se sklanjam pred lijenošću i zlohudom ohološću. Tebi se sklanjam pred kaznom Džehennema i kaburskom kaznom.',
+      en: 'We have entered the morning, and all sovereignty belongs to Allah; all praise is His. There is no god but Allah alone, with no partner. Sovereignty and praise belong to Him, and He has power over all things. My Lord, I ask You for the good of this day and what follows it, and I seek refuge in You from the evil of this day and what follows it. My Lord, I seek refuge in You from laziness and the evils of old age. My Lord, I seek refuge in You from punishment in the Fire and punishment in the grave.',
+    },
+    reference: { bs: 'Hisnul-Muslimi, 75', en: 'Hisn al-Muslim, 77 (morning)' },
+    sourceUrl: 'https://sunnah.com/hisn:77',
+  },
+  {
+    id: 'hisn-77-evening',
+    title: { bs: 'Dova koja se uči navečer', en: 'Evening supplication' },
+    arabic:
+      'أَمْسَيْنَا وَأَمْسَى الْمُلْكُ لِلَّهِ، وَالْحَمْدُ لِلَّهِ، لَا إِلَهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ، رَبِّ أَسْأَلُكَ خَيْرَ مَا فِي هَذِهِ اللَّيْلَةِ، وَخَيْرَ مَا بَعْدَهَا، وَأَعُوذُ بِكَ مِنْ شَرِّ مَا فِي هَذِهِ اللَّيْلَةِ، وَشَرِّ مَا بَعْدَهَا، رَبِّ أَعُوذُ بِكَ مِنَ الْكَسَلِ وَسُوءِ الْكِبَرِ، رَبِّ أَعُوذُ بِكَ مِنْ عَذَابٍ فِي النَّارِ وَعَذَابٍ فِي الْقَبْرِ.',
+    transcription: {
+      bs: 'Emsejnā ve emse-l-mulku lillāhi, ve-l-ḥamdu lillāhi, lā ilāhe illellāhu vaḥdehu lā šerīke leh. Lehu-l-mulku ve lehu-l-ḥamdu ve huve ‘alā kulli šej’in qadīr. Rabbi es’eluke ḫajre mā fī hāḏihi-l-lejleti ve ḫajre mā ba‘dehā, ve e‘ūḏu bike min šerri hāḏihi-l-lejleti ve šerri mā ba‘dehā. Rabbi e‘ūḏu bike mine-l-keseli ve sūi-l-kiber. Rabbi e‘ūḏu bike min ‘aḏābin fī-n-nāri ve ‘aḏābin fī-l-qabri.',
+      en: 'Amsaynā wa amsal-mulku lillāh, wal-ḥamdu lillāh, lā ilāha illallāhu waḥdahu lā sharīka lah. Lahul-mulku wa lahul-ḥamdu wa huwa ‘alā kulli shay’in qadīr. Rabbi as’aluka khayra mā fī hādhihil-laylati wa khayra mā ba‘dahā, wa a‘ūdhu bika min sharri mā fī hādhihil-laylati wa sharri mā ba‘dahā. Rabbi a‘ūdhu bika minal-kasali wa sū’il-kibar. Rabbi a‘ūdhu bika min ‘adhābin fin-nāri wa ‘adhābin fil-qabr.',
+    },
+    translation: {
+      bs: 'U noć uđosmo i noć dočeka svekolika Allahova vlast. Hvala Allahu i nema boga osim Njega Jedinog, Koji druga nema. Njemu pripada sva vlast i svaka pohvala i on nad svačim ima moć. Allahu, molim Te za sva dobra ove noći i za dobra poslije nje. Gospodaru moj, Tebi se sklanjam pred lijenošću i zlohudom ohološću. Tebi se sklanjam pred kaznom Džehennema i kaburskom kaznom.',
+      en: 'We have entered the evening, and all sovereignty belongs to Allah; all praise is His. There is no god but Allah alone, with no partner. Sovereignty and praise belong to Him, and He has power over all things. My Lord, I ask You for the good of this night and what follows it, and I seek refuge in You from the evil of this night and what follows it. My Lord, I seek refuge in You from laziness and the evils of old age. My Lord, I seek refuge in You from punishment in the Fire and punishment in the grave.',
+    },
+    reference: { bs: 'Hisnul-Muslimi, 75a', en: 'Hisn al-Muslim, 77 (evening)' },
+    sourceUrl: 'https://sunnah.com/hisn:77',
+  },
   {
     id: 'quran-28-24',
     title: { bs: 'Dova potrebe', en: 'Supplication of need' },
