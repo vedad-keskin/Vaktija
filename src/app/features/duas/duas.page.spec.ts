@@ -111,6 +111,15 @@ it('shows ten items at a time and resets on view changes', async () => {
     'hisn-210',
   ]);
   expect(more()).toBeNull();
+  await harness.navigateByUrl('/duas?category=hajj');
+  expect([...cards()].map((card) => card.getAttribute('data-dua-id'))).toEqual([
+    'hisn-233',
+    'hisn-236',
+    'hisn-235',
+    'hisn-237',
+    'hisn-238',
+  ]);
+  expect(cards()[1].querySelectorAll('.dua-saying')).toHaveLength(2);
   await harness.navigateByUrl('/duas?category=sleep');
   expect([...cards()].map((card) => card.getAttribute('data-dua-id'))).toEqual([
     'hisn-111',
@@ -284,6 +293,7 @@ it('routes the bilingual library, validates saved data and persists bookmark cha
     'hisn-212',
     'hisn-210',
     'hisn-233',
+    'hisn-236',
     'hisn-235',
     'hisn-237',
     'hisn-238',

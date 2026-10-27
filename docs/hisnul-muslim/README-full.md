@@ -1775,17 +1775,17 @@ The Prophet used this supplication to seek protection for Al-Hasan and Al-Husain
 **Sources:** [Bosnian PDF, page 83](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=83) · [English and Arabic](https://sunnah.com/hisn:235)
 
 <a id="hm-236"></a>
-### HM-236 · Dova prilikom boravka na Safi i Mervi / When at Mount Safa and Mount Marwah
+### HM-236 · Dova prilikom boravka na Saffi i Mervi / When at Mount Safa and Mount Marwah
 
-**Bosanski — uputa (2017 edition, pages 136–137):** Počeo bi od Saffe i to ponovio tri puta. Isto je obavljao na Mervi.
+**Bosanski — uputa (2017 edition, pages 136–137):** Pri prilasku Saffi prouči ajet. Zatim se popni na Saffu, okreni prema Kibli i prouči zikr tri puta, upućujući svoju dovu između ponavljanja. Isto učini na Mervi.
 
-**Bosanski — transkripcija (2017 edition, pages 136–137):** Inne-s-Safā ve-l-Mervete min še‘āiri-l-Lāhi. Ebde’u bimā bede’allāhu bih. Lā ilāhe illellāhu va-l-Lāhu ekber, lā ilāhe illellāhu vaḥdehū lā šerīke lehū, lehū-l-mulku ve lehū-l-ḥamdu ve huve ‘alā kulli šej’in qadīr, lā ilāhe illellāhu vaḥdehū, endžeze va‘dehū ve nesare ‘abdehū, ve hezeme-l-aḥzābe vaḥdehū.
+**Bosanski — transkripcija (prva rečenica prilagođena arapskom tekstu; ostatak prema fotografiji 2017 edition, pages 136–137):** Inne-ṣ-Ṣafā ve-l-Mervete min še‘ā’irillāh. Lā ilāhe illellāhu va-l-Lāhu ekber, lā ilāhe illellāhu vaḥdehū lā šerīke lehū, lehū-l-mulku ve lehū-l-ḥamdu ve huve ‘alā kulli šej’in qadīr, lā ilāhe illellāhu vaḥdehū, endžeze va‘dehū ve neṣare ‘abdehū, ve hezeme-l-aḥzābe vaḥdehū.
 
-**Bosanski — prijevod (2017 edition, pages 136–137):** Safa i Merva su Allahova časna mjesta. Počeo je na način kako je Allah počeo. Nema boga osim Allaha, Jedinoga, Koji Sebi ravnoga nema. Njemu pripada sva vlast i zahvalnost i On je iznad svega. Nema boga osim Allaha, Jedinoga, Koji ispunjava Svoje obećanje i pomaže Svojem robu, i sve protivnike Sam porazi.
+**Bosanski — prijevod (2017 edition, pages 136–137; početak zikra dopunjen):** Safa i Merva su Allahova časna mjesta. Nema boga osim Allaha i Allah je najveći. Nema boga osim Allaha, Jedinoga, Koji Sebi ravnoga nema. Njemu pripada sva vlast i zahvalnost i On je iznad svega. Nema boga osim Allaha, Jedinoga, Koji ispunjava Svoje obećanje i pomaže Svojem robu, i sve protivnike Sam porazi.
 
-**English — transliteration (Sunnah.com 236):** Innaṣ-Ṣafā wa ‘l-Marwata min sha&#96;ā'irillāh. Abda'u bimā bada'allāhu bih. Lā ilāha illallāh, Allāhu Akbar. Lā ilāha illallāhu waḥdahu lā sharīka lah, lahu ‘l-mulku wa lahu ‘l-ḥamdu wa huwa &#96;alā kulli shay'in qadīr, lā ilāha illallāhu waḥdahu, anjaza wa&#96;dahu, wa naṣara &#96;abdahu, wa hazama ‘l-aḥzāba waḥdah.
+**English — transliteration (Sunnah.com 236, phrase outside the verse omitted):** Innaṣ-Ṣafā wa ‘l-Marwata min sha&#96;ā'irillāh. Lā ilāha illallāh, Allāhu Akbar. Lā ilāha illallāhu waḥdahu lā sharīka lah, lahu ‘l-mulku wa lahu ‘l-ḥamdu wa huwa &#96;alā kulli shay'in qadīr, lā ilāha illallāhu waḥdahu, anjaza wa&#96;dahu, wa naṣara &#96;abdahu, wa hazama ‘l-aḥzāba waḥdah.
 
-**English — meaning (Sunnah.com 236):** Surely Safa and Marwah are among the signs of Allah. I begin by that which Allah began. There is none worthy of worship but Allah, and Allah is the Most Great. None has the right to be worshipped but Allah alone, Who has no partner, His is the dominion and His is the praise, and He is Able to do all things. None has the right to be worshipped but Allah alone, He fulfilled His Promise, He aided His slave, and He alone defeated the Confederates.
+**English — meaning (Sunnah.com 236, phrase outside the verse omitted):** Surely Safa and Marwah are among the signs of Allah. There is none worthy of worship but Allah, and Allah is the Most Great. None has the right to be worshipped but Allah alone, Who has no partner, His is the dominion and His is the praise, and He is Able to do all things. None has the right to be worshipped but Allah alone, He fulfilled His Promise, He aided His slave, and He alone defeated the Confederates.
 
 **Sources:** [Bosnian PDF, pages 83–84](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=83) · [English and Arabic](https://sunnah.com/hisn:236)
 

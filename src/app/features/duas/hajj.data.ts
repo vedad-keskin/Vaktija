@@ -13,7 +13,7 @@ export const HAJJ_DUAS: readonly Dua[] = [
       'لَبَّيْكَ اللَّهُمَّ لَبَّيْكَ، لَبَّيْكَ لاَ شَرِيكَ لَكَ لَبَّيْكَ، إِنَّ الْحَمْدَ والنِّعْمَة لَكَ والمُلْكُ، لَا شَرِيكَ لَكَ',
     transcription: {
       bs: 'Lebbejke-llāhumme lebbejk, lebbejke lā šerīke leke lebbejke. Inne-l-ḥamde ven-ni‘mete leke ve-l-mulk, lā šerīke lek.',
-      en: "Labbayk-Allāhumma labbayk, labbayka lā sharīka laka labbayk, inna ‘l-ḥamda, wanni`mata, laka wa ‘l-mulk, lā sharīka lak.",
+      en: 'Labbayk-Allāhumma labbayk, labbayka lā sharīka laka labbayk, inna ‘l-ḥamda, wanni`mata, laka wa ‘l-mulk, lā sharīka lak.',
     },
     translation: {
       bs: 'Odazivam Ti se, Allahu moj, odazivam. Odazivam se Tebi, Koji ravnoga Sebi nemaš, odazivam. Doista, zahvalnost i sve blagodati pripadaju Tebi, kao i sva vlast. Ti Sebi nemaš ravnoga.',
@@ -23,6 +23,47 @@ export const HAJJ_DUAS: readonly Dua[] = [
     sourceUrl: 'https://sunnah.com/hisn:233',
     bosnianSourceUrl:
       'https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=89',
+  },
+  {
+    id: 'hisn-236',
+    title: { bs: 'Dova prilikom boravka na Saffi i Mervi', en: 'At Safa and Marwah' },
+    sayings: [
+      {
+        arabic: 'إِنَّ الصَّفَا وَالْمَرْوَةَ مِنْ شَعَائِرِ اللَّهِ.',
+        instructions: {
+          bs: 'Kada se približiš Saffi, prouči ovaj ajet:',
+          en: 'As you approach Safa, recite this verse:',
+        },
+        transcription: {
+          bs: 'Inne-ṣ-Ṣafā ve-l-Mervete min še‘ā’irillāh.',
+          en: 'Innaṣ-Ṣafā wal-Marwata min sha‘ā’irillāh.',
+        },
+        translation: {
+          bs: 'Safa i Merva su Allahova časna mjesta.',
+          en: 'Safa and Marwah are among the signs of Allah.',
+        },
+      },
+      {
+        arabic:
+          'لَا إِلَهَ إِلَّا اللَّهُ وَاللَّهُ أَكْبَرُ، لَا إِلَهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ، لَا إِلَهَ إِلَّا اللَّهُ وَحْدَهُ، أَنْجَزَ وَعْدَهُ وَنَصَرَ عَبْدَهُ وَهَزَمَ الْأَحْزَابَ وَحْدَهُ.',
+        instructions: {
+          bs: 'Na Saffi se okreni prema Kibli i prouči ovu dovu, i nakon nje uputi svoju dovu, tako učini tri puta. Isto učiniti i na Mervi.',
+          en: 'At Safa, face the Qiblah and recite this dua, and after it make your own dua, do this three times. Do the same at Marwah.',
+        },
+        transcription: {
+          bs: 'Lā ilāhe illellāhu vallāhu ekber, lā ilāhe illellāhu vaḥdehū lā šerīke leh, lehu-l-mulku ve lehu-l-ḥamdu ve huve ‘alā kulli šej’in qadīr, lā ilāhe illellāhu vaḥdehū, endžeze va‘dehū ve neṣare ‘abdehū, ve hezeme-l-aḥzābe vaḥdehū.',
+          en: 'Lā ilāha illallāhu wallāhu akbar. Lā ilāha illallāhu waḥdahu lā sharīka lah, lahul-mulku wa lahul-ḥamdu wa huwa ‘alā kulli shay’in qadīr. Lā ilāha illallāhu waḥdahu, anjaza wa‘dahu wa naṣara ‘abdahu wa hazamal-aḥzāba waḥdah.',
+        },
+        translation: {
+          bs: 'Nema boga osim Allaha i Allah je najveći. Nema boga osim Allaha, Jedinoga, Koji Sebi ravnoga nema. Njemu pripada sva vlast i zahvalnost i On je iznad svega. Nema boga osim Allaha, Jedinoga, Koji ispunjava Svoje obećanje i pomaže Svojem robu, i sve protivnike Sam porazi.',
+          en: 'There is no god but Allah, and Allah is greatest. There is no god but Allah alone, without partner. All dominion and praise are His, and He has power over all things. There is no god but Allah alone: He fulfilled His promise, helped His servant, and defeated the allied forces by Himself.',
+        },
+      },
+    ],
+    reference: { bs: 'Hisnul-Muslimi, 218', en: 'Hisn al-Muslim, 236' },
+    sourceUrl: 'https://sunnah.com/hisn:236',
+    bosnianSourceUrl:
+      'https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=83',
   },
   {
     id: 'hisn-235',
@@ -68,7 +109,7 @@ export const HAJJ_DUAS: readonly Dua[] = [
   {
     id: 'hisn-238',
     title: {
-      bs: "Dova koja se uči na Muzdelifi",
+      bs: 'Dova koja se uči na Muzdelifi',
       en: 'Remembrance at Muzdalifah',
     },
     arabic:
@@ -87,5 +128,4 @@ export const HAJJ_DUAS: readonly Dua[] = [
     bosnianSourceUrl:
       'https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=85',
   },
-
 ];
