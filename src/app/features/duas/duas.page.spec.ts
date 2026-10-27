@@ -114,11 +114,14 @@ it('shows ten items at a time and resets on view changes', async () => {
   await harness.navigateByUrl('/duas?category=sleep');
   expect([...cards()].map((card) => card.getAttribute('data-dua-id'))).toEqual([
     'hisn-111',
-    'hisn-1',
+    'hisn-2',
     'hisn-114',
     'hisn-113',
     'hisn-112',
   ]);
+  expect(cards()[1].querySelector('.dua-instructions')?.textContent).toContain(
+    'If you wake during the night',
+  );
   await harness.navigateByUrl('/duas?category=illness');
   expect([...cards()].map((card) => card.getAttribute('data-dua-id'))).toEqual([
     'hisn-243',
@@ -139,11 +142,8 @@ it('shows ten items at a time and resets on view changes', async () => {
   ]);
   expect(more()).toBeNull();
   await harness.navigateByUrl('/duas?category=protection');
-  more()!.click();
-  harness.detectChanges();
   expect([...cards()].map((card) => card.getAttribute('data-dua-id'))).toEqual([
     'hisn-124',
-    'hisn-121',
     'hisn-126',
     'hisn-133',
     'hisn-139',
@@ -161,6 +161,7 @@ it('shows ten items at a time and resets on view changes', async () => {
   await harness.navigateByUrl('/duas?category=debt');
   expect([...cards()].map((card) => card.getAttribute('data-dua-id'))).toEqual([
     'hisn-136',
+    'hisn-121',
     'hisn-201',
   ]);
   expect(more()).toBeNull();
@@ -219,7 +220,7 @@ it('routes the bilingual library, validates saved data and persists bookmark cha
     'hisn-184',
     'hisn-186',
     'hisn-111',
-    'hisn-1',
+    'hisn-2',
     'hisn-114',
     'hisn-113',
     'hisn-112',
@@ -236,7 +237,6 @@ it('routes the bilingual library, validates saved data and persists bookmark cha
     'hisn-163',
     'hisn-165',
     'hisn-124',
-    'hisn-121',
     'hisn-126',
     'hisn-133',
     'hisn-139',
@@ -248,6 +248,7 @@ it('routes the bilingual library, validates saved data and persists bookmark cha
     'hisn-132',
     'hisn-146',
     'hisn-136',
+    'hisn-121',
     'hisn-201',
     'quran-25-74',
     'hisn-192',

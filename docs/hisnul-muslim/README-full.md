@@ -747,22 +747,26 @@ This file grows one approved category at a time. It currently contains the cloth
 
 **Sources:** [Bosnian PDF, page 43](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=43) · [English and Arabic](https://sunnah.com/hisn:111)
 
-<a id="hm-1"></a>
-### HM-1 · Dova pri buđenju iz sna / Upon waking up
+<a id="hm-2"></a>
+### HM-2 · Dova pri buđenju noću / When waking during the night
 
 **Arapski / Arabic**
 
-<p lang="ar" dir="rtl">الحَمْـدُ لِلّهِ الّذي أَحْـيانا بَعْـدَ ما أَماتَـنا وَإليه النُّـشور</p>
+<p lang="ar" dir="rtl">لَا إِلَهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ، سُبْحَانَ اللَّهِ، وَالْحَمْدُ لِلَّهِ، وَلَا إِلَهَ إِلَّا اللَّهُ، وَاللَّهُ أَكْبَرُ، وَلَا حَوْلَ وَلَا قُوَّةَ إِلَّا بِاللَّهِ الْعَلِيِّ الْعَظِيمِ، اللَّهُمَّ اغْفِرْ لِي.</p>
 
-**Bosanski — transkripcija (2017 edition, page 13):** El-ḥamdu lillāhi-lleḏī aḥjānā ba‘de mā emātenā ve ilejhi-n-nušūr.
+**Bosanski — uputa (2017 edition, pages 13–14):** Ako se probudiš noću, prouči ovaj zikr i zamoli za oprost; bit će ti oprošteno. Ako uputiš dovu, bit će primljena. Ako uzmeš abdest i klanjaš nafilu, namaz će biti primljen.
 
-**Bosanski — prijevod (IslamHouse 1):** Hvala Allahu, Koji nas oživi nakon što nas usmrti, i Njemu se, konačno, sve vraća.
+**English — instruction (Hisn al-Muslim 2):** If you wake during the night, recite this remembrance and ask Allah for forgiveness; you will be forgiven. If you make a supplication, it will be answered. If you perform ablution and pray, your prayer will be accepted.
 
-**English — transliteration (Sunnah.com 1):** Alḥamdu lillāhil-ladhī 'aḥyānā ba`da mā 'amātanā wa 'ilayhin-nushūr.
+**Bosanski — transkripcija (2017 edition, page 13):** Lā ilāhe illellāhu vaḥdehū lā šerīke leh, lehu-l-mulku ve lehu-l-ḥamdu, ve huve ‘alā kulli šej’in qadīr. Subḥānallāhi ve-l-ḥamdu lillāhi ve lā ilāhe illellāhu vallāhu ekber, ve lā ḥavle ve lā quvvete illā billāhi-l-‘Alijji-l-‘Aẓīm. Allāhumma-gfir lī.
 
-**English — meaning (Sunnah.com 1):** Praise is to Allah Who gives us life after He has caused us to die and to Him is the return.
+**Bosanski — prijevod (2017 edition, page 14):** Nema boga osim Allaha, Jedinoga, Koji Sebi ravnoga nema. Njemu vlast pripada i Njemu pripada svaka zahvalnost. Njegova je moć iznad svake druge moći, neka je slavljen Allah i neka Mu je hvala; nema boga osim Allaha. Allah je najveći. Nema moći i sile osim Allahove, Moćnog i Velikog. Allahu moj, oprosti mi.
 
-**Sources:** [Bosnian PDF, page 7](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=7) · [English and Arabic](https://sunnah.com/hisn:1)
+**English — transliteration (Hisn al-Muslim 2, with the photographed ending):** Lā ilāha illallāhu waḥdahu lā sharīka lah, lahul-mulku wa lahul-ḥamdu, wa huwa ‘alā kulli shay’in qadīr. Subḥānallāhi wal-ḥamdu lillāhi wa lā ilāha illallāhu wallāhu akbar, wa lā ḥawla wa lā quwwata illā billāhil-‘Aliyyil-‘Aẓīm. Allāhumma-ghfir lī.
+
+**English — meaning:** There is no god but Allah alone, without a partner. Dominion and praise are His, and He has power over all things. Glory be to Allah, praise be to Allah, there is no god but Allah, and Allah is the greatest. There is no might or power except through Allah, the Most High, the Magnificent. O Allah, forgive me.
+
+**Sources:** Reader's 2017 book photographs, pages 13–14 · [Hisn al-Muslim 2](https://sunnah.com/hisn:2) · [Sahih al-Bukhari 1154](https://sunnah.com/bukhari:1154)
 
 <a id="hm-114"></a>
 ### HM-114 · Dova poslije ružnog snoviđenja / After a bad dream

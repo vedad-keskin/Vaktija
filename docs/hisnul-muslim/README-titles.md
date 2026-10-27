@@ -19,8 +19,8 @@ Brojevi, poglavlja i vrste zapisa provjereni su prema [OpenDua datasetu v0.0.4](
 
 ## Svakodnevni zikr i lične navike / Daily remembrance and routines
 
-- [ ] ★ [HM-001 · Dova pri buđenju iz sna / Upon waking up](README-full.md#hm-1) · u aplikaciji / in app
-- [ ] [HM-002 · Pri buđenju (2/4) / Upon waking (2/4)](https://sunnah.com/hisn:2)
+- [ ] [HM-001 · Dova pri buđenju iz sna / Upon waking up](https://sunnah.com/hisn:1)
+- [ ] ★ [HM-002 · Dova pri buđenju noću / When waking during the night](README-full.md#hm-2) · u aplikaciji / in app
 - [ ] [HM-003 · Pri buđenju (3/4) / Upon waking (3/4)](https://sunnah.com/hisn:3)
 - [ ] [HM-004 · Pri buđenju (4/4) / Upon waking (4/4)](https://sunnah.com/hisn:4)
 - [ ] [HM-008 · Dova onome ko odjene novu odjeću (2/2) / To someone wearing a new garment (2/2)](https://sunnah.com/hisn:8)

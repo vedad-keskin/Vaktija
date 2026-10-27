@@ -6,14 +6,15 @@ export const SLEEP_DUAS: readonly Dua[] = [
   {
     id: 'hisn-111',
     title: { bs: 'Dova prije spavanja', en: 'Before sleeping' },
-    arabic: 'اللّهُـمَّ أَسْـلَمْتُ نَفْـسي إِلَـيْكَ، وَفَوَّضْـتُ أَمْـري إِلَـيْكَ، وَوَجَّـهْتُ وَجْـهي إِلَـيْكَ، وَأَلْـجَـاْتُ ظَهـري إِلَـيْكَ، رَغْبَـةً وَرَهْـبَةً إِلَـيْكَ، لا مَلْجَـأَ وَلا مَنْـجـا مِنْـكَ إِلاّ إِلَـيْكَ، آمَنْـتُ بِكِتـابِكَ الّـذي أَنْزَلْـتَ وَبِنَبِـيِّـكَ الّـذي أَرْسَلْـت',
+    arabic:
+      'اللّهُـمَّ أَسْـلَمْتُ نَفْـسي إِلَـيْكَ، وَفَوَّضْـتُ أَمْـري إِلَـيْكَ، وَوَجَّـهْتُ وَجْـهي إِلَـيْكَ، وَأَلْـجَـاْتُ ظَهـري إِلَـيْكَ، رَغْبَـةً وَرَهْـبَةً إِلَـيْكَ، لا مَلْجَـأَ وَلا مَنْـجـا مِنْـكَ إِلاّ إِلَـيْكَ، آمَنْـتُ بِكِتـابِكَ الّـذي أَنْزَلْـتَ وَبِنَبِـيِّـكَ الّـذي أَرْسَلْـت',
     instructions: {
       bs: 'Kad se odlučiš ići u postelju, prethodno uzmi abdest kao za namaz, potom lezi na desni bok i prouči dovu:',
       en: 'Before you go to bed perform ablutions as you would for prayer, then lie down on your right side and say. . .',
     },
     transcription: {
       bs: 'Allāhumme eslemtu nefsī ilejke ve fevvaḍtu emrī ilejke ve vedždžehtu vedžhī ilejke ve eldže’tu ẓahrī ilejke ragbeten ve rehbeten ilejke, lā meldže’e ve lā mendžā minke illā ilejke. Āmentu bi Kitābike-l-leḏī enzelte ve bi Nebijjike-l-leḏī erselte.',
-      en: 'Allāhumma aslamtu nafsī ilayk, wa fawwaḍtu amrī ilayk, wa wajjahtu wajhī ilayk, wa alja\'tu ẓahrī ilayk, raghbatan wa rahbatan ilayk, lā malja\'a wa la manjā minka illā ilayk, āmantu bikitābika ‘l-ladhī anzalt, wa bi-nabiyyika ‘l-ladhī arsalt.',
+      en: "Allāhumma aslamtu nafsī ilayk, wa fawwaḍtu amrī ilayk, wa wajjahtu wajhī ilayk, wa alja'tu ẓahrī ilayk, raghbatan wa rahbatan ilayk, lā malja'a wa la manjā minka illā ilayk, āmantu bikitābika ‘l-ladhī anzalt, wa bi-nabiyyika ‘l-ladhī arsalt.",
     },
     translation: {
       bs: 'Allahu, Tebi predadoh svoju dušu, i oporučih svoje stanje, i upravih lice svoje, i prepustih (sklonih) svoja leđa iz želje i straha, jer nema skloništa ni spasilišta pred Tobom osim kod Tebe. Vjerujem u Tvoju Knjigu, koju si spustio, i u Tvoga Vjerovjesnika, koga si poslao.',
@@ -21,23 +22,28 @@ export const SLEEP_DUAS: readonly Dua[] = [
     },
     reference: { bs: 'Hisnul-Muslimi, 103', en: 'Hisn al-Muslim, 111' },
     sourceUrl: 'https://sunnah.com/hisn:111',
-    bosnianSourceUrl: 'https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=43',
+    bosnianSourceUrl:
+      'https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=43',
   },
   {
-    id: 'hisn-1',
-    title: { bs: 'Dova pri buđenju iz sna', en: 'Upon waking up' },
-    arabic: 'الحَمْـدُ لِلّهِ الّذي أَحْـيانا بَعْـدَ ما أَماتَـنا وَإليه النُّـشور',
+    id: 'hisn-2',
+    title: { bs: 'Dova pri buđenju noću', en: 'When waking during the night' },
+    arabic:
+      'لَا إِلَهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ، سُبْحَانَ اللَّهِ، وَالْحَمْدُ لِلَّهِ، وَلَا إِلَهَ إِلَّا اللَّهُ، وَاللَّهُ أَكْبَرُ، وَلَا حَوْلَ وَلَا قُوَّةَ إِلَّا بِاللَّهِ الْعَلِيِّ الْعَظِيمِ، اللَّهُمَّ اغْفِرْ لِي.',
+    instructions: {
+      bs: 'Ako se probudiš noću, prouči ovu dovu i zamoli za oprost, bit će ti oprošteno. Ako uputiš dovu, bit će primljena. Ako uzmeš abdest i klanjaš nafilu, namaz će biti primljen.',
+      en: 'If you wake during the night, recite this dua and ask Allah for forgiveness, you will be forgiven. If you make a supplication, it will be answered. If you perform ablution and pray, your prayer will be accepted.',
+    },
     transcription: {
-      bs: 'El-ḥamdu lillāhi-lleḏī aḥjānā ba‘de mā emātenā ve ilejhi-n-nušūr.',
-      en: "Alḥamdu lillāhil-ladhī 'aḥyānā ba`da mā 'amātanā wa 'ilayhin-nushūr.",
+      bs: 'Lā ilāhe illellāhu vaḥdehū lā šerīke leh, lehu-l-mulku ve lehu-l-ḥamdu, ve huve ‘alā kulli šej’in qadīr. Subḥānallāhi ve-l-ḥamdu lillāhi ve lā ilāhe illellāhu vallāhu ekber, ve lā ḥavle ve lā quvvete illā billāhi-l-‘Alijji-l-‘Aẓīm. Allāhumma-gfir lī.',
+      en: 'Lā ilāha illallāhu waḥdahu lā sharīka lah, lahul-mulku wa lahul-ḥamdu, wa huwa ‘alā kulli shay’in qadīr. Subḥānallāhi wal-ḥamdu lillāhi wa lā ilāha illallāhu wallāhu akbar, wa lā ḥawla wa lā quwwata illā billāhil-‘Aliyyil-‘Aẓīm. Allāhumma-ghfir lī.',
     },
     translation: {
-      bs: 'Hvala Allahu, Koji nas oživi nakon što nas usmrti, i Njemu se, konačno, sve vraća.',
-      en: 'Praise is to Allah Who gives us life after He has caused us to die and to Him is the return.',
+      bs: 'Nema boga osim Allaha, Jedinoga, Koji Sebi ravnoga nema. Njemu vlast pripada i Njemu pripada svaka zahvalnost. Njegova je moć iznad svake druge moći, neka je slavljen Allah i neka Mu je hvala; nema boga osim Allaha. Allah je najveći. Nema moći i sile osim Allahove, Moćnog i Velikog. Allahu moj, oprosti mi.',
+      en: 'There is no god but Allah alone, without a partner. Dominion and praise are His, and He has power over all things. Glory be to Allah, praise be to Allah, there is no god but Allah, and Allah is the greatest. There is no might or power except through Allah, the Most High, the Magnificent. O Allah, forgive me.',
     },
-    reference: { bs: 'Hisnul-Muslimi, 1', en: 'Hisn al-Muslim, 1' },
-    sourceUrl: 'https://sunnah.com/hisn:1',
-    bosnianSourceUrl: 'https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=7',
+    reference: { bs: 'Hisnul-Muslimi, 2', en: 'Hisn al-Muslim, 2' },
+    sourceUrl: 'https://sunnah.com/hisn:2',
   },
   {
     id: 'hisn-114',
@@ -54,12 +60,14 @@ export const SLEEP_DUAS: readonly Dua[] = [
     translation: { bs: 'Utječem se Allahu.', en: 'I seek refuge in Allah.' },
     reference: { bs: 'Hisnul-Muslimi, 107–109', en: 'Hisn al-Muslim, 114' },
     sourceUrl: 'https://sunnah.com/hisn:114',
-    bosnianSourceUrl: 'https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=45',
+    bosnianSourceUrl:
+      'https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=45',
   },
   {
     id: 'hisn-113',
     title: { bs: 'Dova protiv nemira i straha u snu', en: 'When afraid during sleep' },
-    arabic: 'أَعـوذُ بِكَلِمـاتِ اللّهِ التّـامّـاتِ مِن غَضَـبِهِ وَعِـقابِهِ وَشَـرِّ عِبـادِهِ وَمِنْ هَمَـزاتِ الشَّـياطينِ وَأَنْ يَحْضـرون',
+    arabic:
+      'أَعـوذُ بِكَلِمـاتِ اللّهِ التّـامّـاتِ مِن غَضَـبِهِ وَعِـقابِهِ وَشَـرِّ عِبـادِهِ وَمِنْ هَمَـزاتِ الشَّـياطينِ وَأَنْ يَحْضـرون',
     transcription: {
       bs: 'E‘ūḏu bi kelimātillāhi-t-tāmmāti min gaḍabihi ve ‘iqābihi ve šerri ‘ibādihi ve min hemezāti-š-šejāṭīni ve en jaḥḍurūn.',
       en: 'A`ūdhu bikalimāti ‘llāhit-tāmmāti min ghaḍabihi wa `iqābihi wa sharri `ibādih, wa min hamazātish-shayāṭīni wa an yaḥḍurūn.',
@@ -70,12 +78,14 @@ export const SLEEP_DUAS: readonly Dua[] = [
     },
     reference: { bs: 'Hisnul-Muslimi, 105', en: 'Hisn al-Muslim, 113' },
     sourceUrl: 'https://sunnah.com/hisn:113',
-    bosnianSourceUrl: 'https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=44',
+    bosnianSourceUrl:
+      'https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=44',
   },
   {
     id: 'hisn-112',
     title: { bs: 'Dova pri prevrtanju u snu', en: 'When turning over during the night' },
-    arabic: 'لا إِلـهَ إِلاّ اللهُ الـواحِدُ القَهّـار رَبُّ السَّـمواتِ وَالأرْضِ وَما بَيْـنَهـما العَزيـزُ الغَـفّار',
+    arabic:
+      'لا إِلـهَ إِلاّ اللهُ الـواحِدُ القَهّـار رَبُّ السَّـمواتِ وَالأرْضِ وَما بَيْـنَهـما العَزيـزُ الغَـفّار',
     transcription: {
       bs: 'Lā ilāhe illellāhu-l-Vāḥidu-l-Qahhāru Rabbi-s-semāvāti ve-l-erḍi ve mā bejnehume-l-‘Azīzu-l-Gaffār.',
       en: 'Lā ilāha illallāh al-Wāḥidul-Qahhār, Rabbus-samāwāti wa ‘l-arḍi wa mā baynahuma al-`Azīzul-Ghaffār.',
@@ -86,6 +96,7 @@ export const SLEEP_DUAS: readonly Dua[] = [
     },
     reference: { bs: 'Hisnul-Muslimi, 104', en: 'Hisn al-Muslim, 112' },
     sourceUrl: 'https://sunnah.com/hisn:112',
-    bosnianSourceUrl: 'https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=44',
+    bosnianSourceUrl:
+      'https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=44',
   },
 ];
