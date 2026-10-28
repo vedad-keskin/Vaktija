@@ -21,7 +21,6 @@ export const PROTECTION_DUAS: readonly Dua[] = [
       'https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=49',
   },
 
-
   {
     id: 'hisn-126',
     title: {
@@ -61,16 +60,15 @@ export const PROTECTION_DUAS: readonly Dua[] = [
       'اللَّهُمَّ لَا سَهْلَ إِلَّا مَا جَعَلْتَهُ سَهْلًا، وَأَنْتَ تَجْعَلُ الْحَزْنَ إِذَا شِئْتَ سَهْلًا',
     transcription: {
       bs: 'Allāhumme lā sehle illā mā dže‘altehū sehlen ve Ente tedže‘alu-l-ḥazene, iḏā ši’te sehlen.',
-      en: "Allāhumma lā saḥla illā ma ja`altahu saḥla wa anta taj`alu ‘l-ḥazna idhā shi'ta saḥla.",
+      en: 'Allāhumma lā sahla illā mā ja‘altahu sahlan, wa anta taj‘alu-l-ḥazna idhā shi’ta sahlan.',
     },
     translation: {
-      bs: 'Allahu moj, ne može biti lahkoće mimo onog što Ti ne učiniš. Ti, ako hoćeš, i teško učiniš lahkim.',
-      en: 'O Allah, there is no ease other than what You make easy. If You please You ease sorrow.',
+      bs: 'Allahu moj, ne može biti lahko osim onog što Ti učiniš lahkim, Ti, ako hoćeš, i teško učiniš lahkim!',
+      en: 'O Allah! There is nothing easy except what You make easy, and You make the difficult easy if it is Your will.',
     },
     reference: { bs: 'Hisnul-Muslimi, 130', en: 'Hisn al-Muslim, 139' },
     sourceUrl: 'https://sunnah.com/hisn:139',
-    bosnianSourceUrl:
-      'https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=52',
+    bosnianSourceUrl: 'https://d1.islamhouse.com/data/bs/ih_books/single1/doa-bs.pdf',
   },
   {
     id: 'hisn-193',
@@ -99,7 +97,7 @@ export const PROTECTION_DUAS: readonly Dua[] = [
       'الْحَمْدُ لِلَّهِ الَّذِي عَافَانِي مِمَّا ابْتَلَاكَ بِهِ، وَفَضَّلَنِي عَلَى كَثِيرٍ مِمَّنْ خَلَقَ تَفْضِيلًا',
     transcription: {
       bs: 'El-ḥamdu lillāhi-l-leḏī ‘āfānī mimmab-telāke bihī ve feḍḍalenī ‘alā keṯīrin mimmen ḫaleqa tafḍīlā.',
-      en: "Alhamdu lillāhi ‘l-ladhī `āfānī mimmab-talāka bihi wa faḍḍalanī `alā kathīrin mimman khalaqa tafḍīlā.",
+      en: 'Alhamdu lillāhi ‘l-ladhī `āfānī mimmab-talāka bihi wa faḍḍalanī `alā kathīrin mimman khalaqa tafḍīlā.',
     },
     translation: {
       bs: 'Hvala Allahu, Koji me zaštiti od onoga što je tebe zadesilo i dade mi prednost nad mnogo čime što je stvorio.',
@@ -120,7 +118,7 @@ export const PROTECTION_DUAS: readonly Dua[] = [
 
     transcription: {
       bs: 'E‘ūḏu billāhi min fitnetil-mesīḥi-d-dedždžāli.',
-      en: "A`ūdhu billāhi min fitnati ‘l-masīḥid-dajjāl.",
+      en: 'A`ūdhu billāhi min fitnati ‘l-masīḥid-dajjāl.',
     },
     translation: {
       bs: 'Allahu, prizivam Te da me sačuvaš od kušnji Mesiha Dedžala.',
@@ -137,7 +135,8 @@ export const PROTECTION_DUAS: readonly Dua[] = [
       bs: 'Dova za zaštitu od straha pred širkom',
       en: 'Fear of associating partners with Allah',
     },
-    arabic: 'اللّهُـمَّ إِنّـي أَعـوذُبِكَ أَنْ أُشْـرِكَ بِكَ وَأَنا أَعْـلَمْ، وَأَسْتَـغْفِرُكَ لِما لا أَعْـلَم',
+    arabic:
+      'اللّهُـمَّ إِنّـي أَعـوذُبِكَ أَنْ أُشْـرِكَ بِكَ وَأَنا أَعْـلَمْ، وَأَسْتَـغْفِرُكَ لِما لا أَعْـلَم',
     transcription: {
       bs: 'Allāhumme innī e‘ūḏu bike en ušrike bike ve ene a‘lemu ve estagfiruke limā lā a‘lemu.',
       en: 'Allāhumma innī a`ūdhu bika an ushrika bika wa anā a`lam, wa astaghfiruka limā lā a`lam.',
@@ -158,7 +157,7 @@ export const PROTECTION_DUAS: readonly Dua[] = [
       'اللَّهُمَّ مُنْزِلَ الْكِتَاب سَرِيعَ الْحِسَاب اهْزِم الأَحْزَاب اللَّهُمَّ اهْزِمْهُمْ وَ زَلْزِلْهُم',
     transcription: {
       bs: 'Allāhumme Munzile-l-Kitābi, Serī‘a-l-ḥisābi ihzimi-l-aḥzābe. Allāhumme, ihzimhum ve zelzilhum.',
-      en: "Allāhumma munzila ‘l-kitāb, sarī`a ‘l-ḥisāb, ihzimi ‘l-aḥzāb, Allāhumma-hzimhum wa zalzilhum.",
+      en: 'Allāhumma munzila ‘l-kitāb, sarī`a ‘l-ḥisāb, ihzimi ‘l-aḥzāb, Allāhumma-hzimhum wa zalzilhum.',
     },
     translation: {
       bs: 'Allahu, Dostavitelju Knjige, Koji brzo svodiš račune, porazi protivnike. Allahu, porazi ih sve i uzdrmaj ih (razori ih).',

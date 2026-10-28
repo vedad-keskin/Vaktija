@@ -1066,6 +1066,23 @@ BS transcriptions and meanings follow the photographed 2017 edition. The short r
 
 ## Opće / General
 
+<a id="muslim-2721a"></a>
+### Muslim-2721a · Dova za bogobojaznost i čednost / Supplication for piety and chastity
+
+**Arapski / Arabic**
+
+<p lang="ar" dir="rtl">اللَّهُمَّ إِنِّي أَسْأَلُكَ الْهُدَى وَالتُّقَى وَالْعَفَافَ وَالْغِنَى</p>
+
+**Bosanski — transkripcija (IslamHouse, adapted to the app's letter key):** Allāhumme innī es’eluke-l-hudā ve-t-tuqā ve-l-‘afāfe ve-l-ginā.
+
+**Bosanski — prijevod (IslamHouse):** Allahu, molim Te za uputu, bogobojaznost, čednost i neovisnost!
+
+**English — transliteration (Tirmidhi 3489, diacritics standardized):** Allāhumma innī as’alukal-hudā wat-tuqā wal-‘afāfa wal-ghinā.
+
+**English — meaning (Tirmidhi 3489):** O Allah, indeed, I ask You for guidance, piety, chastity, and sufficiency.
+
+**Sources:** [Bosnian text](https://d1.islamhouse.com/data/bs/ih_books/single1/doa-bs.pdf) · [Sahih Muslim 2721a](https://sunnah.com/muslim:2721a) · [English wording](https://sunnah.com/tirmidhi:3489)
+
 <a id="hm-188"></a>
 ### HM-188 · Dova prilikom kihanja / Upon sneezing
 
@@ -1614,23 +1631,23 @@ Sunnah.com gives the instruction to seek refuge in Allah and stop dwelling on th
 **Sources:** [Bosnian PDF, page 50](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=50) · [English and Arabic](https://sunnah.com/hisn:133)
 
 <a id="hm-139"></a>
-### HM-139 · Kada je nešto teško / When something is difficult
+### HM-139 · Dova kada je nešto teško / When something is difficult
 
 **Arapski / Arabic**
 
 <p lang="ar" dir="rtl">اللَّهُمَّ لَا سَهْلَ إِلَّا مَا جَعَلْتَهُ سَهْلًا، وَأَنْتَ تَجْعَلُ الْحَزْنَ إِذَا شِئْتَ سَهْلًا</p>
 
-**Bosanski — transkripcija (reader's photograph, Bosnian 130):** Allāhumme lā sehle illā mā dže‘altehū sehlen ve Ente tedže‘alu-l-ḥazene, iḏā ši‘te sehlen.
+**Bosanski — transkripcija (reader's photograph, Bosnian 130):** Allāhumme lā sehle illā mā dže‘altehū sehlen ve Ente tedže‘alu-l-ḥazene, iḏā ši’te sehlen.
 
-**Bosanski — prijevod (reader's photograph, Bosnian 130):** Allahu moj, ne može biti lahkoće mimo onog što Ti ne učiniš. Ti, ako hoćeš, i teško učiniš lahkim.
+**Bosanski — prijevod (IslamHouse, *Vjerodostojne dove i slavljenje Allaha*, 8):** Allahu moj, ne može biti lahko osim onog što Ti učiniš lahkim, Ti, ako hoćeš, i teško učiniš lahkim!
 
-**English — transliteration (Sunnah.com 139):** Allāhumma lā saḥla illā ma ja&#96;altahu saḥla wa anta taj&#96;alu ‘l-ḥazna idhā shi'ta saḥla.
+**English — transliteration (adapted from the Arabic, distinguishing ه h from ح ḥ):** Allāhumma lā sahla illā mā ja‘altahu sahlan, wa anta taj‘alu-l-ḥazna idhā shi’ta sahlan.
 
-**English — meaning (Sunnah.com 139):** O Allah, there is no ease other than what You make easy. If You please You ease sorrow.
+**English — meaning (FOSIS guide):** O Allah! There is nothing easy except what You make easy, and You make the difficult easy if it is Your will.
 
-The Bosnian meaning retains “što Ti ne učiniš” as printed in the photograph.
+The screenshot shows only the opening sentence. The app keeps the full wording of HM-139. The earlier Bosnian HM-130 rendering said “što Ti ne učiniš,” reversing the meaning; this entry uses the published IslamHouse rendering without that error.
 
-**Sources:** [Bosnian PDF, page 52](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=52) · [English and Arabic](https://sunnah.com/hisn:139)
+**Sources:** [Bosnian wording and meaning](https://d1.islamhouse.com/data/bs/ih_books/single1/doa-bs.pdf) · [Arabic and hadith reference](https://sunnah.com/hisn:139) · [English meaning](https://www.fosis.org.uk/wp-content/uploads/2021/10/The-FOSIS-Protecting-your-Imaan-Guide.pdf)
 
 <a id="hm-140"></a>
 ### HM-140 · Nakon počinjenog grijeha / After committing a sin

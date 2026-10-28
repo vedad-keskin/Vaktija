@@ -73,6 +73,7 @@ it('shows ten items at a time and resets on view changes', async () => {
     'quran-28-24',
     'quran-20-114',
     'quran-20-25',
+    'muslim-2721a',
     'hisn-188',
     'hisn-189',
     'hisn-230',
@@ -81,7 +82,7 @@ it('shows ten items at a time and resets on view changes', async () => {
     'hisn-144',
   ]);
   expect(
-    [...cards()[5].querySelectorAll('.dua-saying .dua-arabic')].map((phrase) =>
+    [...cards()[6].querySelectorAll('.dua-saying .dua-arabic')].map((phrase) =>
       phrase.textContent?.trim(),
     ),
   ).toEqual([
@@ -89,7 +90,7 @@ it('shows ten items at a time and resets on view changes', async () => {
     'يَرْحَمُكَ اللَّهُ',
     'يَهْدِيكُمُ اللَّهُ وَيُصْلِحُ بَالَكُمْ',
   ]);
-  expect(cards()[5].querySelectorAll('.dua-saying .dua-instructions')).toHaveLength(3);
+  expect(cards()[6].querySelectorAll('.dua-saying .dua-instructions')).toHaveLength(3);
   await harness.navigateByUrl('/duas?category=home');
   expect([...cards()].map((card) => card.getAttribute('data-dua-id'))).toEqual([
     'hisn-16',
@@ -306,6 +307,7 @@ it('routes the bilingual library, validates saved data and persists bookmark cha
     'quran-28-24',
     'quran-20-114',
     'quran-20-25',
+    'muslim-2721a',
     'hisn-188',
     'hisn-189',
     'hisn-230',

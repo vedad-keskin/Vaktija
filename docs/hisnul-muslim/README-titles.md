@@ -206,7 +206,7 @@ Brojevi, poglavlja i vrste zapisa provjereni su prema [OpenDua datasetu v0.0.4](
 - [ ] ★ [HM-121 · Dova protiv zabrinutosti i žalosti / Against anxiety and sorrow](README-full.md#hm-121) · u aplikaciji / in app
 - [ ] [HM-126 · Pri susretu s neprijateljem ili osobom na vlasti (1/3) / Facing an adversary or ruler (1/3)](README-full.md#hm-126) · u aplikaciji / in app
 - [ ] [HM-133 · Pri sumnji u vjeri / When doubting one’s faith](README-full.md#hm-133) · uputa / instruction · u aplikaciji / in app
-- [ ] ★ [HM-139 · Kada je nešto teško / When something is difficult](README-full.md#hm-139) · u aplikaciji / in app
+- [ ] ★ [HM-139 · Dova kada je nešto teško / When something is difficult](README-full.md#hm-139) · u aplikaciji / in app
 - [ ] [HM-140 · Nakon počinjenog grijeha / After committing a sin](README-full.md#hm-140) · uputa / instruction · u aplikaciji / in app
 - [ ] [HM-141 · Zaštita od šejtana i njegovih došaptavanja / Protection from Satan and his whisperings](README-full.md#hm-141) · uputa / instruction · u aplikaciji / in app
 - [ ] [HM-144 · Kada se dogodi nešto nepoželjno / When something unwelcome happens](README-full.md#hm-144) · u aplikaciji / in app
@@ -286,6 +286,7 @@ Brojevi, poglavlja i vrste zapisa provjereni su prema [OpenDua datasetu v0.0.4](
 
 ## Općenite dove, zikr i adab / General supplications, remembrance and manners
 
+- [ ] [Muslim-2721a · Dova za bogobojaznost i čednost / Supplication for piety and chastity](README-full.md#muslim-2721a) · u aplikaciji / in app
 - [ ] [HM-188 · Dova prilikom kihanja / Upon sneezing](README-full.md#hm-188) · u aplikaciji / in app (3 izgovora / 3 sayings)
 - [ ] [HM-189 · Odgovor nemuslimanu koji kihne i zahvali Allahu / Reply to a non-Muslim who sneezes and praises Allah](https://sunnah.com/hisn:189)
 - [ ] [HM-197 · Odgovor onome ko nam poželi oprost / Replying to a prayer for your forgiveness](https://sunnah.com/hisn:197)

@@ -86,6 +86,25 @@ export const GENERAL_DUAS: readonly Dua[] = [
     sourceUrl: 'https://quran.com/20/25',
   },
   {
+    id: 'muslim-2721a',
+    title: {
+      bs: 'Dova za bogobojaznost i čednost',
+      en: 'Supplication for piety and chastity',
+    },
+    arabic: 'اللَّهُمَّ إِنِّي أَسْأَلُكَ الْهُدَى وَالتُّقَى وَالْعَفَافَ وَالْغِنَى',
+    transcription: {
+      bs: 'Allāhumme innī es’eluke-l-hudā ve-t-tuqā ve-l-‘afāfe ve-l-ginā.',
+      en: 'Allāhumma innī as’alukal-hudā wat-tuqā wal-‘afāfa wal-ghinā.',
+    },
+    translation: {
+      bs: 'Allahu, molim Te za uputu, bogobojaznost, čednost i neovisnost!',
+      en: 'O Allah, indeed, I ask You for guidance, piety, chastity, and sufficiency.',
+    },
+    reference: { bs: 'Muslim, 2721a', en: 'Sahih Muslim, 2721a' },
+    sourceUrl: 'https://sunnah.com/muslim:2721a',
+    bosnianSourceUrl: 'https://d1.islamhouse.com/data/bs/ih_books/single1/doa-bs.pdf',
+  },
+  {
     id: 'hisn-188',
     title: { bs: 'Dova prilikom kihanja', en: 'Upon sneezing' },
     sayings: [
