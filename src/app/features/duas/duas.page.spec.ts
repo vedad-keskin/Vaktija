@@ -219,6 +219,7 @@ it('routes the bilingual library, validates saved data and persists bookmark cha
     'hisn-19',
     'hisn-20',
     'hisn-21',
+    'hisn-22',
     'hisn-25',
     'hisn-176',
     'hisn-178',

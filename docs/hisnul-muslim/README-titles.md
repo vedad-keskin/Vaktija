@@ -77,7 +77,7 @@ Brojevi, poglavlja i vrste zapisa provjereni su prema [OpenDua datasetu v0.0.4](
 - [ ] [HM-019 · Dova pri odlasku u džamiju / Going to the mosque](README-full.md#hm-19) · u aplikaciji / in app
 - [ ] [HM-020 · Dova pri ulasku u džamiju / Entering the mosque](README-full.md#hm-20) · u aplikaciji / in app
 - [ ] [HM-021 · Dova pri izlasku iz džamije / Leaving the mosque](README-full.md#hm-21) · u aplikaciji / in app
-- [ ] [HM-022 · Pri slušanju ezana (1/5) / Hearing the adhan (1/5)](https://sunnah.com/hisn:22)
+- [ ] [HM-022 · Odgovor pri slušanju ezana / Responding to the adhan](README-full.md#hm-22) · u aplikaciji / in app (2 izgovora / 2 sayings)
 - [ ] [HM-023 · Pri slušanju ezana (2/5) / Hearing the adhan (2/5)](https://sunnah.com/hisn:23)
 - [ ] [HM-024 · Pri slušanju ezana (3/5) / Hearing the adhan (3/5)](https://sunnah.com/hisn:24) · uputa / instruction
 - [ ] ★ [HM-025 · Dova poslije ezana / Supplication after the adhan](https://sunnah.com/hisn:25)

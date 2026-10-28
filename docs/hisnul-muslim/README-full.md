@@ -223,6 +223,37 @@ This file grows one approved category at a time. It currently contains the cloth
 
 ## Ezan / Adhan
 
+<a id="hm-22"></a>
+### HM-22 · Odgovor pri slušanju ezana / Responding to the adhan
+
+Slušalac ponavlja za mujezinom sve riječi ezana osim ovih: kada ih čuje, izgovara odgovor ispod. / The listener repeats the caller's words except these: on hearing them, the listener says the reply below.
+
+**Mujezin izgovara / The caller says**
+
+<p lang="ar" dir="rtl">حَيَّ عَلَى الصَّلَاةِ، وَحَيَّ عَلَى الْفَلَاحِ</p>
+
+**Bosanski — transkripcija (fotografija knjige, str. 23):** Hajje ‘ale-ṣ-ṣalāh, hajje ‘ale-l-felāḥ.
+
+**Bosanski — značenje:** Dođite na namaz, dođite na spas.
+
+**English — transliteration (Sunnah.com 22):** Hayya 'alas-Salāh, hayya 'alal-Falāh.
+
+**English — meaning (Sunnah.com 22):** Hasten to prayer, hasten to salvation.
+
+**Slušalac odgovara / The listener replies**
+
+<p lang="ar" dir="rtl">لَا حَوْلَ وَلَا قُوَّةَ إِلَّا بِاللَّهِ</p>
+
+**Bosanski — transkripcija (fotografija knjige, str. 24):** Lā ḥavle ve lā quvvete illā billāh.
+
+**Bosanski — prijevod (fotografija knjige, str. 24):** Nema snage niti moći osim Allahove (pomoći i moći).
+
+**English — transliteration (Sunnah.com 22):** Lā ḥawla wa lā quwwata 'illā billāh.
+
+**English — meaning (Sunnah.com 22):** There is no might and no power except by Allah.
+
+**Sources:** User's photographed Hisnul-Muslimi, pp. 23–24 · [English and Arabic](https://sunnah.com/hisn:22)
+
 <a id="hm-25"></a>
 ### HM-25 · Dova poslije ezana / Supplication after the adhan
 
