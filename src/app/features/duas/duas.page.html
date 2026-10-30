@@ -92,11 +92,11 @@
             </div>
           </header>
           @if (dua.sayings; as sayings) {
-            <span class="duas-divider dua-card-divider" aria-hidden="true"></span>
             <div class="dua-sayings">
               @for (saying of sayings; track $index) {
                 <div class="dua-saying">
                   <p class="dua-arabic" lang="ar" dir="rtl">{{ saying.arabic }}</p>
+                  <span class="duas-divider dua-card-divider" aria-hidden="true"></span>
                   @if (saying.instructions?.[language.lang()]; as instruction) {
                     <div class="dua-instructions" role="note">
                       <span class="dua-instructions-label">{{ labels().duasInstructions }}</span>
@@ -109,6 +109,18 @@
                   <p class="dua-translation" [attr.aria-label]="labels().duasTranslation">
                     {{ saying.translation[language.lang()] }}
                   </p>
+                  @if (saying.sources; as sources) {
+                    <footer class="dua-source">
+                      @for (source of sources; track $index) {
+                        <a [href]="language.lang() === 'bs' ? (source.bosnianSourceUrl ?? source.sourceUrl) : source.sourceUrl" target="_blank" rel="noopener noreferrer">
+                          {{ labels().duasSource }} · {{ source.reference[language.lang()] }}
+                          <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M14 4h6v6m0-6-9 9M10 4H4v16h16v-6" />
+                          </svg>
+                        </a>
+                      }
+                    </footer>
+                  }
                 </div>
               }
             </div>
@@ -138,14 +150,16 @@
               </p>
             }
           }
-          <footer class="dua-source">
-            <a [href]="language.lang() === 'bs' ? (dua.bosnianSourceUrl ?? dua.sourceUrl) : dua.sourceUrl" target="_blank" rel="noopener noreferrer">
-              {{ labels().duasSource }} · {{ dua.reference[language.lang()] }}
-              <svg viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M14 4h6v6m0-6-9 9M10 4H4v16h16v-6" />
-              </svg>
-            </a>
-          </footer>
+          @if (dua.sourceUrl; as sourceUrl) {
+            <footer class="dua-source">
+              <a [href]="language.lang() === 'bs' ? (dua.bosnianSourceUrl ?? sourceUrl) : sourceUrl" target="_blank" rel="noopener noreferrer">
+                {{ labels().duasSource }} · {{ dua.reference[language.lang()] }}
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M14 4h6v6m0-6-9 9M10 4H4v16h16v-6" />
+                </svg>
+              </a>
+            </footer>
+          }
         </article>
       } @empty {
         <div class="duas-empty">

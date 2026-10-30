@@ -361,6 +361,10 @@ svg {
 }
 
 .dua-source {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 4px 16px;
   margin-top: 20px;
   text-align: center;
 }

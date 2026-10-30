@@ -78,6 +78,9 @@ it('shows ten items at a time and resets on view changes', async () => {
   expect(cards()[1].querySelector('.dua-instructions')?.textContent).toContain('three times');
   expect(cards()[2].querySelectorAll('.dua-saying')).toHaveLength(2);
   expect(cards()[2].querySelectorAll('.dua-instructions')).toHaveLength(0);
+  expect(
+    [...cards()[2].querySelectorAll('.dua-source a')].map((link) => link.getAttribute('href')),
+  ).toEqual(['https://sunnah.com/hisn:38', 'https://sunnah.com/hisn:39']);
   expect(cards()[3].querySelector('.dua-instructions')?.textContent).toContain('three times');
   await harness.navigateByUrl('/duas?category=tilawah');
   expect([...cards()].map((card) => card.getAttribute('data-dua-id'))).toEqual(['hisn-50']);
@@ -501,7 +504,9 @@ it('routes the bilingual library, validates saved data and persists bookmark cha
         expect(rows).toHaveLength(dua.sayings.length);
         for (const [sayingIndex, row] of rows.entries()) {
           const saying = dua.sayings[sayingIndex];
-          expect(row.querySelector('.dua-arabic')?.textContent).toBe(saying.arabic);
+          const arabic = row.querySelector('.dua-arabic');
+          expect(arabic?.textContent).toBe(saying.arabic);
+          expect(arabic?.nextElementSibling?.matches('.duas-divider')).toBe(true);
           expect(row.querySelector('.dua-transcription')?.textContent?.trim()).toBe(
             saying.transcription[lang],
           );
@@ -510,6 +515,13 @@ it('routes the bilingual library, validates saved data and persists bookmark cha
           );
           expect(row.querySelector('.dua-instructions p')?.textContent?.trim()).toBe(
             saying.instructions?.[lang],
+          );
+          expect(
+            [...row.querySelectorAll('.dua-source a')].map((link) => link.getAttribute('href')),
+          ).toEqual(
+            (saying.sources ?? []).map((source) =>
+              lang === 'bs' ? (source.bosnianSourceUrl ?? source.sourceUrl) : source.sourceUrl,
+            ),
           );
         }
       } else {
@@ -532,10 +544,16 @@ it('routes the bilingual library, validates saved data and persists bookmark cha
         expect(card.querySelector('.dua-arabic')?.textContent).toBe(dua.arabic);
       }
       expect(card.querySelector('.dua-arabic')?.getAttribute('dir')).toBe('rtl');
-      expect(card.querySelector('.dua-source a')?.getAttribute('href')).toBe(
-        lang === 'bs' ? (dua.bosnianSourceUrl ?? dua.sourceUrl) : dua.sourceUrl,
+      const partSources = dua.sayings?.flatMap((saying) => saying.sources ?? []) ?? [];
+      expect(
+        [...card.querySelectorAll('.dua-source a')].map((link) => link.getAttribute('href')),
+      ).toEqual(
+        partSources.length
+          ? partSources.map((source) =>
+              lang === 'bs' ? (source.bosnianSourceUrl ?? source.sourceUrl) : source.sourceUrl,
+            )
+          : [lang === 'bs' ? (dua.bosnianSourceUrl ?? dua.sourceUrl) : dua.sourceUrl],
       );
-      expect(card.querySelectorAll('.dua-source a')).toHaveLength(1);
     }
     expect(document.title).toBe(lang === 'bs' ? BS_LABELS.duasDocTitle : EN_LABELS.duasDocTitle);
   }

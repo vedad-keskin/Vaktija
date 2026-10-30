@@ -54,6 +54,14 @@ export const SALAT_DUAS: readonly Dua[] = [
         arabic: 'سَمِعَ اللَّهُ لِمَنْ حَمِدَهُ',
         transcription: { bs: 'Semi‘allāhu limen ḥamideh.', en: 'Sami‘allāhu liman ḥamidah.' },
         translation: { bs: 'Čuo Allah onoga ko Ga hvali.', en: 'Allah hears whoever praises Him.' },
+        sources: [
+          {
+            reference: { bs: 'Hisnul-Muslimi, 38', en: 'Hisn al-Muslim, 38' },
+            sourceUrl: 'https://sunnah.com/hisn:38',
+            bosnianSourceUrl:
+              'https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=20',
+          },
+        ],
       },
       {
         arabic: 'رَبَّنَا وَلَكَ الْحَمْدُ حَمْدًا كَثِيرًا طَيِّبًا مُبَارَكًا فِيهِ',
@@ -65,12 +73,16 @@ export const SALAT_DUAS: readonly Dua[] = [
           bs: 'Gospodaru naš, Tebi hvala, beskonačna hvala, lijepa hvala, u kojoj je svaki blagoslov.',
           en: 'Our Lord, praise is Yours, abundant, good and blessed praise.',
         },
+        sources: [
+          {
+            reference: { bs: 'Hisnul-Muslimi, 39', en: 'Hisn al-Muslim, 39' },
+            sourceUrl: 'https://sunnah.com/hisn:39',
+            bosnianSourceUrl:
+              'https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=20',
+          },
+        ],
       },
     ],
-    reference: { bs: 'Hisnul-Muslimi, 38–39', en: 'Hisn al-Muslim, 38–39' },
-    sourceUrl: 'https://sunnah.com/hisn:38',
-    bosnianSourceUrl:
-      'https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=20',
   },
   {
     id: 'hisn-41',

@@ -25,34 +25,38 @@ import { TOILET_DUAS } from './toilet.data';
 import { TRAVEL_DUAS } from './travel.data';
 import { WEATHER_DUAS } from './weather.data';
 
+type DuaSource = {
+  reference: Record<LangCode, string>;
+  sourceUrl: string;
+  bosnianSourceUrl?: string;
+};
+
 type DuaSaying = {
   arabic: string;
   instructions?: Record<LangCode, string>;
   transcription: Record<LangCode, string>;
   translation: Record<LangCode, string>;
+  sources?: readonly DuaSource[];
 };
 
 export type Dua = {
   id: string;
   title: Record<LangCode, string>;
-  reference: Record<LangCode, string>;
-  sourceUrl: string;
-  bosnianSourceUrl?: string;
 } & (
-  | {
+  | (DuaSource & {
       arabic: string;
       instructions?: Record<LangCode, string>;
       transcription: Record<LangCode, string>;
       translation: Record<LangCode, string>;
       sayings?: never;
-    }
-  | {
+    })
+  | ((DuaSource | { reference?: never; sourceUrl?: never; bosnianSourceUrl?: never }) & {
       sayings: readonly DuaSaying[];
       arabic?: never;
       instructions?: never;
       transcription?: never;
       translation?: never;
-    }
+    })
 );
 
 // Add each new category here; All is the combined list of its category files.
