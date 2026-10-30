@@ -130,6 +130,8 @@ svg {
   flex-wrap: nowrap;
   align-items: center;
   justify-content: center;
+  width: 100%;
+  min-width: 0;
   gap: 10px;
   margin-bottom: 16px;
 }
@@ -155,13 +157,23 @@ svg {
 .duas-scopes {
   display: grid;
   grid-auto-flow: column;
-  grid-auto-columns: 1fr;
-  flex: 0 0 auto;
+  grid-auto-columns: minmax(0, 1fr);
+  flex: 1 1 auto;
+  min-width: 0;
+  max-width: max-content;
   gap: 10px;
 }
 
 .duas-collections a {
+  min-width: 0;
+  overflow: hidden;
   white-space: nowrap;
+}
+
+.duas-scope-label {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .duas-category {
@@ -251,11 +263,13 @@ svg {
 .duas-collections svg {
   width: 16px;
   height: 18px;
+  flex-shrink: 0;
 }
 
 .saved-count {
   display: inline-grid;
   place-items: center;
+  flex-shrink: 0;
   margin-inline-start: 4px;
   font-size: 13px;
   line-height: 1;
@@ -586,16 +600,36 @@ svg {
   }
 
   .duas-scopes {
+    display: flex;
+    flex: 0 1 auto;
     gap: 6px;
+    max-width: 100%;
   }
 
   .duas-scopes a {
-    padding-inline: 10px;
+    flex: 0 1 auto;
+    padding-inline: 12px;
     gap: 6px;
   }
 
+  .duas-saved {
+    position: relative;
+    flex: 0 0 auto;
+  }
+
+  .duas-saved .duas-scope-label {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
   .duas-category {
-    min-width: 7.4rem;
     padding-inline: 24px;
   }
 

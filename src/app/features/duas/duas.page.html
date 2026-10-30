@@ -59,16 +59,18 @@
           [class.active]="!savedOnly() && !activeCategory()"
           [attr.aria-current]="!savedOnly() && !activeCategory() ? 'page' : null"
         >
-          {{ copy().all }}
+          <span class="duas-scope-label">{{ copy().all }}</span>
         </a>
         <a
+          class="duas-saved"
           [routerLink]="collectionPath"
           [queryParams]="{ view: 'saved', q: searchQuery() || null }"
           [class.active]="savedOnly()"
           [attr.aria-current]="savedOnly() ? 'page' : null"
         >
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h12v18l-6-4-6 4Z" /></svg>
-          {{ copy().saved }} <span class="saved-count">{{ savedIds().length }}</span>
+          <span class="duas-scope-label">{{ copy().saved }}</span>
+          <span class="saved-count">{{ savedIds().length }}</span>
         </a>
       </div>
       @if (categories().length) {
