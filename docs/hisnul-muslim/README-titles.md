@@ -119,10 +119,10 @@ Brojevi, poglavlja i vrste zapisa provjereni su prema [OpenDua datasetu v0.0.4](
 - [ ] [HM-063 · Poslije završnog tešehhuda, prije selama (9/11) / Before ending the prayer (9/11)](https://sunnah.com/hisn:63)
 - [ ] [HM-064 · Poslije završnog tešehhuda, prije selama (10/11) / Before ending the prayer (10/11)](https://sunnah.com/hisn:64)
 - [ ] [HM-065 · Poslije završnog tešehhuda, prije selama (11/11) / Before ending the prayer (11/11)](https://sunnah.com/hisn:65)
-- [ ] ★ [HM-066 · Istigfar poslije selama / Forgiveness after the prayer](https://sunnah.com/hisn:66)
-- [ ] [HM-067 · Poslije namaza (2/8) / After prayer (2/8)](https://sunnah.com/hisn:67)
+- [ ] ★ [HM-066 · Istigfar poslije selama / Forgiveness after the prayer](README-full.md#hm-66) · u aplikaciji / in app
+- [ ] [HM-067 · Poslije namaza (2/8) / After prayer (2/8)](README-full.md#hm-67) · u aplikaciji s HM-066 / in app with HM-066
 - [ ] [HM-068 · Poslije namaza (3/8) / After prayer (3/8)](https://sunnah.com/hisn:68)
-- [ ] ★ [HM-069 · Tesbih poslije namaza / Remembrance after the prayer](https://sunnah.com/hisn:69)
+- [ ] ★ [HM-069 · Tesbih poslije namaza / Remembrance after the prayer](README-full.md#hm-69) · u aplikaciji s HM-066–067 / in app with HM-066–067
 - [ ] [HM-070 · Poslije namaza (5/8) / After prayer (5/8)](https://sunnah.com/hisn:70)
 - [ ] [HM-071 · Poslije namaza (6/8) / After prayer (6/8)](https://sunnah.com/hisn:71)
 - [ ] [HM-072 · Poslije namaza (7/8) / After prayer (7/8)](https://sunnah.com/hisn:72)

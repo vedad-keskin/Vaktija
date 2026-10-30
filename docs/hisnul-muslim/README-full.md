@@ -1,6 +1,6 @@
 # Hisnul Muslim — selected full duas (BS / EN)
 
-This file grows one approved category at a time. It currently contains the clothing entries (HM-5, 9, 6, 7), the toilet entries (HM-10–11), the Abdest entries (HM-12–13), the mosque entries (HM-19–21), the adhan entry (HM-25), the prayer entries (HM-28, 33, 38–39, 41, 49, 52–53, 56), the prostration of recitation entry (HM-50), the Istikharah entry (HM-74), the sleeping entries (HM-111, 1, 114, 113, 112), the three marriage entries, the gathering entries (HM-195–196), the animal entries, the weather entries (HM-166, 168, 169, 172–175), the fasting and food entries (HM-176–186), the home entries (HM-16, 18), the travel entries (HM-206–212, 215–217), the general entries (HM-79, 84, 86, 97, 188), the illness entries (HM-147, 148, 150–152, 243), the death entries (HM-153–163, 165), and the Hajj and Umrah entries (HM-234–239). The [complete title checklist](README-titles.md) remains an editorial selection aid; its suggested labels are not published translations.
+This file grows one approved category at a time. It currently contains the clothing entries (HM-5, 9, 6, 7), the toilet entries (HM-10–11), the Abdest entries (HM-12–13), the mosque entries (HM-19–21), the adhan entry (HM-25), the prayer entries (HM-28, 33, 38–39, 41, 49, 52–53, 56), the after-prayer entries (HM-66–67, 69), the prostration of recitation entry (HM-50), the Istikharah entry (HM-74), the sleeping entries (HM-111, 1, 114, 113, 112), the three marriage entries, the gathering entries (HM-195–196), the animal entries, the weather entries (HM-166, 168, 169, 172–175), the fasting and food entries (HM-176–186), the home entries (HM-16, 18), the travel entries (HM-206–212, 215–217), the general entries (HM-79, 84, 86, 97, 188), the illness entries (HM-147, 148, 150–152, 243), the death entries (HM-153–163, 165), and the Hajj and Umrah entries (HM-234–239). The [complete title checklist](README-titles.md) remains an editorial selection aid; its suggested labels are not published translations.
 
 ## Izvori i uredničke napomene / Sources and editorial notes
 
@@ -17,6 +17,7 @@ This file grows one approved category at a time. It currently contains the cloth
 - **Istihara / Istikharah:** HM-74 is Bosnian 74 in the reader’s photographs of pages 55–56 of the 2017 edition. Bosnian transcription and meaning follow those pages; the linked IslamHouse PDF provides a digital counterpart. The place to name the matter and the alternate wording appear in parentheses beside the corresponding words. Arabic follows [Sunnah.com HM-74](https://sunnah.com/hisn:74); English transcription and meaning are adapted from it.
 - **Sedžda tilaveta / Prostration of recitation:** HM-50 is Bosnian 50 in the reader's photograph of page 39. The Bosnian transcription and meaning follow that photograph, with the established letter key above; the linked IslamHouse PDF is the digital counterpart. Arabic and English follow [Sunnah.com HM-50](https://sunnah.com/hisn:50). HM-51 remains only in the title checklist.
 - **Namaz / Salat:** HM-28, HM-33, HM-38–39, HM-41, HM-49, HM-52–53 and HM-56 are Bosnian 28, 33, 38–39, 41, 49, 52–53 and 56 in the reader's photographs of pages 27, 33–36 and 39–44. Their Bosnian transcriptions and meanings follow those photographs and the established letter key; the linked IslamHouse PDF is the digital counterpart. Arabic and English follow the corresponding [Sunnah.com Hisn al-Muslim entries](https://sunnah.com/hisn). HM-27 remains only in the title checklist. HM-38 and HM-39 share one app card with two recitation rows and no instructions.
+- **Poslije namaza / After prayer:** HM-66–67 and the first three phrases of HM-69 share one card and follow the reader's photographs of Bosnian pages 50–52. The opening istigfar is repeated three times, and each HM-69 phrase 33 times; these counts appear in instructions. HM-69's closing declaration is omitted here because it already appears in HM-67. Arabic and English follow [Sunnah.com HM-66](https://sunnah.com/hisn:66), [HM-67](https://sunnah.com/hisn:67), and [HM-69](https://sunnah.com/hisn:69); the linked Bosnian PDF is the digital counterpart.
 - **Džamija / Mosque:** Bosnian transcriptions follow the reader's photographs of pages 21–23 of the 2017 edition; Bosnian meanings follow the linked IslamHouse PDF. HM-19 uses the shorter published Arabic/English wording matching that edition, rather than the longer variant on Sunnah.com. Its English transliteration is from [Sahih Muslim 1799](https://www.alim.org/hadith/sahih-muslim/6/1799/). HM-20's English transliteration is from the [English Hisnul Muslim edition of the Presidency of Religious Affairs](https://risala.prh.gov.sa/en/content/51); its three source segments are displayed together. HM-21's English transliteration is from [Sunnah.com HM-21](https://sunnah.com/hisn:21).
 - **Opće / General:** HM-79 ↔ Bosnian 77; HM-84 ↔ Bosnian 80; HM-97 ↔ Bosnian 79. Bosnian transcriptions are adaptations of the published PDF using the letter key above. English HM-97 specifies the evening.
 - **Zaštita / Protection (HM-86):** HM-86 ↔ Bosnian 82. The Bosnian transcription follows the published PDF and the letter key above. Its Bosnian meaning is shorter than the English published meaning; it is reproduced as printed. Both sources specify three recitations; the hadith places them in the morning and evening.
@@ -438,6 +439,79 @@ Slušalac ponavlja za mujezinom sve riječi ezana osim ovih: kada ih čuje, izgo
 **English — meaning (Sunnah.com 56):** O Allah, I seek refuge in You from the punishment of the grave, and I seek refuge in You from the trial of the False Messiah, and I seek refuge in You from the trials of life and death. O Allah, I seek refuge in You from sin and from debt.
 
 **Sources:** Reader's photographed Hisnul-Muslimi, pages 43–44 · [Bosnian PDF, page 25](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=25) · [English and Arabic](https://sunnah.com/hisn:56)
+
+## Poslije namaza / After prayer
+
+<a id="hm-66"></a>
+### HM-66–67, 69 · Dove poslije selama / Dua after salam
+
+#### Istigfar / Seeking forgiveness
+
+**Upute / Instructions:** Nakon predaje selama prouči tri puta. / After the salam, recite three times.
+
+**Arapski / Arabic**
+
+<p lang="ar" dir="rtl">أَسْتَغْفِرُ اللَّهَ</p>
+
+**Bosanski — transkripcija (fotografija knjige, str. 50):** Estagfirullāhe.
+
+**Bosanski — prijevod (fotografija knjige, str. 50):** Allaha za oprost molim.
+
+**English — transliteration (Sunnah.com 66):** Astaghfirullāh.
+
+**English — meaning (Sunnah.com 66):** I seek the forgiveness of Allah.
+
+#### Dova / Supplication
+
+**Arapski / Arabic**
+
+<p lang="ar" dir="rtl">اللَّهُمَّ أَنْتَ السَّلَامُ وَمِنْكَ السَّلَامُ تَبَارَكْتَ يَا ذَا الْجَلَالِ وَالْإِكْرَامِ</p>
+
+**Bosanski — transkripcija (fotografija knjige, str. 50):** Allāhumme Ente-s-Selāmu ve minke-s-Selāmu, tebārekte jā ḏe-l-dželāli ve-l-ikrām.
+
+**Bosanski — prijevod (fotografija knjige, str. 50):** Allahu, Ti si Es-Selam i od Tebe je selam, blagodaran si Ti, Koji posjeduješ veličinu i plemenitost.
+
+**English — transliteration (Sunnah.com 66):** Allāhumma antas-salām, wa minkas-salām, tabārakta yā dhal-Jalāli wal-'Ikrām.
+
+**English — meaning (Sunnah.com 66):** O Allah, You are Peace and from You comes peace. Blessed are You, O Owner of majesty and honor.
+
+**Sources:** Reader's photographed Hisnul-Muslimi, page 50 · [Bosnian PDF, page 29](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=29) · [English and Arabic](https://sunnah.com/hisn:66)
+
+<a id="hm-67"></a>
+#### HM-67 · Tevhid i dova / Declaration of Allah's oneness and supplication
+
+**Arapski / Arabic**
+
+<p lang="ar" dir="rtl">لَا إِلَٰهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ وَهُوَ عَلَىٰ كُلِّ شَيْءٍ قَدِيرٌ. اللَّهُمَّ لَا مَانِعَ لِمَا أَعْطَيْتَ، وَلَا مُعْطِيَ لِمَا مَنَعْتَ، وَلَا يَنْفَعُ ذَا الْجَدِّ مِنْكَ الْجَدُّ</p>
+
+**Bosanski — transkripcija (fotografija knjige, str. 50–51):** Lā ilāhe illellāhu vaḥdehu lā šerīke leh, lehu-l-mulku ve lehu-l-ḥamdu ve huve ‘alā kulli šej’in qadīr. Allāhumme lā māni‘a limā e‘ṭajte ve lā mu‘ṭije limā mena‘te, ve lā jenfe‘u ḏe-l-džeddi minke-l-džeddu.
+
+**Bosanski — prijevod (fotografija knjige, str. 51):** Nema boga osim Allaha, Jedinoga, Koji druga nema. Njemu pripada sva vlast i On nad svakom stvari ima moć. Allahu, niko ne može spriječiti ono što si Ti dao, a niti dati ono što Ti ne daješ. Nikome ko posjeduje moć (bogatstvo, porijeklo) neće protiv Tebe koristiti njegova moć.
+
+**English — transliteration (Sunnah.com 67):** Lā ilāha illallāhu waḥdahu lā sharīka lah, lahul-mulku wa lahul-ḥamdu wa huwa ‘alā kulli shay’in qadīr. Allāhumma lā māni‘a limā a‘ṭayta, wa lā mu‘ṭiya limā mana‘ta, wa lā yanfa‘u dhal-jaddi minkal-jadd.
+
+**English — meaning (Sunnah.com 67):** None has the right to be worshipped but Allah alone. He has no partner. His is the dominion and His is the praise, and He is Able to do all things. O Allah, there is none who can withhold what You give, and none may give what You have withheld, and the might of the mighty person cannot benefit him against You.
+
+**Sources:** Reader's photographed Hisnul-Muslimi, pages 50–51 · [Bosnian PDF, page 29](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=29) · [English and Arabic](https://sunnah.com/hisn:67)
+
+<a id="hm-69"></a>
+#### HM-69 · Tesbih, tahmid i tekbir / Glorification, praise and magnification
+
+**Upute / Instructions:** Nakon namaza prouči svaku od ove tri izreke po 33 puta. / After the prayer, recite each of these three phrases 33 times.
+
+**Arapski / Arabic**
+
+<p lang="ar" dir="rtl">سُبْحَانَ اللَّهِ وَالْحَمْدُ لِلَّهِ وَاللَّهُ أَكْبَرُ</p>
+
+**Bosanski — transkripcija (fotografija knjige, str. 52):** Subḥānallāhi, ve-l-ḥamdu lillāhi, vallāhu ekber.
+
+**Bosanski — prijevod (fotografija knjige, str. 52):** Slava Allahu i svaka Mu hvala. Allah je najveći.
+
+**English — transliteration (Sunnah.com 69):** Subḥānallāh, wal-ḥamdu lillāh, wallāhu akbar.
+
+**English — meaning (Sunnah.com 69):** Glory is to Allah, and praise is to Allah, and Allah is the Most Great.
+
+**Sources:** Reader's photographed Hisnul-Muslimi, page 52 · [Bosnian PDF, page 30](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=30) · [English and Arabic](https://sunnah.com/hisn:69)
 
 ## Sedžda tilaveta / Prostration of recitation
 

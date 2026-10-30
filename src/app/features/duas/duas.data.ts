@@ -1,6 +1,7 @@
 import { LangCode } from '../../core/services/language.service';
 import { ABLUTION_DUAS } from './ablution.data';
 import { ADHAN_DUAS } from './adhan.data';
+import { AFTER_PRAYER_DUAS } from './after-prayer.data';
 import { ANIMAL_DUAS } from './animals.data';
 import { CHILDREN_DUAS } from './children.data';
 import { CLOTHING_DUAS } from './clothing.data';
@@ -66,6 +67,11 @@ export const DUA_CATEGORIES = [
   { id: 'mosque', label: { bs: 'Džamija', en: 'Mosque' }, items: MOSQUE_DUAS },
   { id: 'adhan', label: { bs: 'Ezan', en: 'Adhan' }, items: ADHAN_DUAS },
   { id: 'salat', label: { bs: 'Namaz', en: 'Salat' }, items: SALAT_DUAS },
+  {
+    id: 'after-prayer',
+    label: { bs: 'Poslije namaza', en: 'After prayer' },
+    items: AFTER_PRAYER_DUAS,
+  },
   {
     id: 'tilawah',
     label: { bs: 'Sedžda tilaveta', en: 'Prostration of recitation' },
