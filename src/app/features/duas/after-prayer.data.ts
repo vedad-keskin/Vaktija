@@ -180,10 +180,7 @@ export const AFTER_PRAYER_DUAS: readonly Dua[] = [
       {
         arabic:
           'اللَّهُ لَا إِلَٰهَ إِلَّا هُوَ الْحَيُّ الْقَيُّومُ لَا تَأْخُذُهُ سِنَةٌ وَلَا نَوْمٌ لَهُ مَا فِي السَّمَاوَاتِ وَمَا فِي الْأَرْضِ مَنْ ذَا الَّذِي يَشْفَعُ عِنْدَهُ إِلَّا بِإِذْنِهِ يَعْلَمُ مَا بَيْنَ أَيْدِيهِمْ وَمَا خَلْفَهُمْ وَلَا يُحِيطُونَ بِشَيْءٍ مِنْ عِلْمِهِ إِلَّا بِمَا شَاءَ وَسِعَ كُرْسِيُّهُ السَّمَاوَاتِ وَالْأَرْضَ وَلَا يَئُودُهُ حِفْظُهُمَا وَهُوَ الْعَلِيُّ الْعَظِيمُ',
-        instructions: {
-          bs: 'Ajetul-Kursijj prouči poslije svakog namaza.',
-          en: 'Recite Ayat al-Kursi after each prayer.',
-        },
+
         transcription: {
           bs: 'Allāhu lā ilāhe illā Huve-l-Ḥajju-l-Qajjūm. Lā te’ḫuḏuhū sinetun ve lā nevm. Lehū mā fī-s-semāvāti ve mā fī-l-erḍ. Men ḏā-lleḏī ješfe‘u ‘indehū illā bi-iḏnih. Ja‘lemu mā bejne ejdīhim ve mā ḫalfehum, ve lā juḥīṭūne bi šej’in min ‘ilmihī illā bi mā šā’e. Vesi‘a kursijjuhu-s-semāvāti ve-l-erḍa ve lā je’ūduhū ḥifẓuhumā ve Huve-l-‘Alijju-l-‘Aẓīm.',
           en: 'Allāhu lā ilāha illā huwa al-Ḥayyul-Qayyūm. Lā ta’khudhuhu sinatun wa lā nawm. Lahu mā fis-samāwāti wa mā fil-arḍ. Man dhal-ladhī yashfa‘u ‘indahu illā bi-idhnih. Ya‘lamu mā bayna aydīhim wa mā khalfahum, wa lā yuḥīṭūna bishay’in min ‘ilmihi illā bimā shā’. Wasi‘a kursiyyuhus-samāwāti wal-arḍa wa lā ya’ūduhu ḥifẓuhumā wa huwal-‘Aliyyul-‘Aẓīm.',
