@@ -63,11 +63,24 @@ it('shows ten items at a time and resets on view changes', async () => {
     'hisn-20',
     'hisn-21',
   ]);
+  await harness.navigateByUrl('/duas?category=salat');
+  expect([...cards()].map((card) => card.getAttribute('data-dua-id'))).toEqual([
+    'hisn-28',
+    'hisn-33',
+    'hisn-38-39',
+    'hisn-41',
+    'hisn-49',
+    'hisn-52',
+    'hisn-53',
+    'hisn-56',
+  ]);
+  expect(cards()[0].querySelector('.dua-instructions')?.textContent).toContain('opening takbir');
+  expect(cards()[1].querySelector('.dua-instructions')?.textContent).toContain('three times');
+  expect(cards()[2].querySelectorAll('.dua-saying')).toHaveLength(2);
+  expect(cards()[2].querySelectorAll('.dua-instructions')).toHaveLength(0);
+  expect(cards()[3].querySelector('.dua-instructions')?.textContent).toContain('three times');
   await harness.navigateByUrl('/duas?category=tilawah');
   expect([...cards()].map((card) => card.getAttribute('data-dua-id'))).toEqual(['hisn-50']);
-  expect(cards()[0].querySelector('.dua-instructions')?.textContent).toContain(
-    'prostration of recitation',
-  );
   await harness.navigateByUrl('/duas?category=istikhara');
   expect([...cards()].map((card) => card.getAttribute('data-dua-id'))).toEqual(['hisn-74']);
   expect(cards()[0].querySelector('.dua-instructions')?.textContent).toContain('two rak‘ahs');
@@ -227,6 +240,7 @@ it('routes the bilingual library, validates saved data and persists bookmark cha
     'ablution',
     'mosque',
     'adhan',
+    'salat',
     'tilawah',
     'istikhara',
     'fasting',
@@ -258,6 +272,14 @@ it('routes the bilingual library, validates saved data and persists bookmark cha
     'hisn-21',
     'hisn-22',
     'hisn-25',
+    'hisn-28',
+    'hisn-33',
+    'hisn-38-39',
+    'hisn-41',
+    'hisn-49',
+    'hisn-52',
+    'hisn-53',
+    'hisn-56',
     'hisn-50',
     'hisn-74',
     'hisn-176',
@@ -428,6 +450,7 @@ it('routes the bilingual library, validates saved data and persists bookmark cha
             'Istihara',
             'Kuća',
             'Kurban',
+            'Namaz',
             'Odjeća',
             'Oprost',
             'Post i hrana',
@@ -463,6 +486,7 @@ it('routes the bilingual library, validates saved data and persists bookmark cha
             'Prostration of recitation',
             'Protection',
             'Qurbani',
+            'Salat',
             'Sleep and dreams',
             'Toilet',
             'Travel',
@@ -485,7 +509,7 @@ it('routes the bilingual library, validates saved data and persists bookmark cha
             saying.translation[lang],
           );
           expect(row.querySelector('.dua-instructions p')?.textContent?.trim()).toBe(
-            saying.instructions[lang],
+            saying.instructions?.[lang],
           );
         }
       } else {

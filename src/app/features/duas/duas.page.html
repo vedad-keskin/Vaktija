@@ -97,10 +97,12 @@
               @for (saying of sayings; track $index) {
                 <div class="dua-saying">
                   <p class="dua-arabic" lang="ar" dir="rtl">{{ saying.arabic }}</p>
-                  <div class="dua-instructions" role="note">
-                    <span class="dua-instructions-label">{{ labels().duasInstructions }}</span>
-                    <p>{{ saying.instructions[language.lang()] }}</p>
-                  </div>
+                  @if (saying.instructions?.[language.lang()]; as instruction) {
+                    <div class="dua-instructions" role="note">
+                      <span class="dua-instructions-label">{{ labels().duasInstructions }}</span>
+                      <p>{{ instruction }}</p>
+                    </div>
+                  }
                   <p class="dua-transcription" [attr.aria-label]="labels().duasTranscription">
                     {{ saying.transcription[language.lang()] }}
                   </p>

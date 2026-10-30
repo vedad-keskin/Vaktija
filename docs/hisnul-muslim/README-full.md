@@ -1,6 +1,6 @@
 # Hisnul Muslim — selected full duas (BS / EN)
 
-This file grows one approved category at a time. It currently contains the clothing entries (HM-5, 9, 6, 7), the toilet entries (HM-10–11), the Abdest entries (HM-12–13), the mosque entries (HM-19–21), the adhan entry (HM-25), the prostration of recitation entry (HM-50), the Istikharah entry (HM-74), the sleeping entries (HM-111, 1, 114, 113, 112), the three marriage entries, the gathering entries (HM-195–196), the animal entries, the weather entries (HM-166, 168, 169, 172–175), the fasting and food entries (HM-176–186), the home entries (HM-16, 18), the travel entries (HM-206–212, 215–217), the general entries (HM-79, 84, 86, 97, 188), the illness entries (HM-147, 148, 150–152, 243), the death entries (HM-153–163, 165), and the Hajj and Umrah entries (HM-234–239). The [complete title checklist](README-titles.md) remains an editorial selection aid; its suggested labels are not published translations.
+This file grows one approved category at a time. It currently contains the clothing entries (HM-5, 9, 6, 7), the toilet entries (HM-10–11), the Abdest entries (HM-12–13), the mosque entries (HM-19–21), the adhan entry (HM-25), the prayer entries (HM-28, 33, 38–39, 41, 49, 52–53, 56), the prostration of recitation entry (HM-50), the Istikharah entry (HM-74), the sleeping entries (HM-111, 1, 114, 113, 112), the three marriage entries, the gathering entries (HM-195–196), the animal entries, the weather entries (HM-166, 168, 169, 172–175), the fasting and food entries (HM-176–186), the home entries (HM-16, 18), the travel entries (HM-206–212, 215–217), the general entries (HM-79, 84, 86, 97, 188), the illness entries (HM-147, 148, 150–152, 243), the death entries (HM-153–163, 165), and the Hajj and Umrah entries (HM-234–239). The [complete title checklist](README-titles.md) remains an editorial selection aid; its suggested labels are not published translations.
 
 ## Izvori i uredničke napomene / Sources and editorial notes
 
@@ -16,6 +16,7 @@ This file grows one approved category at a time. It currently contains the cloth
 - **Spavanje i snovi / Sleep and dreams:** Bosnian 103–105 correspond to English 111–113; Bosnian 107–109 make up English 114; HM-1 matches Bosnian 1. Bosnian transcriptions follow the reader’s photographs of pages 13 and 75–77 of the 2017 edition; linked IslamHouse pages provide the published digital counterpart. HM-114 shows the short refuge phrase from Bosnian 107. Its Bosnian instruction is a concise summary requested by the reader, retaining the three recitations specified in the book; its English instruction follows that summary. Its short BS/EN meanings are excerpts of published renderings linked below. The English transcription is the opening of the published wording in [Riyad as-Salihin 841](https://sunnah.com/riyadussalihin:841). HM-99–101 are Qur’anic recitations; the partly visible Bosnian 95–97 are not included.
 - **Istihara / Istikharah:** HM-74 is Bosnian 74 in the reader’s photographs of pages 55–56 of the 2017 edition. Bosnian transcription and meaning follow those pages; the linked IslamHouse PDF provides a digital counterpart. The place to name the matter and the alternate wording appear in parentheses beside the corresponding words. Arabic follows [Sunnah.com HM-74](https://sunnah.com/hisn:74); English transcription and meaning are adapted from it.
 - **Sedžda tilaveta / Prostration of recitation:** HM-50 is Bosnian 50 in the reader's photograph of page 39. The Bosnian transcription and meaning follow that photograph, with the established letter key above; the linked IslamHouse PDF is the digital counterpart. Arabic and English follow [Sunnah.com HM-50](https://sunnah.com/hisn:50). HM-51 remains only in the title checklist.
+- **Namaz / Salat:** HM-28, HM-33, HM-38–39, HM-41, HM-49, HM-52–53 and HM-56 are Bosnian 28, 33, 38–39, 41, 49, 52–53 and 56 in the reader's photographs of pages 27, 33–36 and 39–44. Their Bosnian transcriptions and meanings follow those photographs and the established letter key; the linked IslamHouse PDF is the digital counterpart. Arabic and English follow the corresponding [Sunnah.com Hisn al-Muslim entries](https://sunnah.com/hisn). HM-27 remains only in the title checklist. HM-38 and HM-39 share one app card with two recitation rows and no instructions.
 - **Džamija / Mosque:** Bosnian transcriptions follow the reader's photographs of pages 21–23 of the 2017 edition; Bosnian meanings follow the linked IslamHouse PDF. HM-19 uses the shorter published Arabic/English wording matching that edition, rather than the longer variant on Sunnah.com. Its English transliteration is from [Sahih Muslim 1799](https://www.alim.org/hadith/sahih-muslim/6/1799/). HM-20's English transliteration is from the [English Hisnul Muslim edition of the Presidency of Religious Affairs](https://risala.prh.gov.sa/en/content/51); its three source segments are displayed together. HM-21's English transliteration is from [Sunnah.com HM-21](https://sunnah.com/hisn:21).
 - **Opće / General:** HM-79 ↔ Bosnian 77; HM-84 ↔ Bosnian 80; HM-97 ↔ Bosnian 79. Bosnian transcriptions are adaptations of the published PDF using the letter key above. English HM-97 specifies the evening.
 - **Zaštita / Protection (HM-86):** HM-86 ↔ Bosnian 82. The Bosnian transcription follows the published PDF and the letter key above. Its Bosnian meaning is shorter than the English published meaning; it is reproduced as printed. Both sources specify three recitations; the hadith places them in the morning and evening.
@@ -273,6 +274,170 @@ Slušalac ponavlja za mujezinom sve riječi ezana osim ovih: kada ih čuje, izgo
 **English — meaning (Sunnah.com 25):** O Allah , Lord of this perfect call and established prayer. Grant Muhammad the intercession and favor, and raise him to the honored station You have promised him.
 
 **Sources:** [Bosnian PDF, page 14](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=14) · [English and Arabic](https://sunnah.com/hisn:25)
+
+## Namaz / Salat
+
+<a id="hm-28"></a>
+### HM-28 · Početna dova u namazu / Opening supplication in prayer
+
+**Upute / Instructions:** Prouči nakon početnog tekbira, prije učenja Kur’ana u namazu. / Recite after the opening takbir, before reciting the Quran in prayer.
+
+**Arapski / Arabic**
+
+<p lang="ar" dir="rtl">سُبْحَانَكَ اللَّهُمَّ وَبِحَمْدِكَ وَتَبَارَكَ اسْمُكَ وَتَعَالَى جَدُّكَ وَلَا إِلَهَ غَيْرُكَ</p>
+
+**Bosanski — transkripcija (fotografija knjige, str. 27):** Subḥāneke-llāhumme ve bi ḥamdike ve tebāreke-smuke ve te‘ālā džedduke ve lā ilāhe gajruke.
+
+**Bosanski — prijevod (fotografija knjige, str. 27):** Tebi pripada slava, Allahu moj, i uvijek si hvaljen. Blagoslovljeno je Tvoje Ime, uzvišena je Tvoja veličina i nema boga osim Tebe.
+
+**English — transliteration (Sunnah.com 28):** Subḥānaka Allāhumma wa biḥamdika, wa tabāraka 'smuka, wa ta'ālā jadduka, wa lā 'ilāha ghayruk.
+
+**English — meaning (Sunnah.com 28):** Glory is to You O Allah, and praise. Blessed is Your Name and Exalted is Your Majesty. There is none worthy of worship but You.
+
+**Sources:** Reader's photographed Hisnul-Muslimi, page 27 · [Bosnian PDF, page 15](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=15) · [English and Arabic](https://sunnah.com/hisn:28)
+
+<a id="hm-33"></a>
+### HM-33 · Zikr na rukūu / Remembrance while bowing
+
+**Upute / Instructions:** Na rukūu prouči tri puta. / Recite three times while bowing in prayer.
+
+**Arapski / Arabic**
+
+<p lang="ar" dir="rtl">سُبْحَانَ رَبِّيَ الْعَظِيمِ</p>
+
+**Bosanski — transkripcija (fotografija knjige, str. 33):** Subḥāne Rabije-l-‘aẓīm.
+
+**Bosanski — prijevod (fotografija knjige, str. 33):** Neka si slavljen, Gospodaru moj Veliki.
+
+**English — transliteration (Sunnah.com 33):** Subḥāna Rabbiyal-‘Aẓīm.
+
+**English — meaning (Sunnah.com 33):** Glory to my Lord the Exalted.
+
+**Sources:** Reader's photographed Hisnul-Muslimi, page 33 · [Bosnian PDF, page 19](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=19) · [English and Arabic](https://sunnah.com/hisn:33)
+
+<a id="hm-38-39"></a>
+### HM-38–39 · Dove nakon povratka s rukūa / Upon rising from bowing
+
+#### HM-38
+
+**Arapski / Arabic**
+
+<p lang="ar" dir="rtl">سَمِعَ اللَّهُ لِمَنْ حَمِدَهُ</p>
+
+**Bosanski — transkripcija (fotografija knjige, str. 34):** Semi‘allāhu limen ḥamideh.
+
+**Bosanski — prijevod (fotografija knjige, str. 34):** Čuo Allah onoga ko Ga hvali.
+
+**English — transliteration (Sunnah.com 38):** Sami‘allāhu liman ḥamidah.
+
+**English — meaning (Sunnah.com 38):** Allah hears whoever praises Him.
+
+#### HM-39
+
+**Arapski / Arabic**
+
+<p lang="ar" dir="rtl">رَبَّنَا وَلَكَ الْحَمْدُ حَمْدًا كَثِيرًا طَيِّبًا مُبَارَكًا فِيهِ</p>
+
+**Bosanski — transkripcija (fotografija knjige, str. 35):** Rabbenā ve leke-l-ḥamdu ḥamden keṯīren, ṭajjiben, mubāreken fīhi.
+
+**Bosanski — prijevod (fotografija knjige, str. 35):** Gospodaru naš, Tebi hvala, beskonačna hvala, lijepa hvala, u kojoj je svaki blagoslov.
+
+**English — transliteration (Sunnah.com 39):** Rabbanā wa lakal-ḥamd, ḥamdan kathīran ṭayyiban mubārakan fīh.
+
+**English — meaning (Sunnah.com 39):** Our Lord, praise is Yours, abundant, good and blessed praise.
+
+**Sources:** Reader's photographed Hisnul-Muslimi, pages 34–35 · [Bosnian PDF, page 20](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=20) · [English and Arabic: HM-38](https://sunnah.com/hisn:38) · [HM-39](https://sunnah.com/hisn:39)
+
+<a id="hm-41"></a>
+### HM-41 · Dova na sedždi / Remembrance while prostrating
+
+**Upute / Instructions:** Proučiti tri puta na sedždi. / Recite three times while prostrating in prayer.
+
+**Arapski / Arabic**
+
+<p lang="ar" dir="rtl">سُبْحَانَ رَبِّيَ الْأَعْلَى</p>
+
+**Bosanski — transkripcija (fotografija knjige, str. 36):** Subḥāne Rabbije-l-‘alā.
+
+**Bosanski — prijevod (fotografija knjige, str. 36):** Neka si slavljen, moj najviši Gospodaru.
+
+**English — transliteration (Sunnah.com 41):** Subḥāna Rabbiya ‘l-a‘lā.
+
+**English — meaning (Sunnah.com 41):** Glory is to my Lord, the Most High.
+
+**Sources:** Reader's photographed Hisnul-Muslimi, page 36 · [Bosnian PDF, page 21](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=21) · [English and Arabic](https://sunnah.com/hisn:41)
+
+<a id="hm-49"></a>
+### HM-49 · Dova između dvije sedžde / Between the two prostrations
+
+**Upute / Instructions:** Prouči sjedeći između dvije sedžde. / Recite while sitting between the two prostrations.
+
+**Arapski / Arabic**
+
+<p lang="ar" dir="rtl">اللَّهُمَّ اغْفِرْ لِي وَارْحَمْنِي وَاهْدِنِي وَاجْبُرْنِي وَعَافِنِي وَارْزُقْنِي وَارْفَعْنِي</p>
+
+**Bosanski — transkripcija (fotografija knjige, str. 39):** Allāhumme-gfir lī, verḥamnī vehdinī vedžburnī, ve ‘āfinī verzuqnī verfa‘nī.
+
+**Bosanski — prijevod (fotografija knjige, str. 39):** Allahu moj, oprosti mi i smiluj se, uputi me i učini zadovoljnim (bogatim), sačuvaj me, nafaku mi daj i uzdigni me.
+
+**English — transliteration (Sunnah.com 49):** Allāhumma’ghfir lī, war’ḥamnī, wahdinī, wajburnī, wa ‘āfinī, warzuqnī, warfa‘nī.
+
+**English — meaning (Sunnah.com 49):** O Allah forgive me, have mercy on me, guide me, support me, protect me, provide for me, and elevate me.
+
+**Sources:** Reader's photographed Hisnul-Muslimi, page 39 · [Bosnian PDF, page 22](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=22) · [English and Arabic](https://sunnah.com/hisn:49)
+
+<a id="hm-52"></a>
+### HM-52 · Tešehhud (ettehijjatu) / The tashahhud
+
+**Arapski / Arabic**
+
+<p lang="ar" dir="rtl">التَّحِيَّاتُ لِلَّهِ وَالصَّلَوَاتُ وَالطَّيِّبَاتُ، السَّلَامُ عَلَيْكَ أَيُّهَا النَّبِيُّ وَرَحْمَةُ اللَّهِ وَبَرَكَاتُهُ، السَّلَامُ عَلَيْنَا وَعَلَى عِبَادِ اللَّهِ الصَّالِحِينَ. أَشْهَدُ أَنْ لَا إِلَهَ إِلَّا اللَّهُ وَأَشْهَدُ أَنَّ مُحَمَّدًا عَبْدُهُ وَرَسُولُهُ</p>
+
+**Bosanski — transkripcija (fotografija knjige, str. 40):** Etteḥijjātu lillāhi ve-ṣ-ṣalevātu ve-ṭ-ṭajjibātu, es-selāmu ‘alejke ejjuhe-n-nebijju ve raḥmetullāhi ve berekātuhu, es-selāmu ‘alejnā ve ‘alā ‘ibādillāhi-ṣ-ṣāliḥīn. Ešhedu en lā ilāhe illellāhu ve ešhedu enne Muḥammeden ‘abduhu ve Resūluhu.
+
+**Bosanski — prijevod (fotografija knjige, str. 41):** Najljepši selami, salavati i pohvale Allahu; selam tebi, Vjerovjesniče, i Allahova milost i Njegov blagoslov; selam nama i dobrim Allahovim robovima. Svjedočim da nema boga osim Allaha i svjedočim da je Muhammed Njegov rob i Njegov Poslanik.
+
+**English — transliteration (Sunnah.com 52):** Attaḥiyyātu lillāhi waṣṣalawātu, waṭṭayyibāt, assalāmu ‘alayka ayyuhan-Nabiyyu wa raḥmatullāhi wa barakātuh, assalāmu ‘alaynā wa ‘alā ‘ibādillāhiṣ-ṣāliḥīn. Ash-hadu an lā ilāha illallāh wa ash-hadu anna Muḥammadan ‘abduhu wa rasūluh.
+
+**English — meaning (Sunnah.com 52):** All greetings of humility are for Allah, and all prayers and goodness. Peace be upon you, O Prophet, and the mercy of Allah and His blessings. Peace be upon us and upon the righteous slaves of Allah. I bear witness that there is none worthy of worship but Allah, and I bear witness that Muhammad is His slave and His Messenger.
+
+**Sources:** Reader's photographed Hisnul-Muslimi, pages 40–41 · [Bosnian PDF, page 24](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=24) · [English and Arabic](https://sunnah.com/hisn:52)
+
+<a id="hm-53"></a>
+### HM-53 · Salavati poslije tešehhuda / Blessings upon the Prophet after tashahhud
+
+**Arapski / Arabic**
+
+<p lang="ar" dir="rtl">اللَّهُمَّ صَلِّ عَلَى مُحَمَّدٍ وَعَلَى آلِ مُحَمَّدٍ كَمَا صَلَّيْتَ عَلَى إِبْرَاهِيمَ وَعَلَى آلِ إِبْرَاهِيمَ إِنَّكَ حَمِيدٌ مَجِيدٌ. اللَّهُمَّ بَارِكْ عَلَى مُحَمَّدٍ وَعَلَى آلِ مُحَمَّدٍ كَمَا بَارَكْتَ عَلَى إِبْرَاهِيمَ وَعَلَى آلِ إِبْرَاهِيمَ إِنَّكَ حَمِيدٌ مَجِيدٌ</p>
+
+**Bosanski — transkripcija (fotografija knjige, str. 41):** Allāhumme ṣalli ‘alā Muḥammedin ve ‘alā āli Muḥammed, kemā ṣallejte ‘alā Ibrāhīme ve ‘alā āli Ibrāhīme, inneke ḥamīdun medžīd. Allāhumme bārik ‘alā Muḥammedin ve ‘alā āli Muḥammed kemā bārekte ‘alā Ibrāhīme ve ‘alā āli Ibrāhīme inneke ḥamīdun medžīd.
+
+**Bosanski — prijevod (fotografija knjige, str. 41–42):** Allahu moj, smiluj se (donesi salavat) Muhammedu, sallallahu alejhi ve sellem, i njegovom potomstvu kao što si se smilovao Ibrahimu, alejhis-selam, i njegovom potomstvu. Zaista si Ti hvaljen i slavljen. Allahu moj, blagoslovi Muhammeda, sallallahu alejhi ve sellem, i njegovo potomstvo kao što si blagoslovio Ibrahima, a.s., i njegovo potomstvo. Doista si Ti hvaljen i slavljen.
+
+**English — transliteration (Sunnah.com 53):** Allāhumma ṣalli ‘alā Muḥammadin wa ‘alā āli Muḥammadin, kamā ṣallayta ‘alā Ibrāhīma wa ‘alā āli Ibrāhīma, innaka ḥamīdum-majīd. Allāhumma bārik ‘alā Muḥammadin wa ‘alā āli Muḥammadin, kamā bārakta ‘alā Ibrāhīma wa ‘alā āli Ibrāhīma, innaka ḥamīdum-majīd.
+
+**English — meaning (Sunnah.com 53):** O Allah, bestow Your favor on Muhammad and on the family of Muhammad as You have bestowed Your favor on Ibrahim and on the family of Ibrahim, You are Praiseworthy, Most Glorious. O Allah, bless Muhammad and the family of Muhammad as You have blessed Ibrahim and the family of Ibrahim, You are Praiseworthy, Most Glorious.
+
+**Sources:** Reader's photographed Hisnul-Muslimi, pages 41–42 · [Bosnian PDF, page 24](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=24) · [English and Arabic](https://sunnah.com/hisn:53)
+
+<a id="hm-56"></a>
+### HM-56 · Dova poslije završnog tešehhuda, prije selama / After the final tashahhud, before salam
+
+**Upute / Instructions:** Prouči nakon posljednjeg tešehhuda, prije selama. / Recite after the final tashahhud, before the salam.
+
+**Arapski / Arabic**
+
+<p lang="ar" dir="rtl">اللَّهُمَّ إِنِّي أَعُوذُ بِكَ مِنْ عَذَابِ الْقَبْرِ، وَأَعُوذُ بِكَ مِنْ فِتْنَةِ الْمَسِيحِ الدَّجَّالِ، وَأَعُوذُ بِكَ مِنْ فِتْنَةِ الْمَحْيَا وَالْمَمَاتِ. اللَّهُمَّ إِنِّي أَعُوذُ بِكَ مِنَ الْمَأْثَمِ وَالْمَغْرَمِ</p>
+
+**Bosanski — transkripcija (fotografije knjige, str. 43–44):** Allāhumme innī e‘ūḏu bike min ‘aḏābi-l-qabri ve e‘ūḏu bike min fitneti-l-mesīḥi-d-dedždžāli, ve e‘ūḏu bike min fitneti-l-maḥjā ve-l-memāt. Allāhumme innī e‘ūḏu bike mine-l-me’ṯemi ve-l-magrem.
+
+**Bosanski — prijevod (fotografija knjige, str. 44):** Allahu, sklanjam se u okrilje Tvoje pred kaburskom kaznom i pred fitnelukom Mesiha Dedžala, te pred fitnelukom ovog i budućeg svijeta. Allahu, utječem Ti se od grijeha i duga koji se ne može vratiti.
+
+**English — transliteration (Sunnah.com 56):** Allāhumma innī a‘ūdhu bika min ‘adhābi ‘l-qabr, wa a‘ūdhu bika min fitnati ‘l-masīḥid-dajjāl, wa a‘ūdhu bika min fitnati ‘l-maḥyā wa ‘l-mamāt. Allāhumma innī a‘ūdhu bika mina ‘l-ma’thami wa ‘l-maghram.
+
+**English — meaning (Sunnah.com 56):** O Allah, I seek refuge in You from the punishment of the grave, and I seek refuge in You from the trial of the False Messiah, and I seek refuge in You from the trials of life and death. O Allah, I seek refuge in You from sin and from debt.
+
+**Sources:** Reader's photographed Hisnul-Muslimi, pages 43–44 · [Bosnian PDF, page 25](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=25) · [English and Arabic](https://sunnah.com/hisn:56)
 
 ## Sedžda tilaveta / Prostration of recitation
 

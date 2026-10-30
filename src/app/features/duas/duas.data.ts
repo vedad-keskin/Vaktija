@@ -18,6 +18,7 @@ import { MARRIAGE_DUAS } from './marriage.data';
 import { MOSQUE_DUAS } from './mosque.data';
 import { FORGIVENESS_DUAS } from './forgiveness.data';
 import { PROTECTION_DUAS } from './protection.data';
+import { SALAT_DUAS } from './salat.data';
 import { SLEEP_DUAS } from './sleep.data';
 import { TILAWAH_DUAS } from './tilawah.data';
 import { TOILET_DUAS } from './toilet.data';
@@ -26,7 +27,7 @@ import { WEATHER_DUAS } from './weather.data';
 
 type DuaSaying = {
   arabic: string;
-  instructions: Record<LangCode, string>;
+  instructions?: Record<LangCode, string>;
   transcription: Record<LangCode, string>;
   translation: Record<LangCode, string>;
 };
@@ -60,6 +61,7 @@ export const DUA_CATEGORIES = [
   { id: 'ablution', label: { bs: 'Abdest', en: 'Ablution' }, items: ABLUTION_DUAS },
   { id: 'mosque', label: { bs: 'Džamija', en: 'Mosque' }, items: MOSQUE_DUAS },
   { id: 'adhan', label: { bs: 'Ezan', en: 'Adhan' }, items: ADHAN_DUAS },
+  { id: 'salat', label: { bs: 'Namaz', en: 'Salat' }, items: SALAT_DUAS },
   {
     id: 'tilawah',
     label: { bs: 'Sedžda tilaveta', en: 'Prostration of recitation' },

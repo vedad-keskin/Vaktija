@@ -83,20 +83,20 @@ Brojevi, poglavlja i vrste zapisa provjereni su prema [OpenDua datasetu v0.0.4](
 - [ ] ★ [HM-025 · Dova poslije ezana / Supplication after the adhan](https://sunnah.com/hisn:25)
 - [ ] [HM-026 · Pri slušanju ezana (5/5) / Hearing the adhan (5/5)](https://sunnah.com/hisn:26) · uputa / instruction
 - [ ] [HM-027 · Na početku namaza (1/6) / Opening the prayer (1/6)](https://sunnah.com/hisn:27)
-- [ ] [HM-028 · Početna dova u namazu / Opening supplication in prayer](https://sunnah.com/hisn:28)
+- [ ] [HM-028 · Početna dova u namazu / Opening supplication in prayer](README-full.md#hm-28) · u aplikaciji / in app
 - [ ] [HM-029 · Na početku namaza (3/6) / Opening the prayer (3/6)](https://sunnah.com/hisn:29)
 - [ ] [HM-030 · Na početku namaza (4/6) / Opening the prayer (4/6)](https://sunnah.com/hisn:30)
 - [ ] [HM-031 · Na početku namaza (5/6) / Opening the prayer (5/6)](https://sunnah.com/hisn:31)
 - [ ] [HM-032 · Na početku namaza (6/6) / Opening the prayer (6/6)](https://sunnah.com/hisn:32)
-- [ ] ★ [HM-033 · Zikr na rukūu / Remembrance while bowing](https://sunnah.com/hisn:33)
+- [ ] ★ [HM-033 · Zikr na rukūu / Remembrance while bowing](README-full.md#hm-33) · u aplikaciji / in app
 - [ ] [HM-034 · Na rukūu (2/5) / While bowing in prayer (2/5)](https://sunnah.com/hisn:34)
 - [ ] [HM-035 · Na rukūu (3/5) / While bowing in prayer (3/5)](https://sunnah.com/hisn:35)
 - [ ] [HM-036 · Na rukūu (4/5) / While bowing in prayer (4/5)](https://sunnah.com/hisn:36)
 - [ ] [HM-037 · Na rukūu (5/5) / While bowing in prayer (5/5)](https://sunnah.com/hisn:37)
-- [ ] [HM-038 · Pri podizanju s rukūa (1/3) / Rising from bowing (1/3)](https://sunnah.com/hisn:38)
-- [ ] [HM-039 · Pri podizanju s rukūa (2/3) / Rising from bowing (2/3)](https://sunnah.com/hisn:39)
+- [ ] [HM-038 · Pri podizanju s rukūa (1/3) / Rising from bowing (1/3)](README-full.md#hm-38-39) · u aplikaciji / in app (zajedno s HM-039 / with HM-039)
+- [ ] [HM-039 · Pri podizanju s rukūa (2/3) / Rising from bowing (2/3)](README-full.md#hm-38-39) · u aplikaciji / in app (zajedno s HM-038 / with HM-038)
 - [ ] [HM-040 · Pri podizanju s rukūa (3/3) / Rising from bowing (3/3)](https://sunnah.com/hisn:40)
-- [ ] ★ [HM-041 · Zikr na sedždi / Remembrance while prostrating](https://sunnah.com/hisn:41)
+- [ ] ★ [HM-041 · Zikr na sedždi / Remembrance while prostrating](README-full.md#hm-41) · u aplikaciji / in app
 - [ ] [HM-042 · Na sedždi (2/7) / While prostrating (2/7)](https://sunnah.com/hisn:42)
 - [ ] [HM-043 · Na sedždi (3/7) / While prostrating (3/7)](https://sunnah.com/hisn:43)
 - [ ] [HM-044 · Na sedždi (4/7) / While prostrating (4/7)](https://sunnah.com/hisn:44)
@@ -104,12 +104,12 @@ Brojevi, poglavlja i vrste zapisa provjereni su prema [OpenDua datasetu v0.0.4](
 - [ ] [HM-046 · Na sedždi (6/7) / While prostrating (6/7)](https://sunnah.com/hisn:46)
 - [ ] [HM-047 · Na sedždi (7/7) / While prostrating (7/7)](https://sunnah.com/hisn:47)
 - [ ] [HM-048 · Između dvije sedžde (1/2) / Between prostrations (1/2)](https://sunnah.com/hisn:48)
-- [ ] ★ [HM-049 · Dova između dvije sedžde / Between two prostrations](https://sunnah.com/hisn:49)
-- [ ] [HM-052 · Na tešehhudu / At the tashahhud](https://sunnah.com/hisn:52)
-- [ ] [HM-053 · Salavati poslije tešehhuda (1/2) / Blessings upon the Prophet after tashahhud (1/2)](https://sunnah.com/hisn:53)
+- [ ] ★ [HM-049 · Dova između dvije sedžde / Between two prostrations](README-full.md#hm-49) · u aplikaciji / in app
+- [ ] [HM-052 · Na tešehhudu / At the tashahhud](README-full.md#hm-52) · u aplikaciji / in app
+- [ ] [HM-053 · Salavati poslije tešehhuda (1/2) / Blessings upon the Prophet after tashahhud (1/2)](README-full.md#hm-53) · u aplikaciji / in app
 - [ ] [HM-054 · Salavati poslije tešehhuda (2/2) / Blessings upon the Prophet after tashahhud (2/2)](https://sunnah.com/hisn:54)
 - [ ] [HM-055 · Poslije završnog tešehhuda, prije selama (1/11) / Before ending the prayer (1/11)](https://sunnah.com/hisn:55)
-- [ ] [HM-056 · Poslije završnog tešehhuda, prije selama (2/11) / Before ending the prayer (2/11)](https://sunnah.com/hisn:56)
+- [ ] [HM-056 · Poslije završnog tešehhuda, prije selama (2/11) / Before ending the prayer (2/11)](README-full.md#hm-56) · u aplikaciji / in app
 - [ ] [HM-057 · Poslije završnog tešehhuda, prije selama (3/11) / Before ending the prayer (3/11)](https://sunnah.com/hisn:57)
 - [ ] [HM-058 · Poslije završnog tešehhuda, prije selama (4/11) / Before ending the prayer (4/11)](https://sunnah.com/hisn:58)
 - [ ] ★ [HM-059 · Pomoć u zikru i ibadetu / Help to remember and worship Allah](https://sunnah.com/hisn:59)
