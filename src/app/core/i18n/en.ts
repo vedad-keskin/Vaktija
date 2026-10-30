@@ -125,6 +125,13 @@ export const EN_LABELS: AppLabels = {
   duasEmptyTitle: 'Your duas, together',
   duasEmptyBody: 'Tap the bookmark on a card to keep a dua for later on this device.',
   duasBrowse: 'Browse all duas',
+  duasSearch: 'Search duas…',
+  duasSearchAll: 'Search all duas',
+  duasCategories: 'Categories',
+  duasClearSearch: 'Clear search',
+  duasResults: 'Results',
+  duasNoResultsTitle: 'No results for this search',
+  duasNoResultsBody: 'Try different words or clear the search.',
   showMore: 'Show more',
   duasStorageError:
     'This change applies to this page only. Your browser could not save it permanently.',
@@ -144,6 +151,8 @@ export const EN_LABELS: AppLabels = {
   dhikrEmptyTitle: 'Your dhikr, together',
   dhikrEmptyBody: 'Tap the bookmark on a card to keep a remembrance for later on this device.',
   dhikrBrowse: 'Browse all dhikr',
+  dhikrSearch: 'Search dhikr…',
+  dhikrSearchAll: 'Search all dhikr',
 
   qiblaPageDocTitle: 'Qibla compass — Vaktija',
   qiblaTileTitle: 'Qibla compass',

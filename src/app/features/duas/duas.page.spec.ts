@@ -1,5 +1,7 @@
+import { Location } from '@angular/common';
+import { provideLocationMocks } from '@angular/common/testing';
 import { TestBed } from '@angular/core/testing';
-import { provideRouter } from '@angular/router';
+import { provideRouter, Router } from '@angular/router';
 import { RouterTestingHarness } from '@angular/router/testing';
 import { afterEach, vi } from 'vitest';
 import { routes } from '../../app.routes';
@@ -28,8 +30,12 @@ it('shows ten items at a time and resets on view changes', async () => {
   const element = () => harness.routeNativeElement!;
   const cards = () => element().querySelectorAll('.dua-card');
   const more = () => element().querySelector<HTMLButtonElement>('.duas-show-more');
+  const general = DUA_CATEGORIES.find((category) => category.id === 'general')!.items;
 
   expect(cards()).toHaveLength(10);
+  expect([...cards()].map((card) => card.getAttribute('data-dua-id'))).toEqual(
+    general.slice(0, 10).map((dua) => dua.id),
+  );
   expect(more()?.textContent?.trim()).toBe(EN_LABELS.showMore);
   more()!.click();
   harness.detectChanges();
@@ -49,6 +55,10 @@ it('shows ten items at a time and resets on view changes', async () => {
     harness.detectChanges();
   }
   expect(cards()).toHaveLength(DUAS.length);
+  expect([...cards()].map((card) => card.getAttribute('data-dua-id'))).toEqual([
+    ...general.map((dua) => dua.id),
+    ...DUAS.filter((dua) => !general.some((item) => item.id === dua.id)).map((dua) => dua.id),
+  ]);
   expect(more()).toBeNull();
   expect(document.activeElement).toBe(
     cards()[Math.floor((DUAS.length - 1) / 10) * 10].querySelector('h2'),
@@ -141,20 +151,9 @@ it('shows ten items at a time and resets on view changes', async () => {
   expect(cards()).toHaveLength(10);
   more()!.click();
   harness.detectChanges();
-  expect([...cards()].map((card) => card.getAttribute('data-dua-id'))).toEqual([
-    'hisn-77-morning',
-    'hisn-77-evening',
-    'quran-28-24',
-    'quran-20-114',
-    'quran-20-25',
-    'muslim-2721a',
-    'hisn-188',
-    'hisn-189',
-    'hisn-230',
-    'hisn-240',
-    'hisn-245',
-    'hisn-144',
-  ]);
+  expect([...cards()].map((card) => card.getAttribute('data-dua-id'))).toEqual(
+    general.map((dua) => dua.id),
+  );
   expect(
     [...cards()[6].querySelectorAll('.dua-saying .dua-arabic')].map((phrase) =>
       phrase.textContent?.trim(),
@@ -403,12 +402,12 @@ it('routes the bilingual library, validates saved data and persists bookmark cha
     'hisn-246',
     'hisn-140',
     'hisn-250',
-    'hisn-77-morning',
-    'hisn-77-evening',
     'quran-28-24',
     'quran-20-114',
     'quran-20-25',
     'muslim-2721a',
+    'hisn-77-morning',
+    'hisn-77-evening',
     'hisn-188',
     'hisn-189',
     'hisn-230',
@@ -460,9 +459,14 @@ it('routes the bilingual library, validates saved data and persists bookmark cha
   const marriage = DUA_CATEGORIES.find((category) => category.id === 'marriage')!;
   await harness.navigateByUrl('/duas?category=marriage');
   expect(cards()).toHaveLength(marriage.items.length);
-  expect(element().querySelector('.duas-collections a.active')?.textContent?.trim()).toBe(
-    marriage.label[TestBed.inject(LanguageService).lang()],
-  );
+  const categoryButton = () => element().querySelector<HTMLButtonElement>('.duas-category')!;
+  expect(categoryButton().textContent?.trim()).toBe('Marriage');
+  TestBed.inject(LanguageService).setLanguage('bs');
+  harness.detectChanges();
+  expect(categoryButton().textContent?.trim()).toBe('Brak');
+  TestBed.inject(LanguageService).setLanguage('en');
+  harness.detectChanges();
+  expect(element().querySelector('.duas-collections a.active')).toBeNull();
   await harness.navigateByUrl('/duas?category=unknown');
   while (showMore()) {
     showMore()!.click();
@@ -473,12 +477,13 @@ it('routes the bilingual library, validates saved data and persists bookmark cha
   for (const lang of ['bs', 'en'] as const) {
     TestBed.inject(LanguageService).setLanguage(lang);
     harness.detectChanges();
-    const categoryLabels = [...element().querySelectorAll('.duas-collections a')]
-      .slice(1, -1)
-      .map((link) => link.textContent?.trim());
+    const categoryLabels = [
+      ...element().querySelectorAll<HTMLAnchorElement>('.duas-category-panel a'),
+    ].map((link) => link.textContent?.trim());
     expect(categoryLabels).toEqual(
       lang === 'bs'
         ? [
+            'Opće',
             'Abdest',
             'Bolest i bol',
             'Brak',
@@ -504,9 +509,9 @@ it('routes the bilingual library, validates saved data and persists bookmark cha
             'Toalet',
             'Zaštita',
             'Životinje',
-            'Opće',
           ]
         : [
+            'General',
             'Ablution',
             'Adhan',
             'After prayer',
@@ -532,11 +537,10 @@ it('routes the bilingual library, validates saved data and persists bookmark cha
             'Sleep and dreams',
             'Toilet',
             'Travel',
-            'General',
           ],
     );
-    for (const [index, card] of [...cards()].entries()) {
-      const dua = DUAS[index];
+    for (const card of cards()) {
+      const dua = DUAS.find((item) => item.id === card.dataset['duaId'])!;
       expect(card.querySelector('h2')?.textContent).toBe(dua.title[lang]);
       if (dua.sayings) {
         const rows = [...card.querySelectorAll('.dua-saying')];
@@ -651,6 +655,148 @@ it('routes the bilingual library, validates saved data and persists bookmark cha
   reloaded.destroy();
 });
 
+it('searches the full bilingual collection and keeps query, scopes, history and bookmarks in sync', async () => {
+  localStorage.setItem('vaktija_saved_duas', '["hisn-10","hisn-66"]');
+  await TestBed.configureTestingModule({
+    imports: [DuasPage],
+    providers: [provideRouter(routes), provideLocationMocks()],
+  }).compileComponents();
+  const harness = await RouterTestingHarness.create('/duas');
+  const router = TestBed.inject(Router);
+  const location = TestBed.inject(Location);
+  const element = () => harness.routeNativeElement!;
+  const input = () => element().querySelector<HTMLInputElement>('#dua-search')!;
+  const categoryButton = () => element().querySelector<HTMLButtonElement>('.duas-category')!;
+  const ids = () =>
+    [...element().querySelectorAll<HTMLElement>('.dua-card')].map((card) => card.dataset['duaId']);
+  const more = () => element().querySelector<HTMLButtonElement>('.duas-show-more');
+  const params = () => router.parseUrl(router.url).queryParams;
+  const settle = async () => {
+    await harness.fixture.whenStable();
+    harness.detectChanges();
+  };
+  const traverse = async (direction: 'back' | 'forward') => {
+    location[direction]();
+    await new Promise((resolve) => setTimeout(resolve));
+    await settle();
+  };
+  const search = async (query: string) => {
+    input().value = query;
+    input().dispatchEvent(new Event('input'));
+    await settle();
+  };
+  const selectCategory = async (id: string) => {
+    if (categoryButton().getAttribute('aria-expanded') !== 'true') categoryButton().click();
+    harness.detectChanges();
+    [...element().querySelectorAll<HTMLAnchorElement>('.duas-category-panel a')]
+      .find((link) => link.getAttribute('href')?.includes(`category=${id}`))!
+      .click();
+    await settle();
+  };
+  const selectSaved = async () => {
+    [...element().querySelectorAll<HTMLAnchorElement>('.duas-collections a')]
+      .find((link) => link.getAttribute('href')?.includes('view=saved'))!
+      .click();
+    await settle();
+  };
+
+  // The first page contains only General cards; a query must reach the rest of the catalog.
+  expect(ids()).not.toContain('hisn-10');
+  expect(input().getAttribute('aria-label')).toBe(EN_LABELS.duasSearch);
+  input().focus();
+  const replace = vi.spyOn(location, 'replaceState');
+  const push = vi.spyOn(location, 'go');
+  await search('toalet euzu');
+  expect(ids()).toEqual(['hisn-10']);
+  expect(params()['q']).toBe('toalet euzu');
+  expect(document.activeElement).toBe(input());
+  expect(replace).toHaveBeenCalled();
+  expect(push).not.toHaveBeenCalled();
+
+  await selectCategory('toilet');
+  expect(params()).toEqual({ category: 'toilet', q: 'toalet euzu' });
+  expect(categoryButton().textContent?.trim()).toBe('Toilet');
+  expect(push).toHaveBeenCalled();
+  await selectSaved();
+  expect(params()).toEqual({ view: 'saved', q: 'toalet euzu' });
+  expect(ids()).toEqual(['hisn-10']);
+  element().querySelector<HTMLButtonElement>('.duas-search-clear')!.click();
+  await settle();
+  expect(params()).toEqual({ view: 'saved' });
+  expect(input().value).toBe('');
+  expect(ids()).toEqual(['hisn-10', 'hisn-66']);
+
+  // The testing harness does not install the browser popstate listener.
+  (router as unknown as { setUpLocationChangeListener(): void }).setUpLocationChangeListener();
+  await traverse('back');
+  expect(params()).toEqual({ category: 'toilet', q: 'toalet euzu' });
+  expect(input().value).toBe('toalet euzu');
+  expect(categoryButton().textContent?.trim()).toBe('Toilet');
+  await traverse('forward');
+  expect(params()).toEqual({ view: 'saved' });
+  expect(input().value).toBe('');
+
+  // Nested sayings participate in search while the entire parent card remains intact.
+  await search('estagfirullahe');
+  expect(ids()).toEqual(['hisn-66']);
+  expect(element().querySelectorAll('.dua-saying')).toHaveLength(10);
+  expect(element().querySelector('.saved-count')?.textContent).toContain('2');
+  element().querySelector<HTMLButtonElement>('.dua-bookmark')!.click();
+  harness.detectChanges();
+  expect(ids()).toEqual([]);
+  expect(element().querySelector('.saved-count')?.textContent).toContain('1');
+  expect(element().querySelector('.duas-empty')?.textContent).toContain(
+    EN_LABELS.duasNoResultsTitle,
+  );
+  expect(element().querySelector('.duas-empty')?.textContent).not.toContain(
+    EN_LABELS.duasEmptyTitle,
+  );
+  element().querySelector<HTMLButtonElement>('.duas-empty-clear')!.click();
+  await settle();
+  expect(params()).toEqual({ view: 'saved' });
+  expect(ids()).toEqual(['hisn-10']);
+  element().querySelector<HTMLButtonElement>('.dua-bookmark')!.click();
+  harness.detectChanges();
+  expect(element().querySelector('.duas-empty')?.textContent).toContain(EN_LABELS.duasEmptyTitle);
+
+  await search('euzu');
+  expect(ids()).toEqual([]);
+  const searchAll = [...element().querySelectorAll<HTMLAnchorElement>('.duas-empty a')].find(
+    (link) => link.textContent?.trim() === EN_LABELS.duasSearchAll,
+  )!;
+  searchAll.click();
+  await settle();
+  expect(params()).toEqual({ q: 'euzu' });
+  expect(ids()).toHaveLength(10);
+  expect(more()).not.toBeNull();
+  more()!.click();
+  harness.detectChanges();
+  expect(ids().length).toBeGreaterThan(10);
+  expect(document.activeElement).toBe(element().querySelectorAll('.dua-card h2')[10]);
+
+  await search('toalet khubti');
+  expect(ids()).toEqual(['hisn-10']);
+  expect(more()).toBeNull();
+  TestBed.inject(LanguageService).setLanguage('bs');
+  harness.detectChanges();
+  await search('toalet prizivam');
+  expect(ids()).toEqual(['hisn-10']);
+  expect(element().querySelector('.dua-translation')?.textContent).toContain('prizivam');
+  TestBed.inject(LanguageService).setLanguage('en');
+  harness.detectChanges();
+  expect(ids()).toEqual(['hisn-10']);
+  expect(element().querySelector('.dua-card h2')?.textContent).toBe('Before entering the bathroom');
+
+  await search('');
+  expect(params()).toEqual({});
+  expect(ids()).toHaveLength(10);
+  const firstGeneral = DUA_CATEGORIES.find((category) => category.id === 'general')!.items[0].id;
+  expect(ids()[0]).toBe(firstGeneral);
+  await search('???');
+  expect(ids()).toHaveLength(10);
+  expect(ids()[0]).toBe(firstGeneral);
+});
+
 it('shows the sourced bilingual dhikr collection and keeps its saved items separate from duas', async () => {
   localStorage.clear();
   localStorage.setItem('vaktija_saved_duas', '["hisn-190"]');
@@ -662,6 +808,10 @@ it('shows the sourced bilingual dhikr collection and keeps its saved items separ
   const element = () => harness.routeNativeElement!;
   const cards = () => element().querySelectorAll<HTMLElement>('.dua-card');
   expect(cards()).toHaveLength(DHIKR.length);
+  expect(element().querySelector('.duas-category')).toBeNull();
+  expect(element().querySelector<HTMLInputElement>('#dua-search')?.placeholder).toBe(
+    EN_LABELS.dhikrSearch,
+  );
   expect(cards()[0].querySelector('.dua-arabic')?.textContent).toBe(DHIKR[0].arabic);
   expect(cards()[1].querySelector('.dua-arabic')?.textContent).toBe(DHIKR[1].arabic);
 
@@ -690,6 +840,15 @@ it('shows the sourced bilingual dhikr collection and keeps its saved items separ
   await harness.navigateByUrl('/dhikr?view=saved');
   expect(cards()).toHaveLength(1);
   expect(cards()[0].dataset['duaId']).toBe('tawhid');
+  await harness.navigateByUrl('/dhikr?q=kuwwete');
+  expect([...cards()].map((card) => card.dataset['duaId'])).toEqual(['hawqala']);
+  await harness.navigateByUrl('/dhikr?view=saved&q=kuwwete');
+  expect(cards()).toHaveLength(0);
+  expect(element().querySelector('.duas-empty')?.textContent).toContain(
+    EN_LABELS.duasNoResultsTitle,
+  );
+  await harness.navigateByUrl('/dhikr?q=toalet');
+  expect(cards()).toHaveLength(0);
   await harness.navigateByUrl('/duas?view=saved');
   expect(cards()).toHaveLength(1);
   expect(cards()[0].dataset['duaId']).toBe('hisn-190');

@@ -72,15 +72,71 @@ svg {
   transform: rotate(45deg);
 }
 
+.duas-search {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 52px;
+  margin-bottom: 12px;
+  padding-inline: 16px 4px;
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  background: var(--surface-elevated);
+  color: var(--text-secondary);
+}
+
+.duas-search:focus-within {
+  border-color: var(--gold);
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+}
+
+.duas-search input {
+  flex: 1;
+  min-width: 0;
+  min-height: 50px;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: var(--text-primary);
+  font: inherit;
+  font-size: 16px;
+}
+
+.duas-search input::placeholder {
+  color: var(--text-secondary);
+  opacity: 0.8;
+}
+
+.duas-search input::-webkit-search-cancel-button {
+  appearance: none;
+}
+
+.duas-search-clear {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  border: 0;
+  border-radius: 50%;
+  color: var(--text-secondary);
+  background: transparent;
+  cursor: pointer;
+}
+
 .duas-collections {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
+  align-items: center;
   justify-content: center;
   gap: 10px;
-  margin-bottom: 24px;
+  margin-bottom: 16px;
 }
 
 .duas-collections a,
+.duas-category,
+.duas-category-panel a,
 .duas-show-more {
   display: inline-flex;
   align-items: center;
@@ -96,6 +152,86 @@ svg {
   font-weight: 600;
 }
 
+.duas-scopes {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 1fr;
+  flex: 0 0 auto;
+  gap: 10px;
+}
+
+.duas-collections a {
+  white-space: nowrap;
+}
+
+.duas-category {
+  position: relative;
+  flex: 1 1 auto;
+  min-width: 0;
+  padding-inline: 36px;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.duas-category span {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.duas-category svg {
+  position: absolute;
+  right: 12px;
+  pointer-events: none;
+  transition: transform 180ms ease;
+}
+
+.duas-category.open svg {
+  transform: rotate(180deg);
+}
+
+.duas-category-panel {
+  display: grid;
+  grid-template-rows: 0fr;
+  margin: -8px 0 0;
+  opacity: 0;
+  transition:
+    grid-template-rows 180ms ease,
+    opacity 180ms ease,
+    margin-bottom 180ms ease;
+}
+
+.duas-category-panel.open {
+  grid-template-rows: 1fr;
+  margin-bottom: 16px;
+  opacity: 1;
+}
+
+.duas-category-panel:not(.open) {
+  pointer-events: none;
+}
+
+.duas-category-panel > div {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.duas-collections :focus-visible,
+.duas-category-panel a:focus-visible,
+.duas-search-clear:focus-visible,
+.duas-empty :focus-visible,
+.duas-show-more:focus-visible,
+.dua-bookmark:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+}
+
 .duas-show-more {
   justify-self: center;
   margin-top: 4px;
@@ -104,7 +240,8 @@ svg {
   cursor: pointer;
 }
 
-.duas-collections a.active {
+.duas-collections .active,
+.duas-category-panel a.active {
   color: var(--hero-text);
   background: var(--accent-surface);
   border-color: var(--gold);
@@ -119,6 +256,7 @@ svg {
 .saved-count {
   display: inline-grid;
   place-items: center;
+  margin-inline-start: 4px;
   font-size: 13px;
   line-height: 1;
   min-width: 20px;
@@ -245,6 +383,9 @@ svg {
 
 .dua-actions button:hover,
 .duas-collections a:hover,
+.duas-category:hover,
+.duas-category-panel a:hover,
+.duas-search-clear:hover,
 .duas-show-more:hover {
   background: var(--surface-hover);
   border-color: var(--gold);
@@ -408,12 +549,28 @@ svg {
   line-height: 1.6;
 }
 
-.duas-empty a {
+.duas-empty a,
+.duas-empty button {
   display: inline-flex;
   align-items: center;
   min-height: 44px;
   color: var(--gold);
   text-underline-offset: 4px;
+}
+
+.duas-empty-actions {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px 24px;
+}
+
+.duas-empty button {
+  border: 0;
+  background: transparent;
+  font: inherit;
+  text-decoration: underline;
+  cursor: pointer;
 }
 
 @media (max-width: 599px) {
@@ -425,31 +582,26 @@ svg {
   }
   .duas-collections {
     gap: 6px;
-    margin-inline: -8px;
+    font-size: 14px;
   }
 
-  .duas-collections a {
-    padding-inline: 18px;
-    gap: 4px;
-    white-space: nowrap;
-  }
-  /* Compact chip sizing to restore:
-  .duas-collections {
+  .duas-scopes {
     gap: 6px;
-    margin-inline: -8px;
   }
-  .duas-collections a {
-    min-height: 36px;
-    padding: 4px 7px;
-    gap: 4px;
-    font-size: 14px;
-    white-space: nowrap;
+
+  .duas-scopes a {
+    padding-inline: 10px;
+    gap: 6px;
   }
-  .duas-collections svg {
-    width: 14px;
-    height: 16px;
+
+  .duas-category {
+    min-width: 7.4rem;
+    padding-inline: 24px;
   }
-  */
+
+  .duas-category svg {
+    right: 8px;
+  }
 
   .duas-list {
     gap: 16px;
@@ -503,5 +655,33 @@ svg {
   }
   .dua-source {
     margin-top: 14px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .duas-category svg,
+  .duas-category-panel {
+    transition: none;
+  }
+}
+
+@media (max-width: 359px) {
+  .duas-collections,
+  .duas-scopes {
+    font-size: 13px;
+    gap: 4px;
+  }
+  .duas-collections a {
+    padding-inline: 6px;
+    gap: 3px;
+  }
+  .duas-collections svg {
+    width: 14px;
+  }
+  .saved-count {
+    margin-inline-start: 2px;
+    font-size: 12px;
+    min-width: 18px;
+    padding-inline: 3px;
   }
 }

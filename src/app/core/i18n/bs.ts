@@ -91,6 +91,13 @@ export interface AppLabels {
   duasEmptyTitle: string;
   duasEmptyBody: string;
   duasBrowse: string;
+  duasSearch: string;
+  duasSearchAll: string;
+  duasCategories: string;
+  duasClearSearch: string;
+  duasResults: string;
+  duasNoResultsTitle: string;
+  duasNoResultsBody: string;
   showMore: string;
   duasStorageError: string;
   duasTranscription: string;
@@ -110,6 +117,8 @@ export interface AppLabels {
   dhikrEmptyTitle: string;
   dhikrEmptyBody: string;
   dhikrBrowse: string;
+  dhikrSearch: string;
+  dhikrSearchAll: string;
 
   /** Qibla compass */
   qiblaPageDocTitle: string;
@@ -270,6 +279,13 @@ export const BS_LABELS: AppLabels = {
   duasEmptyTitle: 'Vaše dove, na jednom mjestu',
   duasEmptyBody: 'Dodirnite oznaku na kartici da sačuvate dovu za kasnije na ovom uređaju.',
   duasBrowse: 'Pogledaj sve dove',
+  duasSearch: 'Pretraži dove…',
+  duasSearchAll: 'Pretraži sve dove',
+  duasCategories: 'Kategorije',
+  duasClearSearch: 'Obriši pretragu',
+  duasResults: 'Rezultati',
+  duasNoResultsTitle: 'Nema rezultata za ovu pretragu',
+  duasNoResultsBody: 'Pokušajte s drugim riječima ili obrišite pretragu.',
   showMore: 'Prikaži još',
   duasStorageError:
     'Promjena vrijedi samo na ovoj stranici. Preglednik je nije mogao trajno sačuvati.',
@@ -289,6 +305,8 @@ export const BS_LABELS: AppLabels = {
   dhikrEmptyTitle: 'Vaši zikrovi, na jednom mjestu',
   dhikrEmptyBody: 'Dodirnite oznaku na kartici da sačuvate zikr za kasnije na ovom uređaju.',
   dhikrBrowse: 'Pogledaj sve zikrove',
+  dhikrSearch: 'Pretraži zikrove…',
+  dhikrSearchAll: 'Pretraži sve zikrove',
 
   qiblaPageDocTitle: 'Kibla kompas — Vaktija',
   qiblaTileTitle: 'Kibla kompas',
