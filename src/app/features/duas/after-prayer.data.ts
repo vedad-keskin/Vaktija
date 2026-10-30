@@ -1,7 +1,7 @@
 import type { Dua } from './duas.data';
 
-// Bosnian: reader's Hisnul-Muslimi photographs, pages 50–53; HM-70 meanings adapted from Korkut.
-// English and Arabic: Hisn al-Muslim 66–67, 69–70.
+// Bosnian: reader's Hisnul-Muslimi photographs, pages 50–54; Quran meanings adapted from Korkut.
+// English and Arabic: Hisn al-Muslim 66–67, 69–73.
 export const AFTER_PRAYER_DUAS: readonly Dua[] = [
   {
     id: 'hisn-66',
@@ -174,6 +174,83 @@ export const AFTER_PRAYER_DUAS: readonly Dua[] = [
             reference: { bs: 'Kur’an, 114', en: 'Quran, 114' },
             sourceUrl: 'https://quran.com/114',
             bosnianSourceUrl: 'https://quranenc.com/bs/browse/bosnian_korkut/114',
+          },
+        ],
+      },
+      {
+        arabic:
+          'اللَّهُ لَا إِلَٰهَ إِلَّا هُوَ الْحَيُّ الْقَيُّومُ لَا تَأْخُذُهُ سِنَةٌ وَلَا نَوْمٌ لَهُ مَا فِي السَّمَاوَاتِ وَمَا فِي الْأَرْضِ مَنْ ذَا الَّذِي يَشْفَعُ عِنْدَهُ إِلَّا بِإِذْنِهِ يَعْلَمُ مَا بَيْنَ أَيْدِيهِمْ وَمَا خَلْفَهُمْ وَلَا يُحِيطُونَ بِشَيْءٍ مِنْ عِلْمِهِ إِلَّا بِمَا شَاءَ وَسِعَ كُرْسِيُّهُ السَّمَاوَاتِ وَالْأَرْضَ وَلَا يَئُودُهُ حِفْظُهُمَا وَهُوَ الْعَلِيُّ الْعَظِيمُ',
+        instructions: {
+          bs: 'Ajetul-Kursijj prouči poslije svakog namaza.',
+          en: 'Recite Ayat al-Kursi after each prayer.',
+        },
+        transcription: {
+          bs: 'Allāhu lā ilāhe illā Huve-l-Ḥajju-l-Qajjūm. Lā te’ḫuḏuhū sinetun ve lā nevm. Lehū mā fī-s-semāvāti ve mā fī-l-erḍ. Men ḏā-lleḏī ješfe‘u ‘indehū illā bi-iḏnih. Ja‘lemu mā bejne ejdīhim ve mā ḫalfehum, ve lā juḥīṭūne bi šej’in min ‘ilmihī illā bi mā šā’e. Vesi‘a kursijjuhu-s-semāvāti ve-l-erḍa ve lā je’ūduhū ḥifẓuhumā ve Huve-l-‘Alijju-l-‘Aẓīm.',
+          en: 'Allāhu lā ilāha illā huwa al-Ḥayyul-Qayyūm. Lā ta’khudhuhu sinatun wa lā nawm. Lahu mā fis-samāwāti wa mā fil-arḍ. Man dhal-ladhī yashfa‘u ‘indahu illā bi-idhnih. Ya‘lamu mā bayna aydīhim wa mā khalfahum, wa lā yuḥīṭūna bishay’in min ‘ilmihi illā bimā shā’. Wasi‘a kursiyyuhus-samāwāti wal-arḍa wa lā ya’ūduhu ḥifẓuhumā wa huwal-‘Aliyyul-‘Aẓīm.',
+        },
+        translation: {
+          bs: 'Allah je, nema boga osim Njega, Živi i Vječni. Ne obuzima Ga ni drijemež ni san. Njemu pripada sve na nebesima i na Zemlji. Ko se može kod Njega zauzimati bez Njegovog dopuštenja? On zna šta je bilo prije njih i šta će biti poslije njih, a od Njegovog znanja oni obuhvataju samo ono što On želi. Njegova Kursija obuhvata nebesa i Zemlju i Njemu nije teško da ih čuva. On je Svevišnji, Veličanstveni.',
+          en: 'Allah: there is no deity except Him, the Ever-Living, the Sustainer of all. Neither drowsiness nor sleep overtakes Him. Everything in the heavens and on earth belongs to Him. Who can intercede with Him without His permission? He knows what lies before them and what lies behind them, and they encompass only what He wills of His knowledge. His Kursi encompasses the heavens and the earth, and guarding them does not tire Him. He is the Most High, the Most Great.',
+        },
+        sources: [
+          {
+            reference: { bs: 'Hisnul-Muslimi, 71', en: 'Hisn al-Muslim, 71' },
+            sourceUrl: 'https://sunnah.com/hisn:71',
+            bosnianSourceUrl:
+              'https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=31',
+          },
+          {
+            reference: { bs: 'Kur’an, 2:255', en: 'Quran, 2:255' },
+            sourceUrl: 'https://quran.com/2/255',
+            bosnianSourceUrl: 'https://quranenc.com/bs/browse/bosnian_korkut/2/255',
+          },
+        ],
+      },
+      {
+        arabic:
+          'لَا إِلَٰهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ يُحْيِي وَيُمِيتُ وَهُوَ عَلَىٰ كُلِّ شَيْءٍ قَدِيرٌ',
+        instructions: {
+          bs: 'Prouči deset puta poslije sabahskog i akšamskog namaza.',
+          en: 'Recite ten times after Fajr and Maghrib.',
+        },
+        transcription: {
+          bs: 'Lā ilāhe illellāhu vaḥdehu lā šerīke leh, lehu-l-mulku ve lehu-l-ḥamdu, juḥjī ve jumītu ve huve ‘alā kulli šej’in qadīr.',
+          en: 'Lā ilāha illallāhu waḥdahu lā sharīka lah, lahul-mulku wa lahul-ḥamd, yuḥyī wa yumīt, wa huwa ‘alā kulli shay’in qadīr.',
+        },
+        translation: {
+          bs: 'Nema boga osim Allaha, Jedinoga, Koji druga nema. Njemu pripada sva vlast i zahvalnost. On oživljava i usmrćuje, i On nad svim ima moć.',
+          en: 'There is no deity worthy of worship except Allah alone, without partner. His is the dominion and His is the praise. He gives life and causes death, and He has power over all things.',
+        },
+        sources: [
+          {
+            reference: { bs: 'Hisnul-Muslimi, 72', en: 'Hisn al-Muslim, 72' },
+            sourceUrl: 'https://sunnah.com/hisn:72',
+            bosnianSourceUrl:
+              'https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=31',
+          },
+        ],
+      },
+      {
+        arabic:
+          'اللَّهُمَّ إِنِّي أَسْأَلُكَ عِلْمًا نَافِعًا وَرِزْقًا طَيِّبًا وَعَمَلًا مُتَقَبَّلًا',
+        instructions: {
+          bs: 'Prouči nakon predaje selama sabahskog farza.',
+          en: 'Recite after the salam of the obligatory Fajr prayer.',
+        },
+        transcription: {
+          bs: 'Allāhumme innī es’eluke ‘ilmen nāfi‘an ve rizqan ṭajjiben ve ‘amelen muteqabbelen.',
+          en: 'Allāhumma innī as’aluka ‘ilman nāfi‘an, wa rizqan ṭayyiban, wa ‘amalan mutaqabbalan.',
+        },
+        translation: {
+          bs: 'Allahu, od Tebe molim korisno znanje, lijepu nafaku i djelo prihvaćeno kod Tebe.',
+          en: 'O Allah, I ask You for beneficial knowledge, good provision, and deeds that are accepted.',
+        },
+        sources: [
+          {
+            reference: { bs: 'Hisnul-Muslimi, 73', en: 'Hisn al-Muslim, 73' },
+            sourceUrl: 'https://sunnah.com/hisn:73',
+            bosnianSourceUrl:
+              'https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=31',
           },
         ],
       },

@@ -1,6 +1,6 @@
 # Hisnul Muslim — selected full duas (BS / EN)
 
-This file grows one approved category at a time. It currently contains the clothing entries (HM-5, 9, 6, 7), the toilet entries (HM-10–11), the Abdest entries (HM-12–13), the mosque entries (HM-19–21), the adhan entry (HM-25), the prayer entries (HM-28, 33, 38–39, 41, 49, 52–53, 56), the after-prayer entries (HM-66–67, 69–70), the prostration of recitation entry (HM-50), the Istikharah entry (HM-74), the sleeping entries (HM-111, 1, 114, 113, 112), the three marriage entries, the gathering entries (HM-195–196), the animal entries, the weather entries (HM-166, 168, 169, 172–175), the fasting and food entries (HM-176–186), the home entries (HM-16, 18), the travel entries (HM-206–212, 215–217), the general entries (HM-79, 84, 86, 97, 188), the illness entries (HM-147, 148, 150–152, 243), the death entries (HM-153–163, 165), and the Hajj and Umrah entries (HM-234–239). The [complete title checklist](README-titles.md) remains an editorial selection aid; its suggested labels are not published translations.
+This file grows one approved category at a time. It currently contains the clothing entries (HM-5, 9, 6, 7), the toilet entries (HM-10–11), the Abdest entries (HM-12–13), the mosque entries (HM-19–21), the adhan entry (HM-25), the prayer entries (HM-28, 33, 38–39, 41, 49, 52–53, 56), the after-prayer entries (HM-66–67, 69–73), the prostration of recitation entry (HM-50), the Istikharah entry (HM-74), the sleeping entries (HM-111, 1, 114, 113, 112), the three marriage entries, the gathering entries (HM-195–196), the animal entries, the weather entries (HM-166, 168, 169, 172–175), the fasting and food entries (HM-176–186), the home entries (HM-16, 18), the travel entries (HM-206–212, 215–217), the general entries (HM-79, 84, 86, 97, 188), the illness entries (HM-147, 148, 150–152, 243), the death entries (HM-153–163, 165), and the Hajj and Umrah entries (HM-234–239). The [complete title checklist](README-titles.md) remains an editorial selection aid; its suggested labels are not published translations.
 
 ## Izvori i uredničke napomene / Sources and editorial notes
 
@@ -19,6 +19,7 @@ This file grows one approved category at a time. It currently contains the cloth
 - **Namaz / Salat:** HM-28, HM-33, HM-38–39, HM-41, HM-49, HM-52–53 and HM-56 are Bosnian 28, 33, 38–39, 41, 49, 52–53 and 56 in the reader's photographs of pages 27, 33–36 and 39–44. Their Bosnian transcriptions and meanings follow those photographs and the established letter key; the linked IslamHouse PDF is the digital counterpart. Arabic and English follow the corresponding [Sunnah.com Hisn al-Muslim entries](https://sunnah.com/hisn). HM-27 remains only in the title checklist. HM-38 and HM-39 share one app card with two recitation rows and no instructions.
 - **Poslije namaza / After prayer:** HM-66–67 and the first three phrases of HM-69 share one card and follow the reader's photographs of Bosnian pages 50–52. The opening istigfar is repeated three times, and each HM-69 phrase 33 times; these counts appear in instructions. HM-69's closing declaration is omitted here because it already appears in HM-67. Arabic and English follow [Sunnah.com HM-66](https://sunnah.com/hisn:66), [HM-67](https://sunnah.com/hisn:67), and [HM-69](https://sunnah.com/hisn:69); the linked Bosnian PDF is the digital counterpart.
 - **HM-70:** The three surahs also share that card. Their repetition instructions follow the reader's photograph of page 53 and [Sunnah.com HM-70](https://sunnah.com/hisn:70). The Bosnian transcriptions are adaptations using the letter key above, since the photograph gives Arabic but not full transliterations; Bosnian meanings are adapted from Besim Korkut's translation, linked with each surah. English meanings are adapted from HM-70.
+- **HM-71–73:** These also share the card. The reader's photographs of pages 53–54 supply the recitation instructions and the Bosnian wording of HM-72–73. The Bosnian transcription of Ajetul-Kursijj is adapted to the letter key above; its Bosnian meaning is adapted from [Besim Korkut's translation](https://quranenc.com/bs/browse/bosnian_korkut/2/255). English and Arabic are checked against [HM-71](https://sunnah.com/hisn:71), [HM-72](https://sunnah.com/hisn:72), and [HM-73](https://sunnah.com/hisn:73).
 - **Džamija / Mosque:** Bosnian transcriptions follow the reader's photographs of pages 21–23 of the 2017 edition; Bosnian meanings follow the linked IslamHouse PDF. HM-19 uses the shorter published Arabic/English wording matching that edition, rather than the longer variant on Sunnah.com. Its English transliteration is from [Sahih Muslim 1799](https://www.alim.org/hadith/sahih-muslim/6/1799/). HM-20's English transliteration is from the [English Hisnul Muslim edition of the Presidency of Religious Affairs](https://risala.prh.gov.sa/en/content/51); its three source segments are displayed together. HM-21's English transliteration is from [Sunnah.com HM-21](https://sunnah.com/hisn:21).
 - **Opće / General:** HM-79 ↔ Bosnian 77; HM-84 ↔ Bosnian 80; HM-97 ↔ Bosnian 79. Bosnian transcriptions are adaptations of the published PDF using the letter key above. English HM-97 specifies the evening.
 - **Zaštita / Protection (HM-86):** HM-86 ↔ Bosnian 82. The Bosnian transcription follows the published PDF and the letter key above. Its Bosnian meaning is shorter than the English published meaning; it is reproduced as printed. Both sources specify three recitations; the hadith places them in the morning and evening.
@@ -444,7 +445,7 @@ Slušalac ponavlja za mujezinom sve riječi ezana osim ovih: kada ih čuje, izgo
 ## Poslije namaza / After prayer
 
 <a id="hm-66"></a>
-### HM-66–67, 69–70 · Dove poslije selama / Dua after salam
+### HM-66–67, 69–73 · Dove poslije namaza / Dua after prayer
 
 #### Istigfar / Seeking forgiveness
 
@@ -566,6 +567,63 @@ Slušalac ponavlja za mujezinom sve riječi ezana osim ovih: kada ih čuje, izgo
 **English — meaning:** In the name of Allah, the Most Merciful, the Most Compassionate. Say: I seek refuge in the Lord of mankind, the King of mankind, the God of mankind, from the evil of the whisperer who withdraws, who whispers into the hearts of mankind, from among jinn and people.
 
 **Sources:** [Hisn al-Muslim 70](https://sunnah.com/hisn:70) · [Kur’an 114, Bosnian](https://quranenc.com/bs/browse/bosnian_korkut/114) · [Quran 114](https://quran.com/114)
+
+<a id="hm-71"></a>
+#### HM-71 · Ajetul-Kursijj / Ayat al-Kursi
+
+**Upute / Instructions:** Ajetul-Kursijj prouči poslije svakog namaza. / Recite Ayat al-Kursi after each prayer.
+
+**Arapski / Arabic**
+
+<p lang="ar" dir="rtl">اللَّهُ لَا إِلَٰهَ إِلَّا هُوَ الْحَيُّ الْقَيُّومُ لَا تَأْخُذُهُ سِنَةٌ وَلَا نَوْمٌ لَهُ مَا فِي السَّمَاوَاتِ وَمَا فِي الْأَرْضِ مَنْ ذَا الَّذِي يَشْفَعُ عِنْدَهُ إِلَّا بِإِذْنِهِ يَعْلَمُ مَا بَيْنَ أَيْدِيهِمْ وَمَا خَلْفَهُمْ وَلَا يُحِيطُونَ بِشَيْءٍ مِنْ عِلْمِهِ إِلَّا بِمَا شَاءَ وَسِعَ كُرْسِيُّهُ السَّمَاوَاتِ وَالْأَرْضَ وَلَا يَئُودُهُ حِفْظُهُمَا وَهُوَ الْعَلِيُّ الْعَظِيمُ</p>
+
+**Bosanski — transkripcija:** Allāhu lā ilāhe illā Huve-l-Ḥajju-l-Qajjūm. Lā te’ḫuḏuhū sinetun ve lā nevm. Lehū mā fī-s-semāvāti ve mā fī-l-erḍ. Men ḏā-lleḏī ješfe‘u ‘indehū illā bi-iḏnih. Ja‘lemu mā bejne ejdīhim ve mā ḫalfehum, ve lā juḥīṭūne bi šej’in min ‘ilmihī illā bi mā šā’e. Vesi‘a kursijjuhu-s-semāvāti ve-l-erḍa ve lā je’ūduhū ḥifẓuhumā ve Huve-l-‘Alijju-l-‘Aẓīm.
+
+**Bosanski — prijevod:** Allah je, nema boga osim Njega, Živi i Vječni. Ne obuzima Ga ni drijemež ni san. Njemu pripada sve na nebesima i na Zemlji. Ko se može kod Njega zauzimati bez Njegovog dopuštenja? On zna šta je bilo prije njih i šta će biti poslije njih, a od Njegovog znanja oni obuhvataju samo ono što On želi. Njegova Kursija obuhvata nebesa i Zemlju i Njemu nije teško da ih čuva. On je Svevišnji, Veličanstveni.
+
+**English — transliteration:** Allāhu lā ilāha illā huwa al-Ḥayyul-Qayyūm. Lā ta’khudhuhu sinatun wa lā nawm. Lahu mā fis-samāwāti wa mā fil-arḍ. Man dhal-ladhī yashfa‘u ‘indahu illā bi-idhnih. Ya‘lamu mā bayna aydīhim wa mā khalfahum, wa lā yuḥīṭūna bishay’in min ‘ilmihi illā bimā shā’. Wasi‘a kursiyyuhus-samāwāti wal-arḍa wa lā ya’ūduhu ḥifẓuhumā wa huwal-‘Aliyyul-‘Aẓīm.
+
+**English — meaning:** Allah: there is no deity except Him, the Ever-Living, the Sustainer of all. Neither drowsiness nor sleep overtakes Him. Everything in the heavens and on earth belongs to Him. Who can intercede with Him without His permission? He knows what lies before them and what lies behind them, and they encompass only what He wills of His knowledge. His Kursi encompasses the heavens and the earth, and guarding them does not tire Him. He is the Most High, the Most Great.
+
+**Sources:** [Hisn al-Muslim 71](https://sunnah.com/hisn:71) · [Kur’an 2:255, Bosnian](https://quranenc.com/bs/browse/bosnian_korkut/2/255) · [Quran 2:255](https://quran.com/2/255)
+
+<a id="hm-72"></a>
+#### HM-72 · Poslije sabaha i akšama / After Fajr and Maghrib
+
+**Upute / Instructions:** Prouči deset puta poslije sabahskog i akšamskog namaza. / Recite ten times after Fajr and Maghrib.
+
+**Arapski / Arabic**
+
+<p lang="ar" dir="rtl">لَا إِلَٰهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ يُحْيِي وَيُمِيتُ وَهُوَ عَلَىٰ كُلِّ شَيْءٍ قَدِيرٌ</p>
+
+**Bosanski — transkripcija:** Lā ilāhe illellāhu vaḥdehu lā šerīke leh, lehu-l-mulku ve lehu-l-ḥamdu, juḥjī ve jumītu ve huve ‘alā kulli šej’in qadīr.
+
+**Bosanski — prijevod:** Nema boga osim Allaha, Jedinoga, Koji druga nema. Njemu pripada sva vlast i zahvalnost. On oživljava i usmrćuje, i On nad svim ima moć.
+
+**English — transliteration:** Lā ilāha illallāhu waḥdahu lā sharīka lah, lahul-mulku wa lahul-ḥamd, yuḥyī wa yumīt, wa huwa ‘alā kulli shay’in qadīr.
+
+**English — meaning:** There is no deity worthy of worship except Allah alone, without partner. His is the dominion and His is the praise. He gives life and causes death, and He has power over all things.
+
+**Sources:** Reader's photographed Hisnul-Muslimi, page 54 · [Bosnian PDF, page 31](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=31) · [Hisn al-Muslim 72](https://sunnah.com/hisn:72)
+
+<a id="hm-73"></a>
+#### HM-73 · Poslije sabahskog farza / After the obligatory Fajr prayer
+
+**Upute / Instructions:** Prouči nakon predaje selama sabahskog farza. / Recite after the salam of the obligatory Fajr prayer.
+
+**Arapski / Arabic**
+
+<p lang="ar" dir="rtl">اللَّهُمَّ إِنِّي أَسْأَلُكَ عِلْمًا نَافِعًا وَرِزْقًا طَيِّبًا وَعَمَلًا مُتَقَبَّلًا</p>
+
+**Bosanski — transkripcija:** Allāhumme innī es’eluke ‘ilmen nāfi‘an ve rizqan ṭajjiben ve ‘amelen muteqabbelen.
+
+**Bosanski — prijevod:** Allahu, od Tebe molim korisno znanje, lijepu nafaku i djelo prihvaćeno kod Tebe.
+
+**English — transliteration:** Allāhumma innī as’aluka ‘ilman nāfi‘an, wa rizqan ṭayyiban, wa ‘amalan mutaqabbalan.
+
+**English — meaning:** O Allah, I ask You for beneficial knowledge, good provision, and deeds that are accepted.
+
+**Sources:** Reader's photographed Hisnul-Muslimi, page 54 · [Bosnian PDF, page 31](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=31) · [Hisn al-Muslim 73](https://sunnah.com/hisn:73)
 
 ## Sedžda tilaveta / Prostration of recitation
 
