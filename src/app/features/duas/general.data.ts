@@ -88,8 +88,8 @@ export const GENERAL_DUAS: readonly Dua[] = [
   {
     id: 'muslim-2721a',
     title: {
-      bs: 'Dova za bogobojaznost i čednost',
-      en: 'Supplication for piety and chastity',
+      bs: 'Dova za bogobojaznost, čednost i neovisnost',
+      en: 'Supplication for piety, chastity and independence',
     },
     arabic: 'اللَّهُمَّ إِنِّي أَسْأَلُكَ الْهُدَى وَالتُّقَى وَالْعَفَافَ وَالْغِنَى',
     transcription: {
@@ -264,24 +264,7 @@ export const GENERAL_DUAS: readonly Dua[] = [
   //   bosnianSourceUrl:
   //     'https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=35',
   // },
-  // {
-  //   id: 'hisn-86',
-  //   title: { bs: 'Dova za zaštitu Allahovim imenom', en: "Protection through Allah's name" },
-  //   arabic:
-  //     'بِسـمِ اللهِ الذي لا يَضُـرُّ مَعَ اسمِـهِ شَيءٌ في الأرْضِ وَلا في السّمـاءِ وَهـوَ السّمـيعُ العَلـيم .',
-  //   transcription: {
-  //     bs: 'Bismillāhi-l-leḏī lā jeḍurru me‘a-smihi šej’un fī-l-erḍi ve lā fī-s-semā’i ve Huve-s-Semī‘u-l-‘Alīm.',
-  //     en: "Bismillāhi ‘l-ladhī lā yaḍurru ma`a-smihi shay'un fil-'arḍi wa lā fis-samā' wa huwas-Samī `ul-`Alīm.",
-  //   },
-  //   translation: {
-  //     bs: 'S Allahovim imenom; kad se Njegovo ime spomene, nikakvo zlo na Zemlji ni na nebesima ne može štetiti (3X).',
-  //     en: 'In the Name of Allah, Who with His Name nothing can cause harm in the earth nor in the heavens, and He is the All-Hearing, the All-Knowing. (Recite three times in Arabic).',
-  //   },
-  //   reference: { bs: 'Hisnul-Muslimi, 82', en: 'Hisn al-Muslim, 86' },
-  //   sourceUrl: 'https://sunnah.com/hisn:86',
-  //   bosnianSourceUrl:
-  //     'https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=36',
-  // },
+
   // {
   //   id: 'hisn-97',
   //   title: { bs: 'Utočište u Allahovim riječima', en: "Refuge in Allah's perfect words" },

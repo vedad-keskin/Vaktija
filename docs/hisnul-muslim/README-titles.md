@@ -105,8 +105,6 @@ Brojevi, poglavlja i vrste zapisa provjereni su prema [OpenDua datasetu v0.0.4](
 - [ ] [HM-047 · Na sedždi (7/7) / While prostrating (7/7)](https://sunnah.com/hisn:47)
 - [ ] [HM-048 · Između dvije sedžde (1/2) / Between prostrations (1/2)](https://sunnah.com/hisn:48)
 - [ ] ★ [HM-049 · Dova između dvije sedžde / Between two prostrations](https://sunnah.com/hisn:49)
-- [ ] [HM-050 · Pri sedždi tilaveta (1/2) / Prostration after Quran recitation (1/2)](https://sunnah.com/hisn:50)
-- [ ] [HM-051 · Pri sedždi tilaveta (2/2) / Prostration after Quran recitation (2/2)](https://sunnah.com/hisn:51)
 - [ ] [HM-052 · Na tešehhudu / At the tashahhud](https://sunnah.com/hisn:52)
 - [ ] [HM-053 · Salavati poslije tešehhuda (1/2) / Blessings upon the Prophet after tashahhud (1/2)](https://sunnah.com/hisn:53)
 - [ ] [HM-054 · Salavati poslije tešehhuda (2/2) / Blessings upon the Prophet after tashahhud (2/2)](https://sunnah.com/hisn:54)
@@ -134,6 +132,11 @@ Brojevi, poglavlja i vrste zapisa provjereni su prema [OpenDua datasetu v0.0.4](
 - [ ] [HM-118 · Kunut u vitr-namazu (3/3) / Qunut in the Witr prayer (3/3)](https://sunnah.com/hisn:118)
 - [ ] [HM-119 · Poslije vitr-namaza / After the Witr prayer](https://sunnah.com/hisn:119)
 - [ ] [HM-138 · Protiv šejtanskih smetnji u namazu i učenju Kur'ana / Distractions during prayer or Quran recitation](https://sunnah.com/hisn:138)
+
+## Sedžda tilaveta / Prostration of recitation
+
+- [ ] ★ [HM-050 · Dova na sedždi tilaveta / During the prostration of recitation](README-full.md#hm-50) · u aplikaciji / in app
+- [ ] [HM-051 · Pri sedždi tilaveta (2/2) / Prostration after Quran recitation (2/2)](https://sunnah.com/hisn:51)
 
 ## Istihara / Istikharah
 

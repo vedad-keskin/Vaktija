@@ -188,4 +188,26 @@ export const PROTECTION_DUAS: readonly Dua[] = [
     bosnianSourceUrl:
       'https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=86',
   },
+  {
+    id: 'hisn-86',
+    title: { bs: 'Dova za zaštitu Allahovim imenom', en: "Protection through Allah's name" },
+    arabic:
+      'بِسـمِ اللهِ الذي لا يَضُـرُّ مَعَ اسمِـهِ شَيءٌ في الأرْضِ وَلا في السّمـاءِ وَهـوَ السّمـيعُ العَلـيم .',
+    instructions: {
+      bs: 'Ko ovu dovu prouči tri puta ujutro, neće ga zadesiti nikakva nedaća do večeri, a ko je prouči tri puta navečer, neće ga zadesiti nikakva nedaća do jutra.',
+      en: 'Whoever recites this supplication three times in the morning will not face a calamity until evening, and whoever recites it three times in the evening will not face a calamity until morning.',
+    },
+    transcription: {
+      bs: 'Bismillāhi-l-leḏī lā jeḍurru me‘a-smihi šej’un fī-l-erḍi ve lā fī-s-semā’i ve Huve-s-Semī‘u-l-‘Alīm.',
+      en: "Bismillāhi ‘l-ladhī lā yaḍurru ma`a-smihi shay'un fil-'arḍi wa lā fis-samā' wa huwas-Samī `ul-`Alīm.",
+    },
+    translation: {
+      bs: 'S Allahovim imenom, kad se Njegovo ime spomene, nikakvo zlo na Zemlji ni na nebesima ne može štetiti.',
+      en: 'In the Name of Allah, Who with His Name nothing can cause harm in the earth nor in the heavens, and He is the All-Hearing, the All-Knowing.',
+    },
+    reference: { bs: 'Hisnul-Muslimi, 82', en: 'Hisn al-Muslim, 86' },
+    sourceUrl: 'https://sunnah.com/hisn:86',
+    bosnianSourceUrl:
+      'https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=36',
+  },
 ];

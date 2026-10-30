@@ -19,6 +19,7 @@ import { MOSQUE_DUAS } from './mosque.data';
 import { FORGIVENESS_DUAS } from './forgiveness.data';
 import { PROTECTION_DUAS } from './protection.data';
 import { SLEEP_DUAS } from './sleep.data';
+import { TILAWAH_DUAS } from './tilawah.data';
 import { TOILET_DUAS } from './toilet.data';
 import { TRAVEL_DUAS } from './travel.data';
 import { WEATHER_DUAS } from './weather.data';
@@ -59,6 +60,11 @@ export const DUA_CATEGORIES = [
   { id: 'ablution', label: { bs: 'Abdest', en: 'Ablution' }, items: ABLUTION_DUAS },
   { id: 'mosque', label: { bs: 'Džamija', en: 'Mosque' }, items: MOSQUE_DUAS },
   { id: 'adhan', label: { bs: 'Ezan', en: 'Adhan' }, items: ADHAN_DUAS },
+  {
+    id: 'tilawah',
+    label: { bs: 'Sedžda tilaveta', en: 'Prostration of recitation' },
+    items: TILAWAH_DUAS,
+  },
   { id: 'istikhara', label: { bs: 'Istihara', en: 'Istikharah' }, items: ISTIKHARA_DUAS },
   { id: 'fasting', label: { bs: 'Post i hrana', en: 'Fasting and food' }, items: FOOD_DUAS },
   { id: 'sleep', label: { bs: 'Spavanje i snovi', en: 'Sleep and dreams' }, items: SLEEP_DUAS },

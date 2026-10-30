@@ -1,6 +1,6 @@
 # Hisnul Muslim — selected full duas (BS / EN)
 
-This file grows one approved category at a time. It currently contains the clothing entries (HM-5, 9, 6, 7), the toilet entries (HM-10–11), the Abdest entries (HM-12–13), the mosque entries (HM-19–21), the adhan entry (HM-25), the Istikharah entry (HM-74), the sleeping entries (HM-111, 1, 114, 113, 112), the three marriage entries, the gathering entries (HM-195–196), the animal entries, the weather entries (HM-166, 168, 169, 172–175), the fasting and food entries (HM-176–186), the home entries (HM-16, 18), the travel entries (HM-206–212, 215–217), the general entries (HM-79, 84, 86, 97, 188), the illness entries (HM-147, 148, 150–152, 243), the death entries (HM-153–163, 165), and the Hajj and Umrah entries (HM-234–239). The [complete title checklist](README-titles.md) remains an editorial selection aid; its suggested labels are not published translations.
+This file grows one approved category at a time. It currently contains the clothing entries (HM-5, 9, 6, 7), the toilet entries (HM-10–11), the Abdest entries (HM-12–13), the mosque entries (HM-19–21), the adhan entry (HM-25), the prostration of recitation entry (HM-50), the Istikharah entry (HM-74), the sleeping entries (HM-111, 1, 114, 113, 112), the three marriage entries, the gathering entries (HM-195–196), the animal entries, the weather entries (HM-166, 168, 169, 172–175), the fasting and food entries (HM-176–186), the home entries (HM-16, 18), the travel entries (HM-206–212, 215–217), the general entries (HM-79, 84, 86, 97, 188), the illness entries (HM-147, 148, 150–152, 243), the death entries (HM-153–163, 165), and the Hajj and Umrah entries (HM-234–239). The [complete title checklist](README-titles.md) remains an editorial selection aid; its suggested labels are not published translations.
 
 ## Izvori i uredničke napomene / Sources and editorial notes
 
@@ -15,8 +15,10 @@ This file grows one approved category at a time. It currently contains the cloth
 - HM-192 / Bosnian 180’s basmala is copied from the reader’s photograph of page 114. Most other Bosnian transcriptions in this file are **adaptations** of the published Bosnian recitation with this key. A matching digital copy of the photographed edition was not found.
 - **Spavanje i snovi / Sleep and dreams:** Bosnian 103–105 correspond to English 111–113; Bosnian 107–109 make up English 114; HM-1 matches Bosnian 1. Bosnian transcriptions follow the reader’s photographs of pages 13 and 75–77 of the 2017 edition; linked IslamHouse pages provide the published digital counterpart. HM-114 shows the short refuge phrase from Bosnian 107. Its Bosnian instruction is a concise summary requested by the reader, retaining the three recitations specified in the book; its English instruction follows that summary. Its short BS/EN meanings are excerpts of published renderings linked below. The English transcription is the opening of the published wording in [Riyad as-Salihin 841](https://sunnah.com/riyadussalihin:841). HM-99–101 are Qur’anic recitations; the partly visible Bosnian 95–97 are not included.
 - **Istihara / Istikharah:** HM-74 is Bosnian 74 in the reader’s photographs of pages 55–56 of the 2017 edition. Bosnian transcription and meaning follow those pages; the linked IslamHouse PDF provides a digital counterpart. The place to name the matter and the alternate wording appear in parentheses beside the corresponding words. Arabic follows [Sunnah.com HM-74](https://sunnah.com/hisn:74); English transcription and meaning are adapted from it.
+- **Sedžda tilaveta / Prostration of recitation:** HM-50 is Bosnian 50 in the reader's photograph of page 39. The Bosnian transcription and meaning follow that photograph, with the established letter key above; the linked IslamHouse PDF is the digital counterpart. Arabic and English follow [Sunnah.com HM-50](https://sunnah.com/hisn:50). HM-51 remains only in the title checklist.
 - **Džamija / Mosque:** Bosnian transcriptions follow the reader's photographs of pages 21–23 of the 2017 edition; Bosnian meanings follow the linked IslamHouse PDF. HM-19 uses the shorter published Arabic/English wording matching that edition, rather than the longer variant on Sunnah.com. Its English transliteration is from [Sahih Muslim 1799](https://www.alim.org/hadith/sahih-muslim/6/1799/). HM-20's English transliteration is from the [English Hisnul Muslim edition of the Presidency of Religious Affairs](https://risala.prh.gov.sa/en/content/51); its three source segments are displayed together. HM-21's English transliteration is from [Sunnah.com HM-21](https://sunnah.com/hisn:21).
-- **Opće / General:** HM-79 ↔ Bosnian 77; HM-84 ↔ Bosnian 80; HM-86 ↔ Bosnian 82; HM-97 ↔ Bosnian 79. Bosnian transcriptions are adaptations of the published PDF using the letter key above. The Bosnian HM-86 meaning is shorter than the English published meaning; it is reproduced as printed. The Bosnian edition gives three recitations for its 79 and 82; English HM-97 specifies the evening.
+- **Opće / General:** HM-79 ↔ Bosnian 77; HM-84 ↔ Bosnian 80; HM-97 ↔ Bosnian 79. Bosnian transcriptions are adaptations of the published PDF using the letter key above. English HM-97 specifies the evening.
+- **Zaštita / Protection (HM-86):** HM-86 ↔ Bosnian 82. The Bosnian transcription follows the published PDF and the letter key above. Its Bosnian meaning is shorter than the English published meaning; it is reproduced as printed. Both sources specify three recitations; the hadith places them in the morning and evening.
 - **Kuća / Home:** HM-16 and HM-18 retain the same Bosnian numbers. Bosnian transcriptions and meanings follow the reader’s photograph of pages 20–21 of the 2017 edition; the linked IslamHouse PDF provides the digital counterpart. HM-17 remains in the complete title checklist. HM-18 Arabic follows the complete word in the Bosnian edition; Sunnah.com drops its final alif.
 - **Putovanje / Travel:** The selected HM-206–212 and 215–217 correspond to Bosnian 194–200 and 203–205. Bosnian transcriptions and meanings follow the reader’s photographs of pages 122–130 of the 2017 edition; linked IslamHouse pages provide the digital counterpart. HM-213 remains in the complete title checklist. HM-214 / Bosnian 202 reports an ascent/descent practice rather than a standalone dua. HM-206 and HM-207 contain Qur’anic words as part of their published recitations. The short return phrase after HM-207 also appears in HM-217; the HM-207 card shows the travel wording only. HM-217 includes the three opening takbirs from the published return instructions.
 - **Bolest i bol / Illness and pain:** HM-147–152 correspond to Bosnian 137–142. Their Bosnian transcriptions and meanings follow the reader’s photographs of pages 90–93 of the 2017 edition; the linked IslamHouse PDF is a published digital counterpart. HM-149 / Bosnian 139 is a narration about visiting the sick, so it remains only in the checklist. HM-150–152 belong to the source chapter about a sick person nearing death. HM-151’s photo transcribes only its opening phrase; its second clause is adapted from the printed Arabic using the letter key above. The source reports the Prophet wiping his face with wet hands as context, not a required step for this card. The published Bosnian meaning of HM-152 omits the clause about dominion and praise although its recitation contains it; the English meaning includes that clause. HM-243 corresponds to Bosnian 228; its Bosnian transcription, instruction, and meaning follow the reader’s later photograph of the 2017 edition. Its opening Bosnian meaning, “U ime Allaha,” comes from Bosnian 9 in the linked IslamHouse PDF.
@@ -271,6 +273,27 @@ Slušalac ponavlja za mujezinom sve riječi ezana osim ovih: kada ih čuje, izgo
 **English — meaning (Sunnah.com 25):** O Allah , Lord of this perfect call and established prayer. Grant Muhammad the intercession and favor, and raise him to the honored station You have promised him.
 
 **Sources:** [Bosnian PDF, page 14](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=14) · [English and Arabic](https://sunnah.com/hisn:25)
+
+## Sedžda tilaveta / Prostration of recitation
+
+<a id="hm-50"></a>
+### HM-50 · Dova na sedždi tilaveta / During the prostration of recitation
+
+**Upute / Instructions:** Prouči ovu dovu na sedždi tilaveta. / Recite this supplication during a prostration of recitation.
+
+**Arapski / Arabic**
+
+<p lang="ar" dir="rtl">سَجَدَ وَجْهِيَ لِلَّذِي خَلَقَهُ، وَشَقَّ سَمْعَهُ وَبَصَرَهُ بِحَوْلِهِ وَقُوَّتِهِ، فَتَبَارَكَ اللَّهُ أَحْسَنُ الْخَالِقِينَ</p>
+
+**Bosanski — transkripcija (fotografija knjige, str. 39):** Sedžede vedžhi li-l-leḏi ḫaleqahū ve šeqqa sem‘ahū ve beṣarehū, bi ḥavlihī ve quvvetihī. Fe tebārekellāhu aḥsenu-l-ḫāliqin.
+
+**Bosanski — prijevod (fotografija knjige, str. 39):** Sedždu čini lice moje Onome Koji ga stvori i na njemu oblikova sluh i vid Svojom moći i snagom. Blagoslovljen neka je Allah, najbolji Stvaratelj.
+
+**English — transliteration (Sunnah.com 50):** Sajada wajhiya lilladhī khalaqahu, wa shaqqa sam‘ahu wa baṣarahu biḥawlihi wa quwwatihi. Fatabārakallāhu aḥsanul-khāliqīn.
+
+**English — meaning (Sunnah.com 50):** I have prostrated my face to the One Who created it, and gave it hearing and sight by His might and His power. Glory is to Allah, the Best of creators.
+
+**Sources:** Reader's photographed *Hisnul-Muslimi*, p. 39 · [Bosnian digital counterpart, page 23](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=23) · [English and Arabic](https://sunnah.com/hisn:50)
 
 ## Istihara / Istikharah
 
@@ -1186,23 +1209,6 @@ Jedna kartica prikazuje tri izgovora, svaki u svom redu s uputom kada se koristi
 
 **Sources:** [Bosnian PDF, pages 35–36](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=35) · [English and Arabic](https://sunnah.com/hisn:84)
 
-<a id="hm-86"></a>
-### HM-86 · Dova za zaštitu Allahovim imenom / Protection through Allah's name
-
-**Arapski / Arabic**
-
-<p lang="ar" dir="rtl">بِسـمِ اللهِ الذي لا يَضُـرُّ مَعَ اسمِـهِ شَيءٌ في الأرْضِ وَلا في السّمـاءِ وَهـوَ السّمـيعُ العَلـيم .</p>
-
-**Bosanski — transkripcija (adapted from Bosnian 82):** Bismillāhi-l-leḏī lā jeḍurru me‘a-smihi šej’un fī-l-erḍi ve lā fī-s-semā’i ve Huve-s-Semī‘u-l-‘Alīm.
-
-**Bosanski — prijevod (IslamHouse 82):** S Allahovim imenom; kad se Njegovo ime spomene, nikakvo zlo na Zemlji ni na nebesima ne može štetiti (3X).
-
-**English — transliteration (Sunnah.com 86):** Bismillāhi ‘l-ladhī lā yaḍurru ma&#96;a-smihi shay'un fil-'arḍi wa lā fis-samā' wa huwas-Samī &#96;ul-&#96;Alīm.
-
-**English — meaning (Sunnah.com 86):** In the Name of Allah, Who with His Name nothing can cause harm in the earth nor in the heavens, and He is the All-Hearing, the All-Knowing. (Recite three times in Arabic).
-
-**Sources:** [Bosnian PDF, page 36](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=36) · [English and Arabic](https://sunnah.com/hisn:86)
-
 <a id="hm-97"></a>
 ### HM-97 · Utočište u Allahovim riječima / Refuge in Allah's perfect words
 
@@ -1575,6 +1581,25 @@ The photographed Bosnian recitation includes the bracketed mercy clause, while i
 **Sources:** [Bosnian PDF, pages 60–61](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=60) · [English and Arabic](https://sunnah.com/hisn:165)
 
 ## Zaštita / Protection
+
+<a id="hm-86"></a>
+### HM-86 · Dova za zaštitu Allahovim imenom / Protection through Allah's name
+
+**Upute / Instructions:** U predaji se navodi: ko ovu dovu prouči tri puta ujutro, neće ga zadesiti nikakva nedaća do večeri; ko je prouči tri puta navečer, neće ga zadesiti nikakva nedaća do jutra. / The narration says that whoever recites this supplication three times in the morning will not face a calamity until evening, and whoever recites it three times in the evening will not face a calamity until morning.
+
+**Arapski / Arabic**
+
+<p lang="ar" dir="rtl">بِسـمِ اللهِ الذي لا يَضُـرُّ مَعَ اسمِـهِ شَيءٌ في الأرْضِ وَلا في السّمـاءِ وَهـوَ السّمـيعُ العَلـيم .</p>
+
+**Bosanski — transkripcija (adapted from Bosnian 82):** Bismillāhi-l-leḏī lā jeḍurru me‘a-smihi šej’un fī-l-erḍi ve lā fī-s-semā’i ve Huve-s-Semī‘u-l-‘Alīm.
+
+**Bosanski — prijevod (IslamHouse 82):** S Allahovim imenom; kad se Njegovo ime spomene, nikakvo zlo na Zemlji ni na nebesima ne može štetiti.
+
+**English — transliteration (Sunnah.com 86):** Bismillāhi ‘l-ladhī lā yaḍurru ma&#96;a-smihi shay'un fil-'arḍi wa lā fis-samā' wa huwas-Samī &#96;ul-&#96;Alīm.
+
+**English — meaning (Sunnah.com 86):** In the Name of Allah, Who with His Name nothing can cause harm in the earth nor in the heavens, and He is the All-Hearing, the All-Knowing.
+
+**Sources:** [Bosnian PDF, page 36](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=36) · [English and Arabic](https://sunnah.com/hisn:86)
 
 <a id="hm-124"></a>
 ### HM-124 · Junusova dova u nevolji / Yunus's supplication in distress

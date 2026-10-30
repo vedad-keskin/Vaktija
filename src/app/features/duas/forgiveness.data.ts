@@ -40,4 +40,5 @@ export const FORGIVENESS_DUAS: readonly Dua[] = [
     bosnianSourceUrl:
       'https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=91',
   },
+
 ];

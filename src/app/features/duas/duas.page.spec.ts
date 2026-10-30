@@ -63,6 +63,11 @@ it('shows ten items at a time and resets on view changes', async () => {
     'hisn-20',
     'hisn-21',
   ]);
+  await harness.navigateByUrl('/duas?category=tilawah');
+  expect([...cards()].map((card) => card.getAttribute('data-dua-id'))).toEqual(['hisn-50']);
+  expect(cards()[0].querySelector('.dua-instructions')?.textContent).toContain(
+    'prostration of recitation',
+  );
   await harness.navigateByUrl('/duas?category=istikhara');
   expect([...cards()].map((card) => card.getAttribute('data-dua-id'))).toEqual(['hisn-74']);
   expect(cards()[0].querySelector('.dua-instructions')?.textContent).toContain('two rak‘ahs');
@@ -170,6 +175,8 @@ it('shows ten items at a time and resets on view changes', async () => {
   ]);
   expect(more()).toBeNull();
   await harness.navigateByUrl('/duas?category=protection');
+  more()!.click();
+  harness.detectChanges();
   expect([...cards()].map((card) => card.getAttribute('data-dua-id'))).toEqual([
     'hisn-124',
     'hisn-126',
@@ -181,8 +188,17 @@ it('shows ten items at a time and resets on view changes', async () => {
     'hisn-203',
     'hisn-131',
     'hisn-132',
+    'hisn-86',
   ]);
   expect(more()).toBeNull();
+  expect(cards()[10].querySelector('.dua-instructions')?.textContent).toContain('three times');
+  expect(cards()[10].querySelector('.dua-instructions')?.textContent).toContain(
+    'will not face a calamity until evening',
+  );
+  expect(cards()[10].querySelector('.dua-instructions')?.textContent).toContain(
+    'will not face a calamity until morning',
+  );
+  expect(cards()[10].querySelector('.dua-translation')?.textContent).not.toContain('Recite');
   await harness.navigateByUrl('/duas?category=children');
   expect([...cards()].map((card) => card.getAttribute('data-dua-id'))).toEqual(['hisn-146']);
   expect(more()).toBeNull();
@@ -211,6 +227,7 @@ it('routes the bilingual library, validates saved data and persists bookmark cha
     'ablution',
     'mosque',
     'adhan',
+    'tilawah',
     'istikhara',
     'fasting',
     'sleep',
@@ -241,6 +258,7 @@ it('routes the bilingual library, validates saved data and persists bookmark cha
     'hisn-21',
     'hisn-22',
     'hisn-25',
+    'hisn-50',
     'hisn-74',
     'hisn-176',
     'hisn-178',
@@ -277,6 +295,7 @@ it('routes the bilingual library, validates saved data and persists bookmark cha
     'hisn-203',
     'hisn-131',
     'hisn-132',
+    'hisn-86',
     'hisn-146',
     'hisn-136',
     'hisn-121',
@@ -414,6 +433,7 @@ it('routes the bilingual library, validates saved data and persists bookmark cha
             'Post i hrana',
             'Priroda i vrijeme',
             'Putovanje',
+            'Sedžda tilaveta',
             'Sijelo',
             'Smrt',
             'Spavanje i snovi',
@@ -440,6 +460,7 @@ it('routes the bilingual library, validates saved data and persists bookmark cha
             'Marriage',
             'Mosque',
             'Nature and weather',
+            'Prostration of recitation',
             'Protection',
             'Qurbani',
             'Sleep and dreams',
