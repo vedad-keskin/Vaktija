@@ -12,6 +12,7 @@ import { GENERAL_DUAS } from './general.data';
 import { HAJJ_DUAS } from './hajj.data';
 import { HOME_DUAS } from './home.data';
 import { ILLNESS_DUAS } from './illness.data';
+import { ISTIKHARA_DUAS } from './istikhara.data';
 import { KURBAN_DUAS } from './kurban.data';
 import { MARRIAGE_DUAS } from './marriage.data';
 import { MOSQUE_DUAS } from './mosque.data';
@@ -58,6 +59,7 @@ export const DUA_CATEGORIES = [
   { id: 'ablution', label: { bs: 'Abdest', en: 'Ablution' }, items: ABLUTION_DUAS },
   { id: 'mosque', label: { bs: 'Džamija', en: 'Mosque' }, items: MOSQUE_DUAS },
   { id: 'adhan', label: { bs: 'Ezan', en: 'Adhan' }, items: ADHAN_DUAS },
+  { id: 'istikhara', label: { bs: 'Istihara', en: 'Istikharah' }, items: ISTIKHARA_DUAS },
   { id: 'fasting', label: { bs: 'Post i hrana', en: 'Fasting and food' }, items: FOOD_DUAS },
   { id: 'sleep', label: { bs: 'Spavanje i snovi', en: 'Sleep and dreams' }, items: SLEEP_DUAS },
   { id: 'illness', label: { bs: 'Bolest i bol', en: 'Illness and pain' }, items: ILLNESS_DUAS },

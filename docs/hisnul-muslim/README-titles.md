@@ -129,12 +129,15 @@ Brojevi, poglavlja i vrste zapisa provjereni su prema [OpenDua datasetu v0.0.4](
 - [ ] [HM-071 · Poslije namaza (6/8) / After prayer (6/8)](https://sunnah.com/hisn:71)
 - [ ] [HM-072 · Poslije namaza (7/8) / After prayer (7/8)](https://sunnah.com/hisn:72)
 - [ ] [HM-073 · Poslije namaza (8/8) / After prayer (8/8)](https://sunnah.com/hisn:73)
-- [ ] ★ [HM-074 · Istihara pri donošenju odluke / Istikharah when making a decision](https://sunnah.com/hisn:74)
 - [ ] [HM-116 · Kunut u vitr-namazu (1/3) / Qunut in the Witr prayer (1/3)](https://sunnah.com/hisn:116)
 - [ ] [HM-117 · Kunut u vitr-namazu (2/3) / Qunut in the Witr prayer (2/3)](https://sunnah.com/hisn:117)
 - [ ] [HM-118 · Kunut u vitr-namazu (3/3) / Qunut in the Witr prayer (3/3)](https://sunnah.com/hisn:118)
 - [ ] [HM-119 · Poslije vitr-namaza / After the Witr prayer](https://sunnah.com/hisn:119)
 - [ ] [HM-138 · Protiv šejtanskih smetnji u namazu i učenju Kur'ana / Distractions during prayer or Quran recitation](https://sunnah.com/hisn:138)
+
+## Istihara / Istikharah
+
+- [ ] ★ [HM-074 · Dova istihare / Istikharah supplication](README-full.md#hm-74) · u aplikaciji / in app
 
 ## Brak i porodica / Marriage and family
 

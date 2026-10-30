@@ -63,6 +63,24 @@ it('shows ten items at a time and resets on view changes', async () => {
     'hisn-20',
     'hisn-21',
   ]);
+  await harness.navigateByUrl('/duas?category=istikhara');
+  expect([...cards()].map((card) => card.getAttribute('data-dua-id'))).toEqual(['hisn-74']);
+  expect(cards()[0].querySelector('.dua-instructions')?.textContent).toContain('two rak‘ahs');
+  expect(cards()[0].querySelector('.dua-instructions')?.textContent).not.toContain(
+    'mention the matter',
+  );
+  expect(cards()[0].querySelector('.dua-transcription')?.textContent).toContain(
+    'hādha-l-amra (mention the matter)',
+  );
+  expect(cards()[0].querySelector('.dua-transcription')?.textContent).toContain(
+    '(or: ‘ājilihi wa ājilihi)',
+  );
+  expect(cards()[0].querySelector('.dua-translation')?.textContent).toContain(
+    'this matter (mention the matter)',
+  );
+  expect(cards()[0].querySelector('.dua-translation')?.textContent).toContain(
+    '(or: in this life and the afterlife)',
+  );
   await harness.navigateByUrl('/duas?category=general');
   expect(cards()).toHaveLength(10);
   more()!.click();
@@ -193,6 +211,7 @@ it('routes the bilingual library, validates saved data and persists bookmark cha
     'ablution',
     'mosque',
     'adhan',
+    'istikhara',
     'fasting',
     'sleep',
     'illness',
@@ -222,6 +241,7 @@ it('routes the bilingual library, validates saved data and persists bookmark cha
     'hisn-21',
     'hisn-22',
     'hisn-25',
+    'hisn-74',
     'hisn-176',
     'hisn-178',
     'hisn-178-forgot',
@@ -386,6 +406,7 @@ it('routes the bilingual library, validates saved data and persists bookmark cha
             'Džamija',
             'Ezan',
             'Hadž i umra',
+            'Istihara',
             'Kuća',
             'Kurban',
             'Odjeća',
@@ -415,6 +436,7 @@ it('routes the bilingual library, validates saved data and persists bookmark cha
             'Hajj and Umrah',
             'Home',
             'Illness and pain',
+            'Istikharah',
             'Marriage',
             'Mosque',
             'Nature and weather',
