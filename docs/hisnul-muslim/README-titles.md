@@ -123,7 +123,7 @@ Brojevi, poglavlja i vrste zapisa provjereni su prema [OpenDua datasetu v0.0.4](
 - [ ] [HM-067 · Poslije namaza (2/8) / After prayer (2/8)](README-full.md#hm-67) · u aplikaciji s HM-066 / in app with HM-066
 - [ ] [HM-068 · Poslije namaza (3/8) / After prayer (3/8)](https://sunnah.com/hisn:68)
 - [ ] ★ [HM-069 · Tesbih poslije namaza / Remembrance after the prayer](README-full.md#hm-69) · u aplikaciji s HM-066–067 / in app with HM-066–067
-- [ ] [HM-070 · Poslije namaza (5/8) / After prayer (5/8)](https://sunnah.com/hisn:70)
+- [ ] [HM-070 · Poslije namaza (5/8) / After prayer (5/8)](README-full.md#hm-70) · u aplikaciji s HM-066–067 / in app with HM-066–067
 - [ ] [HM-071 · Poslije namaza (6/8) / After prayer (6/8)](https://sunnah.com/hisn:71)
 - [ ] [HM-072 · Poslije namaza (7/8) / After prayer (7/8)](https://sunnah.com/hisn:72)
 - [ ] [HM-073 · Poslije namaza (8/8) / After prayer (8/8)](https://sunnah.com/hisn:73)

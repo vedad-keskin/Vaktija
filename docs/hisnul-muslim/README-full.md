@@ -1,6 +1,6 @@
 # Hisnul Muslim — selected full duas (BS / EN)
 
-This file grows one approved category at a time. It currently contains the clothing entries (HM-5, 9, 6, 7), the toilet entries (HM-10–11), the Abdest entries (HM-12–13), the mosque entries (HM-19–21), the adhan entry (HM-25), the prayer entries (HM-28, 33, 38–39, 41, 49, 52–53, 56), the after-prayer entries (HM-66–67, 69), the prostration of recitation entry (HM-50), the Istikharah entry (HM-74), the sleeping entries (HM-111, 1, 114, 113, 112), the three marriage entries, the gathering entries (HM-195–196), the animal entries, the weather entries (HM-166, 168, 169, 172–175), the fasting and food entries (HM-176–186), the home entries (HM-16, 18), the travel entries (HM-206–212, 215–217), the general entries (HM-79, 84, 86, 97, 188), the illness entries (HM-147, 148, 150–152, 243), the death entries (HM-153–163, 165), and the Hajj and Umrah entries (HM-234–239). The [complete title checklist](README-titles.md) remains an editorial selection aid; its suggested labels are not published translations.
+This file grows one approved category at a time. It currently contains the clothing entries (HM-5, 9, 6, 7), the toilet entries (HM-10–11), the Abdest entries (HM-12–13), the mosque entries (HM-19–21), the adhan entry (HM-25), the prayer entries (HM-28, 33, 38–39, 41, 49, 52–53, 56), the after-prayer entries (HM-66–67, 69–70), the prostration of recitation entry (HM-50), the Istikharah entry (HM-74), the sleeping entries (HM-111, 1, 114, 113, 112), the three marriage entries, the gathering entries (HM-195–196), the animal entries, the weather entries (HM-166, 168, 169, 172–175), the fasting and food entries (HM-176–186), the home entries (HM-16, 18), the travel entries (HM-206–212, 215–217), the general entries (HM-79, 84, 86, 97, 188), the illness entries (HM-147, 148, 150–152, 243), the death entries (HM-153–163, 165), and the Hajj and Umrah entries (HM-234–239). The [complete title checklist](README-titles.md) remains an editorial selection aid; its suggested labels are not published translations.
 
 ## Izvori i uredničke napomene / Sources and editorial notes
 
@@ -18,6 +18,7 @@ This file grows one approved category at a time. It currently contains the cloth
 - **Sedžda tilaveta / Prostration of recitation:** HM-50 is Bosnian 50 in the reader's photograph of page 39. The Bosnian transcription and meaning follow that photograph, with the established letter key above; the linked IslamHouse PDF is the digital counterpart. Arabic and English follow [Sunnah.com HM-50](https://sunnah.com/hisn:50). HM-51 remains only in the title checklist.
 - **Namaz / Salat:** HM-28, HM-33, HM-38–39, HM-41, HM-49, HM-52–53 and HM-56 are Bosnian 28, 33, 38–39, 41, 49, 52–53 and 56 in the reader's photographs of pages 27, 33–36 and 39–44. Their Bosnian transcriptions and meanings follow those photographs and the established letter key; the linked IslamHouse PDF is the digital counterpart. Arabic and English follow the corresponding [Sunnah.com Hisn al-Muslim entries](https://sunnah.com/hisn). HM-27 remains only in the title checklist. HM-38 and HM-39 share one app card with two recitation rows and no instructions.
 - **Poslije namaza / After prayer:** HM-66–67 and the first three phrases of HM-69 share one card and follow the reader's photographs of Bosnian pages 50–52. The opening istigfar is repeated three times, and each HM-69 phrase 33 times; these counts appear in instructions. HM-69's closing declaration is omitted here because it already appears in HM-67. Arabic and English follow [Sunnah.com HM-66](https://sunnah.com/hisn:66), [HM-67](https://sunnah.com/hisn:67), and [HM-69](https://sunnah.com/hisn:69); the linked Bosnian PDF is the digital counterpart.
+- **HM-70:** The three surahs also share that card. Their repetition instructions follow the reader's photograph of page 53 and [Sunnah.com HM-70](https://sunnah.com/hisn:70). The Bosnian transcriptions are adaptations using the letter key above, since the photograph gives Arabic but not full transliterations; Bosnian meanings are adapted from Besim Korkut's translation, linked with each surah. English meanings are adapted from HM-70.
 - **Džamija / Mosque:** Bosnian transcriptions follow the reader's photographs of pages 21–23 of the 2017 edition; Bosnian meanings follow the linked IslamHouse PDF. HM-19 uses the shorter published Arabic/English wording matching that edition, rather than the longer variant on Sunnah.com. Its English transliteration is from [Sahih Muslim 1799](https://www.alim.org/hadith/sahih-muslim/6/1799/). HM-20's English transliteration is from the [English Hisnul Muslim edition of the Presidency of Religious Affairs](https://risala.prh.gov.sa/en/content/51); its three source segments are displayed together. HM-21's English transliteration is from [Sunnah.com HM-21](https://sunnah.com/hisn:21).
 - **Opće / General:** HM-79 ↔ Bosnian 77; HM-84 ↔ Bosnian 80; HM-97 ↔ Bosnian 79. Bosnian transcriptions are adaptations of the published PDF using the letter key above. English HM-97 specifies the evening.
 - **Zaštita / Protection (HM-86):** HM-86 ↔ Bosnian 82. The Bosnian transcription follows the published PDF and the letter key above. Its Bosnian meaning is shorter than the English published meaning; it is reproduced as printed. Both sources specify three recitations; the hadith places them in the morning and evening.
@@ -443,7 +444,7 @@ Slušalac ponavlja za mujezinom sve riječi ezana osim ovih: kada ih čuje, izgo
 ## Poslije namaza / After prayer
 
 <a id="hm-66"></a>
-### HM-66–67, 69 · Dove poslije selama / Dua after salam
+### HM-66–67, 69–70 · Dove poslije selama / Dua after salam
 
 #### Istigfar / Seeking forgiveness
 
@@ -512,6 +513,59 @@ Slušalac ponavlja za mujezinom sve riječi ezana osim ovih: kada ih čuje, izgo
 **English — meaning (Sunnah.com 69):** Glory is to Allah, and praise is to Allah, and Allah is the Most Great.
 
 **Sources:** Reader's photographed Hisnul-Muslimi, page 52 · [Bosnian PDF, page 30](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=30) · [English and Arabic](https://sunnah.com/hisn:69)
+
+<a id="hm-70"></a>
+#### HM-70 · El-Ihlas, El-Felek i En-Nas / Al-Ikhlas, Al-Falaq and An-Nas
+
+**Upute / Instructions:** Svaku suru prouči jednom poslije podnevskog, ikindijskog i jacijskog namaza, a tri puta poslije sabahskog i akšamskog namaza. / Recite each surah once after Dhuhr, Asr and Isha, and three times after Fajr and Maghrib.
+
+##### El-Ihlas / Al-Ikhlas
+
+**Arapski / Arabic**
+
+<p lang="ar" dir="rtl">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ. قُلْ هُوَ اللَّهُ أَحَدٌ. اللَّهُ الصَّمَدُ. لَمْ يَلِدْ وَلَمْ يُولَدْ. وَلَمْ يَكُنْ لَهُ كُفُوًا أَحَدٌ</p>
+
+**Bosanski — transkripcija:** Bismillāhi-r-Raḥmāni-r-Raḥīm. Qul huvallāhu eḥad. Allāhu-ṣ-Ṣamed. Lem jelid ve lem jūled. Ve lem jekun lehu kufuven eḥad.
+
+**Bosanski — prijevod:** U ime Allaha, Milostivog, Samilosnog. Reci: On je Allah, Jedini. Allah je utočište svakom. Nije rodio niti je rođen, i niko Mu nije ravan.
+
+**English — transliteration:** Bismillāhir-Raḥmānir-Raḥīm. Qul huwallāhu aḥad. Allāhuṣ-ṣamad. Lam yalid wa lam yūlad. Wa lam yakun lahu kufuwan aḥad.
+
+**English — meaning:** In the name of Allah, the Most Merciful, the Most Compassionate. Say: He is Allah, the One. Allah is the One upon whom all depend. He neither begets nor was born, and none is equal to Him.
+
+**Sources:** [Hisn al-Muslim 70](https://sunnah.com/hisn:70) · [Kur’an 112, Bosnian](https://quranenc.com/bs/browse/bosnian_korkut/112) · [Quran 112](https://quran.com/112)
+
+##### El-Felek / Al-Falaq
+
+**Arapski / Arabic**
+
+<p lang="ar" dir="rtl">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ. قُلْ أَعُوذُ بِرَبِّ الْفَلَقِ. مِنْ شَرِّ مَا خَلَقَ. وَمِنْ شَرِّ غَاسِقٍ إِذَا وَقَبَ. وَمِنْ شَرِّ النَّفَّاثَاتِ فِي الْعُقَدِ. وَمِنْ شَرِّ حَاسِدٍ إِذَا حَسَدَ</p>
+
+**Bosanski — transkripcija:** Bismillāhi-r-Raḥmāni-r-Raḥīm. Qul e‘ūḏu bi Rabbi-l-feleq. Min šerri mā ḫaleq. Ve min šerri gāsiqin iḏā veqab. Ve min šerri-n-neffāṯāti fī-l-‘uqad. Ve min šerri ḥāsidin iḏā ḥased.
+
+**Bosanski — prijevod:** U ime Allaha, Milostivog, Samilosnog. Reci: Tražim zaštitu Gospodara svitanja od zla onoga što je stvorio, od zla noći kada se spusti, od zla onih koji pušu u čvorove i od zla zavidnika kada zavidi.
+
+**English — transliteration:** Bismillāhir-Raḥmānir-Raḥīm. Qul a‘ūdhu birabbil-falaq. Min sharri mā khalaq. Wa min sharri ghāsiqin idhā waqab. Wa min sharrin-naffāthāti fil-‘uqad. Wa min sharri ḥāsidin idhā ḥasad.
+
+**English — meaning:** In the name of Allah, the Most Merciful, the Most Compassionate. Say: I seek refuge in the Lord of daybreak from the evil of what He created, from the evil of darkness as it settles, from the evil of those who blow on knots, and from the evil of an envier when he envies.
+
+**Sources:** [Hisn al-Muslim 70](https://sunnah.com/hisn:70) · [Kur’an 113, Bosnian](https://quranenc.com/bs/browse/bosnian_korkut/113) · [Quran 113](https://quran.com/113)
+
+##### En-Nas / An-Nas
+
+**Arapski / Arabic**
+
+<p lang="ar" dir="rtl">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ. قُلْ أَعُوذُ بِرَبِّ النَّاسِ. مَلِكِ النَّاسِ. إِلَٰهِ النَّاسِ. مِنْ شَرِّ الْوَسْوَاسِ الْخَنَّاسِ. الَّذِي يُوَسْوِسُ فِي صُدُورِ النَّاسِ. مِنَ الْجِنَّةِ وَالنَّاسِ</p>
+
+**Bosanski — transkripcija:** Bismillāhi-r-Raḥmāni-r-Raḥīm. Qul e‘ūḏu bi Rabbi-n-nās. Meliki-n-nās. Ilāhi-n-nās. Min šerri-l-vesvāsi-l-ḫannās. Elleḏī juvesvisu fī ṣudūri-n-nās. Mine-l-džinneti ve-n-nās.
+
+**Bosanski — prijevod:** U ime Allaha, Milostivog, Samilosnog. Reci: Tražim zaštitu Gospodara ljudi, Vladara ljudi, Boga ljudi, od zla šejtana koji se prikrada i povlači, koji unosi zle misli u srca ljudi, bio on od džina ili od ljudi.
+
+**English — transliteration:** Bismillāhir-Raḥmānir-Raḥīm. Qul a‘ūdhu birabbin-nās. Malikin-nās. Ilāhin-nās. Min sharril-waswāsil-khannās. Alladhī yuwaswisu fī ṣudūrin-nās. Minal-jinnati wan-nās.
+
+**English — meaning:** In the name of Allah, the Most Merciful, the Most Compassionate. Say: I seek refuge in the Lord of mankind, the King of mankind, the God of mankind, from the evil of the whisperer who withdraws, who whispers into the hearts of mankind, from among jinn and people.
+
+**Sources:** [Hisn al-Muslim 70](https://sunnah.com/hisn:70) · [Kur’an 114, Bosnian](https://quranenc.com/bs/browse/bosnian_korkut/114) · [Quran 114](https://quran.com/114)
 
 ## Sedžda tilaveta / Prostration of recitation
 

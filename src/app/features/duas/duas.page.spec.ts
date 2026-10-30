@@ -84,7 +84,7 @@ it('shows ten items at a time and resets on view changes', async () => {
   expect(cards()[3].querySelector('.dua-instructions')?.textContent).toContain('three times');
   await harness.navigateByUrl('/duas?category=after-prayer');
   expect([...cards()].map((card) => card.getAttribute('data-dua-id'))).toEqual(['hisn-66']);
-  expect(cards()[0].querySelectorAll('.dua-saying')).toHaveLength(4);
+  expect(cards()[0].querySelectorAll('.dua-saying')).toHaveLength(7);
   expect(
     [...cards()[0].querySelectorAll('.dua-source a')].map((link) => link.getAttribute('href')),
   ).toEqual([
@@ -92,9 +92,21 @@ it('shows ten items at a time and resets on view changes', async () => {
     'https://sunnah.com/hisn:66',
     'https://sunnah.com/hisn:67',
     'https://sunnah.com/hisn:69',
+    'https://sunnah.com/hisn:70',
+    'https://quran.com/112',
+    'https://sunnah.com/hisn:70',
+    'https://quran.com/113',
+    'https://sunnah.com/hisn:70',
+    'https://quran.com/114',
   ]);
   expect(cards()[0].querySelector('.dua-instructions')?.textContent).toContain('three times');
   expect(cards()[0].querySelectorAll('.dua-instructions')[1].textContent).toContain('33 times');
+  const surahInstructions = [...cards()[0].querySelectorAll('.dua-instructions')].slice(2);
+  expect(surahInstructions).toHaveLength(3);
+  for (const instruction of surahInstructions) {
+    expect(instruction.textContent).toContain('once after Dhuhr, Asr and Isha');
+    expect(instruction.textContent).toContain('three times after Fajr and Maghrib');
+  }
   await harness.navigateByUrl('/duas?category=tilawah');
   expect([...cards()].map((card) => card.getAttribute('data-dua-id'))).toEqual(['hisn-50']);
   await harness.navigateByUrl('/duas?category=istikhara');

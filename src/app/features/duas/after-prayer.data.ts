@@ -1,13 +1,13 @@
 import type { Dua } from './duas.data';
 
-// Bosnian: reader's Hisnul-Muslimi photographs, pages 50–52.
-// English and Arabic: Hisn al-Muslim 66–67, 69.
+// Bosnian: reader's Hisnul-Muslimi photographs, pages 50–53; HM-70 meanings adapted from Korkut.
+// English and Arabic: Hisn al-Muslim 66–67, 69–70.
 export const AFTER_PRAYER_DUAS: readonly Dua[] = [
   {
     id: 'hisn-66',
     title: {
-      bs: 'Dove poslije selama',
-      en: 'Dua after salam',
+      bs: 'Dove poslije namaza',
+      en: 'Dua after prayer',
     },
     sayings: [
       {
@@ -87,6 +87,93 @@ export const AFTER_PRAYER_DUAS: readonly Dua[] = [
             sourceUrl: 'https://sunnah.com/hisn:69',
             bosnianSourceUrl:
               'https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=30',
+          },
+        ],
+      },
+      {
+        arabic:
+          'بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ. قُلْ هُوَ اللَّهُ أَحَدٌ. اللَّهُ الصَّمَدُ. لَمْ يَلِدْ وَلَمْ يُولَدْ. وَلَمْ يَكُنْ لَهُ كُفُوًا أَحَدٌ',
+        instructions: {
+          bs: 'El-Ihlas: prouči jednom poslije podnevskog, ikindijskog i jacijskog namaza, a tri puta poslije sabahskog i akšamskog namaza.',
+          en: 'Al-Ikhlas: recite once after Dhuhr, Asr and Isha, and three times after Fajr and Maghrib.',
+        },
+        transcription: {
+          bs: 'Bismillāhi-r-Raḥmāni-r-Raḥīm. Qul huvallāhu eḥad. Allāhu-ṣ-Ṣamed. Lem jelid ve lem jūled. Ve lem jekun lehu kufuven eḥad.',
+          en: 'Bismillāhir-Raḥmānir-Raḥīm. Qul huwallāhu aḥad. Allāhuṣ-ṣamad. Lam yalid wa lam yūlad. Wa lam yakun lahu kufuwan aḥad.',
+        },
+        translation: {
+          bs: 'U ime Allaha, Milostivog, Samilosnog. Reci: On je Allah, Jedini. Allah je utočište svakom. Nije rodio niti je rođen, i niko Mu nije ravan.',
+          en: 'In the name of Allah, the Most Merciful, the Most Compassionate. Say: He is Allah, the One. Allah is the One upon whom all depend. He neither begets nor was born, and none is equal to Him.',
+        },
+        sources: [
+          {
+            reference: { bs: 'Hisnul-Muslimi, 70', en: 'Hisn al-Muslim, 70' },
+            sourceUrl: 'https://sunnah.com/hisn:70',
+            bosnianSourceUrl:
+              'https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=30',
+          },
+          {
+            reference: { bs: 'Kur’an, 112', en: 'Quran, 112' },
+            sourceUrl: 'https://quran.com/112',
+            bosnianSourceUrl: 'https://quranenc.com/bs/browse/bosnian_korkut/112',
+          },
+        ],
+      },
+      {
+        arabic:
+          'بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ. قُلْ أَعُوذُ بِرَبِّ الْفَلَقِ. مِنْ شَرِّ مَا خَلَقَ. وَمِنْ شَرِّ غَاسِقٍ إِذَا وَقَبَ. وَمِنْ شَرِّ النَّفَّاثَاتِ فِي الْعُقَدِ. وَمِنْ شَرِّ حَاسِدٍ إِذَا حَسَدَ',
+        instructions: {
+          bs: 'El-Felek: prouči jednom poslije podnevskog, ikindijskog i jacijskog namaza, a tri puta poslije sabahskog i akšamskog namaza.',
+          en: 'Al-Falaq: recite once after Dhuhr, Asr and Isha, and three times after Fajr and Maghrib.',
+        },
+        transcription: {
+          bs: 'Bismillāhi-r-Raḥmāni-r-Raḥīm. Qul e‘ūḏu bi Rabbi-l-feleq. Min šerri mā ḫaleq. Ve min šerri gāsiqin iḏā veqab. Ve min šerri-n-neffāṯāti fī-l-‘uqad. Ve min šerri ḥāsidin iḏā ḥased.',
+          en: 'Bismillāhir-Raḥmānir-Raḥīm. Qul a‘ūdhu birabbil-falaq. Min sharri mā khalaq. Wa min sharri ghāsiqin idhā waqab. Wa min sharrin-naffāthāti fil-‘uqad. Wa min sharri ḥāsidin idhā ḥasad.',
+        },
+        translation: {
+          bs: 'U ime Allaha, Milostivog, Samilosnog. Reci: Tražim zaštitu Gospodara svitanja od zla onoga što je stvorio, od zla noći kada se spusti, od zla onih koji pušu u čvorove i od zla zavidnika kada zavidi.',
+          en: 'In the name of Allah, the Most Merciful, the Most Compassionate. Say: I seek refuge in the Lord of daybreak from the evil of what He created, from the evil of darkness as it settles, from the evil of those who blow on knots, and from the evil of an envier when he envies.',
+        },
+        sources: [
+          {
+            reference: { bs: 'Hisnul-Muslimi, 70', en: 'Hisn al-Muslim, 70' },
+            sourceUrl: 'https://sunnah.com/hisn:70',
+            bosnianSourceUrl:
+              'https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=30',
+          },
+          {
+            reference: { bs: 'Kur’an, 113', en: 'Quran, 113' },
+            sourceUrl: 'https://quran.com/113',
+            bosnianSourceUrl: 'https://quranenc.com/bs/browse/bosnian_korkut/113',
+          },
+        ],
+      },
+      {
+        arabic:
+          'بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ. قُلْ أَعُوذُ بِرَبِّ النَّاسِ. مَلِكِ النَّاسِ. إِلَٰهِ النَّاسِ. مِنْ شَرِّ الْوَسْوَاسِ الْخَنَّاسِ. الَّذِي يُوَسْوِسُ فِي صُدُورِ النَّاسِ. مِنَ الْجِنَّةِ وَالنَّاسِ',
+        instructions: {
+          bs: 'En-Nas: prouči jednom poslije podnevskog, ikindijskog i jacijskog namaza, a tri puta poslije sabahskog i akšamskog namaza.',
+          en: 'An-Nas: recite once after Dhuhr, Asr and Isha, and three times after Fajr and Maghrib.',
+        },
+        transcription: {
+          bs: 'Bismillāhi-r-Raḥmāni-r-Raḥīm. Qul e‘ūḏu bi Rabbi-n-nās. Meliki-n-nās. Ilāhi-n-nās. Min šerri-l-vesvāsi-l-ḫannās. Elleḏī juvesvisu fī ṣudūri-n-nās. Mine-l-džinneti ve-n-nās.',
+          en: 'Bismillāhir-Raḥmānir-Raḥīm. Qul a‘ūdhu birabbin-nās. Malikin-nās. Ilāhin-nās. Min sharril-waswāsil-khannās. Alladhī yuwaswisu fī ṣudūrin-nās. Minal-jinnati wan-nās.',
+        },
+        translation: {
+          bs: 'U ime Allaha, Milostivog, Samilosnog. Reci: Tražim zaštitu Gospodara ljudi, Vladara ljudi, Boga ljudi, od zla šejtana koji se prikrada i povlači, koji unosi zle misli u srca ljudi, bio on od džina ili od ljudi.',
+          en: 'In the name of Allah, the Most Merciful, the Most Compassionate. Say: I seek refuge in the Lord of mankind, the King of mankind, the God of mankind, from the evil of the whisperer who withdraws, who whispers into the hearts of mankind, from among jinn and people.',
+        },
+        sources: [
+          {
+            reference: { bs: 'Hisnul-Muslimi, 70', en: 'Hisn al-Muslim, 70' },
+            sourceUrl: 'https://sunnah.com/hisn:70',
+            bosnianSourceUrl:
+              'https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=30',
+          },
+          {
+            reference: { bs: 'Kur’an, 114', en: 'Quran, 114' },
+            sourceUrl: 'https://quran.com/114',
+            bosnianSourceUrl: 'https://quranenc.com/bs/browse/bosnian_korkut/114',
           },
         ],
       },
