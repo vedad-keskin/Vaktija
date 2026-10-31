@@ -73,6 +73,10 @@ export class HeaderComponent {
   protected onDocumentClick(event: Event): void {
     if (!this.menuOpen()) return;
     const target = event.target;
+    if (target instanceof Element && target.closest('#city-selector-trigger')) {
+      this.closeMenu();
+      return;
+    }
     if (target instanceof HTMLElement && target.closest('.app-header')) return;
     this.menuOpen.set(false);
   }
