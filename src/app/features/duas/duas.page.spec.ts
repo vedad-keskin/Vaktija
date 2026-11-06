@@ -8,7 +8,7 @@ import { routes } from '../../app.routes';
 import { LanguageService } from '../../core/services/language.service';
 import { BS_LABELS, EN_LABELS } from '../../core/i18n';
 import { DUA_CATEGORIES, DUAS } from './duas.data';
-import { DHIKR } from './dhikr.data';
+import { DHIKR, DHIKR_CATEGORIES } from './dhikr.data';
 import { DuasPage } from './duas.page';
 
 afterEach(() => {
@@ -123,7 +123,6 @@ it('shows ten items at a time and resets on view changes', async () => {
   }
   const laterInstructions = [...cards()[0].querySelectorAll('.dua-instructions')].slice(5);
   expect(laterInstructions.map((instruction) => instruction.textContent)).toEqual([
-    expect.stringContaining('after each prayer'),
     expect.stringContaining('ten times after Fajr and Maghrib'),
     expect.stringContaining('obligatory Fajr prayer'),
   ]);
@@ -800,6 +799,22 @@ it('searches the full bilingual collection and keeps query, scopes, history and 
 it('shows the sourced bilingual dhikr collection and keeps its saved items separate from duas', async () => {
   localStorage.clear();
   localStorage.setItem('vaktija_saved_duas', '["hisn-190"]');
+  const canonical = DUAS.find((dua) => dua.id === 'hisn-250')!;
+  const {
+    title: dhikrTitle,
+    categoryId,
+    ...sharedContent
+  } = DHIKR.find((item) => item.id === canonical.id)!;
+  const { title: duaTitle, ...canonicalContent } = canonical;
+  expect(sharedContent).toEqual(canonicalContent);
+  expect(sharedContent.translation).toBe(canonical.translation);
+  expect(duaTitle).toEqual({ bs: 'Dova za oprost grijeha', en: 'Supplication for forgiveness' });
+  expect(dhikrTitle).toEqual({ bs: 'Zikr za oprost grijeha', en: 'Dhikr for forgiveness' });
+  expect(categoryId).toBe('forgiveness');
+  expect(DHIKR_CATEGORIES.map((category) => category.id)).toEqual(['forgiveness']);
+  expect(DHIKR_CATEGORIES[0].label).toBe(
+    DUA_CATEGORIES.find((category) => category.id === 'forgiveness')!.label,
+  );
   await TestBed.configureTestingModule({
     imports: [DuasPage],
     providers: [provideRouter(routes)],
@@ -808,7 +823,8 @@ it('shows the sourced bilingual dhikr collection and keeps its saved items separ
   const element = () => harness.routeNativeElement!;
   const cards = () => element().querySelectorAll<HTMLElement>('.dua-card');
   expect(cards()).toHaveLength(DHIKR.length);
-  expect(element().querySelector('.duas-category')).toBeNull();
+  expect([...cards()].map((card) => card.dataset['duaId'])).toEqual(['hisn-248', 'hisn-250']);
+  expect(element().querySelector('.duas-category')).not.toBeNull();
   expect(element().querySelector<HTMLInputElement>('#dua-search')?.placeholder).toBe(
     EN_LABELS.dhikrSearch,
   );
@@ -820,6 +836,9 @@ it('shows the sourced bilingual dhikr collection and keeps its saved items separ
     harness.detectChanges();
     expect(element().querySelector('h1')?.textContent).toBe(lang === 'bs' ? 'Zikrovi' : 'Dhikr');
     expect(document.title).toBe(lang === 'bs' ? BS_LABELS.dhikrDocTitle : EN_LABELS.dhikrDocTitle);
+    expect(element().querySelector('#dua-categories a')?.textContent?.trim()).toBe(
+      lang === 'bs' ? 'Oprost' : 'Forgiveness',
+    );
     for (const [index, card] of [...cards()].entries()) {
       const item = DHIKR[index];
       expect(card.querySelector('h2')?.textContent).toBe(item.title[lang]);
@@ -829,20 +848,30 @@ it('shows the sourced bilingual dhikr collection and keeps its saved items separ
       expect(card.querySelector('.dua-translation')?.textContent?.trim()).toBe(
         item.translation?.[lang],
       );
-      expect(card.querySelector('.dua-source a')?.getAttribute('href')).toBe(item.sourceUrl);
+      expect(card.querySelector('.dua-instructions')?.textContent).toContain(
+        item.instructions?.[lang],
+      );
+      expect(card.querySelector('.dua-source a')?.getAttribute('href')).toBe(
+        lang === 'bs' ? (item.bosnianSourceUrl ?? item.sourceUrl) : item.sourceUrl,
+      );
     }
   }
 
-  cards()[0].querySelector<HTMLButtonElement>('.dua-bookmark')!.click();
+  await harness.navigateByUrl('/dhikr?category=forgiveness');
+  expect([...cards()].map((card) => card.dataset['duaId'])).toEqual(['hisn-248', 'hisn-250']);
+  expect(element().querySelector('.duas-category')?.textContent).toContain('Forgiveness');
+  cards()[1].querySelector<HTMLButtonElement>('.dua-bookmark')!.click();
   harness.detectChanges();
-  expect(JSON.parse(localStorage.getItem('vaktija_saved_dhikr')!)).toEqual(['tawhid']);
+  expect(JSON.parse(localStorage.getItem('vaktija_saved_dhikr')!)).toEqual(['hisn-250']);
   expect(JSON.parse(localStorage.getItem('vaktija_saved_duas')!)).toEqual(['hisn-190']);
   await harness.navigateByUrl('/dhikr?view=saved');
   expect(cards()).toHaveLength(1);
-  expect(cards()[0].dataset['duaId']).toBe('tawhid');
-  await harness.navigateByUrl('/dhikr?q=kuwwete');
-  expect([...cards()].map((card) => card.dataset['duaId'])).toEqual(['hawqala']);
-  await harness.navigateByUrl('/dhikr?view=saved&q=kuwwete');
+  expect(cards()[0].dataset['duaId']).toBe('hisn-250');
+  await harness.navigateByUrl('/dhikr?q=zikr%20za%20oprost');
+  expect([...cards()].map((card) => card.dataset['duaId'])).toEqual(['hisn-250']);
+  await harness.navigateByUrl('/dhikr?q=pokajanje');
+  expect([...cards()].map((card) => card.dataset['duaId'])).toEqual(['hisn-248']);
+  await harness.navigateByUrl('/dhikr?view=saved&q=pokajanje');
   expect(cards()).toHaveLength(0);
   expect(element().querySelector('.duas-empty')?.textContent).toContain(
     EN_LABELS.duasNoResultsTitle,
@@ -852,4 +881,11 @@ it('shows the sourced bilingual dhikr collection and keeps its saved items separ
   await harness.navigateByUrl('/duas?view=saved');
   expect(cards()).toHaveLength(1);
   expect(cards()[0].dataset['duaId']).toBe('hisn-190');
+  await harness.navigateByUrl('/duas?category=forgiveness');
+  const duaCard = [...cards()].find((card) => card.dataset['duaId'] === 'hisn-250')!;
+  expect(duaCard.querySelector('h2')?.textContent).toBe(duaTitle.en);
+  duaCard.querySelector<HTMLButtonElement>('.dua-bookmark')!.click();
+  harness.detectChanges();
+  expect(JSON.parse(localStorage.getItem('vaktija_saved_duas')!)).toEqual(['hisn-190', 'hisn-250']);
+  expect(JSON.parse(localStorage.getItem('vaktija_saved_dhikr')!)).toEqual(['hisn-250']);
 });

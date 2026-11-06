@@ -1,8 +1,8 @@
 import type { Dua } from './duas.data';
 
 // Bosnian 131 moved from Zaštita: it is the forgiveness said after a sin.
-// Bosnian 240: reader's photograph of the repentance chapter. Its Arabic omits al-'Azim, as printed.
-// English: Sunnah.com Hisn 140 and 250, with 250's "the Mighty" left out to match that printing.
+// Bosnian 240: the photographed Bosnian transcription omits al-'Azim.
+// Its Arabic/English use the matching shorter variant in Abu Dawud 1517.
 export const FORGIVENESS_DUAS: readonly Dua[] = [
   {
     id: 'hisn-140',
@@ -21,24 +21,27 @@ export const FORGIVENESS_DUAS: readonly Dua[] = [
   },
   {
     id: 'hisn-250',
-    title: { bs: 'Traženje oprosta i pokajanje', en: 'Seeking forgiveness and repentance' },
-    arabic: 'أَسْتَغْفِرُ اللَّهَ الَّذِي لَا إِلَهَ إِلَّا هُوَ الْحَيُّ الْقَيُّومُ وَأَتُوبُ إِلَيْهِ',
+    title: { bs: 'Dova za oprost grijeha', en: 'Supplication for forgiveness' },
+    arabic:
+      'أَسْتَغْفِرُ اللَّهَ الَّذِي لَا إِلَهَ إِلَّا هُوَ الْحَيُّ الْقَيُّومُ وَأَتُوبُ إِلَيْهِ',
     instructions: {
-      bs: 'Allah će mu oprostiti čak i ako je utekao sa bojnoga polja.',
-      en: 'Allah will forgive him even if he has deserted the army’s ranks.',
+      bs: 'Onome ko izgovori ovaj zikr Allah će oprostiti čak i ako je utekao sa bojnoga polja.',
+      en: 'Whoever says this will be forgiven, even if they fled from the battlefield.',
     },
     transcription: {
       bs: 'Estagfirullāhe-l-leḏī lā ilāhe illā Huve-l-Ḥajju-l-Qajjūmu ve etūbu ilejhi.',
-      en: "Astaghfirullāha ‘lladhī lā ilāha illā huwa ‘l-ḥayyul-Qayyūm wa atūbu ilayh.",
+      en: 'Astaghfirullāha alladhī lā ilāha illā huwal-Ḥayyul-Qayyūmu wa atūbu ilayh.',
     },
     translation: {
-      bs: 'Tražim oprosta od Allaha, osim Kojega drugoga boga nema, Živog i Postojanog, i Njemu se kajem.',
-      en: 'I seek the forgiveness of Allah, Whom there is none worthy of worship except Him, the Living, the Eternal, and I repent to Him.',
+      bs: 'Tražim oprosta od Allaha, osim Kojega drugoga boga nema, Živog i Postojanog Održavatelja, i Njemu se kajem.',
+      en: 'I seek forgiveness from Allah, besides Whom none is worthy of worship, the Ever-Living, the Sustainer, and I turn to Him in repentance.',
     },
-    reference: { bs: 'Hisnul-Muslimi, 240', en: 'Hisn al-Muslim, 250' },
-    sourceUrl: 'https://sunnah.com/hisn:250',
+    reference: {
+      bs: 'Hisnul-Muslimi, 240 · Ebu Davud, 1517',
+      en: 'Hisn al-Muslim, 250 · Abu Dawud, 1517',
+    },
+    sourceUrl: 'https://sunnah.com/abudawud:1517',
     bosnianSourceUrl:
       'https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=91',
   },
-
 ];

@@ -319,9 +319,9 @@ Brojevi, poglavlja i vrste zapisa provjereni su prema [OpenDua datasetu v0.0.4](
 - [ ] [HM-232 · Kada nas neko pohvali / When someone praises you](https://sunnah.com/hisn:232)
 - [ ] [HM-242 · Kada se desi nešto radosno / When something pleasing happens](https://sunnah.com/hisn:242) · uputa / instruction
 - [ ] [HM-247 · Protiv šejtanskih spletki / Against Satan's schemes](https://sunnah.com/hisn:247)
-- [ ] [HM-248 · Pokajanje i traženje oprosta (1/6) / Repentance and forgiveness (1/6)](https://sunnah.com/hisn:248) · predaja / narration
+- [ ] [HM-248 · Pokajanje i traženje oprosta (1/6) / Repentance and forgiveness (1/6)](README-full.md#hm-248) · u Zikrovima / in Dhikr · knjiga / book 238
 - [ ] [HM-249 · Pokajanje i traženje oprosta (2/6) / Repentance and forgiveness (2/6)](https://sunnah.com/hisn:249) · predaja / narration
-- [ ] [HM-250 · Pokajanje i traženje oprosta (3/6) / Repentance and forgiveness (3/6)](https://sunnah.com/hisn:250)
+- [ ] [HM-250 · Pokajanje i traženje oprosta (3/6) / Repentance and forgiveness (3/6)](README-full.md#hm-250) · u Zikrovima / in Dhikr · knjiga / book 240
 - [ ] [HM-251 · Pokajanje i traženje oprosta (4/6) / Repentance and forgiveness (4/6)](https://sunnah.com/hisn:251) · predaja / narration
 - [ ] [HM-252 · Pokajanje i traženje oprosta (5/6) / Repentance and forgiveness (5/6)](https://sunnah.com/hisn:252) · predaja / narration
 - [ ] [HM-253 · Pokajanje i traženje oprosta (6/6) / Repentance and forgiveness (6/6)](https://sunnah.com/hisn:253) · predaja / narration

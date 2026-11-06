@@ -18,7 +18,7 @@ import { Location } from '../../core/models/location.model';
 import { HeaderComponent } from '../prayer-times/components/header/header.component';
 import { CitySelectorComponent } from '../prayer-times/components/city-selector/city-selector.component';
 import { DUA_CATEGORIES, DUAS } from './duas.data';
-import { DHIKR } from './dhikr.data';
+import { DHIKR, DHIKR_CATEGORIES } from './dhikr.data';
 import { createDuaSearch, normalizeDuaQuery } from './duas-search';
 
 const PAGE_SIZE = 10;
@@ -48,20 +48,18 @@ export class DuasPage {
         ...DUA_CATEGORIES.filter((category) => category.id !== 'general'),
       ].flatMap((category) => category.items);
   protected readonly categories = computed(() =>
-    this.isDhikr
-      ? []
-      : [...DUA_CATEGORIES].sort((a, b) =>
-          a.id === 'general'
-            ? b.id === 'general'
-              ? 0
-              : -1
-            : b.id === 'general'
-              ? 1
-              : a.label[this.language.lang()].localeCompare(
-                  b.label[this.language.lang()],
-                  this.language.lang(),
-                ),
-        ),
+    [...(this.isDhikr ? DHIKR_CATEGORIES : DUA_CATEGORIES)].sort((a, b) =>
+      a.id === 'general'
+        ? b.id === 'general'
+          ? 0
+          : -1
+        : b.id === 'general'
+          ? 1
+          : a.label[this.language.lang()].localeCompare(
+              b.label[this.language.lang()],
+              this.language.lang(),
+            ),
+    ),
   );
   private readonly storageKey = this.isDhikr ? 'vaktija_saved_dhikr' : 'vaktija_saved_duas';
   protected readonly collectionPath = this.isDhikr ? '/dhikr' : '/duas';
@@ -188,7 +186,9 @@ export class DuasPage {
 
   protected clearSearch(): void {
     this.onSearch('');
-    (this.host.nativeElement as HTMLElement).querySelector<HTMLInputElement>('#dua-search')?.focus();
+    (this.host.nativeElement as HTMLElement)
+      .querySelector<HTMLInputElement>('#dua-search')
+      ?.focus();
   }
 
   protected showMore(): void {

@@ -2295,3 +2295,63 @@ Sunnah.com 238 describes standing at Muzdalifah and does not give this supplicat
 
 **Sources:** [Bosnian PDF, page 86](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=86) · [English and Arabic](https://sunnah.com/hisn:234)
 
+## Zikrovi / Dhikr
+
+Only the two entries below are active in the separate Zikrovi collection. The previous five entries remain commented in `dhikr.data.ts` for later review. Book numbers 238 and 240 correspond to English Hisn 248 and 250.
+
+Shared entries have one full definition in the dua category file. Their inclusion in Zikrovi is explicit in [dhikr.data.ts](../../src/app/features/duas/dhikr.data.ts):
+
+```ts
+fromDua('hisn-250'); // Keep the title from Dove.
+// Or use an alternative title only in Zikrovi:
+fromDua('hisn-250', { bs: 'Zikr za oprost grijeha', en: 'Dhikr for forgiveness' });
+```
+
+Use one form per entry. Removing or commenting out that selection removes it from Zikrovi. Arabic, transcription, translation, instructions, sources and category all come from the original dua. The selected title is also used in zikr search and bookmarks. Zikr-only entries, such as HM-248, remain fully defined in `dhikr.data.ts` with a `categoryId` from `DUA_CATEGORIES`.
+
+Zikrovi reuses the same bilingual category names as Dove and shows only categories containing selected entries. HM-250 inherits Oprost / Forgiveness; the standalone HM-248 chooses that category explicitly. Saved lists remain separate for the two collections, including when an entry has the same ID in both.
+
+<a id="hm-248"></a>
+### HM-248 · Traženje oprosta i pokajanje / Seeking forgiveness and repentance
+
+**Upute / Instructions:** Poslanik, sallallahu alejhi ve sellem, kazao je da više od sedamdeset puta dnevno traži oprost od Allaha i kaje Mu se. / The Prophet said that he sought Allah’s forgiveness and repented to Him more than seventy times each day.
+
+**Arapski / Arabic**
+
+<p lang="ar" dir="rtl">أَسْتَغْفِرُ اللَّهَ وَأَتُوبُ إِلَيْهِ</p>
+
+**Bosanski — transkripcija (fotografija knjige, str. 148, broj 238):** Estagfirullāhe ve etūbuilejhi.
+
+The joined word spacing `etūbuilejhi` follows the photograph.
+
+**Bosanski — prijevod:** Od Allaha tražim oprost i Njemu se kajem.
+
+**English — transliteration:** Astaghfirullāha wa atūbu ilayh.
+
+**English — meaning:** I seek Allah’s forgiveness and turn to Him in repentance.
+
+**Sources:** Reader's photographed Hisnul-Muslimi, page 148 · [Bosnian PDF, page 91](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=91) · [Hisn al-Muslim 248](https://sunnah.com/hisn:248)
+
+<a id="hm-250"></a>
+### HM-250 · Dova za oprost grijeha / Supplication for forgiveness
+
+The full definition is in [forgiveness.data.ts](../../src/app/features/duas/forgiveness.data.ts). Zikrovi includes it by reference under **Zikr za oprost grijeha / Dhikr for forgiveness**.
+
+**Upute / Instructions:** Onome ko izgovori ovaj zikr Allah će oprostiti čak i ako je utekao sa bojnoga polja. / Whoever says this will be forgiven, even if they fled from the battlefield.
+
+**Arapski / Arabic**
+
+<p lang="ar" dir="rtl">أَسْتَغْفِرُ اللَّهَ الَّذِي لَا إِلَهَ إِلَّا هُوَ الْحَيُّ الْقَيُّومُ وَأَتُوبُ إِلَيْهِ</p>
+
+**Bosanski — transkripcija (fotografija knjige, str. 148, broj 240):** Estagfirullāhe-l-leḏī lā ilāhe illā Huve-l-Ḥajju-l-Qajjūmu ve etūbu ilejhi.
+
+**Bosanski — prijevod:** Tražim oprosta od Allaha, osim Kojega drugoga boga nema, Živog i Postojanog Održavatelja, i Njemu se kajem.
+
+**English — transliteration:** Astaghfirullāha alladhī lā ilāha illā huwal-Ḥayyul-Qayyūmu wa atūbu ilayh.
+
+**English — meaning:** I seek forgiveness from Allah, besides Whom none is worthy of worship, the Ever-Living, the Sustainer, and I turn to Him in repentance.
+
+The photographed Arabic and Sunnah.com HM-250 include `al-‘Aẓīm`; the photographed Bosnian transcription and meaning omit it. The displayed Arabic and English use the shorter wording authenticated in Abu Dawud 1517, matching that Bosnian text. No repetition count is specified for this entry.
+
+**Sources:** Reader's photographed Hisnul-Muslimi, pages 148–149 · [Bosnian PDF, page 91](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=91) · [Abu Dawud 1517](https://sunnah.com/abudawud:1517) · [Hisn al-Muslim 250 (longer variant)](https://sunnah.com/hisn:250)
+
