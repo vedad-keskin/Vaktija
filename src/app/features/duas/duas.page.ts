@@ -40,15 +40,14 @@ export class DuasPage {
   private readonly injector = inject(Injector);
   private readonly isDhikr = this.route.snapshot.data['collection'] === 'dhikr';
   private readonly items = this.isDhikr ? DHIKR : DUAS;
+  private readonly collectionCategories = this.isDhikr ? DHIKR_CATEGORIES : DUA_CATEGORIES;
   private readonly search = createDuaSearch(this.items);
-  private readonly allItems = this.isDhikr
-    ? this.items
-    : [
-        ...DUA_CATEGORIES.filter((category) => category.id === 'general'),
-        ...DUA_CATEGORIES.filter((category) => category.id !== 'general'),
-      ].flatMap((category) => category.items);
+  private readonly allItems = [
+    ...this.collectionCategories.filter((category) => category.id === 'general'),
+    ...this.collectionCategories.filter((category) => category.id !== 'general'),
+  ].flatMap((category) => category.items);
   protected readonly categories = computed(() =>
-    [...(this.isDhikr ? DHIKR_CATEGORIES : DUA_CATEGORIES)].sort((a, b) =>
+    [...this.collectionCategories].sort((a, b) =>
       a.id === 'general'
         ? b.id === 'general'
           ? 0

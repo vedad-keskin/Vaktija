@@ -2297,7 +2297,7 @@ Sunnah.com 238 describes standing at Muzdalifah and does not give this supplicat
 
 ## Zikrovi / Dhikr
 
-Only the two entries below are active in the separate Zikrovi collection. The previous five entries remain commented in `dhikr.data.ts` for later review. Book numbers 238 and 240 correspond to English Hisn 248 and 250.
+The eight entries below are active in the separate Zikrovi collection. The previous five entries remain commented in `dhikr.data.ts` for later review. Book numbers 238 and 240 correspond to English Hisn 248 and 250. Chapter 128, entries 1, 2 and 5–8, are included: 1, 5, 6 and 8 under Opće / General; 2 and 7 under Oprost / Forgiveness.
 
 Shared entries have one full definition in the dua category file. Their inclusion in Zikrovi is explicit in [dhikr.data.ts](../../src/app/features/duas/dhikr.data.ts):
 
@@ -2354,4 +2354,148 @@ The full definition is in [forgiveness.data.ts](../../src/app/features/duas/forg
 The photographed Arabic and Sunnah.com HM-250 include `al-‘Aẓīm`; the photographed Bosnian transcription and meaning omit it. The displayed Arabic and English use the shorter wording authenticated in Abu Dawud 1517, matching that Bosnian text. No repetition count is specified for this entry.
 
 **Sources:** Reader's photographed Hisnul-Muslimi, pages 148–149 · [Bosnian PDF, page 91](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=91) · [Abu Dawud 1517](https://sunnah.com/abudawud:1517) · [Hisn al-Muslim 250 (longer variant)](https://sunnah.com/hisn:250)
+
+<a id="zikr-bukhari-6403"></a>
+### Tevhid / Declaration of Allah’s oneness
+
+**Kategorija / Category:** Opće / General
+
+**Upute — bosanski:** Prouči stotinu puta dnevno. U predaji se navodi nagrada kao za oslobađanje deset robova, upisivanje stotinu dobrih djela, brisanje stotinu loših djela i zaštita od šejtana toga dana sve dok noć ne nastupi. Niko ne može učiniti nešto vrednije od toga, osim onoga koji ove riječi izgovori više puta.
+
+**Instructions — English:** Recite one hundred times a day. The narration promises a reward equal to freeing ten slaves, one hundred good deeds recorded, one hundred misdeeds erased, and protection from Satan until evening. Only someone who does more can surpass this reward.
+
+**Arapski / Arabic**
+
+<p lang="ar" dir="rtl">لَا إِلَٰهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ، وَهُوَ عَلَىٰ كُلِّ شَيْءٍ قَدِيرٌ</p>
+
+**Bosanski — transkripcija (fotografija knjige, str. 150, poglavlje 128, broj 1):** Lā ilāhe illellāhu vaḥdehū lā šerīke leh, lehu-l-mulku ve lehu-l-ḥamdu ve Huve ‘alā kulli šej’in Qadīr.
+
+**Bosanski — prijevod:** Nema boga osim Allaha, Jedinoga, Koji Sebi ravnoga nema. Njemu pripada sva vlast i zahvalnost, i On je iznad svega.
+
+**English — transliteration:** Lā ilāha illallāhu waḥdahu lā sharīka lah, lahul-mulku wa lahul-ḥamd, wa huwa ‘alā kulli shay’in qadīr.
+
+**English — meaning:** None is worthy of worship except Allah alone, without partner. His is all dominion and praise, and He has power over everything.
+
+The Bosnian meaning is the recitation's meaning as quoted within the photographed narration. The daily instruction follows Bukhari 6403; HM-93 places the same recitation in a morning context, and HM-255 concerns ten repetitions, so neither is used as this entry's primary link.
+
+**Sources:** Reader's photographed Hisnul-Muslimi, page 150 · [Bosnian PDF, page 92](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=92) (continues on page 93) · [Bukhari 6403](https://sunnah.com/bukhari:6403)
+
+<a id="hm-254"></a>
+### HM-254 · Slavljenje Allaha i zahvala / Glorifying and praising Allah
+
+**Kategorija / Category:** Oprost / Forgiveness
+
+**Upute — bosanski:** Prouči stotinu puta na dan. Onome ko tako izgovori bit će skinuti (umanjeni) grijesi makar da su veličine morske pjene.
+
+**Instructions — English:** Recite one hundred times a day. The narration states that doing so brings forgiveness of sins, even if they are as abundant as sea foam.
+
+**Arapski / Arabic**
+
+<p lang="ar" dir="rtl">سُبْحَانَ اللَّهِ وَبِحَمْدِهِ</p>
+
+**Bosanski — transkripcija (fotografija knjige, str. 151, poglavlje 128, broj 2):** Subḥānallāhi ve bi ḥamdihī.
+
+**Bosanski — prijevod:** Neka je slavljen Allah i neka Mu je hvala.
+
+**English — transliteration:** Subḥānallāhi wa biḥamdihi.
+
+**English — meaning:** Glory be to Allah, and all praise is His.
+
+**Sources:** Reader's photographed Hisnul-Muslimi, page 151 · [Bosnian PDF, page 93](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=93) · [Hisn al-Muslim 254](https://sunnah.com/hisn:254) · [Bukhari 6405](https://sunnah.com/bukhari:6405)
+
+<a id="hm-256"></a>
+### HM-256 · Dvije lahke riječi / Two beloved phrases
+
+**Kategorija / Category:** Opće / General
+
+**Upute — bosanski:** Ove dvije riječi lahke su na jeziku, teške na Vagi i drage Svemilosnom.
+
+**Instructions — English:** These two phrases are easy to say, heavy on the Scale, and beloved to the Most Merciful.
+
+**Arapski / Arabic**
+
+<p lang="ar" dir="rtl">سُبْحَانَ اللَّهِ وَبِحَمْدِهِ، سُبْحَانَ اللَّهِ الْعَظِيمِ</p>
+
+**Bosanski — transkripcija (fotografija knjige, str. 152, poglavlje 128, broj 5):** Subḥānallāhi ve bi ḥamdihī. Subḥānallāhi-l-‘Aẓīm.
+
+**Bosanski — prijevod:** Slavljen neka je Allah i hvaljen neka je. Slavljen da si Uzvišeni Allahu.
+
+**English — transliteration:** Subḥānallāhi wa biḥamdihi, subḥānallāhil-‘Aẓīm.
+
+**English — meaning:** Glory and praise be to Allah. Glory be to Allah, the Most Great.
+
+**Sources:** Reader's photographed Hisnul-Muslimi, page 152 · [Bosnian PDF, page 94](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=94) · [Hisn al-Muslim 256](https://sunnah.com/hisn:256)
+
+<a id="hm-257"></a>
+### HM-257 · Četiri drage riječi / Four beloved phrases
+
+**Kategorija / Category:** Opće / General
+
+**Upute — bosanski:** Poslanik, sallallahu alejhi ve sellem, kazao je da mu je izgovaranje ovih riječi draže nego sve ono što sunce obasja.
+
+**Instructions — English:** The Prophet said that reciting these phrases was dearer to him than everything the sun shines upon.
+
+**Arapski / Arabic**
+
+<p lang="ar" dir="rtl">سُبْحَانَ اللَّهِ وَالْحَمْدُ لِلَّهِ وَلَا إِلَٰهَ إِلَّا اللَّهُ وَاللَّهُ أَكْبَرُ</p>
+
+**Bosanski — transkripcija (fotografija knjige, str. 152, poglavlje 128, broj 6):** Subḥānallāhi ve-l-ḥamdu lillāhi ve lā ilāhe illellāhu vallāhu ekber.
+
+**Bosanski — prijevod:** Slavljen neka je Allah i hvala Mu, nema boga osim Allaha, Allah je najveći.
+
+**English — transliteration:** Subḥānallāh, wal-ḥamdu lillāh, wa lā ilāha illallāh, wallāhu akbar.
+
+**English — meaning:** Glory be to Allah, and praise be to Allah. None is worthy of worship except Allah, and Allah is the Greatest.
+
+**Sources:** Reader's photographed Hisnul-Muslimi, page 152 · [Bosnian PDF, page 94](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=94) · [Hisn al-Muslim 257](https://sunnah.com/hisn:257)
+
+<a id="hm-258"></a>
+### HM-258 · Tesbih za brisanje grijeha / Tasbih for forgiveness
+
+**Kategorija / Category:** Oprost / Forgiveness
+
+**Upute — bosanski:** Prouči stotinu puta dnevno. Bit će ti upisano hiljadu dobrih djela ili pobrisano hiljadu ružnih djela koja si počinio.
+
+**Instructions — English:** Recite one hundred times a day. The narration states that one thousand good deeds will be recorded, or one thousand sins erased.
+
+**Arapski / Arabic**
+
+<p lang="ar" dir="rtl">سُبْحَانَ اللَّهِ</p>
+
+**Bosanski — transkripcija (fotografija knjige, str. 153, poglavlje 128, broj 7):** Subḥānallāh.
+
+**Bosanski — prijevod:** Neka je slavljen Allah i neka Mu je hvala.
+
+**English — transliteration:** Subḥānallāh.
+
+**English — meaning:** Glory be to Allah.
+
+The photographed Bosnian meaning expands the phrase with “i neka Mu je hvala”; that published wording is retained. The Arabic and transcription remain only `Subḥānallāh`, without `ve bi ḥamdihī`. The narration's alternative “or” is retained in both instruction languages.
+
+**Sources:** Reader's photographed Hisnul-Muslimi, page 153 · [Bosnian PDF, page 95](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=95) · [Hisn al-Muslim 258](https://sunnah.com/hisn:258)
+
+<a id="hm-259"></a>
+### HM-259 · Palma u Džennetu / A palm tree in Paradise
+
+**Kategorija / Category:** Opće / General
+
+**Upute — bosanski:** Onome ko izgovori ove riječi u Džennetu će biti zasađena palma.
+
+**Instructions — English:** The narration states that whoever says this will have a date palm planted for them in Paradise.
+
+**Arapski / Arabic**
+
+<p lang="ar" dir="rtl">سُبْحَانَ اللَّهِ الْعَظِيمِ وَبِحَمْدِهِ</p>
+
+**Bosanski — transkripcija (fotografija knjige, str. 153, poglavlje 128, broj 8):** Subḥānallāhi-l-‘Aẓīm ve bi ḥamdihī.
+
+**Bosanski — prijevod:** Slavljen neka je Uzvišeni Allah i neka Mu je hvala.
+
+**English — transliteration:** Subḥānallāhil-‘Aẓīmi wa biḥamdihi.
+
+**English — meaning:** Glory and praise be to Allah, the Most Great.
+
+The Bosnian transcription retains `‘Aẓīm` without a terminal `i`, as printed in the photograph. The English continuous transcription uses `‘Aẓīmi`. No repetition count or particular time is specified for this entry or for HM-256–257.
+
+**Sources:** Reader's photographed Hisnul-Muslimi, page 153 · [Bosnian PDF, page 95](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=95) · [Hisn al-Muslim 259](https://sunnah.com/hisn:259)
 

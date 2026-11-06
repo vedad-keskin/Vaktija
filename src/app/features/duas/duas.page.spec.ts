@@ -811,7 +811,7 @@ it('shows the sourced bilingual dhikr collection and keeps its saved items separ
   expect(duaTitle).toEqual({ bs: 'Dova za oprost grijeha', en: 'Supplication for forgiveness' });
   expect(dhikrTitle).toEqual({ bs: 'Zikr za oprost grijeha', en: 'Dhikr for forgiveness' });
   expect(categoryId).toBe('forgiveness');
-  expect(DHIKR_CATEGORIES.map((category) => category.id)).toEqual(['forgiveness']);
+  expect(DHIKR_CATEGORIES.map((category) => category.id)).toEqual(['forgiveness', 'general']);
   expect(DHIKR_CATEGORIES[0].label).toBe(
     DUA_CATEGORIES.find((category) => category.id === 'forgiveness')!.label,
   );
@@ -823,24 +823,34 @@ it('shows the sourced bilingual dhikr collection and keeps its saved items separ
   const element = () => harness.routeNativeElement!;
   const cards = () => element().querySelectorAll<HTMLElement>('.dua-card');
   expect(cards()).toHaveLength(DHIKR.length);
-  expect([...cards()].map((card) => card.dataset['duaId'])).toEqual(['hisn-248', 'hisn-250']);
+  expect([...cards()].map((card) => card.dataset['duaId'])).toEqual([
+    'bukhari-6403',
+    'hisn-256',
+    'hisn-257',
+    'hisn-259',
+    'hisn-248',
+    'hisn-250',
+    'hisn-254',
+    'hisn-258',
+  ]);
   expect(element().querySelector('.duas-category')).not.toBeNull();
   expect(element().querySelector<HTMLInputElement>('#dua-search')?.placeholder).toBe(
     EN_LABELS.dhikrSearch,
   );
-  expect(cards()[0].querySelector('.dua-arabic')?.textContent).toBe(DHIKR[0].arabic);
-  expect(cards()[1].querySelector('.dua-arabic')?.textContent).toBe(DHIKR[1].arabic);
+  expect(cards()[0].querySelector('.dua-arabic')?.textContent).toBe(
+    DHIKR.find((item) => item.id === 'bukhari-6403')!.arabic,
+  );
 
   for (const lang of ['bs', 'en'] as const) {
     TestBed.inject(LanguageService).setLanguage(lang);
     harness.detectChanges();
     expect(element().querySelector('h1')?.textContent).toBe(lang === 'bs' ? 'Zikrovi' : 'Dhikr');
     expect(document.title).toBe(lang === 'bs' ? BS_LABELS.dhikrDocTitle : EN_LABELS.dhikrDocTitle);
-    expect(element().querySelector('#dua-categories a')?.textContent?.trim()).toBe(
-      lang === 'bs' ? 'Oprost' : 'Forgiveness',
-    );
-    for (const [index, card] of [...cards()].entries()) {
-      const item = DHIKR[index];
+    expect(
+      [...element().querySelectorAll('#dua-categories a')].map((link) => link.textContent?.trim()),
+    ).toEqual(lang === 'bs' ? ['Opće', 'Oprost'] : ['General', 'Forgiveness']);
+    for (const card of cards()) {
+      const item = DHIKR.find((entry) => entry.id === card.dataset['duaId'])!;
       expect(card.querySelector('h2')?.textContent).toBe(item.title[lang]);
       expect(card.querySelector('.dua-transcription')?.textContent?.trim()).toBe(
         item.transcription?.[lang],
@@ -857,8 +867,29 @@ it('shows the sourced bilingual dhikr collection and keeps its saved items separ
     }
   }
 
+  await harness.navigateByUrl('/dhikr?category=general');
+  expect([...cards()].map((card) => card.dataset['duaId'])).toEqual([
+    'bukhari-6403',
+    'hisn-256',
+    'hisn-257',
+    'hisn-259',
+  ]);
+  expect(cards()[0].querySelector('.dua-instructions')?.textContent).toContain(
+    'one hundred times a day',
+  );
   await harness.navigateByUrl('/dhikr?category=forgiveness');
-  expect([...cards()].map((card) => card.dataset['duaId'])).toEqual(['hisn-248', 'hisn-250']);
+  expect([...cards()].map((card) => card.dataset['duaId'])).toEqual([
+    'hisn-248',
+    'hisn-250',
+    'hisn-254',
+    'hisn-258',
+  ]);
+  expect(cards()[2].querySelector('.dua-instructions')?.textContent).toContain(
+    'one hundred times a day',
+  );
+  expect(cards()[3].querySelector('.dua-instructions')?.textContent).toContain(
+    'one thousand good deeds will be recorded, or one thousand sins erased',
+  );
   expect(element().querySelector('.duas-category')?.textContent).toContain('Forgiveness');
   cards()[1].querySelector<HTMLButtonElement>('.dua-bookmark')!.click();
   harness.detectChanges();
