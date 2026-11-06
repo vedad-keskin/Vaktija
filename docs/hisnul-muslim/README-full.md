@@ -2297,7 +2297,7 @@ Sunnah.com 238 describes standing at Muzdalifah and does not give this supplicat
 
 ## Zikrovi / Dhikr
 
-The eight entries below are active in the separate Zikrovi collection. The previous five entries remain commented in `dhikr.data.ts` for later review. Book numbers 238 and 240 correspond to English Hisn 248 and 250. Chapter 128, entries 1, 2 and 5–8, are included: 1, 5, 6 and 8 under Opće / General; 2 and 7 under Oprost / Forgiveness.
+The eleven cards below are active in the separate Zikrovi collection. The previous five entries remain commented in `dhikr.data.ts` for later review. Book numbers 238 and 240 correspond to English Hisn 248 and 250. Chapter 128, entries 1, 2, 5–10 and 13–14, are included: 1, 5, 6, 8–10 and 13–14 under Opće / General; 2 and 7 under Oprost / Forgiveness. Entries 6 and 10 share one card because their recited words are identical.
 
 Shared entries have one full definition in the dua category file. Their inclusion in Zikrovi is explicit in [dhikr.data.ts](../../src/app/features/duas/dhikr.data.ts):
 
@@ -2427,13 +2427,14 @@ The Bosnian meaning is the recitation's meaning as quoted within the photographe
 **Sources:** Reader's photographed Hisnul-Muslimi, page 152 · [Bosnian PDF, page 94](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=94) · [Hisn al-Muslim 256](https://sunnah.com/hisn:256)
 
 <a id="hm-257"></a>
-### HM-257 · Četiri drage riječi / Four beloved phrases
+<a id="hm-261"></a>
+### HM-257, 261 · Allahu najdraže četiri riječi / Four beloved phrases
 
 **Kategorija / Category:** Opće / General
 
-**Upute — bosanski:** Poslanik, sallallahu alejhi ve sellem, kazao je da mu je izgovaranje ovih riječi draže nego sve ono što sunce obasja.
+**Upute — bosanski:** Allahu su najdraže ove četiri riječi. Možeš početi bilo kojom od njih. Poslanik, sallallahu alejhi ve sellem, kazao je da mu je njihovo izgovaranje draže nego sve ono što sunce obasja.
 
-**Instructions — English:** The Prophet said that reciting these phrases was dearer to him than everything the sun shines upon.
+**Instructions — English:** These four phrases are the most beloved words to Allah, and you may begin with any of them. The Prophet said they were dearer to him than everything the sun shines upon.
 
 **Arapski / Arabic**
 
@@ -2447,7 +2448,9 @@ The Bosnian meaning is the recitation's meaning as quoted within the photographe
 
 **English — meaning:** Glory be to Allah, and praise be to Allah. None is worthy of worship except Allah, and Allah is the Greatest.
 
-**Sources:** Reader's photographed Hisnul-Muslimi, page 152 · [Bosnian PDF, page 94](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=94) · [Hisn al-Muslim 257](https://sunnah.com/hisn:257)
+The recitation is displayed once. Book entries 6 and 10 provide the two instructions above; their source links remain separate. The naming discussion that follows entry 10 is outside these recitation instructions.
+
+**Sources:** Reader's photographed Hisnul-Muslimi, pages 152 and 154 · [Bosnian PDF, page 94 (entry 6)](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=94) · [Hisn al-Muslim 257](https://sunnah.com/hisn:257) · [Bosnian PDF, page 95 (entry 10)](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=95) · [Hisn al-Muslim 261](https://sunnah.com/hisn:261)
 
 <a id="hm-258"></a>
 ### HM-258 · Tesbih za brisanje grijeha / Tasbih for forgiveness
@@ -2498,4 +2501,127 @@ The photographed Bosnian meaning expands the phrase with “i neka Mu je hvala�
 The Bosnian transcription retains `‘Aẓīm` without a terminal `i`, as printed in the photograph. The English continuous transcription uses `‘Aẓīmi`. No repetition count or particular time is specified for this entry or for HM-256–257.
 
 **Sources:** Reader's photographed Hisnul-Muslimi, page 153 · [Bosnian PDF, page 95](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=95) · [Hisn al-Muslim 259](https://sunnah.com/hisn:259)
+
+<a id="hm-260"></a>
+### HM-260 · Jedna od džennetskih riznica / A treasure of Paradise
+
+**Kategorija / Category:** Opće / General
+
+**Upute — bosanski:** Poslanik, sallallahu alejhi ve sellem, podučio je Abdullaha, sina Kajsova, ovim riječima i nazvao ih jednom od džennetskih riznica.
+
+**Instructions — English:** The Prophet taught these words to Abdullah ibn Qays, describing them as one of the treasures of Paradise.
+
+**Arapski / Arabic**
+
+<p lang="ar" dir="rtl">لَا حَوْلَ وَلَا قُوَّةَ إِلَّا بِاللَّهِ</p>
+
+**Bosanski — transkripcija (fotografija knjige, str. 153–154, poglavlje 128, broj 9):** Lā ḥavle ve lā quvvete illā billāhi.
+
+**Bosanski — prijevod:** Nema snage niti moći mimo Allaha.
+
+**English — transliteration:** Lā ḥawla wa lā quwwata illā billāh.
+
+**English — meaning:** There is no strength or power except through Allah.
+
+Entry 9 begins in the previous photograph on printed page 153 and ends on page 154. Both parts are included here. No repetition count or particular time is specified.
+
+**Sources:** Reader's photographed Hisnul-Muslimi, pages 153–154 · [Bosnian PDF, page 95](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=95) · [Hisn al-Muslim 260](https://sunnah.com/hisn:260)
+
+<a id="hm-264"></a>
+### HM-264 · Najbolja dova i najbolji zikr / The best supplication and remembrance
+
+**Kategorija / Category:** Opće / General
+
+#### Najbolja dova / The best supplication
+
+**Upute — bosanski:** U predaji se ove riječi navode kao najbolja dova.
+
+**Instructions — English:** The narration describes these words as the best supplication.
+
+**Arapski / Arabic**
+
+<p lang="ar" dir="rtl">الْحَمْدُ لِلَّهِ</p>
+
+**Bosanski — transkripcija (fotografija knjige, str. 156, poglavlje 128, broj 13):** El-ḥamdu lillāhi.
+
+**Bosanski — prijevod:** Hvala Allahu.
+
+**English — transliteration:** Alḥamdulillāh.
+
+**English — meaning:** Praise be to Allah.
+
+#### Najbolji zikr / The best remembrance
+
+**Upute — bosanski:** U predaji se ove riječi navode kao najbolji spomen Allaha.
+
+**Instructions — English:** The narration describes these words as the best remembrance of Allah.
+
+**Arapski / Arabic**
+
+<p lang="ar" dir="rtl">لَا إِلَٰهَ إِلَّا اللَّهُ</p>
+
+**Bosanski — transkripcija (fotografija knjige, str. 156, poglavlje 128, broj 13):** Lā ilāhe illellāhu.
+
+**Bosanski — prijevod:** Nema istinskoga boga osim Allaha.
+
+**English — transliteration:** Lā ilāha illallāh.
+
+**English — meaning:** None is worthy of worship except Allah.
+
+Both parts belong to one narration and share one card-level source. No repetition count or particular time is specified. The Bosnian transcription retains `illellāhu`, as printed in entry 13.
+
+**Sources:** Reader's photographed Hisnul-Muslimi, page 156 · [Bosnian PDF, page 97](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=97) · [Hisn al-Muslim 264](https://sunnah.com/hisn:264) · [Tirmidhi 3383](https://sunnah.com/tirmidhi:3383)
+
+<a id="hm-265"></a>
+### HM-265 · Trajno vrijedne riječi / Enduring good deeds
+
+**Kategorija / Category:** Opće / General
+
+**Upute — bosanski:** U predaji su ove riječi opisane kao trajno vrijedne.
+
+**Instructions — English:** The narration describes these phrases as good deeds whose reward endures.
+
+**Arapski / Arabic**
+
+<p lang="ar" dir="rtl">سُبْحَانَ اللَّهِ وَالْحَمْدُ لِلَّهِ وَلَا إِلَٰهَ إِلَّا اللَّهُ وَاللَّهُ أَكْبَرُ وَلَا حَوْلَ وَلَا قُوَّةَ إِلَّا بِاللَّهِ</p>
+
+**Bosanski — transkripcija (fotografija knjige, str. 156, poglavlje 128, broj 14):** Subḥānallāhi ve-l-ḥamdu lillāhi ve lā ilāhe illallāhu, vallāhu ekber, ve lā ḥavle ve lā quvvete illā billāh.
+
+**Bosanski — prijevod:** Neka je slavljen Allah, i neka Mu je hvala. Nema boga osim Allaha i On je najveći. Nema snage niti moći mimo Allaha.
+
+**English — transliteration:** Subḥānallāh, wal-ḥamdu lillāh, wa lā ilāha illallāh, wallāhu akbar, wa lā ḥawla wa lā quwwata illā billāh.
+
+**English — meaning:** Glory be to Allah, and praise be to Allah. None is worthy of worship except Allah, and Allah is the Greatest. There is no strength or power except through Allah.
+
+No repetition count or particular time is specified. The Bosnian transcription retains `illallāhu`, as printed in entry 14; entry 13 above prints `illellāhu`.
+
+**Sources:** Reader's photographed Hisnul-Muslimi, page 156 · [Bosnian PDF, page 97](https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=97) · [Hisn al-Muslim 265](https://sunnah.com/hisn:265)
+
+### Duplicate review — 6 November 2026
+
+Checked all 11 active zikr cards against each other and all 113 active dua cards (128 recitation parts), ignoring Arabic vowel marks, tatweel, punctuation and spacing. Commented legacy drafts are excluded.
+
+There are no duplicate complete recitation cards within Zikrovi. Book entries 6 and 10 already share the HM-257 card and retain both source links. HM-250 is the same practice in both collections and already reuses the full definition from Oprost through `fromDua`.
+
+The following exact wording also occurs in Dove with a different practice or instruction:
+
+- The daily tahlil (Bukhari 6403) also appears in HM-237 for Arefat.
+- HM-258's `Subḥānallāh` also appears in HM-240 for amazement or a happy event.
+- HM-260's hawqala also appears in HM-22, part 2, as the response to the adhan.
+- HM-264's `El-ḥamdu lillāhi` also appears in HM-188, part 1, after sneezing.
+- HM-264's `Lā ilāhe illellāhu` also appears in HM-153 at the deathbed and HM-245 when startled.
+
+These contexts retain their own instructions and sources. Replacing them with the general zikr card would lose the context or apply the wrong repetition count. In particular, HM-265's five phrases are not a duplicate of the four-phrase HM-257 card or the standalone hawqala: it is a complete five-phrase recitation with its own source.
+
+Longer dua texts also contain these phrases. The complete containment matches, excluding the exact matches above, are:
+
+- Daily tahlil: HM-66 part 3, HM-2, HM-217, HM-236 part 2, HM-238, and HM-77 morning/evening.
+- HM-257's four phrases: HM-2.
+- HM-258's tasbih: HM-66 part 4 and HM-2.
+- HM-260's hawqala: HM-2 and HM-16.
+- HM-264's hamd: HM-66 part 4, HM-180, HM-2, HM-194, HM-5, HM-206, and HM-77 morning/evening.
+- HM-264's tahlil: HM-13, HM-52, HM-66 parts 3 and 9, HM-2, HM-112, HM-217, HM-209, HM-236 part 2, HM-237, HM-238, and HM-77 morning/evening.
+- HM-265's five phrases: HM-2, within the longer night-awakening dua.
+
+HM-248, HM-254, HM-256 and HM-259 have no matching complete phrase in the active dua collection. No additional duplicate card was removed.
 

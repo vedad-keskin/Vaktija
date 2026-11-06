@@ -11,7 +11,7 @@ function fromDua(id: string, title?: Dua['title']): DhikrEntry {
   throw new Error(`Unknown dua selected for Zikrovi: ${id}`);
 }
 
-// Bosnian: reader's Hisnul-Muslimi photographs, pages 148–153 (238, 240; chapter 128, 1–2, 5–8).
+// Bosnian: reader's Hisnul-Muslimi photographs, pages 148–156 (238, 240; chapter 128, 1–2, 5–10, 13–14).
 // Book 238 maps to Hisn 248; book 240 maps to Hisn 250.
 // For 240, Arabic/English follow Abu Dawud 1517 to match the book's Bosnian wording without al-'Azim.
 export const DHIKR: readonly DhikrEntry[] = [
@@ -121,26 +121,45 @@ export const DHIKR: readonly DhikrEntry[] = [
     id: 'hisn-257',
     categoryId: 'general',
     title: { bs: 'Allahu najdraže četiri riječi', en: 'Four beloved phrases' },
-    arabic: 'سُبْحَانَ اللَّهِ وَالْحَمْدُ لِلَّهِ وَلَا إِلَٰهَ إِلَّا اللَّهُ وَاللَّهُ أَكْبَرُ',
-    instructions: {
-      bs: 'Poslanik, sallallahu alejhi ve sellem, kazao je da mu je izgovaranje ovih riječi draže nego sve ono što sunce obasja.',
-      en: 'The Prophet said that reciting these phrases was dearer to him than everything the sun shines upon.',
-    },
-    transcription: {
-      bs: 'Subḥānallāhi ve-l-ḥamdu lillāhi ve lā ilāhe illellāhu vallāhu ekber.',
-      en: 'Subḥānallāh, wal-ḥamdu lillāh, wa lā ilāha illallāh, wallāhu akbar.',
-    },
-    translation: {
-      bs: 'Slavljen neka je Allah i hvala Mu, nema boga osim Allaha, Allah je najveći.',
-      en: 'Glory be to Allah, and praise be to Allah. None is worthy of worship except Allah, and Allah is the Greatest.',
-    },
-    reference: {
-      bs: 'Hisnul-Muslimi, poglavlje 128, 6',
-      en: 'Hisn al-Muslim, 257',
-    },
-    sourceUrl: 'https://sunnah.com/hisn:257',
-    bosnianSourceUrl:
-      'https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=94',
+    // Book entries 6 and 10 have the same recitation; keep one card with both sources.
+    sayings: [
+      {
+        arabic:
+          'سُبْحَانَ اللَّهِ وَالْحَمْدُ لِلَّهِ وَلَا إِلَٰهَ إِلَّا اللَّهُ وَاللَّهُ أَكْبَرُ',
+        instructions: {
+          bs: 'Allahu su najdraže ove četiri riječi. Možeš početi bilo kojom od njih. Poslanik, sallallahu alejhi ve sellem, kazao je da mu je njihovo izgovaranje draže nego sve ono što sunce obasja.',
+          en: 'These four phrases are the most beloved words to Allah, and you may begin with any of them. The Prophet said they were dearer to him than everything the sun shines upon.',
+        },
+        transcription: {
+          bs: 'Subḥānallāhi ve-l-ḥamdu lillāhi ve lā ilāhe illellāhu vallāhu ekber.',
+          en: 'Subḥānallāh, wal-ḥamdu lillāh, wa lā ilāha illallāh, wallāhu akbar.',
+        },
+        translation: {
+          bs: 'Slavljen neka je Allah i hvala Mu, nema boga osim Allaha, Allah je najveći.',
+          en: 'Glory be to Allah, and praise be to Allah. None is worthy of worship except Allah, and Allah is the Greatest.',
+        },
+        sources: [
+          {
+            reference: {
+              bs: 'Hisnul-Muslimi, poglavlje 128, 6',
+              en: 'Hisn al-Muslim, 257',
+            },
+            sourceUrl: 'https://sunnah.com/hisn:257',
+            bosnianSourceUrl:
+              'https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=94',
+          },
+          {
+            reference: {
+              bs: 'Hisnul-Muslimi, poglavlje 128, 10',
+              en: 'Hisn al-Muslim, 261',
+            },
+            sourceUrl: 'https://sunnah.com/hisn:261',
+            bosnianSourceUrl:
+              'https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=95',
+          },
+        ],
+      },
+    ],
   },
   {
     id: 'hisn-258',
@@ -189,38 +208,90 @@ export const DHIKR: readonly DhikrEntry[] = [
     bosnianSourceUrl:
       'https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=95',
   },
-  /* Previous entries retained for later review.
   {
-    id: 'tawhid',
-    title: { bs: 'Tevhid', en: 'Declaration of oneness' },
+    id: 'hisn-260',
+    categoryId: 'general',
+    title: { bs: 'Jedna od džennetskih riznica', en: 'A treasure of Paradise' },
+    arabic: 'لَا حَوْلَ وَلَا قُوَّةَ إِلَّا بِاللَّهِ',
+    instructions: {
+      bs: 'Poslanik, sallallahu alejhi ve sellem, podučio je Abdullaha, sina Kajsova, ovim riječima i nazvao ih jednom od džennetskih riznica.',
+      en: 'The Prophet taught these words to Abdullah ibn Qays, describing them as one of the treasures of Paradise.',
+    },
+    transcription: {
+      bs: 'Lā ḥavle ve lā quvvete illā billāhi.',
+      en: 'Lā ḥawla wa lā quwwata illā billāh.',
+    },
+    translation: {
+      bs: 'Nema snage niti moći mimo Allaha.',
+      en: 'There is no strength or power except through Allah.',
+    },
+    reference: {
+      bs: 'Hisnul-Muslimi, poglavlje 128, 9',
+      en: 'Hisn al-Muslim, 260',
+    },
+    sourceUrl: 'https://sunnah.com/hisn:260',
+    bosnianSourceUrl:
+      'https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=95',
+  },
+  {
+    id: 'hisn-264',
+    categoryId: 'general',
+    title: { bs: 'Najbolja dova i najbolji zikr', en: 'The best supplication and remembrance' },
+    sayings: [
+      {
+        arabic: 'الْحَمْدُ لِلَّهِ',
+        instructions: {
+          bs: 'U predaji se ove riječi navode kao najbolja dova.',
+          en: 'The narration describes these words as the best supplication.',
+        },
+        transcription: { bs: 'El-ḥamdu lillāhi.', en: 'Alḥamdulillāh.' },
+        translation: { bs: 'Hvala Allahu.', en: 'Praise be to Allah.' },
+      },
+      {
+        arabic: 'لَا إِلَٰهَ إِلَّا اللَّهُ',
+        instructions: {
+          bs: 'U predaji se ove riječi navode kao najbolji spomen Allaha.',
+          en: 'The narration describes these words as the best remembrance of Allah.',
+        },
+        transcription: { bs: 'Lā ilāhe illellāhu.', en: 'Lā ilāha illallāh.' },
+        translation: {
+          bs: 'Nema istinskoga boga osim Allaha.',
+          en: 'None is worthy of worship except Allah.',
+        },
+      },
+    ],
+    reference: {
+      bs: 'Hisnul-Muslimi, poglavlje 128, 13',
+      en: 'Hisn al-Muslim, 264',
+    },
+    sourceUrl: 'https://sunnah.com/hisn:264',
+    bosnianSourceUrl:
+      'https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=97',
+  },
+  {
+    id: 'hisn-265',
+    categoryId: 'general',
+    title: { bs: 'Trajno vrijedne riječi', en: 'Enduring good deeds' },
     arabic:
-      'لَا إِلَٰهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ، وَهُوَ عَلَىٰ كُلِّ شَيْءٍ قَدِيرٌ',
+      'سُبْحَانَ اللَّهِ وَالْحَمْدُ لِلَّهِ وَلَا إِلَٰهَ إِلَّا اللَّهُ وَاللَّهُ أَكْبَرُ وَلَا حَوْلَ وَلَا قُوَّةَ إِلَّا بِاللَّهِ',
     transcription: {
-      bs: 'Lā ilāhe illallāhu vaḥdehu lā šerīke leh, lehul-mulku ve lehul-ḥamdu, ve huve ‘alā kulli šej’in qadīr.',
-      en: 'Lā ilāha illallāhu waḥdahu lā sharīka lahu, lahul-mulku wa lahul-ḥamdu, wa huwa ʿalā kulli shayʾin qadīr.',
+      bs: 'Subḥānallāhi ve-l-ḥamdu lillāhi ve lā ilāhe illallāhu, vallāhu ekber, ve lā ḥavle ve lā quvvete illā billāh.',
+      en: 'Subḥānallāh, wal-ḥamdu lillāh, wa lā ilāha illallāh, wallāhu akbar, wa lā ḥawla wa lā quwwata illā billāh.',
     },
     translation: {
-      bs: 'Nema boga osim Allaha, Jedinog, Koji nema sudruga. Njemu pripada vlast i zahvala, i On nad svim ima moć.',
-      en: 'There is no god but Allah alone, with no partner. To Him belong dominion and praise, and He has power over all things.',
+      bs: 'Neka je slavljen Allah, i neka Mu je hvala. Nema boga osim Allaha i On je najveći. Nema snage niti moći mimo Allaha.',
+      en: 'Glory be to Allah, and praise be to Allah. None is worthy of worship except Allah, and Allah is the Greatest. There is no strength or power except through Allah.',
     },
-    reference: { bs: 'Sahih el-Buhari, 6403', en: 'Sahih al-Bukhari, 6403' },
-    sourceUrl: 'https://sunnah.com/bukhari:6403',
+    reference: {
+      bs: 'Hisnul-Muslimi, poglavlje 128, 14',
+      en: 'Hisn al-Muslim, 265',
+    },
+    sourceUrl: 'https://sunnah.com/hisn:265',
+    bosnianSourceUrl:
+      'https://d1.islamhouse.com/data/bs/ih_books/single1/bs_Hisnul_muslim.pdf#page=97',
   },
-  {
-    id: 'two-phrases',
-    title: { bs: 'Dvije lahke riječi', en: 'Two beloved phrases' },
-    arabic: 'سُبْحَانَ اللَّهِ وَبِحَمْدِهِ، سُبْحَانَ اللَّهِ الْعَظِيمِ',
-    transcription: {
-      bs: 'Subḥānallāhi ve biḥamdihi, subḥānallāhil-‘aẓīm.',
-      en: 'Subḥānallāhi wa biḥamdihi, subḥānallāhil-ʿaẓīm.',
-    },
-    translation: {
-      bs: 'Slavljen neka je Allah i Njemu pripada hvala; slavljen neka je Allah Veličanstveni.',
-      en: 'Glory and praise be to Allah; glory be to Allah, the Magnificent.',
-    },
-    reference: { bs: 'Sahih el-Buhari, 6682', en: 'Sahih al-Bukhari, 6682' },
-    sourceUrl: 'https://sunnah.com/bukhari:6682',
-  },
+  /* Previous entries retained for later review.
+
   {
     id: 'hawqala',
     title: { bs: 'Snaga je kod Allaha', en: 'Strength comes from Allah' },
@@ -236,40 +307,7 @@ export const DHIKR: readonly DhikrEntry[] = [
     reference: { bs: 'Sahih el-Buhari, 6409', en: 'Sahih al-Bukhari, 6409' },
     sourceUrl: 'https://sunnah.com/bukhari:6409',
   },
-  {
-    id: 'four-phrases',
-    title: { bs: 'Četiri drage riječi', en: 'Four beloved phrases' },
-    arabic:
-      'سُبْحَانَ اللَّهِ، وَالْحَمْدُ لِلَّهِ، وَلَا إِلَٰهَ إِلَّا اللَّهُ، وَاللَّهُ أَكْبَرُ',
-    transcription: {
-      bs: 'Subḥānallāh, vel-ḥamdu lillāh, ve lā ilāhe illallāh, vallāhu ekber.',
-      en: 'Subḥānallāh, wal-ḥamdu lillāh, wa lā ilāha illallāh, wallāhu akbar.',
-    },
-    translation: {
-      bs: 'Slavljen neka je Allah. Hvala Allahu. Nema boga osim Allaha. Allah je najveći.',
-      en: 'Glory be to Allah. Praise be to Allah. There is no god but Allah. Allah is the Greatest.',
-    },
-    reference: { bs: 'Sahih Muslim, 2137a', en: 'Sahih Muslim, 2137a' },
-    sourceUrl: 'https://sunnah.com/muslim:2137a',
-  },
-  {
-    id: 'istighfar',
-    title: { bs: 'Istigfar', en: 'Seeking forgiveness' },
-    arabic: 'أَسْتَغْفِرُ اللَّهَ وَأَتُوبُ إِلَيْهِ',
-    transcription: {
-      bs: 'Estagfirullāhe ve etūbu ilejhi.',
-      en: 'Astaghfirullāha wa atūbu ilayh.',
-    },
-    translation: {
-      bs: 'Od Allaha tražim oprost i Njemu se kajem.',
-      en: 'I seek Allah’s forgiveness and turn to Him in repentance.',
-    },
-    reference: {
-      bs: 'Sahih el-Buhari, 6307 (dio hadisa)',
-      en: 'Sahih al-Bukhari, 6307 (excerpt)',
-    },
-    sourceUrl: 'https://sunnah.com/bukhari:6307',
-  },
+
   */
 ];
 

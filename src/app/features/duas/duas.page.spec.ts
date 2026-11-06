@@ -815,6 +815,14 @@ it('shows the sourced bilingual dhikr collection and keeps its saved items separ
   expect(DHIKR_CATEGORIES[0].label).toBe(
     DUA_CATEGORIES.find((category) => category.id === 'forgiveness')!.label,
   );
+  const recitations = DHIKR.map((item) =>
+    (item.sayings ?? [item])
+      .map((saying) => saying.arabic)
+      .join(' ')
+      .normalize('NFKD')
+      .replace(/[\p{M}\p{P}\s\u0640]/gu, ''),
+  );
+  expect(new Set(recitations).size).toBe(DHIKR.length);
   await TestBed.configureTestingModule({
     imports: [DuasPage],
     providers: [provideRouter(routes)],
@@ -822,12 +830,18 @@ it('shows the sourced bilingual dhikr collection and keeps its saved items separ
   const harness = await RouterTestingHarness.create('/dhikr');
   const element = () => harness.routeNativeElement!;
   const cards = () => element().querySelectorAll<HTMLElement>('.dua-card');
+  expect(cards()).toHaveLength(10);
+  element().querySelector<HTMLButtonElement>('.duas-show-more')!.click();
+  harness.detectChanges();
   expect(cards()).toHaveLength(DHIKR.length);
   expect([...cards()].map((card) => card.dataset['duaId'])).toEqual([
     'bukhari-6403',
     'hisn-256',
     'hisn-257',
     'hisn-259',
+    'hisn-260',
+    'hisn-264',
+    'hisn-265',
     'hisn-248',
     'hisn-250',
     'hisn-254',
@@ -851,18 +865,25 @@ it('shows the sourced bilingual dhikr collection and keeps its saved items separ
     ).toEqual(lang === 'bs' ? ['Opće', 'Oprost'] : ['General', 'Forgiveness']);
     for (const card of cards()) {
       const item = DHIKR.find((entry) => entry.id === card.dataset['duaId'])!;
+      const sayings = item.sayings ?? [item];
       expect(card.querySelector('h2')?.textContent).toBe(item.title[lang]);
-      expect(card.querySelector('.dua-transcription')?.textContent?.trim()).toBe(
-        item.transcription?.[lang],
-      );
-      expect(card.querySelector('.dua-translation')?.textContent?.trim()).toBe(
-        item.translation?.[lang],
-      );
-      expect(card.querySelector('.dua-instructions')?.textContent).toContain(
-        item.instructions?.[lang],
-      );
-      expect(card.querySelector('.dua-source a')?.getAttribute('href')).toBe(
-        lang === 'bs' ? (item.bosnianSourceUrl ?? item.sourceUrl) : item.sourceUrl,
+      expect(
+        [...card.querySelectorAll('.dua-transcription')].map((node) => node.textContent?.trim()),
+      ).toEqual(sayings.map((saying) => saying.transcription![lang]));
+      expect(
+        [...card.querySelectorAll('.dua-translation')].map((node) => node.textContent?.trim()),
+      ).toEqual(sayings.map((saying) => saying.translation![lang]));
+      expect(
+        [...card.querySelectorAll('.dua-instructions p')].map((node) => node.textContent?.trim()),
+      ).toEqual(sayings.flatMap((saying) => saying.instructions?.[lang] ?? []));
+      const partSources = item.sayings?.flatMap((saying) => saying.sources ?? []) ?? [];
+      const sources = partSources.length ? partSources : item.sourceUrl ? [item] : [];
+      expect(
+        [...card.querySelectorAll('.dua-source a')].map((link) => link.getAttribute('href')),
+      ).toEqual(
+        sources.map((source) =>
+          lang === 'bs' ? (source.bosnianSourceUrl ?? source.sourceUrl) : source.sourceUrl,
+        ),
       );
     }
   }
@@ -873,7 +894,21 @@ it('shows the sourced bilingual dhikr collection and keeps its saved items separ
     'hisn-256',
     'hisn-257',
     'hisn-259',
+    'hisn-260',
+    'hisn-264',
+    'hisn-265',
   ]);
+  const bestRemembrance = [...cards()].find((card) => card.dataset['duaId'] === 'hisn-264')!;
+  expect(bestRemembrance.querySelectorAll('.dua-arabic')).toHaveLength(2);
+  expect(bestRemembrance.querySelectorAll('.dua-source a')).toHaveLength(1);
+  const fourPhrases = [...cards()].find((card) => card.dataset['duaId'] === 'hisn-257')!;
+  expect(fourPhrases.querySelectorAll('.dua-arabic')).toHaveLength(1);
+  expect(fourPhrases.querySelector('.dua-instructions')?.textContent).toContain(
+    'you may begin with any of them',
+  );
+  expect(
+    [...fourPhrases.querySelectorAll('.dua-source a')].map((link) => link.getAttribute('href')),
+  ).toEqual(['https://sunnah.com/hisn:257', 'https://sunnah.com/hisn:261']);
   expect(cards()[0].querySelector('.dua-instructions')?.textContent).toContain(
     'one hundred times a day',
   );

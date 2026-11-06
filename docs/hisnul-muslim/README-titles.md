@@ -328,15 +328,15 @@ Brojevi, poglavlja i vrste zapisa provjereni su prema [OpenDua datasetu v0.0.4](
 - [ ] [HM-254 · Vrijednost zikra (1/12) / The merit of remembering Allah (1/12)](README-full.md#hm-254) · u Zikrovima / in Dhikr · poglavlje 128, broj 2 / chapter 128, entry 2
 - [ ] [HM-255 · Vrijednost zikra (2/12) / The merit of remembering Allah (2/12)](https://sunnah.com/hisn:255)
 - [ ] [HM-256 · Vrijednost zikra (3/12) / The merit of remembering Allah (3/12)](README-full.md#hm-256) · u Zikrovima / in Dhikr · poglavlje 128, broj 5 / chapter 128, entry 5
-- [ ] [HM-257 · Vrijednost zikra (4/12) / The merit of remembering Allah (4/12)](README-full.md#hm-257) · u Zikrovima / in Dhikr · poglavlje 128, broj 6 / chapter 128, entry 6
+- [ ] [HM-257 · Vrijednost zikra (4/12) / The merit of remembering Allah (4/12)](README-full.md#hm-257) · u Zikrovima / in Dhikr · poglavlje 128, broj 6 / chapter 128, entry 6 · ista kartica kao HM-261 / shares a card with HM-261
 - [ ] [HM-258 · Vrijednost zikra (5/12) / The merit of remembering Allah (5/12)](README-full.md#hm-258) · u Zikrovima / in Dhikr · poglavlje 128, broj 7 / chapter 128, entry 7
 - [ ] [HM-259 · Vrijednost zikra (6/12) / The merit of remembering Allah (6/12)](README-full.md#hm-259) · u Zikrovima / in Dhikr · poglavlje 128, broj 8 / chapter 128, entry 8
-- [ ] [HM-260 · Vrijednost zikra (7/12) / The merit of remembering Allah (7/12)](https://sunnah.com/hisn:260)
-- [ ] [HM-261 · Vrijednost zikra (8/12) / The merit of remembering Allah (8/12)](https://sunnah.com/hisn:261)
+- [ ] [HM-260 · Vrijednost zikra (7/12) / The merit of remembering Allah (7/12)](README-full.md#hm-260) · u Zikrovima / in Dhikr · poglavlje 128, broj 9 / chapter 128, entry 9
+- [ ] [HM-261 · Vrijednost zikra (8/12) / The merit of remembering Allah (8/12)](README-full.md#hm-261) · u Zikrovima / in Dhikr · poglavlje 128, broj 10 / chapter 128, entry 10 · ista kartica kao HM-257 / shares a card with HM-257
 - [ ] [HM-262 · Vrijednost zikra (9/12) / The merit of remembering Allah (9/12)](https://sunnah.com/hisn:262)
 - [ ] ★ [HM-263 · Oprost, milost, uputa i opskrba / Forgiveness, mercy, guidance and provision](https://sunnah.com/hisn:263)
-- [ ] [HM-264 · Vrijednost zikra (11/12) / The merit of remembering Allah (11/12)](https://sunnah.com/hisn:264)
-- [ ] [HM-265 · Vrijednost zikra (12/12) / The merit of remembering Allah (12/12)](https://sunnah.com/hisn:265)
+- [ ] [HM-264 · Vrijednost zikra (11/12) / The merit of remembering Allah (11/12)](README-full.md#hm-264) · u Zikrovima / in Dhikr · poglavlje 128, broj 13 / chapter 128, entry 13
+- [ ] [HM-265 · Vrijednost zikra (12/12) / The merit of remembering Allah (12/12)](README-full.md#hm-265) · u Zikrovima / in Dhikr · poglavlje 128, broj 14 / chapter 128, entry 14
 - [ ] [HM-266 · Kako je Poslanik slavio Allaha / How the Prophet glorified Allah](https://sunnah.com/hisn:266) · predaja / narration
 - [ ] [HM-267 · Dobročinstvo i lijepo ponašanje u zajednici / Good deeds and community manners](https://sunnah.com/hisn:267) · uputa / instruction
 
