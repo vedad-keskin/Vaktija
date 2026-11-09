@@ -443,6 +443,7 @@ svg {
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: 8px;
   width: fit-content;
   margin: 0 auto 12px;
   padding-bottom: 10px;
@@ -454,8 +455,6 @@ svg {
 }
 
 .dua-instructions-label svg {
-  position: absolute;
-  inset-inline-end: calc(100% + 8px);
   width: 16px;
   height: 16px;
 }
@@ -588,6 +587,14 @@ svg {
   font: inherit;
   text-decoration: underline;
   cursor: pointer;
+}
+
+@media (min-width: 600px) {
+  .dua-instructions-label::before {
+    top: calc(100% - 0.5px);
+    bottom: auto;
+    transform: translateY(-50%) rotate(45deg);
+  }
 }
 
 @media (max-width: 599px) {
