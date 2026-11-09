@@ -945,7 +945,17 @@ it('shows the sourced bilingual dhikr collection and keeps its saved items separ
   expect(cards()).toHaveLength(1);
   expect(cards()[0].dataset['duaId']).toBe('hisn-250');
   await harness.navigateByUrl('/dhikr?q=zikr%20za%20oprost');
-  expect([...cards()].map((card) => card.dataset['duaId'])).toEqual(['hisn-250']);
+  expect([...cards()].map((card) => card.dataset['duaId'])).toEqual(['hisn-248', 'hisn-250']);
+  for (const [lang, query, title] of [
+    ['bs', 'zikr za zastitu od sejtana', 'Zikr za zaštitu od šejtana'],
+    ['en', 'dhikr for protection from satan', 'Dhikr for protection from Satan'],
+  ] as const) {
+    TestBed.inject(LanguageService).setLanguage(lang);
+    harness.detectChanges();
+    await harness.navigateByUrl(`/dhikr?q=${encodeURIComponent(query)}`);
+    expect([...cards()].map((card) => card.dataset['duaId'])).toEqual(['bukhari-6403']);
+    expect(cards()[0].querySelector('h2')?.textContent).toBe(title);
+  }
   await harness.navigateByUrl('/dhikr?q=pokajanje');
   expect([...cards()].map((card) => card.dataset['duaId'])).toEqual(['hisn-248']);
   await harness.navigateByUrl('/dhikr?view=saved&q=pokajanje');

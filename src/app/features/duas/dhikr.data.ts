@@ -19,7 +19,7 @@ export const DHIKR: readonly DhikrEntry[] = [
   {
     id: 'hisn-248',
     categoryId: 'forgiveness',
-    title: { bs: 'Traženje oprosta i pokajanje', en: 'Seeking forgiveness and repentance' },
+    title: { bs: 'Zikr za oprost i pokajanje', en: 'Dhikr for forgiveness and repentance' },
     arabic: 'أَسْتَغْفِرُ اللَّهَ وَأَتُوبُ إِلَيْهِ',
     instructions: {
       bs: 'Poslanik ﷺ tražio je oprost od Allaha i kajao Mu se više od 70 puta dnevno.',
@@ -44,7 +44,7 @@ export const DHIKR: readonly DhikrEntry[] = [
   {
     id: 'bukhari-6403',
     categoryId: 'general',
-    title: { bs: 'Tevhid', en: 'Declaration of Allah’s oneness' },
+    title: { bs: 'Zikr za zaštitu od šejtana', en: 'Dhikr for protection from Satan' },
     arabic:
       'لَا إِلَٰهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ، وَهُوَ عَلَىٰ كُلِّ شَيْءٍ قَدِيرٌ',
     instructions: {
@@ -70,7 +70,7 @@ export const DHIKR: readonly DhikrEntry[] = [
   {
     id: 'hisn-254',
     categoryId: 'forgiveness',
-    title: { bs: 'Slavljenje Allaha i zahvala', en: 'Glorifying and praising Allah' },
+    title: { bs: 'Zikr za slavljenje Allaha i zahvalu', en: 'Dhikr for glorifying and praising Allah' },
     arabic: 'سُبْحَانَ اللَّهِ وَبِحَمْدِهِ',
     instructions: {
       bs: 'Proučiti ovo 100 puta dnevno. U hadisu se navodi oprost grijeha, makar ih bilo poput morske pjene.',
@@ -95,7 +95,7 @@ export const DHIKR: readonly DhikrEntry[] = [
   {
     id: 'hisn-256',
     categoryId: 'general',
-    title: { bs: 'Dvije lahke riječi', en: 'Two beloved phrases' },
+    title: { bs: 'Zikr drag Svemilosnom', en: 'Dhikr beloved to the Most Merciful' },
     arabic: 'سُبْحَانَ اللَّهِ وَبِحَمْدِهِ، سُبْحَانَ اللَّهِ الْعَظِيمِ',
     instructions: {
       bs: 'Ove dvije riječi su lahke na jeziku, teške na Vagi i drage Svemilosnom.',
@@ -120,7 +120,7 @@ export const DHIKR: readonly DhikrEntry[] = [
   {
     id: 'hisn-257',
     categoryId: 'general',
-    title: { bs: 'Allahu najdraže četiri riječi', en: 'Four beloved phrases' },
+    title: { bs: 'Četiri Allahu najdraže riječi', en: 'Four words most beloved to Allah' },
     // Book entries 6 and 10 have the same recitation; keep one card with both sources.
     sayings: [
       {
@@ -164,7 +164,7 @@ export const DHIKR: readonly DhikrEntry[] = [
   {
     id: 'hisn-258',
     categoryId: 'forgiveness',
-    title: { bs: 'Tesbih za brisanje grijeha', en: 'Tasbih for forgiveness' },
+    title: { bs: 'Zikr za brisanje grijeha', en: 'Dhikr for erasing sins' },
     arabic: 'سُبْحَانَ اللَّهِ',
     instructions: {
       bs: 'Proučiti ovo 100 puta dnevno. U hadisu se navodi da se za to upisuje 1.000 dobrih djela ili briše 1.000 grijeha.',
@@ -186,7 +186,7 @@ export const DHIKR: readonly DhikrEntry[] = [
   {
     id: 'hisn-259',
     categoryId: 'general',
-    title: { bs: 'Palma u Džennetu', en: 'A palm tree in Paradise' },
+    title: { bs: 'Zikr za slavljenje Uzvišenog Allaha', en: 'Dhikr for glorifying Allah, the Most Great' },
     arabic: 'سُبْحَانَ اللَّهِ الْعَظِيمِ وَبِحَمْدِهِ',
     instructions: {
       bs: 'U predaji se navodi da će onome ko izgovori ove riječi u Džennetu biti zasađena palma.',
@@ -211,7 +211,7 @@ export const DHIKR: readonly DhikrEntry[] = [
   {
     id: 'hisn-260',
     categoryId: 'general',
-    title: { bs: 'Jedna od džennetskih riznica', en: 'A treasure of Paradise' },
+    title: { bs: 'Zikr iz džennetskih riznica', en: 'A dhikr from the treasures of Paradise' },
     arabic: 'لَا حَوْلَ وَلَا قُوَّةَ إِلَّا بِاللَّهِ',
     instructions: {
       bs: 'Poslanik ﷺ nazvao je ove riječi jednom od džennetskih riznica.',
@@ -271,7 +271,7 @@ export const DHIKR: readonly DhikrEntry[] = [
   {
     id: 'hisn-265',
     categoryId: 'general',
-    title: { bs: 'Trajno vrijedne riječi', en: 'Enduring good deeds' },
+    title: { bs: 'Zikr trajne vrijednosti', en: 'Dhikr of lasting value' },
     arabic:
       'سُبْحَانَ اللَّهِ وَالْحَمْدُ لِلَّهِ وَلَا إِلَٰهَ إِلَّا اللَّهُ وَاللَّهُ أَكْبَرُ وَلَا حَوْلَ وَلَا قُوَّةَ إِلَّا بِاللَّهِ',
     transcription: {
