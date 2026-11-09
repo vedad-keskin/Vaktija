@@ -9,8 +9,8 @@ export const ISTIKHARA_DUAS: readonly Dua[] = [
     arabic:
       'اللَّهُمَّ إِنِّي أَسْتَخِيرُكَ بِعِلْمِكَ، وَأَسْتَقْدِرُكَ بِقُدْرَتِكَ، وَأَسْأَلُكَ مِنْ فَضْلِكَ الْعَظِيمِ، فَإِنَّكَ تَقْدِرُ وَلَا أَقْدِرُ، وَتَعْلَمُ وَلَا أَعْلَمُ، وَأَنْتَ عَلَّامُ الْغُيُوبِ. اللَّهُمَّ إِنْ كُنْتَ تَعْلَمُ أَنَّ هَذَا الْأَمْرَ خَيْرٌ لِي فِي دِينِي وَمَعَاشِي وَعَاقِبَةِ أَمْرِي، فَاقْدُرْهُ لِي وَيَسِّرْهُ لِي، ثُمَّ بَارِكْ لِي فِيهِ، وَإِنْ كُنْتَ تَعْلَمُ أَنَّ هَذَا الْأَمْرَ شَرٌّ لِي فِي دِينِي وَمَعَاشِي وَعَاقِبَةِ أَمْرِي، فَاصْرِفْهُ عَنِّي وَاصْرِفْنِي عَنْهُ، وَاقْدُرْ لِيَ الْخَيْرَ حَيْثُ كَانَ، ثُمَّ أَرْضِنِي بِهِ.',
     instructions: {
-      bs: 'Kad te zaokupi odluka, klanjaj dva rekata neobaveznog namaza, zatim prouči dovu.',
-      en: 'When deciding a matter, pray two rak‘ahs other than the obligatory prayer, then recite this supplication.',
+      bs: 'Pri donošenju odluke klanjati 2 rekata dobrovoljnog namaza, pa proučiti ovu dovu.',
+      en: 'When making a decision, 2 rak‘ahs of voluntary prayer are offered, followed by this supplication.',
     },
     transcription: {
       bs: 'Allāhumme innī este’ḫiruke bi ‘ilmike, ve estaqdiruke bi qudretike ve es’eluke min faḍlike-l-‘aẓīmi, fe inneke taqdiru ve lā aqdiru, ve ta‘lemu ve lā a‘lemu, ve Ente ‘Allāmu-l-gujūb. Allāhumme in kunte ta‘lemu enne hāḏe-l-emre (spomenuti o čemu se radi) ḫajrun lī fī dīnī ve me‘āšī ve ‘āqibeti emrī (ili je rekao: ‘ādžilihi ve ādžilihi), faqdirhu lī ve jessirhu lī, tumme bārik lī fīhi, ve in kunte ta‘lemu enne hāḏe-l-emre (spomenuti o čemu se radi) šerrun lī fī dīnī ve me‘āšī ve ‘āqibeti emrī (ili je rekao: ‘ādžilihi ve ādžilihi), faṣrifhu ‘annī, va-ṣrifnī ‘anhu va-qdir lije-l-ḫajre ḥajtu kāne, tumme erḍinī bihī.',

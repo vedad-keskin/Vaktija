@@ -73,6 +73,10 @@ it('shows ten items at a time and resets on view changes', async () => {
     'hisn-20',
     'hisn-21',
   ]);
+  await harness.navigateByUrl('/duas?category=adhan');
+  expect(cards()[1].querySelector('.dua-instructions')?.textContent).toContain(
+    'After the adhan, blessings are sent upon the Prophet ﷺ',
+  );
   await harness.navigateByUrl('/duas?category=salat');
   expect([...cards()].map((card) => card.getAttribute('data-dua-id'))).toEqual([
     'hisn-28',
@@ -85,13 +89,13 @@ it('shows ten items at a time and resets on view changes', async () => {
     'hisn-56',
   ]);
   expect(cards()[0].querySelector('.dua-instructions')?.textContent).toContain('opening takbir');
-  expect(cards()[1].querySelector('.dua-instructions')?.textContent).toContain('three times');
+  expect(cards()[1].querySelector('.dua-instructions')?.textContent).toContain('3 times');
   expect(cards()[2].querySelectorAll('.dua-saying')).toHaveLength(2);
   expect(cards()[2].querySelectorAll('.dua-instructions')).toHaveLength(0);
   expect(
     [...cards()[2].querySelectorAll('.dua-source a')].map((link) => link.getAttribute('href')),
   ).toEqual(['https://sunnah.com/hisn:38', 'https://sunnah.com/hisn:39']);
-  expect(cards()[3].querySelector('.dua-instructions')?.textContent).toContain('three times');
+  expect(cards()[3].querySelector('.dua-instructions')?.textContent).toContain('3 times');
   await harness.navigateByUrl('/duas?category=after-prayer');
   expect([...cards()].map((card) => card.getAttribute('data-dua-id'))).toEqual(['hisn-66']);
   expect(cards()[0].querySelectorAll('.dua-saying')).toHaveLength(10);
@@ -113,24 +117,24 @@ it('shows ten items at a time and resets on view changes', async () => {
     'https://sunnah.com/hisn:72',
     'https://sunnah.com/hisn:73',
   ]);
-  expect(cards()[0].querySelector('.dua-instructions')?.textContent).toContain('three times');
+  expect(cards()[0].querySelector('.dua-instructions')?.textContent).toContain('3 times');
   expect(cards()[0].querySelectorAll('.dua-instructions')[1].textContent).toContain('33 times');
   const surahInstructions = [...cards()[0].querySelectorAll('.dua-instructions')].slice(2, 5);
   expect(surahInstructions).toHaveLength(3);
   for (const instruction of surahInstructions) {
     expect(instruction.textContent).toContain('once after Dhuhr, Asr and Isha');
-    expect(instruction.textContent).toContain('three times after Fajr and Maghrib');
+    expect(instruction.textContent).toContain('3 times after Fajr and Maghrib');
   }
   const laterInstructions = [...cards()[0].querySelectorAll('.dua-instructions')].slice(5);
   expect(laterInstructions.map((instruction) => instruction.textContent)).toEqual([
-    expect.stringContaining('ten times after Fajr and Maghrib'),
+    expect.stringContaining('10 times after Fajr and Maghrib'),
     expect.stringContaining('obligatory Fajr prayer'),
   ]);
   await harness.navigateByUrl('/duas?category=tilawah');
   expect([...cards()].map((card) => card.getAttribute('data-dua-id'))).toEqual(['hisn-50']);
   await harness.navigateByUrl('/duas?category=istikhara');
   expect([...cards()].map((card) => card.getAttribute('data-dua-id'))).toEqual(['hisn-74']);
-  expect(cards()[0].querySelector('.dua-instructions')?.textContent).toContain('two rak‘ahs');
+  expect(cards()[0].querySelector('.dua-instructions')?.textContent).toContain('2 rak‘ahs');
   expect(cards()[0].querySelector('.dua-instructions')?.textContent).not.toContain(
     'mention the matter',
   );
@@ -146,6 +150,10 @@ it('shows ten items at a time and resets on view changes', async () => {
   expect(cards()[0].querySelector('.dua-translation')?.textContent).toContain(
     '(or: in this life and the afterlife)',
   );
+  await harness.navigateByUrl('/duas?category=fasting');
+  const forgottenMeal = element().querySelector('[data-dua-id="hisn-178-forgot"]');
+  expect(forgottenMeal).not.toBeNull();
+  expect(forgottenMeal?.querySelector('.dua-instructions')).toBeNull();
   await harness.navigateByUrl('/duas?category=general');
   expect(cards()).toHaveLength(10);
   more()!.click();
@@ -184,6 +192,9 @@ it('shows ten items at a time and resets on view changes', async () => {
     'hisn-210',
   ]);
   expect(more()).toBeNull();
+  expect(cards()[2].querySelector('.dua-instructions')?.textContent).toContain(
+    'On the return journey, this supplication is recited at each elevated point.',
+  );
   await harness.navigateByUrl('/duas?category=hajj');
   expect([...cards()].map((card) => card.getAttribute('data-dua-id'))).toEqual([
     'hisn-233',
@@ -202,7 +213,7 @@ it('shows ten items at a time and resets on view changes', async () => {
     'hisn-112',
   ]);
   expect(cards()[1].querySelector('.dua-instructions')?.textContent).toContain(
-    'If you wake during the night',
+    'On waking during the night',
   );
   await harness.navigateByUrl('/duas?category=illness');
   expect([...cards()].map((card) => card.getAttribute('data-dua-id'))).toEqual([
@@ -240,12 +251,12 @@ it('shows ten items at a time and resets on view changes', async () => {
     'hisn-86',
   ]);
   expect(more()).toBeNull();
-  expect(cards()[10].querySelector('.dua-instructions')?.textContent).toContain('three times');
+  expect(cards()[10].querySelector('.dua-instructions')?.textContent).toContain('3 times');
   expect(cards()[10].querySelector('.dua-instructions')?.textContent).toContain(
-    'will not face a calamity until evening',
+    'protection from sudden affliction until evening after the morning recitation',
   );
   expect(cards()[10].querySelector('.dua-instructions')?.textContent).toContain(
-    'will not face a calamity until morning',
+    'until morning after the evening recitation',
   );
   expect(cards()[10].querySelector('.dua-translation')?.textContent).not.toContain('Recite');
   await harness.navigateByUrl('/duas?category=children');
@@ -904,13 +915,13 @@ it('shows the sourced bilingual dhikr collection and keeps its saved items separ
   const fourPhrases = [...cards()].find((card) => card.dataset['duaId'] === 'hisn-257')!;
   expect(fourPhrases.querySelectorAll('.dua-arabic')).toHaveLength(1);
   expect(fourPhrases.querySelector('.dua-instructions')?.textContent).toContain(
-    'you may begin with any of them',
+    'recitation may begin with any of them',
   );
   expect(
     [...fourPhrases.querySelectorAll('.dua-source a')].map((link) => link.getAttribute('href')),
   ).toEqual(['https://sunnah.com/hisn:257', 'https://sunnah.com/hisn:261']);
   expect(cards()[0].querySelector('.dua-instructions')?.textContent).toContain(
-    'one hundred times a day',
+    '100 times a day',
   );
   await harness.navigateByUrl('/dhikr?category=forgiveness');
   expect([...cards()].map((card) => card.dataset['duaId'])).toEqual([
@@ -920,10 +931,10 @@ it('shows the sourced bilingual dhikr collection and keeps its saved items separ
     'hisn-258',
   ]);
   expect(cards()[2].querySelector('.dua-instructions')?.textContent).toContain(
-    'one hundred times a day',
+    '100 times a day',
   );
   expect(cards()[3].querySelector('.dua-instructions')?.textContent).toContain(
-    'one thousand good deeds will be recorded, or one thousand sins erased',
+    '1,000 good deeds being recorded or 1,000 sins being erased',
   );
   expect(element().querySelector('.duas-category')?.textContent).toContain('Forgiveness');
   cards()[1].querySelector<HTMLButtonElement>('.dua-bookmark')!.click();

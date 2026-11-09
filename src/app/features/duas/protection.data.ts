@@ -194,8 +194,8 @@ export const PROTECTION_DUAS: readonly Dua[] = [
     arabic:
       'بِسـمِ اللهِ الذي لا يَضُـرُّ مَعَ اسمِـهِ شَيءٌ في الأرْضِ وَلا في السّمـاءِ وَهـوَ السّمـيعُ العَلـيم .',
     instructions: {
-      bs: 'Ko ovu dovu prouči tri puta ujutro, neće ga zadesiti nikakva nedaća do večeri, a ko je prouči tri puta navečer, neće ga zadesiti nikakva nedaća do jutra.',
-      en: 'Whoever recites this supplication three times in the morning will not face a calamity until evening, and whoever recites it three times in the evening will not face a calamity until morning.',
+      bs: 'Proučiti ovu dovu 3 puta ujutro i 3 puta navečer. U hadisu se navodi da jutarnje učenje štiti od iznenadne nedaće do večeri, a večernje do jutra.',
+      en: 'This supplication is recited 3 times in the morning and 3 times in the evening. The hadith mentions protection from sudden affliction until evening after the morning recitation, and until morning after the evening recitation.',
     },
     transcription: {
       bs: 'Bismillāhi-l-leḏī lā jeḍurru me‘a-smihi šej’un fī-l-erḍi ve lā fī-s-semā’i ve Huve-s-Semī‘u-l-‘Alīm.',

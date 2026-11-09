@@ -31,8 +31,8 @@ export const HAJJ_DUAS: readonly Dua[] = [
       {
         arabic: 'إِنَّ الصَّفَا وَالْمَرْوَةَ مِنْ شَعَائِرِ اللَّهِ.',
         instructions: {
-          bs: 'Kada se približiš Saffi, prouči ovaj ajet:',
-          en: 'As you approach Safa, recite this verse:',
+          bs: 'Pri približavanju Saffi proučiti ovaj ajet:',
+          en: 'This verse is recited when approaching Safa:',
         },
         transcription: {
           bs: 'Inne-ṣ-Ṣafā ve-l-Mervete min še‘ā’irillāh.',
@@ -47,8 +47,8 @@ export const HAJJ_DUAS: readonly Dua[] = [
         arabic:
           'لَا إِلَهَ إِلَّا اللَّهُ وَاللَّهُ أَكْبَرُ، لَا إِلَهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ، لَا إِلَهَ إِلَّا اللَّهُ وَحْدَهُ، أَنْجَزَ وَعْدَهُ وَنَصَرَ عَبْدَهُ وَهَزَمَ الْأَحْزَابَ وَحْدَهُ.',
         instructions: {
-          bs: 'Na Saffi se okreni prema Kibli i prouči ovu dovu, i nakon nje uputi svoju dovu, tako učini tri puta. Isto učiniti i na Mervi.',
-          en: 'At Safa, face the Qiblah and recite this dua, and after it make your own dua, do this three times. Do the same at Marwah.',
+          bs: 'Na Saffi se okrenuti prema Kibli i proučiti ovaj zikr 3 puta, a između ponavljanja uputiti vlastite dove. Isto učiniti na Mervi.',
+          en: 'At Safa, this dhikr is recited 3 times while facing the Qiblah, with personal supplications between repetitions. The same is done at Marwah.',
         },
         transcription: {
           bs: 'Lā ilāhe illellāhu vallāhu ekber, lā ilāhe illellāhu vaḥdehū lā šerīke leh, lehu-l-mulku ve lehu-l-ḥamdu ve huve ‘alā kulli šej’in qadīr, lā ilāhe illellāhu vaḥdehū, endžeze va‘dehū ve neṣare ‘abdehū, ve hezeme-l-aḥzābe vaḥdehū.',

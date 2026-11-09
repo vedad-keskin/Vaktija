@@ -13,8 +13,8 @@ export const AFTER_PRAYER_DUAS: readonly Dua[] = [
       {
         arabic: 'أَسْتَغْفِرُ اللَّهَ',
         instructions: {
-          bs: 'Nakon predaje selama prouči tri puta.',
-          en: 'After the salam, recite three times.',
+          bs: 'Nakon selama proučiti 3 puta.',
+          en: 'This is recited 3 times after the salam.',
         },
         transcription: { bs: 'Estagfirullāhe.', en: 'Astaghfirullāh.' },
         translation: { bs: 'Allaha za oprost molim.', en: 'I seek the forgiveness of Allah.' },
@@ -70,8 +70,8 @@ export const AFTER_PRAYER_DUAS: readonly Dua[] = [
       {
         arabic: 'سُبْحَانَ اللَّهِ وَالْحَمْدُ لِلَّهِ وَاللَّهُ أَكْبَرُ',
         instructions: {
-          bs: 'Svaka se ponavlja 33 puta.',
-          en: 'Each is recited 33 times.',
+          bs: 'Svaki od ova 3 zikra proučiti 33 puta.',
+          en: 'Each of these 3 phrases is recited 33 times.',
         },
         transcription: {
           bs: 'Subḥānallāhi. Ve-l-ḥamdu lillāhi. Vallāhu ekber.',
@@ -94,8 +94,8 @@ export const AFTER_PRAYER_DUAS: readonly Dua[] = [
         arabic:
           'بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ. قُلْ هُوَ اللَّهُ أَحَدٌ. اللَّهُ الصَّمَدُ. لَمْ يَلِدْ وَلَمْ يُولَدْ. وَلَمْ يَكُنْ لَهُ كُفُوًا أَحَدٌ',
         instructions: {
-          bs: 'El-Ihlas: prouči jednom poslije podnevskog, ikindijskog i jacijskog namaza, a tri puta poslije sabahskog i akšamskog namaza.',
-          en: 'Al-Ikhlas: recite once after Dhuhr, Asr and Isha, and three times after Fajr and Maghrib.',
+          bs: 'Suru El-Ihlas proučiti 3 puta poslije sabaha i akšama, a jednom poslije podne, ikindije i jacije.',
+          en: 'Al-Ikhlas is recited 3 times after Fajr and Maghrib, and once after Dhuhr, Asr and Isha.',
         },
         transcription: {
           bs: 'Bismillāhi-r-Raḥmāni-r-Raḥīm. Qul huvallāhu eḥad. Allāhu-ṣ-Ṣamed. Lem jelid ve lem jūled. Ve lem jekun lehu kufuven eḥad.',
@@ -123,8 +123,8 @@ export const AFTER_PRAYER_DUAS: readonly Dua[] = [
         arabic:
           'بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ. قُلْ أَعُوذُ بِرَبِّ الْفَلَقِ. مِنْ شَرِّ مَا خَلَقَ. وَمِنْ شَرِّ غَاسِقٍ إِذَا وَقَبَ. وَمِنْ شَرِّ النَّفَّاثَاتِ فِي الْعُقَدِ. وَمِنْ شَرِّ حَاسِدٍ إِذَا حَسَدَ',
         instructions: {
-          bs: 'El-Felek: prouči jednom poslije podnevskog, ikindijskog i jacijskog namaza, a tri puta poslije sabahskog i akšamskog namaza.',
-          en: 'Al-Falaq: recite once after Dhuhr, Asr and Isha, and three times after Fajr and Maghrib.',
+          bs: 'Suru El-Felek proučiti 3 puta poslije sabaha i akšama, a jednom poslije podne, ikindije i jacije.',
+          en: 'Al-Falaq is recited 3 times after Fajr and Maghrib, and once after Dhuhr, Asr and Isha.',
         },
         transcription: {
           bs: 'Bismillāhi-r-Raḥmāni-r-Raḥīm. Qul e‘ūḏu bi Rabbi-l-feleq. Min šerri mā ḫaleq. Ve min šerri gāsiqin iḏā veqab. Ve min šerri-n-neffāṯāti fī-l-‘uqad. Ve min šerri ḥāsidin iḏā ḥased.',
@@ -152,8 +152,8 @@ export const AFTER_PRAYER_DUAS: readonly Dua[] = [
         arabic:
           'بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ. قُلْ أَعُوذُ بِرَبِّ النَّاسِ. مَلِكِ النَّاسِ. إِلَٰهِ النَّاسِ. مِنْ شَرِّ الْوَسْوَاسِ الْخَنَّاسِ. الَّذِي يُوَسْوِسُ فِي صُدُورِ النَّاسِ. مِنَ الْجِنَّةِ وَالنَّاسِ',
         instructions: {
-          bs: 'En-Nas: prouči jednom poslije podnevskog, ikindijskog i jacijskog namaza, a tri puta poslije sabahskog i akšamskog namaza.',
-          en: 'An-Nas: recite once after Dhuhr, Asr and Isha, and three times after Fajr and Maghrib.',
+          bs: 'Suru En-Nas proučiti 3 puta poslije sabaha i akšama, a jednom poslije podne, ikindije i jacije.',
+          en: 'An-Nas is recited 3 times after Fajr and Maghrib, and once after Dhuhr, Asr and Isha.',
         },
         transcription: {
           bs: 'Bismillāhi-r-Raḥmāni-r-Raḥīm. Qul e‘ūḏu bi Rabbi-n-nās. Meliki-n-nās. Ilāhi-n-nās. Min šerri-l-vesvāsi-l-ḫannās. Elleḏī juvesvisu fī ṣudūri-n-nās. Mine-l-džinneti ve-n-nās.',
@@ -207,8 +207,8 @@ export const AFTER_PRAYER_DUAS: readonly Dua[] = [
         arabic:
           'لَا إِلَٰهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ يُحْيِي وَيُمِيتُ وَهُوَ عَلَىٰ كُلِّ شَيْءٍ قَدِيرٌ',
         instructions: {
-          bs: 'Prouči deset puta poslije sabahskog i akšamskog namaza.',
-          en: 'Recite ten times after Fajr and Maghrib.',
+          bs: 'Poslije sabaha i akšama proučiti 10 puta.',
+          en: 'This is recited 10 times after Fajr and Maghrib.',
         },
         transcription: {
           bs: 'Lā ilāhe illellāhu vaḥdehu lā šerīke leh, lehu-l-mulku ve lehu-l-ḥamdu, juḥjī ve jumītu ve huve ‘alā kulli šej’in qadīr.',
@@ -231,8 +231,8 @@ export const AFTER_PRAYER_DUAS: readonly Dua[] = [
         arabic:
           'اللَّهُمَّ إِنِّي أَسْأَلُكَ عِلْمًا نَافِعًا وَرِزْقًا طَيِّبًا وَعَمَلًا مُتَقَبَّلًا',
         instructions: {
-          bs: 'Prouči nakon predaje selama sabahskog farza.',
-          en: 'Recite after the salam of the obligatory Fajr prayer.',
+          bs: 'Proučiti nakon predaje selama sabahskog farza.',
+          en: 'This is recited after the salam of the obligatory Fajr prayer.',
         },
         transcription: {
           bs: 'Allāhumme innī es’eluke ‘ilmen nāfi‘an ve rizqan ṭajjiben ve ‘amelen muteqabbelen.',

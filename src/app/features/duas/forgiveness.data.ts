@@ -9,8 +9,8 @@ export const FORGIVENESS_DUAS: readonly Dua[] = [
     title: { bs: 'Dova nakon počinjenog grijeha', en: 'After committing a sin' },
     arabic: 'أَسْتَغْفِرُ اللَّهَ',
     instructions: {
-      bs: 'Svakome vjerniku koji počini grijeh, pa potom lijepo uzme abdest, klanja dva rekata i zatim zamoli Allaha za oprost ovim riječima, Allah mu oprosti počinjeni grijeh.',
-      en: 'After committing a sin, perform ablution well, pray two rak‘ahs, then ask Allah for forgiveness.',
+      bs: 'Nakon počinjenog grijeha lijepo uzeti abdest, klanjati 2 rekata, pa zamoliti Allaha za oprost. U hadisu se navodi da Allah tada oprašta počinjeni grijeh.',
+      en: 'After committing a sin, ablution is performed well, 2 rak‘ahs are offered, and Allah’s forgiveness is sought. The hadith states that Allah then forgives the sin.',
     },
     transcription: { bs: 'Estagfirullāh.', en: 'Astaghfirullāh.' },
     translation: { bs: 'Tražim oprost od Allaha.', en: 'I seek Allah’s forgiveness.' },

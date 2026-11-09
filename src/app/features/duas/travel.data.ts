@@ -40,6 +40,10 @@ export const TRAVEL_DUAS: readonly Dua[] = [
     id: 'hisn-217',
     title: { bs: 'Dova pri povratku s puta', en: 'When returning from a journey' },
     arabic: 'اللَّهُ أَكْبَرُ، اللَّهُ أَكْبَرُ، اللَّهُ أَكْبَرُ، لاَ إِلَهَ إِلاَّ اللَّهُ وَحْدَهُ لاَ شَرِيكَ لَهُ، لَهُ الْمُلْكُ، وَلَهُ الْحَمْدُ، وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ، آيِبُونَ، تَائِبُونَ، عَابِدُونَ، لِرَبِّنا حَامِدُونَ، صَدَقَ اللَّهُ وَعْدَهُ، وَنَصَرَ عَبْدَهُ، وَهَزَمَ الْأَحْزابَ وَحْدَهُ',
+    instructions: {
+      bs: 'Pri povratku s puta proučiti ovu dovu na svakom uzvišenju.',
+      en: 'On the return journey, this supplication is recited at each elevated point.',
+    },
     transcription: {
       bs: 'Allāhu ekber (tri puta). Lā ilāhe illellāhu vaḥdehū lā šerīke leh, lehu-l-mulku ve lehu-l-ḥamdu ve Huve ‘alā kulli šej’in Qadīr. Ājibūne, Tā’ibūne, ‘Ābidūne li Rabbinā ḥāmidūne. Ṣadeqallāhu va‘dehū ve neṣare ‘abdehū ve hezeme-l-aḥzābe vaḥdehū.',
       en: "Allāhu Akbar (three times). Lā ilāha illallāh waḥdahu lā sharīka lah, lahu ‘l-mulku, walahu ‘l-ḥamd, wa Huwa `alā kulli shay'in Qadīr, ā'ibūna, tā'ibūna,`ābidūn, li Rabbinā ḥāmidūn, sadaqallāhu wa`dah, wa nasara `abdah, wa hazama ‘l-'aḥzāba waḥdah.",

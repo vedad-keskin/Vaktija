@@ -11,8 +11,8 @@ export const ADHAN_DUAS: readonly Dua[] = [
       {
         arabic: 'حَيَّ عَلَى الصَّلَاةِ، وَحَيَّ عَلَى الْفَلَاحِ',
         instructions: {
-          bs: 'Ponavljaj za mujezinom sve riječi ezana osim ovih:',
-          en: "Repeat the caller's words, except these:",
+          bs: 'Ponavljati riječi ezana za mujezinom, osim ova dva poziva:',
+          en: 'The words of the adhan are repeated after the caller, except these two calls:',
         },
         transcription: {
           bs: 'Hajje ‘ale-ṣ-ṣalāh, hajje ‘ale-l-felāḥ.',
@@ -26,8 +26,8 @@ export const ADHAN_DUAS: readonly Dua[] = [
       {
         arabic: 'لَا حَوْلَ وَلَا قُوَّةَ إِلَّا بِاللَّهِ',
         instructions: {
-          bs: 'Kada čuješ ove riječi, umjesto njih odgovori:',
-          en: 'When you hear these words, reply instead:',
+          bs: 'Na svaki od ova dva poziva odgovoriti ovim riječima:',
+          en: 'Each of these two calls is answered with these words:',
         },
         transcription: {
           bs: 'Lā ḥavle ve lā quvvete illā billāh.',
@@ -49,6 +49,10 @@ export const ADHAN_DUAS: readonly Dua[] = [
     title: { bs: 'Dova poslije ezana', en: 'Supplication after the adhan' },
     arabic:
       'اللّهُـمَّ رَبَّ هَذِهِ الدّعْـوَةِ التّـامَّة وَالصّلاةِ القَـائِمَة آتِ محَـمَّداً الوَسيـلةَ وَالْفَضـيلَة وَابْعَـثْه مَقـامـاً مَحـموداً الَّذي وَعَـدْتَه',
+    instructions: {
+      bs: 'Nakon ezana proučiti salavat na Poslanika ﷺ, pa ovu dovu.',
+      en: 'After the adhan, blessings are sent upon the Prophet ﷺ, followed by this supplication.',
+    },
     transcription: {
       bs: 'Allāhumme rabbe hāḏihi-d-da‘veti-t-tāmmeti ve-ṣ-ṣalāti-l-qā’imeti āti Muḥammedeni-l-vesīlete ve-l-faḍīlete ve-b‘aṯhu meqāmen maḥmūdeni-l-leḏī ve‘adtehu.',
       en: "Allāhumma rabba hādhihi 'd-da'wati 't-tāmmah waṣ-ṣalāti 'l-qā'imah, 'āti Muhammadani 'l-wasīlata walfaḍīlata, wab 'ath-hu maqāma 'm-mahmūdani 'l-ladhī wa`adtahu.",

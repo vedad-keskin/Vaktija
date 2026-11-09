@@ -9,8 +9,8 @@ export const SALAT_DUAS: readonly Dua[] = [
     arabic:
       'سُبْحَانَكَ اللَّهُمَّ وَبِحَمْدِكَ وَتَبَارَكَ اسْمُكَ وَتَعَالَى جَدُّكَ وَلَا إِلَهَ غَيْرُكَ',
     instructions: {
-      bs: 'Prouči nakon početnog tekbira, prije učenja Kur’ana u namazu.',
-      en: 'Recite after the opening takbir, before reciting the Quran in prayer.',
+      bs: 'Proučiti nakon početnog tekbira, prije učenja Kur’ana u namazu.',
+      en: 'This is recited after the opening takbir, before reciting the Quran in prayer.',
     },
     transcription: {
       bs: 'Subḥāneke-llāhumme ve bi ḥamdike ve tebāreke-smuke ve te‘ālā džedduke ve lā ilāhe gajruke.',
@@ -30,8 +30,8 @@ export const SALAT_DUAS: readonly Dua[] = [
     title: { bs: 'Dova na rukūu', en: 'Remembrance while bowing' },
     arabic: 'سُبْحَانَ رَبِّيَ الْعَظِيمِ',
     instructions: {
-      bs: 'Proučiti tri puta na pregibanju u namazu.',
-      en: 'Recite three times while bowing in prayer.',
+      bs: 'Na pregibanju proučiti 3 puta.',
+      en: 'This is recited 3 times while bowing in prayer.',
     },
     transcription: {
       bs: 'Subḥāne Rabije-l-‘aẓīm.',
@@ -89,8 +89,8 @@ export const SALAT_DUAS: readonly Dua[] = [
     title: { bs: 'Dova na sedždi', en: 'Remembrance while prostrating' },
     arabic: 'سُبْحَانَ رَبِّيَ الْأَعْلَى',
     instructions: {
-      bs: 'Proučiti tri puta na sedždi.',
-      en: 'Recite three times while prostrating in prayer.',
+      bs: 'Na sedždi proučiti 3 puta.',
+      en: 'This is recited 3 times while prostrating in prayer.',
     },
     transcription: {
       bs: 'Subḥāne Rabbije-l-‘alā.',

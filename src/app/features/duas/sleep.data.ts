@@ -9,8 +9,8 @@ export const SLEEP_DUAS: readonly Dua[] = [
     arabic:
       'اللّهُـمَّ أَسْـلَمْتُ نَفْـسي إِلَـيْكَ، وَفَوَّضْـتُ أَمْـري إِلَـيْكَ، وَوَجَّـهْتُ وَجْـهي إِلَـيْكَ، وَأَلْـجَـاْتُ ظَهـري إِلَـيْكَ، رَغْبَـةً وَرَهْـبَةً إِلَـيْكَ، لا مَلْجَـأَ وَلا مَنْـجـا مِنْـكَ إِلاّ إِلَـيْكَ، آمَنْـتُ بِكِتـابِكَ الّـذي أَنْزَلْـتَ وَبِنَبِـيِّـكَ الّـذي أَرْسَلْـت',
     instructions: {
-      bs: 'Kad se odlučiš ići u postelju, prethodno uzmi abdest kao za namaz, potom lezi na desni bok i prouči dovu:',
-      en: 'Before you go to bed perform ablutions as you would for prayer, then lie down on your right side and say. . .',
+      bs: 'Prije spavanja uzeti abdest kao za namaz, leći na desni bok i proučiti ovu dovu.',
+      en: 'Before sleeping, this supplication is recited after performing ablution as for prayer and lying on the right side.',
     },
     transcription: {
       bs: 'Allāhumme eslemtu nefsī ilejke ve fevvaḍtu emrī ilejke ve vedždžehtu vedžhī ilejke ve eldže’tu ẓahrī ilejke ragbeten ve rehbeten ilejke, lā meldže’e ve lā mendžā minke illā ilejke. Āmentu bi Kitābike-l-leḏī enzelte ve bi Nebijjike-l-leḏī erselte.',
@@ -31,8 +31,8 @@ export const SLEEP_DUAS: readonly Dua[] = [
     arabic:
       'لَا إِلَهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ، سُبْحَانَ اللَّهِ، وَالْحَمْدُ لِلَّهِ، وَلَا إِلَهَ إِلَّا اللَّهُ، وَاللَّهُ أَكْبَرُ، وَلَا حَوْلَ وَلَا قُوَّةَ إِلَّا بِاللَّهِ الْعَلِيِّ الْعَظِيمِ، اللَّهُمَّ اغْفِرْ لِي.',
     instructions: {
-      bs: 'Ako se probudiš noću, prouči ovu dovu i zamoli za oprost, bit će ti oprošteno. Ako uputiš dovu, bit će primljena. Ako uzmeš abdest i klanjaš nafilu, namaz će biti primljen.',
-      en: 'If you wake during the night, recite this dua and ask Allah for forgiveness, you will be forgiven. If you make a supplication, it will be answered. If you perform ablution and pray, your prayer will be accepted.',
+      bs: 'Pri buđenju noću proučiti ovu dovu, pa zamoliti Allaha za oprost ili Mu uputiti vlastitu dovu. U hadisu se navode oprost i uslišana dova, te primljen namaz ako se nakon toga uzme abdest i klanja.',
+      en: 'On waking during the night, this supplication is recited, followed by asking Allah for forgiveness or making a personal supplication. The hadith mentions forgiveness and an answered supplication, as well as acceptance of prayer if ablution and prayer follow.',
     },
     transcription: {
       bs: 'Lā ilāhe illellāhu vaḥdehū lā šerīke leh, lehu-l-mulku ve lehu-l-ḥamdu, ve huve ‘alā kulli šej’in qadīr. Subḥānallāhi ve-l-ḥamdu lillāhi ve lā ilāhe illellāhu vallāhu ekber, ve lā ḥavle ve lā quvvete illā billāhi-l-‘Alijji-l-‘Aẓīm. Allāhumma-gfir lī.',
@@ -50,8 +50,8 @@ export const SLEEP_DUAS: readonly Dua[] = [
     title: { bs: 'Dova poslije ružnog snoviđenja', en: 'After a bad dream' },
     arabic: 'أعوذ بالله',
     instructions: {
-      bs: 'Onaj ko sanja san koji mu nije drag neka ga ne priča nikome. Neka u lijevu stranu puhne tri puta, potom prouči ovu dovu tri puta i prevrne se na drugu stranu.',
-      en: 'Whoever has a dream they dislike should not tell anyone about it. They should blow to their left three times, then recite this dua three times and turn onto their other side.',
+      bs: 'Nakon ružnog sna 3 puta lagano pljucnuti ulijevo i 3 puta zatražiti Allahovu zaštitu od šejtana i zla sna. Ne pričati san nikome i okrenuti se na drugi bok.',
+      en: 'After a bad dream, the practice is to spit lightly to the left 3 times and seek Allah’s protection from Satan and the dream’s evil 3 times. The dream is not shared with anyone, and the sleeping position is changed to the other side.',
     },
     transcription: {
       bs: 'E‘ūḏu billāhi.',

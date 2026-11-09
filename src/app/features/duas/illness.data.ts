@@ -10,8 +10,8 @@ export const ILLNESS_DUAS: readonly Dua[] = [
       {
         arabic: 'بِسْمِ اللَّهِ',
         instructions: {
-          bs: 'Stavi ruku na površinu tijela gdje osjećaš bol. Izgovori tri puta.',
-          en: 'Place your hand on the painful area. Say this three times.',
+          bs: 'Staviti ruku na bolno mjesto i izgovoriti ovo 3 puta.',
+          en: 'The hand is placed on the painful area, and these words are said 3 times.',
         },
         transcription: { bs: 'Bismillāh.', en: 'Bismillāh.' },
         translation: { bs: 'U ime Allaha.', en: 'With the Name of Allah.' },
@@ -19,8 +19,8 @@ export const ILLNESS_DUAS: readonly Dua[] = [
       {
         arabic: 'أَعُوذُ بِاللَّهِ وَقُدْرَتِهِ مِنْ شَرِّ مَا أَجِدُ وَأُحَاذِرُ',
         instructions: {
-          bs: 'Zatim izgovori sedam puta.',
-          en: 'Then say this seven times.',
+          bs: 'Zatim izgovoriti ovo 7 puta.',
+          en: 'Then these words are said 7 times.',
         },
         transcription: {
           bs: 'E‘ūḏu billāhi ve qudretihī min šerri mā edžidu ve uḥāḏiru.',
@@ -59,8 +59,8 @@ export const ILLNESS_DUAS: readonly Dua[] = [
     title: { bs: 'Dova za ozdravljenje bolesnika', en: 'For the sick person’s recovery' },
     arabic: 'أَسْـأَلُ اللهَ العَـظيـم، رَبَّ العَـرْشِ العَـظيـم أَنْ يَشْفـيك',
     instructions: {
-      bs: 'Prilikom posjete bolesniku prouči ovu dovu sedam puta.',
-      en: 'Recite seven times when visiting someone who is ill.',
+      bs: 'Pri posjeti bolesniku proučiti ovu dovu 7 puta.',
+      en: 'This supplication is recited 7 times when visiting someone who is ill.',
     },
     transcription: {
       bs: 'Es’elullāhe-l-‘aẓīm Rabbe-l-‘Arši-l-‘aẓīmi en ješfijeke.',
@@ -100,8 +100,8 @@ export const ILLNESS_DUAS: readonly Dua[] = [
     },
     arabic: 'لَا إِلَهَ إِلَّا اللَّهُ',
     instructions: {
-      bs: 'Ući će u Džennet onaj čije posljednje riječi budu:',
-      en: 'Will enter Paradise he whose last words are:',
+      bs: 'Poslanik ﷺ je rekao da će onaj kome ove riječi budu posljednje ući u Džennet.',
+      en: 'The Prophet ﷺ said that whoever dies with these as their last words will enter Paradise.',
     },
     transcription: { bs: 'Lā ilāhe illellāh.', en: 'Lā ilāha illallāh.' },
     translation: { bs: 'Nema boga osim Allaha.', en: 'There is none worthy of worship but Allah.' },

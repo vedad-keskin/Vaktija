@@ -22,8 +22,8 @@ export const DHIKR: readonly DhikrEntry[] = [
     title: { bs: 'Traženje oprosta i pokajanje', en: 'Seeking forgiveness and repentance' },
     arabic: 'أَسْتَغْفِرُ اللَّهَ وَأَتُوبُ إِلَيْهِ',
     instructions: {
-      bs: 'Poslanik, sallallahu alejhi ve sellem, kazao je da više od sedamdeset puta dnevno traži oprost od Allaha i kaje Mu se.',
-      en: 'The Prophet said that he sought Allah’s forgiveness and repented to Him more than seventy times each day.',
+      bs: 'Poslanik ﷺ tražio je oprost od Allaha i kajao Mu se više od 70 puta dnevno.',
+      en: 'The Prophet ﷺ sought Allah’s forgiveness and turned to Him in repentance more than 70 times a day.',
     },
     transcription: {
       bs: 'Estagfirullāhe ve etūbu ilejhi.',
@@ -48,8 +48,8 @@ export const DHIKR: readonly DhikrEntry[] = [
     arabic:
       'لَا إِلَٰهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ، وَهُوَ عَلَىٰ كُلِّ شَيْءٍ قَدِيرٌ',
     instructions: {
-      bs: 'Prouči stotinu puta dnevno. U predaji se navodi nagrada kao za oslobađanje deset robova, upisivanje stotinu dobrih djela, brisanje stotinu loših djela i zaštita od šejtana toga dana sve dok noć ne nastupi. Niko ne može učiniti nešto vrednije od toga, osim onoga koji ove riječi izgovori više puta.',
-      en: 'Recite one hundred times a day. The narration promises a reward equal to freeing ten slaves, one hundred good deeds recorded, one hundred misdeeds erased, and protection from Satan until evening. Only someone who does more can surpass this reward.',
+      bs: 'Proučiti ovo 100 puta dnevno. U hadisu se navode nagrada kao za oslobađanje 10 robova, upisivanje 100 dobrih djela, brisanje 100 grijeha i zaštita od šejtana do večeri.',
+      en: 'This is recited 100 times a day. The hadith mentions a reward equivalent to freeing 10 slaves, 100 good deeds recorded, 100 sins erased, and protection from Satan until evening.',
     },
     transcription: {
       bs: 'Lā ilāhe illellāhu vaḥdehū lā šerīke leh, lehu-l-mulku ve lehu-l-ḥamdu ve Huve ‘alā kulli šej’in Qadīr.',
@@ -73,8 +73,8 @@ export const DHIKR: readonly DhikrEntry[] = [
     title: { bs: 'Slavljenje Allaha i zahvala', en: 'Glorifying and praising Allah' },
     arabic: 'سُبْحَانَ اللَّهِ وَبِحَمْدِهِ',
     instructions: {
-      bs: 'Prouči stotinu puta na dan. Onome ko tako izgovori bit će skinuti (umanjeni) grijesi makar da su veličine morske pjene.',
-      en: 'Recite one hundred times a day. The narration states that doing so brings forgiveness of sins, even if they are as abundant as sea foam.',
+      bs: 'Proučiti ovo 100 puta dnevno. U hadisu se navodi oprost grijeha, makar ih bilo poput morske pjene.',
+      en: 'This is recited 100 times a day. The hadith describes forgiveness of sins, even if they are as abundant as sea foam.',
     },
     transcription: {
       bs: 'Subḥānallāhi ve bi ḥamdihī.',
@@ -98,7 +98,7 @@ export const DHIKR: readonly DhikrEntry[] = [
     title: { bs: 'Dvije lahke riječi', en: 'Two beloved phrases' },
     arabic: 'سُبْحَانَ اللَّهِ وَبِحَمْدِهِ، سُبْحَانَ اللَّهِ الْعَظِيمِ',
     instructions: {
-      bs: 'Ove dvije riječi lahke su na jeziku, teške na Vagi i drage Svemilosnom.',
+      bs: 'Ove dvije riječi su lahke na jeziku, teške na Vagi i drage Svemilosnom.',
       en: 'These two phrases are easy to say, heavy on the Scale, and beloved to the Most Merciful.',
     },
     transcription: {
@@ -127,8 +127,8 @@ export const DHIKR: readonly DhikrEntry[] = [
         arabic:
           'سُبْحَانَ اللَّهِ وَالْحَمْدُ لِلَّهِ وَلَا إِلَٰهَ إِلَّا اللَّهُ وَاللَّهُ أَكْبَرُ',
         instructions: {
-          bs: 'Allahu su najdraže ove četiri riječi. Možeš početi bilo kojom od njih. Poslanik, sallallahu alejhi ve sellem, kazao je da mu je njihovo izgovaranje draže nego sve ono što sunce obasja.',
-          en: 'These four phrases are the most beloved words to Allah, and you may begin with any of them. The Prophet said they were dearer to him than everything the sun shines upon.',
+          bs: 'Ove četiri riječi Allahu su najdraže i može se početi bilo kojom od njih. Poslaniku ﷺ bile su draže od svega što sunce obasja.',
+          en: 'These four phrases are the words most beloved to Allah, and recitation may begin with any of them. The Prophet ﷺ said they were dearer to him than everything the sun shines upon.',
         },
         transcription: {
           bs: 'Subḥānallāhi ve-l-ḥamdu lillāhi ve lā ilāhe illellāhu vallāhu ekber.',
@@ -167,8 +167,8 @@ export const DHIKR: readonly DhikrEntry[] = [
     title: { bs: 'Tesbih za brisanje grijeha', en: 'Tasbih for forgiveness' },
     arabic: 'سُبْحَانَ اللَّهِ',
     instructions: {
-      bs: 'Prouči stotinu puta dnevno. Bit će ti upisano hiljadu dobrih djela ili pobrisano hiljadu ružnih djela koja si počinio.',
-      en: 'Recite one hundred times a day. The narration states that one thousand good deeds will be recorded, or one thousand sins erased.',
+      bs: 'Proučiti ovo 100 puta dnevno. U hadisu se navodi da se za to upisuje 1.000 dobrih djela ili briše 1.000 grijeha.',
+      en: 'This is recited 100 times a day. The hadith describes 1,000 good deeds being recorded or 1,000 sins being erased.',
     },
     transcription: { bs: 'Subḥānallāh.', en: 'Subḥānallāh.' },
     translation: {
@@ -189,8 +189,8 @@ export const DHIKR: readonly DhikrEntry[] = [
     title: { bs: 'Palma u Džennetu', en: 'A palm tree in Paradise' },
     arabic: 'سُبْحَانَ اللَّهِ الْعَظِيمِ وَبِحَمْدِهِ',
     instructions: {
-      bs: 'Onome ko izgovori ove riječi u Džennetu će biti zasađena palma.',
-      en: 'The narration states that whoever says this will have a date palm planted for them in Paradise.',
+      bs: 'U predaji se navodi da će onome ko izgovori ove riječi u Džennetu biti zasađena palma.',
+      en: 'The narration mentions a date palm being planted in Paradise for whoever says these words.',
     },
     transcription: {
       bs: 'Subḥānallāhi-l-‘Aẓīm ve bi ḥamdihī.',
@@ -214,8 +214,8 @@ export const DHIKR: readonly DhikrEntry[] = [
     title: { bs: 'Jedna od džennetskih riznica', en: 'A treasure of Paradise' },
     arabic: 'لَا حَوْلَ وَلَا قُوَّةَ إِلَّا بِاللَّهِ',
     instructions: {
-      bs: 'Poslanik, sallallahu alejhi ve sellem, podučio je Abdullaha, sina Kajsova, ovim riječima i nazvao ih jednom od džennetskih riznica.',
-      en: 'The Prophet taught these words to Abdullah ibn Qays, describing them as one of the treasures of Paradise.',
+      bs: 'Poslanik ﷺ nazvao je ove riječi jednom od džennetskih riznica.',
+      en: 'The Prophet ﷺ described these words as one of the treasures of Paradise.',
     },
     transcription: {
       bs: 'Lā ḥavle ve lā quvvete illā billāhi.',

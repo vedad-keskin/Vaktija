@@ -111,15 +111,15 @@ export const GENERAL_DUAS: readonly Dua[] = [
     sayings: [
       {
         arabic: 'الْحَمْدُ لِلَّهِ',
-        instructions: { bs: 'Kad kihneš, reci:', en: 'When you sneeze, say:' },
+        instructions: { bs: 'Pri kihanju izgovoriti:', en: 'Upon sneezing, these words are said:' },
         transcription: { bs: 'El-ḥamdu lillāhi.', en: 'Alḥamdulillāh.' },
         translation: { bs: 'Hvala Allahu.', en: 'All praises and thanks are to Allah.' },
       },
       {
         arabic: 'يَرْحَمُكَ اللَّهُ',
         instructions: {
-          bs: 'Kada druga osoba čuje da neko kihne i zahvali Allahu, neka uzvrati:',
-          en: 'When someone sneezes and praises Allah, reply:',
+          bs: 'Kada neko kihne i zahvali Allahu, odgovoriti ovim riječima:',
+          en: 'These words are said in response to someone who sneezes and praises Allah:',
         },
         transcription: { bs: 'Jerḥamukellāhu.', en: 'Yarḥamukallāh.' },
         translation: { bs: 'Allah ti se smilovao.', en: 'May Allah have mercy upon you.' },
@@ -127,8 +127,8 @@ export const GENERAL_DUAS: readonly Dua[] = [
       {
         arabic: 'يَهْدِيكُمُ اللَّهُ وَيُصْلِحُ بَالَكُمْ',
         instructions: {
-          bs: 'Naposljetku osoba koja je kihnula neka uzvrati sa:',
-          en: 'When someone responds to your sneeze with “Yarḥamukallāh”, say:',
+          bs: 'Nakon kihanja uzvratiti na odgovor druge osobe:',
+          en: 'The person who sneezed then replies:',
         },
         transcription: {
           bs: 'Jehdīkumullāhu ve juṣliḥ bālekum.',
@@ -216,8 +216,8 @@ export const GENERAL_DUAS: readonly Dua[] = [
     title: { bs: 'Dova kada se dogodi nešto nepoželjno', en: 'When something unwelcome happens' },
     arabic: 'قَدَّرَ اللَّهُ وَمَا شَاءَ فَعَلَ',
     instructions: {
-      bs: 'Kad te nešto zadesi, ne reci „Da učinih tako i tako”, nego prouči ovu dovu.',
-      en: 'When a setback occurs, do not say “If only I had done such and such”, rather say this supplication.',
+      bs: 'Kada se dogodi nešto nepoželjno, ne govoriti „Da je bilo ovako ili onako…”, nego proučiti ovu dovu.',
+      en: 'When something unwelcome happens, this supplication is recited instead of saying, “If only things had been done differently…”.',
     },
     transcription: { bs: 'Qadderellāhu ve mā šā’e fe‘al.', en: "Qaddarallāhu wa mā shā'a fa`al." },
     translation: {
