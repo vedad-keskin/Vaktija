@@ -29,6 +29,7 @@
             id="countdown"
             aria-labelledby="next-prayer-name"
           >
+            <span class="countdown-compact-background" aria-hidden="true"></span>
             <button
               type="button"
               class="countdown-toggle"
@@ -42,21 +43,6 @@
                 countdownCollapsed() ? 'countdown-summary-name countdown-summary-timer' : null
               "
             >
-              <span
-                class="countdown-summary-name"
-                id="countdown-summary-name"
-                [hidden]="!countdownCollapsed()"
-                >{{ cd.name }}</span
-              >
-              <span
-                class="countdown-summary-timer"
-                id="countdown-summary-timer"
-                role="timer"
-                aria-live="off"
-                [hidden]="!countdownCollapsed()"
-              >
-                {{ pad(cd.hours) }}:{{ pad(cd.minutes) }}:{{ pad(cd.seconds) }}
-              </span>
               <svg
                 class="countdown-chevron"
                 aria-hidden="true"
@@ -74,6 +60,17 @@
                 />
               </svg>
             </button>
+            <div class="countdown-summary" [attr.aria-hidden]="!countdownCollapsed()">
+              <span class="countdown-summary-name" id="countdown-summary-name">{{ cd.name }}</span>
+              <span
+                class="countdown-summary-timer"
+                id="countdown-summary-timer"
+                role="timer"
+                aria-live="off"
+              >
+                {{ pad(cd.hours) }}:{{ pad(cd.minutes) }}:{{ pad(cd.seconds) }}
+              </span>
+            </div>
             <div class="countdown-content" id="countdown-details">
               <div class="countdown-expanded">
                 <div class="countdown-dates" id="date-display">

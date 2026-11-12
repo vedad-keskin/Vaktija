@@ -45,12 +45,18 @@ it('starts expanded, remembers the countdown toggle and keeps both timers live w
     expect(toggle().getAttribute('aria-expanded')).toBe('true');
     expect(toggle().getAttribute('aria-label')).toBe(EN_LABELS.collapseCountdown);
     expect(toggle().getAttribute('aria-controls')).toBe('countdown-details');
+    expect(
+      fixture.nativeElement.querySelector('.countdown-summary').getAttribute('aria-hidden'),
+    ).toBe('true');
 
     toggle().click();
     fixture.detectChanges();
     expect(toggle().getAttribute('aria-expanded')).toBe('false');
     expect(toggle().getAttribute('aria-label')).toBe(EN_LABELS.expandCountdown);
     expect(localStorage.getItem('vaktija_countdown_collapsed')).toBe('true');
+    expect(
+      fixture.nativeElement.querySelector('.countdown-summary').getAttribute('aria-hidden'),
+    ).toBe('false');
     fixture.destroy();
     fixture = TestBed.createComponent(PrayerTimesPage);
     await fixture.whenStable();
