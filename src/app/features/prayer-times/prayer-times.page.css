@@ -304,8 +304,10 @@
     padding: 1.85rem 0.75rem 4.5rem;
   }
   .countdown-heading h2 {
-    font-family: var(--font-heading);
     font-size: clamp(3.1rem, 10vw, 5.75rem);
+  }
+  .countdown-summary-name {
+    font-family: var(--font-display);
   }
   .countdown-dates {
     padding-inline: 3rem;
