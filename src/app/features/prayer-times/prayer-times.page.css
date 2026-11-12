@@ -90,7 +90,7 @@
   font-size: clamp(2.25rem, 4vw, 3.4rem);
   font-weight: 600;
   line-height: 1.2;
-  margin: 0.35rem 0 0.65rem;
+  margin: 0.35rem 0 0.15rem;
 }
 .countdown-timer {
   display: flex;
@@ -276,7 +276,7 @@
     padding: 1.75rem 1.5rem 2.5rem;
   }
   .countdown-section {
-    padding: 1rem 2rem 4.5rem;
+    padding: 1rem 2rem 4rem;
   }
   .countdown-dates {
     gap: 0.8rem;
@@ -339,7 +339,7 @@
       visibility 0s 80ms;
   }
   .countdown-expanded {
-    padding: 1.85rem 0.75rem 4.5rem;
+    padding: 1.85rem 0.75rem 4rem;
   }
   .countdown-heading h2 {
     font-size: clamp(3.1rem, 10vw, 5.75rem);
@@ -427,7 +427,7 @@
     padding: 1.5rem 2rem 3rem;
   }
   .countdown-section {
-    padding: 4.2rem 2rem 4.5rem;
+    padding: 4.2rem 2rem 4rem;
   }
   .countdown-dates {
     position: absolute;
