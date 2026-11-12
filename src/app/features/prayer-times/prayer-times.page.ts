@@ -17,6 +17,8 @@ import { PrayerTimeData, PrayerTime } from '../../core/models/prayer-time.model'
 import { Location } from '../../core/models/location.model';
 import { sarajevoDayKey } from '../../core/utils/sarajevo-date';
 
+const COUNTDOWN_STORAGE_KEY = 'vaktija_countdown_collapsed';
+
 @Component({
   selector: 'app-prayer-times',
   standalone: true,
@@ -52,7 +54,7 @@ export class PrayerTimesPage implements OnInit, OnDestroy {
   protected readonly isLoading = signal(true);
   protected readonly error = signal<string | null>(null);
   protected readonly now = signal(new Date());
-  protected readonly hijriDate = signal('');
+  protected readonly countdownCollapsed = signal(this.loadCountdownCollapsed());
 
   /** Reactive labels shortcut */
   protected readonly labels = this.langService.labels;
@@ -238,6 +240,23 @@ export class PrayerTimesPage implements OnInit, OnDestroy {
     return n.toString().padStart(2, '0');
   }
 
+  protected toggleCountdown(): void {
+    this.countdownCollapsed.update((collapsed) => !collapsed);
+    try {
+      localStorage.setItem(COUNTDOWN_STORAGE_KEY, String(this.countdownCollapsed()));
+    } catch {
+      // The toggle still works when browser storage is unavailable.
+    }
+  }
+
+  private loadCountdownCollapsed(): boolean {
+    try {
+      return localStorage.getItem(COUNTDOWN_STORAGE_KEY) !== 'false';
+    } catch {
+      return true;
+    }
+  }
+
   private loadLocations(): void {
     this.locationService.getLocations().subscribe({
       next: (locs) => this.locations.set(locs),
@@ -265,7 +284,6 @@ export class PrayerTimesPage implements OnInit, OnDestroy {
     if (cached) {
       this.rawTimes.set(cached.prayerTimes);
       this.dateLabel.set(cached.dateLabel);
-      this.hijriDate.set(cached.hijriDate);
       this.error.set(null);
       this.isLoading.set(false);
       /* Valid snapshot for today → at most one fetch/day per key; no duplicate HTTP. */
@@ -302,7 +320,6 @@ export class PrayerTimesPage implements OnInit, OnDestroy {
         const active = snapshots[this.langService.lang()];
         this.rawTimes.set(active.prayerTimes);
         this.dateLabel.set(active.dateLabel);
-        this.hijriDate.set(active.hijriDate);
         this.isLoading.set(false);
         this.error.set(null);
       },

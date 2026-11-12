@@ -11,6 +11,96 @@ import { CalculationMethodService } from '../../core/services/calculation-method
 import { LanguageService } from '../../core/services/language.service';
 import { BS_LABELS, EN_LABELS } from '../../core/i18n';
 
+it('remembers the countdown toggle and keeps both timers live even without browser storage', async () => {
+  localStorage.clear();
+  localStorage.setItem('vaktija_lang', 'en');
+  const snapshot = {
+    prayerTimes: [{ name: 'Fajr', time: '06:00', minutes: 360, isCalculated: false }],
+    locationName: 'Sarajevo',
+    dateLabel: 'Today',
+    hijriDate: '2 Jumada al-Thani 1448',
+  };
+  await TestBed.configureTestingModule({
+    imports: [PrayerTimesPage],
+    providers: [
+      provideRouter([]),
+      {
+        provide: CalculationMethodService,
+        useValue: { method: signal('iz'), hasChosen: signal(true) },
+      },
+      {
+        provide: PrayerTimeService,
+        useValue: { getTodayPrayerTimes: () => of({ snapshots: { bs: snapshot, en: snapshot } }) },
+      },
+    ],
+  }).compileComponents();
+
+  let fixture = TestBed.createComponent(PrayerTimesPage);
+  try {
+    await fixture.whenStable();
+    const toggle = () =>
+      fixture.nativeElement.querySelector('.countdown-toggle') as HTMLButtonElement;
+    expect(fixture.nativeElement.querySelector('.countdown-section.collapsed')).toBeTruthy();
+    expect(fixture.nativeElement.querySelector('.date-hijri')).toBeNull();
+    expect(toggle().getAttribute('aria-expanded')).toBe('false');
+    expect(toggle().getAttribute('aria-label')).toBe(EN_LABELS.expandCountdown);
+    expect(toggle().getAttribute('aria-controls')).toBe('countdown-details');
+
+    toggle().click();
+    fixture.detectChanges();
+    expect(toggle().getAttribute('aria-expanded')).toBe('true');
+    expect(toggle().getAttribute('aria-label')).toBe(EN_LABELS.collapseCountdown);
+    expect(localStorage.getItem('vaktija_countdown_collapsed')).toBe('false');
+    fixture.destroy();
+    fixture = TestBed.createComponent(PrayerTimesPage);
+    await fixture.whenStable();
+    expect(toggle().getAttribute('aria-expanded')).toBe('true');
+
+    toggle().click();
+    fixture.detectChanges();
+    expect(localStorage.getItem('vaktija_countdown_collapsed')).toBe('true');
+    fixture.destroy();
+    fixture = TestBed.createComponent(PrayerTimesPage);
+    await fixture.whenStable();
+    expect(toggle().getAttribute('aria-expanded')).toBe('false');
+
+    const state = fixture.componentInstance as unknown as { now: ReturnType<typeof signal<Date>> };
+    for (const [second, remaining] of [
+      [58, '01:00:02'],
+      [59, '01:00:01'],
+    ] as const) {
+      state.now.set(new Date(2026, 10, 12, 4, 59, second));
+      fixture.detectChanges();
+      expect(
+        fixture.nativeElement.querySelector('#countdown-summary-timer').textContent.trim(),
+      ).toBe(remaining);
+      expect(
+        [...fixture.nativeElement.querySelectorAll('.countdown-value')]
+          .map((el: Element) => el.textContent)
+          .join(':'),
+      ).toBe(remaining);
+    }
+
+    vi.spyOn(Storage.prototype, 'setItem').mockImplementation(() => {
+      throw new Error('blocked');
+    });
+    toggle().click();
+    fixture.detectChanges();
+    expect(toggle().getAttribute('aria-expanded')).toBe('true');
+    fixture.destroy();
+    vi.spyOn(Storage.prototype, 'getItem').mockImplementation(() => {
+      throw new Error('blocked');
+    });
+    fixture = TestBed.createComponent(PrayerTimesPage);
+    await fixture.whenStable();
+    expect(toggle().getAttribute('aria-expanded')).toBe('false');
+  } finally {
+    fixture.destroy();
+    vi.restoreAllMocks();
+    localStorage.clear();
+  }
+});
+
 it('gives all eight times distinct illustrations across translations and Friday noon', async () => {
   localStorage.clear();
   await TestBed.configureTestingModule({ imports: [PrayerCardComponent] }).compileComponents();

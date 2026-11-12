@@ -33,6 +33,8 @@ export interface AppLabels {
   countdownLabelSuffix: string;
   /** aria-label for linear progress under countdown (same window as current-prayer ring) */
   countdownProgressAria: string;
+  expandCountdown: string;
+  collapseCountdown: string;
   nextTime: string;
   nextBadge: string;
   currentBadge: string;
@@ -197,6 +199,8 @@ export const BS_LABELS: AppLabels = {
   countdownSeconds: 'sek',
   countdownLabelSuffix: 'ZA',
   countdownProgressAria: 'Postotak proteklog vremena u intervalu do sljedećeg namaza',
+  expandCountdown: 'Proširi odbrojavanje',
+  collapseCountdown: 'Skupi odbrojavanje',
   nextTime: 'Sljedeće vrijeme',
   nextBadge: 'Sljedeće',
   currentBadge: 'Trenutno',

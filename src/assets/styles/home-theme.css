@@ -67,6 +67,7 @@
   --progress-filled: #d2b777;
   --progress-track: #345044;
   --hero-image: url('/assets/ornaments/mosque-horizon-dark.webp');
+  --hero-compact-image: url('/assets/ornaments/mosque-horizon-dark.webp');
   --hero-sky: #032c28;
   --hero-scrim: #032c2870;
   --hero-text: #fff8e7;
@@ -101,6 +102,7 @@
   --progress-filled: #7c5e23;
   --progress-track: #dce1d1;
   --hero-image: url('/assets/ornaments/mosque-horizon-light.webp');
+  --hero-compact-image: url('/assets/ornaments/mosque-horizon-light.webp');
   --hero-sky: #faf7ed;
   --hero-scrim: #faf7eddf;
   --hero-text: #123d33;

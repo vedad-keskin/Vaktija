@@ -37,6 +37,8 @@ export const EN_LABELS: AppLabels = {
   countdownSeconds: 'sec',
   countdownLabelSuffix: 'IN',
   countdownProgressAria: 'Elapsed share of the current prayer-time window until the next prayer',
+  expandCountdown: 'Expand countdown',
+  collapseCountdown: 'Collapse countdown',
   nextTime: 'Up next',
   nextBadge: 'Next',
   currentBadge: 'Current',

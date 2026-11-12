@@ -14,6 +14,9 @@
 .countdown-wrap {
   position: relative;
 }
+.countdown-toggle {
+  display: none;
+}
 .countdown-section {
   --text-primary: var(--hero-text);
   --text-secondary: var(--hero-muted);
@@ -71,10 +74,6 @@
   font-weight: 500;
   text-transform: capitalize;
   color: var(--text-secondary);
-}
-.date-hijri {
-  font-size: 0.75rem;
-  color: var(--text-muted);
 }
 .countdown-label {
   display: inline-block;
@@ -280,18 +279,98 @@
   .countdown-dates {
     gap: 0.8rem;
   }
-  .date-hijri::before {
-    content: '·';
-    padding-right: 0.8rem;
-    color: var(--gold);
-  }
   .countdown-timer {
     gap: 0.75rem;
   }
 }
 @media (max-width: 599px) {
   .countdown-section {
-    padding-bottom: 4.5rem;
+    display: grid;
+    grid-template-rows: 1fr;
+    min-height: 76px;
+    padding: 0;
+    transition: grid-template-rows 280ms ease;
+  }
+  .countdown-content {
+    min-height: 0;
+    overflow: hidden;
+    transition:
+      opacity 180ms ease,
+      visibility 280ms;
+  }
+  .countdown-expanded {
+    padding: 1.85rem 0.75rem 4.5rem;
+  }
+  .countdown-dates {
+    padding-inline: 3rem;
+  }
+  .countdown-toggle {
+    position: absolute;
+    z-index: 2;
+    inset: 15px 8px auto auto;
+    display: grid;
+    align-items: center;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    border: 0;
+    border-radius: 12px;
+    background: transparent;
+    color: inherit;
+    font: 600 1.45rem/1 var(--font-heading);
+    font-variant-numeric: tabular-nums;
+    cursor: pointer;
+  }
+  :host .countdown-toggle:focus-visible {
+    outline-offset: -4px;
+  }
+  .countdown-chevron {
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    width: 32px;
+    height: 32px;
+    padding: 6px;
+    border: 1px solid var(--hero-border);
+    color: var(--gold);
+    background: var(--hero-sky);
+    border-radius: 50%;
+    transform: rotate(180deg);
+    transition: transform 280ms ease;
+  }
+  .collapsed {
+    grid-template-rows: 0fr;
+  }
+  .collapsed :is(.countdown-content, .horizon-scene) {
+    opacity: 0;
+    visibility: hidden;
+  }
+  .collapsed .countdown-toggle {
+    inset: 0;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 0.75rem;
+    width: 100%;
+    height: 74px;
+    padding: 0 4rem 0 1rem;
+    text-align: left;
+  }
+  .countdown-summary-name {
+    overflow: hidden;
+    font: 600 clamp(1.1rem, 4.5vw, 1.45rem)/1.2 var(--font-display);
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .collapsed .countdown-chevron {
+    top: 21px;
+    right: 14px;
+    transform: rotate(0);
+  }
+  .collapsed::before {
+    width: 100%;
+    height: 100%;
+    background: var(--hero-compact-image) center bottom / cover no-repeat;
+    opacity: 0.65;
+    mask-image: none;
   }
   .countdown-section::before,
   .horizon-scene {
@@ -315,9 +394,6 @@
   }
   .date-gregorian {
     font-size: 0.9rem;
-  }
-  .date-hijri {
-    font-size: 0.8rem;
   }
   .schedule-section {
     margin-top: 1.5rem;
