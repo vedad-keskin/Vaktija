@@ -41,7 +41,7 @@ it('starts expanded, remembers the countdown toggle and keeps both timers live w
     const toggle = () =>
       fixture.nativeElement.querySelector('.countdown-toggle') as HTMLButtonElement;
     expect(fixture.nativeElement.querySelector('.countdown-section.collapsed')).toBeNull();
-    expect(fixture.nativeElement.querySelector('.date-hijri')).toBeNull();
+    expect(fixture.nativeElement.querySelector('.date-hijri').textContent).toBe(snapshot.hijriDate);
     expect(toggle().getAttribute('aria-expanded')).toBe('true');
     expect(toggle().getAttribute('aria-label')).toBe(EN_LABELS.collapseCountdown);
     expect(toggle().getAttribute('aria-controls')).toBe('countdown-details');
@@ -106,6 +106,48 @@ it('starts expanded, remembers the countdown toggle and keeps both timers live w
   } finally {
     fixture.destroy();
     vi.restoreAllMocks();
+    localStorage.clear();
+  }
+});
+
+it('restores cached Hijri dates in both languages and removes them when unavailable', async () => {
+  localStorage.clear();
+  localStorage.setItem('vaktija_lang', 'en');
+  const snapshot = {
+    prayerTimes: [{ name: 'Fajr', time: '06:00', minutes: 360, isCalculated: false }],
+    locationName: 'Sarajevo', dateLabel: 'Today', hijriDate: '',
+  };
+  const method = signal<'14.6' | 'iz'>('14.6');
+  const getTodayPrayerTimes = vi.fn(() => of({ snapshots: { bs: snapshot, en: snapshot } }));
+  await TestBed.configureTestingModule({
+    imports: [PrayerTimesPage],
+    providers: [
+      provideRouter([]),
+      { provide: CalculationMethodService, useValue: { method, hasChosen: signal(true) } },
+      { provide: PrayerTimeService, useValue: { getTodayPrayerTimes } },
+    ],
+  }).compileComponents();
+  const location = TestBed.inject(LocationService).getSelectedLocation();
+  const cache = TestBed.inject(PrayerTimesCacheService);
+  const dates = { bs: '2. Džumade-l-uhra 1448.', en: '2. Jumada al-Thani 1448.' };
+  for (const lang of ['bs', 'en'] as const) {
+    cache.write(location, '14.6', lang, { ...snapshot, hijriDate: dates[lang] });
+  }
+  const fixture = TestBed.createComponent(PrayerTimesPage);
+  try {
+    await fixture.whenStable();
+    expect(fixture.nativeElement.querySelector('.date-hijri').textContent).toBe(dates.en);
+    TestBed.inject(LanguageService).setLanguage('bs');
+    await fixture.whenStable();
+    expect(fixture.nativeElement.querySelector('.date-hijri').textContent).toBe(dates.bs);
+    expect(getTodayPrayerTimes).not.toHaveBeenCalled();
+
+    method.set('iz');
+    await fixture.whenStable();
+    expect(getTodayPrayerTimes).toHaveBeenCalledOnce();
+    expect(fixture.nativeElement.querySelector('.date-hijri')).toBeNull();
+  } finally {
+    fixture.destroy();
     localStorage.clear();
   }
 });

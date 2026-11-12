@@ -51,6 +51,7 @@ export class PrayerTimesPage implements OnInit, OnDestroy {
   protected readonly selectedLocation = signal<Location | null>(null);
   protected readonly rawTimes = signal<PrayerTimeData[]>([]);
   protected readonly dateLabel = signal('');
+  protected readonly hijriDate = signal('');
   protected readonly isLoading = signal(true);
   protected readonly error = signal<string | null>(null);
   protected readonly now = signal(new Date());
@@ -284,6 +285,7 @@ export class PrayerTimesPage implements OnInit, OnDestroy {
     if (cached) {
       this.rawTimes.set(cached.prayerTimes);
       this.dateLabel.set(cached.dateLabel);
+      this.hijriDate.set(cached.hijriDate);
       this.error.set(null);
       this.isLoading.set(false);
       /* Valid snapshot for today → at most one fetch/day per key; no duplicate HTTP. */
@@ -320,6 +322,7 @@ export class PrayerTimesPage implements OnInit, OnDestroy {
         const active = snapshots[this.langService.lang()];
         this.rawTimes.set(active.prayerTimes);
         this.dateLabel.set(active.dateLabel);
+        this.hijriDate.set(active.hijriDate);
         this.isLoading.set(false);
         this.error.set(null);
       },
