@@ -251,9 +251,9 @@ export class PrayerTimesPage implements OnInit, OnDestroy {
 
   private loadCountdownCollapsed(): boolean {
     try {
-      return localStorage.getItem(COUNTDOWN_STORAGE_KEY) !== 'false';
+      return localStorage.getItem(COUNTDOWN_STORAGE_KEY) === 'true';
     } catch {
-      return true;
+      return false;
     }
   }
 

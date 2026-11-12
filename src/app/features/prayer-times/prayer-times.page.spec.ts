@@ -11,7 +11,7 @@ import { CalculationMethodService } from '../../core/services/calculation-method
 import { LanguageService } from '../../core/services/language.service';
 import { BS_LABELS, EN_LABELS } from '../../core/i18n';
 
-it('remembers the countdown toggle and keeps both timers live even without browser storage', async () => {
+it('starts expanded, remembers the countdown toggle and keeps both timers live without browser storage', async () => {
   localStorage.clear();
   localStorage.setItem('vaktija_lang', 'en');
   const snapshot = {
@@ -40,16 +40,24 @@ it('remembers the countdown toggle and keeps both timers live even without brows
     await fixture.whenStable();
     const toggle = () =>
       fixture.nativeElement.querySelector('.countdown-toggle') as HTMLButtonElement;
-    expect(fixture.nativeElement.querySelector('.countdown-section.collapsed')).toBeTruthy();
+    expect(fixture.nativeElement.querySelector('.countdown-section.collapsed')).toBeNull();
     expect(fixture.nativeElement.querySelector('.date-hijri')).toBeNull();
-    expect(toggle().getAttribute('aria-expanded')).toBe('false');
-    expect(toggle().getAttribute('aria-label')).toBe(EN_LABELS.expandCountdown);
+    expect(toggle().getAttribute('aria-expanded')).toBe('true');
+    expect(toggle().getAttribute('aria-label')).toBe(EN_LABELS.collapseCountdown);
     expect(toggle().getAttribute('aria-controls')).toBe('countdown-details');
 
     toggle().click();
     fixture.detectChanges();
-    expect(toggle().getAttribute('aria-expanded')).toBe('true');
-    expect(toggle().getAttribute('aria-label')).toBe(EN_LABELS.collapseCountdown);
+    expect(toggle().getAttribute('aria-expanded')).toBe('false');
+    expect(toggle().getAttribute('aria-label')).toBe(EN_LABELS.expandCountdown);
+    expect(localStorage.getItem('vaktija_countdown_collapsed')).toBe('true');
+    fixture.destroy();
+    fixture = TestBed.createComponent(PrayerTimesPage);
+    await fixture.whenStable();
+    expect(toggle().getAttribute('aria-expanded')).toBe('false');
+
+    toggle().click();
+    fixture.detectChanges();
     expect(localStorage.getItem('vaktija_countdown_collapsed')).toBe('false');
     fixture.destroy();
     fixture = TestBed.createComponent(PrayerTimesPage);
@@ -58,11 +66,6 @@ it('remembers the countdown toggle and keeps both timers live even without brows
 
     toggle().click();
     fixture.detectChanges();
-    expect(localStorage.getItem('vaktija_countdown_collapsed')).toBe('true');
-    fixture.destroy();
-    fixture = TestBed.createComponent(PrayerTimesPage);
-    await fixture.whenStable();
-    expect(toggle().getAttribute('aria-expanded')).toBe('false');
 
     const state = fixture.componentInstance as unknown as { now: ReturnType<typeof signal<Date>> };
     for (const [second, remaining] of [
@@ -93,7 +96,7 @@ it('remembers the countdown toggle and keeps both timers live even without brows
     });
     fixture = TestBed.createComponent(PrayerTimesPage);
     await fixture.whenStable();
-    expect(toggle().getAttribute('aria-expanded')).toBe('false');
+    expect(toggle().getAttribute('aria-expanded')).toBe('true');
   } finally {
     fixture.destroy();
     vi.restoreAllMocks();
