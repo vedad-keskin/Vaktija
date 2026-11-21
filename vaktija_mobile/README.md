@@ -12,7 +12,10 @@ flutter run
 
 Run `flutter analyze` and `flutter test` from this directory to check the app.
 
-`lib/main.dart` starts the app, and `lib/app/` holds the app widget and theme.
-Add screens and their supporting code together under `lib/features/` as each
-feature is built. The bundled mark comes from `public/assets/icons/logo.png`
-in the web app.
+`lib/app/` contains the app shell, header, and theme. `lib/features/prayer_times/`
+contains the timetable view, calculation, and data loading. The Android and iOS
+apps bundle the IZ timetable for offline use and cache daily 14.6° results.
+
+Run `node scripts/sync-mobile-assets.mjs` from the repo root after changes to
+the web timetable, cities, prayer labels, or artwork. Commit the regenerated
+mobile assets with their source changes.

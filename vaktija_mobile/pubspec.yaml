@@ -9,6 +9,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  shared_preferences: ^2.5.6
+  timezone: ^0.11.2
 
 dev_dependencies:
   flutter_test:
@@ -19,3 +21,21 @@ flutter:
   uses-material-design: true
   assets:
     - assets/branding/logo.png
+    - assets/prayer_times/
+    - assets/fonts/source-sans-3-OFL.txt
+    - assets/fonts/cormorant-garamond-OFL.txt
+  fonts:
+    - family: Vaktija Sans
+      fonts:
+        - asset: assets/fonts/vaktija-sans-400.ttf
+          weight: 400
+        - asset: assets/fonts/vaktija-sans-500.ttf
+          weight: 500
+        - asset: assets/fonts/vaktija-sans-600.ttf
+          weight: 600
+        - asset: assets/fonts/vaktija-sans-700.ttf
+          weight: 700
+    - family: Cormorant Garamond
+      fonts:
+        - asset: assets/fonts/cormorant-garamond-600.ttf
+          weight: 600
