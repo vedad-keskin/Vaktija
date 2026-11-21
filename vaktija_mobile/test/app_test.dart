@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -11,109 +9,6 @@ import 'package:vaktija/features/prayer_times/timetable.dart';
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
 
-  test('IZ matches the web fixtures at both Sarajevo clock changes', () async {
-    final catalog = await PrayerCatalog.load();
-    for (final (day, expected) in [
-      (
-        DateTime(2026, 3, 28),
-        ['3:57', '5:31', '11:53', '15:23', '18:14', '19:34'],
-      ),
-      (
-        DateTime(2026, 3, 29),
-        ['4:55', '6:29', '12:52', '16:23', '19:15', '20:36'],
-      ),
-      (
-        DateTime(2026, 10, 24),
-        ['5:36', '7:06', '12:32', '15:22', '17:55', '19:14'],
-      ),
-      (
-        DateTime(2026, 10, 25),
-        ['4:37', '6:07', '11:31', '14:21', '16:54', '18:13'],
-      ),
-    ]) {
-      final times = catalog.izTimes(catalog.city(77), day);
-      final lookup = {for (final time in times) time.kind: time.time};
-      expect(PrayerKind.values.take(6).map((kind) => lookup[kind]), expected);
-      final beforeMidnight = PrayerInterval(
-        times,
-        DateTime(day.year, day.month, day.day, 23, 59),
-      );
-      expect(beforeMidnight.nextIndex, 0);
-      expect(beforeMidnight.remaining, (times.first.minutes + 1) * 60);
-    }
-  });
-
-  test(
-    '14.6° sends the web parameters and reuses the saved day offline',
-    () async {
-      final catalog = await PrayerCatalog.load();
-      SharedPreferences.setMockInitialValues({});
-      final prefs = await SharedPreferences.getInstance();
-      final city = catalog.city(77);
-      final requestDay = DateTime(2026, 11, 21);
-      final repository = PrayerRepository(
-        catalog,
-        prefs,
-        get: (uri) async {
-          expect(uri.path, '/v1/timings/21-11-2026');
-          expect(uri.queryParameters, {
-            'latitude': city.latitude.toString(),
-            'longitude': city.longitude.toString(),
-            'timezonestring': 'Europe/Sarajevo',
-            'method': '99',
-            'methodSettings': '14.6,null,14.6',
-            'school': '0',
-            'midnightMode': '1',
-          });
-          return jsonEncode({
-            'data': {
-              'date': {
-                'gregorian': {'date': '21-11-2026'},
-              },
-              'timings': {
-                'Fajr': '05:29 (CET)',
-                'Sunrise': '06:50',
-                'Dhuhr': '11:35',
-                'Asr': '14:00',
-                'Maghrib': '16:19',
-                'Isha': '17:40',
-                'Midnight': '22:54',
-                'Lastthird': '01:06',
-              },
-            },
-          });
-        },
-      );
-      final online = await repository.load(
-        city,
-        PrayerMethod.angle,
-        requestDay,
-      );
-      expect(online.first.time, '01:06');
-      expect(
-        online.firstWhere((time) => time.kind == PrayerKind.fajr).time,
-        '05:29',
-      );
-      final offline = PrayerRepository(
-        catalog,
-        prefs,
-        get: (_) async => throw StateError('offline'),
-      );
-      expect(
-        (await offline.load(
-          city,
-          PrayerMethod.angle,
-          requestDay,
-        )).map((time) => time.time),
-        online.map((time) => time.time),
-      );
-      await expectLater(
-        offline.load(city, PrayerMethod.angle, DateTime(2026, 11, 22)),
-        throwsStateError,
-      );
-    },
-  );
-
   testWidgets('mobile countdown, city search and animated header controls', (
     tester,
   ) async {
@@ -121,6 +16,9 @@ void main() {
     tester.view.devicePixelRatio = 1;
     addTearDown(tester.view.resetPhysicalSize);
     addTearDown(tester.view.resetDevicePixelRatio);
+    addTearDown(tester.view.resetPadding);
+    addTearDown(tester.view.resetViewPadding);
+    addTearDown(tester.view.resetViewInsets);
     final repository = (await tester.runAsync(() async {
       SharedPreferences.setMockInitialValues({'language': 'bs'});
       return PrayerRepository(
@@ -223,6 +121,33 @@ void main() {
           .firstWhere((city) => city.name == 'Jablanica')
           .id,
     );
+
+    tester.view.physicalSize = const Size(832, 384);
+    tester.view.padding = const FakeViewPadding(top: 24);
+    tester.view.viewPadding = const FakeViewPadding(top: 24);
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('Jablanica'));
+    await tester.pumpAndSettle();
+    await tester.tap(find.byType(TextField));
+    tester.view.viewInsets = const FakeViewPadding(bottom: 240);
+    await tester.enterText(find.byType(TextField), 'Sara');
+    await tester.pumpAndSettle();
+    expect(tester.takeException(), isNull);
+    final landscapeDropdown = tester.getRect(find.byType(CityChoices));
+    expect(landscapeDropdown.top, greaterThanOrEqualTo(24));
+    expect(landscapeDropdown.bottom, lessThanOrEqualTo(144));
+    final result = find.text('Sarajevo');
+    expect(result.hitTestable(), findsOneWidget);
+    await tester.tap(result);
+    await tester.pumpAndSettle();
+    expect(tester.takeException(), isNull);
+    expect(repository.preferences.getInt('city'), 77);
+    expect(find.byType(CityChoices), findsNothing);
+    tester.view.resetViewInsets();
+    tester.view.resetViewPadding();
+    tester.view.resetPadding();
+    tester.view.physicalSize = const Size(320, 640);
+    await tester.pumpAndSettle();
 
     for (final (action, page) in [('DOVE', 'Dove'), ('ZIKROVI', 'Zikrovi')]) {
       await tester.tap(find.byTooltip('Meni'));

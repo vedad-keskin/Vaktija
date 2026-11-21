@@ -10,6 +10,8 @@ class PrayerTimetableView extends StatelessWidget {
     super.key,
     required this.times,
     required this.now,
+    required this.interval,
+    required this.countdownFallback,
     required this.labels,
     required this.collapsed,
     required this.onToggleCountdown,
@@ -17,48 +19,60 @@ class PrayerTimetableView extends StatelessWidget {
 
   final List<PrayerTime> times;
   final DateTime now;
+  final PrayerInterval? interval;
+  final Widget? countdownFallback;
   final PrayerLabels labels;
   final bool collapsed;
   final VoidCallback onToggleCountdown;
 
   @override
   Widget build(BuildContext context) {
-    final interval = PrayerInterval(times, now);
+    final countdown = interval;
+    final current = countdown?.current;
+    final next = countdown?.next;
+    final nextOnAnotherDay = next != null && dayKey(next.at) != dayKey(now);
+    final nowMinute =
+        now.millisecondsSinceEpoch ~/ Duration.millisecondsPerMinute;
+
+    bool elapsed(PrayerTime time) => !time.at.isAfter(now);
 
     double trailProgress(int index) {
-      if (index == interval.currentIndex) return interval.progress;
-      return times[index].minutes <= interval.nowMinutes ? 1 : 0;
+      final time = times[index];
+      return time == current ? countdown!.progress : (elapsed(time) ? 1 : 0);
     }
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        _Countdown(
-          title: labels.prayer(times[interval.nextIndex], now),
-          date: labels.date(now),
-          interval: interval,
-          labels: labels,
-          collapsed: collapsed,
-          onToggle: onToggleCountdown,
-        ),
+        if (countdown != null)
+          _Countdown(
+            title: labels.prayer(countdown.next),
+            date: labels.date(now),
+            interval: countdown,
+            labels: labels,
+            collapsed: collapsed,
+            onToggle: onToggleCountdown,
+          )
+        else
+          ?countdownFallback,
         const SizedBox(height: 18),
         for (final (index, time) in times.indexed)
           _PrayerStop(
             time: time,
-            name: labels.prayer(time, now),
-            relative: labels.relative(interval.relativeMinutes(time, index)),
-            badge: index == interval.currentIndex
+            name: labels.prayer(time),
+            relative: labels.relative(
+              time.at.millisecondsSinceEpoch ~/ Duration.millisecondsPerMinute -
+                  nowMinute,
+            ),
+            badge: time == current
                 ? labels['currentBadge']
-                : index == interval.nextIndex
+                : time == next
                 ? labels['nextBadge']
                 : null,
-            current: index == interval.currentIndex,
-            next: index == interval.nextIndex,
-            elapsed: time.minutes <= interval.nowMinutes,
-            dimmed:
-                interval.nextIndex != 0 &&
-                time.minutes <= interval.nowMinutes &&
-                index != interval.currentIndex,
+            current: time == current,
+            next: time == next,
+            elapsed: elapsed(time),
+            dimmed: !nextOnAnotherDay && elapsed(time) && time != current,
             hasPrevious: index > 0,
             hasNext: index < times.length - 1,
             previousProgress: index > 0 ? trailProgress(index - 1) : 0,

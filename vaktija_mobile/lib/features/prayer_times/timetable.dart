@@ -15,6 +15,21 @@ tz.Location _loadSarajevo() {
 
 DateTime sarajevoNow() => tz.TZDateTime.now(_sarajevo);
 
+DateTime sarajevoTime(DateTime instant) =>
+    tz.TZDateTime.from(instant, _sarajevo);
+
+DateTime sarajevoDay(DateTime day, [int offset = 0]) =>
+    tz.TZDateTime(_sarajevo, day.year, day.month, day.day + offset);
+
+DateTime sarajevoAt(DateTime day, int minutes) => tz.TZDateTime(
+  _sarajevo,
+  day.year,
+  day.month,
+  day.day,
+  minutes ~/ 60,
+  minutes % 60,
+);
+
 String padTime(int value) => value.toString().padLeft(2, '0');
 
 String dayKey(DateTime day) =>
@@ -35,6 +50,8 @@ enum PrayerKind {
   const PrayerKind(this.key);
 
   final String key;
+
+  bool get isNightMarker => this == midnight || this == lastthird;
 }
 
 class PrayerCity {
@@ -54,33 +71,20 @@ class PrayerCity {
 }
 
 class PrayerTime {
-  const PrayerTime._(this.kind, this.time, this.minutes);
-
-  factory PrayerTime.parse(PrayerKind kind, Object? input) {
-    final time = input is String
-        ? input.replaceFirst(RegExp(r'\s*\([^)]*\)$'), '').trim()
-        : '';
-    final valid = RegExp(r'^(?:[01]?\d|2[0-3]):[0-5]\d$');
-    if (!valid.hasMatch(time)) throw FormatException('Invalid ${kind.key}');
-    final parts = time.split(':');
-    return PrayerTime._(
-      kind,
-      time,
-      int.parse(parts[0]) * 60 + int.parse(parts[1]),
-    );
-  }
-
-  factory PrayerTime.fromMinutes(PrayerKind kind, int minutes) =>
-      PrayerTime._(kind, '${minutes ~/ 60}:${padTime(minutes % 60)}', minutes);
+  PrayerTime(this.kind, DateTime instant, {this._padHours = false})
+    : at = sarajevoTime(instant);
 
   final PrayerKind kind;
-  final String time;
-  final int minutes;
+  final DateTime at;
+  final bool _padHours;
+
+  String get time =>
+      '${_padHours ? padTime(at.hour) : at.hour}:${padTime(at.minute)}';
 }
 
 List<PrayerTime> sortTimetable(List<PrayerTime> times) => times
   ..sort((a, b) {
-    final order = a.minutes.compareTo(b.minutes);
+    final order = a.at.compareTo(b.at);
     return order == 0 ? a.kind.index.compareTo(b.kind.index) : order;
   });
 
@@ -113,24 +117,39 @@ class PrayerCatalog {
   );
 
   List<PrayerTime> izTimes(PrayerCity city, DateTime day) {
+    final minutes = _izMinutes(city, day);
+    final today = [
+      for (final kind in PrayerKind.values.where((kind) => !kind.isNightMarker))
+        PrayerTime(kind, sarajevoAt(day, minutes[kind.index])),
+    ];
+    final maghrib = today[PrayerKind.maghrib.index].at;
+    final tomorrow = sarajevoDay(day, 1);
+    final fajr = sarajevoAt(tomorrow, _izMinutes(city, tomorrow).first);
+    final night = fajr.difference(maghrib).inMinutes;
+
+    return sortTimetable([
+      ...today,
+      PrayerTime(
+        PrayerKind.midnight,
+        maghrib.add(Duration(minutes: (night / 2).round())),
+      ),
+      PrayerTime(
+        PrayerKind.lastthird,
+        maghrib.add(Duration(minutes: (night * 2 / 3).round())),
+      ),
+    ]);
+  }
+
+  List<int> _izMinutes(PrayerCity city, DateTime day) {
     final month = day.month - 1;
     final base = _timetable['months'][month][day.day - 1] as List;
     final offsets = _timetable['differences'][city.id][month] as List;
     final noon = tz.TZDateTime(_sarajevo, day.year, day.month, day.day, 12);
     final summerMinutes = noon.timeZoneOffset.inHours == 2 ? 60 : 0;
-    final minutes = List.generate(
+    return List.generate(
       6,
       (i) => ((base[i] as int) + (offsets[i] as int)) ~/ 60 + summerMinutes,
     );
-    final sunset = minutes[PrayerKind.maghrib.index];
-    // Same single-day Fajr approximation as the web timetable.
-    final night = 1440 - sunset + minutes[PrayerKind.fajr.index];
-    minutes.add((sunset + night / 2).round() % 1440);
-    minutes.add((sunset + night * 2 / 3).round() % 1440);
-    return sortTimetable([
-      for (final kind in PrayerKind.values)
-        PrayerTime.fromMinutes(kind, minutes[kind.index]),
-    ]);
   }
 }
 
@@ -142,8 +161,8 @@ class PrayerLabels {
 
   String operator [](String key) => _values[key] as String;
 
-  String prayer(PrayerTime time, DateTime day) =>
-      time.kind == PrayerKind.dhuhr && day.weekday == DateTime.friday
+  String prayer(PrayerTime time) =>
+      time.kind == PrayerKind.dhuhr && time.at.weekday == DateTime.friday
       ? this['dhuhrFridayName']
       : _values['prayerNames'][time.kind.key] as String;
 
@@ -184,32 +203,59 @@ class PrayerLabels {
 }
 
 class PrayerInterval {
-  PrayerInterval(List<PrayerTime> times, DateTime now)
-    : nowMinutes = now.hour * 60 + now.minute {
-    final next = times.indexWhere((time) => time.minutes > nowMinutes);
-    nextIndex = next < 0 ? 0 : next;
-    currentIndex = (nextIndex - 1) % times.length;
-    final secondOfDay = nowMinutes * 60 + now.second;
-    final previous = times[currentIndex].minutes * 60;
-    final upcoming = times[nextIndex].minutes * 60;
-    // Match the web's listed timetable across midnight until the date rolls over.
-    remaining = (upcoming - secondOfDay) % 86400;
-    final window = (upcoming - previous) % 86400;
-    progress = window == 0
-        ? 0
-        : ((secondOfDay - previous) % 86400 / window).clamp(0.0, 1.0);
+  const PrayerInterval._(this.current, this.next, this.now);
+
+  final PrayerTime? current;
+  final PrayerTime next;
+  final DateTime now;
+
+  int get remaining =>
+      (next.at.difference(now).inMicroseconds + 999999) ~/ 1000000;
+
+  double get progress {
+    final start = current?.at;
+    if (start == null) return 0;
+    return (now.difference(start).inMilliseconds /
+            next.at.difference(start).inMilliseconds)
+        .clamp(0, 1);
   }
 
-  final int nowMinutes;
-  late final int currentIndex;
-  late final int nextIndex;
-  late final int remaining;
-  late final double progress;
+  static PrayerInterval? find(
+    DateTime now, {
+    required List<PrayerTime>? yesterday,
+    required List<PrayerTime>? today,
+    required List<PrayerTime>? tomorrow,
+  }) {
+    final previousNightKnown = yesterday?.length == PrayerKind.values.length;
+    if (today == null) {
+      return previousNightKnown ? _between(yesterday!, now) : null;
+    }
 
-  int relativeMinutes(PrayerTime time, int index) {
-    final difference = time.minutes - nowMinutes;
-    if (index == nextIndex && difference <= 0) return difference + 1440;
-    if (index == currentIndex && difference > 0) return difference - 1440;
-    return difference;
+    final fajr = today.firstWhere((time) => time.kind == PrayerKind.fajr);
+    if (now.isBefore(fajr.at) && !previousNightKnown) return null;
+
+    final tonightKnown = today.length == PrayerKind.values.length;
+    final times = sortTimetable([
+      ...?yesterday,
+      ...today,
+      if (tonightKnown) ...?tomorrow,
+    ]);
+    final interval = _between(times, now);
+    if (!tonightKnown && interval != null) {
+      final maghrib = today.firstWhere(
+        (time) => time.kind == PrayerKind.maghrib,
+      );
+      if (interval.next.at.isAfter(maghrib.at)) return null;
+    }
+    return interval;
+  }
+
+  static PrayerInterval? _between(List<PrayerTime> times, DateTime now) {
+    PrayerTime? current;
+    for (final time in times) {
+      if (time.at.isAfter(now)) return PrayerInterval._(current, time, now);
+      current = time;
+    }
+    return null;
   }
 }

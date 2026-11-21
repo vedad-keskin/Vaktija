@@ -29,7 +29,7 @@ class MobileHeader extends StatelessWidget {
     required this.menuOpen,
     required this.citiesOpen,
     required this.cityPopup,
-    required this.cityBottomInset,
+    required this.cityInsets,
     required this.cityChoices,
     required this.onHome,
     required this.onMenu,
@@ -42,7 +42,7 @@ class MobileHeader extends StatelessWidget {
   final PrayerCity city;
   final bool menuOpen, citiesOpen;
   final OverlayPortalController cityPopup;
-  final double cityBottomInset;
+  final EdgeInsets cityInsets;
   final Widget Function(double maxHeight) cityChoices;
   final VoidCallback onHome, onMenu, onCities;
   final ValueChanged<bool> onTheme, onLanguage;
@@ -167,22 +167,27 @@ class MobileHeader extends StatelessWidget {
                   info.childPaintTransform,
                   Offset.zero & info.childSize,
                 );
-                final below =
-                    info.overlaySize.height -
-                    anchor.bottom -
-                    6 -
-                    cityBottomInset;
-                final above =
-                    anchor.top - 6 - MediaQuery.viewPaddingOf(context).top;
-                final opensAbove = below < 124 && above > below;
-                final maxHeight = (opensAbove ? above : below).clamp(
-                  0.0,
-                  303.0,
-                );
+                const gap = 6.0;
+                const minAnchoredHeight = 124.0;
+                final visibleBottom =
+                    info.overlaySize.height - cityInsets.bottom;
+                final below = visibleBottom - anchor.bottom - gap;
+                final above = anchor.top - gap - cityInsets.top;
+                final fitsBelow = below >= minAnchoredHeight;
+                final fitsAbove = above >= minAnchoredHeight;
+                // Use the visible viewport when neither side can fit useful results.
+                final available = fitsBelow
+                    ? below
+                    : fitsAbove
+                    ? above
+                    : visibleBottom - cityInsets.top;
+                final maxHeight = available.clamp(0.0, 303.0);
                 if (maxHeight < 60) return const SizedBox.shrink();
-                final top = opensAbove
-                    ? anchor.top - 6 - maxHeight
-                    : anchor.bottom + 6;
+                final top = fitsBelow
+                    ? anchor.bottom + gap
+                    : fitsAbove
+                    ? anchor.top - gap - maxHeight
+                    : cityInsets.top;
                 return Stack(
                   children: [
                     Positioned(

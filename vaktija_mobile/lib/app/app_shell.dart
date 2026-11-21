@@ -138,7 +138,7 @@ class _AppShellState extends State<AppShell> {
     final labels = _catalog.labels(_bosnian);
     final preferences = widget.repository.preferences;
     final keyboardInset = MediaQuery.viewInsetsOf(context).bottom;
-    final safeBottom = MediaQuery.viewPaddingOf(context).bottom;
+    final safeInsets = MediaQuery.viewPaddingOf(context);
 
     return PopScope<Object?>(
       canPop:
@@ -163,6 +163,8 @@ class _AppShellState extends State<AppShell> {
                   systemNavigationBarContrastEnforced: false,
                 ),
         child: Scaffold(
+          // The city popup accounts for the keyboard without resizing the header.
+          resizeToAvoidBottomInset: false,
           backgroundColor: const Color(0xff041e1b),
           body: SafeArea(
             top: false,
@@ -178,9 +180,11 @@ class _AppShellState extends State<AppShell> {
                       menuOpen: _overlay == _Overlay.menu,
                       citiesOpen: _overlay == _Overlay.cities,
                       cityPopup: _cityPopup,
-                      cityBottomInset: keyboardInset > safeBottom
-                          ? keyboardInset
-                          : safeBottom,
+                      cityInsets: safeInsets.copyWith(
+                        bottom: keyboardInset > safeInsets.bottom
+                            ? keyboardInset
+                            : safeInsets.bottom,
+                      ),
                       cityChoices: (height) => CityChoices(
                         labels: labels,
                         city: _city,
