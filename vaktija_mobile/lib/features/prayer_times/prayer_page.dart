@@ -16,6 +16,7 @@ class PrayerPage extends StatefulWidget {
     required this.labels,
     required this.collapsed,
     required this.onToggleCountdown,
+    this.onStartupReady,
   });
 
   final PrayerRepository repository;
@@ -24,6 +25,7 @@ class PrayerPage extends StatefulWidget {
   final PrayerLabels labels;
   final bool collapsed;
   final VoidCallback onToggleCountdown;
+  final VoidCallback? onStartupReady;
 
   @override
   State<PrayerPage> createState() => _PrayerPageState();
@@ -133,6 +135,17 @@ class _PrayerPageState extends State<PrayerPage> {
       today: today?.data,
       tomorrow: tomorrow,
     );
+    final waiting = _days.values.any(
+      (day) => day.connectionState == ConnectionState.waiting,
+    );
+    if (widget.onStartupReady != null &&
+        (widget.method == null ||
+            today?.hasError == true ||
+            (today?.hasData == true && (interval != null || !waiting)))) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (mounted) widget.onStartupReady?.call();
+      });
+    }
 
     Widget status(bool loading, {required bool countdownOnly}) {
       if (loading) {
@@ -162,12 +175,7 @@ class _PrayerPageState extends State<PrayerPage> {
             now: _now,
             interval: interval,
             countdownFallback: interval == null
-                ? status(
-                    _days.values.any(
-                      (day) => day.connectionState == ConnectionState.waiting,
-                    ),
-                    countdownOnly: true,
-                  )
+                ? status(waiting, countdownOnly: true)
                 : null,
             labels: labels,
             collapsed: widget.collapsed,

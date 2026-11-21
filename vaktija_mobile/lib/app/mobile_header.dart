@@ -36,6 +36,8 @@ class MobileHeader extends StatelessWidget {
     required this.onCities,
     required this.onTheme,
     required this.onLanguage,
+    this.logoKey,
+    this.showLogo = true,
   });
 
   final PrayerLabels labels;
@@ -46,6 +48,8 @@ class MobileHeader extends StatelessWidget {
   final Widget Function(double maxHeight) cityChoices;
   final VoidCallback onHome, onMenu, onCities;
   final ValueChanged<bool> onTheme, onLanguage;
+  final GlobalKey? logoKey;
+  final bool showLogo;
 
   @override
   Widget build(BuildContext context) {
@@ -76,13 +80,17 @@ class MobileHeader extends StatelessWidget {
                       child: OverflowBox(
                         maxWidth: 62,
                         maxHeight: 49,
-                        child: Image.asset(
-                          'assets/branding/logo.png',
-                          width: 62,
-                          height: 49,
-                          color: colors.dark ? colors.text : null,
-                          filterQuality: FilterQuality.low,
-                          excludeFromSemantics: true,
+                        child: Opacity(
+                          opacity: showLogo ? 1 : 0,
+                          child: Image.asset(
+                            'assets/branding/logo.png',
+                            key: logoKey,
+                            width: 62,
+                            height: 49,
+                            color: colors.dark ? colors.text : null,
+                            filterQuality: FilterQuality.low,
+                            excludeFromSemantics: true,
+                          ),
                         ),
                       ),
                     ),

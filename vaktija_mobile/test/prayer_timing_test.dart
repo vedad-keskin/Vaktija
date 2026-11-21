@@ -4,6 +4,9 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:vaktija/app/method_choice.dart';
+import 'package:vaktija/app/startup/splash_view.dart';
+import 'package:vaktija/app/vaktija_app.dart';
 import 'package:vaktija/features/prayer_times/prayer_page.dart';
 import 'package:vaktija/features/prayer_times/prayer_repository.dart';
 import 'package:vaktija/features/prayer_times/prayer_timetable_view.dart';
@@ -315,4 +318,182 @@ void main() {
     expect(view().times.first.time, '00:54');
     await tester.pumpWidget(const SizedBox.shrink());
   });
+
+  testWidgets('cold start hands off with the correct overnight countdown', (
+    tester,
+  ) async {
+    final firstFrame = Completer<void>();
+    final yesterday = Completer<String>();
+    final tomorrow = Completer<String>();
+    final repository = (await tester.runAsync(() async {
+      SharedPreferences.setMockInitialValues({
+        'method': 'angle',
+        'language': 'en',
+        'theme': 'dark',
+      });
+      return PrayerRepository(
+        await PrayerCatalog.load(),
+        await SharedPreferences.getInstance(),
+        clock: () => DateTime.utc(2026, 3, 28, 23),
+        get: (uri) async => switch (uri.path) {
+          '/v1/timings/28-03-2026' => yesterday.future,
+          '/v1/timings/29-03-2026' => _response('29-03-2026', _march29),
+          _ => tomorrow.future,
+        },
+      );
+    }))!;
+
+    await tester.pumpWidget(
+      VaktijaApp(
+        openRepository: () async => repository,
+        firstFrame: firstFrame.future,
+      ),
+    );
+    final splash = find.byType(SplashView);
+    final artwork = find.descendant(
+      of: splash,
+      matching: find.byWidgetPredicate(
+        (widget) =>
+            widget is Image &&
+            widget.image is AssetImage &&
+            (widget.image as AssetImage).assetName.contains(
+              'mosque-horizon-mobile-',
+            ),
+      ),
+    );
+    expect(artwork, findsOneWidget);
+    final artworkOpacity = find.ancestor(
+      of: artwork,
+      matching: find.byType(Opacity),
+    );
+    expect(
+      tester.widgetList<Opacity>(artworkOpacity).map((w) => w.opacity),
+      everyElement(1.0),
+    );
+
+    await tester.pump();
+    await tester.pump();
+    final mark = find.descendant(
+      of: splash,
+      matching: find.byWidgetPredicate(
+        (widget) => widget is Image && widget.semanticLabel == 'Vaktija',
+      ),
+    );
+    final center = tester.getCenter(mark);
+    expect(Theme.of(tester.element(splash)).brightness, Brightness.dark);
+    expect(
+      tester
+          .widget<PrayerTimetableView>(find.byType(PrayerTimetableView))
+          .interval,
+      isNull,
+    );
+
+    yesterday.complete(_response('28-03-2026', _march28));
+    await tester.pump();
+    await tester.pump(const Duration(milliseconds: 900));
+    expect(tester.getCenter(mark), center);
+
+    firstFrame.complete();
+    await tester.pump();
+    await tester.pump();
+    expect(tester.widget<SplashView>(splash).leaving, isTrue);
+    await tester.pump();
+    await tester.pump(const Duration(milliseconds: 1200));
+    expect(tester.getCenter(mark), center);
+
+    await tester.pump(const Duration(milliseconds: 150));
+    final inFlight = tester.getCenter(mark);
+    expect(inFlight.dx, lessThan(center.dx));
+    expect(inFlight.dy, lessThan(center.dy));
+    await tester.pump(const Duration(milliseconds: 149));
+    expect(splash, findsOneWidget);
+    await tester.pump(const Duration(milliseconds: 16));
+    await tester.pump();
+
+    expect(splash, findsNothing);
+    final timetable = tester.widget<PrayerTimetableView>(
+      find.byType(PrayerTimetableView),
+    );
+    expect(timetable.interval?.next.kind, PrayerKind.lastthird);
+    expect(timetable.interval?.remaining, 3240);
+    expect(timetable.times.first.kind, PrayerKind.lastthird);
+    tomorrow.completeError(StateError('offline for tomorrow'));
+    await tester.pump();
+    await tester.pumpWidget(const SizedBox.shrink());
+  });
+
+  testWidgets('a slow request continues on Home after the splash deadline', (
+    tester,
+  ) async {
+    final response = Completer<String>();
+    final requests = <String>[];
+    final repository = (await tester.runAsync(() async {
+      SharedPreferences.setMockInitialValues({
+        'method': 'angle',
+        'language': 'en',
+      });
+      return PrayerRepository(
+        await PrayerCatalog.load(),
+        await SharedPreferences.getInstance(),
+        clock: () => DateTime.utc(2026, 3, 28, 12),
+        get: (uri) {
+          requests.add(uri.path);
+          return uri.path.endsWith('28-03-2026')
+              ? response.future
+              : Future.error(StateError('offline for adjacent days'));
+        },
+      );
+    }))!;
+
+    await tester.pumpWidget(VaktijaApp(openRepository: () async => repository));
+    await tester.pump();
+    await tester.pump(const Duration(milliseconds: 799));
+    expect(find.byType(SplashView), findsOneWidget);
+    expect(requests, hasLength(3));
+
+    await tester.pump(const Duration(milliseconds: 1));
+    await tester.pump();
+    await tester.pump(const Duration(milliseconds: 1520));
+    await tester.pump();
+    expect(find.byType(SplashView), findsNothing);
+    expect(find.byType(PrayerTimetableView), findsNothing);
+
+    response.complete(_response('28-03-2026', _march28));
+    await tester.pump();
+    await tester.pump();
+    expect(find.byType(PrayerTimetableView), findsOneWidget);
+    expect(requests, hasLength(3));
+    await tester.pumpWidget(const SizedBox.shrink());
+  });
+
+  testWidgets(
+    'first launch with reduced motion goes straight to method choice',
+    (tester) async {
+      tester.platformDispatcher.accessibilityFeaturesTestValue =
+          const FakeAccessibilityFeatures(disableAnimations: true);
+      addTearDown(
+        tester.platformDispatcher.clearAccessibilityFeaturesTestValue,
+      );
+      final repository = (await tester.runAsync(() async {
+        SharedPreferences.setMockInitialValues({'language': 'en'});
+        return PrayerRepository(
+          await PrayerCatalog.load(),
+          await SharedPreferences.getInstance(),
+          get: (_) async => fail('First launch must wait for a method choice'),
+        );
+      }))!;
+
+      await tester.pumpWidget(
+        VaktijaApp(openRepository: () async => repository),
+      );
+      expect(find.byType(SplashView), findsOneWidget);
+      expect(find.byType(MethodChoice), findsNothing);
+      for (var frame = 0; frame < 5; frame++) {
+        await tester.pump();
+      }
+      expect(find.byType(SplashView), findsNothing);
+      expect(find.byType(MethodChoice), findsOneWidget);
+      await tester.pumpWidget(const SizedBox.shrink());
+    },
+  );
 }

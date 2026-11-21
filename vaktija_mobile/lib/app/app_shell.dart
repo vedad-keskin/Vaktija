@@ -17,10 +17,16 @@ class AppShell extends StatefulWidget {
     super.key,
     required this.repository,
     required this.onThemeChanged,
+    this.startupComplete = true,
+    this.headerLogo,
+    this.onStartupReady,
   });
 
   final PrayerRepository repository;
   final ValueChanged<bool> onThemeChanged;
+  final bool startupComplete;
+  final GlobalKey? headerLogo;
+  final VoidCallback? onStartupReady;
 
   @override
   State<AppShell> createState() => _AppShellState();
@@ -79,7 +85,17 @@ class _AppShellState extends State<AppShell> {
                 'RO',
                 'TR',
               }.contains(locale.countryCode);
-    if (_method == null) {
+    _offerMethodChoice();
+  }
+
+  @override
+  void didUpdateWidget(AppShell oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (!oldWidget.startupComplete) _offerMethodChoice();
+  }
+
+  void _offerMethodChoice() {
+    if (widget.startupComplete && _method == null) {
       WidgetsBinding.instance.addPostFrameCallback((_) => _chooseMethod());
     }
   }
@@ -177,6 +193,8 @@ class _AppShellState extends State<AppShell> {
                     MobileHeader(
                       labels: labels,
                       city: _city,
+                      logoKey: widget.headerLogo,
+                      showLogo: widget.startupComplete,
                       menuOpen: _overlay == _Overlay.menu,
                       citiesOpen: _overlay == _Overlay.cities,
                       cityPopup: _cityPopup,
@@ -239,6 +257,7 @@ class _AppShellState extends State<AppShell> {
                                 method: _method,
                                 labels: labels,
                                 collapsed: _collapsed,
+                                onStartupReady: widget.onStartupReady,
                                 onToggleCountdown: () {
                                   setState(() => _collapsed = !_collapsed);
                                   unawaited(
