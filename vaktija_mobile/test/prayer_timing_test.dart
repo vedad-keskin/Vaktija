@@ -319,6 +319,46 @@ void main() {
     await tester.pumpWidget(const SizedBox.shrink());
   });
 
+  testWidgets('portrait splash loads full-screen day and night artwork', (
+    tester,
+  ) async {
+    const size = Size(390, 844);
+    await tester.binding.setSurfaceSize(size);
+    addTearDown(() => tester.binding.setSurfaceSize(null));
+
+    for (final brightness in Brightness.values) {
+      await tester.pumpWidget(
+        MaterialApp(
+          key: ValueKey(brightness),
+          theme: ThemeData(brightness: brightness),
+          home: SplashView(
+            headerLogo: GlobalKey(),
+            leaving: false,
+            onFinished: () {},
+          ),
+        ),
+      );
+
+      final provider = AssetImage(
+        'assets/branding/splash-mosque-${brightness.name}.webp',
+      );
+      final artwork = find.image(provider);
+      expect(tester.widget<Image>(artwork).fit, BoxFit.cover);
+      final context = tester.element(artwork);
+      await tester.runAsync(() => precacheImage(provider, context));
+      await tester.pump();
+      await tester.pump(const Duration(milliseconds: 1600));
+      expect(tester.getRect(artwork), Offset.zero & size);
+
+      final photo = tester
+          .widget<RawImage>(
+            find.descendant(of: artwork, matching: find.byType(RawImage)),
+          )
+          .image!;
+      expect(photo.width / photo.height, closeTo(size.aspectRatio, .01));
+    }
+  });
+
   testWidgets('cold start hands off with the correct overnight countdown', (
     tester,
   ) async {
@@ -356,30 +396,30 @@ void main() {
         (widget) =>
             widget is Image &&
             widget.image is AssetImage &&
-            (widget.image as AssetImage).assetName.contains(
-              'mosque-horizon-mobile-',
-            ),
+            (widget.image as AssetImage).assetName ==
+                '$prayerAssets/mosque-horizon-dark.webp',
       ),
     );
+    await tester.pump();
+    await tester.pump();
     expect(artwork, findsOneWidget);
+    final artworkSize = tester.getSize(artwork);
+    expect(artworkSize.aspectRatio, closeTo(3, .01));
     final artworkOpacity = find.ancestor(
       of: artwork,
       matching: find.byType(Opacity),
     );
     expect(
       tester.widgetList<Opacity>(artworkOpacity).map((w) => w.opacity),
-      everyElement(1.0),
+      contains(lessThan(1.0)),
     );
 
-    await tester.pump();
-    await tester.pump();
     final mark = find.descendant(
       of: splash,
       matching: find.byWidgetPredicate(
         (widget) => widget is Image && widget.semanticLabel == 'Vaktija',
       ),
     );
-    final center = tester.getCenter(mark);
     expect(Theme.of(tester.element(splash)).brightness, Brightness.dark);
     expect(
       tester
@@ -390,24 +430,27 @@ void main() {
 
     yesterday.complete(_response('28-03-2026', _march28));
     await tester.pump();
-    await tester.pump(const Duration(milliseconds: 900));
-    expect(tester.getCenter(mark), center);
+    await tester.pump(const Duration(milliseconds: 1600));
+    final rest = tester.getCenter(mark);
+    expect(
+      tester.widgetList<Opacity>(artworkOpacity).map((w) => w.opacity),
+      everyElement(1.0),
+    );
 
     firstFrame.complete();
     await tester.pump();
     await tester.pump();
     expect(tester.widget<SplashView>(splash).leaving, isTrue);
-    await tester.pump();
-    await tester.pump(const Duration(milliseconds: 1200));
-    expect(tester.getCenter(mark), center);
-
-    await tester.pump(const Duration(milliseconds: 150));
-    final inFlight = tester.getCenter(mark);
-    expect(inFlight.dx, lessThan(center.dx));
-    expect(inFlight.dy, lessThan(center.dy));
-    await tester.pump(const Duration(milliseconds: 149));
-    expect(splash, findsOneWidget);
-    await tester.pump(const Duration(milliseconds: 16));
+    Offset inFlight = rest;
+    for (var frame = 0; frame < 12; frame++) {
+      await tester.pump();
+      await tester.pump(const Duration(milliseconds: 20));
+      inFlight = tester.getCenter(mark);
+      if ((inFlight - rest).distance > 1) break;
+    }
+    expect(inFlight.dx, lessThan(rest.dx));
+    expect(inFlight.dy, lessThan(rest.dy));
+    await tester.pump(const Duration(milliseconds: 400));
     await tester.pump();
 
     expect(splash, findsNothing);
@@ -453,7 +496,9 @@ void main() {
 
     await tester.pump(const Duration(milliseconds: 1));
     await tester.pump();
-    await tester.pump(const Duration(milliseconds: 1520));
+    await tester.pump(const Duration(milliseconds: 820));
+    await tester.pump();
+    await tester.pump(const Duration(milliseconds: 320));
     await tester.pump();
     expect(find.byType(SplashView), findsNothing);
     expect(find.byType(PrayerTimetableView), findsNothing);

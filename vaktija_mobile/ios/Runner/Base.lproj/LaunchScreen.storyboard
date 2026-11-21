@@ -16,20 +16,7 @@
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <imageView opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="LaunchImage" translatesAutoresizingMaskIntoConstraints="NO" id="YRO-k0-Ey4">
-                                <color key="tintColor" name="LaunchMarkColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="136" id="v4T-0r-xoW"/>
-                                    <constraint firstAttribute="height" constant="111" id="q75-Xl-tVc"/>
-                                </constraints>
-                            </imageView>
-                        </subviews>
                         <color key="backgroundColor" name="LaunchSurface"/>
-                        <constraints>
-                            <constraint firstItem="YRO-k0-Ey4" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="1a2-6s-vTC"/>
-                            <constraint firstItem="YRO-k0-Ey4" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="4X2-HB-R7a"/>
-                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -38,10 +25,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="LaunchImage" width="136" height="111"/>
-        <namedColor name="LaunchMarkColor">
-            <color red="0.082352941" green="0.227450980" blue="0.188235294" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
         <namedColor name="LaunchSurface">
             <color red="0.968627451" green="0.960784314" blue="0.933333333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

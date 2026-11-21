@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="launch_surface">#041E1B</color>
-    <color name="launch_mark_color">#F1F2E9</color>
 
     <style name="LaunchThemeBase" parent="@android:style/Theme.Black.NoTitleBar">
-        <item name="android:windowBackground">@drawable/launch_window</item>
+        <item name="android:windowBackground">@color/launch_surface</item>
         <item name="android:statusBarColor">@color/launch_surface</item>
         <item name="android:navigationBarColor">#041E1B</item>
     </style>

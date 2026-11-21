@@ -3,7 +3,6 @@
     <style name="LaunchTheme" parent="LaunchThemeBase">
         <item name="android:windowBackground">@color/launch_surface</item>
         <item name="android:windowSplashScreenBackground">@color/launch_surface</item>
-        <item name="android:windowSplashScreenAnimatedIcon">@drawable/launch_icon</item>
-        <item name="android:windowSplashScreenBehavior">icon_preferred</item>
+        <item name="android:windowSplashScreenAnimatedIcon">@android:color/transparent</item>
     </style>
 </resources>

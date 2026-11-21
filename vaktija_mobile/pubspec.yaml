@@ -20,7 +20,7 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   assets:
-    - assets/branding/logo.png
+    - assets/branding/
     - assets/prayer_times/
     - assets/fonts/source-sans-3-OFL.txt
     - assets/fonts/cormorant-garamond-OFL.txt

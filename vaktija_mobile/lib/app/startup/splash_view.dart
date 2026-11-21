@@ -1,4 +1,5 @@
 import 'dart:math' as math;
+import 'dart:ui' as ui;
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -24,34 +25,60 @@ class SplashView extends StatefulWidget {
   State<SplashView> createState() => _SplashViewState();
 }
 
-class _SplashViewState extends State<SplashView>
-    with SingleTickerProviderStateMixin {
-  static const _holdMilliseconds = 1200;
-  static const _moveMilliseconds = 300;
-  static const _splashMilliseconds = _holdMilliseconds + _moveMilliseconds;
+class _SplashViewState extends State<SplashView> with TickerProviderStateMixin {
+  static const _introMilliseconds = 1600;
+  static const _markSize = Size(136, 111);
+  static const _archSize = Size(176, 190);
+  static const _emblem = Alignment(0, -.28);
 
-  late final _handoff =
+  late final _intro =
       AnimationController(
         vsync: this,
-        duration: const Duration(milliseconds: _splashMilliseconds),
+        duration: const Duration(milliseconds: _introMilliseconds),
+      )..addStatusListener((status) {
+        if (status == AnimationStatus.completed) _maybeFly();
+      });
+  late final _ambient = AnimationController(
+    vsync: this,
+    duration: const Duration(seconds: 8),
+  );
+  late final _flight =
+      AnimationController(
+        vsync: this,
+        duration: const Duration(milliseconds: 300),
       )..addStatusListener((status) {
         if (status == AnimationStatus.completed) widget.onFinished();
       });
+  bool _started = false;
+  bool _flying = false;
   Rect? _destination;
 
   @override
-  void initState() {
-    super.initState();
-    if (widget.leaving) _beginHandoff();
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    if (_started) return;
+    _started = true;
+    if (MediaQuery.disableAnimationsOf(context)) {
+      _intro.value = 1;
+    } else {
+      _intro.forward();
+      _ambient.repeat();
+    }
   }
 
   @override
   void didUpdateWidget(SplashView oldWidget) {
     super.didUpdateWidget(oldWidget);
-    if (widget.leaving && !oldWidget.leaving) _beginHandoff();
+    if (widget.leaving && !oldWidget.leaving) _maybeFly();
   }
 
-  void _beginHandoff() {
+  void _maybeFly() {
+    if (_flying || !widget.leaving || !_intro.isCompleted) return;
+    _flying = true;
+    _captureAndFly();
+  }
+
+  void _captureAndFly([int tries = 0]) {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (!mounted) return;
       if (MediaQuery.disableAnimationsOf(context)) {
@@ -61,18 +88,34 @@ class _SplashViewState extends State<SplashView>
 
       final logo = widget.headerLogo.currentContext?.findRenderObject();
       final splash = context.findRenderObject();
-      if (logo is RenderBox && splash is RenderBox) {
-        _destination =
-            splash.globalToLocal(logo.localToGlobal(Offset.zero)) & logo.size;
+      if (logo is RenderBox &&
+          splash is RenderBox &&
+          logo.hasSize &&
+          splash.hasSize) {
+        setState(() {
+          _destination =
+              splash.globalToLocal(logo.localToGlobal(Offset.zero)) & logo.size;
+        });
+        _flight.forward();
+      } else if (tries < 8) {
+        _captureAndFly(tries + 1);
+      } else {
+        _flight.forward();
       }
-      _handoff.forward();
     });
   }
 
   @override
   void dispose() {
-    _handoff.dispose();
+    _intro.dispose();
+    _ambient.dispose();
+    _flight.dispose();
     super.dispose();
+  }
+
+  double _segment(double from, double to, [Curve curve = Curves.easeOutCubic]) {
+    final ms = _intro.value * _introMilliseconds;
+    return curve.transform(((ms - from) / (to - from)).clamp(0.0, 1.0));
   }
 
   @override
@@ -93,55 +136,76 @@ class _SplashViewState extends State<SplashView>
         type: MaterialType.transparency,
         child: LayoutBuilder(
           builder: (context, limits) {
-            final origin = Alignment.center.inscribe(
-              const Size(136, 111),
-              Offset.zero & limits.biggest,
-            );
             return AnimatedBuilder(
-              animation: _handoff,
-              child: ColoredBox(
-                color: colors.surface,
-                child: Stack(
-                  fit: StackFit.expand,
-                  children: [
-                    Align(
-                      alignment: Alignment.bottomCenter,
-                      child: SizedBox(
-                        width: double.infinity,
-                        height: math.min(
-                          limits.maxWidth * .75,
-                          limits.maxHeight * .53,
-                        ),
-                        child: _Horizon(colors: colors),
-                      ),
-                    ),
-                    Center(
-                      child: CustomPaint(
-                        size: const Size(176, 190),
-                        painter: _Arch(colors.gold),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
+              animation: Listenable.merge([_intro, _ambient, _flight]),
+              child: _Backdrop(colors: colors, size: limits.biggest),
               builder: (context, backdrop) {
-                final progress = const Interval(
-                  _holdMilliseconds / _splashMilliseconds,
-                  1,
-                  curve: Curves.easeInOutCubic,
-                ).transform(_handoff.value);
+                final progress = Curves.easeInOutCubic.transform(_flight.value);
+                final scene = _segment(0, 500);
+                final settle = _segment(0, 1200, Curves.easeOutCubic);
+                final markIn = _segment(100, 600);
+                final origin = _emblem.inscribe(
+                  _markSize,
+                  Offset.zero & limits.biggest,
+                );
+                final markRect = Rect.fromCenter(
+                  center: origin.center.translate(0, 12 * (1 - markIn)),
+                  width: _markSize.width * (.94 + .06 * markIn),
+                  height: _markSize.height * (.94 + .06 * markIn),
+                );
                 return Stack(
                   fit: StackFit.expand,
                   children: [
-                    Opacity(opacity: 1 - progress, child: backdrop),
+                    Opacity(
+                      opacity: 1 - progress,
+                      child: ColoredBox(
+                        color: colors.surface,
+                        child: Stack(
+                          fit: StackFit.expand,
+                          children: [
+                            Opacity(
+                              opacity: scene,
+                              child: Transform.scale(
+                                scale: 1.04 - .04 * settle,
+                                child: backdrop,
+                              ),
+                            ),
+                            if (colors.dark)
+                              CustomPaint(
+                                painter: _ShootingStar(
+                                  progress: _shootingProgress(),
+                                ),
+                              ),
+                            Align(
+                              alignment: _emblem,
+                              child: CustomPaint(
+                                size: _archSize,
+                                painter: _Arch(
+                                  colors.gold,
+                                  progress: _segment(
+                                    100,
+                                    800,
+                                    Curves.easeInOutCubic,
+                                  ),
+                                  glint: math.sin(
+                                    math.pi * _segment(0, 250, Curves.linear),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
                     Positioned.fromRect(
                       rect: Rect.lerp(
-                        origin,
-                        _destination ?? origin,
+                        markRect,
+                        _destination ?? markRect,
                         progress,
                       )!,
                       child: Opacity(
-                        opacity: _destination == null ? 1 - progress : 1,
+                        opacity:
+                            markIn * (_destination == null ? 1 - progress : 1),
                         child: ClipRect(
                           clipper: const _MarkClipper(),
                           child: Image.asset(
@@ -173,6 +237,15 @@ class _SplashViewState extends State<SplashView>
       ),
     );
   }
+
+  /// One streak during the intro, then a quieter occasional one while waiting.
+  double _shootingProgress() {
+    final intro = _segment(700, 1200, Curves.linear);
+    if (intro > 0 && intro < 1) return intro;
+    if (!_intro.isCompleted) return 0;
+    final loop = (_ambient.value * 2) % 1;
+    return loop < .18 ? Curves.easeInOut.transform(loop / .18) : 0;
+  }
 }
 
 class _MarkClipper extends CustomClipper<Rect> {
@@ -186,50 +259,108 @@ class _MarkClipper extends CustomClipper<Rect> {
   bool shouldReclip(_MarkClipper oldClipper) => false;
 }
 
-class _Horizon extends StatelessWidget {
-  const _Horizon({required this.colors});
+class _Backdrop extends StatelessWidget {
+  const _Backdrop({required this.colors, required this.size});
 
   final VaktijaPalette colors;
+  final Size size;
 
   @override
   Widget build(BuildContext context) {
     final theme = colors.dark ? 'dark' : 'light';
-    return Stack(
-      fit: StackFit.expand,
-      children: [
-        Image.asset(
-          '$prayerAssets/mosque-horizon-mobile-$theme.webp',
-          fit: BoxFit.cover,
-          alignment: Alignment.bottomCenter,
-          excludeFromSemantics: true,
+    if (size.width <= size.height) {
+      return Image.asset(
+        'assets/branding/splash-mosque-$theme.webp',
+        fit: BoxFit.cover,
+        excludeFromSemantics: true,
+      );
+    }
+
+    return DecoratedBox(
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+          colors: [
+            colors.surface,
+            colors.dark ? const Color(0xff02231f) : const Color(0xfff9f6ec),
+          ],
         ),
-        DecoratedBox(
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
+      ),
+      child: Align(
+        alignment: Alignment.bottomCenter,
+        child: SizedBox(
+          width: double.infinity,
+          height: math.min(size.width / 3, size.height * .6),
+          child: ShaderMask(
+            blendMode: BlendMode.dstIn,
+            shaderCallback: (bounds) => const LinearGradient(
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
-              colors: [colors.surface, colors.surface.withValues(alpha: 0)],
-              stops: const [0.04, 0.48],
+              colors: [Colors.transparent, Colors.white],
+              stops: [0, .38],
+            ).createShader(bounds),
+            child: Image.asset(
+              '$prayerAssets/mosque-horizon-$theme.webp',
+              fit: BoxFit.cover,
+              alignment: Alignment.bottomCenter,
+              excludeFromSemantics: true,
             ),
           ),
         ),
-      ],
+      ),
     );
   }
 }
 
+class _ShootingStar extends CustomPainter {
+  _ShootingStar({required this.progress});
+
+  final double progress;
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    if (progress <= 0 || progress >= 1) return;
+    final start = Offset(size.width * .15, size.height * .12);
+    final end = Offset(size.width * .72, size.height * .38);
+    final head = Offset.lerp(start, end, progress)!;
+    final tail = Offset.lerp(start, end, (progress - .18).clamp(0.0, 1.0))!;
+    final fade = math.sin(math.pi * progress);
+    canvas.drawLine(
+      tail,
+      head,
+      Paint()
+        ..shader = ui.Gradient.linear(tail, head, [
+          Colors.white.withValues(alpha: 0),
+          Colors.white.withValues(alpha: .7 * fade),
+        ])
+        ..strokeWidth = 1.6
+        ..strokeCap = StrokeCap.round,
+    );
+  }
+
+  @override
+  bool shouldRepaint(_ShootingStar oldDelegate) =>
+      progress != oldDelegate.progress;
+}
+
 class _Arch extends CustomPainter {
-  const _Arch(this.color);
+  const _Arch(this.color, {required this.progress, required this.glint});
 
   final Color color;
+  final double progress;
+  final double glint;
 
   @override
   void paint(Canvas canvas, Size size) {
     final Size(:width, :height) = size;
-    final path = Path()
-      ..moveTo(1, height * .91)
-      ..lineTo(1, height * .49)
-      ..cubicTo(1, height * .21, width * .42, height * .17, width / 2, 1)
+    // Draw from the apex down both sides so motion is visible immediately.
+    final left = Path()
+      ..moveTo(width / 2, 1)
+      ..cubicTo(width * .42, height * .17, 1, height * .21, 1, height * .49)
+      ..lineTo(1, height * .91);
+    final right = Path()
+      ..moveTo(width / 2, 1)
       ..cubicTo(
         width * .58,
         height * .17,
@@ -251,9 +382,34 @@ class _Arch extends CustomPainter {
           color.withValues(alpha: 0),
         ],
       ).createShader(Offset.zero & size);
-    canvas.drawPath(path, stroke);
+    for (final side in [left, right]) {
+      for (final metric in side.computeMetrics()) {
+        canvas.drawPath(
+          metric.extractPath(0, metric.length * progress),
+          stroke,
+        );
+      }
+    }
+
+    if (glint > 0) {
+      final apex = Offset(width / 2, 1);
+      canvas.drawCircle(
+        apex,
+        14,
+        Paint()
+          ..shader = RadialGradient(
+            colors: [
+              color.withValues(alpha: .8 * glint),
+              color.withValues(alpha: 0),
+            ],
+          ).createShader(Rect.fromCircle(center: apex, radius: 14)),
+      );
+    }
   }
 
   @override
-  bool shouldRepaint(_Arch oldDelegate) => color != oldDelegate.color;
+  bool shouldRepaint(_Arch oldDelegate) =>
+      color != oldDelegate.color ||
+      progress != oldDelegate.progress ||
+      glint != oldDelegate.glint;
 }
