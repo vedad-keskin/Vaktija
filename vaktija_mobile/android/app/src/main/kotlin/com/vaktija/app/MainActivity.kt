@@ -13,6 +13,7 @@ class MainActivity : FlutterActivity() {
     private var launchExited = Build.VERSION.SDK_INT < Build.VERSION_CODES.S
     private var launchReply: MethodChannel.Result? = null
     private var fullscreen = false
+    private var qiblaDevice: QiblaDevice? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,6 +29,7 @@ class MainActivity : FlutterActivity() {
 
     override fun configureFlutterEngine(flutterEngine: FlutterEngine) {
         super.configureFlutterEngine(flutterEngine)
+        qiblaDevice = QiblaDevice(this, flutterEngine.dartExecutor.binaryMessenger)
         MethodChannel(flutterEngine.dartExecutor.binaryMessenger, "vaktija/launch")
             .setMethodCallHandler { call, result ->
                 when {
@@ -46,6 +48,21 @@ class MainActivity : FlutterActivity() {
                     result.notImplemented()
                 }
             }
+    }
+
+    override fun cleanUpFlutterEngine(flutterEngine: FlutterEngine) {
+        qiblaDevice?.close()
+        qiblaDevice = null
+        super.cleanUpFlutterEngine(flutterEngine)
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray,
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if (requestCode == QiblaDevice.LOCATION_PERMISSION_REQUEST) qiblaDevice?.permissionResult()
     }
 
     override fun onPostResume() {

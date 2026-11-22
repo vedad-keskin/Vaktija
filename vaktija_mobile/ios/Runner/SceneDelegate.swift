@@ -2,6 +2,8 @@ import Flutter
 import UIKit
 
 class SceneDelegate: FlutterSceneDelegate {
+  private var qiblaDevice: QiblaDevice?
+
   override func scene(
     _ scene: UIScene,
     willConnectTo session: UISceneSession,
@@ -9,6 +11,9 @@ class SceneDelegate: FlutterSceneDelegate {
   ) {
     super.scene(scene, willConnectTo: session, options: connectionOptions)
     guard let controller = window?.rootViewController as? FlutterViewController else { return }
+    if let windowScene = scene as? UIWindowScene {
+      qiblaDevice = QiblaDevice(scene: windowScene, messenger: controller.binaryMessenger)
+    }
     let channel = FlutterMethodChannel(
       name: "vaktija/launch", binaryMessenger: controller.binaryMessenger
     )

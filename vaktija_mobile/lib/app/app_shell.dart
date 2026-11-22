@@ -9,6 +9,7 @@ import '../features/duas/duas_page.dart';
 import '../features/prayer_times/prayer_page.dart';
 import '../features/prayer_times/prayer_repository.dart';
 import '../features/prayer_times/timetable.dart';
+import '../features/qibla/qibla_page.dart';
 import 'mobile_header.dart';
 import 'method_choice.dart';
 import 'vaktija_palette.dart';
@@ -269,6 +270,7 @@ class _AppShellState extends State<AppShell>
 
     final collection = _readingCollection;
     final reading = collection != null;
+    final scrollingHeader = reading || _section == MobileSection.qibla;
     final mobileHeader = MobileHeader(
       labels: labels,
       city: _city,
@@ -319,6 +321,12 @@ class _AppShellState extends State<AppShell>
       onSection: _selectSection,
       onMethod: _selectMethod,
     );
+    final sectionHeader = scrollingHeader
+        ? CompositedTransformTarget(
+            link: _readerMenuAnchor,
+            child: mobileHeader,
+          )
+        : mobileHeader;
 
     return PopScope<Object?>(
       canPop:
@@ -376,7 +384,7 @@ class _AppShellState extends State<AppShell>
               removeRight: true,
               child: Column(
                 children: [
-                  if (!reading)
+                  if (!scrollingHeader)
                     AnimatedBuilder(
                       animation: _fullscreenTransition,
                       builder: (context, child) {
@@ -428,10 +436,7 @@ class _AppShellState extends State<AppShell>
                                 DuasPage(
                                   key: ValueKey(collection),
                                   collection: collection,
-                                  header: CompositedTransformTarget(
-                                    link: _readerMenuAnchor,
-                                    child: mobileHeader,
-                                  ),
+                                  header: sectionHeader,
                                   language: _bosnian ? 'bs' : 'en',
                                   bookmarks: _bookmarksFor(collection),
                                   onSaveBookmarks: (ids) =>
@@ -439,14 +444,14 @@ class _AppShellState extends State<AppShell>
                                   onBack: () =>
                                       _selectSection(MobileSection.prayerTimes),
                                 )
-                              else if (section == MobileSection.qibla)
-                                Center(
-                                  child: Text(
-                                    labels[section.label],
-                                    style: Theme.of(
-                                      context,
-                                    ).textTheme.headlineLarge,
-                                  ),
+                              else if (section == _section &&
+                                  section == MobileSection.qibla)
+                                QiblaPage(
+                                  header: sectionHeader,
+                                  city: _city,
+                                  language: _bosnian ? 'bs' : 'en',
+                                  onBack: () =>
+                                      _selectSection(MobileSection.prayerTimes),
                                 )
                               else
                                 const SizedBox.shrink(),
@@ -464,7 +469,7 @@ class _AppShellState extends State<AppShell>
                           left: 0,
                           top: 0,
                           right: 0,
-                          child: reading
+                          child: scrollingHeader
                               ? CompositedTransformFollower(
                                   link: _readerMenuAnchor,
                                   targetAnchor: Alignment.bottomLeft,
