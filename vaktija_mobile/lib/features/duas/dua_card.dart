@@ -1,7 +1,5 @@
-import 'dart:async';
 import 'dart:math' as math;
 
-import 'package:flutter/foundation.dart' show defaultTargetPlatform;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -11,18 +9,6 @@ import 'dua_catalog.dart';
 
 const duaRosette = 'assets/prayer_times/dua-crescent-rosette.webp';
 const duaDisplayFont = 'Cormorant Garamond';
-
-enum _CopyPart {
-  dua('Dova kopirana', 'Dua copied'),
-  arabic('Arapski tekst kopiran', 'Arabic text copied'),
-  transcription('Transkripcija kopirana', 'Transliteration copied'),
-  translation('Prijevod kopiran', 'Translation copied'),
-  instructions('Uputa kopirana', 'Instruction copied'),
-  source('Izvor kopiran', 'Source copied');
-
-  const _CopyPart(this.bs, this.en);
-  final String bs, en;
-}
 
 class DuaCard extends StatelessWidget {
   const DuaCard({
@@ -42,40 +28,36 @@ class DuaCard extends StatelessWidget {
 
   bool get _bosnian => language == 'bs';
 
-  Future<void> _copy(BuildContext context, String text, _CopyPart part) async {
+  Future<void> _copy(BuildContext context, String text) async {
     try {
       await Clipboard.setData(ClipboardData(text: text));
     } catch (_) {
       if (context.mounted) {
-        showDuaMessage(
+        await showDuaError(
           context,
           _bosnian ? 'Tekst nije moguće kopirati.' : 'Couldn’t copy the text.',
-          error: true,
+          language,
         );
       }
       return;
     }
-    if (context.mounted) {
-      unawaited(HapticFeedback.lightImpact());
-      showDuaMessage(context, _bosnian ? part.bs : part.en, copied: true);
-    }
+    await HapticFeedback.lightImpact();
   }
 
   Widget _copyable(
     BuildContext context,
-    String text,
-    _CopyPart part,
+    String Function() text,
     Widget child, {
-    String Function()? asText,
+    bool wholeDua = false,
   }) => Semantics(
-    hint: part == _CopyPart.dua
+    hint: wholeDua
         ? (_bosnian
               ? 'Zadržite za kopiranje cijele dove'
               : 'Hold to copy the whole dua')
         : (_bosnian ? 'Zadržite za kopiranje teksta' : 'Hold to copy the text'),
     child: GestureDetector(
       behavior: HitTestBehavior.opaque,
-      onLongPress: () => _copy(context, asText?.call() ?? text, part),
+      onLongPress: () => _copy(context, text()),
       child: child,
     ),
   );
@@ -181,8 +163,7 @@ class DuaCard extends StatelessWidget {
                             header: true,
                             child: _copyable(
                               context,
-                              title,
-                              _CopyPart.dua,
+                              () => dua.copyText(language),
                               Text(
                                 title,
                                 style: TextStyle(
@@ -193,7 +174,7 @@ class DuaCard extends StatelessWidget {
                                   color: colors.heroText,
                                 ),
                               ),
-                              asText: () => dua.copyText(language),
+                              wholeDua: true,
                             ),
                           ),
                         ),
@@ -250,8 +231,7 @@ class DuaCard extends StatelessWidget {
         const SizedBox(height: 20),
         _copyable(
           context,
-          saying.arabic,
-          _CopyPart.arabic,
+          () => saying.arabic,
           Text(
             saying.arabic,
             textAlign: TextAlign.center,
@@ -274,8 +254,7 @@ class DuaCard extends StatelessWidget {
             padding: const EdgeInsets.only(bottom: 18),
             child: _copyable(
               context,
-              instructions,
-              _CopyPart.instructions,
+              () => instructions,
               Container(
                 padding: const EdgeInsets.fromLTRB(14, 12, 14, 10),
                 decoration: BoxDecoration(
@@ -319,8 +298,7 @@ class DuaCard extends StatelessWidget {
         if (transcription.isNotEmpty) ...[
           _copyable(
             context,
-            transcription,
-            _CopyPart.transcription,
+            () => transcription,
             Text(
               transcription,
               textAlign: TextAlign.center,
@@ -338,8 +316,7 @@ class DuaCard extends StatelessWidget {
         if (translation.isNotEmpty)
           _copyable(
             context,
-            translation,
-            _CopyPart.translation,
+            () => translation,
             Text(
               translation,
               textAlign: TextAlign.center,
@@ -372,12 +349,12 @@ class DuaCard extends StatelessWidget {
         // A device without a browser can still display the bundled reference.
       }
       if (context.mounted) {
-        showDuaMessage(
+        await showDuaError(
           context,
           _bosnian
               ? 'Izvor nije moguće otvoriti.'
               : 'Couldn’t open the source.',
-          error: true,
+          language,
         );
       }
     }
@@ -391,8 +368,7 @@ class DuaCard extends StatelessWidget {
             link: true,
             child: InkWell(
               onTap: open,
-              onLongPress: () =>
-                  _copy(context, source.copyText(language), _CopyPart.source),
+              onLongPress: () => _copy(context, source.copyText(language)),
               borderRadius: BorderRadius.circular(8),
               child: ConstrainedBox(
                 constraints: const BoxConstraints(minHeight: 44),
@@ -476,45 +452,23 @@ class DuaDivider extends StatelessWidget {
   }
 }
 
-void showDuaMessage(
+Future<void> showDuaError(
   BuildContext context,
-  String message, {
-  bool error = false,
-  bool copied = false,
-}) {
-  final colors = VaktijaPalette.of(context);
-  final view = View.of(context);
-  final visibleHeight =
-      (view.physicalSize.height - view.viewInsets.bottom) /
-      view.devicePixelRatio;
-  // Keep the message readable above Android's clipboard preview.
-  final bottom = copied && defaultTargetPlatform == TargetPlatform.android
-      ? (visibleHeight / 3).clamp(12.0, 84.0)
-      : 12.0;
-  final messenger = ScaffoldMessenger.of(context);
-  messenger.removeCurrentSnackBar();
-  messenger.showSnackBar(
-    SnackBar(
-      behavior: SnackBarBehavior.floating,
-      duration: const Duration(seconds: 2),
-      margin: EdgeInsets.fromLTRB(16, 0, 16, bottom),
-      backgroundColor: colors.panel,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(14),
-        side: BorderSide(color: colors.heroBorder),
+  String message,
+  String language,
+) => showDialog<void>(
+  context: context,
+  builder: (context) => AlertDialog(
+    content: Text(message),
+    actions: [
+      TextButton(
+        onPressed: () => Navigator.of(context).pop(),
+        child: Text(
+          language == 'bs'
+              ? 'U redu'
+              : MaterialLocalizations.of(context).okButtonLabel,
+        ),
       ),
-      content: Row(
-        children: [
-          Icon(
-            error ? Icons.info_outline_rounded : Icons.check_rounded,
-            color: colors.gold,
-          ),
-          const SizedBox(width: 10),
-          Expanded(
-            child: Text(message, style: TextStyle(color: colors.text)),
-          ),
-        ],
-      ),
-    ),
-  );
-}
+    ],
+  ),
+);

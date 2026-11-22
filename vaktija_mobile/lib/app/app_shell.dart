@@ -36,6 +36,7 @@ class _AppShellState extends State<AppShell>
     with SingleTickerProviderStateMixin {
   static const _fullscreenChannel = MethodChannel('vaktija/fullscreen');
   static const _fullscreenPreference = 'fullscreen';
+  static const _duasBookmarksPreference = 'vaktija_saved_duas';
   late final _fullscreenTransition = AnimationController(
     vsync: this,
     duration: const Duration(milliseconds: 520),
@@ -55,7 +56,10 @@ class _AppShellState extends State<AppShell>
   bool _systemFullscreen = false;
   final _cityPopup = OverlayPortalController();
   final _duasMenuAnchor = LayerLink();
-  bool _duasVisited = false;
+  late List<String> _duasBookmarks =
+      widget.repository.preferences.getStringList(_duasBookmarksPreference) ??
+      [];
+  Future<bool> _duasBookmarkWrite = Future.value(true);
   var _overlay = _Overlay.none;
   var _section = MobileSection.prayerTimes;
 
@@ -157,12 +161,23 @@ class _AppShellState extends State<AppShell>
   void _selectSection(MobileSection section) {
     if (_section == MobileSection.duas && section != _section) {
       FocusScope.of(context).unfocus();
-      ScaffoldMessenger.of(context).removeCurrentSnackBar();
     }
     setState(() {
       _setOverlay(_Overlay.none);
       _section = section;
-      if (section == MobileSection.duas) _duasVisited = true;
+    });
+  }
+
+  Future<bool> _saveDuasBookmarks(List<String> ids) {
+    _duasBookmarks = ids;
+    final preferences = widget.repository.preferences;
+    // Finish writes in order even if the reader closes and reopens.
+    return _duasBookmarkWrite = _duasBookmarkWrite.then((_) async {
+      try {
+        return await preferences.setStringList(_duasBookmarksPreference, ids);
+      } catch (_) {
+        return false;
+      }
     });
   }
 
@@ -396,16 +411,15 @@ class _AppShellState extends State<AppShell>
                             ),
                             for (final section in MobileSection.values.skip(1))
                               if (section == MobileSection.duas)
-                                if (_duasVisited)
+                                if (readingDuas)
                                   DuasPage(
-                                    header: readingDuas
-                                        ? CompositedTransformTarget(
-                                            link: _duasMenuAnchor,
-                                            child: mobileHeader,
-                                          )
-                                        : null,
+                                    header: CompositedTransformTarget(
+                                      link: _duasMenuAnchor,
+                                      child: mobileHeader,
+                                    ),
                                     language: _bosnian ? 'bs' : 'en',
-                                    preferences: preferences,
+                                    bookmarks: _duasBookmarks,
+                                    onSaveBookmarks: _saveDuasBookmarks,
                                     onBack: () => _selectSection(
                                       MobileSection.prayerTimes,
                                     ),

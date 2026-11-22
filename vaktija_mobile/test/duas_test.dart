@@ -5,6 +5,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:vaktija/app/app_shell.dart';
 import 'package:vaktija/features/duas/dua_catalog.dart';
 import 'package:vaktija/features/duas/dua_search.dart';
+import 'package:vaktija/features/duas/duas_page.dart';
 import 'package:vaktija/features/prayer_times/prayer_repository.dart';
 import 'package:vaktija/features/prayer_times/timetable.dart';
 
@@ -135,12 +136,26 @@ void main() {
 
     final duasScroll = find
         .descendant(
-          of: find.byKey(const PageStorageKey('duas-reading')),
+          of: find.byType(DuasPage),
           matching: find.byType(Scrollable),
         )
         .first;
-    tester.state<ScrollableState>(duasScroll).position.jumpTo(0);
+    tester.state<ScrollableState>(duasScroll).position.jumpTo(100);
     await tester.pumpAndSettle();
+    final reader = tester.state(find.byType(DuasPage));
+    await tester.binding.handlePopRoute();
+    await tester.pumpAndSettle();
+    expect(reader.mounted, isFalse);
+
+    await tester.tap(find.byTooltip('Meni'));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('DOVE'));
+    await tester.runAsync(() async {
+      await tester.pump();
+      await rootBundle.loadString('$duaAssets/catalog.json');
+    });
+    await tester.pumpAndSettle();
+    expect(tester.state<ScrollableState>(duasScroll).position.pixels, 0);
     final semantics = tester.ensureSemantics();
     final saved = find.bySemanticsLabel('Sačuvane, 1');
     await tester.ensureVisible(saved);
@@ -164,24 +179,12 @@ void main() {
     final arabic = tester.widget<Text>(find.text(second.arabic));
     expect(arabic.textDirection, TextDirection.rtl);
     expect(arabic.style?.fontFamily, 'Amiri');
-    for (final (block, text, notice) in [
-      (dua.title['bs']!, dua.copyText('bs'), 'Dova kopirana'),
-      (second.arabic, second.arabic, 'Arapski tekst kopiran'),
-      (
-        second.instructions!['bs']!,
-        second.instructions!['bs']!,
-        'Uputa kopirana',
-      ),
-      (
-        second.transcription['bs']!,
-        second.transcription['bs']!,
-        'Transkripcija kopirana',
-      ),
-      (
-        second.translation['bs']!,
-        second.translation['bs']!,
-        'Prijevod kopiran',
-      ),
+    for (final (block, text) in [
+      (dua.title['bs']!, dua.copyText('bs')),
+      (second.arabic, second.arabic),
+      (second.instructions!['bs']!, second.instructions!['bs']!),
+      (second.transcription['bs']!, second.transcription['bs']!),
+      (second.translation['bs']!, second.translation['bs']!),
     ]) {
       final target = find.text(block);
       await tester.ensureVisible(target);
@@ -190,7 +193,7 @@ void main() {
       await tester.pumpAndSettle();
       expect(copied, text);
       expect(copyImpacts, previousImpacts + 1);
-      expect(find.text(notice), findsOneWidget);
+      expect(find.byType(SnackBar), findsNothing);
     }
     expect(copied, second.translation['bs']);
     expect(dua.copyText('bs'), contains(dua.sayings.last.arabic));

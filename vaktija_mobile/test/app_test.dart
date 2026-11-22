@@ -6,6 +6,7 @@ import 'package:vaktija/app/app_shell.dart';
 import 'package:vaktija/app/method_help_popover.dart';
 import 'package:vaktija/app/mobile_header.dart';
 import 'package:vaktija/app/vaktija_palette.dart';
+import 'package:vaktija/features/duas/duas_page.dart';
 import 'package:vaktija/features/duas/dua_catalog.dart';
 import 'package:vaktija/features/prayer_times/prayer_page.dart';
 import 'package:vaktija/features/prayer_times/prayer_repository.dart';
@@ -466,6 +467,13 @@ void main() {
       await tester.pumpAndSettle();
     }
     expect(find.text('Zora (sabah)'), findsWidgets);
+    expect(find.byType(DuasPage, skipOffstage: false), findsNothing);
+    expect(tester.state(find.byType(PrayerPage)), same(pageState));
+    await tester.tap(enter);
+    await tester.pumpAndSettle();
+    expect(exit.hitTestable(), findsOneWidget);
+    await tester.tap(exit);
+    await tester.pumpAndSettle();
     await tester.pumpWidget(const SizedBox.shrink());
   });
 }

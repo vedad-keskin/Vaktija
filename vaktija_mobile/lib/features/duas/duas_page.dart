@@ -2,7 +2,6 @@ import 'dart:async';
 import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../app/vaktija_palette.dart';
 import 'dua_card.dart';
@@ -12,15 +11,17 @@ import 'dua_search.dart';
 class DuasPage extends StatefulWidget {
   const DuasPage({
     super.key,
-    this.header,
+    required this.header,
     required this.language,
-    required this.preferences,
+    required this.bookmarks,
+    required this.onSaveBookmarks,
     required this.onBack,
   });
 
-  final Widget? header;
+  final Widget header;
   final String language;
-  final SharedPreferences preferences;
+  final List<String> bookmarks;
+  final Future<bool> Function(List<String>) onSaveBookmarks;
   final VoidCallback onBack;
 
   @override
@@ -29,14 +30,12 @@ class DuasPage extends StatefulWidget {
 
 class _DuasPageState extends State<DuasPage> {
   static const _pageSize = 10;
-  static const _bookmarksKey = 'vaktija_saved_duas';
 
   final _query = TextEditingController();
   final _searchFocus = FocusNode();
   late final Set<String> _saved;
   late Future<DuaCatalog> _catalog;
   late DuaSearch _search;
-  Future<void>? _bookmarkWrite;
   String _scope = 'all';
   int _visibleCount = _pageSize;
   bool _categoriesOpen = false;
@@ -47,12 +46,13 @@ class _DuasPageState extends State<DuasPage> {
   @override
   void initState() {
     super.initState();
-    _saved = (widget.preferences.getStringList(_bookmarksKey) ?? []).toSet();
+    _saved = widget.bookmarks.toSet();
     _catalog = _loadCatalog();
   }
 
   Future<DuaCatalog> _loadCatalog() async {
     final catalog = await DuaCatalog.load();
+    if (!mounted) return catalog;
     _saved.retainAll(catalog.ids);
     _search = DuaSearch(catalog.items);
     return catalog;
@@ -77,24 +77,13 @@ class _DuasPageState extends State<DuasPage> {
     setState(() => _visibleCount = _pageSize);
   }
 
-  void _toggleBookmark(String id, DuaLabels labels) {
+  Future<void> _toggleBookmark(String id, DuaLabels labels) async {
     setState(() {
       if (!_saved.remove(id)) _saved.add(id);
     });
-    final ids = _saved.toList();
-    final preferences = widget.preferences;
-    Future<void> persist() async {
-      try {
-        if (await preferences.setStringList(_bookmarksKey, ids)) return;
-      } catch (_) {
-        // Keep the current selection available while the page stays open.
-      }
-      if (mounted) {
-        showDuaMessage(context, labels['duasStorageError']!, error: true);
-      }
+    if (!await widget.onSaveBookmarks(_saved.toList()) && mounted) {
+      await showDuaError(context, labels['duasStorageError']!, _language);
     }
-
-    _bookmarkWrite = _bookmarkWrite?.then((_) => persist()) ?? persist();
   }
 
   @override
@@ -106,11 +95,9 @@ class _DuasPageState extends State<DuasPage> {
         builder: (context, constraints) {
           final gutter = math.max(12.0, (constraints.maxWidth - 936) / 2);
           return CustomScrollView(
-            key: const PageStorageKey('duas-reading'),
             keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
             slivers: [
-              if (widget.header case final header?)
-                SliverToBoxAdapter(child: header),
+              SliverToBoxAdapter(child: widget.header),
               if (catalog == null)
                 SliverToBoxAdapter(
                   child: Padding(
