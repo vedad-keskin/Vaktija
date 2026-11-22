@@ -1,5 +1,10 @@
-﻿<div class="prayer-times-page" [attr.lang]="langService.lang()">
-  <app-header [city]="selectedLocation()">
+﻿<div
+  #page
+  class="prayer-times-page"
+  [class.is-fullscreen]="fullscreen()"
+  [attr.lang]="langService.lang()"
+>
+  <app-header class="page-toolbar" [city]="selectedLocation()" [inert]="fullscreen()">
     <app-city-selector
       [locations]="locations()"
       [selected]="selectedLocation()"
@@ -7,6 +12,11 @@
     />
   </app-header>
   <main class="page-content">
+    @if (fullscreen() && (isLoading() || error() || !countdown())) {
+      <button type="button" class="fullscreen-exit" (click)="exitFullscreen()">
+        {{ labels().exitFullscreen }}
+      </button>
+    }
     @if (isLoading()) {
       <app-prayer-times-loading-panel
         [titleText]="labels().loading"
@@ -24,27 +34,19 @@
       @if (countdown(); as cd) {
         <div class="countdown-wrap">
           <section
+            #countdownCard
             class="countdown-section"
-            [class.collapsed]="countdownCollapsed()"
             id="countdown"
             aria-labelledby="next-prayer-name"
           >
-            <span class="countdown-compact-background" aria-hidden="true"></span>
             <button
               type="button"
               class="countdown-toggle"
-              (click)="toggleCountdown()"
-              [attr.aria-expanded]="!countdownCollapsed()"
-              aria-controls="countdown-details"
-              [attr.aria-label]="
-                countdownCollapsed() ? labels().expandCountdown : labels().collapseCountdown
-              "
-              [attr.aria-describedby]="
-                countdownCollapsed() ? 'countdown-summary-name countdown-summary-timer' : null
-              "
+              (click)="toggleFullscreen()"
+              [attr.aria-label]="fullscreen() ? labels().exitFullscreen : labels().enterFullscreen"
             >
               <svg
-                class="countdown-chevron"
+                class="countdown-toggle-icon"
                 aria-hidden="true"
                 viewBox="0 0 24 24"
                 width="18"
@@ -52,7 +54,11 @@
                 fill="none"
               >
                 <path
-                  d="m6 9 6 6 6-6"
+                  [attr.d]="
+                    fullscreen()
+                      ? 'M14 10l7-7M20 10h-6V4M3 21l7-7M4 14h6v6'
+                      : 'M15 3h6v6M21 3l-7 7M3 21l7-7M9 21H3v-6'
+                  "
                   stroke="currentColor"
                   stroke-width="1.75"
                   stroke-linecap="round"
@@ -60,46 +66,38 @@
                 />
               </svg>
             </button>
-            <div class="countdown-summary" [attr.aria-hidden]="!countdownCollapsed()">
-              <span class="countdown-summary-name" id="countdown-summary-name">{{ cd.name }}</span>
-              <span
-                class="countdown-summary-timer"
-                id="countdown-summary-timer"
-                role="timer"
-                aria-live="off"
-              >
-                {{ pad(cd.hours) }}:{{ pad(cd.minutes) }}:{{ pad(cd.seconds) }}
-              </span>
-            </div>
-            <div class="countdown-content" id="countdown-details">
-              <div class="countdown-expanded">
-                <div class="countdown-dates" id="date-display">
-                  @if (dateLabel()) {
-                    <span class="date-gregorian">{{ dateLabel() }}</span>
+            <div class="countdown-content">
+              <div class="countdown-dates" id="date-display">
+                @if (dateLabel()) {
+                  <span class="date-gregorian">{{ dateLabel() }}</span>
+                  @if (fullscreen() && selectedLocation(); as city) {
+                    <span class="date-gregorian countdown-city-date"
+                      >{{ city.name }} · {{ dateLabel() }}</span
+                    >
                   }
-                  @if (hijriDate()) {
-                    <span class="date-hijri">{{ hijriDate() }}</span>
-                  }
+                }
+                @if (hijriDate()) {
+                  <span class="date-hijri">{{ hijriDate() }}</span>
+                }
+              </div>
+              <div class="countdown-heading">
+                <span class="countdown-label">{{ labels().nextTime }}</span>
+                <h2 id="next-prayer-name">{{ cd.name }}</h2>
+              </div>
+              <div class="countdown-timer" role="timer" aria-live="off">
+                <div class="countdown-segment">
+                  <span class="countdown-value">{{ pad(cd.hours) }}</span>
+                  <span class="countdown-unit">{{ labels().countdownHours }}</span>
                 </div>
-                <div class="countdown-heading">
-                  <span class="countdown-label">{{ labels().nextTime }}</span>
-                  <h2 id="next-prayer-name">{{ cd.name }}</h2>
+                <span class="countdown-sep" aria-hidden="true">:</span>
+                <div class="countdown-segment">
+                  <span class="countdown-value">{{ pad(cd.minutes) }}</span>
+                  <span class="countdown-unit">{{ labels().countdownMinutes }}</span>
                 </div>
-                <div class="countdown-timer" role="timer" aria-live="off">
-                  <div class="countdown-segment">
-                    <span class="countdown-value">{{ pad(cd.hours) }}</span>
-                    <span class="countdown-unit">{{ labels().countdownHours }}</span>
-                  </div>
-                  <span class="countdown-sep" aria-hidden="true">:</span>
-                  <div class="countdown-segment">
-                    <span class="countdown-value">{{ pad(cd.minutes) }}</span>
-                    <span class="countdown-unit">{{ labels().countdownMinutes }}</span>
-                  </div>
-                  <span class="countdown-sep" aria-hidden="true">:</span>
-                  <div class="countdown-segment">
-                    <span class="countdown-value">{{ pad(cd.seconds) }}</span>
-                    <span class="countdown-unit">{{ labels().countdownSeconds }}</span>
-                  </div>
+                <span class="countdown-sep" aria-hidden="true">:</span>
+                <div class="countdown-segment">
+                  <span class="countdown-value">{{ pad(cd.seconds) }}</span>
+                  <span class="countdown-unit">{{ labels().countdownSeconds }}</span>
                 </div>
               </div>
             </div>

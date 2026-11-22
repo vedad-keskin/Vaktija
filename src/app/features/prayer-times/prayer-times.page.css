@@ -14,9 +14,10 @@
 .countdown-wrap {
   position: relative;
 }
-.countdown-toggle,
-.countdown-summary,
-.countdown-compact-background {
+.page-toolbar {
+  display: block;
+}
+.countdown-toggle {
   display: none;
 }
 .countdown-section {
@@ -76,6 +77,16 @@
   font-weight: 500;
   text-transform: capitalize;
   color: var(--text-secondary);
+}
+.countdown-city-date {
+  position: absolute;
+  inset-inline: 3rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.countdown-dates:has(.countdown-city-date) > .date-gregorian:not(.countdown-city-date) {
+  visibility: hidden;
 }
 .date-hijri {
   display: none;
@@ -199,6 +210,7 @@
   position: relative;
   min-width: 0;
   padding-left: 26px;
+  transform-origin: top left;
 }
 .prayer-stop::after {
   content: '';
@@ -290,132 +302,13 @@
 }
 @media (max-width: 599px) {
   .countdown-section {
-    display: grid;
-    grid-template-rows: 1fr;
-    min-height: 76px;
-    padding: 0 0 74px;
-    transition: grid-template-rows 240ms ease;
-  }
-  .countdown-content {
-    min-height: 0;
-    overflow: hidden;
-    /* Animate only the height above the compact row, without a minimum-height pause. */
-    margin-bottom: -74px;
-  }
-  .countdown-content,
-  .horizon-scene {
-    transition:
-      opacity 160ms ease 60ms,
-      visibility 0s;
-  }
-  .countdown-section::before,
-  .countdown-compact-background {
-    transition: opacity 240ms ease;
-  }
-  .countdown-compact-background {
-    position: absolute;
-    inset: 0 0 auto;
-    z-index: -1;
-    display: block;
-    height: 74px;
-    background: var(--hero-compact-image) center bottom / cover no-repeat;
-    opacity: 0;
-    pointer-events: none;
-  }
-  .countdown-summary {
-    position: absolute;
-    inset: 0 0 auto;
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) auto;
-    align-items: center;
-    gap: 0.75rem;
-    height: 74px;
-    padding: 0 4rem 0 1rem;
-    font: 600 1.45rem/1 var(--font-heading);
-    font-variant-numeric: tabular-nums;
-    text-align: left;
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
-    transition:
-      opacity 80ms ease,
-      visibility 0s 80ms;
-  }
-  .countdown-expanded {
     padding: 1.85rem 0.75rem 4rem;
   }
   .countdown-heading h2 {
     font-size: clamp(3.1rem, 10vw, 5.75rem);
   }
-  .countdown-summary-name {
-    font-family: var(--font-display);
-  }
   .countdown-dates {
     padding-inline: 3rem;
-  }
-  .countdown-toggle {
-    position: absolute;
-    z-index: 2;
-    inset: 15px 8px auto auto;
-    display: block;
-    width: 44px;
-    height: 44px;
-    padding: 0;
-    border: 0;
-    border-radius: 12px;
-    background: transparent;
-    color: inherit;
-    cursor: pointer;
-  }
-  :host .countdown-toggle:focus-visible {
-    outline-offset: -4px;
-  }
-  .countdown-chevron {
-    position: absolute;
-    top: 6px;
-    right: 6px;
-    width: 32px;
-    height: 32px;
-    padding: 6px;
-    border: 1px solid var(--hero-border);
-    color: var(--gold);
-    background: var(--hero-sky);
-    border-radius: 50%;
-    transform: rotate(180deg);
-    transition: transform 240ms ease;
-  }
-  .collapsed {
-    grid-template-rows: 0fr;
-  }
-  .collapsed :is(.countdown-content, .horizon-scene) {
-    opacity: 0;
-    visibility: hidden;
-    transition:
-      opacity 80ms ease,
-      visibility 0s 80ms;
-  }
-  .collapsed .countdown-summary {
-    opacity: 1;
-    visibility: visible;
-    transition:
-      opacity 160ms ease 60ms,
-      visibility 0s;
-  }
-  .collapsed .countdown-toggle {
-    inset: 0;
-    width: 100%;
-    height: 74px;
-  }
-  .collapsed .countdown-chevron {
-    top: 21px;
-    right: 14px;
-    transform: rotate(0);
-  }
-  .collapsed::before {
-    opacity: 0;
-  }
-  .collapsed .countdown-compact-background {
-    opacity: 0.65;
   }
   .countdown-section::before,
   .horizon-scene {
@@ -423,6 +316,37 @@
   }
   .countdown-horizon {
     top: 85.5%;
+  }
+}
+
+.countdown-toggle {
+  position: absolute;
+  z-index: 2;
+  inset: 15px 8px auto auto;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 0;
+  border-radius: 12px;
+  background: transparent;
+  cursor: pointer;
+}
+.countdown-toggle:focus-visible {
+  outline-offset: -4px;
+}
+.countdown-toggle-icon {
+  width: 32px;
+  height: 32px;
+  padding: 5px;
+  border: 1px solid var(--hero-border);
+  border-radius: 50%;
+  color: var(--gold);
+  background: var(--hero-sky);
+}
+@media (max-width: 599px), (orientation: landscape) and (max-height: 550px) and (pointer: coarse) {
+  .countdown-toggle {
+    display: grid;
+    place-items: center;
   }
 }
 @media (min-width: 1100px) {
@@ -499,4 +423,75 @@
     width: calc(100% - 2 * var(--half-stop));
     height: 28px;
   }
+}
+
+.is-fullscreen {
+  --fullscreen-top: calc(0.5rem + env(safe-area-inset-top));
+  position: fixed;
+  inset: 0;
+  z-index: 20;
+  min-height: 0;
+  height: 100dvh;
+  overflow: auto;
+  overscroll-behavior: contain;
+  padding-inline: env(safe-area-inset-left) env(safe-area-inset-right);
+}
+.is-fullscreen .page-toolbar {
+  position: absolute;
+  inset: env(safe-area-inset-top) env(safe-area-inset-right) auto env(safe-area-inset-left);
+  visibility: hidden;
+  opacity: 0;
+}
+.is-fullscreen .page-content {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding-block: var(--fullscreen-top) calc(0.75rem + env(safe-area-inset-bottom));
+}
+.is-fullscreen[data-pin-countdown] .countdown-wrap {
+  position: sticky;
+  top: var(--fullscreen-top);
+  z-index: 2;
+  background: var(--surface);
+}
+.is-fullscreen .countdown-toggle {
+  display: grid;
+  place-items: center;
+}
+.is-fullscreen .schedule-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  margin-top: 0.5rem;
+}
+.is-fullscreen .prayer-grid {
+  --schedule-gap: 0.25rem;
+  --prayer-row-height: 2.125rem;
+  --prayer-row-padding: 0.2rem 0.5rem;
+  --prayer-icon-size: 1.65rem;
+  --prayer-row-gap: 0.35rem;
+  --prayer-clock-size: 1.125rem;
+  --prayer-badge-gap: 0rem;
+  --prayer-relative-size: 0.65rem;
+  --prayer-relative-wrap: normal;
+  flex: 1;
+  grid-auto-rows: 1fr;
+}
+.is-fullscreen app-prayer-card {
+  height: 100%;
+}
+.is-fullscreen .prayer-stop::after,
+.is-fullscreen :is(.trail-marker, .trail-link) {
+  top: 50%;
+}
+.fullscreen-exit {
+  align-self: flex-end;
+  min-height: 44px;
+  padding: 0 0.75rem;
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  color: var(--text-primary);
+  background: var(--surface-elevated);
+  font: inherit;
+  cursor: pointer;
 }

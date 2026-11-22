@@ -1,4 +1,17 @@
-import { Component, DestroyRef, inject, OnInit, OnDestroy, signal, computed, effect, untracked } from '@angular/core';
+import {
+  ChangeDetectorRef,
+  Component,
+  DestroyRef,
+  ElementRef,
+  inject,
+  OnInit,
+  OnDestroy,
+  signal,
+  computed,
+  effect,
+  untracked,
+  viewChild,
+} from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Subscription } from 'rxjs';
 import { Title } from '@angular/platform-browser';
@@ -17,8 +30,6 @@ import { PrayerTimeData, PrayerTime } from '../../core/models/prayer-time.model'
 import { Location } from '../../core/models/location.model';
 import { sarajevoDayKey } from '../../core/utils/sarajevo-date';
 
-const COUNTDOWN_STORAGE_KEY = 'vaktija_countdown_collapsed';
-
 @Component({
   selector: 'app-prayer-times',
   standalone: true,
@@ -31,6 +42,7 @@ const COUNTDOWN_STORAGE_KEY = 'vaktija_countdown_collapsed';
   ],
   templateUrl: './prayer-times.page.html',
   styleUrl: './prayer-times.page.css',
+  host: { '(document:keydown.escape)': 'exitFullscreen()' },
 })
 export class PrayerTimesPage implements OnInit, OnDestroy {
   private readonly prayerTimeService = inject(PrayerTimeService);
@@ -40,10 +52,15 @@ export class PrayerTimesPage implements OnInit, OnDestroy {
   private readonly route = inject(ActivatedRoute);
   private readonly router = inject(Router);
   private readonly titleService = inject(Title);
+  private readonly changeDetector = inject(ChangeDetectorRef);
+  private readonly page = viewChild.required<ElementRef<HTMLElement>>('page');
+  private readonly countdownCard = viewChild<ElementRef<HTMLElement>>('countdownCard');
   protected readonly langService = inject(LanguageService);
   private readonly methodService = inject(CalculationMethodService);
   private tickInterval: ReturnType<typeof setInterval> | null = null;
   private loadedDay = sarajevoDayKey();
+  private regularScroll = 0;
+  private fullscreenMotion: Animation[] = [];
   /** Cancels an in-flight load when a newer one starts (avoids stacked concurrent requests). */
   private prayerLoadSub: Subscription | null = null;
 
@@ -55,7 +72,7 @@ export class PrayerTimesPage implements OnInit, OnDestroy {
   protected readonly isLoading = signal(true);
   protected readonly error = signal<string | null>(null);
   protected readonly now = signal(new Date());
-  protected readonly countdownCollapsed = signal(this.loadCountdownCollapsed());
+  protected readonly fullscreen = signal(false);
 
   /** Reactive labels shortcut */
   protected readonly labels = this.langService.labels;
@@ -195,12 +212,33 @@ export class PrayerTimesPage implements OnInit, OnDestroy {
       const loc = this.selectedLocation();
       this.titleService.setTitle(loc?.name ? `Vaktija — ${loc.name}` : 'Vaktija');
     });
+
+    effect((onCleanup) => {
+      const card = this.fullscreen() ? this.countdownCard()?.nativeElement : null;
+      if (!card || typeof ResizeObserver === 'undefined') return;
+      const page = this.page().nativeElement;
+      const updatePinning = () => {
+        // Leave room for a legible row below the fixed-size card.
+        page.toggleAttribute('data-pin-countdown', page.clientHeight - card.offsetHeight >= 112);
+      };
+      const observer = new ResizeObserver(updatePinning);
+      observer.observe(page);
+      observer.observe(card);
+      onCleanup(() => {
+        observer.disconnect();
+        page.removeAttribute('data-pin-countdown');
+      });
+    });
   }
 
   ngOnInit(): void {
     this.prayerTimesCache.pruneStale();
     this.loadLocations();
     this.route.paramMap.pipe(takeUntilDestroyed(this.destroyRef)).subscribe(() => {
+      if (this.fullscreen()) {
+        this.cancelFullscreenMotion();
+        this.fullscreen.set(false);
+      }
       this.selectedLocation.set(this.locationService.getSelectedLocation());
     });
     // Prayer load is driven by the constructor effect when `selectedLocation` / lang / method change.
@@ -222,6 +260,7 @@ export class PrayerTimesPage implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     if (this.tickInterval) clearInterval(this.tickInterval);
     this.prayerLoadSub?.unsubscribe();
+    this.cancelFullscreenMotion();
   }
 
   protected onCityChange(location: Location): void {
@@ -241,21 +280,88 @@ export class PrayerTimesPage implements OnInit, OnDestroy {
     return n.toString().padStart(2, '0');
   }
 
-  protected toggleCountdown(): void {
-    this.countdownCollapsed.update((collapsed) => !collapsed);
-    try {
-      localStorage.setItem(COUNTDOWN_STORAGE_KEY, String(this.countdownCollapsed()));
-    } catch {
-      // The toggle still works when browser storage is unavailable.
+  protected exitFullscreen(): void {
+    if (this.fullscreen()) this.toggleFullscreen();
+  }
+
+  protected toggleFullscreen(): void {
+    const page = this.page().nativeElement;
+    const card = this.countdownCard()?.nativeElement;
+    const entering = !this.fullscreen();
+    const animate =
+      typeof card?.animate === 'function' &&
+      !window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
+    const toolbar = page.querySelector<HTMLElement>('.page-toolbar')!;
+    const rows = animate ? [...page.querySelectorAll<HTMLElement>('.prayer-stop')] : [];
+
+    // Capture current visual positions before cancelling a transition that is in flight.
+    const startCard = animate ? card.getBoundingClientRect() : null;
+    const startRows = rows.map((row) => row.getBoundingClientRect());
+    const toolbarOpacity = animate ? getComputedStyle(toolbar).opacity : '';
+    const toolbarTop = animate ? toolbar.getBoundingClientRect().top : 0;
+    this.cancelFullscreenMotion();
+    if (entering) this.regularScroll = window.scrollY;
+    this.fullscreen.set(entering);
+    this.changeDetector.detectChanges();
+    if (entering) {
+      page.scrollTop = 0;
+    } else if (window.scrollY !== this.regularScroll) {
+      window.scrollTo({ top: this.regularScroll, behavior: 'instant' });
+    }
+    if (!card || !startCard) return;
+
+    // Read the new layout as one batch. Everything after this runs as transforms or opacity.
+    const cardOffset = startCard.top - card.getBoundingClientRect().top;
+    const endRows = rows.map((row) => row.getBoundingClientRect());
+    const toolbarOffset = toolbarTop - toolbar.getBoundingClientRect().top;
+    const slide = 310;
+    const compress = 210;
+    const easing = 'ease-in-out';
+    const translate = (y: number) => `translateY(${y}px)`;
+    const slideOptions: KeyframeAnimationOptions = {
+      duration: slide,
+      delay: entering ? 0 : compress,
+      easing,
+      fill: 'backwards',
+    };
+    this.fullscreenMotion.push(
+      card.animate([{ transform: translate(cardOffset) }, { transform: 'none' }], slideOptions),
+      toolbar.animate(
+        [
+          { opacity: toolbarOpacity, visibility: 'visible', transform: translate(entering ? toolbarOffset : -12) },
+          { opacity: entering ? 0 : 1, visibility: 'visible', transform: translate(entering ? toolbarOffset - 12 : 0) },
+        ],
+        slideOptions,
+      ),
+    );
+
+    for (const [i, row] of rows.entries()) {
+      const start = startRows[i];
+      const end = endRows[i];
+      if (!end.width || !end.height) continue;
+      const x = start.left - end.left;
+      const y = start.top - end.top;
+      const scale = `scale(${start.width / end.width}, ${start.height / end.height})`;
+      this.fullscreenMotion.push(
+        row.animate(
+          [
+            { transform: `translate(${x}px, ${y}px) ${scale}`, easing },
+            {
+              transform: entering ? `translate(${x}px, ${y - cardOffset}px) ${scale}` : translate(cardOffset),
+              offset: (entering ? slide : compress) / (slide + compress),
+              easing,
+            },
+            { transform: 'none' },
+          ],
+          { duration: slide + compress },
+        ),
+      );
     }
   }
 
-  private loadCountdownCollapsed(): boolean {
-    try {
-      return localStorage.getItem(COUNTDOWN_STORAGE_KEY) === 'true';
-    } catch {
-      return false;
-    }
+  private cancelFullscreenMotion(): void {
+    for (const animation of this.fullscreenMotion) animation.cancel();
+    this.fullscreenMotion = [];
   }
 
   private loadLocations(): void {

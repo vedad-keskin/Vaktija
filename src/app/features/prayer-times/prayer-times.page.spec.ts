@@ -11,9 +11,10 @@ import { CalculationMethodService } from '../../core/services/calculation-method
 import { LanguageService } from '../../core/services/language.service';
 import { BS_LABELS, EN_LABELS } from '../../core/i18n';
 
-it('starts expanded, remembers the countdown toggle and keeps both timers live without browser storage', async () => {
+it('keeps one live countdown through fullscreen entry and exit and starts each visit in the regular view', async () => {
   localStorage.clear();
   localStorage.setItem('vaktija_lang', 'en');
+  localStorage.setItem('vaktija_countdown_collapsed', 'true');
   const snapshot = {
     prayerTimes: [{ name: 'Fajr', time: '06:00', minutes: 360, isCalculated: false }],
     locationName: 'Sarajevo',
@@ -40,38 +41,22 @@ it('starts expanded, remembers the countdown toggle and keeps both timers live w
     await fixture.whenStable();
     const toggle = () =>
       fixture.nativeElement.querySelector('.countdown-toggle') as HTMLButtonElement;
-    expect(fixture.nativeElement.querySelector('.countdown-section.collapsed')).toBeNull();
-    expect(fixture.nativeElement.querySelector('.date-hijri').textContent).toBe(snapshot.hijriDate);
-    expect(toggle().getAttribute('aria-expanded')).toBe('true');
-    expect(toggle().getAttribute('aria-label')).toBe(EN_LABELS.collapseCountdown);
-    expect(toggle().getAttribute('aria-controls')).toBe('countdown-details');
-    expect(
-      fixture.nativeElement.querySelector('.countdown-summary').getAttribute('aria-hidden'),
-    ).toBe('true');
+    const page = () => fixture.nativeElement.querySelector('.prayer-times-page');
+    const card = () => page().querySelector('.countdown-section');
+    const toolbar = () => page().querySelector('.page-toolbar');
+    expect(page().classList.contains('is-fullscreen')).toBe(false);
+    expect(page().querySelector('.date-hijri').textContent).toBe(snapshot.hijriDate);
+    expect(toggle().getAttribute('aria-label')).toBe(EN_LABELS.enterFullscreen);
 
+    const regularCard = card();
     toggle().click();
     fixture.detectChanges();
-    expect(toggle().getAttribute('aria-expanded')).toBe('false');
-    expect(toggle().getAttribute('aria-label')).toBe(EN_LABELS.expandCountdown);
-    expect(localStorage.getItem('vaktija_countdown_collapsed')).toBe('true');
-    expect(
-      fixture.nativeElement.querySelector('.countdown-summary').getAttribute('aria-hidden'),
-    ).toBe('false');
-    fixture.destroy();
-    fixture = TestBed.createComponent(PrayerTimesPage);
-    await fixture.whenStable();
-    expect(toggle().getAttribute('aria-expanded')).toBe('false');
-
-    toggle().click();
-    fixture.detectChanges();
-    expect(localStorage.getItem('vaktija_countdown_collapsed')).toBe('false');
-    fixture.destroy();
-    fixture = TestBed.createComponent(PrayerTimesPage);
-    await fixture.whenStable();
-    expect(toggle().getAttribute('aria-expanded')).toBe('true');
-
-    toggle().click();
-    fixture.detectChanges();
+    expect(card()).toBe(regularCard);
+    expect(page().classList.contains('is-fullscreen')).toBe(true);
+    expect(toolbar().inert).toBe(true);
+    expect(toggle().getAttribute('aria-label')).toBe(EN_LABELS.exitFullscreen);
+    expect(page().querySelectorAll('[role="timer"]')).toHaveLength(1);
+    expect(page().querySelector('.countdown-city-date').textContent).toContain('Sarajevo');
 
     const state = fixture.componentInstance as unknown as { now: ReturnType<typeof signal<Date>> };
     for (const [second, remaining] of [
@@ -81,31 +66,27 @@ it('starts expanded, remembers the countdown toggle and keeps both timers live w
       state.now.set(new Date(2026, 10, 12, 4, 59, second));
       fixture.detectChanges();
       expect(
-        fixture.nativeElement.querySelector('#countdown-summary-timer').textContent.trim(),
-      ).toBe(remaining);
-      expect(
         [...fixture.nativeElement.querySelectorAll('.countdown-value')]
           .map((el: Element) => el.textContent)
           .join(':'),
       ).toBe(remaining);
     }
 
-    vi.spyOn(Storage.prototype, 'setItem').mockImplementation(() => {
-      throw new Error('blocked');
-    });
+    document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' }));
+    fixture.detectChanges();
+    expect(card()).toBe(regularCard);
+    expect(page().classList.contains('is-fullscreen')).toBe(false);
+    expect(toolbar().inert).toBe(false);
+
     toggle().click();
     fixture.detectChanges();
-    expect(toggle().getAttribute('aria-expanded')).toBe('true');
     fixture.destroy();
-    vi.spyOn(Storage.prototype, 'getItem').mockImplementation(() => {
-      throw new Error('blocked');
-    });
     fixture = TestBed.createComponent(PrayerTimesPage);
     await fixture.whenStable();
-    expect(toggle().getAttribute('aria-expanded')).toBe('true');
+    expect(page().classList.contains('is-fullscreen')).toBe(false);
+    expect(toggle().getAttribute('aria-label')).toBe(EN_LABELS.enterFullscreen);
   } finally {
     fixture.destroy();
-    vi.restoreAllMocks();
     localStorage.clear();
   }
 });

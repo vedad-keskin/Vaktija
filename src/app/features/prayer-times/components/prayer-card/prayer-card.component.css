@@ -6,11 +6,11 @@
   position: relative;
   height: 100%;
   display: grid;
-  grid-template-columns: 44px minmax(0, 1fr) auto;
+  grid-template-columns: var(--prayer-icon-size, 44px) minmax(0, 1fr) auto;
   align-items: center;
-  gap: 0.5rem;
-  min-height: 76px;
-  padding: 0.6rem;
+  gap: var(--prayer-row-gap, 0.5rem);
+  min-height: var(--prayer-row-height, 76px);
+  padding: var(--prayer-row-padding, 0.6rem);
   background: linear-gradient(130deg, var(--surface-elevated), var(--surface));
   border: 1px solid var(--border-color);
   border-radius: 12px;
@@ -44,7 +44,7 @@
   font-size: 0.625rem;
   font-weight: 700;
   letter-spacing: 0.08em;
-  margin-top: 0.3rem;
+  margin-top: var(--prayer-badge-gap, 0.3rem);
 }
 .current .prayer-status {
   color: var(--accent);
@@ -56,15 +56,16 @@
 }
 .prayer-time {
   font-family: var(--font-heading);
-  font-size: 1.5rem;
+  font-size: var(--prayer-clock-size, 1.5rem);
   font-weight: 600;
   font-variant-numeric: tabular-nums;
   line-height: 1.2;
 }
 .prayer-relative {
-  font-size: 0.75rem;
+  font-size: var(--prayer-relative-size, 0.75rem);
   color: var(--text-muted);
-  white-space: nowrap;
+  white-space: var(--prayer-relative-wrap, nowrap);
+  text-align: end;
 }
 .passed .prayer-time,
 .passed .prayer-name {
@@ -75,9 +76,9 @@
 }
 @media (min-width: 380px) {
   .prayer-card {
-    grid-template-columns: 52px minmax(0, 1fr) auto;
-    gap: 0.65rem;
-    padding-inline: 0.75rem;
+    grid-template-columns: var(--prayer-icon-size, 52px) minmax(0, 1fr) auto;
+    gap: var(--prayer-row-gap, 0.65rem);
+    padding: var(--prayer-row-padding, 0.6rem 0.75rem);
   }
 }
 @media (min-width: 1200px) {
