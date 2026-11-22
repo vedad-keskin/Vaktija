@@ -354,31 +354,19 @@ export const BS_LABELS: AppLabels = {
   qiblaCalibrateSkip: 'Preskoči',
   qiblaCalibrateDone: 'Gotovo',
 
-  qiblaFaqTitle: 'Često postavljana pitanja',
+  qiblaFaqTitle: 'Pomoć za kiblu',
   qiblaFaq: [
     {
-      q: 'Zašto je potrebna kalibracija kompasa?',
-      a: 'Digitalni kompas koristi magnetometar ugrađen u vaš uređaj, koji je veoma osjetljiv na magnetne smetnje. Kalibracijom osvježavate kompas kako bi pokazivao ispravan smjer.',
+      q: 'Moram li uključiti lokaciju?',
+      a: 'Za odabrani grad smjer se prikazuje bez dozvole za lokaciju. Ako ste izvan tog grada, odaberite „Moja lokacija“ i dozvolite pregledniku da koristi vašu trenutnu lokaciju. Proračun se obavlja u pregledniku bez pohrane koordinata.',
     },
     {
-      q: 'Kako držati telefon pri očitavanju kompasa?',
-      a: 'Držite telefon približno vodoravno, s ekranom prema gore, kao klasični kompas. Poravnajte oznaku Kabe s vrhom ekrana. Blagi nagib je u redu; kada je telefon previše uspravan ili okrenut ekranom prema dolje, potvrda smjera se zaustavlja. Izbjegavajte metalne površine, punjače i maske s magnetima.',
+      q: 'Šta ako je kompas nestabilan ili se oznaka ne poravnava?',
+      a: 'Odmaknite se od metala i magneta pa držite telefon ravno, s ekranom prema gore. Ako je očitanje i dalje nestabilno, dodirnite „Kalibriši ponovo“ i pratite upute.',
     },
     {
-      q: 'Zašto je potrebna lokacija za pronalaženje kible?',
-      a: 'Smjer kible zavisi od vaše tačne fizičke lokacije. Alat privremeno pristupa GPS-u samo kako bi izračunao precizan matematički ugao između vaših koordinata i Kabe. Podaci o lokaciji obrađuju se lokalno u pregledniku i nigdje se ne pohranjuju niti prate.',
-    },
-    {
-      q: 'Koliko je tačan ovaj kiblemetar?',
-      a: 'Azimut i udaljenost računamo geodetskom metodom Karney na WGS84 elipsoidu, uz WMM korekciju magnetne deklinacije za kompas. Tačnost prikazanog smjera zavisi i od odabrane lokacije, senzora telefona i magnetnih smetnji.',
-    },
-    {
-      q: 'Koliko je tačan digitalni kompas?',
-      a: 'Ne garantujemo fiksnu tačnost kompasa. Ona zavisi od senzora, kalibracije i okruženja. Mirna oznaka ne dokazuje tačnost. Korekcija deklinacije pretvara magnetni u pravi sjever; zeleno poravnanje označava toleranciju prikaza, a ne izmjerenu preciznost senzora.',
-    },
-    {
-      q: 'Koji je najtačniji način za pronalaženje kible putem interneta?',
-      a: 'Za proračun koristite svoju stvarnu lokaciju. Kalibrirajte telefon i udaljite ga od magneta. Kada je moguće, provjerite smjer prema poznatom pravcu ili karti orijentisanoj prema pravom sjeveru; poređenje s drugim kompasom samo po sebi ne potvrđuje tačnost.',
+      q: 'Šta znači zelena kvačica?',
+      a: 'Kvačica se pojavi kada se smjer telefona razlikuje od izračunatog smjera kible za svega nekoliko stepeni. Tačnost očitanja zavisi od senzora telefona i okruženja.',
     },
     {
       q: 'Šta ako klanjam sa malim odstupanjem od smjera kible?',

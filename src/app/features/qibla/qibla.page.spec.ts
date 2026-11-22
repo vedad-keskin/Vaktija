@@ -65,6 +65,10 @@ it('uses the navbar city, handles GPS denial and cancellation, and starts with a
       'rotate(0deg)',
     );
     expect(element.querySelector('.compass-stack.aligned')).toBeNull();
+    expect(element.querySelector('.alignment-check')).toBeNull();
+    expect(text('#qibla-faq-title')).toBe('Pomoć za kiblu');
+    expect(element.querySelectorAll('.qibla-faq details')).toHaveLength(4);
+    expect(text('.qibla-faq')).not.toContain(';');
 
     await click('.qibla-gps');
     expect(text('.qibla-message')).toContain(BS_LABELS.qiblaGpsPending);
@@ -75,6 +79,9 @@ it('uses the navbar city, handles GPS denial and cancellation, and starts with a
     TestBed.inject(LanguageService).setLanguage('en');
     await fixture.whenStable();
     expect(text('.qibla-message')).toContain(EN_LABELS.qiblaGpsDenied);
+    expect(text('#qibla-faq-title')).toBe('Qibla help');
+    expect(element.querySelectorAll('.qibla-faq details')).toHaveLength(4);
+    expect(text('.qibla-faq')).not.toContain(';');
     position!({ coords: { latitude: 43.66, longitude: 17.76 } } as GeolocationPosition);
     await fixture.whenStable();
     expect(text('.qibla-coords')).toContain('43.6600');
@@ -99,6 +106,9 @@ it('uses the navbar city, handles GPS denial and cancellation, and starts with a
     await click('.qibla-compass-section .qibla-start');
     const dialog = element.querySelector('dialog')!;
     expect(dialog.open).toBe(true);
+    expect(dialog.getAttribute('aria-labelledby')).toBe('calibration-title');
+    expect(text('#calibration-title')).toBe(EN_LABELS.qiblaCalibrateTitle);
+    expect(dialog.querySelector('.dialog-actions .calibration-done')).toBeTruthy();
     dialog.dispatchEvent(new Event('cancel', { cancelable: true }));
     await fixture.whenStable();
     expect(dialog.open).toBe(false);
@@ -137,15 +147,17 @@ it('uses the navbar city, handles GPS denial and cancellation, and starts with a
     await new Promise((resolve) => setTimeout(resolve, 40));
     await fixture.whenStable();
     expect(element.querySelector('.compass-stack.aligned')).toBeTruthy();
+    expect(element.querySelector('.compass-status.is-aligned .alignment-check')).toBeTruthy();
     expect(text('.compass-status')).toContain(EN_LABELS.qiblaAlignedLabel);
     const permission = DeviceOrientationEvent as unknown as {
       requestPermission: ReturnType<typeof vi.fn>;
     };
     permission.requestPermission.mockResolvedValue('denied');
     await click('.qibla-compass-section .qibla-start');
-    await click('.calibration-skip');
+    await click('.calibration-done');
     expect(text('.compass-status')).toContain(EN_LABELS.qiblaPermissionDenied);
     expect(element.querySelector('.compass-stack.aligned')).toBeNull();
+    expect(element.querySelector('.alignment-check')).toBeNull();
   } finally {
     fixture.destroy();
     vi.restoreAllMocks();

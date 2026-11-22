@@ -15,8 +15,7 @@
   padding: 0 48px;
 }
 .qibla-heading h1,
-.qibla-panel h2,
-.calibration-dialog h2 {
+.qibla-panel h2 {
   font-family: var(--font-display);
   font-weight: 600;
   line-height: 1.1;
@@ -30,7 +29,8 @@
   color: var(--text-secondary);
 }
 .qibla-gps svg,
-.qibla-start svg {
+.qibla-start svg,
+.calibration-done svg {
   width: 22px;
   height: 22px;
   fill: none;
@@ -202,36 +202,40 @@
   text-transform: uppercase;
   font-size: 13px;
 }
-.qibla-start:disabled {
-  opacity: 0.5;
-  cursor: default;
-}
 .compass-stack {
+  --dial-pointer: var(--hero-gold);
   width: min(100%, 320px);
   position: relative;
   margin-top: 20px;
 }
 .compass-apex {
+  --apex-half-width: 5px;
   position: absolute;
-  left: calc(50% - 5px);
+  left: calc(50% - var(--apex-half-width));
   top: -7px;
-  border-left: 5px solid transparent;
-  border-right: 5px solid transparent;
-  border-bottom: 10px solid var(--hero-gold);
+  border-inline: var(--apex-half-width) solid transparent;
+  border-bottom: 10px solid var(--dial-pointer);
 }
 .compass-frame {
   position: relative;
   width: 100%;
   aspect-ratio: 1;
   padding: 4px;
-  border: 1px solid var(--hero-gold);
+  border: 1px solid var(--dial-pointer);
   border-radius: 50%;
   background: var(--hero-sky);
   box-shadow: 0 8px 32px #00110c30;
 }
+.compass-stack.aligned {
+  --dial-pointer: var(--accent);
+}
+.compass-stack.aligned .compass-apex {
+  --apex-half-width: 9px;
+}
 .compass-stack.aligned .compass-frame {
-  box-shadow: 0 0 24px var(--accent-glow);
-  border-color: var(--accent);
+  box-shadow:
+    inset 0 0 0 2px var(--dial-pointer),
+    0 0 24px var(--accent-glow);
 }
 .compass-rotor {
   width: 100%;
@@ -319,14 +323,14 @@
   overflow: visible;
 }
 .needle-light {
-  fill: var(--hero-gold);
+  fill: var(--dial-pointer);
 }
 .needle-shade {
-  fill: color-mix(in srgb, var(--hero-gold) 60%, var(--hero-sky));
+  fill: color-mix(in srgb, var(--dial-pointer) 60%, var(--hero-sky));
 }
 .needle-edge {
   fill: none;
-  stroke: var(--hero-gold);
+  stroke: var(--dial-pointer);
   stroke-width: 0.6;
 }
 .kaaba-marker {
@@ -337,10 +341,10 @@
   width: 42px;
   height: 42px;
   padding: 7px;
-  background: var(--hero-gold);
+  background: var(--dial-pointer);
   border: 2px solid var(--hero-sky);
   border-radius: 50%;
-  box-shadow: 0 0 15px color-mix(in srgb, var(--hero-gold) 30%, transparent);
+  box-shadow: 0 0 15px color-mix(in srgb, var(--dial-pointer) 30%, transparent);
 }
 .kaaba-marker svg {
   width: 100%;
@@ -352,7 +356,7 @@
 }
 .kaaba-band {
   fill: none;
-  stroke: var(--hero-gold);
+  stroke: var(--dial-pointer);
   stroke-width: 1.6;
   stroke-linejoin: round;
 }
@@ -363,7 +367,7 @@
   transform: translate(-50%, -50%);
   width: 18px;
   height: 18px;
-  border: 3px solid var(--hero-gold);
+  border: 3px solid var(--dial-pointer);
   border-radius: 50%;
   background: var(--hero-sky);
 }
@@ -374,12 +378,30 @@
   font-size: 14px;
   color: var(--hero-muted);
 }
-.compass-status.is-aligned {
-  color: var(--accent);
-  font-weight: 600;
-}
 .compass-status.is-warning {
   color: var(--hero-gold);
+}
+.compass-status.is-aligned {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  max-width: 100%;
+  padding: 9px 16px;
+  border-radius: 999px;
+  background: var(--accent);
+  color: var(--hero-sky);
+  font-size: 16px;
+  font-weight: 700;
+}
+.alignment-check {
+  width: 20px;
+  height: 20px;
+  flex: none;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.75;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
 .calibration-tip {
   display: flex;
@@ -392,14 +414,19 @@
   border-radius: 12px;
   background: color-mix(in srgb, var(--hero-sky) 94%, transparent);
 }
-.calibration-tip svg {
-  width: 64px;
+.calibration-tip-icon {
+  width: 42px;
   flex-shrink: 0;
-  fill: none;
+  border-radius: 11px;
+  background: var(--accent-surface);
+  fill: var(--hero-sky);
   stroke: var(--hero-gold);
   stroke-width: 1.5;
   stroke-linecap: round;
   stroke-linejoin: round;
+}
+.calibration-tip-icon > path {
+  fill: none;
 }
 .calibration-tip p {
   margin: 0;
@@ -462,80 +489,78 @@
 .faq-item[open] .faq-chevron {
   transform: rotate(225deg);
 }
-.calibration-dialog {
-  width: min(calc(100% - 32px), 400px);
-  margin: auto;
-  padding: 28px;
-  border: 1px solid var(--gold);
-  border-radius: 22px;
-  background: var(--surface-elevated);
-  color: var(--text-primary);
-  text-align: center;
-}
-.calibration-dialog::backdrop {
-  background: #00110cd9;
-  backdrop-filter: blur(4px);
-}
-.calibration-dialog .qibla-eyebrow {
-  color: var(--text-muted);
-}
-.calibration-dialog h2 {
-  font-size: 32px;
-  margin: 12px 0 8px;
-}
 .calibration-dialog p {
   font-size: 15px;
   line-height: 1.5;
-  color: var(--text-secondary);
+  color: var(--hero-muted);
 }
 .calibration-animation {
-  position: relative;
-  width: 160px;
-  height: 130px;
-  margin: 16px auto;
+  width: min(100%, 252px);
+  margin: 0 auto 14px;
+  padding: 2px 8px;
+  border: 1px solid color-mix(in srgb, var(--hero-gold) 26%, transparent);
+  border-radius: 16px;
+  background: color-mix(in srgb, var(--accent-surface) 65%, var(--hero-sky));
 }
 .calibration-animation svg {
+  display: block;
   width: 100%;
-  height: 100%;
   fill: none;
-  stroke: var(--gold);
-  stroke-width: 1;
-  stroke-dasharray: 3 3;
-  opacity: 0.6;
+  stroke: var(--hero-gold);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.calibration-track {
+  opacity: 0.54;
+  stroke-width: 1.5;
+  stroke-dasharray: 3 5;
+}
+.calibration-trail {
+  stroke-width: 2;
+  stroke-dasharray: 7 93;
+  stroke-dashoffset: -7;
 }
 .calibration-phone {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 22px;
-  height: 40px;
-  border: 2px solid var(--gold);
-  border-radius: 4px;
-  background: var(--surface-elevated);
-  offset-path: path('M80 65C80 5 145 5 145 65S80 125 80 65 15 5 15 65 80 125 80 65');
-  offset-rotate: auto 90deg;
-  animation: calibrate 4s linear infinite;
+  stroke-width: 2;
+  transform-box: fill-box;
+  transform-origin: 50% 50%;
+  offset-path: var(--calibration-track);
+  offset-distance: 14%;
+  offset-rotate: 0deg;
 }
-.calibration-actions {
-  display: flex;
-  flex-wrap: wrap;
+.calibration-phone rect {
+  fill: var(--hero-sky);
+}
+.calibration-skip,
+.calibration-done {
+  display: inline-flex;
+  align-items: center;
   justify-content: center;
-  gap: 10px;
-  margin-top: 20px;
+  gap: 8px;
+  min-height: 48px;
+  padding: 8px 18px;
+  border-radius: 999px;
+  font: 600 15px var(--font-body);
+  cursor: pointer;
 }
 .calibration-skip {
-  border: 1px solid var(--border-color);
-  border-radius: 999px;
-  color: var(--text-secondary);
+  min-width: 84px;
+  border: 1px solid color-mix(in srgb, var(--hero-gold) 46%, transparent);
+  color: var(--hero-muted);
   background: transparent;
 }
 .calibration-skip:hover {
   background: var(--surface-hover);
 }
-@keyframes calibrate {
-  to {
-    offset-distance: 100%;
-  }
+.calibration-done {
+  min-width: 106px;
+  border: 1px solid var(--hero-gold);
+  background: var(--hero-gold);
+  color: var(--hero-sky);
+  font-weight: 700;
+}
+.calibration-done:hover {
+  filter: brightness(0.95);
 }
 @media (min-width: 900px) {
   .qibla-layout {
@@ -626,15 +651,46 @@
     gap: 10px;
     padding: 12px;
   }
-  .calibration-tip svg {
-    width: 50px;
-  }
   .qibla-faq {
     margin-top: 24px;
   }
 }
+.calibration-dialog[open] .calibration-phone {
+  animation: calibration-phone-motion 4s linear -0.56s infinite;
+}
+.calibration-dialog[open] .calibration-trail {
+  animation: calibration-trail-motion 4s linear -0.56s infinite;
+}
 @media (prefers-reduced-motion: reduce) {
-  .calibration-phone {
+  .calibration-dialog[open] .calibration-phone,
+  .calibration-dialog[open] .calibration-trail {
     animation: none;
+  }
+}
+@keyframes calibration-phone-motion {
+  from {
+    offset-distance: 0%;
+    transform: rotate(18deg);
+  }
+  25% {
+    transform: rotate(-18deg);
+  }
+  50% {
+    transform: rotate(-18deg);
+  }
+  75% {
+    transform: rotate(18deg);
+  }
+  to {
+    offset-distance: 100%;
+    transform: rotate(18deg);
+  }
+}
+@keyframes calibration-trail-motion {
+  from {
+    stroke-dashoffset: 7;
+  }
+  to {
+    stroke-dashoffset: -93;
   }
 }

@@ -199,31 +199,19 @@ export const EN_LABELS: AppLabels = {
   qiblaCalibrateSkip: 'Skip',
   qiblaCalibrateDone: 'Done',
 
-  qiblaFaqTitle: 'Frequently Asked Questions',
+  qiblaFaqTitle: 'Qibla help',
   qiblaFaq: [
     {
-      q: 'Why does my compass need calibration?',
-      a: "Digital compasses rely on your device's built-in magnetometer, which is highly sensitive to magnetic interference. Device calibration is used for refreshing the device compass to show correct directions.",
+      q: 'Do I need to enable location?',
+      a: 'You can use the selected city without granting location access. If you’re away from that city, choose My location and allow your browser to use your current position. Your browser calculates the direction without saving your coordinates.',
     },
     {
-      q: 'How should I hold my phone to read the compass?',
-      a: 'Hold your phone approximately horizontal, screen facing up, like a classic compass. Align the Kaaba marker with the top of the screen. A slight tilt is fine; alignment pauses when the phone is too upright or face down. Avoid metal surfaces, chargers, and magnetic cases.',
+      q: 'What if the compass jumps or won’t align?',
+      a: 'Move away from metal or magnets and hold your phone flat with the screen facing up. If the reading is still unstable, tap Calibrate again and follow the guide.',
     },
     {
-      q: 'Why does the Qibla finder require my location?',
-      a: "The Qibla bearing is uniquely tied to your exact physical location. The tool requires temporary access to your device's GPS solely to calculate the precise mathematical angle between your current coordinates and the Kaaba. This location data is processed locally in your browser and is not stored or tracked.",
-    },
-    {
-      q: 'How accurate is this Qibla Finder?',
-      a: 'We calculate bearing and distance using Karney’s geodesic method on the WGS84 ellipsoid, with WMM magnetic declination correction for the compass. The displayed direction also depends on the selected location, phone sensors, and magnetic interference.',
-    },
-    {
-      q: 'How accurate is this digital compass?',
-      a: 'We do not guarantee a fixed compass accuracy. It depends on the sensors, calibration, and surroundings. A steady marker does not prove accuracy. Declination correction converts magnetic to true north; green alignment indicates a display tolerance, not measured sensor precision.',
-    },
-    {
-      q: 'What is the most accurate way to find the Qibla direction online?',
-      a: 'Use your actual location for the calculation. Calibrate the phone and move away from magnets. When possible, check against a known direction or a map oriented to true north; comparing with another compass alone does not establish accuracy.',
+      q: 'What does the green checkmark mean?',
+      a: 'The checkmark appears when you’re within a few degrees of the calculated direction. The reading depends on your phone’s sensors and surroundings.',
     },
     {
       q: 'What if I pray slightly off the Qibla direction?',

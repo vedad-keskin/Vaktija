@@ -15,6 +15,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { HeaderComponent } from '../prayer-times/components/header/header.component';
 import { CitySelectorComponent } from '../prayer-times/components/city-selector/city-selector.component';
+import { VaktijaDialog } from '../../shared/vaktija-dialog/vaktija-dialog';
 import { LocationService } from '../../core/services/location.service';
 import { LanguageService } from '../../core/services/language.service';
 import { Location } from '../../core/models/location.model';
@@ -64,13 +65,16 @@ type AbsoluteOrientationSensorConstructor = new (options?: {
 @Component({
   selector: 'app-qibla-page',
   standalone: true,
-  imports: [HeaderComponent, CitySelectorComponent, RouterLink],
+  imports: [HeaderComponent, CitySelectorComponent, RouterLink, VaktijaDialog],
   templateUrl: './qibla.page.html',
   styleUrl: './qibla.page.css',
 })
 export class QiblaPage implements OnInit {
   /** Every 5° around the dial (for SVG tick marks). */
   protected readonly tickMarks = Array.from({ length: 72 }, (_, i) => i);
+  protected readonly calibrationTrack =
+    'M110 61C136 36 159 16 183 29C208 42 208 78 183 91C159 104 136 86 110 61C84 36 61 16 37 29C12 42 12 78 37 91C61 104 84 86 110 61';
+  protected readonly calibrationMotionPath = `path('${this.calibrationTrack}')`;
 
   private readonly locationService = inject(LocationService);
   private readonly route = inject(ActivatedRoute);
@@ -109,8 +113,9 @@ export class QiblaPage implements OnInit {
   protected readonly rawHeading = signal<number | null>(null);
   protected readonly smoothedHeading = signal<number | null>(null);
 
-  private readonly calibrationDialog =
-    viewChild<ElementRef<HTMLDialogElement>>('calibrationDialog');
+  private readonly calibrationDialog = viewChild('calibrationDialog', {
+    read: ElementRef<HTMLDialogElement>,
+  });
 
   protected readonly compassStatus = computed(() => {
     const labels = this.labels();
