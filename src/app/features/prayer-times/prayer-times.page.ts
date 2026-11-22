@@ -30,6 +30,11 @@ import { PrayerTimeData, PrayerTime } from '../../core/models/prayer-time.model'
 import { Location } from '../../core/models/location.model';
 import { sarajevoDayKey } from '../../core/utils/sarajevo-date';
 
+const FULLSCREEN_STORAGE_KEY = 'vaktija_fullscreen';
+// Match the viewport rules that show the fullscreen button.
+const FULLSCREEN_VIEWPORT =
+  '(max-width: 599px), (orientation: landscape) and (max-height: 550px) and (pointer: coarse)';
+
 @Component({
   selector: 'app-prayer-times',
   standalone: true,
@@ -73,7 +78,7 @@ export class PrayerTimesPage implements OnInit, OnDestroy {
   protected readonly isLoading = signal(true);
   protected readonly error = signal<string | null>(null);
   protected readonly now = signal(new Date());
-  protected readonly fullscreen = signal(false);
+  protected readonly fullscreen = signal(this.loadFullscreen());
 
   /** Reactive labels shortcut */
   protected readonly labels = this.langService.labels;
@@ -236,10 +241,7 @@ export class PrayerTimesPage implements OnInit, OnDestroy {
     this.prayerTimesCache.pruneStale();
     this.loadLocations();
     this.route.paramMap.pipe(takeUntilDestroyed(this.destroyRef)).subscribe(() => {
-      if (this.fullscreen()) {
-        this.cancelFullscreenMotion();
-        this.fullscreen.set(false);
-      }
+      this.cancelFullscreenMotion();
       this.selectedLocation.set(this.locationService.getSelectedLocation());
     });
     // Prayer load is driven by the constructor effect when `selectedLocation` / lang / method change.
@@ -285,6 +287,18 @@ export class PrayerTimesPage implements OnInit, OnDestroy {
     if (this.fullscreen()) this.toggleFullscreen();
   }
 
+  private loadFullscreen(): boolean {
+    try {
+      return (
+        localStorage.getItem(FULLSCREEN_STORAGE_KEY) === 'true' &&
+        window.matchMedia?.(FULLSCREEN_VIEWPORT).matches === true
+      );
+    } catch {
+      // The view still works when browser storage is unavailable.
+      return false;
+    }
+  }
+
   protected toggleFullscreen(): void {
     const page = this.page().nativeElement;
     const card = this.countdownCard()?.nativeElement;
@@ -319,6 +333,11 @@ export class PrayerTimesPage implements OnInit, OnDestroy {
     this.cancelFullscreenMotion();
     if (entering) this.regularScroll = window.scrollY;
     this.fullscreen.set(entering);
+    try {
+      localStorage.setItem(FULLSCREEN_STORAGE_KEY, String(entering));
+    } catch {
+      // The button still works when browser storage is unavailable.
+    }
     this.changeDetector.detectChanges();
     if (entering) {
       page.scrollTop = 0;

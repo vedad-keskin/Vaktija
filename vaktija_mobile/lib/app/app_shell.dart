@@ -34,6 +34,7 @@ class AppShell extends StatefulWidget {
 class _AppShellState extends State<AppShell>
     with SingleTickerProviderStateMixin {
   static const _fullscreenChannel = MethodChannel('vaktija/fullscreen');
+  static const _fullscreenPreference = 'fullscreen';
   late final _fullscreenTransition = AnimationController(
     vsync: this,
     duration: const Duration(milliseconds: 520),
@@ -98,17 +99,22 @@ class _AppShellState extends State<AppShell>
                 'RO',
                 'TR',
               }.contains(locale.countryCode);
-    _offerMethodChoice();
+    _finishStartup();
   }
 
   @override
   void didUpdateWidget(AppShell oldWidget) {
     super.didUpdateWidget(oldWidget);
-    if (!oldWidget.startupComplete) _offerMethodChoice();
+    if (!oldWidget.startupComplete) _finishStartup();
   }
 
-  void _offerMethodChoice() {
-    if (widget.startupComplete && _method == null) {
+  void _finishStartup() {
+    if (!widget.startupComplete) return;
+    if (widget.repository.preferences.getBool(_fullscreenPreference) == true) {
+      _fullscreen = true;
+      _fullscreenTransition.value = 1;
+    }
+    if (_method == null) {
       WidgetsBinding.instance.addPostFrameCallback((_) => _chooseMethod());
     }
   }
@@ -164,6 +170,11 @@ class _AppShellState extends State<AppShell>
     } else {
       _fullscreenTransition.reverse();
     }
+    unawaited(
+      _persist(
+        widget.repository.preferences.setBool(_fullscreenPreference, enabled),
+      ),
+    );
   }
 
   void _syncSystemBars(AnimationStatus status) {

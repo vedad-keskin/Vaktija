@@ -4,6 +4,7 @@ import 'dart:ui' as ui;
 
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:vaktija/app/method_choice.dart';
@@ -464,11 +465,20 @@ void main() {
     final launch = Completer<void>();
     final yesterday = Completer<String>();
     final tomorrow = Completer<String>();
+    const channel = MethodChannel('vaktija/fullscreen');
+    final messenger = tester.binding.defaultBinaryMessenger;
+    final bars = <bool>[];
+    messenger.setMockMethodCallHandler(channel, (call) async {
+      bars.add(call.arguments as bool);
+      return null;
+    });
+    addTearDown(() => messenger.setMockMethodCallHandler(channel, null));
     final repository = (await tester.runAsync(() async {
       SharedPreferences.setMockInitialValues({
         'method': 'angle',
         'language': 'en',
         'theme': 'dark',
+        'fullscreen': true,
       });
       return PrayerRepository(
         await PrayerCatalog.load(),
@@ -543,6 +553,7 @@ void main() {
     final inFlight = tester.getCenter(mark);
     expect(inFlight.dx, lessThan(rest.dx));
     expect(inFlight.dy, lessThan(rest.dy));
+    expect(bars, isEmpty);
     await tester.pump(const Duration(milliseconds: 151));
     await tester.pump();
 
@@ -550,6 +561,10 @@ void main() {
     final timetable = tester.widget<PrayerTimetableView>(
       find.byType(PrayerTimetableView),
     );
+    expect(timetable.fullscreen, isTrue);
+    expect(timetable.headerMotion?.value, 1);
+    expect(timetable.rowMotion?.value, 1);
+    expect(bars, [true]);
     expect(timetable.interval?.next.kind, PrayerKind.lastthird);
     expect(timetable.interval?.remaining, 3240);
     expect(timetable.times.first.kind, PrayerKind.lastthird);

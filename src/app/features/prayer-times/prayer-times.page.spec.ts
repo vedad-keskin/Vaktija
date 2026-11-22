@@ -11,7 +11,7 @@ import { CalculationMethodService } from '../../core/services/calculation-method
 import { LanguageService } from '../../core/services/language.service';
 import { BS_LABELS, EN_LABELS } from '../../core/i18n';
 
-it('keeps one live countdown through fullscreen entry and exit and starts each visit in the regular view', async () => {
+it('keeps one live countdown and restores the saved fullscreen choice on mobile', async () => {
   localStorage.clear();
   localStorage.setItem('vaktija_lang', 'en');
   localStorage.setItem('vaktija_countdown_collapsed', 'true');
@@ -36,6 +36,10 @@ it('keeps one live countdown through fullscreen entry and exit and starts each v
     ],
   }).compileComponents();
 
+  let mobileViewport = true;
+  vi.stubGlobal('matchMedia', (query: string) => ({
+    matches: mobileViewport && query.startsWith('(max-width: 599px)'),
+  }));
   let fixture = TestBed.createComponent(PrayerTimesPage);
   try {
     await fixture.whenStable();
@@ -68,6 +72,7 @@ it('keeps one live countdown through fullscreen entry and exit and starts each v
     );
     expect(card()).toBe(regularCard);
     expect(page().classList.contains('is-fullscreen')).toBe(true);
+    expect(localStorage.getItem('vaktija_fullscreen')).toBe('true');
     expect(toolbar().inert).toBe(true);
     expect(toggle().getAttribute('aria-label')).toBe(EN_LABELS.exitFullscreen);
     expect(page().querySelectorAll('[role="timer"]')).toHaveLength(1);
@@ -91,17 +96,31 @@ it('keeps one live countdown through fullscreen entry and exit and starts each v
     fixture.detectChanges();
     expect(card()).toBe(regularCard);
     expect(page().classList.contains('is-fullscreen')).toBe(false);
+    expect(localStorage.getItem('vaktija_fullscreen')).toBe('false');
     expect(toolbar().inert).toBe(false);
 
-    toggle().click();
-    fixture.detectChanges();
     fixture.destroy();
     fixture = TestBed.createComponent(PrayerTimesPage);
     await fixture.whenStable();
     expect(page().classList.contains('is-fullscreen')).toBe(false);
     expect(toggle().getAttribute('aria-label')).toBe(EN_LABELS.enterFullscreen);
+
+    toggle().click();
+    fixture.destroy();
+    fixture = TestBed.createComponent(PrayerTimesPage);
+    await fixture.whenStable();
+    expect(page().classList.contains('is-fullscreen')).toBe(true);
+    expect(toggle().getAttribute('aria-label')).toBe(EN_LABELS.exitFullscreen);
+
+    fixture.destroy();
+    mobileViewport = false;
+    fixture = TestBed.createComponent(PrayerTimesPage);
+    await fixture.whenStable();
+    expect(page().classList.contains('is-fullscreen')).toBe(false);
+    expect(localStorage.getItem('vaktija_fullscreen')).toBe('true');
   } finally {
     fixture.destroy();
+    vi.unstubAllGlobals();
     localStorage.clear();
   }
 });

@@ -281,6 +281,7 @@ void main() {
     expect(enteringHeader.top, lessThan(regularHeader.top));
     expect(fullscreenHeader.top, lessThan(enteringHeader.top));
     expect(fullscreenHeader.size, regularHeader.size);
+    expect(repository.preferences.getBool('fullscreen'), isTrue);
     expect(find.byType(MobileHeader), findsNothing);
     expect(tester.state(find.byType(PrayerPage)), same(pageState));
     expect(tester.widget<PrayerTimetableView>(timetable).times, regularTimes);
@@ -358,6 +359,7 @@ void main() {
     expect(exitingHeader.size, beforeBack.size);
     expect(tester.getRect(header).top, greaterThan(exitingHeader.top));
     expect(tester.getSize(header), beforeBack.size);
+    expect(repository.preferences.getBool('fullscreen'), isFalse);
     expect(enter.hitTestable(), findsOneWidget);
     expect(tester.state<ScrollableState>(regularScroll).position.pixels, 16);
     expect(tester.state(find.byType(PrayerPage)), same(pageState));
