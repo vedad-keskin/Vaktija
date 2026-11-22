@@ -1,12 +1,15 @@
 import 'dart:async';
 import 'dart:convert';
+import 'dart:ui' as ui;
 
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:vaktija/app/method_choice.dart';
 import 'package:vaktija/app/startup/splash_view.dart';
 import 'package:vaktija/app/vaktija_app.dart';
+import 'package:vaktija/app/vaktija_palette.dart';
 import 'package:vaktija/features/prayer_times/prayer_page.dart';
 import 'package:vaktija/features/prayer_times/prayer_repository.dart';
 import 'package:vaktija/features/prayer_times/prayer_timetable_view.dart';
@@ -45,6 +48,67 @@ String _response(String date, Map<String, String> timings) => jsonEncode({
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
+
+  testWidgets('timetable dashes keep the same spacing across a card gap', (
+    tester,
+  ) async {
+    const boundaryKey = ValueKey('timetable-pixels');
+    final catalog = (await tester.runAsync(PrayerCatalog.load))!;
+    final labels = catalog.labels(false);
+    final now = DateTime.utc(2026, 11, 22);
+    final times = [
+      PrayerTime(PrayerKind.fajr, now.add(const Duration(hours: 4))),
+      PrayerTime(PrayerKind.sunrise, now.add(const Duration(hours: 6))),
+    ];
+    await tester.pumpWidget(
+      MaterialApp(
+        theme: ThemeData.dark(),
+        home: RepaintBoundary(
+          key: boundaryKey,
+          child: Scaffold(
+            body: PrayerTimetableView(
+              times: times,
+              now: now,
+              interval: null,
+              countdownFallback: null,
+              labels: labels,
+              collapsed: false,
+              onToggleCountdown: () {},
+            ),
+          ),
+        ),
+      ),
+    );
+    await tester.pumpAndSettle();
+
+    Rect card(PrayerTime time) =>
+        tester.getRect(find.widgetWithText(Container, labels.prayer(time)));
+    final first = card(times[0]);
+    final second = card(times[1]);
+    final boundary = tester.renderObject<RenderRepaintBoundary>(
+      find.byKey(boundaryKey),
+    );
+    final (pixels, width) = (await tester.runAsync(() async {
+      final image = await boundary.toImage();
+      final rgba = await image.toByteData(format: ui.ImageByteFormat.rawRgba);
+      final width = image.width;
+      image.dispose();
+      return (rgba!, width);
+    }))!;
+
+    final x = first.left.round() - 16;
+    final track = const VaktijaPalette(true).track;
+    final rgba = ((track.toARGB32() << 8) & 0xffffffff) | 0xff;
+    bool onDash(int y) => pixels.getUint32((y * width + x) * 4) == rgba;
+    final starts = [
+      for (var y = first.center.dy.ceil() + 10; y < second.center.dy - 10; y++)
+        if (onDash(y) && !onDash(y - 1)) y,
+    ];
+    expect(starts.length, greaterThan(4));
+    expect([
+      for (var i = 1; i < starts.length; i++) starts[i] - starts[i - 1],
+    ], everyElement(7));
+  });
 
   test('IZ regular times match both Sarajevo clock-change fixtures', () async {
     final catalog = await PrayerCatalog.load();

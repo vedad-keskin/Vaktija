@@ -1,9 +1,11 @@
 import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import '../features/prayer_times/timetable.dart';
 import 'method_choice.dart';
+import 'method_help_popover.dart';
 import 'vaktija_palette.dart';
 
 Duration _headerMotion(BuildContext context) =>
@@ -378,7 +380,7 @@ class _ToggleOption extends StatelessWidget {
   }
 }
 
-class VaktijaMenu extends StatelessWidget {
+class VaktijaMenu extends StatefulWidget {
   const VaktijaMenu({
     super.key,
     required this.open,
@@ -397,8 +399,93 @@ class VaktijaMenu extends StatelessWidget {
   final ValueChanged<PrayerMethod> onMethod;
 
   @override
+  State<VaktijaMenu> createState() => _VaktijaMenuState();
+}
+
+class _VaktijaMenuState extends State<VaktijaMenu> {
+  final _helpPortal = OverlayPortalController();
+  PrayerMethod? _help;
+
+  @override
+  void didUpdateWidget(VaktijaMenu oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (!widget.open && _help != null) {
+      _help = null;
+      // The menu's closing animation can keep the portal mounted briefly.
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (mounted && _help == null && _helpPortal.isShowing) {
+          _helpPortal.hide();
+        }
+      });
+    }
+  }
+
+  void _setHelp(PrayerMethod? method) {
+    if (_help == method) return;
+    setState(() => _help = method);
+    if (method == null) {
+      _helpPortal.hide();
+    } else {
+      _helpPortal.show();
+    }
+  }
+
+  Widget _buildHelp(BuildContext context, OverlayChildLayoutInfo layout) {
+    final method = _help;
+    if (method == null) return const SizedBox.shrink();
+
+    final anchor = MatrixUtils.transformRect(
+      layout.childPaintTransform,
+      Offset.zero & layout.childSize,
+    );
+    final safe = MediaQuery.viewPaddingOf(context);
+    final bottomInset = math.max(
+      safe.bottom,
+      MediaQuery.viewInsetsOf(context).bottom,
+    );
+    const gap = 12.0;
+    final above = anchor.top - safe.top - gap * 2;
+    final below =
+        layout.overlaySize.height - bottomInset - anchor.bottom - gap * 2;
+    final opensBelow = below >= math.min(above, 160);
+    final height = opensBelow ? below : above;
+    if (height <= 0) return const SizedBox.shrink();
+
+    final width = math.min(anchor.width, 420.0);
+    return Stack(
+      clipBehavior: Clip.none,
+      children: [
+        Positioned(
+          left: anchor.center.dx - width / 2,
+          width: width,
+          top: opensBelow ? anchor.bottom + gap : null,
+          bottom: opensBelow
+              ? null
+              : layout.overlaySize.height - anchor.top + gap,
+          child: TapRegion(
+            groupId: _helpPortal,
+            child: ConstrainedBox(
+              constraints: BoxConstraints(maxHeight: height),
+              child: MethodHelpPopover(
+                key: ValueKey(method),
+                explanation:
+                    widget.labels[method == PrayerMethod.angle
+                        ? 'method146Tooltip'
+                        : 'methodIzTooltip'],
+                opensBelow: opensBelow,
+              ),
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
+  @override
   Widget build(BuildContext context) {
     final colors = VaktijaPalette.of(context);
+    final labels = widget.labels;
+    final open = widget.open;
     final panel = Material(
       color: colors.panel,
       elevation: 10,
@@ -414,12 +501,12 @@ class VaktijaMenu extends StatelessWidget {
                     const SizedBox(width: 8),
                   Expanded(
                     child: _ControlFrame(
-                      color: section == destination
+                      color: widget.section == destination
                           ? colors.selected
                           : colors.panel,
                       border: colors.border,
                       child: InkWell(
-                        onTap: () => onSection(destination),
+                        onTap: () => widget.onSection(destination),
                         child: SizedBox(
                           height: 42,
                           child: Center(
@@ -461,23 +548,45 @@ class VaktijaMenu extends StatelessWidget {
               ],
             ),
             const SizedBox(height: 12),
-            _ControlFrame(
-              color: colors.panel,
-              border: colors.border,
-              child: Padding(
-                padding: const EdgeInsets.all(3),
-                child: Row(
-                  children: [
-                    for (final option in PrayerMethod.values)
-                      Expanded(
-                        child: _MethodToggle(
-                          labels: labels,
-                          method: option,
-                          selected: option == method,
-                          onTap: () => onMethod(option),
-                        ),
+            OverlayPortal.overlayChildLayoutBuilder(
+              key: const ValueKey('method-switcher'),
+              controller: _helpPortal,
+              overlayChildBuilder: _buildHelp,
+              child: TapRegion(
+                groupId: _helpPortal,
+                onTapOutside: _help == null ? null : (_) => _setHelp(null),
+                child: CallbackShortcuts(
+                  bindings: {
+                    if (_help != null)
+                      const SingleActivator(LogicalKeyboardKey.escape): () =>
+                          _setHelp(null),
+                  },
+                  child: _ControlFrame(
+                    color: colors.panel,
+                    border: colors.border,
+                    child: Padding(
+                      padding: const EdgeInsets.all(3),
+                      child: Row(
+                        children: [
+                          for (final option in PrayerMethod.values)
+                            Expanded(
+                              child: _MethodToggle(
+                                labels: labels,
+                                method: option,
+                                selected: option == widget.method,
+                                helpOpen: option == _help,
+                                onTap: () {
+                                  _setHelp(null);
+                                  widget.onMethod(option);
+                                },
+                                onHelp: () =>
+                                    _setHelp(option == _help ? null : option),
+                              ),
+                            ),
+                        ],
                       ),
-                  ],
+                    ),
+                  ),
                 ),
               ),
             ),
@@ -492,7 +601,6 @@ class VaktijaMenu extends StatelessWidget {
       child: panel,
       builder: (context, value, child) {
         if (value == 0) return const SizedBox.shrink();
-        if (value == 1 && open) return child!;
         return IgnorePointer(
           ignoring: !open,
           child: ExcludeSemantics(
@@ -516,12 +624,15 @@ class _MethodToggle extends StatelessWidget {
     required this.labels,
     required this.method,
     required this.selected,
+    required this.helpOpen,
     required this.onTap,
+    required this.onHelp,
   });
   final PrayerLabels labels;
   final PrayerMethod method;
   final bool selected;
-  final VoidCallback onTap;
+  final bool helpOpen;
+  final VoidCallback onTap, onHelp;
 
   @override
   Widget build(BuildContext context) {
@@ -545,7 +656,7 @@ class _MethodToggle extends StatelessWidget {
                 onTap: onTap,
                 borderRadius: BorderRadius.circular(7),
                 child: SizedBox(
-                  height: 40,
+                  height: 44,
                   child: Center(
                     child: FittedBox(
                       fit: BoxFit.scaleDown,
@@ -571,30 +682,19 @@ class _MethodToggle extends StatelessWidget {
               ),
             ),
           ),
-          Tooltip(
-            message: labels[angle ? 'method146HelpAria' : 'methodIzHelpAria'],
-            child: InkResponse(
-              onTap: () => showDialog<void>(
-                context: context,
-                builder: (context) => AlertDialog(
-                  title: Text(methodTitle(labels, method)),
-                  content: SingleChildScrollView(
-                    child: Text(
-                      labels[angle ? 'method146Tooltip' : 'methodIzTooltip'],
-                    ),
-                  ),
-                  actions: [
-                    TextButton(
-                      onPressed: () => Navigator.pop(context),
-                      child: const Text('OK'),
-                    ),
-                  ],
+          Semantics(
+            button: true,
+            expanded: helpOpen,
+            child: Tooltip(
+              message: labels[angle ? 'method146HelpAria' : 'methodIzHelpAria'],
+              triggerMode: TooltipTriggerMode.manual,
+              child: InkResponse(
+                radius: 20,
+                onTap: onHelp,
+                child: SizedBox.square(
+                  dimension: 44,
+                  child: Icon(Icons.info, color: color, size: 14),
                 ),
-              ),
-              child: SizedBox(
-                height: 40,
-                width: 28,
-                child: Icon(Icons.info, color: color, size: 13),
               ),
             ),
           ),

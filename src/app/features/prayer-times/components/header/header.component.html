@@ -1,271 +1,34 @@
-<header class="app-header" [class.motion]="motion()">
-  <a [routerLink]="timesPath()" class="header-brand" [attr.aria-label]="labels().appTitle">
-    <img [src]="'assets/icons/' + logoFilename" alt="" class="header-logo" width="38" height="38" />
-  </a>
-
-  <ng-content />
-
-  <!-- Desktop controls (hidden on mobile) -->
-  <div class="header-desktop-controls">
-    <a
-      routerLink="/duas"
-      routerLinkActive="header-qibla--active"
-      ariaCurrentWhenActive="page"
-      class="header-qibla header-duas"
-      [title]="labels().duasSubtitle"
-    >
-      <span class="header-qibla-pad">
-        <svg
-          class="header-qibla-icon"
-          viewBox="0 0 24 24"
-          width="18"
-          height="18"
-          aria-hidden="true"
-          fill="none"
-        >
-          <path
-            d="M12 5C9 3 5 3 2 4v15c3-1 7-1 10 1 3-2 7-2 10-1V4c-3-1-7-1-10 1Zm0 0v15"
-            stroke="currentColor"
-            stroke-width="1.5"
-            stroke-linejoin="round"
-          />
-        </svg>
-        <span class="header-qibla-text">{{ labels().duasTitle }}</span>
-      </span>
-    </a>
-    <a
-      routerLink="/dhikr"
-      routerLinkActive="header-qibla--active"
-      ariaCurrentWhenActive="page"
-      class="header-qibla header-dhikr"
-      [title]="labels().dhikrSubtitle"
-    >
-      <span class="header-qibla-pad">
-        <svg
-          class="header-qibla-icon"
-          viewBox="0 0 24 24"
-          width="18"
-          height="18"
-          aria-hidden="true"
-          fill="none"
-        >
-          <path
-            d="M5 7c4-4 10-4 14 0M5 17c4 4 10 4 14 0"
-            stroke="currentColor"
-            stroke-width="1.5"
-            stroke-linecap="round"
-          />
-          <circle cx="5" cy="12" r="2" stroke="currentColor" stroke-width="1.5" />
-          <circle cx="12" cy="12" r="2" stroke="currentColor" stroke-width="1.5" />
-          <circle cx="19" cy="12" r="2" stroke="currentColor" stroke-width="1.5" />
-        </svg>
-        <span class="header-qibla-text">{{ labels().dhikrTitle }}</span>
-      </span>
-    </a>
-    <a
-      [routerLink]="qiblaPath()"
-      routerLinkActive="header-qibla--active"
-      ariaCurrentWhenActive="page"
-      class="header-qibla"
-      [title]="labels().qiblaTileSubtitle"
-    >
-      <span class="header-qibla-pad">
-        <svg
-          class="header-qibla-icon"
-          viewBox="0 0 24 24"
-          width="18"
-          height="18"
-          aria-hidden="true"
-          fill="none"
-        >
-          <circle cx="12" cy="12" r="9.5" stroke="currentColor" stroke-width="1.2" opacity="0.4" />
-          <path d="M12 12V4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
-          <circle cx="12" cy="12" r="2" fill="currentColor" />
-        </svg>
-        <span class="header-qibla-text">{{ labels().qiblaNavTitle }}</span>
-      </span>
-    </a>
-    <app-method-switcher />
-    <app-theme-switcher />
-    <div
-      class="lang-switcher"
-      [class.en-active]="currentLang() === 'en'"
-      id="lang-switcher-desktop"
-      role="group"
-      aria-label="Language"
-    >
-      <div class="lang-slider"></div>
+<header class="app-header">
+  <div class="header-left">
+    <img
+      src="assets/icons/logo-small.png"
+      alt="Vaktija logo"
+      class="header-logo"
+    />
+    <h1 class="header-title">Vaktija</h1>
+  </div>
+  <div class="header-right">
+    <div class="lang-switcher" id="lang-switcher">
       <button
-        type="button"
         class="lang-btn"
         [class.active]="currentLang() === 'bs'"
+        (click)="switchLang('bs')"
         title="Bosanski"
-        (click)="setLang('bs')"
+        id="lang-btn-bs"
       >
         <img src="assets/icons/bih.png" alt="BiH" class="lang-flag" />
         <span class="lang-code">BS</span>
       </button>
       <button
-        type="button"
         class="lang-btn"
         [class.active]="currentLang() === 'en'"
+        (click)="switchLang('en')"
         title="English"
-        (click)="setLang('en')"
+        id="lang-btn-en"
       >
         <img src="assets/icons/uk.png" alt="UK" class="lang-flag" />
         <span class="lang-code">EN</span>
       </button>
     </div>
-  </div>
-
-  <!-- Mobile controls -->
-  <div class="header-mobile-controls">
-    <app-theme-switcher [directSelect]="true" />
-    <div
-      class="lang-switcher"
-      [class.en-active]="currentLang() === 'en'"
-      id="lang-switcher-mobile"
-      role="group"
-      aria-label="Language"
-    >
-      <div class="lang-slider"></div>
-      <button
-        type="button"
-        class="lang-btn"
-        [class.active]="currentLang() === 'bs'"
-        title="Bosanski"
-        (click)="setLang('bs')"
-      >
-        <img src="assets/icons/bih.png" alt="BiH" class="lang-flag" />
-        <span class="lang-code">BS</span>
-      </button>
-      <button
-        type="button"
-        class="lang-btn"
-        [class.active]="currentLang() === 'en'"
-        title="English"
-        (click)="setLang('en')"
-      >
-        <img src="assets/icons/uk.png" alt="UK" class="lang-flag" />
-        <span class="lang-code">EN</span>
-      </button>
-    </div>
-
-    <!-- Hamburger -->
-    <button
-      type="button"
-      class="hamburger"
-      [class.active]="menuOpen()"
-      (click)="toggleMenu()"
-      aria-label="Toggle menu"
-      id="nav-hamburger"
-      aria-controls="header-mobile-menu"
-      [attr.aria-expanded]="menuOpen()"
-    >
-      <span></span>
-      <span></span>
-      <span></span>
-    </button>
-  </div>
-
-  <!-- Mobile dropdown: pages + method -->
-  <div
-    class="mobile-dropdown"
-    id="header-mobile-menu"
-    [class.open]="menuOpen()"
-    (touchstart)="onDrawerTouchStart($event)"
-    (touchend)="onDrawerTouchEnd($event)"
-  >
-    <div class="mobile-page-links">
-      <a
-        routerLink="/duas"
-        routerLinkActive="header-qibla--active"
-        ariaCurrentWhenActive="page"
-        class="header-qibla header-duas header-qibla--mobile-drawer"
-        [title]="labels().duasSubtitle"
-        (click)="closeMenu()"
-      >
-        <span class="header-qibla-pad">
-          <svg
-            class="header-qibla-icon"
-            viewBox="0 0 24 24"
-            width="18"
-            height="18"
-            aria-hidden="true"
-            fill="none"
-          >
-            <path
-              d="M12 5C9 3 5 3 2 4v15c3-1 7-1 10 1 3-2 7-2 10-1V4c-3-1-7-1-10 1Zm0 0v15"
-              stroke="currentColor"
-              stroke-width="1.5"
-              stroke-linejoin="round"
-            />
-          </svg>
-          <span class="header-qibla-text">{{ labels().duasTitle }}</span>
-        </span>
-      </a>
-      <a
-        routerLink="/dhikr"
-        routerLinkActive="header-qibla--active"
-        ariaCurrentWhenActive="page"
-        class="header-qibla header-dhikr header-qibla--mobile-drawer"
-        [title]="labels().dhikrSubtitle"
-        (click)="closeMenu()"
-      >
-        <span class="header-qibla-pad">
-          <svg
-            class="header-qibla-icon"
-            viewBox="0 0 24 24"
-            width="18"
-            height="18"
-            aria-hidden="true"
-            fill="none"
-          >
-            <path
-              d="M5 7c4-4 10-4 14 0M5 17c4 4 10 4 14 0"
-              stroke="currentColor"
-              stroke-width="1.5"
-              stroke-linecap="round"
-            />
-            <circle cx="5" cy="12" r="2" stroke="currentColor" stroke-width="1.5" />
-            <circle cx="12" cy="12" r="2" stroke="currentColor" stroke-width="1.5" />
-            <circle cx="19" cy="12" r="2" stroke="currentColor" stroke-width="1.5" />
-          </svg>
-          <span class="header-qibla-text">{{ labels().dhikrTitle }}</span>
-        </span>
-      </a>
-      <a
-        [routerLink]="qiblaPath()"
-        routerLinkActive="header-qibla--active"
-        ariaCurrentWhenActive="page"
-        class="header-qibla header-qibla--mobile-drawer"
-        [title]="labels().qiblaTileSubtitle"
-        (click)="closeMenu()"
-      >
-        <span class="header-qibla-pad">
-          <svg
-            class="header-qibla-icon"
-            viewBox="0 0 24 24"
-            width="18"
-            height="18"
-            aria-hidden="true"
-            fill="none"
-          >
-            <circle
-              cx="12"
-              cy="12"
-              r="9.5"
-              stroke="currentColor"
-              stroke-width="1.2"
-              opacity="0.4"
-            />
-            <path d="M12 12V4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
-            <circle cx="12" cy="12" r="2" fill="currentColor" />
-          </svg>
-          <span class="header-qibla-text">{{ labels().qiblaNavTitle }}</span>
-        </span>
-      </a>
-    </div>
-    <app-method-switcher [directSelect]="true" (picked)="closeMenu()" />
   </div>
 </header>

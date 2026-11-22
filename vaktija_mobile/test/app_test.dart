@@ -2,12 +2,118 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:vaktija/app/app_shell.dart';
+import 'package:vaktija/app/method_help_popover.dart';
 import 'package:vaktija/app/mobile_header.dart';
+import 'package:vaktija/app/vaktija_palette.dart';
 import 'package:vaktija/features/prayer_times/prayer_repository.dart';
 import 'package:vaktija/features/prayer_times/timetable.dart';
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
+
+  testWidgets('method help anchors to its switcher and can be toggled', (
+    tester,
+  ) async {
+    tester.view.devicePixelRatio = 1;
+    addTearDown(tester.view.resetDevicePixelRatio);
+    addTearDown(tester.view.resetPhysicalSize);
+    final catalog = (await tester.runAsync(PrayerCatalog.load))!;
+
+    for (final (dark, viewport) in [
+      (true, const Size(832, 304)),
+      (false, const Size(320, 640)),
+    ]) {
+      tester.view.physicalSize = viewport;
+      final labels = catalog.labels(dark);
+      await tester.pumpWidget(
+        MaterialApp(
+          theme: ThemeData(
+            brightness: dark ? Brightness.dark : Brightness.light,
+          ),
+          builder: (context, child) => MediaQuery(
+            data: MediaQuery.of(
+              context,
+            ).copyWith(textScaler: const TextScaler.linear(1.45)),
+            child: child!,
+          ),
+          home: Scaffold(
+            body: Stack(
+              fit: StackFit.expand,
+              children: [
+                Positioned(
+                  top: 150,
+                  left: 0,
+                  right: 0,
+                  child: VaktijaMenu(
+                    open: true,
+                    labels: labels,
+                    section: MobileSection.prayerTimes,
+                    method: PrayerMethod.iz,
+                    onSection: (_) {},
+                    onMethod: (_) =>
+                        fail('Info must preserve the selected method'),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      );
+      await tester.pumpAndSettle();
+      final angle = find.byTooltip(labels['method146HelpAria']);
+      final iz = find.byTooltip(labels['methodIzHelpAria']);
+      final anchor = tester.getRect(
+        find.byKey(const ValueKey('method-switcher')),
+      );
+      await tester.tap(angle);
+      await tester.pumpAndSettle();
+      final details = find.byType(MethodHelpPopover);
+      final card = tester.getRect(details);
+      expect(card.center.dx, anchor.center.dx);
+      expect(
+        tester
+            .widget<Material>(
+              find.descendant(of: details, matching: find.byType(Material)),
+            )
+            .color,
+        VaktijaPalette(dark).panel,
+      );
+      expect(find.text(labels['method146Tooltip']), findsOneWidget);
+
+      if (dark) {
+        expect(card.bottom, closeTo(anchor.top - 12, .01));
+        final scrollable = find.descendant(
+          of: details,
+          matching: find.byType(Scrollable),
+        );
+        await tester.drag(scrollable, const Offset(0, -180));
+        await tester.pumpAndSettle();
+        expect(
+          tester.state<ScrollableState>(scrollable).position.pixels,
+          greaterThan(0),
+        );
+      } else {
+        expect(card.top, closeTo(anchor.bottom + 12, .01));
+        expect(card.width, anchor.width);
+      }
+
+      await tester.tap(angle);
+      await tester.pumpAndSettle();
+      expect(details, findsNothing);
+
+      await tester.tap(angle);
+      await tester.pumpAndSettle();
+      await tester.tap(iz);
+      await tester.pumpAndSettle();
+      expect(find.text(labels['method146Tooltip']), findsNothing);
+      expect(find.text(labels['methodIzTooltip']), findsOneWidget);
+
+      await tester.tapAt(const Offset(4, 32));
+      await tester.pumpAndSettle();
+      expect(details, findsNothing);
+      expect(tester.takeException(), isNull);
+    }
+  });
 
   testWidgets('mobile countdown, city search and animated header controls', (
     tester,

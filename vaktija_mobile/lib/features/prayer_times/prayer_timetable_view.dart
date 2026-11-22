@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 
 import '../../app/vaktija_palette.dart';
 import 'timetable.dart';
 
 const _tabular = [FontFeature.tabularFigures()];
+const _trailX = 10.0;
+const _trailGutter = 26.0;
 
 class PrayerTimetableView extends StatelessWidget {
   const PrayerTimetableView({
@@ -36,11 +39,6 @@ class PrayerTimetableView extends StatelessWidget {
 
     bool elapsed(PrayerTime time) => !time.at.isAfter(now);
 
-    double trailProgress(int index) {
-      final time = times[index];
-      return time == current ? countdown!.progress : (elapsed(time) ? 1 : 0);
-    }
-
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
@@ -56,28 +54,33 @@ class PrayerTimetableView extends StatelessWidget {
         else
           ?countdownFallback,
         const SizedBox(height: 18),
-        for (final (index, time) in times.indexed)
-          _PrayerStop(
-            time: time,
-            name: labels.prayer(time),
-            relative: labels.relative(
-              time.at.millisecondsSinceEpoch ~/ Duration.millisecondsPerMinute -
-                  nowMinute,
-            ),
-            badge: time == current
-                ? labels['currentBadge']
-                : time == next
-                ? labels['nextBadge']
-                : null,
-            current: time == current,
-            next: time == next,
-            elapsed: elapsed(time),
-            dimmed: !nextOnAnotherDay && elapsed(time) && time != current,
-            hasPrevious: index > 0,
-            hasNext: index < times.length - 1,
-            previousProgress: index > 0 ? trailProgress(index - 1) : 0,
-            progress: trailProgress(index),
-          ),
+        _PrayerTrail(
+          colors: VaktijaPalette.of(context),
+          stops: [
+            for (final time in times)
+              _PrayerStop(
+                time: time,
+                name: labels.prayer(time),
+                relative: labels.relative(
+                  time.at.millisecondsSinceEpoch ~/
+                          Duration.millisecondsPerMinute -
+                      nowMinute,
+                ),
+                badge: time == current
+                    ? labels['currentBadge']
+                    : time == next
+                    ? labels['nextBadge']
+                    : null,
+                current: time == current,
+                next: time == next,
+                elapsed: elapsed(time),
+                dimmed: !nextOnAnotherDay && elapsed(time) && time != current,
+                progress: time == current
+                    ? countdown!.progress
+                    : (elapsed(time) ? 1 : 0),
+              ),
+          ],
+        ),
       ],
     );
   }
@@ -513,17 +516,14 @@ class _PrayerStop extends StatelessWidget {
     required this.next,
     required this.elapsed,
     required this.dimmed,
-    required this.hasPrevious,
-    required this.hasNext,
-    required this.previousProgress,
     required this.progress,
   });
 
   final PrayerTime time;
   final String name, relative;
   final String? badge;
-  final bool current, next, elapsed, dimmed, hasPrevious, hasNext;
-  final double previousProgress, progress;
+  final bool current, next, elapsed, dimmed;
+  final double progress;
 
   @override
   Widget build(BuildContext context) {
@@ -534,166 +534,216 @@ class _PrayerStop extends StatelessWidget {
         ? colors.gold
         : (current ? colors.accent : colors.border);
 
-    return CustomPaint(
-      painter: _TrailPainter(this, colors),
-      child: Padding(
-        padding: EdgeInsets.only(left: 26, bottom: hasNext ? 8 : 0),
-        child: Container(
-          constraints: const BoxConstraints(minHeight: 76),
-          decoration: BoxDecoration(
-            color: next ? colors.next : null,
-            gradient: next
-                ? null
-                : LinearGradient(
-                    colors: [colors.panel, colors.surface],
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-                  ),
-            borderRadius: BorderRadius.circular(12),
-            border: Border.all(color: border),
-          ),
-          clipBehavior: Clip.antiAlias,
-          child: Stack(
-            children: [
-              if (next)
-                Positioned(
-                  left: 0,
-                  top: 0,
-                  bottom: 0,
-                  width: 2,
-                  child: ColoredBox(color: colors.gold),
+    return Padding(
+      padding: const EdgeInsets.only(left: _trailGutter),
+      child: Container(
+        constraints: const BoxConstraints(minHeight: 76),
+        decoration: BoxDecoration(
+          color: next ? colors.next : null,
+          gradient: next
+              ? null
+              : LinearGradient(
+                  colors: [colors.panel, colors.surface],
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
                 ),
-              Padding(
-                padding: EdgeInsets.symmetric(
-                  horizontal: spacious ? 12 : 10,
-                  vertical: 9,
-                ),
-                child: ConstrainedBox(
-                  constraints: const BoxConstraints(minHeight: 56),
-                  child: Row(
-                    children: [
-                      Image.asset(
-                        '$prayerAssets/${time.kind.name}.png',
-                        width: spacious ? 52 : 44,
-                        excludeFromSemantics: true,
-                      ),
-                      SizedBox(width: spacious ? 10 : 8),
-                      Expanded(
-                        flex: 6,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
+          borderRadius: BorderRadius.circular(12),
+          border: Border.all(color: border),
+        ),
+        clipBehavior: Clip.antiAlias,
+        child: Stack(
+          children: [
+            if (next)
+              Positioned(
+                left: 0,
+                top: 0,
+                bottom: 0,
+                width: 2,
+                child: ColoredBox(color: colors.gold),
+              ),
+            Padding(
+              padding: EdgeInsets.symmetric(
+                horizontal: spacious ? 12 : 10,
+                vertical: 9,
+              ),
+              child: ConstrainedBox(
+                constraints: const BoxConstraints(minHeight: 56),
+                child: Row(
+                  children: [
+                    Image.asset(
+                      '$prayerAssets/${time.kind.name}.png',
+                      width: spacious ? 52 : 44,
+                      excludeFromSemantics: true,
+                    ),
+                    SizedBox(width: spacious ? 10 : 8),
+                    Expanded(
+                      flex: 6,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            name,
+                            style: TextStyle(
+                              color: foreground,
+                              fontSize: 14,
+                              fontWeight: FontWeight.w500,
+                              height: 1.3,
+                            ),
+                          ),
+                          if (badge != null) ...[
+                            const SizedBox(height: 4),
                             Text(
-                              name,
+                              badge!.toUpperCase(),
                               style: TextStyle(
-                                color: foreground,
-                                fontSize: 14,
-                                fontWeight: FontWeight.w500,
-                                height: 1.3,
+                                color: next ? colors.gold : colors.accent,
+                                fontSize: 10,
+                                fontWeight: FontWeight.w700,
+                                letterSpacing: .8,
                               ),
                             ),
-                            if (badge != null) ...[
-                              const SizedBox(height: 4),
-                              Text(
-                                badge!.toUpperCase(),
-                                style: TextStyle(
-                                  color: next ? colors.gold : colors.accent,
-                                  fontSize: 10,
-                                  fontWeight: FontWeight.w700,
-                                  letterSpacing: .8,
-                                ),
+                          ],
+                        ],
+                      ),
+                    ),
+                    const SizedBox(width: 6),
+                    Flexible(
+                      flex: 4,
+                      child: Align(
+                        alignment: Alignment.centerRight,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Text(
+                              time.time,
+                              textAlign: TextAlign.right,
+                              style: TextStyle(
+                                color: next ? colors.accent : foreground,
+                                fontSize: 24,
+                                fontWeight: FontWeight.w600,
+                                fontFeatures: _tabular,
+                                height: 1.15,
                               ),
-                            ],
+                            ),
+                            const SizedBox(height: 3),
+                            Text(
+                              relative,
+                              textAlign: TextAlign.right,
+                              style: TextStyle(
+                                color: colors.muted,
+                                fontSize: 12,
+                              ),
+                            ),
                           ],
                         ),
                       ),
-                      const SizedBox(width: 6),
-                      Flexible(
-                        flex: 4,
-                        child: Align(
-                          alignment: Alignment.centerRight,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.end,
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              Text(
-                                time.time,
-                                textAlign: TextAlign.right,
-                                style: TextStyle(
-                                  color: next ? colors.accent : foreground,
-                                  fontSize: 24,
-                                  fontWeight: FontWeight.w600,
-                                  fontFeatures: _tabular,
-                                  height: 1.15,
-                                ),
-                              ),
-                              const SizedBox(height: 3),
-                              Text(
-                                relative,
-                                textAlign: TextAlign.right,
-                                style: TextStyle(
-                                  color: colors.muted,
-                                  fontSize: 12,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
   }
 }
 
-class _TrailPainter extends CustomPainter {
-  const _TrailPainter(this.stop, this.colors);
+class _PrayerTrail extends SingleChildRenderObjectWidget {
+  _PrayerTrail({required this.stops, required this.colors})
+    : super(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          spacing: 8,
+          children: stops,
+        ),
+      );
 
-  final _PrayerStop stop;
+  final List<_PrayerStop> stops;
   final VaktijaPalette colors;
 
   @override
-  void paint(Canvas canvas, Size size) {
-    const x = 10.0;
-    final middle = (size.height - (stop.hasNext ? 8 : 0)) / 2;
-    final from = stop.hasPrevious ? 0.0 : middle;
-    final to = stop.hasNext ? size.height : middle;
+  _PrayerTrailBox createRenderObject(BuildContext context) =>
+      _PrayerTrailBox(stops, colors);
+
+  @override
+  void updateRenderObject(BuildContext context, _PrayerTrailBox renderObject) {
+    renderObject
+      ..stops = stops
+      ..colors = colors
+      ..markNeedsPaint();
+  }
+}
+
+class _PrayerTrailBox extends RenderProxyBox {
+  _PrayerTrailBox(this.stops, this.colors);
+
+  List<_PrayerStop> stops;
+  VaktijaPalette colors;
+
+  @override
+  void paint(PaintingContext context, Offset offset) {
+    if (stops.isNotEmpty) {
+      _paintTrail(context.canvas, offset);
+    }
+    super.paint(context, offset);
+  }
+
+  void _paintTrail(Canvas canvas, Offset offset) {
+    final column = child! as RenderFlex;
+    final x = offset.dx + _trailX;
+    final centers = [
+      for (
+        var row = column.firstChild;
+        row != null;
+        row = column.childAfter(row)
+      )
+        offset.dy +
+            (row.parentData! as FlexParentData).offset.dy +
+            row.size.height / 2,
+    ];
     final track = Paint()
       ..color = colors.track
       ..strokeWidth = 2;
     final gold = Paint()
       ..color = colors.trailGold
       ..strokeWidth = 2;
-    final outset = (stop.previousProgress - .5).clamp(0.0, .5) * 2;
-    final inset = (stop.progress * 2).clamp(0.0, 1.0);
-
-    for (var y = from; y < to; y += 7) {
-      canvas.drawLine(Offset(x, y), Offset(x, (y + 3).clamp(from, to)), track);
-    }
-    if (stop.hasPrevious && outset > 0) {
-      canvas.drawLine(const Offset(x, 0), Offset(x, middle * outset), gold);
-    }
-    if (stop.hasNext && inset > 0) {
+    // Start the dash pattern once and continue it across row boundaries.
+    for (var y = centers.first; y < centers.last; y += 7) {
       canvas.drawLine(
-        Offset(x, middle),
-        Offset(x, middle + (to - middle) * inset),
+        Offset(x, y),
+        Offset(x, (y + 3).clamp(y, centers.last)),
+        track,
+      );
+    }
+    for (var index = 0; index < centers.length - 1; index++) {
+      final progress = stops[index].progress;
+      if (progress == 0) continue;
+      final start = centers[index];
+      final end = centers[index + 1];
+      canvas.drawLine(
+        Offset(x, start),
+        Offset(x, start + (end - start) * progress),
         gold,
       );
     }
-    canvas.drawLine(
-      Offset(x, middle),
-      Offset(26, middle),
-      Paint()..color = colors.border,
-    );
 
-    final center = Offset(x, middle);
+    final connector = Paint()..color = colors.border;
+    for (final (index, y) in centers.indexed) {
+      final center = Offset(x, y);
+      canvas.drawLine(center, Offset(offset.dx + _trailGutter, y), connector);
+      _paintMarker(canvas, center, stops[index], track, gold);
+    }
+  }
+
+  void _paintMarker(
+    Canvas canvas,
+    Offset center,
+    _PrayerStop stop,
+    Paint track,
+    Paint gold,
+  ) {
     if (stop.current) {
       canvas.drawCircle(
         center,
@@ -726,7 +776,4 @@ class _TrailPainter extends CustomPainter {
       );
     }
   }
-
-  @override
-  bool shouldRepaint(_TrailPainter oldDelegate) => true;
 }

@@ -1,502 +1,163 @@
-﻿:host {
-  display: block;
-}
-.prayer-times-page {
+﻿.prayer-times-page {
   min-height: 100dvh;
-  background: var(--surface);
-  color: var(--text-primary);
-}
-.page-content {
-  max-width: 1440px;
-  margin: 0 auto;
-  padding: 0.9rem 0.75rem 2rem;
-}
-.countdown-wrap {
-  position: relative;
-}
-.countdown-toggle,
-.countdown-summary,
-.countdown-compact-background {
-  display: none;
-}
-.countdown-section {
-  --text-primary: var(--hero-text);
-  --text-secondary: var(--hero-muted);
-  --text-muted: var(--hero-muted);
-  --gold: var(--hero-gold);
-  color: var(--text-primary);
-  position: relative;
-  isolation: isolate;
-  overflow: hidden;
-  padding: 1.85rem 0.75rem 2.5rem;
-  border: 1px solid var(--hero-border);
-  border-radius: 18px;
-  background: var(--hero-sky);
-  text-align: center;
-  box-shadow: var(--home-shadow);
-}
-.countdown-section::before,
-.horizon-scene {
-  position: absolute;
-  inset: auto 0 0;
-  aspect-ratio: 3 / 1;
-  pointer-events: none;
-}
-.countdown-section::before {
-  content: '';
-  z-index: -1;
-  background:
-    radial-gradient(ellipse 45% 100% at 50% 45%, var(--hero-scrim) 60%, transparent),
-    var(--hero-image) center bottom / cover no-repeat;
-  /* Preserve the whole panorama at every width and blend its sky into the panel. */
-  mask-image: linear-gradient(transparent, #000 28%);
-}
-.countdown-section::after {
-  content: '';
-  position: absolute;
-  inset: 6px;
-  z-index: -1;
-  border: 1px solid #dfc17766;
-  border-radius: 13px;
-  opacity: 0.6;
-  pointer-events: none;
-}
-.countdown-dates {
-  position: relative;
-  z-index: 1;
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  gap: 0.1rem 0.6rem;
-  margin-bottom: 0.4rem;
+  flex-direction: column;
+  background: var(--surface);
 }
-.date-gregorian {
-  font-size: 0.8rem;
-  font-weight: 500;
-  text-transform: capitalize;
-  color: var(--text-secondary);
+
+.page-content {
+  flex: 1;
+  padding: 1.25rem 1rem 2rem;
+  max-width: 1080px;
+  width: 100%;
+  margin: 0 auto;
+  box-sizing: border-box;
 }
-.date-hijri {
-  display: none;
+
+/* ===== City selector ===== */
+.city-section {
+  margin-bottom: 1.25rem;
 }
+
+/* ===== Countdown ===== */
+.countdown-section {
+  text-align: center;
+  padding: 1.5rem 1rem;
+  margin-bottom: 1.5rem;
+  background: var(--accent-surface);
+  border: 1px solid rgba(45, 212, 168, 0.15);
+  border-radius: 16px;
+}
+
 .countdown-label {
-  display: inline-block;
-  color: var(--gold);
-  font-size: 0.65rem;
+  display: block;
+  font-size: 0.85rem;
   font-weight: 600;
+  color: var(--accent);
   text-transform: uppercase;
-  letter-spacing: 0.18em;
+  letter-spacing: 1.5px;
+  margin-bottom: 0.75rem;
 }
-.countdown-heading h2 {
-  font-family: var(--font-display);
-  font-size: clamp(2.25rem, 4vw, 3.4rem);
-  font-weight: 600;
-  line-height: 1.2;
-  margin: 0.35rem 0 0.15rem;
-}
+
 .countdown-timer {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: center;
-  gap: 0.3rem;
+  gap: 0.25rem;
 }
+
 .countdown-segment {
   display: flex;
   flex-direction: column;
   align-items: center;
+  min-width: 56px;
 }
+
 .countdown-value {
   font-family: var(--font-heading);
-  font-size: clamp(3.1rem, 10vw, 5.75rem);
-  font-weight: 600;
-  font-variant-numeric: tabular-nums;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--text-primary);
   line-height: 1;
-  letter-spacing: -0.035em;
+  font-variant-numeric: tabular-nums;
 }
+
 .countdown-unit {
-  margin-top: 0.5rem;
+  font-size: 0.65rem;
   color: var(--text-muted);
   text-transform: uppercase;
-  font-size: 0.65rem;
-  letter-spacing: 0.14em;
+  letter-spacing: 1px;
+  margin-top: 0.25rem;
 }
+
 .countdown-sep {
   font-family: var(--font-heading);
-  font-size: clamp(2.5rem, 8vw, 4.5rem);
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--text-muted);
   line-height: 1;
-  color: var(--gold);
-  padding: 0 0.15rem;
+  padding-bottom: 1rem;
 }
-.countdown-horizon {
-  /* Same panorama geometry in both themes: the shore meets the water 93% down the artwork. */
-  position: absolute;
-  top: 90.5%;
-  left: 4%;
-  right: 4%;
-  height: 4px;
-  border-radius: 999px;
-  background: var(--horizon-sage);
-  /* A fine keyline and soft seat keep the track legible over both bright and dark water. */
-  outline: 1px solid var(--hero-sky);
-  box-shadow: 0 1px 4px color-mix(in srgb, var(--hero-sky) 55%, transparent);
-}
-.horizon-fill {
-  display: block;
-  width: var(--horizon-progress);
-  height: 100%;
-  border-radius: inherit;
-}
-.horizon-fill,
-.trail-fill {
-  background: var(--horizon-gold);
-  box-shadow: 0 0 5px color-mix(in srgb, var(--horizon-gold) 35%, transparent);
-}
-.horizon-fill {
-  box-shadow: 0 0 8px color-mix(in srgb, var(--horizon-gold) 55%, transparent);
-}
-.horizon-marker {
-  position: absolute;
-  top: 50%;
-  left: var(--horizon-progress);
-  width: 12px;
-  height: 12px;
-  transform: translate(-50%, -50%);
-  border-radius: 50%;
-  border: 2px solid var(--horizon-gold);
-}
-.horizon-marker,
-.current .trail-marker {
-  border-color: var(--horizon-gold);
-  background: var(--horizon-marker);
-  box-shadow:
-    0 0 0 3px color-mix(in srgb, var(--horizon-gold) 18%, transparent),
-    0 0 12px color-mix(in srgb, var(--horizon-gold) 45%, transparent);
-}
-.horizon-marker::after {
-  content: '';
-  position: absolute;
-  top: 12px;
-  left: 50%;
-  width: 24px;
-  height: clamp(4px, 1vw, 14px);
-  transform: translateX(-50%);
-  background: repeating-linear-gradient(to bottom, var(--horizon-gold) 0 1px, transparent 1px 3px);
-  mask-image: radial-gradient(ellipse at top, #000, transparent 70%);
-  opacity: 0.6;
-}
-.schedule-section {
-  margin-top: 1.1rem;
-}
+
+/* ===== Prayer grid ===== */
 .prayer-grid {
-  --schedule-gap: 0.5rem;
-  position: relative;
   display: grid;
-  grid-template-columns: minmax(0, 1fr);
-  gap: var(--schedule-gap);
+  grid-template-columns: 1fr;
+  gap: 0.75rem;
 }
-.prayer-stop {
-  position: relative;
-  min-width: 0;
-  padding-left: 26px;
+
+/* ===== Loading ===== */
+.loading-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 4rem 0;
+  color: var(--text-secondary);
 }
-.prayer-stop::after {
-  content: '';
-  position: absolute;
-  top: 38px;
-  left: 16px;
-  width: 10px;
-  border-top: 1px solid var(--border-color);
-}
-.trail-marker {
-  position: absolute;
-  z-index: 1;
-  top: 38px;
-  left: 10px;
-  width: 12px;
-  height: 12px;
-  transform: translate(-50%, -50%);
-  border: 2px solid var(--trail-track);
+
+.spinner {
+  width: 32px;
+  height: 32px;
+  border: 3px solid var(--border-color);
+  border-top-color: var(--accent);
   border-radius: 50%;
-  background: var(--surface);
+  animation: spin 0.8s linear infinite;
 }
-.elapsed:not(.current) .trail-marker {
-  border-color: var(--trail-passed);
-  background: var(--trail-passed);
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
 }
-.next .trail-marker {
-  border-color: var(--horizon-gold);
-  box-shadow:
-    0 0 0 3px var(--surface),
-    0 0 0 4px var(--horizon-gold);
+
+/* ===== Error ===== */
+.error-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 4rem 0;
+  text-align: center;
 }
-.trail-link {
-  position: absolute;
-  top: 38px;
-  left: 9px;
-  height: calc(100% + var(--schedule-gap));
-  width: 2px;
-  background: repeating-linear-gradient(to bottom, var(--trail-track) 0 3px, transparent 3px 7px);
+
+.error-icon {
+  font-size: 2rem;
+  color: var(--error);
 }
-.last .trail-link {
-  display: none;
+
+.error-state p {
+  margin: 0;
+  color: var(--text-secondary);
 }
-.trail-fill {
-  display: block;
-  width: 100%;
-  height: var(--trail-progress);
-}
-.trail-return {
-  display: none;
-  position: absolute;
-  top: 38px;
-  left: 1px;
-  width: 9px;
-  height: calc(100% - 76px);
-  overflow: visible;
-  pointer-events: none;
-}
-.trail-return path {
-  fill: none;
-  stroke-width: 2px;
-  stroke-linejoin: round;
-  vector-effect: non-scaling-stroke;
-}
-.return-track {
-  stroke: var(--trail-track);
-  stroke-dasharray: 3 4;
-}
-.return-fill {
-  stroke: var(--horizon-gold);
-  filter: drop-shadow(0 0 2px color-mix(in srgb, var(--horizon-gold) 35%, transparent));
-  clip-path: inset(-2px -2px -2px calc(100% - var(--wrap-progress)));
-}
-.trail-return:not(.started) .return-fill {
-  visibility: hidden;
-}
-@media (min-width: 600px) {
-  .page-content {
-    padding: 1.75rem 1.5rem 2.5rem;
-  }
-  .countdown-section {
-    padding: 1rem 2rem 4rem;
-  }
-  .countdown-dates {
-    gap: 0.8rem;
-  }
-  .countdown-timer {
-    gap: 0.75rem;
-  }
-}
-@media (max-width: 599px) {
-  .countdown-section {
-    display: grid;
-    grid-template-rows: 1fr;
-    min-height: 76px;
-    padding: 0 0 74px;
-    transition: grid-template-rows 240ms ease;
-  }
-  .countdown-content {
-    min-height: 0;
-    overflow: hidden;
-    /* Animate only the height above the compact row, without a minimum-height pause. */
-    margin-bottom: -74px;
-  }
-  .countdown-content,
-  .horizon-scene {
-    transition:
-      opacity 160ms ease 60ms,
-      visibility 0s;
-  }
-  .countdown-section::before,
-  .countdown-compact-background {
-    transition: opacity 240ms ease;
-  }
-  .countdown-compact-background {
-    position: absolute;
-    inset: 0 0 auto;
-    z-index: -1;
-    display: block;
-    height: 74px;
-    background: var(--hero-compact-image) center bottom / cover no-repeat;
-    opacity: 0;
-    pointer-events: none;
-  }
-  .countdown-summary {
-    position: absolute;
-    inset: 0 0 auto;
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) auto;
-    align-items: center;
-    gap: 0.75rem;
-    height: 74px;
-    padding: 0 4rem 0 1rem;
-    font: 600 1.45rem/1 var(--font-heading);
-    font-variant-numeric: tabular-nums;
-    text-align: left;
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
-    transition:
-      opacity 80ms ease,
-      visibility 0s 80ms;
-  }
-  .countdown-expanded {
-    padding: 1.85rem 0.75rem 4rem;
-  }
-  .countdown-heading h2 {
-    font-size: clamp(3.1rem, 10vw, 5.75rem);
-  }
-  .countdown-summary-name {
-    font-family: var(--font-display);
-  }
-  .countdown-dates {
-    padding-inline: 3rem;
-  }
-  .countdown-toggle {
-    position: absolute;
-    z-index: 2;
-    inset: 15px 8px auto auto;
-    display: block;
-    width: 44px;
-    height: 44px;
-    padding: 0;
-    border: 0;
-    border-radius: 12px;
-    background: transparent;
-    color: inherit;
-    cursor: pointer;
-  }
-  :host .countdown-toggle:focus-visible {
-    outline-offset: -4px;
-  }
-  .countdown-chevron {
-    position: absolute;
-    top: 6px;
-    right: 6px;
-    width: 32px;
-    height: 32px;
-    padding: 6px;
-    border: 1px solid var(--hero-border);
-    color: var(--gold);
-    background: var(--hero-sky);
-    border-radius: 50%;
-    transform: rotate(180deg);
-    transition: transform 240ms ease;
-  }
-  .collapsed {
-    grid-template-rows: 0fr;
-  }
-  .collapsed :is(.countdown-content, .horizon-scene) {
-    opacity: 0;
-    visibility: hidden;
-    transition:
-      opacity 80ms ease,
-      visibility 0s 80ms;
-  }
-  .collapsed .countdown-summary {
-    opacity: 1;
-    visibility: visible;
-    transition:
-      opacity 160ms ease 60ms,
-      visibility 0s;
-  }
-  .collapsed .countdown-toggle {
-    inset: 0;
-    width: 100%;
-    height: 74px;
-  }
-  .collapsed .countdown-chevron {
-    top: 21px;
-    right: 14px;
-    transform: rotate(0);
-  }
-  .collapsed::before {
-    opacity: 0;
-  }
-  .collapsed .countdown-compact-background {
-    opacity: 0.65;
-  }
-  .countdown-section::before,
-  .horizon-scene {
-    aspect-ratio: 4 / 3;
-  }
-  .countdown-horizon {
-    top: 85.5%;
-  }
-}
-@media (min-width: 1100px) {
-  .page-content {
-    padding: 1.5rem 2rem 3rem;
-  }
-  .countdown-section {
-    padding: 4.2rem 2rem 4rem;
-  }
-  .countdown-dates {
-    position: absolute;
-    inset: 1.5rem 0 auto;
-    margin-bottom: 0;
-  }
-  .date-gregorian {
-    font-size: 0.9rem;
-  }
-  .date-hijri {
-    display: inline;
-    font-size: 0.8rem;
-    color: var(--text-muted);
-  }
-  .date-hijri::before {
-    content: '·';
-    padding-right: 0.8rem;
-    color: var(--gold);
-  }
-  .schedule-section {
-    margin-top: 1.5rem;
-  }
-}
-@media (min-width: 1200px) {
+
+/* ===== Tablet: 2 columns ===== */
+@media (min-width: 580px) {
   .prayer-grid {
-    --schedule-gap: 0.75rem;
-    grid-template-columns: repeat(var(--stop-count), minmax(0, 1fr));
-    --half-stop: calc(
-      (100% - (var(--stop-count) - 1) * var(--schedule-gap)) / var(--stop-count) / 2
-    );
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.85rem;
   }
-  .prayer-stop {
-    padding: 0 0 36px;
+
+  .countdown-value {
+    font-size: 3rem;
   }
-  .prayer-stop::after {
-    top: auto;
-    bottom: 16px;
-    left: 50%;
-    width: 0;
-    height: 20px;
-    border-top: 0;
-    border-left: 1px solid var(--border-color);
+}
+
+/* ===== Desktop: 4 columns ===== */
+@media (min-width: 900px) {
+  .page-content {
+    padding: 1.5rem 2rem 2.5rem;
   }
-  .trail-marker {
-    top: calc(100% - 10px);
-    left: 50%;
+
+  .prayer-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
   }
-  .trail-link {
-    top: calc(100% - 11px);
-    left: 50%;
-    width: calc(100% + var(--schedule-gap));
-    height: 2px;
-    background: repeating-linear-gradient(to right, var(--trail-track) 0 3px, transparent 3px 7px);
+
+  .countdown-section {
+    padding: 2rem;
+    margin-bottom: 2rem;
   }
-  .trail-fill {
-    height: 100%;
-    width: var(--trail-progress);
-  }
-  .wraps-midnight {
-    margin-bottom: 36px;
-  }
-  .trail-return {
-    display: block;
-    top: calc(100% - 10px);
-    left: var(--half-stop);
-    width: calc(100% - 2 * var(--half-stop));
-    height: 28px;
+
+  .countdown-value {
+    font-size: 3.5rem;
   }
 }
