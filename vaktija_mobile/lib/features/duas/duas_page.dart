@@ -3,6 +3,7 @@ import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 
+import '../../app/vaktija_ornaments.dart';
 import '../../app/vaktija_palette.dart';
 import 'dua_card.dart';
 import 'dua_catalog.dart';
@@ -236,7 +237,7 @@ class _DuasPageState extends State<DuasPage> {
       ),
       const Padding(
         padding: EdgeInsets.symmetric(vertical: 14),
-        child: DuaDivider(width: 180),
+        child: VaktijaDivider(width: 180),
       ),
       Text(
         labels['duasSubtitle']!,
@@ -445,7 +446,11 @@ class _DuasPageState extends State<DuasPage> {
         ),
         child: Column(
           children: [
-            Image.asset(duaRosette, width: 56, excludeFromSemantics: true),
+            Image.asset(
+              vaktijaRosetteAsset,
+              width: 56,
+              excludeFromSemantics: true,
+            ),
             const SizedBox(height: 10),
             Text(
               labels[searching ? 'duasNoResultsTitle' : 'duasEmptyTitle']!,

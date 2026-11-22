@@ -2,8 +2,10 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:vaktija/app/vaktija_dialog.dart';
 import 'package:vaktija/app/vaktija_palette.dart';
 import 'package:vaktija/features/prayer_times/timetable.dart';
+import 'package:vaktija/features/qibla/qibla_copy.dart';
 import 'package:vaktija/features/qibla/qibla_dial.dart';
 import 'package:vaktija/features/qibla/qibla_direction.dart';
 import 'package:vaktija/features/qibla/qibla_heading.dart';
@@ -11,6 +13,19 @@ import 'package:vaktija/features/qibla/qibla_page.dart';
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
+
+  test(
+    'Qibla help keeps four questions and uses no semicolons in either language',
+    () {
+      for (final copy in qiblaCopy.values) {
+        expect(copy.faq, hasLength(4));
+        expect([
+          ...copy.labels.values,
+          for (final item in copy.faq) ...[item.question, item.answer],
+        ], everyElement(isNot(contains(';'))));
+      }
+    },
+  );
 
   test('offline bearing and north correction agree with the web', () async {
     final sarajevo = qiblaDirection(43.8486, 18.3564)!;
@@ -198,14 +213,31 @@ void main() {
       tester.view.physicalSize = size;
       await tester.pumpWidget(_page(brightness: theme, textScale: 1.75));
       await tester.pumpAndSettle();
-      final faq = find.text('Why does my compass need calibration?');
+      final start = find.text('START COMPASS');
+      await tester.scrollUntilVisible(start, 120);
+      await tester.pumpAndSettle();
+      await tester.ensureVisible(start);
+      await tester.pumpAndSettle();
+      await tester.tap(start);
+      await tester.pumpAndSettle();
+      expect(find.byType(VaktijaDialog), findsOneWidget);
+      expect(find.text('Skip').hitTestable(), findsOneWidget);
+      expect(find.text('Done').hitTestable(), findsOneWidget);
+      await tester.binding.handlePopRoute();
+      await tester.pumpAndSettle();
+      final faq = find.text('Do I need to enable location?');
       await tester.scrollUntilVisible(faq, 160);
       await tester.pumpAndSettle();
       await tester.ensureVisible(faq);
       await tester.pumpAndSettle();
       await tester.tap(faq);
       await tester.pumpAndSettle();
-      expect(find.textContaining('built-in magnetometer'), findsOneWidget);
+      expect(
+        find.textContaining(
+          'Your selected city works offline without location permission.',
+        ),
+        findsOneWidget,
+      );
       expect(tester.takeException(), isNull);
       await tester.pumpWidget(const SizedBox());
     }

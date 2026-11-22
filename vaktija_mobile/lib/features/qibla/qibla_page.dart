@@ -7,9 +7,11 @@ import 'package:flutter/services.dart';
 import 'package:geomag/geomag.dart';
 import 'package:intl/intl.dart';
 
+import '../../app/vaktija_dialog.dart';
+import '../../app/vaktija_ornaments.dart';
 import '../../app/vaktija_palette.dart';
-import '../duas/dua_card.dart';
 import '../prayer_times/timetable.dart';
+import 'qibla_calibration.dart';
 import 'qibla_copy.dart';
 import 'qibla_dial.dart';
 import 'qibla_direction.dart';
@@ -145,6 +147,7 @@ class _QiblaPageState extends State<QiblaPage> {
     final proceed = await showDialog<bool>(
       context: context,
       barrierDismissible: false,
+      barrierColor: const Color(0xb8001511),
       builder: _calibrationDialog,
     );
     if (!mounted) return;
@@ -437,7 +440,7 @@ class _QiblaPageState extends State<QiblaPage> {
               ),
             ),
             const SizedBox(height: 12),
-            const DuaDivider(width: 120),
+            const VaktijaDivider(width: 120),
             const SizedBox(height: 12),
             Text(
               _label('qiblaTileSubtitle'),
@@ -773,8 +776,8 @@ class _QiblaPageState extends State<QiblaPage> {
     ),
     child: Row(
       children: [
-        const QiblaCalibrationArt(),
-        const SizedBox(width: 10),
+        const QiblaCalibrationIcon(),
+        const SizedBox(width: 12),
         Expanded(
           child: ValueListenableBuilder(
             valueListenable: _reading,
@@ -798,59 +801,43 @@ class _QiblaPageState extends State<QiblaPage> {
 
   Widget _calibrationDialog(BuildContext context) {
     final colors = VaktijaPalette.of(context);
-    return AlertDialog(
-      backgroundColor: colors.sky,
-      surfaceTintColor: Colors.transparent,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(20),
-        side: BorderSide(color: colors.heroBorder),
-      ),
-      scrollable: true,
-      title: Column(
-        children: [
-          Text(
-            _label('qiblaTileTitle').toUpperCase(),
-            textAlign: TextAlign.center,
-            style: _eyebrow(colors.heroMuted),
-          ),
-          const SizedBox(height: 8),
-          Text(
-            _label('qiblaCalibrateTitle'),
-            textAlign: TextAlign.center,
-            style: _displayText(colors.heroText, 32),
-          ),
-        ],
-      ),
+    return VaktijaDialog(
+      title: _label('qiblaCalibrateTitle'),
       content: Column(
         children: [
-          const QiblaCalibrationArt(animate: true),
-          const SizedBox(height: 8),
+          const QiblaCalibrationGuide(),
+          const SizedBox(height: 14),
           Text(
             _label('qiblaCalibrateBody'),
             textAlign: TextAlign.center,
             style: TextStyle(
               color: colors.heroMuted,
               fontSize: 15,
-              height: 1.4,
+              height: 1.5,
             ),
           ),
         ],
       ),
-      actionsAlignment: MainAxisAlignment.center,
       actions: [
-        TextButton(
-          onPressed: () => Navigator.of(context).pop(true),
-          child: Text(
-            _label('qiblaCalibrateSkip'),
-            style: TextStyle(color: colors.secondary),
+        OutlinedButton(
+          style: OutlinedButton.styleFrom(
+            foregroundColor: colors.heroMuted,
+            side: BorderSide(color: colors.heroGold.withValues(alpha: .46)),
+            minimumSize: const Size(84, 48),
           ),
+          onPressed: () => Navigator.of(context).pop(true),
+          child: Text(_label('qiblaCalibrateSkip')),
         ),
-        _action(
-          colors,
-          Icons.check,
-          _label('qiblaCalibrateDone'),
-          () => Navigator.of(context).pop(true),
-          pill: true,
+        FilledButton.icon(
+          style: FilledButton.styleFrom(
+            backgroundColor: colors.heroGold,
+            foregroundColor: colors.sky,
+            minimumSize: const Size(106, 48),
+            textStyle: const TextStyle(fontWeight: FontWeight.w700),
+          ),
+          onPressed: () => Navigator.of(context).pop(true),
+          icon: const Icon(Icons.check_rounded, size: 19),
+          label: Text(_label('qiblaCalibrateDone')),
         ),
       ],
     );
