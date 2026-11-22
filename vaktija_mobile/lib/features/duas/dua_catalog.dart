@@ -9,6 +9,15 @@ DuaLabels _localized(Object? json) => _object(json).cast<String, String>();
 
 const duaAssets = 'assets/duas';
 
+enum DuaCollection {
+  duas('$duaAssets/catalog.json', 'vaktija_saved_duas'),
+  dhikr('$duaAssets/dhikr.json', 'vaktija_saved_dhikr');
+
+  const DuaCollection(this.asset, this.bookmarkKey);
+
+  final String asset, bookmarkKey;
+}
+
 class DuaCatalog {
   DuaCatalog._(Map<String, Object?> json)
     : categories = {
@@ -16,14 +25,14 @@ class DuaCatalog {
           (_object(category)['id'] as String): DuaCategory._(_object(category)),
       },
       _categoryOrder = _object(json['categoryOrder']),
-      _labels = _object(json['labels']);
+      _labels = _object(json['labels']),
+      _itemOrder = (json['itemOrder'] as List<Object?>?)?.cast<String>();
 
   final Map<String, DuaCategory> categories;
   final Map<String, Object?> _categoryOrder, _labels;
+  final List<String>? _itemOrder;
 
-  late final items = [
-    for (final category in categories.values) ...category.items,
-  ];
+  late final items = _orderedItems();
   late final ids = items.map((dua) => dua.id).toSet();
   late final browsingOrder = [
     ...?categories['general']?.items,
@@ -36,8 +45,18 @@ class DuaCatalog {
   Iterable<DuaCategory> orderedCategories(String language) =>
       (_categoryOrder[language] as List<Object?>).map((id) => categories[id]!);
 
-  static Future<DuaCatalog> load() async => DuaCatalog._(
-    _object(jsonDecode(await rootBundle.loadString('$duaAssets/catalog.json'))),
+  List<Dua> _orderedItems() {
+    final items = [for (final category in categories.values) ...category.items];
+    final order = _itemOrder;
+    if (order == null) return items;
+    final byId = {for (final dua in items) dua.id: dua};
+    return [for (final id in order) byId[id]!];
+  }
+
+  static Future<DuaCatalog> load([
+    DuaCollection collection = DuaCollection.duas,
+  ]) async => DuaCatalog._(
+    _object(jsonDecode(await rootBundle.loadString(collection.asset))),
   );
 }
 

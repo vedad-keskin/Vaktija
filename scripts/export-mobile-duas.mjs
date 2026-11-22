@@ -21,35 +21,43 @@ function loadData(path) {
 }
 
 const { DUA_CATEGORIES } = loadData('src/app/features/duas/duas.data.ts');
+const { DHIKR, DHIKR_CATEGORIES } = loadData('src/app/features/duas/dhikr.data.ts');
 const { BS_LABELS } = loadData('src/app/core/i18n/bs.ts');
 const { EN_LABELS } = loadData('src/app/core/i18n/en.ts');
-const labels = (copy) => Object.fromEntries(Object.entries(copy).filter(([key]) =>
-  key.startsWith('duas') || key === 'showMore' || key === 'qiblaBackToTimes',
-));
+const labels = (copy, dhikr) => Object.fromEntries(Object.entries(copy)
+  .filter(([key]) => key.startsWith('duas') || key === 'showMore' || key === 'qiblaBackToTimes')
+  .map(([key, value]) => [key, dhikr ? copy[key.replace(/^duas/, 'dhikr')] ?? value : value]));
 
-const categories = DUA_CATEGORIES.map(({ id, label, items }) => ({
-  id,
-  label,
-  items: items.map(({
-    id, title, sayings, arabic, instructions, transcription, translation,
-    reference, sourceUrl, bosnianSourceUrl,
-  }) => ({
+function exportCatalog(filename, sourceCategories, dhikr) {
+  const categories = sourceCategories.map(({ id, label, items }) => ({
     id,
-    title,
-    sayings: sayings ?? [{ arabic, instructions, transcription, translation }],
-    source: sourceUrl ? { reference, sourceUrl, bosnianSourceUrl } : undefined,
-  })),
-}));
-const categoryOrder = Object.fromEntries(['bs', 'en'].map((lang) => [
-  lang,
-  [...categories].sort((a, b) =>
-    Number(b.id === 'general') - Number(a.id === 'general') ||
-    a.label[lang].localeCompare(b.label[lang], lang),
-  ).map(({ id }) => id),
-]));
+    label,
+    items: items.map(({
+      id, title, sayings, arabic, instructions, transcription, translation,
+      reference, sourceUrl, bosnianSourceUrl,
+    }) => ({
+      id,
+      title,
+      sayings: sayings ?? [{ arabic, instructions, transcription, translation }],
+      source: sourceUrl ? { reference, sourceUrl, bosnianSourceUrl } : undefined,
+    })),
+  }));
+  const categoryOrder = Object.fromEntries(['bs', 'en'].map((lang) => [
+    lang,
+    [...categories].sort((a, b) =>
+      Number(b.id === 'general') - Number(a.id === 'general') ||
+      a.label[lang].localeCompare(b.label[lang], lang),
+    ).map(({ id }) => id),
+  ]));
+  writeFileSync(resolve(folder, filename), JSON.stringify({
+    categories,
+    categoryOrder,
+    labels: { bs: labels(BS_LABELS, dhikr), en: labels(EN_LABELS, dhikr) },
+    itemOrder: dhikr ? DHIKR.map(({ id }) => id) : undefined,
+  }) + '\n');
+}
 
 const folder = resolve(root, 'vaktija_mobile/assets/duas');
 mkdirSync(folder, { recursive: true });
-writeFileSync(resolve(folder, 'catalog.json'), JSON.stringify({
-  categories, categoryOrder, labels: { bs: labels(BS_LABELS), en: labels(EN_LABELS) },
-}) + '\n');
+exportCatalog('catalog.json', DUA_CATEGORIES, false);
+exportCatalog('dhikr.json', DHIKR_CATEGORIES, true);

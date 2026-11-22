@@ -11,6 +11,7 @@ import 'dua_search.dart';
 class DuasPage extends StatefulWidget {
   const DuasPage({
     super.key,
+    required this.collection,
     required this.header,
     required this.language,
     required this.bookmarks,
@@ -19,6 +20,7 @@ class DuasPage extends StatefulWidget {
   });
 
   final Widget header;
+  final DuaCollection collection;
   final String language;
   final List<String> bookmarks;
   final Future<bool> Function(List<String>) onSaveBookmarks;
@@ -30,6 +32,10 @@ class DuasPage extends StatefulWidget {
 
 class _DuasPageState extends State<DuasPage> {
   static const _pageSize = 10;
+  static const _pillTextStyle = TextStyle(
+    fontSize: 14,
+    fontWeight: FontWeight.w600,
+  );
 
   final _query = TextEditingController();
   final _searchFocus = FocusNode();
@@ -51,7 +57,7 @@ class _DuasPageState extends State<DuasPage> {
   }
 
   Future<DuaCatalog> _loadCatalog() async {
-    final catalog = await DuaCatalog.load();
+    final catalog = await DuaCatalog.load(widget.collection);
     if (!mounted) return catalog;
     _saved.retainAll(catalog.ids);
     _search = DuaSearch(catalog.items);
@@ -289,7 +295,26 @@ class _DuasPageState extends State<DuasPage> {
     VaktijaPalette colors,
     DuaCategory? category,
   ) {
-    final largeText = MediaQuery.textScalerOf(context).scale(14) > 19;
+    final textScaler = MediaQuery.textScalerOf(context);
+    final largeText = textScaler.scale(14) > 19;
+    final allLabel = labels['duasAll']!;
+    final savedCount = '${_saved.length}';
+    final categoryName =
+        category?.label[_language] ?? labels['duasCategories']!;
+    final direction = Directionality.of(context);
+    final labelWidth = [allLabel, savedCount, categoryName].fold(
+      0.0,
+      (width, label) =>
+          width +
+          TextPainter.computeWidth(
+            text: TextSpan(text: label, style: _pillTextStyle),
+            textDirection: direction,
+            textScaler: textScaler,
+            maxLines: 1,
+          ),
+    );
+    // Include the button padding, count padding, icons, and gaps in the row.
+    final rowWidth = labelWidth + 3 * 24 + 12 + 17 + 8 + 12 + 18;
     final duration = MediaQuery.disableAnimationsOf(context)
         ? Duration.zero
         : const Duration(milliseconds: 180);
@@ -297,7 +322,7 @@ class _DuasPageState extends State<DuasPage> {
       colors,
       active: _scope == 'all',
       onPressed: () => _showScope('all'),
-      child: Text(labels['duasAll']!),
+      child: Text(allLabel),
     );
     final saved = _pill(
       colors,
@@ -323,18 +348,13 @@ class _DuasPageState extends State<DuasPage> {
               ),
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 3),
-                child: Text(
-                  '${_saved.length}',
-                  style: TextStyle(color: colors.gold),
-                ),
+                child: Text(savedCount, style: TextStyle(color: colors.gold)),
               ),
             ),
           ],
         ),
       ),
     );
-    final categoryName =
-        category?.label[_language] ?? labels['duasCategories']!;
     final categories = Semantics(
       expanded: _categoriesOpen,
       child: _pill(
@@ -365,7 +385,8 @@ class _DuasPageState extends State<DuasPage> {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           LayoutBuilder(
-            builder: (context, bounds) => largeText || bounds.maxWidth < 270
+            builder: (context, bounds) =>
+                largeText || bounds.maxWidth < rowWidth
                 ? Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
@@ -484,7 +505,7 @@ class _DuasPageState extends State<DuasPage> {
         foregroundColor: active ? colors.text : colors.secondary,
         side: BorderSide(color: active ? colors.gold : colors.border),
         shape: const StadiumBorder(),
-        textStyle: const TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
+        textStyle: _pillTextStyle,
       ),
       child: child,
     ),

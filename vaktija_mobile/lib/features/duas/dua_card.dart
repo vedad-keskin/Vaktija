@@ -52,8 +52,8 @@ class DuaCard extends StatelessWidget {
   }) => Semantics(
     hint: wholeDua
         ? (_bosnian
-              ? 'Zadržite za kopiranje cijele dove'
-              : 'Hold to copy the whole dua')
+              ? 'Zadržite za kopiranje cijelog teksta'
+              : 'Hold to copy the whole entry')
         : (_bosnian ? 'Zadržite za kopiranje teksta' : 'Hold to copy the text'),
     child: GestureDetector(
       behavior: HitTestBehavior.opaque,

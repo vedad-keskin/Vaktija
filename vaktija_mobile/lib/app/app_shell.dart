@@ -4,6 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import '../features/duas/dua_catalog.dart';
 import '../features/duas/duas_page.dart';
 import '../features/prayer_times/prayer_page.dart';
 import '../features/prayer_times/prayer_repository.dart';
@@ -36,7 +37,6 @@ class _AppShellState extends State<AppShell>
     with SingleTickerProviderStateMixin {
   static const _fullscreenChannel = MethodChannel('vaktija/fullscreen');
   static const _fullscreenPreference = 'fullscreen';
-  static const _duasBookmarksPreference = 'vaktija_saved_duas';
   late final _fullscreenTransition = AnimationController(
     vsync: this,
     duration: const Duration(milliseconds: 520),
@@ -55,15 +55,18 @@ class _AppShellState extends State<AppShell>
   bool _fullscreen = false;
   bool _systemFullscreen = false;
   final _cityPopup = OverlayPortalController();
-  final _duasMenuAnchor = LayerLink();
-  late List<String> _duasBookmarks =
-      widget.repository.preferences.getStringList(_duasBookmarksPreference) ??
-      [];
-  Future<bool> _duasBookmarkWrite = Future.value(true);
+  final _readerMenuAnchor = LayerLink();
+  final _bookmarks = <DuaCollection, List<String>>{};
+  Future<bool> _bookmarkWrite = Future.value(true);
   var _overlay = _Overlay.none;
   var _section = MobileSection.prayerTimes;
 
   PrayerCatalog get _catalog => widget.repository.catalog;
+  DuaCollection? get _readingCollection => switch (_section) {
+    MobileSection.duas => DuaCollection.duas,
+    MobileSection.dhikr => DuaCollection.dhikr,
+    _ => null,
+  };
 
   @override
   void initState() {
@@ -159,7 +162,7 @@ class _AppShellState extends State<AppShell>
   });
 
   void _selectSection(MobileSection section) {
-    if (_section == MobileSection.duas && section != _section) {
+    if (_readingCollection != null && section != _section) {
       FocusScope.of(context).unfocus();
     }
     setState(() {
@@ -168,13 +171,23 @@ class _AppShellState extends State<AppShell>
     });
   }
 
-  Future<bool> _saveDuasBookmarks(List<String> ids) {
-    _duasBookmarks = ids;
+  List<String> _bookmarksFor(DuaCollection collection) =>
+      _bookmarks.putIfAbsent(
+        collection,
+        () =>
+            widget.repository.preferences.getStringList(
+              collection.bookmarkKey,
+            ) ??
+            [],
+      );
+
+  Future<bool> _saveBookmarks(DuaCollection collection, List<String> ids) {
+    _bookmarks[collection] = ids;
     final preferences = widget.repository.preferences;
     // Finish writes in order even if the reader closes and reopens.
-    return _duasBookmarkWrite = _duasBookmarkWrite.then((_) async {
+    return _bookmarkWrite = _bookmarkWrite.then((_) async {
       try {
-        return await preferences.setStringList(_duasBookmarksPreference, ids);
+        return await preferences.setStringList(collection.bookmarkKey, ids);
       } catch (_) {
         return false;
       }
@@ -254,7 +267,8 @@ class _AppShellState extends State<AppShell>
     final safeInsets = MediaQuery.viewPaddingOf(context);
     final padding = MediaQuery.paddingOf(context);
 
-    final readingDuas = _section == MobileSection.duas;
+    final collection = _readingCollection;
+    final reading = collection != null;
     final mobileHeader = MobileHeader(
       labels: labels,
       city: _city,
@@ -334,7 +348,7 @@ class _AppShellState extends State<AppShell>
                 ),
         child: Scaffold(
           // The city popup accounts for the keyboard without resizing the header.
-          resizeToAvoidBottomInset: readingDuas,
+          resizeToAvoidBottomInset: reading,
           backgroundColor: const Color(0xff041e1b),
           body: TweenAnimationBuilder<EdgeInsets>(
             tween: EdgeInsetsTween(
@@ -362,7 +376,7 @@ class _AppShellState extends State<AppShell>
               removeRight: true,
               child: Column(
                 children: [
-                  if (!readingDuas)
+                  if (!reading)
                     AnimatedBuilder(
                       animation: _fullscreenTransition,
                       builder: (context, child) {
@@ -410,23 +424,22 @@ class _AppShellState extends State<AppShell>
                               onExitFullscreen: () => _setFullscreen(false),
                             ),
                             for (final section in MobileSection.values.skip(1))
-                              if (section == MobileSection.duas)
-                                if (readingDuas)
-                                  DuasPage(
-                                    header: CompositedTransformTarget(
-                                      link: _duasMenuAnchor,
-                                      child: mobileHeader,
-                                    ),
-                                    language: _bosnian ? 'bs' : 'en',
-                                    bookmarks: _duasBookmarks,
-                                    onSaveBookmarks: _saveDuasBookmarks,
-                                    onBack: () => _selectSection(
-                                      MobileSection.prayerTimes,
-                                    ),
-                                  )
-                                else
-                                  const SizedBox.shrink()
-                              else
+                              if (section == _section && collection != null)
+                                DuasPage(
+                                  key: ValueKey(collection),
+                                  collection: collection,
+                                  header: CompositedTransformTarget(
+                                    link: _readerMenuAnchor,
+                                    child: mobileHeader,
+                                  ),
+                                  language: _bosnian ? 'bs' : 'en',
+                                  bookmarks: _bookmarksFor(collection),
+                                  onSaveBookmarks: (ids) =>
+                                      _saveBookmarks(collection, ids),
+                                  onBack: () =>
+                                      _selectSection(MobileSection.prayerTimes),
+                                )
+                              else if (section == MobileSection.qibla)
                                 Center(
                                   child: Text(
                                     labels[section.label],
@@ -434,7 +447,9 @@ class _AppShellState extends State<AppShell>
                                       context,
                                     ).textTheme.headlineLarge,
                                   ),
-                                ),
+                                )
+                              else
+                                const SizedBox.shrink(),
                           ],
                         ),
                         if (_overlay != _Overlay.none)
@@ -449,9 +464,9 @@ class _AppShellState extends State<AppShell>
                           left: 0,
                           top: 0,
                           right: 0,
-                          child: readingDuas
+                          child: reading
                               ? CompositedTransformFollower(
-                                  link: _duasMenuAnchor,
+                                  link: _readerMenuAnchor,
                                   targetAnchor: Alignment.bottomLeft,
                                   showWhenUnlinked: false,
                                   child: menu,

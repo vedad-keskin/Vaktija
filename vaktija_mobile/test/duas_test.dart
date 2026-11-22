@@ -48,6 +48,94 @@ void main() {
     },
   );
 
+  testWidgets('Dhikr disposes on exit and keeps bookmarks separate from Duas', (
+    tester,
+  ) async {
+    tester.view.physicalSize = const Size(384, 832);
+    tester.view.devicePixelRatio = 1;
+    addTearDown(tester.view.resetPhysicalSize);
+    addTearDown(tester.view.resetDevicePixelRatio);
+    const sharedEntry = 'hisn-250';
+    final repository = (await tester.runAsync(() async {
+      SharedPreferences.setMockInitialValues({
+        'method': 'iz',
+        'language': 'bs',
+        DuaCollection.duas.bookmarkKey: [sharedEntry],
+      });
+      final dhikr = await DuaCatalog.load(DuaCollection.dhikr);
+      expect(dhikr.ids, hasLength(11));
+      expect(dhikr.items.first.id, 'hisn-248');
+      expect(dhikr.orderedCategories('bs').map((category) => category.id), [
+        'general',
+        'forgiveness',
+      ]);
+      final grouped = DuaSearch(
+        dhikr.items,
+      ).find(dhikr.browsingOrder, 'best supplication worship except Allah');
+      expect(grouped.map((entry) => entry.id), ['hisn-264']);
+      expect(grouped.single.sayings, hasLength(2));
+      return PrayerRepository(
+        await PrayerCatalog.load(),
+        await SharedPreferences.getInstance(),
+      );
+    }))!;
+
+    await tester.pumpWidget(
+      MaterialApp(
+        home: AppShell(repository: repository, onThemeChanged: (_) {}),
+      ),
+    );
+    await tester.pumpAndSettle();
+
+    Future<void> open(String menuLabel, DuaCollection collection) async {
+      await tester.tap(find.byTooltip('Meni'));
+      await tester.pumpAndSettle();
+      await tester.tap(find.text(menuLabel));
+      await tester.runAsync(() async {
+        await tester.pump();
+        await rootBundle.loadString(collection.asset);
+      });
+      await tester.pumpAndSettle();
+    }
+
+    await open('ZIKROVI', DuaCollection.dhikr);
+    expect(find.text('Zikr za svaki dan'), findsOneWidget);
+    final reader = tester.state(find.byType(DuasPage));
+    final search = find.byType(TextField);
+    await tester.ensureVisible(search);
+    await tester.enterText(search, 'dhikr for forgiveness');
+    await tester.testTextInput.receiveAction(TextInputAction.search);
+    await tester.pumpAndSettle();
+    final bookmark = find.byTooltip('Sačuvaj zikr · Zikr za oprost grijeha');
+    final scroll = find
+        .descendant(
+          of: find.byType(DuasPage),
+          matching: find.byType(Scrollable),
+        )
+        .first;
+    await tester.scrollUntilVisible(bookmark, 180, scrollable: scroll);
+    await tester.tap(bookmark);
+    await tester.pumpAndSettle();
+    expect(
+      repository.preferences.getStringList(DuaCollection.dhikr.bookmarkKey),
+      [sharedEntry],
+    );
+
+    tester.state<ScrollableState>(scroll).position.jumpTo(0);
+    await tester.pumpAndSettle();
+    await open('DOVE', DuaCollection.duas);
+    expect(reader.mounted, isFalse);
+    expect(
+      repository.preferences.getStringList(DuaCollection.duas.bookmarkKey),
+      [sharedEntry],
+    );
+    final duas = tester.state(find.byType(DuasPage));
+    await open('ZIKROVI', DuaCollection.dhikr);
+    expect(duas.mounted, isFalse);
+    expect(tester.widget<TextField>(search).controller!.text, isEmpty);
+    expect(tester.state<ScrollableState>(scroll).position.pixels, 0);
+  });
+
   testWidgets('Duas opens from the mobile menu and copies the held block', (
     tester,
   ) async {

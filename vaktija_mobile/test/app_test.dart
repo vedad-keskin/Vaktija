@@ -446,7 +446,10 @@ void main() {
     tester.view.physicalSize = const Size(320, 640);
     await tester.pumpAndSettle();
 
-    for (final (action, page) in [('DOVE', 'Dove'), ('ZIKROVI', 'Zikrovi')]) {
+    for (final (action, page, collection) in [
+      ('DOVE', 'Dove', DuaCollection.duas),
+      ('ZIKROVI', 'Zikrovi', DuaCollection.dhikr),
+    ]) {
       await tester.tap(find.byTooltip('Meni'));
       await tester.pump();
       await tester.pump(const Duration(milliseconds: 100));
@@ -455,16 +458,17 @@ void main() {
       expect(part, greaterThan(0));
       expect(part, lessThan(tester.getSize(find.byType(VaktijaMenu)).height));
       await tester.tap(find.text(action));
-      if (action == 'DOVE') {
-        await tester.runAsync(() async {
-          await tester.pump();
-          await rootBundle.loadString('$duaAssets/catalog.json');
-        });
-      }
+      await tester.runAsync(() async {
+        await tester.pump();
+        await rootBundle.loadString(collection.asset);
+      });
       await tester.pumpAndSettle();
+      expect(tester.takeException(), isNull, reason: 'Opening $page');
       expect(find.text(page), findsOneWidget);
+      final reader = tester.state(find.byType(DuasPage));
       await tester.binding.handlePopRoute();
       await tester.pumpAndSettle();
+      expect(reader.mounted, isFalse);
     }
     expect(find.text('Zora (sabah)'), findsWidgets);
     expect(find.byType(DuasPage, skipOffstage: false), findsNothing);
