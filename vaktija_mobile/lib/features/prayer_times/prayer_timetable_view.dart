@@ -61,6 +61,7 @@ class PrayerTimetableView extends StatelessWidget {
                   title: labels.prayer(countdown.next),
                   date: labels.date(now),
                   city: fullscreenLayout ? city : null,
+                  showDetails: headerProgress < 1,
                   interval: countdown,
                   labels: labels,
                   toggle: toggle,
@@ -311,6 +312,7 @@ class _Countdown extends StatelessWidget {
     required this.title,
     required this.date,
     required this.city,
+    required this.showDetails,
     required this.interval,
     required this.labels,
     required this.toggle,
@@ -318,6 +320,7 @@ class _Countdown extends StatelessWidget {
 
   final String title, date;
   final String? city;
+  final bool showDetails;
   final PrayerInterval interval;
   final PrayerLabels labels;
   final Widget toggle;
@@ -382,18 +385,19 @@ class _Countdown extends StatelessWidget {
                 ),
               ),
               _content(colors, titleStyle, digits, parts),
-              Positioned(
-                left: 15,
-                right: 15,
-                bottom: artHeight * .145 - 10,
-                child: IgnorePointer(
-                  child: _HorizonProgress(
-                    value: interval.progress,
-                    colors: colors,
-                    label: labels['countdownProgressAria'],
+              if (showDetails)
+                Positioned(
+                  left: 15,
+                  right: 15,
+                  bottom: artHeight * .145 - 10,
+                  child: IgnorePointer(
+                    child: _HorizonProgress(
+                      value: interval.progress,
+                      colors: colors,
+                      label: labels['countdownProgressAria'],
+                    ),
                   ),
                 ),
-              ),
               Positioned(top: 16, right: 9, child: toggle),
             ],
           ),
@@ -469,24 +473,26 @@ class _Countdown extends StatelessWidget {
                       Positioned.fill(
                         child: FittedBox(
                           fit: BoxFit.scaleDown,
-                          child: Text('$city ? $date', style: dateStyle),
+                          child: Text('$city · $date', style: dateStyle),
                         ),
                       ),
                     ],
                   ),
           ),
           const SizedBox(height: 13),
-          Text(
-            labels['nextTime'].toUpperCase(),
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              fontSize: 10.4,
-              letterSpacing: 1.85,
-              color: colors.heroGold,
-              fontWeight: FontWeight.w600,
+          if (showDetails) ...[
+            Text(
+              labels['nextTime'].toUpperCase(),
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: 10.4,
+                letterSpacing: 1.85,
+                color: colors.heroGold,
+                fontWeight: FontWeight.w600,
+              ),
             ),
-          ),
-          const SizedBox(height: 10),
+            const SizedBox(height: 10),
+          ],
           Text(title, textAlign: TextAlign.center, style: titleStyle),
           const SizedBox(height: 9),
           Center(
