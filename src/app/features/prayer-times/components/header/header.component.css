@@ -1,49 +1,207 @@
 .app-header {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 1rem 1.5rem;
+  padding: 0 1.5rem;
   background: var(--surface-elevated);
   border-bottom: 1px solid var(--border-color);
-  flex-wrap: wrap;
-  gap: 0.75rem;
+  height: 64px;
+  box-sizing: border-box;
 }
 
-.header-left {
+/* ===== Brand (home link) ===== */
+.header-brand {
   display: flex;
   align-items: center;
   gap: 0.75rem;
+  min-width: 0;
+  flex-shrink: 0;
+  text-decoration: none;
+  color: inherit;
+  border-radius: 12px;
+  padding: 0.2rem 0.35rem 0.2rem 0.2rem;
+  margin: 0 -0.2rem 0 -0.2rem;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.header-brand:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
 }
 
 .header-logo {
   width: 38px;
   height: 38px;
   object-fit: contain;
-  filter: invert(1);
+  filter: var(--logo-filter);
+  flex-shrink: 0;
+  transform: scale(2);
 }
 
-.header-title {
-  font-family: var(--font-heading);
-  font-size: 1.35rem;
-  font-weight: 700;
-  color: var(--text-primary);
-  margin: 0;
+/* ===== Qibla — matches .lang-switcher / .theme-switcher / .method-switcher shell + inner segment ===== */
+.header-qibla {
+  position: relative;
+  display: inline-flex;
+  align-items: stretch;
+  height: 38px;
+  box-sizing: border-box;
+  padding: 3px;
+  background: var(--surface);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  text-decoration: none;
+  flex-shrink: 0;
+  color: var(--text-muted);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.app-header.motion .header-qibla {
+  transition:
+    border-color 0.25s ease,
+    color 0.25s ease;
+}
+
+.header-qibla:hover {
+  color: var(--text-secondary);
+}
+
+.header-qibla:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.header-qibla-pad {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  padding: 0.35rem 0.65rem;
+  border-radius: 9px;
+  box-sizing: border-box;
+  min-width: 0;
+  align-self: stretch;
+  border: 1px solid transparent;
+}
+
+.app-header.motion .header-qibla-pad {
+  transition:
+    background 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease,
+    color 0.25s ease;
+}
+
+.header-qibla--active {
+  color: var(--accent);
+}
+
+.header-qibla--active .header-qibla-pad {
+  background: var(--accent-surface);
+  border: 1px solid rgba(45, 212, 168, 0.2);
+  box-shadow: 0 0 12px rgba(45, 212, 168, 0.08);
+}
+
+.header-qibla-icon {
+  flex-shrink: 0;
+}
+
+.header-qibla-text {
+  pointer-events: none;
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 600;
   letter-spacing: 0.5px;
+  text-transform: uppercase;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.mobile-page-links {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.5rem;
+}
+
+/* Page links inside hamburger drawer (mobile) */
+.mobile-dropdown .header-qibla--mobile-drawer {
+  width: 100%;
+  display: flex;
+  align-items: stretch;
+}
+
+.mobile-dropdown .header-qibla--mobile-drawer .header-qibla-pad {
+  flex: 1 1 auto;
+  justify-content: center;
+  width: 100%;
+  padding-inline: 0.25rem;
+}
+
+.mobile-dropdown .header-qibla--mobile-drawer .header-qibla-text {
+  white-space: normal;
+  text-align: center;
   line-height: 1.2;
 }
 
-/* ===== Language Switcher ===== */
-.lang-switcher {
+[data-theme='light'] .header-qibla--active .header-qibla-pad {
+  border-color: rgba(26, 171, 134, 0.25);
+}
+
+/* ===== Desktop Controls ===== */
+.header-desktop-controls {
   display: flex;
   align-items: center;
-  gap: 0.25rem;
+  gap: 0.75rem;
+}
+
+/* ===== Mobile Controls (hidden on desktop) ===== */
+.header-mobile-controls {
+  display: none;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* ===== Language Switcher ===== */
+/* Segmented controls share one fixed height (language + theme in header) */
+.lang-switcher {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  height: 38px;
+  box-sizing: border-box;
   background: var(--surface);
   border: 1px solid var(--border-color);
   border-radius: 12px;
   padding: 3px;
+  flex-shrink: 0;
+}
+
+.lang-slider {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: calc(50% - 4px);
+  height: calc(100% - 6px);
+  border-radius: 9px;
+  background: var(--accent-surface);
+  border: 1px solid rgba(45, 212, 168, 0.2);
+  box-shadow: 0 0 12px rgba(45, 212, 168, 0.08);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.app-header.motion .lang-slider {
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.lang-switcher.en-active .lang-slider {
+  transform: translateX(calc(100% + 2px));
 }
 
 .lang-btn {
+  position: relative;
+  z-index: 1;
   display: flex;
   align-items: center;
   gap: 0.35rem;
@@ -53,7 +211,7 @@
   background: transparent;
   color: var(--text-muted);
   cursor: pointer;
-  transition: all 0.25s ease;
+  transition: color 0.25s ease;
   font-family: var(--font-body);
   font-size: 0.7rem;
   font-weight: 600;
@@ -64,14 +222,10 @@
 
 .lang-btn:hover {
   color: var(--text-secondary);
-  background: var(--surface-hover);
 }
 
 .lang-btn.active {
-  background: var(--accent-surface);
   color: var(--accent);
-  border: 1px solid rgba(45, 212, 168, 0.2);
-  box-shadow: 0 0 12px rgba(45, 212, 168, 0.08);
 }
 
 .lang-flag {
@@ -88,4 +242,109 @@
 
 .lang-code {
   pointer-events: none;
+}
+
+/* ===== Hamburger ===== */
+.hamburger {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 38px;
+  height: 38px;
+  padding: 9px 8px;
+  background: transparent;
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: border-color 0.25s ease;
+  -webkit-tap-highlight-color: transparent;
+  flex-shrink: 0;
+}
+
+.hamburger:hover {
+  border-color: var(--accent);
+}
+
+.hamburger span {
+  display: block;
+  width: 100%;
+  height: 2px;
+  background: var(--text-primary);
+  border-radius: 1px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
+}
+
+.hamburger.active span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+  transform: scaleX(0);
+}
+
+.hamburger.active span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* ===== Mobile Dropdown (method + theme segmented controls) ===== */
+.mobile-dropdown {
+  display: none;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  left: 0;
+  background: var(--surface-elevated);
+  border-bottom: 1px solid var(--border-color);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.2);
+  padding: 0.75rem 1.5rem 1rem;
+  transform: translateY(-100%);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition:
+    transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 0.25s ease,
+    visibility 0.25s;
+  z-index: 200;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.mobile-dropdown.open {
+  transform: translateY(0);
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+[data-theme='dark'] .mobile-dropdown.open {
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.55);
+}
+
+/* ===== Mobile breakpoint ===== */
+@media (max-width: 580px) {
+  .app-header {
+    padding: 0 1rem;
+  }
+
+  .header-desktop-controls {
+    display: none;
+  }
+
+  .header-mobile-controls {
+    display: flex;
+  }
+
+  .mobile-dropdown {
+    display: flex;
+  }
+}
+
+@media (max-width: 350px) {
+  .header-mobile-controls .lang-code {
+    display: none;
+  }
 }

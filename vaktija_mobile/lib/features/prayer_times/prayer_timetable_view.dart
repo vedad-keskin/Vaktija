@@ -20,7 +20,8 @@ class PrayerTimetableView extends StatelessWidget {
     required this.countdownFallback,
     required this.labels,
     this.fullscreen = false,
-    this.compact = 0,
+    this.headerProgress = 0,
+    this.rowProgress = 0,
     this.regularScroll,
     this.regularOffset = 0,
     this.countdownKey,
@@ -34,7 +35,7 @@ class PrayerTimetableView extends StatelessWidget {
   final Widget? countdownFallback;
   final PrayerLabels labels;
   final bool fullscreen;
-  final double compact;
+  final double headerProgress, rowProgress;
   final ScrollController? regularScroll;
   final double regularOffset;
   final Key? countdownKey;
@@ -42,7 +43,7 @@ class PrayerTimetableView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final pinned = fullscreen || compact > 0;
+    final fullscreenLayout = fullscreen || headerProgress > 0;
     final countdown = interval;
     final toggle = _FullscreenButton(
       fullscreen: fullscreen,
@@ -50,7 +51,7 @@ class PrayerTimetableView extends StatelessWidget {
       onPressed: onToggleFullscreen,
     );
     final header = Padding(
-      padding: EdgeInsets.fromLTRB(12, lerpDouble(14, 8, compact)!, 12, 0),
+      padding: EdgeInsets.fromLTRB(12, lerpDouble(14, 8, headerProgress)!, 12, 0),
       child: Center(
         child: ConstrainedBox(
           constraints: const BoxConstraints(maxWidth: 650),
@@ -59,10 +60,9 @@ class PrayerTimetableView extends StatelessWidget {
                   key: countdownKey,
                   title: labels.prayer(countdown.next),
                   date: labels.date(now),
-                  city: city,
+                  city: fullscreenLayout ? city : null,
                   interval: countdown,
                   labels: labels,
-                  compact: compact,
                   toggle: toggle,
                 )
               : Column(
@@ -75,14 +75,17 @@ class PrayerTimetableView extends StatelessWidget {
       ),
     );
     final scroll = CustomScrollView(
-      key: PageStorageKey(
-        pinned ? 'fullscreen-prayer-timetable' : 'regular-prayer-timetable',
-      ),
-      controller: pinned ? null : regularScroll,
+      key: fullscreenLayout
+          ? const ValueKey('fullscreen-prayer-timetable')
+          : const PageStorageKey('regular-prayer-timetable'),
+      controller: fullscreenLayout ? null : regularScroll,
       primary: false,
       slivers: [
-        if (pinned)
-          PinnedHeaderSliver(
+        if (fullscreenLayout)
+          SliverFloatingHeader(
+            animationStyle: MediaQuery.disableAnimationsOf(context)
+                ? AnimationStyle.noAnimation
+                : null,
             child: ColoredBox(
               color: VaktijaPalette.of(context).surface,
               child: header,
@@ -93,8 +96,8 @@ class PrayerTimetableView extends StatelessWidget {
         if (times.isNotEmpty)
           SliverLayoutBuilder(
             builder: (context, bounds) {
-              final top = lerpDouble(18, 8, compact)!;
-              final bottom = lerpDouble(32, 12, compact)!;
+              final top = lerpDouble(18, 8, rowProgress)!;
+              final bottom = lerpDouble(32, 12, rowProgress)!;
               return SliverPadding(
                 padding: EdgeInsets.fromLTRB(12, top, 12, bottom),
                 sliver: SliverToBoxAdapter(
@@ -114,11 +117,14 @@ class PrayerTimetableView extends StatelessWidget {
       ],
     );
 
-    // Carry the regular scroll position into the first and last frame of the
-    // morph. PageStorage restores the regular viewport when the card unpins.
+    // Keep the card's starting position when the fullscreen viewport opens.
+    // PageStorage restores the regular scroll position on exit.
     return ClipRect(
       child: Transform.translate(
-        offset: Offset(0, pinned ? -regularOffset * (1 - compact) : 0),
+        offset: Offset(
+          0,
+          fullscreenLayout ? -regularOffset * (1 - headerProgress) : 0,
+        ),
         child: scroll,
       ),
     );
@@ -133,13 +139,17 @@ class PrayerTimetableView extends StatelessWidget {
         MediaQuery.orientationOf(context) == Orientation.landscape &&
         width >= 600 &&
         times.length > 1;
-    final twoColumns = wideLandscape && compact >= .5;
+    final twoColumns = wideLandscape && rowProgress >= .5;
     final rowCount = twoColumns ? (times.length + 1) ~/ 2 : times.length;
     final gap = ((height / rowCount - 44) * .18).clamp(3.0, 9.0);
     final cardHeight = (height - gap * (rowCount - 1)) / rowCount;
     final density = _PrayerDensity(
-      lerpDouble(76, cardHeight.clamp(48.0, double.infinity), compact)!,
-      lerpDouble(8, gap, compact)!,
+      lerpDouble(
+        _PrayerDensity.regularHeight,
+        cardHeight.clamp(_PrayerDensity.minHeight, double.infinity),
+        rowProgress,
+      )!,
+      lerpDouble(8, gap, rowProgress)!,
     );
     final rows = Center(
       child: ConstrainedBox(
@@ -163,7 +173,7 @@ class PrayerTimetableView extends StatelessWidget {
     // Fade the rail briefly while landscape changes between one and two columns.
     return wideLandscape
         ? Opacity(
-            opacity: ((compact - .5).abs() / .16).clamp(0, 1),
+            opacity: ((rowProgress - .5).abs() / .16).clamp(0, 1),
             child: rows,
           )
         : rows;
@@ -191,7 +201,7 @@ class PrayerTimetableView extends StatelessWidget {
           _PrayerStop(
             time: time,
             density: density,
-            fullscreen: compact > 0,
+            fullscreen: rowProgress > 0,
             name: labels.prayer(time),
             relative: labels.relative(
               time.at.millisecondsSinceEpoch ~/ Duration.millisecondsPerMinute -
@@ -303,17 +313,14 @@ class _Countdown extends StatelessWidget {
     required this.city,
     required this.interval,
     required this.labels,
-    required this.compact,
     required this.toggle,
   });
 
-  final String title, date, city;
+  final String title, date;
+  final String? city;
   final PrayerInterval interval;
   final PrayerLabels labels;
-  final double compact;
   final Widget toggle;
-
-  double _size(double full, double small) => lerpDouble(full, small, compact)!;
 
   @override
   Widget build(BuildContext context) {
@@ -323,12 +330,8 @@ class _Countdown extends StatelessWidget {
 
     return LayoutBuilder(
       builder: (context, limits) {
-        final normalArtHeight = limits.maxWidth * .75;
-        final artHeight = _size(
-          normalArtHeight,
-          (limits.maxWidth * .49).clamp(100.0, 180.0),
-        );
-        final radius = BorderRadius.circular(_size(18, 14));
+        final artHeight = limits.maxWidth * .75;
+        final radius = BorderRadius.circular(18);
         final titleStyle = TextStyle(
           color: colors.heroText,
           fontFamily: 'Cormorant Garamond',
@@ -339,7 +342,7 @@ class _Countdown extends StatelessWidget {
         final digits = TextStyle(
           color: colors.heroText,
           fontWeight: FontWeight.w600,
-          fontSize: _size(49, 26),
+          fontSize: 49,
           fontFeatures: _tabular,
           height: 1,
         );
@@ -358,48 +361,40 @@ class _Countdown extends StatelessWidget {
                 left: 0,
                 right: 0,
                 bottom: 0,
-                height: normalArtHeight,
-                child: Transform.scale(
-                  scaleY: artHeight / normalArtHeight,
-                  alignment: Alignment.bottomCenter,
-                  child: RepaintBoundary(
-                    child: _artwork(colors, 'mobile-$theme'),
-                  ),
+                height: artHeight,
+                child: RepaintBoundary(
+                  child: _artwork(colors, 'mobile-$theme'),
                 ),
               ),
               Positioned.fill(
                 child: IgnorePointer(
                   child: Padding(
-                    padding: EdgeInsets.all(_size(7, 4)),
+                    padding: const EdgeInsets.all(7),
                     child: DecoratedBox(
                       decoration: BoxDecoration(
                         border: Border.all(
                           color: colors.heroGold.withValues(alpha: .20),
                         ),
-                        borderRadius: BorderRadius.circular(_size(12, 10)),
+                        borderRadius: BorderRadius.circular(12),
                       ),
                     ),
                   ),
                 ),
               ),
               _content(colors, titleStyle, digits, parts),
-              if (compact < 1)
-                Positioned(
-                  left: 15,
-                  right: 15,
-                  bottom: _size(normalArtHeight * .145 - 10, 4),
-                  child: IgnorePointer(
-                    child: Opacity(
-                      opacity: 1 - compact,
-                      child: _HorizonProgress(
-                        value: interval.progress,
-                        colors: colors,
-                        label: labels['countdownProgressAria'],
-                      ),
-                    ),
+              Positioned(
+                left: 15,
+                right: 15,
+                bottom: artHeight * .145 - 10,
+                child: IgnorePointer(
+                  child: _HorizonProgress(
+                    value: interval.progress,
+                    colors: colors,
+                    label: labels['countdownProgressAria'],
                   ),
                 ),
-              Positioned(top: _size(16, 3), right: _size(9, 4), child: toggle),
+              ),
+              Positioned(top: 16, right: 9, child: toggle),
             ],
           ),
         );
@@ -450,70 +445,50 @@ class _Countdown extends StatelessWidget {
     TextStyle digits,
     List<String> parts,
   ) {
-    final titleScale = _size(1, 25 / titleStyle.fontSize!);
+    final dateStyle = TextStyle(
+      fontSize: 12.8,
+      fontWeight: FontWeight.w500,
+      color: colors.heroMuted,
+    );
+    final dateLabel = Text(date, textAlign: TextAlign.center, style: dateStyle);
+
     return Padding(
-      padding: EdgeInsets.fromLTRB(12, _size(31, 11), 12, _size(65, 14)),
+      padding: const EdgeInsets.fromLTRB(12, 31, 12, 65),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: _size(31, 40)),
-            child: Text.rich(
-              TextSpan(
-                children: [
-                  if (compact > 0)
-                    TextSpan(
-                      text: '$city · ',
-                      style: TextStyle(
-                        fontSize: 10.5 * compact,
-                        color: colors.heroMuted.withValues(alpha: compact),
+            padding: const EdgeInsets.symmetric(horizontal: 31),
+            child: city == null
+                ? dateLabel
+                : Stack(
+                    alignment: Alignment.center,
+                    children: [
+                      // Keep the date line's height when adding the city.
+                      Opacity(opacity: 0, child: dateLabel),
+                      Positioned.fill(
+                        child: FittedBox(
+                          fit: BoxFit.scaleDown,
+                          child: Text('$city ? $date', style: dateStyle),
+                        ),
                       ),
-                    ),
-                  TextSpan(text: date),
-                ],
-              ),
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: _size(12.8, 10.5),
-                fontWeight: FontWeight.w500,
-                color: colors.heroMuted,
-              ),
-            ),
-          ),
-          SizedBox(height: 4 * compact),
-          if (compact < 1)
-            _regularDetail(
-              Column(
-                children: [
-                  const SizedBox(height: 13),
-                  Text(
-                    labels['nextTime'].toUpperCase(),
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontSize: 10.4,
-                      letterSpacing: 1.85,
-                      color: colors.heroGold,
-                      fontWeight: FontWeight.w600,
-                    ),
+                    ],
                   ),
-                  const SizedBox(height: 10),
-                ],
-              ),
-            ),
-          Align(
-            alignment: Alignment.topCenter,
-            heightFactor: titleScale,
-            child: Transform.scale(
-              alignment: Alignment.topCenter,
-              scale: titleScale,
-              child: Text(
-                title,
-                textAlign: TextAlign.center,
-                style: titleStyle,
-              ),
+          ),
+          const SizedBox(height: 13),
+          Text(
+            labels['nextTime'].toUpperCase(),
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              fontSize: 10.4,
+              letterSpacing: 1.85,
+              color: colors.heroGold,
+              fontWeight: FontWeight.w600,
             ),
           ),
-          SizedBox(height: _size(9, 2)),
+          const SizedBox(height: 10),
+          Text(title, textAlign: TextAlign.center, style: titleStyle),
+          const SizedBox(height: 9),
           Center(
             child: FittedBox(
               fit: BoxFit.scaleDown,
@@ -527,13 +502,11 @@ class _Countdown extends StatelessWidget {
                     for (final (index, value) in parts.indexed) ...[
                       if (index > 0)
                         Padding(
-                          padding: EdgeInsets.symmetric(
-                            horizontal: _size(5, 3),
-                          ),
+                          padding: const EdgeInsets.symmetric(horizontal: 5),
                           child: Text(
                             ':',
                             style: digits.copyWith(
-                              fontSize: _size(40, 24),
+                              fontSize: 40,
                               color: colors.heroGold,
                             ),
                           ),
@@ -541,25 +514,20 @@ class _Countdown extends StatelessWidget {
                       Column(
                         children: [
                           Text(value, style: digits),
-                          if (compact < 1)
-                            _regularDetail(
-                              Padding(
-                                padding: const EdgeInsets.only(top: 9),
-                                child: Text(
-                                  labels[const [
-                                        'countdownHours',
-                                        'countdownMinutes',
-                                        'countdownSeconds',
-                                      ][index]]
-                                      .toUpperCase(),
-                                  style: TextStyle(
-                                    color: colors.heroMuted,
-                                    fontSize: 10.4,
-                                    letterSpacing: 1.45,
-                                  ),
-                                ),
-                              ),
+                          const SizedBox(height: 9),
+                          Text(
+                            labels[const [
+                                  'countdownHours',
+                                  'countdownMinutes',
+                                  'countdownSeconds',
+                                ][index]]
+                                .toUpperCase(),
+                            style: TextStyle(
+                              color: colors.heroMuted,
+                              fontSize: 10.4,
+                              letterSpacing: 1.45,
                             ),
+                          ),
                         ],
                       ),
                     ],
@@ -572,14 +540,6 @@ class _Countdown extends StatelessWidget {
       ),
     );
   }
-
-  Widget _regularDetail(Widget child) => ClipRect(
-    child: Align(
-      alignment: Alignment.topCenter,
-      heightFactor: 1 - compact,
-      child: Opacity(opacity: 1 - compact, child: child),
-    ),
-  );
 }
 
 class _HorizonProgress extends StatelessWidget {
@@ -661,10 +621,17 @@ class _HorizonProgress extends StatelessWidget {
 class _PrayerDensity {
   const _PrayerDensity(this.height, this.gap);
 
+  static const minHeight = 34.0;
+  static const regularHeight = 76.0;
+
   final double height, gap;
 
   double mix(double tight, double spacious) =>
-      lerpDouble(tight, spacious, ((height - 48) / 28).clamp(0, 1))!;
+      lerpDouble(
+        tight,
+        spacious,
+        ((height - minHeight) / (regularHeight - minHeight)).clamp(0, 1),
+      )!;
 }
 
 class _PrayerStop extends StatelessWidget {
@@ -694,8 +661,9 @@ class _PrayerStop extends StatelessWidget {
   Widget build(BuildContext context) {
     final colors = VaktijaPalette.of(context);
     final spacious = MediaQuery.sizeOf(context).width >= 380;
-    final verticalPadding = density.mix(4, 9);
-    final imageSize = density.mix(28, spacious ? 52 : 44);
+    final verticalPadding = density.mix(3, 9);
+    final imageSize = density.mix(22, spacious ? 52 : 44);
+    final showRelative = !fullscreen || density.height >= 52;
     final foreground = dimmed ? colors.secondary : colors.text;
     final border = next
         ? colors.gold
@@ -706,7 +674,7 @@ class _PrayerStop extends StatelessWidget {
       maxLines: fullscreen ? 1 : null,
       style: TextStyle(
         color: next ? colors.accent : foreground,
-        fontSize: density.mix(20, 24),
+        fontSize: density.mix(18, 24),
         fontWeight: FontWeight.w600,
         fontFeatures: _tabular,
         height: 1.15,
@@ -768,18 +736,19 @@ class _PrayerStop extends StatelessWidget {
                             name,
                             style: TextStyle(
                               color: foreground,
-                              fontSize: 14,
+                              fontSize: density.mix(12, 14),
                               fontWeight: FontWeight.w500,
-                              height: 1.3,
+                              height: density.mix(1.15, 1.3),
                             ),
                           ),
                           if (badge != null) ...[
-                            SizedBox(height: density.mix(2, 4)),
+                            SizedBox(height: density.mix(1, 4)),
                             Text(
                               badge!.toUpperCase(),
                               style: TextStyle(
                                 color: next ? colors.gold : colors.accent,
-                                fontSize: 10,
+                                fontSize: density.mix(8.5, 10),
+                                height: showRelative ? null : 1.15,
                                 fontWeight: FontWeight.w700,
                                 letterSpacing: .8,
                               ),
@@ -797,28 +766,25 @@ class _PrayerStop extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.end,
                           mainAxisSize: MainAxisSize.min,
                           children: [
-                            if (!fullscreen)
-                              clock
-                            else
+                            if (fullscreen)
                               FittedBox(
                                 fit: BoxFit.scaleDown,
                                 alignment: Alignment.centerRight,
-                                child: fullscreen
-                                    ? FittedBox(
-                                        fit: BoxFit.scaleDown,
-                                        child: clock,
-                                      )
-                                    : clock,
+                                child: clock,
+                              )
+                            else
+                              clock,
+                            if (showRelative) ...[
+                              SizedBox(height: density.mix(1, 3)),
+                              Text(
+                                relative,
+                                textAlign: TextAlign.right,
+                                style: TextStyle(
+                                  color: colors.muted,
+                                  fontSize: density.mix(10, 12),
+                                ),
                               ),
-                            SizedBox(height: density.mix(1, 3)),
-                            Text(
-                              relative,
-                              textAlign: TextAlign.right,
-                              style: TextStyle(
-                                color: colors.muted,
-                                fontSize: density.mix(10, 12),
-                              ),
-                            ),
+                            ],
                           ],
                         ),
                       ),

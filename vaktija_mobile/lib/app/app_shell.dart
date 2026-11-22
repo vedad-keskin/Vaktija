@@ -40,7 +40,10 @@ class _AppShellState extends State<AppShell>
   )..addStatusListener(_syncSystemBars);
 
   late final _fullscreenMotion = _fullscreenTransition.drive(
-    CurveTween(curve: Curves.easeInOut),
+    CurveTween(curve: const Interval(0, .6, curve: Curves.easeInOut)),
+  );
+  late final _fullscreenRowsMotion = _fullscreenTransition.drive(
+    CurveTween(curve: const Interval(.6, 1, curve: Curves.easeInOut)),
   );
 
   late PrayerCity _city;
@@ -366,6 +369,7 @@ class _AppShellState extends State<AppShell>
                               labels: labels,
                               fullscreen: _fullscreen,
                               fullscreenMotion: _fullscreenMotion,
+                              fullscreenRowsMotion: _fullscreenRowsMotion,
                               onEnterFullscreen: () => _setFullscreen(true),
                               onExitFullscreen: () => _setFullscreen(false),
                             ),

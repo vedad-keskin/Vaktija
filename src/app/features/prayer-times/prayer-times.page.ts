@@ -1,58 +1,151 @@
-import { Component, inject, OnInit, OnDestroy, signal, computed, effect } from '@angular/core';
+import { Component, DestroyRef, inject, OnInit, OnDestroy, signal, computed, effect, untracked } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { Subscription } from 'rxjs';
+import { Title } from '@angular/platform-browser';
+import { ActivatedRoute, Router } from '@angular/router';
 import { HeaderComponent } from './components/header/header.component';
 import { CitySelectorComponent } from './components/city-selector/city-selector.component';
 import { PrayerCardComponent } from './components/prayer-card/prayer-card.component';
+import { PrayerTimesLoadingPanelComponent } from './components/prayer-times-loading-panel/prayer-times-loading-panel.component';
+import { PrayerTimesErrorPanelComponent } from './components/prayer-times-error-panel/prayer-times-error-panel.component';
 import { PrayerTimeService } from '../../core/services/prayer-time.service';
+import { PrayerTimesCacheService } from '../../core/services/prayer-times-cache.service';
 import { LocationService } from '../../core/services/location.service';
-import { LanguageService } from '../../core/services/language.service';
+import { LanguageService, type LangCode } from '../../core/services/language.service';
+import { CalculationMethodService } from '../../core/services/calculation-method.service';
 import { PrayerTimeData, PrayerTime } from '../../core/models/prayer-time.model';
 import { Location } from '../../core/models/location.model';
+import { sarajevoDayKey } from '../../core/utils/sarajevo-date';
+
+const COUNTDOWN_STORAGE_KEY = 'vaktija_countdown_collapsed';
 
 @Component({
   selector: 'app-prayer-times',
   standalone: true,
-  imports: [HeaderComponent, CitySelectorComponent, PrayerCardComponent],
+  imports: [
+    HeaderComponent,
+    CitySelectorComponent,
+    PrayerCardComponent,
+    PrayerTimesLoadingPanelComponent,
+    PrayerTimesErrorPanelComponent,
+  ],
   templateUrl: './prayer-times.page.html',
   styleUrl: './prayer-times.page.css',
 })
 export class PrayerTimesPage implements OnInit, OnDestroy {
   private readonly prayerTimeService = inject(PrayerTimeService);
+  private readonly prayerTimesCache = inject(PrayerTimesCacheService);
   private readonly locationService = inject(LocationService);
+  private readonly destroyRef = inject(DestroyRef);
+  private readonly route = inject(ActivatedRoute);
+  private readonly router = inject(Router);
+  private readonly titleService = inject(Title);
   protected readonly langService = inject(LanguageService);
+  private readonly methodService = inject(CalculationMethodService);
   private tickInterval: ReturnType<typeof setInterval> | null = null;
+  private loadedDay = sarajevoDayKey();
+  /** Cancels an in-flight load when a newer one starts (avoids stacked concurrent requests). */
+  private prayerLoadSub: Subscription | null = null;
 
   protected readonly locations = signal<Location[]>([]);
   protected readonly selectedLocation = signal<Location | null>(null);
   protected readonly rawTimes = signal<PrayerTimeData[]>([]);
-  protected readonly locationName = signal('');
   protected readonly dateLabel = signal('');
+  protected readonly hijriDate = signal('');
   protected readonly isLoading = signal(true);
   protected readonly error = signal<string | null>(null);
   protected readonly now = signal(new Date());
-  protected readonly hijriDate = signal('');
+  protected readonly countdownCollapsed = signal(this.loadCountdownCollapsed());
 
   /** Reactive labels shortcut */
   protected readonly labels = this.langService.labels;
 
-  /** All 8 prayer times with dynamic isPassed/isActive/relativeText */
-  protected readonly displayTimes = computed<PrayerTime[]>(() => {
+  /** One elapsed-time calculation drives both the horizon and the stepped schedule trail. */
+  private readonly currentInterval = computed(() => {
     const times = this.rawTimes();
     const current = this.now();
     const currentMin = current.getHours() * 60 + current.getMinutes();
+    const currentTotalSec =
+      current.getHours() * 3600 + current.getMinutes() * 60 + current.getSeconds();
 
-    let activeFound = false;
-    return times.map((t) => {
-      const isPassed = !activeFound && t.minutes <= currentMin;
-      const isActive = !activeFound && t.minutes > currentMin;
-      if (isActive) activeFound = true;
+    if (!times.length) return null;
+
+    // Find the index of the next prayer (first whose minutes > currentMin)
+    let nextIdx = times.findIndex((t) => t.minutes > currentMin);
+    // If all have passed, next is first prayer (tomorrow)
+    if (nextIdx === -1) nextIdx = 0;
+    // Current prayer is the one just before the next
+    const currentIdx = nextIdx === 0 ? times.length - 1 : nextIdx - 1;
+
+    // Calculate progress for the current prayer window
+    const currentPrayer = times[currentIdx];
+    const nextPrayer = times[nextIdx];
+
+    let windowDurationSec: number;
+    let elapsedSec: number;
+
+    if (nextIdx > currentIdx) {
+      // Normal case: both prayers are on the same day
+      windowDurationSec = (nextPrayer.minutes - currentPrayer.minutes) * 60;
+      elapsedSec = currentTotalSec - currentPrayer.minutes * 60;
+    } else {
+      // Wrap around midnight: current is last prayer of day, next is first of tomorrow
+      windowDurationSec = ((24 * 60 - currentPrayer.minutes) + nextPrayer.minutes) * 60;
+      const secSinceCurrent = currentTotalSec - currentPrayer.minutes * 60;
+      elapsedSec = secSinceCurrent >= 0
+        ? secSinceCurrent
+        : currentTotalSec + (24 * 60 - currentPrayer.minutes) * 60;
+    }
+
+    const rawProgress = windowDurationSec > 0 ? (elapsedSec / windowDurationSec) * 100 : 0;
+    return { currentIdx, nextIdx, currentMin, progress: Math.min(100, Math.max(0, rawProgress)) };
+  });
+
+  /** All 8 prayer times with dynamic isPassed/isActive/isCurrent/isNext/progress/relativeText */
+  protected readonly displayTimes = computed<PrayerTime[]>(() => {
+    const times = this.rawTimes();
+    const interval = this.currentInterval();
+    if (!interval) return [];
+    const { currentIdx, nextIdx, currentMin } = interval;
+    // Quantize to 2% steps for a clean visual
+    const progress = Math.round(interval.progress / 2) * 2;
+
+    return times.map((t, i) => {
+      const isCurrent = i === currentIdx;
+      const isNext = i === nextIdx;
+      const isPassed = !isCurrent && !isNext && t.minutes <= currentMin;
 
       return {
         ...t,
-        isPassed: isPassed && !isActive,
-        isActive,
-        relativeText: this.formatRelative(t.minutes - currentMin),
+        isPassed: isPassed && nextIdx !== 0, // If all passed (wrap), don't dim everything
+        isActive: isNext,
+        isCurrent,
+        isNext,
+        progress: isCurrent ? progress : 0,
+        relativeText: this.formatRelative(
+          t.minutes - currentMin + (isNext && t.minutes <= currentMin ? 24 * 60 : 0)
+            - (isCurrent && t.minutes > currentMin ? 24 * 60 : 0),
+        ),
       };
     });
+  });
+
+  /**
+   * Time elapsed from the listed current time toward the next (wraps at midnight).
+   */
+  protected readonly countdownWindowProgress = computed(() => this.currentInterval()?.progress ?? 0);
+
+  /** The trail uses the same live interval as the countdown, including the midnight return. */
+  protected readonly trailInterval = computed(() => {
+    const times = this.displayTimes();
+    const from = times.find((time) => time.isCurrent);
+    const to = times.find((time) => time.isNext);
+    if (!from || !to) return null;
+    return {
+      from, to,
+      wraps: times[0] === to,
+      nowMinutes: this.now().getHours() * 60 + this.now().getMinutes(),
+    };
   });
 
   /** Countdown to the next upcoming prayer */
@@ -88,38 +181,81 @@ export class PrayerTimesPage implements OnInit, OnDestroy {
   });
 
   constructor() {
-    // Re-fetch prayer times whenever language changes so names/tooltips update
+    // Re-fetch prayer times whenever language changes so names update
     effect(() => {
-      const _lang = this.langService.lang(); // track
+      const _lang = this.langService.lang();
+      const _method = this.methodService.method();
+      const hasChosen = this.methodService.hasChosen();
       const loc = this.selectedLocation();
-      if (loc) {
-        this.loadPrayerTimes(loc);
-      }
+      if (!loc || !hasChosen) return;
+      untracked(() => this.loadPrayerTimes(loc));
+    });
+
+    effect(() => {
+      const loc = this.selectedLocation();
+      this.titleService.setTitle(loc?.name ? `Vaktija — ${loc.name}` : 'Vaktija');
     });
   }
 
   ngOnInit(): void {
+    this.prayerTimesCache.pruneStale();
     this.loadLocations();
-    const saved = this.locationService.getSelectedLocation();
-    this.selectedLocation.set(saved);
-    this.loadPrayerTimes(saved);
+    this.route.paramMap.pipe(takeUntilDestroyed(this.destroyRef)).subscribe(() => {
+      this.selectedLocation.set(this.locationService.getSelectedLocation());
+    });
+    // Prayer load is driven by the constructor effect when `selectedLocation` / lang / method change.
 
     // Tick every second for countdown + relative times
-    this.tickInterval = setInterval(() => this.now.set(new Date()), 1000);
+    this.tickInterval = setInterval(() => {
+      const now = new Date();
+      this.now.set(now);
+      const day = sarajevoDayKey(now);
+      if (day !== this.loadedDay) {
+        this.loadedDay = day;
+        this.prayerTimesCache.pruneStale();
+        const location = this.selectedLocation();
+        if (location) this.loadPrayerTimes(location);
+      }
+    }, 1000);
   }
 
   ngOnDestroy(): void {
     if (this.tickInterval) clearInterval(this.tickInterval);
+    this.prayerLoadSub?.unsubscribe();
   }
 
   protected onCityChange(location: Location): void {
     this.selectedLocation.set(location);
     this.locationService.setSelectedLocation(location);
-    this.loadPrayerTimes(location);
+    void this.router.navigateByUrl(`/${this.locationService.citySlug(location)}`);
+    // Reload via effect (tracks selectedLocation).
+  }
+
+  /** Refetch prayer times for the current city (error panel Retry). */
+  protected retryLoad(): void {
+    const loc = this.selectedLocation();
+    if (loc) this.loadPrayerTimes(loc);
   }
 
   protected pad(n: number): string {
     return n.toString().padStart(2, '0');
+  }
+
+  protected toggleCountdown(): void {
+    this.countdownCollapsed.update((collapsed) => !collapsed);
+    try {
+      localStorage.setItem(COUNTDOWN_STORAGE_KEY, String(this.countdownCollapsed()));
+    } catch {
+      // The toggle still works when browser storage is unavailable.
+    }
+  }
+
+  private loadCountdownCollapsed(): boolean {
+    try {
+      return localStorage.getItem(COUNTDOWN_STORAGE_KEY) === 'true';
+    } catch {
+      return false;
+    }
   }
 
   private loadLocations(): void {
@@ -130,16 +266,65 @@ export class PrayerTimesPage implements OnInit, OnDestroy {
   }
 
   private loadPrayerTimes(location: Location): void {
-    this.isLoading.set(true);
+    this.prayerLoadSub?.unsubscribe();
+
+    const method = this.methodService.method();
+    const lang = this.langService.lang();
+
+    const cached = method === '14.6'
+      ? this.prayerTimesCache.read(location, method, lang)
+      : null;
+    if (
+      method === '14.6' &&
+      this.prayerTimesCache.hasFetchedToday(location, method, lang) &&
+      !cached
+    ) {
+      this.prayerTimesCache.clearFetchGate(location, method, lang);
+    }
+
+    if (cached) {
+      this.rawTimes.set(cached.prayerTimes);
+      this.dateLabel.set(cached.dateLabel);
+      this.hijriDate.set(cached.hijriDate);
+      this.error.set(null);
+      this.isLoading.set(false);
+      /* Valid snapshot for today → at most one fetch/day per key; no duplicate HTTP. */
+      return;
+    }
+
     this.error.set(null);
 
-    this.prayerTimeService.getTodayPrayerTimes(location.lat, location.lng, location.name).subscribe({
-      next: ({ prayerTimes, locationName, dateLabel, hijriDate }) => {
-        this.rawTimes.set(prayerTimes);
-        this.locationName.set(locationName);
-        this.dateLabel.set(dateLabel);
-        this.hijriDate.set(hijriDate);
+    if (method === '14.6' && !navigator.onLine) {
+      this.error.set(this.langService.labels().errorGeneric);
+      this.isLoading.set(false);
+      return;
+    }
+
+    this.isLoading.set(true);
+
+    this.prayerLoadSub = this.prayerTimeService.getTodayPrayerTimes(location).subscribe({
+      next: ({ snapshots }) => {
+        if (method === '14.6') {
+          const codes: LangCode[] = ['bs', 'en'];
+          const primary = this.langService.lang();
+          const writeOrder = [primary, ...codes.filter((c) => c !== primary)];
+          for (const code of writeOrder) {
+            const snap = snapshots[code];
+            this.prayerTimesCache.write(location, method, code, {
+              prayerTimes: snap.prayerTimes,
+              locationName: snap.locationName,
+              dateLabel: snap.dateLabel,
+              hijriDate: snap.hijriDate,
+            });
+          }
+        }
+
+        const active = snapshots[this.langService.lang()];
+        this.rawTimes.set(active.prayerTimes);
+        this.dateLabel.set(active.dateLabel);
+        this.hijriDate.set(active.hijriDate);
         this.isLoading.set(false);
+        this.error.set(null);
       },
       error: () => {
         this.error.set(this.langService.labels().errorGeneric);

@@ -16,6 +16,7 @@ class PrayerPage extends StatefulWidget {
     required this.labels,
     this.fullscreen = false,
     this.fullscreenMotion,
+    this.fullscreenRowsMotion,
     required this.onEnterFullscreen,
     required this.onExitFullscreen,
   });
@@ -26,6 +27,7 @@ class PrayerPage extends StatefulWidget {
   final PrayerLabels labels;
   final bool fullscreen;
   final Animation<double>? fullscreenMotion;
+  final Animation<double>? fullscreenRowsMotion;
   final VoidCallback onEnterFullscreen, onExitFullscreen;
 
   @override
@@ -182,8 +184,8 @@ class _PrayerPageState extends State<PrayerPage> {
     return AnimatedBuilder(
       animation: motion,
       builder: (context, _) {
-        final compact = motion.value;
-        if (times.isEmpty && !widget.fullscreen && compact == 0) {
+        final headerProgress = motion.value;
+        if (times.isEmpty && !widget.fullscreen && headerProgress == 0) {
           return SingleChildScrollView(
             padding: const EdgeInsets.fromLTRB(12, 14, 12, 32),
             child: fallback,
@@ -198,7 +200,8 @@ class _PrayerPageState extends State<PrayerPage> {
           countdownFallback: fallback,
           labels: labels,
           fullscreen: widget.fullscreen,
-          compact: compact,
+          headerProgress: headerProgress,
+          rowProgress: widget.fullscreenRowsMotion?.value ?? headerProgress,
           regularScroll: _regularScroll,
           regularOffset: _regularOffset,
           onToggleFullscreen: widget.fullscreen
