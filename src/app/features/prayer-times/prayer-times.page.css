@@ -467,12 +467,16 @@
 .is-fullscreen .prayer-grid {
   --schedule-gap: 0.25rem;
   --prayer-row-height: 2.125rem;
-  --prayer-row-padding: 0.2rem 0.5rem;
-  --prayer-icon-size: 1.65rem;
-  --prayer-row-gap: 0.35rem;
-  --prayer-clock-size: 1.125rem;
-  --prayer-badge-gap: 0rem;
-  --prayer-relative-size: 0.65rem;
+  --prayer-row-padding: 0.2rem 0.625rem;
+  --prayer-icon-size: clamp(1.625rem, 4.6dvh, 2.375rem);
+  --prayer-row-gap: 0.45rem;
+  --prayer-details-display: grid;
+  --prayer-name-line-height: 1.2;
+  --prayer-secondary-line-height: 1.15;
+  --prayer-clock-size: clamp(1.125rem, 2.5dvh, 1.375rem);
+  --prayer-clock-gap: 0.1rem;
+  --prayer-badge-gap: 0.1rem;
+  --prayer-relative-size: 0.7rem;
   --prayer-relative-wrap: normal;
   flex: 1;
   grid-auto-rows: 1fr;

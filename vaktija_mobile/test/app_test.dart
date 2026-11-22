@@ -221,7 +221,13 @@ void main() {
     tester.view.viewPadding = tester.view.padding;
     await tester.pumpAndSettle();
     final regularHeader = tester.getRect(header);
-    await tester.tap(enter);
+    final enterButton = find.ancestor(
+      of: enter,
+      matching: find.byType(IconButton),
+    );
+    expect(tester.getSize(enter), const Size.square(32));
+    expect(tester.getSize(enterButton), const Size.square(48));
+    await tester.tapAt(tester.getTopLeft(enterButton) + const Offset(4, 24));
     await tester.pump();
     expect(tester.getRect(header), regularHeader);
     final stationaryRow = tester.widget(firstRow);

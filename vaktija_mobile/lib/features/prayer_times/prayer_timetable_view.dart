@@ -276,10 +276,14 @@ class _FullscreenButton extends StatelessWidget {
       onPressed: onPressed,
       tooltip: fullscreen ? labels.exitFullscreen : labels.enterFullscreen,
       icon: CustomPaint(
-        size: const Size.square(22),
+        size: const Size.square(20),
         painter: _LucideFullscreenGlyph(fullscreen, colors.heroGold),
       ),
       style: IconButton.styleFrom(
+        minimumSize: const Size.square(32),
+        fixedSize: const Size.square(32),
+        padding: EdgeInsets.zero,
+        tapTargetSize: MaterialTapTargetSize.padded,
         foregroundColor: colors.heroGold,
         backgroundColor: colors.sky,
         side: BorderSide(color: colors.heroBorder),

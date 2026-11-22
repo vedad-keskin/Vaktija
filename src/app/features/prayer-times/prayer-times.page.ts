@@ -61,6 +61,7 @@ export class PrayerTimesPage implements OnInit, OnDestroy {
   private loadedDay = sarajevoDayKey();
   private regularScroll = 0;
   private fullscreenMotion: Animation[] = [];
+  private readonly movingIllustrations = new Map<HTMLImageElement, HTMLImageElement>();
   /** Cancels an in-flight load when a newer one starts (avoids stacked concurrent requests). */
   private prayerLoadSub: Subscription | null = null;
 
@@ -292,11 +293,20 @@ export class PrayerTimesPage implements OnInit, OnDestroy {
       typeof card?.animate === 'function' &&
       !window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
     const toolbar = page.querySelector<HTMLElement>('.page-toolbar')!;
-    const rows = animate ? [...page.querySelectorAll<HTMLElement>('.prayer-stop')] : [];
+    const grid = animate ? page.querySelector<HTMLElement>('.prayer-grid') : null;
+    const rows = grid ? [...grid.querySelectorAll<HTMLElement>('.prayer-stop')] : [];
+    const illustrations = grid
+      ? [...grid.querySelectorAll<HTMLImageElement>('.prayer-symbol img')].filter(
+          (image) => image.complete && image.naturalWidth > 0,
+        )
+      : [];
 
     // Capture current visual positions before cancelling a transition that is in flight.
     const startCard = animate ? card.getBoundingClientRect() : null;
     const startRows = rows.map((row) => row.getBoundingClientRect());
+    const startIllustrations = illustrations.map((image) =>
+      (this.movingIllustrations.get(image) ?? image).getBoundingClientRect(),
+    );
     const toolbarOpacity = animate ? getComputedStyle(toolbar).opacity : '';
     const toolbarTop = animate ? toolbar.getBoundingClientRect().top : 0;
     this.cancelFullscreenMotion();
@@ -313,11 +323,25 @@ export class PrayerTimesPage implements OnInit, OnDestroy {
     // Read the new layout as one batch. Everything after this runs as transforms or opacity.
     const cardOffset = startCard.top - card.getBoundingClientRect().top;
     const endRows = rows.map((row) => row.getBoundingClientRect());
+    const endIllustrations = illustrations.map((image) => image.getBoundingClientRect());
+    const gridBounds = grid?.getBoundingClientRect();
     const toolbarOffset = toolbarTop - toolbar.getBoundingClientRect().top;
     const slide = 310;
     const compress = 210;
     const easing = 'ease-in-out';
     const translate = (y: number) => `translateY(${y}px)`;
+    const animateRowPart = (element: HTMLElement, start: string, middle: string) => {
+      const animation = element.animate(
+        [
+          { transform: start, easing },
+          { transform: middle, offset: (entering ? slide : compress) / (slide + compress), easing },
+          { transform: 'none' },
+        ],
+        { duration: slide + compress },
+      );
+      this.fullscreenMotion.push(animation);
+      return animation;
+    };
     const slideOptions: KeyframeAnimationOptions = {
       duration: slide,
       delay: entering ? 0 : compress,
@@ -342,26 +366,62 @@ export class PrayerTimesPage implements OnInit, OnDestroy {
       const x = start.left - end.left;
       const y = start.top - end.top;
       const scale = `scale(${start.width / end.width}, ${start.height / end.height})`;
-      this.fullscreenMotion.push(
-        row.animate(
-          [
-            { transform: `translate(${x}px, ${y}px) ${scale}`, easing },
-            {
-              transform: entering ? `translate(${x}px, ${y - cardOffset}px) ${scale}` : translate(cardOffset),
-              offset: (entering ? slide : compress) / (slide + compress),
-              easing,
-            },
-            { transform: 'none' },
-          ],
-          { duration: slide + compress },
-        ),
+      animateRowPart(
+        row,
+        `translate(${x}px, ${y}px) ${scale}`,
+        entering ? `translate(${x}px, ${y - cardOffset}px) ${scale}` : translate(cardOffset),
       );
+    }
+
+    if (!grid || !gridBounds) return;
+    for (const [i, image] of illustrations.entries()) {
+      const start = startIllustrations[i];
+      const end = endIllustrations[i];
+      if (!start.width || !end.width) continue;
+
+      // Let the art travel with the scrollable grid, outside the row's vertical scale.
+      const layer = image.cloneNode() as HTMLImageElement;
+      layer.setAttribute('aria-hidden', 'true');
+      layer.setAttribute('data-prayer-illustration-motion', '');
+      Object.assign(layer.style, {
+        position: 'absolute',
+        pointerEvents: 'none',
+        left: `${end.left - gridBounds.left}px`,
+        top: `${end.top - gridBounds.top}px`,
+        width: `${end.width}px`,
+        height: `${end.height}px`,
+      });
+      grid.append(layer);
+      image.style.visibility = 'hidden';
+      this.movingIllustrations.set(image, layer);
+
+      const x = start.left - end.left + (start.width - end.width) / 2;
+      const y = start.top - end.top + (start.height - end.height) / 2;
+      const scale = start.width / end.width;
+      const from = (offset: number) => `translate(${x}px, ${offset}px) scale(${scale})`;
+      const motion = animateRowPart(
+        layer,
+        from(y),
+        entering ? from(y - cardOffset) : translate(cardOffset),
+      );
+      motion.onfinish = () => {
+        if (this.movingIllustrations.get(image) !== layer) return;
+        this.restoreIllustration(image);
+        this.fullscreenMotion = this.fullscreenMotion.filter((animation) => animation !== motion);
+      };
     }
   }
 
   private cancelFullscreenMotion(): void {
     for (const animation of this.fullscreenMotion) animation.cancel();
     this.fullscreenMotion = [];
+    for (const image of this.movingIllustrations.keys()) this.restoreIllustration(image);
+  }
+
+  private restoreIllustration(image: HTMLImageElement): void {
+    this.movingIllustrations.get(image)?.remove();
+    this.movingIllustrations.delete(image);
+    image.style.removeProperty('visibility');
   }
 
   private loadLocations(): void {
