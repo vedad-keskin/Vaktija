@@ -2,6 +2,9 @@ package com.vaktija.app
 
 import android.os.Build
 import android.os.Bundle
+import androidx.core.view.WindowCompat
+import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.WindowInsetsControllerCompat
 import io.flutter.embedding.android.FlutterActivity
 import io.flutter.embedding.engine.FlutterEngine
 import io.flutter.plugin.common.MethodChannel
@@ -9,6 +12,7 @@ import io.flutter.plugin.common.MethodChannel
 class MainActivity : FlutterActivity() {
     private var launchExited = Build.VERSION.SDK_INT < Build.VERSION_CODES.S
     private var launchReply: MethodChannel.Result? = null
+    private var fullscreen = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,5 +36,32 @@ class MainActivity : FlutterActivity() {
                     else -> launchReply = result
                 }
             }
+        MethodChannel(flutterEngine.dartExecutor.binaryMessenger, "vaktija/fullscreen")
+            .setMethodCallHandler { call, result ->
+                if (call.method == "setEnabled") {
+                    fullscreen = call.arguments == true
+                    updateSystemBars()
+                    result.success(null)
+                } else {
+                    result.notImplemented()
+                }
+            }
+    }
+
+    override fun onPostResume() {
+        super.onPostResume()
+        if (fullscreen) updateSystemBars()
+    }
+
+    private fun updateSystemBars() {
+        val controller = WindowCompat.getInsetsController(window, window.decorView)
+        val bars = WindowInsetsCompat.Type.statusBars() or WindowInsetsCompat.Type.navigationBars()
+        if (fullscreen) {
+            controller.systemBarsBehavior = WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
+            controller.hide(bars)
+        } else {
+            controller.show(bars)
+            controller.systemBarsBehavior = WindowInsetsControllerCompat.BEHAVIOR_DEFAULT
+        }
     }
 }

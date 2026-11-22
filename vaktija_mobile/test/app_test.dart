@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:vaktija/app/app_shell.dart';
 import 'package:vaktija/app/method_help_popover.dart';
 import 'package:vaktija/app/mobile_header.dart';
 import 'package:vaktija/app/vaktija_palette.dart';
+import 'package:vaktija/features/prayer_times/prayer_page.dart';
 import 'package:vaktija/features/prayer_times/prayer_repository.dart';
+import 'package:vaktija/features/prayer_times/prayer_timetable_view.dart';
 import 'package:vaktija/features/prayer_times/timetable.dart';
 
 void main() {
@@ -127,6 +130,10 @@ void main() {
     addTearDown(tester.view.resetViewInsets);
     final repository = (await tester.runAsync(() async {
       SharedPreferences.setMockInitialValues({'language': 'bs'});
+      await (FontLoader('Vaktija Sans')
+            ..addFont(rootBundle.load('assets/fonts/vaktija-sans-400.ttf'))
+            ..addFont(rootBundle.load('assets/fonts/vaktija-sans-600.ttf')))
+          .load();
       return PrayerRepository(
         await PrayerCatalog.load(),
         await SharedPreferences.getInstance(),
@@ -138,8 +145,11 @@ void main() {
       StatefulBuilder(
         builder: (context, setTheme) => MaterialApp(
           themeMode: themeMode,
-          theme: ThemeData.light(),
-          darkTheme: ThemeData.dark(),
+          theme: ThemeData(fontFamily: 'Vaktija Sans'),
+          darkTheme: ThemeData(
+            brightness: Brightness.dark,
+            fontFamily: 'Vaktija Sans',
+          ),
           themeAnimationDuration: Duration.zero,
           home: AppShell(
             repository: repository,
@@ -163,23 +173,180 @@ void main() {
     expect(repository.preferences.getString('method'), 'iz');
     expect(find.text('Zora (sabah)'), findsWidgets);
 
-    final card = find.byType(AnimatedCrossFade);
-    final collapse = find.byTooltip('Skupi odbrojavanje');
-    final expand = find.byTooltip('Proširi odbrojavanje');
-    final expandedHeight = tester.getSize(card).height;
-    final chevronCenter = tester.getCenter(collapse);
-    await tester.tap(collapse);
+    const channel = MethodChannel('vaktija/fullscreen');
+    final messenger = tester.binding.defaultBinaryMessenger;
+    final bars = <bool>[];
+    messenger.setMockMethodCallHandler(channel, (call) async {
+      expect(call.method, 'setEnabled');
+      bars.add(call.arguments as bool);
+      return null;
+    });
+    addTearDown(() => messenger.setMockMethodCallHandler(channel, null));
+
+    final regularScroll = find.descendant(
+      of: find.byKey(const PageStorageKey('regular-prayer-timetable')),
+      matching: find.byType(Scrollable),
+    );
+    tester.state<ScrollableState>(regularScroll).position.jumpTo(16);
+    await tester.pumpAndSettle();
+    final pageState = tester.state(find.byType(PrayerPage));
+    final timetable = find.byType(PrayerTimetableView);
+    final regularView = tester.widget<PrayerTimetableView>(timetable);
+    final regularTimes = regularView.times;
+    final labels = repository.catalog.labels(true);
+    final enter = find.byTooltip('Cijeli ekran');
+    final exit = find.byTooltip('Izađi iz cijelog ekrana');
+    final header = find.byKey(const ValueKey('prayer-countdown'));
+    Finder inHeader(Finder finder) =>
+        find.descendant(of: header, matching: finder);
+    final date = labels.date(regularView.now);
+    expect(inHeader(find.text(date)), findsOneWidget);
+    final details = [
+      inHeader(find.text(labels['nextTime'].toUpperCase())),
+      inHeader(
+        find.byWidgetPredicate(
+          (widget) =>
+              widget is Semantics &&
+              widget.properties.label == labels['countdownProgressAria'],
+        ),
+      ),
+    ];
+    for (final detail in details) {
+      expect(detail, findsOneWidget);
+    }
+    tester.view.padding = const FakeViewPadding(top: 34, bottom: 24);
+    tester.view.viewPadding = tester.view.padding;
+    await tester.pumpAndSettle();
+    final regularHeader = tester.getRect(header);
+    await tester.tap(enter);
     await tester.pump();
-    await tester.pump(const Duration(milliseconds: 120));
-    final midHeight = tester.getSize(card).height;
-    expect(midHeight, lessThan(expandedHeight));
-    expect(tester.getCenter(expand), chevronCenter);
+    expect(tester.getRect(header), regularHeader);
+    var previousTop = regularHeader.top;
+    for (var frame = 0; frame < 8; frame++) {
+      await tester.pump(const Duration(milliseconds: 32));
+      final top = tester.getTopLeft(header).dy;
+      expect(previousTop - top, inInclusiveRange(-.01, 28));
+      previousTop = top;
+    }
+    expect(bars, isEmpty);
+    final enteringHeader = tester.getRect(header);
     await tester.pumpAndSettle();
-    expect(tester.getSize(card).height, lessThan(midHeight));
-    expect(tester.getCenter(expand), chevronCenter);
-    expect(repository.preferences.getBool('countdownCollapsed'), true);
-    await tester.tap(expand);
+    final compactHeader = tester.getRect(header);
+    expect(bars, [true]);
+    for (final detail in details) {
+      expect(detail, findsNothing);
+    }
+    expect(inHeader(find.text('${regularView.city} · $date')), findsOneWidget);
+    final interval = tester.widget<PrayerTimetableView>(timetable).interval!;
+    expect(inHeader(find.text(labels.prayer(interval.next))), findsOneWidget);
+    expect(
+      inHeader(
+        find.byWidgetPredicate(
+          (widget) =>
+              widget is Semantics &&
+              widget.properties.label == interval.remainingParts.join(':'),
+        ),
+      ),
+      findsOneWidget,
+    );
+    tester.view.padding = const FakeViewPadding(top: 8);
+    tester.view.viewPadding = tester.view.padding;
+    await tester.pump();
+    expect(tester.getRect(header), compactHeader);
+    await tester.pump(const Duration(milliseconds: 110));
+    expect(
+      tester.getTopLeft(header).dy,
+      inExclusiveRange(16, compactHeader.top),
+    );
     await tester.pumpAndSettle();
+    expect(tester.getTopLeft(header).dy, closeTo(16, .01));
+    expect(enteringHeader.top, lessThan(regularHeader.top));
+    expect(enteringHeader.height, lessThan(regularHeader.height));
+    expect(compactHeader.top, lessThan(enteringHeader.top));
+    expect(compactHeader.height, lessThan(enteringHeader.height));
+    expect(find.byType(MobileHeader), findsNothing);
+    expect(tester.state(find.byType(PrayerPage)), same(pageState));
+    expect(tester.widget<PrayerTimetableView>(timetable).times, regularTimes);
+
+    final fullscreenScroll = find.descendant(
+      of: timetable,
+      matching: find.byType(Scrollable),
+    );
+    final firstRow = find
+        .widgetWithText(Container, labels.prayer(regularTimes.first))
+        .first;
+    final lastRow = find
+        .widgetWithText(Container, labels.prayer(regularTimes.last))
+        .first;
+    for (final (size, insets) in [
+      (const Size(384, 832), const FakeViewPadding(top: 34, bottom: 24)),
+      (const Size(412, 915), const FakeViewPadding(top: 30)),
+      (const Size(320, 640), const FakeViewPadding()),
+      (const Size(832, 384), const FakeViewPadding(left: 24, right: 24)),
+    ]) {
+      tester.view.physicalSize = size;
+      tester.view.padding = insets;
+      tester.view.viewPadding = insets;
+      await tester.pumpAndSettle();
+      expect(exit.hitTestable(), findsOneWidget);
+      expect(
+        tester
+            .state<ScrollableState>(fullscreenScroll)
+            .position
+            .maxScrollExtent,
+        closeTo(0, .01),
+        reason: 'The full timetable should fit at $size',
+      );
+      expect(
+        tester.getBottomLeft(lastRow).dy,
+        closeTo(size.height - insets.bottom - 12, .5),
+        reason: 'The timetable should use the safe height at $size',
+      );
+    }
+    expect(
+      tester.getTopLeft(lastRow).dx,
+      greaterThan(tester.getTopLeft(firstRow).dx),
+    );
+
+    tester.view.physicalSize = const Size(320, 400);
+    tester.view.padding = const FakeViewPadding();
+    tester.view.viewPadding = tester.view.padding;
+    tester.platformDispatcher.textScaleFactorTestValue = 2;
+    addTearDown(tester.platformDispatcher.clearTextScaleFactorTestValue);
+    await tester.pumpAndSettle();
+    expect(tester.takeException(), isNull);
+    final exitPosition = tester.getCenter(exit);
+    await tester.drag(fullscreenScroll, const Offset(0, -160));
+    await tester.pumpAndSettle();
+    expect(
+      tester.state<ScrollableState>(fullscreenScroll).position.pixels,
+      greaterThan(0),
+    );
+    expect(tester.getCenter(exit), exitPosition);
+    expect(exit.hitTestable(), findsOneWidget);
+
+    tester.platformDispatcher.clearTextScaleFactorTestValue();
+    tester.view.physicalSize = const Size(320, 640);
+    await tester.pumpAndSettle();
+    final beforeBack = tester.getRect(header);
+    await tester.binding.handlePopRoute();
+    await tester.pump();
+    await tester.pump(const Duration(milliseconds: 250));
+    final exitingHeader = tester.getRect(header);
+    await tester.pumpAndSettle();
+    expect(exitingHeader.top, greaterThan(beforeBack.top));
+    expect(exitingHeader.height, greaterThan(beforeBack.height));
+    expect(tester.getRect(header).top, greaterThan(exitingHeader.top));
+    expect(tester.getRect(header).height, greaterThan(exitingHeader.height));
+    expect(enter.hitTestable(), findsOneWidget);
+    expect(tester.state<ScrollableState>(regularScroll).position.pixels, 16);
+    expect(tester.state(find.byType(PrayerPage)), same(pageState));
+    await tester.tap(enter);
+    await tester.pumpAndSettle();
+    await tester.tap(exit);
+    await tester.pumpAndSettle();
+    expect(enter.hitTestable(), findsOneWidget);
+    expect(bars, [true, false, true, false]);
 
     final pickers = find.descendant(
       of: find.byType(MobileHeader),

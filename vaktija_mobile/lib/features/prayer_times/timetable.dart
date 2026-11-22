@@ -161,6 +161,11 @@ class PrayerLabels {
 
   String operator [](String key) => _values[key] as String;
 
+  String get enterFullscreen => bosnian ? 'Cijeli ekran' : 'Fullscreen';
+
+  String get exitFullscreen =>
+      bosnian ? 'Izađi iz cijelog ekrana' : 'Exit fullscreen';
+
   String prayer(PrayerTime time) =>
       time.kind == PrayerKind.dhuhr && time.at.weekday == DateTime.friday
       ? this['dhuhrFridayName']
@@ -211,6 +216,15 @@ class PrayerInterval {
 
   int get remaining =>
       (next.at.difference(now).inMicroseconds + 999999) ~/ 1000000;
+
+  List<String> get remainingParts {
+    final seconds = remaining;
+    return [
+      padTime(seconds ~/ 3600),
+      padTime(seconds ~/ 60 % 60),
+      padTime(seconds % 60),
+    ];
+  }
 
   double get progress {
     final start = current?.at;

@@ -1,3 +1,5 @@
+import 'dart:ui' show lerpDouble;
+
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
@@ -12,24 +14,166 @@ class PrayerTimetableView extends StatelessWidget {
   const PrayerTimetableView({
     super.key,
     required this.times,
+    required this.city,
     required this.now,
     required this.interval,
     required this.countdownFallback,
     required this.labels,
-    required this.collapsed,
-    required this.onToggleCountdown,
+    this.fullscreen = false,
+    this.compact = 0,
+    this.regularScroll,
+    this.regularOffset = 0,
+    this.countdownKey,
+    required this.onToggleFullscreen,
   });
 
   final List<PrayerTime> times;
+  final String city;
   final DateTime now;
   final PrayerInterval? interval;
   final Widget? countdownFallback;
   final PrayerLabels labels;
-  final bool collapsed;
-  final VoidCallback onToggleCountdown;
+  final bool fullscreen;
+  final double compact;
+  final ScrollController? regularScroll;
+  final double regularOffset;
+  final Key? countdownKey;
+  final VoidCallback onToggleFullscreen;
 
   @override
   Widget build(BuildContext context) {
+    final pinned = fullscreen || compact > 0;
+    final countdown = interval;
+    final toggle = _FullscreenButton(
+      fullscreen: fullscreen,
+      labels: labels,
+      onPressed: onToggleFullscreen,
+    );
+    final header = Padding(
+      padding: EdgeInsets.fromLTRB(12, lerpDouble(14, 8, compact)!, 12, 0),
+      child: Center(
+        child: ConstrainedBox(
+          constraints: const BoxConstraints(maxWidth: 650),
+          child: countdown != null
+              ? _Countdown(
+                  key: countdownKey,
+                  title: labels.prayer(countdown.next),
+                  date: labels.date(now),
+                  city: city,
+                  interval: countdown,
+                  labels: labels,
+                  compact: compact,
+                  toggle: toggle,
+                )
+              : Column(
+                  children: [
+                    Align(alignment: Alignment.centerRight, child: toggle),
+                    ?countdownFallback,
+                  ],
+                ),
+        ),
+      ),
+    );
+    final scroll = CustomScrollView(
+      key: PageStorageKey(
+        pinned ? 'fullscreen-prayer-timetable' : 'regular-prayer-timetable',
+      ),
+      controller: pinned ? null : regularScroll,
+      primary: false,
+      slivers: [
+        if (pinned)
+          PinnedHeaderSliver(
+            child: ColoredBox(
+              color: VaktijaPalette.of(context).surface,
+              child: header,
+            ),
+          )
+        else
+          SliverToBoxAdapter(child: header),
+        if (times.isNotEmpty)
+          SliverLayoutBuilder(
+            builder: (context, bounds) {
+              final top = lerpDouble(18, 8, compact)!;
+              final bottom = lerpDouble(32, 12, compact)!;
+              return SliverPadding(
+                padding: EdgeInsets.fromLTRB(12, top, 12, bottom),
+                sliver: SliverToBoxAdapter(
+                  child: _rows(
+                    context,
+                    width: bounds.crossAxisExtent - 24,
+                    height:
+                        bounds.viewportMainAxisExtent -
+                        bounds.precedingScrollExtent -
+                        top -
+                        bottom,
+                  ),
+                ),
+              );
+            },
+          ),
+      ],
+    );
+
+    // Carry the regular scroll position into the first and last frame of the
+    // morph. PageStorage restores the regular viewport when the card unpins.
+    return ClipRect(
+      child: Transform.translate(
+        offset: Offset(0, pinned ? -regularOffset * (1 - compact) : 0),
+        child: scroll,
+      ),
+    );
+  }
+
+  Widget _rows(
+    BuildContext context, {
+    required double width,
+    required double height,
+  }) {
+    final wideLandscape =
+        MediaQuery.orientationOf(context) == Orientation.landscape &&
+        width >= 600 &&
+        times.length > 1;
+    final twoColumns = wideLandscape && compact >= .5;
+    final rowCount = twoColumns ? (times.length + 1) ~/ 2 : times.length;
+    final gap = ((height / rowCount - 44) * .18).clamp(3.0, 9.0);
+    final cardHeight = (height - gap * (rowCount - 1)) / rowCount;
+    final density = _PrayerDensity(
+      lerpDouble(76, cardHeight.clamp(48.0, double.infinity), compact)!,
+      lerpDouble(8, gap, compact)!,
+    );
+    final rows = Center(
+      child: ConstrainedBox(
+        constraints: BoxConstraints(maxWidth: twoColumns ? 900 : 650),
+        child: twoColumns
+            ? Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Expanded(
+                    child: _rail(context, times.take(rowCount), density),
+                  ),
+                  const SizedBox(width: 12),
+                  Expanded(
+                    child: _rail(context, times.skip(rowCount), density),
+                  ),
+                ],
+              )
+            : _rail(context, times, density),
+      ),
+    );
+    // Fade the rail briefly while landscape changes between one and two columns.
+    return wideLandscape
+        ? Opacity(
+            opacity: ((compact - .5).abs() / .16).clamp(0, 1),
+            child: rows,
+          )
+        : rows;
+  }
+
+  Widget _rail(
+    BuildContext context,
+    Iterable<PrayerTime> rows,
+    _PrayerDensity density,
+  ) {
     final countdown = interval;
     final current = countdown?.current;
     final next = countdown?.next;
@@ -39,89 +183,152 @@ class PrayerTimetableView extends StatelessWidget {
 
     bool elapsed(PrayerTime time) => !time.at.isAfter(now);
 
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: [
-        if (countdown != null)
-          _Countdown(
-            title: labels.prayer(countdown.next),
-            date: labels.date(now),
-            interval: countdown,
-            labels: labels,
-            collapsed: collapsed,
-            onToggle: onToggleCountdown,
-          )
-        else
-          ?countdownFallback,
-        const SizedBox(height: 18),
-        _PrayerTrail(
-          colors: VaktijaPalette.of(context),
-          stops: [
-            for (final time in times)
-              _PrayerStop(
-                time: time,
-                name: labels.prayer(time),
-                relative: labels.relative(
-                  time.at.millisecondsSinceEpoch ~/
-                          Duration.millisecondsPerMinute -
-                      nowMinute,
-                ),
-                badge: time == current
-                    ? labels['currentBadge']
-                    : time == next
-                    ? labels['nextBadge']
-                    : null,
-                current: time == current,
-                next: time == next,
-                elapsed: elapsed(time),
-                dimmed: !nextOnAnotherDay && elapsed(time) && time != current,
-                progress: time == current
-                    ? countdown!.progress
-                    : (elapsed(time) ? 1 : 0),
-              ),
-          ],
-        ),
+    return _PrayerTrail(
+      colors: VaktijaPalette.of(context),
+      spacing: density.gap,
+      stops: [
+        for (final time in rows)
+          _PrayerStop(
+            time: time,
+            density: density,
+            fullscreen: compact > 0,
+            name: labels.prayer(time),
+            relative: labels.relative(
+              time.at.millisecondsSinceEpoch ~/ Duration.millisecondsPerMinute -
+                  nowMinute,
+            ),
+            badge: time == current
+                ? labels['currentBadge']
+                : time == next
+                ? labels['nextBadge']
+                : null,
+            current: time == current,
+            next: time == next,
+            elapsed: elapsed(time),
+            dimmed: !nextOnAnotherDay && elapsed(time) && time != current,
+            progress: time == current
+                ? countdown!.progress
+                : (elapsed(time) ? 1 : 0),
+          ),
       ],
     );
   }
 }
 
-class _Countdown extends StatelessWidget {
-  const _Countdown({
-    required this.title,
-    required this.date,
-    required this.interval,
+class _FullscreenButton extends StatelessWidget {
+  const _FullscreenButton({
+    required this.fullscreen,
     required this.labels,
-    required this.collapsed,
-    required this.onToggle,
+    required this.onPressed,
   });
 
-  final String title;
-  final String date;
+  final bool fullscreen;
+  final PrayerLabels labels;
+  final VoidCallback onPressed;
+
+  @override
+  Widget build(BuildContext context) {
+    final colors = VaktijaPalette.of(context);
+    return IconButton(
+      onPressed: onPressed,
+      tooltip: fullscreen ? labels.exitFullscreen : labels.enterFullscreen,
+      icon: CustomPaint(
+        size: const Size.square(22),
+        painter: _LucideFullscreenGlyph(fullscreen, colors.heroGold),
+      ),
+      style: IconButton.styleFrom(
+        foregroundColor: colors.heroGold,
+        backgroundColor: colors.sky,
+        side: BorderSide(color: colors.heroBorder),
+      ),
+    );
+  }
+}
+
+class _LucideFullscreenGlyph extends CustomPainter {
+  const _LucideFullscreenGlyph(this.fullscreen, this.color);
+
+  // Official Lucide 24×24 paths. See assets/branding/lucide-LICENSE.txt.
+  static final _maximize2 = Path()
+    ..moveTo(15, 3)
+    ..lineTo(21, 3)
+    ..lineTo(21, 9)
+    ..moveTo(21, 3)
+    ..lineTo(14, 10)
+    ..moveTo(3, 21)
+    ..lineTo(10, 14)
+    ..moveTo(9, 21)
+    ..lineTo(3, 21)
+    ..lineTo(3, 15);
+  static final _minimize2 = Path()
+    ..moveTo(14, 10)
+    ..lineTo(21, 3)
+    ..moveTo(20, 10)
+    ..lineTo(14, 10)
+    ..lineTo(14, 4)
+    ..moveTo(3, 21)
+    ..lineTo(10, 14)
+    ..moveTo(4, 14)
+    ..lineTo(10, 14)
+    ..lineTo(10, 20);
+
+  final bool fullscreen;
+  final Color color;
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    const grid = 24.0;
+    final stroke = Paint()
+      ..color = color
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = 2
+      ..strokeCap = StrokeCap.round
+      ..strokeJoin = StrokeJoin.round;
+    canvas.save();
+    canvas.scale(size.width / grid, size.height / grid);
+    canvas.drawPath(fullscreen ? _minimize2 : _maximize2, stroke);
+    canvas.restore();
+  }
+
+  @override
+  bool shouldRepaint(_LucideFullscreenGlyph oldDelegate) =>
+      fullscreen != oldDelegate.fullscreen || color != oldDelegate.color;
+}
+
+class _Countdown extends StatelessWidget {
+  const _Countdown({
+    super.key,
+    required this.title,
+    required this.date,
+    required this.city,
+    required this.interval,
+    required this.labels,
+    required this.compact,
+    required this.toggle,
+  });
+
+  final String title, date, city;
   final PrayerInterval interval;
   final PrayerLabels labels;
-  final bool collapsed;
-  final VoidCallback onToggle;
+  final double compact;
+  final Widget toggle;
+
+  double _size(double full, double small) => lerpDouble(full, small, compact)!;
 
   @override
   Widget build(BuildContext context) {
     final colors = VaktijaPalette.of(context);
     final theme = colors.dark ? 'dark' : 'light';
-    final motion = MediaQuery.disableAnimationsOf(context)
-        ? Duration.zero
-        : const Duration(milliseconds: 240);
-    final seconds = interval.remaining;
-    final parts = [
-      padTime(seconds ~/ 3600),
-      padTime(seconds ~/ 60 % 60),
-      padTime(seconds % 60),
-    ];
-    final toggleLabel =
-        labels[collapsed ? 'expandCountdown' : 'collapseCountdown'];
+    final parts = interval.remainingParts;
 
     return LayoutBuilder(
       builder: (context, limits) {
-        final artHeight = limits.maxWidth * .75;
+        final normalArtHeight = limits.maxWidth * .75;
+        final artHeight = _size(
+          normalArtHeight,
+          (limits.maxWidth * .49).clamp(100.0, 180.0),
+        );
+        final radius = BorderRadius.circular(_size(18, 14));
         final titleStyle = TextStyle(
           color: colors.heroText,
           fontFamily: 'Cormorant Garamond',
@@ -132,20 +339,18 @@ class _Countdown extends StatelessWidget {
         final digits = TextStyle(
           color: colors.heroText,
           fontWeight: FontWeight.w600,
-          fontSize: 49,
+          fontSize: _size(49, 26),
           fontFeatures: _tabular,
           height: 1,
         );
 
         return Container(
+          key: const ValueKey('prayer-countdown'),
           clipBehavior: Clip.antiAlias,
-          decoration: BoxDecoration(
-            color: colors.sky,
-            borderRadius: BorderRadius.circular(18),
-          ),
+          decoration: BoxDecoration(color: colors.sky, borderRadius: radius),
           foregroundDecoration: BoxDecoration(
             border: Border.all(color: colors.heroBorder),
-            borderRadius: BorderRadius.circular(18),
+            borderRadius: radius,
           ),
           child: Stack(
             children: [
@@ -153,94 +358,39 @@ class _Countdown extends StatelessWidget {
                 left: 0,
                 right: 0,
                 bottom: 0,
-                height: artHeight,
-                child: AnimatedOpacity(
-                  duration: motion,
-                  opacity: collapsed ? 0 : 1,
-                  child: _artwork(colors, 'mobile-$theme'),
-                ),
-              ),
-              Positioned(
-                left: 0,
-                right: 0,
-                top: 0,
-                height: 76,
-                child: AnimatedOpacity(
-                  duration: motion,
-                  opacity: collapsed ? 1 : 0,
-                  child: _artwork(colors, theme, compact: true),
+                height: normalArtHeight,
+                child: Transform.scale(
+                  scaleY: artHeight / normalArtHeight,
+                  alignment: Alignment.bottomCenter,
+                  child: RepaintBoundary(
+                    child: _artwork(colors, 'mobile-$theme'),
+                  ),
                 ),
               ),
               Positioned.fill(
                 child: IgnorePointer(
                   child: Padding(
-                    padding: const EdgeInsets.all(7),
+                    padding: EdgeInsets.all(_size(7, 4)),
                     child: DecoratedBox(
                       decoration: BoxDecoration(
                         border: Border.all(
                           color: colors.heroGold.withValues(alpha: .20),
                         ),
-                        borderRadius: BorderRadius.circular(12),
+                        borderRadius: BorderRadius.circular(_size(12, 10)),
                       ),
                     ),
                   ),
                 ),
               ),
-              AnimatedCrossFade(
-                duration: motion,
-                sizeCurve: Curves.easeInOut,
-                crossFadeState: collapsed
-                    ? CrossFadeState.showSecond
-                    : CrossFadeState.showFirst,
-                firstChild: _expandedContent(colors, titleStyle, digits, parts),
-                secondChild: GestureDetector(
-                  onTap: onToggle,
-                  behavior: HitTestBehavior.opaque,
-                  excludeFromSemantics: true,
-                  child: ConstrainedBox(
-                    constraints: const BoxConstraints(minHeight: 76),
-                    child: Padding(
-                      padding: const EdgeInsets.fromLTRB(17, 10, 65, 10),
-                      child: Row(
-                        children: [
-                          Expanded(
-                            child: Text(
-                              title,
-                              style: titleStyle.copyWith(
-                                fontSize: 23,
-                                height: 1,
-                              ),
-                            ),
-                          ),
-                          const SizedBox(width: 12),
-                          ConstrainedBox(
-                            constraints: BoxConstraints(
-                              maxWidth: limits.maxWidth * .42,
-                            ),
-                            child: FittedBox(
-                              fit: BoxFit.scaleDown,
-                              child: Text(
-                                parts.join(':'),
-                                style: digits.copyWith(fontSize: 23),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-              Positioned(
-                left: 15,
-                right: 15,
-                bottom: artHeight * .145 - 10,
-                child: IgnorePointer(
-                  child: ExcludeSemantics(
-                    excluding: collapsed,
-                    child: AnimatedOpacity(
-                      duration: motion,
-                      opacity: collapsed ? 0 : 1,
+              _content(colors, titleStyle, digits, parts),
+              if (compact < 1)
+                Positioned(
+                  left: 15,
+                  right: 15,
+                  bottom: _size(normalArtHeight * .145 - 10, 4),
+                  child: IgnorePointer(
+                    child: Opacity(
+                      opacity: 1 - compact,
                       child: _HorizonProgress(
                         value: interval.progress,
                         colors: colors,
@@ -249,34 +399,7 @@ class _Countdown extends StatelessWidget {
                     ),
                   ),
                 ),
-              ),
-              Positioned(
-                top: 16,
-                right: 9,
-                child: Tooltip(
-                  message: toggleLabel,
-                  child: Semantics(
-                    button: true,
-                    expanded: !collapsed,
-                    child: InkResponse(
-                      onTap: onToggle,
-                      radius: 22,
-                      child: SizedBox(
-                        width: 44,
-                        height: 44,
-                        child: Center(
-                          child: AnimatedRotation(
-                            turns: collapsed ? 0 : .5,
-                            duration: motion,
-                            curve: Curves.easeInOut,
-                            child: _Chevron(colors: colors),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              ),
+              Positioned(top: _size(16, 3), right: _size(9, 4), child: toggle),
             ],
           ),
         );
@@ -284,125 +407,164 @@ class _Countdown extends StatelessWidget {
     );
   }
 
-  Widget _artwork(VaktijaPalette colors, String theme, {bool compact = false}) {
+  Widget _artwork(VaktijaPalette colors, String theme) {
     final clearSky = colors.sky.withValues(alpha: 0);
     return Stack(
       fit: StackFit.expand,
       children: [
         Image.asset(
           '$prayerAssets/mosque-horizon-$theme.webp',
-          fit: BoxFit.cover,
-          alignment: Alignment.bottomCenter,
+          fit: BoxFit.fill,
           excludeFromSemantics: true,
         ),
-        if (compact)
-          ColoredBox(color: colors.sky.withValues(alpha: .35))
-        else ...[
-          DecoratedBox(
-            decoration: BoxDecoration(
-              gradient: RadialGradient(
-                center: const Alignment(0, -.1),
-                radius: .69,
-                colors: [
-                  colors.sky.withValues(alpha: colors.dark ? .44 : .87),
-                  clearSky,
-                ],
-                stops: const [.53, 1],
-              ),
+        DecoratedBox(
+          decoration: BoxDecoration(
+            gradient: RadialGradient(
+              center: const Alignment(0, -.1),
+              radius: .69,
+              colors: [
+                colors.sky.withValues(alpha: colors.dark ? .44 : .87),
+                clearSky,
+              ],
+              stops: const [.53, 1],
             ),
           ),
-          DecoratedBox(
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
-                colors: [colors.sky, clearSky],
-                stops: const [0, .28],
-              ),
+        ),
+        DecoratedBox(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              colors: [colors.sky, clearSky],
+              stops: const [0, .28],
             ),
           ),
-        ],
+        ),
       ],
     );
   }
 
-  Widget _expandedContent(
+  Widget _content(
     VaktijaPalette colors,
     TextStyle titleStyle,
     TextStyle digits,
     List<String> parts,
   ) {
+    final titleScale = _size(1, 25 / titleStyle.fontSize!);
     return Padding(
-      padding: const EdgeInsets.fromLTRB(12, 31, 12, 65),
+      padding: EdgeInsets.fromLTRB(12, _size(31, 11), 12, _size(65, 14)),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 31),
-            child: Text(
-              date,
+            padding: EdgeInsets.symmetric(horizontal: _size(31, 40)),
+            child: Text.rich(
+              TextSpan(
+                children: [
+                  if (compact > 0)
+                    TextSpan(
+                      text: '$city · ',
+                      style: TextStyle(
+                        fontSize: 10.5 * compact,
+                        color: colors.heroMuted.withValues(alpha: compact),
+                      ),
+                    ),
+                  TextSpan(text: date),
+                ],
+              ),
               textAlign: TextAlign.center,
               style: TextStyle(
-                fontSize: 12.8,
+                fontSize: _size(12.8, 10.5),
                 fontWeight: FontWeight.w500,
                 color: colors.heroMuted,
               ),
             ),
           ),
-          const SizedBox(height: 13),
-          Text(
-            labels['nextTime'].toUpperCase(),
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              fontSize: 10.4,
-              letterSpacing: 1.85,
-              color: colors.heroGold,
-              fontWeight: FontWeight.w600,
+          SizedBox(height: 4 * compact),
+          if (compact < 1)
+            _regularDetail(
+              Column(
+                children: [
+                  const SizedBox(height: 13),
+                  Text(
+                    labels['nextTime'].toUpperCase(),
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 10.4,
+                      letterSpacing: 1.85,
+                      color: colors.heroGold,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                  const SizedBox(height: 10),
+                ],
+              ),
+            ),
+          Align(
+            alignment: Alignment.topCenter,
+            heightFactor: titleScale,
+            child: Transform.scale(
+              alignment: Alignment.topCenter,
+              scale: titleScale,
+              child: Text(
+                title,
+                textAlign: TextAlign.center,
+                style: titleStyle,
+              ),
             ),
           ),
-          const SizedBox(height: 10),
-          Text(title, textAlign: TextAlign.center, style: titleStyle),
-          const SizedBox(height: 9),
+          SizedBox(height: _size(9, 2)),
           Center(
             child: FittedBox(
               fit: BoxFit.scaleDown,
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  for (final (index, value) in parts.indexed) ...[
-                    if (index > 0)
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 5),
-                        child: Text(
-                          ':',
-                          style: digits.copyWith(
-                            fontSize: 40,
-                            color: colors.heroGold,
+              child: Semantics(
+                label: parts.join(':'),
+                excludeSemantics: true,
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    for (final (index, value) in parts.indexed) ...[
+                      if (index > 0)
+                        Padding(
+                          padding: EdgeInsets.symmetric(
+                            horizontal: _size(5, 3),
+                          ),
+                          child: Text(
+                            ':',
+                            style: digits.copyWith(
+                              fontSize: _size(40, 24),
+                              color: colors.heroGold,
+                            ),
                           ),
                         ),
+                      Column(
+                        children: [
+                          Text(value, style: digits),
+                          if (compact < 1)
+                            _regularDetail(
+                              Padding(
+                                padding: const EdgeInsets.only(top: 9),
+                                child: Text(
+                                  labels[const [
+                                        'countdownHours',
+                                        'countdownMinutes',
+                                        'countdownSeconds',
+                                      ][index]]
+                                      .toUpperCase(),
+                                  style: TextStyle(
+                                    color: colors.heroMuted,
+                                    fontSize: 10.4,
+                                    letterSpacing: 1.45,
+                                  ),
+                                ),
+                              ),
+                            ),
+                        ],
                       ),
-                    Column(
-                      children: [
-                        Text(value, style: digits),
-                        const SizedBox(height: 9),
-                        Text(
-                          labels[const [
-                                'countdownHours',
-                                'countdownMinutes',
-                                'countdownSeconds',
-                              ][index]]
-                              .toUpperCase(),
-                          style: TextStyle(
-                            color: colors.heroMuted,
-                            fontSize: 10.4,
-                            letterSpacing: 1.45,
-                          ),
-                        ),
-                      ],
-                    ),
+                    ],
                   ],
-                ],
+                ),
               ),
             ),
           ),
@@ -410,23 +572,13 @@ class _Countdown extends StatelessWidget {
       ),
     );
   }
-}
 
-class _Chevron extends StatelessWidget {
-  const _Chevron({required this.colors});
-
-  final VaktijaPalette colors;
-
-  @override
-  Widget build(BuildContext context) => Container(
-    height: 32,
-    width: 32,
-    decoration: BoxDecoration(
-      shape: BoxShape.circle,
-      color: colors.sky,
-      border: Border.all(color: colors.heroBorder),
+  Widget _regularDetail(Widget child) => ClipRect(
+    child: Align(
+      alignment: Alignment.topCenter,
+      heightFactor: 1 - compact,
+      child: Opacity(opacity: 1 - compact, child: child),
     ),
-    child: Icon(Icons.keyboard_arrow_down, size: 19, color: colors.heroGold),
   );
 }
 
@@ -506,9 +658,20 @@ class _HorizonProgress extends StatelessWidget {
   );
 }
 
+class _PrayerDensity {
+  const _PrayerDensity(this.height, this.gap);
+
+  final double height, gap;
+
+  double mix(double tight, double spacious) =>
+      lerpDouble(tight, spacious, ((height - 48) / 28).clamp(0, 1))!;
+}
+
 class _PrayerStop extends StatelessWidget {
   const _PrayerStop({
     required this.time,
+    required this.density,
+    required this.fullscreen,
     required this.name,
     required this.relative,
     required this.badge,
@@ -520,6 +683,8 @@ class _PrayerStop extends StatelessWidget {
   });
 
   final PrayerTime time;
+  final _PrayerDensity density;
+  final bool fullscreen;
   final String name, relative;
   final String? badge;
   final bool current, next, elapsed, dimmed;
@@ -529,15 +694,29 @@ class _PrayerStop extends StatelessWidget {
   Widget build(BuildContext context) {
     final colors = VaktijaPalette.of(context);
     final spacious = MediaQuery.sizeOf(context).width >= 380;
+    final verticalPadding = density.mix(4, 9);
+    final imageSize = density.mix(28, spacious ? 52 : 44);
     final foreground = dimmed ? colors.secondary : colors.text;
     final border = next
         ? colors.gold
         : (current ? colors.accent : colors.border);
+    final clock = Text(
+      time.time,
+      textAlign: TextAlign.right,
+      maxLines: fullscreen ? 1 : null,
+      style: TextStyle(
+        color: next ? colors.accent : foreground,
+        fontSize: density.mix(20, 24),
+        fontWeight: FontWeight.w600,
+        fontFeatures: _tabular,
+        height: 1.15,
+      ),
+    );
 
     return Padding(
       padding: const EdgeInsets.only(left: _trailGutter),
       child: Container(
-        constraints: const BoxConstraints(minHeight: 76),
+        constraints: BoxConstraints(minHeight: density.height),
         decoration: BoxDecoration(
           color: next ? colors.next : null,
           gradient: next
@@ -563,19 +742,22 @@ class _PrayerStop extends StatelessWidget {
               ),
             Padding(
               padding: EdgeInsets.symmetric(
-                horizontal: spacious ? 12 : 10,
-                vertical: 9,
+                horizontal: density.mix(8, spacious ? 12 : 10),
+                vertical: verticalPadding,
               ),
               child: ConstrainedBox(
-                constraints: const BoxConstraints(minHeight: 56),
+                constraints: BoxConstraints(
+                  minHeight: density.height - verticalPadding * 2 - 2,
+                ),
                 child: Row(
                   children: [
                     Image.asset(
                       '$prayerAssets/${time.kind.name}.png',
-                      width: spacious ? 52 : 44,
+                      width: imageSize,
+                      height: fullscreen ? imageSize : null,
                       excludeFromSemantics: true,
                     ),
-                    SizedBox(width: spacious ? 10 : 8),
+                    SizedBox(width: density.mix(7, spacious ? 10 : 8)),
                     Expanded(
                       flex: 6,
                       child: Column(
@@ -592,7 +774,7 @@ class _PrayerStop extends StatelessWidget {
                             ),
                           ),
                           if (badge != null) ...[
-                            const SizedBox(height: 4),
+                            SizedBox(height: density.mix(2, 4)),
                             Text(
                               badge!.toUpperCase(),
                               style: TextStyle(
@@ -615,24 +797,26 @@ class _PrayerStop extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.end,
                           mainAxisSize: MainAxisSize.min,
                           children: [
-                            Text(
-                              time.time,
-                              textAlign: TextAlign.right,
-                              style: TextStyle(
-                                color: next ? colors.accent : foreground,
-                                fontSize: 24,
-                                fontWeight: FontWeight.w600,
-                                fontFeatures: _tabular,
-                                height: 1.15,
+                            if (!fullscreen)
+                              clock
+                            else
+                              FittedBox(
+                                fit: BoxFit.scaleDown,
+                                alignment: Alignment.centerRight,
+                                child: fullscreen
+                                    ? FittedBox(
+                                        fit: BoxFit.scaleDown,
+                                        child: clock,
+                                      )
+                                    : clock,
                               ),
-                            ),
-                            const SizedBox(height: 3),
+                            SizedBox(height: density.mix(1, 3)),
                             Text(
                               relative,
                               textAlign: TextAlign.right,
                               style: TextStyle(
                                 color: colors.muted,
-                                fontSize: 12,
+                                fontSize: density.mix(10, 12),
                               ),
                             ),
                           ],
@@ -651,14 +835,17 @@ class _PrayerStop extends StatelessWidget {
 }
 
 class _PrayerTrail extends SingleChildRenderObjectWidget {
-  _PrayerTrail({required this.stops, required this.colors})
-    : super(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          spacing: 8,
-          children: stops,
-        ),
-      );
+  _PrayerTrail({
+    required this.stops,
+    required this.colors,
+    required double spacing,
+  }) : super(
+         child: Column(
+           crossAxisAlignment: CrossAxisAlignment.stretch,
+           spacing: spacing,
+           children: stops,
+         ),
+       );
 
   final List<_PrayerStop> stops;
   final VaktijaPalette colors;

@@ -68,12 +68,12 @@ void main() {
           child: Scaffold(
             body: PrayerTimetableView(
               times: times,
+              city: 'Sarajevo',
               now: now,
               interval: null,
               countdownFallback: null,
               labels: labels,
-              collapsed: false,
-              onToggleCountdown: () {},
+              onToggleFullscreen: () {},
             ),
           ),
         ),
@@ -330,16 +330,21 @@ void main() {
     tester,
   ) async {
     var now = DateTime.utc(2026, 3, 27, 23);
+    var fullscreen = false;
+    final requests = <String>[];
     final repository = (await tester.runAsync(() async {
       SharedPreferences.setMockInitialValues({});
       return PrayerRepository(
         await PrayerCatalog.load(),
         await SharedPreferences.getInstance(),
         clock: () => now,
-        get: (uri) async => switch (uri.path) {
-          '/v1/timings/28-03-2026' => _response('28-03-2026', _march28),
-          '/v1/timings/29-03-2026' => _response('29-03-2026', _march29),
-          _ => throw StateError('offline for uncached dates'),
+        get: (uri) async {
+          requests.add(uri.path);
+          return switch (uri.path) {
+            '/v1/timings/28-03-2026' => _response('28-03-2026', _march28),
+            '/v1/timings/29-03-2026' => _response('29-03-2026', _march29),
+            _ => throw StateError('offline for uncached dates'),
+          };
         },
       );
     }))!;
@@ -347,13 +352,16 @@ void main() {
     await tester.pumpWidget(
       MaterialApp(
         home: Scaffold(
-          body: PrayerPage(
-            repository: repository,
-            city: repository.catalog.city(77),
-            method: PrayerMethod.angle,
-            labels: repository.catalog.labels(false),
-            collapsed: false,
-            onToggleCountdown: () {},
+          body: StatefulBuilder(
+            builder: (context, setMode) => PrayerPage(
+              repository: repository,
+              city: repository.catalog.city(77),
+              method: PrayerMethod.angle,
+              labels: repository.catalog.labels(false),
+              fullscreen: fullscreen,
+              onEnterFullscreen: () => setMode(() => fullscreen = true),
+              onExitFullscreen: () => setMode(() => fullscreen = false),
+            ),
           ),
         ),
       ),
@@ -364,6 +372,11 @@ void main() {
     expect(view().interval, isNull);
     expect(find.text('Next prayer time unavailable'), findsOneWidget);
     expect(view().times.first.kind, PrayerKind.fajr);
+    final beforeFullscreen = List.of(requests);
+    await tester.tap(find.byTooltip('Fullscreen'));
+    await tester.pumpAndSettle();
+    expect(view().fullscreen, isTrue);
+    expect(requests, beforeFullscreen);
 
     now = DateTime.utc(2026, 3, 28, 22, 59, 59);
     await tester.pump(const Duration(seconds: 1));
@@ -380,6 +393,9 @@ void main() {
     expect(view().interval?.remaining, 3240);
     expect(view().times.first.kind, PrayerKind.lastthird);
     expect(view().times.first.time, '00:54');
+    final semantics = tester.ensureSemantics();
+    expect(find.bySemanticsLabel('00:54:00'), findsOneWidget);
+    semantics.dispose();
     await tester.pumpWidget(const SizedBox.shrink());
   });
 

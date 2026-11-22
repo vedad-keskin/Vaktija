@@ -14,16 +14,19 @@ class PrayerPage extends StatefulWidget {
     required this.city,
     required this.method,
     required this.labels,
-    required this.collapsed,
-    required this.onToggleCountdown,
+    this.fullscreen = false,
+    this.fullscreenMotion,
+    required this.onEnterFullscreen,
+    required this.onExitFullscreen,
   });
 
   final PrayerRepository repository;
   final PrayerCity city;
   final PrayerMethod? method;
   final PrayerLabels labels;
-  final bool collapsed;
-  final VoidCallback onToggleCountdown;
+  final bool fullscreen;
+  final Animation<double>? fullscreenMotion;
+  final VoidCallback onEnterFullscreen, onExitFullscreen;
 
   @override
   State<PrayerPage> createState() => _PrayerPageState();
@@ -32,6 +35,9 @@ class PrayerPage extends StatefulWidget {
 class _PrayerPageState extends State<PrayerPage> {
   late DateTime _now;
   final _days = <String, AsyncSnapshot<List<PrayerTime>>>{};
+  final _regularScroll = ScrollController();
+  final _countdownKey = GlobalKey();
+  double _regularOffset = 0;
   Timer? _clock;
 
   @override
@@ -52,6 +58,11 @@ class _PrayerPageState extends State<PrayerPage> {
   @override
   void didUpdateWidget(PrayerPage oldWidget) {
     super.didUpdateWidget(oldWidget);
+    if (widget.fullscreen &&
+        !oldWidget.fullscreen &&
+        _regularScroll.hasClients) {
+      _regularOffset = _regularScroll.offset;
+    }
     if (widget.city != oldWidget.city ||
         widget.method != oldWidget.method ||
         widget.repository != oldWidget.repository) {
@@ -113,6 +124,7 @@ class _PrayerPageState extends State<PrayerPage> {
   @override
   void dispose() {
     _clock?.cancel();
+    _regularScroll.dispose();
     super.dispose();
   }
 
@@ -158,28 +170,42 @@ class _PrayerPageState extends State<PrayerPage> {
       );
     }
 
-    final content = times.isEmpty
+    final motion =
+        widget.fullscreenMotion ??
+        AlwaysStoppedAnimation(widget.fullscreen ? 1.0 : 0.0);
+    final fallback = times.isEmpty
         ? status(today?.hasError != true, countdownOnly: false)
-        : PrayerTimetableView(
-            times: times,
-            now: _now,
-            interval: interval,
-            countdownFallback: interval == null
-                ? status(waiting, countdownOnly: true)
-                : null,
-            labels: labels,
-            collapsed: widget.collapsed,
-            onToggleCountdown: widget.onToggleCountdown,
-          );
+        : interval == null
+        ? status(waiting, countdownOnly: true)
+        : null;
 
-    return SingleChildScrollView(
-      padding: const EdgeInsets.fromLTRB(12, 14, 12, 32),
-      child: Center(
-        child: ConstrainedBox(
-          constraints: const BoxConstraints(maxWidth: 650),
-          child: content,
-        ),
-      ),
+    return AnimatedBuilder(
+      animation: motion,
+      builder: (context, _) {
+        final compact = motion.value;
+        if (times.isEmpty && !widget.fullscreen && compact == 0) {
+          return SingleChildScrollView(
+            padding: const EdgeInsets.fromLTRB(12, 14, 12, 32),
+            child: fallback,
+          );
+        }
+        return PrayerTimetableView(
+          times: times,
+          city: widget.city.name,
+          countdownKey: _countdownKey,
+          now: _now,
+          interval: interval,
+          countdownFallback: fallback,
+          labels: labels,
+          fullscreen: widget.fullscreen,
+          compact: compact,
+          regularScroll: _regularScroll,
+          regularOffset: _regularOffset,
+          onToggleFullscreen: widget.fullscreen
+              ? widget.onExitFullscreen
+              : widget.onEnterFullscreen,
+        );
+      },
     );
   }
 }
