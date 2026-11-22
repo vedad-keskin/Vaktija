@@ -194,6 +194,9 @@ void main() {
     final regularView = tester.widget<PrayerTimetableView>(timetable);
     final regularTimes = regularView.times;
     final labels = repository.catalog.labels(true);
+    final firstRow = find
+        .widgetWithText(Container, labels.prayer(regularTimes.first))
+        .first;
     final enter = find.byTooltip('Cijeli ekran');
     final exit = find.byTooltip('Izađi iz cijelog ekrana');
     final header = find.byKey(const ValueKey('prayer-countdown'));
@@ -221,20 +224,28 @@ void main() {
     await tester.tap(enter);
     await tester.pump();
     expect(tester.getRect(header), regularHeader);
+    final stationaryRow = tester.widget(firstRow);
+    final regularRowHeight = tester.getSize(firstRow).height;
+    final slidingCard = tester.widget(header);
+    await tester.pump(const Duration(milliseconds: 16));
+    expect(tester.widget(firstRow), same(stationaryRow));
+    expect(tester.widget(header), same(slidingCard));
     var previousTop = regularHeader.top;
     for (var frame = 0; frame < 8; frame++) {
       await tester.pump(const Duration(milliseconds: 32));
       final top = tester.getTopLeft(header).dy;
       expect(previousTop - top, inInclusiveRange(-.01, 28));
+      expect(tester.getSize(header), regularHeader.size);
       previousTop = top;
     }
     expect(bars, isEmpty);
     final enteringHeader = tester.getRect(header);
     await tester.pumpAndSettle();
-    final compactHeader = tester.getRect(header);
+    final fullscreenHeader = tester.getRect(header);
+    expect(tester.getSize(firstRow).height, lessThan(regularRowHeight));
     expect(bars, [true]);
     for (final detail in details) {
-      expect(detail, findsNothing);
+      expect(detail, findsOneWidget);
     }
     expect(inHeader(find.text('${regularView.city} · $date')), findsOneWidget);
     final interval = tester.widget<PrayerTimetableView>(timetable).interval!;
@@ -252,18 +263,18 @@ void main() {
     tester.view.padding = const FakeViewPadding(top: 8);
     tester.view.viewPadding = tester.view.padding;
     await tester.pump();
-    expect(tester.getRect(header), compactHeader);
+    expect(tester.getRect(header), fullscreenHeader);
     await tester.pump(const Duration(milliseconds: 110));
     expect(
       tester.getTopLeft(header).dy,
-      inExclusiveRange(16, compactHeader.top),
+      inExclusiveRange(16, fullscreenHeader.top),
     );
     await tester.pumpAndSettle();
     expect(tester.getTopLeft(header).dy, closeTo(16, .01));
+    expect(tester.getSize(header), regularHeader.size);
     expect(enteringHeader.top, lessThan(regularHeader.top));
-    expect(enteringHeader.height, lessThan(regularHeader.height));
-    expect(compactHeader.top, lessThan(enteringHeader.top));
-    expect(compactHeader.height, lessThan(enteringHeader.height));
+    expect(fullscreenHeader.top, lessThan(enteringHeader.top));
+    expect(fullscreenHeader.size, regularHeader.size);
     expect(find.byType(MobileHeader), findsNothing);
     expect(tester.state(find.byType(PrayerPage)), same(pageState));
     expect(tester.widget<PrayerTimetableView>(timetable).times, regularTimes);
@@ -272,9 +283,6 @@ void main() {
       of: timetable,
       matching: find.byType(Scrollable),
     );
-    final firstRow = find
-        .widgetWithText(Container, labels.prayer(regularTimes.first))
-        .first;
     final lastRow = find
         .widgetWithText(Container, labels.prayer(regularTimes.last))
         .first;
@@ -289,14 +297,14 @@ void main() {
       tester.view.viewPadding = insets;
       await tester.pumpAndSettle();
       expect(exit.hitTestable(), findsOneWidget);
-      expect(
-        tester
-            .state<ScrollableState>(fullscreenScroll)
-            .position
-            .maxScrollExtent,
-        closeTo(0, .01),
-        reason: 'The full timetable should fit at $size',
-      );
+      final position = tester.state<ScrollableState>(fullscreenScroll).position;
+      if (size.width > size.height) {
+        position.jumpTo(position.maxScrollExtent);
+        await tester.pumpAndSettle();
+        expect(lastRow.hitTestable(), findsOneWidget);
+      } else {
+        expect(position.maxScrollExtent, closeTo(0, .01));
+      }
       expect(
         tester.getBottomLeft(lastRow).dy,
         closeTo(size.height - insets.bottom - 12, .5),
@@ -315,14 +323,20 @@ void main() {
     addTearDown(tester.platformDispatcher.clearTextScaleFactorTestValue);
     await tester.pumpAndSettle();
     expect(tester.takeException(), isNull);
-    final exitPosition = tester.getCenter(exit);
+    final shortPosition = tester
+        .state<ScrollableState>(fullscreenScroll)
+        .position;
+    shortPosition.jumpTo(0);
+    await tester.pumpAndSettle();
+    expect(exit.hitTestable(), findsOneWidget);
     await tester.drag(fullscreenScroll, const Offset(0, -160));
     await tester.pumpAndSettle();
-    expect(
-      tester.state<ScrollableState>(fullscreenScroll).position.pixels,
-      greaterThan(0),
-    );
-    expect(tester.getCenter(exit), exitPosition);
+    expect(shortPosition.pixels, greaterThan(0));
+    shortPosition.jumpTo(shortPosition.maxScrollExtent);
+    await tester.pumpAndSettle();
+    expect(lastRow.hitTestable(), findsOneWidget);
+    shortPosition.jumpTo(0);
+    await tester.pumpAndSettle();
     expect(exit.hitTestable(), findsOneWidget);
 
     tester.platformDispatcher.clearTextScaleFactorTestValue();
@@ -335,9 +349,9 @@ void main() {
     final exitingHeader = tester.getRect(header);
     await tester.pumpAndSettle();
     expect(exitingHeader.top, greaterThan(beforeBack.top));
-    expect(exitingHeader.height, greaterThan(beforeBack.height));
+    expect(exitingHeader.size, beforeBack.size);
     expect(tester.getRect(header).top, greaterThan(exitingHeader.top));
-    expect(tester.getRect(header).height, greaterThan(exitingHeader.height));
+    expect(tester.getSize(header), beforeBack.size);
     expect(enter.hitTestable(), findsOneWidget);
     expect(tester.state<ScrollableState>(regularScroll).position.pixels, 16);
     expect(tester.state(find.byType(PrayerPage)), same(pageState));

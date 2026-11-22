@@ -172,43 +172,41 @@ class _PrayerPageState extends State<PrayerPage> {
       );
     }
 
-    final motion =
-        widget.fullscreenMotion ??
-        AlwaysStoppedAnimation(widget.fullscreen ? 1.0 : 0.0);
     final fallback = times.isEmpty
         ? status(today?.hasError != true, countdownOnly: false)
         : interval == null
         ? status(waiting, countdownOnly: true)
         : null;
 
+    final timetable = PrayerTimetableView(
+      times: times,
+      city: widget.city.name,
+      countdownKey: _countdownKey,
+      now: _now,
+      interval: interval,
+      countdownFallback: fallback,
+      labels: labels,
+      fullscreen: widget.fullscreen,
+      headerMotion: widget.fullscreenMotion,
+      rowMotion: widget.fullscreenRowsMotion,
+      regularScroll: _regularScroll,
+      regularOffset: _regularOffset,
+      onToggleFullscreen: widget.fullscreen
+          ? widget.onExitFullscreen
+          : widget.onEnterFullscreen,
+    );
+    if (times.isNotEmpty || widget.fullscreen) return timetable;
+
+    final motion = widget.fullscreenMotion ?? const AlwaysStoppedAnimation(0.0);
     return AnimatedBuilder(
       animation: motion,
-      builder: (context, _) {
-        final headerProgress = motion.value;
-        if (times.isEmpty && !widget.fullscreen && headerProgress == 0) {
-          return SingleChildScrollView(
-            padding: const EdgeInsets.fromLTRB(12, 14, 12, 32),
-            child: fallback,
-          );
-        }
-        return PrayerTimetableView(
-          times: times,
-          city: widget.city.name,
-          countdownKey: _countdownKey,
-          now: _now,
-          interval: interval,
-          countdownFallback: fallback,
-          labels: labels,
-          fullscreen: widget.fullscreen,
-          headerProgress: headerProgress,
-          rowProgress: widget.fullscreenRowsMotion?.value ?? headerProgress,
-          regularScroll: _regularScroll,
-          regularOffset: _regularOffset,
-          onToggleFullscreen: widget.fullscreen
-              ? widget.onExitFullscreen
-              : widget.onEnterFullscreen,
-        );
-      },
+      child: timetable,
+      builder: (context, child) => motion.value == 0
+          ? SingleChildScrollView(
+              padding: const EdgeInsets.fromLTRB(12, 14, 12, 32),
+              child: fallback,
+            )
+          : child!,
     );
   }
 }

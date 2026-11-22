@@ -20,8 +20,8 @@ class PrayerTimetableView extends StatelessWidget {
     required this.countdownFallback,
     required this.labels,
     this.fullscreen = false,
-    this.headerProgress = 0,
-    this.rowProgress = 0,
+    this.headerMotion,
+    this.rowMotion,
     this.regularScroll,
     this.regularOffset = 0,
     this.countdownKey,
@@ -35,7 +35,7 @@ class PrayerTimetableView extends StatelessWidget {
   final Widget? countdownFallback;
   final PrayerLabels labels;
   final bool fullscreen;
-  final double headerProgress, rowProgress;
+  final Animation<double>? headerMotion, rowMotion;
   final ScrollController? regularScroll;
   final double regularOffset;
   final Key? countdownKey;
@@ -43,15 +43,87 @@ class PrayerTimetableView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final fullscreenLayout = fullscreen || headerProgress > 0;
+    final motion =
+        headerMotion ?? AlwaysStoppedAnimation(fullscreen ? 1.0 : 0.0);
+    final rows = rowMotion ?? motion;
+    // Reuse the parts that stay still during each phase of the transition.
+    final regularRows = times.isEmpty ? null : _rowSliver(context, 0);
+    final stationaryRows = regularRows == null
+        ? null
+        : SliverLayoutBuilder(builder: (_, _) => regularRows);
+    const regularTop = 14.0;
+    const fullscreenTop = 8.0;
+    final regularHeader = SliverToBoxAdapter(
+      child: _header(showCity: false, top: regularTop),
+    );
+    final fullscreenCard = ColoredBox(
+      color: VaktijaPalette.of(context).surface,
+      child: _header(showCity: true, top: fullscreenTop),
+    );
+    // ponytail: Allow space for a row below the card using a conservative
+    // height estimate. Measure the sliver if tighter pinning is needed.
+    final canPin =
+        MediaQuery.sizeOf(context).height >=
+        210 + MediaQuery.textScalerOf(context).scale(140);
+    final fullscreenHeader = canPin
+        ? PinnedHeaderSliver(child: fullscreenCard)
+        : SliverFloatingHeader(
+            animationStyle: MediaQuery.disableAnimationsOf(context)
+                ? AnimationStyle.noAnimation
+                : null,
+            child: fullscreenCard,
+          );
+
+    return AnimatedBuilder(
+      animation: Listenable.merge([motion, if (rows != motion) rows]),
+      builder: (context, _) {
+        final headerProgress = motion.value;
+        final rowProgress = rows.value;
+        final fullscreenLayout = fullscreen || headerProgress > 0;
+        // Keep the card's starting position when the fullscreen viewport opens.
+        // PageStorage restores the regular scroll position on exit.
+        return ClipRect(
+          child: Transform.translate(
+            offset: Offset(
+              0,
+              fullscreenLayout
+                  ? (regularTop - fullscreenTop - regularOffset) *
+                        (1 - headerProgress)
+                  : 0,
+            ),
+            child: CustomScrollView(
+              key: fullscreenLayout
+                  ? const ValueKey('fullscreen-prayer-timetable')
+                  : const PageStorageKey('regular-prayer-timetable'),
+              controller: fullscreenLayout ? null : regularScroll,
+              primary: false,
+              slivers: [
+                fullscreenLayout ? fullscreenHeader : regularHeader,
+                if (stationaryRows != null)
+                  if (rowProgress == 0)
+                    stationaryRows
+                  else
+                    SliverLayoutBuilder(
+                      builder: (context, bounds) =>
+                          _rowSliver(context, rowProgress, bounds),
+                    ),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
+
+  Widget _header({required bool showCity, required double top}) {
     final countdown = interval;
     final toggle = _FullscreenButton(
       fullscreen: fullscreen,
       labels: labels,
       onPressed: onToggleFullscreen,
     );
-    final header = Padding(
-      padding: EdgeInsets.fromLTRB(12, lerpDouble(14, 8, headerProgress)!, 12, 0),
+    return Padding(
+      padding: EdgeInsets.fromLTRB(12, top, 12, 0),
       child: Center(
         child: ConstrainedBox(
           constraints: const BoxConstraints(maxWidth: 650),
@@ -60,8 +132,7 @@ class PrayerTimetableView extends StatelessWidget {
                   key: countdownKey,
                   title: labels.prayer(countdown.next),
                   date: labels.date(now),
-                  city: fullscreenLayout ? city : null,
-                  showDetails: headerProgress < 1,
+                  city: showCity ? city : null,
                   interval: countdown,
                   labels: labels,
                   toggle: toggle,
@@ -75,73 +146,28 @@ class PrayerTimetableView extends StatelessWidget {
         ),
       ),
     );
-    final scroll = CustomScrollView(
-      key: fullscreenLayout
-          ? const ValueKey('fullscreen-prayer-timetable')
-          : const PageStorageKey('regular-prayer-timetable'),
-      controller: fullscreenLayout ? null : regularScroll,
-      primary: false,
-      slivers: [
-        if (fullscreenLayout)
-          SliverFloatingHeader(
-            animationStyle: MediaQuery.disableAnimationsOf(context)
-                ? AnimationStyle.noAnimation
-                : null,
-            child: ColoredBox(
-              color: VaktijaPalette.of(context).surface,
-              child: header,
-            ),
-          )
-        else
-          SliverToBoxAdapter(child: header),
-        if (times.isNotEmpty)
-          SliverLayoutBuilder(
-            builder: (context, bounds) {
-              final top = lerpDouble(18, 8, rowProgress)!;
-              final bottom = lerpDouble(32, 12, rowProgress)!;
-              return SliverPadding(
-                padding: EdgeInsets.fromLTRB(12, top, 12, bottom),
-                sliver: SliverToBoxAdapter(
-                  child: _rows(
-                    context,
-                    width: bounds.crossAxisExtent - 24,
-                    height:
-                        bounds.viewportMainAxisExtent -
-                        bounds.precedingScrollExtent -
-                        top -
-                        bottom,
-                  ),
-                ),
-              );
-            },
-          ),
-      ],
-    );
-
-    // Keep the card's starting position when the fullscreen viewport opens.
-    // PageStorage restores the regular scroll position on exit.
-    return ClipRect(
-      child: Transform.translate(
-        offset: Offset(
-          0,
-          fullscreenLayout ? -regularOffset * (1 - headerProgress) : 0,
-        ),
-        child: scroll,
-      ),
-    );
   }
 
-  Widget _rows(
-    BuildContext context, {
-    required double width,
-    required double height,
-  }) {
+  Widget _rowSliver(
+    BuildContext context,
+    double rowProgress, [
+    SliverConstraints? bounds,
+  ]) {
+    final top = lerpDouble(18, 8, rowProgress)!;
+    final bottom = lerpDouble(32, 12, rowProgress)!;
     final wideLandscape =
+        bounds != null &&
         MediaQuery.orientationOf(context) == Orientation.landscape &&
-        width >= 600 &&
+        bounds.crossAxisExtent - 24 >= 600 &&
         times.length > 1;
     final twoColumns = wideLandscape && rowProgress >= .5;
     final rowCount = twoColumns ? (times.length + 1) ~/ 2 : times.length;
+    final height = bounds == null
+        ? 0.0
+        : bounds.viewportMainAxisExtent -
+              bounds.precedingScrollExtent -
+              top -
+              bottom;
     final gap = ((height / rowCount - 44) * .18).clamp(3.0, 9.0);
     final cardHeight = (height - gap * (rowCount - 1)) / rowCount;
     final density = _PrayerDensity(
@@ -160,30 +186,36 @@ class PrayerTimetableView extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Expanded(
-                    child: _rail(context, times.take(rowCount), density),
+                    child: _rail(context, times.take(rowCount), density, true),
                   ),
                   const SizedBox(width: 12),
                   Expanded(
-                    child: _rail(context, times.skip(rowCount), density),
+                    child: _rail(context, times.skip(rowCount), density, true),
                   ),
                 ],
               )
-            : _rail(context, times, density),
+            : _rail(context, times, density, rowProgress > 0),
       ),
     );
-    // Fade the rail briefly while landscape changes between one and two columns.
-    return wideLandscape
-        ? Opacity(
-            opacity: ((rowProgress - .5).abs() / .16).clamp(0, 1),
-            child: rows,
-          )
-        : rows;
+    return SliverPadding(
+      padding: EdgeInsets.fromLTRB(12, top, 12, bottom),
+      sliver: SliverToBoxAdapter(
+        // Fade the rail while landscape changes between one and two columns.
+        child: wideLandscape
+            ? Opacity(
+                opacity: ((rowProgress - .5).abs() / .16).clamp(0, 1),
+                child: rows,
+              )
+            : rows,
+      ),
+    );
   }
 
   Widget _rail(
     BuildContext context,
     Iterable<PrayerTime> rows,
     _PrayerDensity density,
+    bool compact,
   ) {
     final countdown = interval;
     final current = countdown?.current;
@@ -202,7 +234,7 @@ class PrayerTimetableView extends StatelessWidget {
           _PrayerStop(
             time: time,
             density: density,
-            fullscreen: rowProgress > 0,
+            fullscreen: compact,
             name: labels.prayer(time),
             relative: labels.relative(
               time.at.millisecondsSinceEpoch ~/ Duration.millisecondsPerMinute -
@@ -312,7 +344,6 @@ class _Countdown extends StatelessWidget {
     required this.title,
     required this.date,
     required this.city,
-    required this.showDetails,
     required this.interval,
     required this.labels,
     required this.toggle,
@@ -320,7 +351,6 @@ class _Countdown extends StatelessWidget {
 
   final String title, date;
   final String? city;
-  final bool showDetails;
   final PrayerInterval interval;
   final PrayerLabels labels;
   final Widget toggle;
@@ -385,19 +415,18 @@ class _Countdown extends StatelessWidget {
                 ),
               ),
               _content(colors, titleStyle, digits, parts),
-              if (showDetails)
-                Positioned(
-                  left: 15,
-                  right: 15,
-                  bottom: artHeight * .145 - 10,
-                  child: IgnorePointer(
-                    child: _HorizonProgress(
-                      value: interval.progress,
-                      colors: colors,
-                      label: labels['countdownProgressAria'],
-                    ),
+              Positioned(
+                left: 15,
+                right: 15,
+                bottom: artHeight * .145 - 10,
+                child: IgnorePointer(
+                  child: _HorizonProgress(
+                    value: interval.progress,
+                    colors: colors,
+                    label: labels['countdownProgressAria'],
                   ),
                 ),
+              ),
               Positioned(top: 16, right: 9, child: toggle),
             ],
           ),
@@ -480,20 +509,21 @@ class _Countdown extends StatelessWidget {
                   ),
           ),
           const SizedBox(height: 13),
-          if (showDetails) ...[
-            Text(
-              labels['nextTime'].toUpperCase(),
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: 10.4,
-                letterSpacing: 1.85,
-                color: colors.heroGold,
-                fontWeight: FontWeight.w600,
-              ),
+          Text(
+            labels['nextTime'].toUpperCase(),
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              fontSize: 10.4,
+              letterSpacing: 1.85,
+              color: colors.heroGold,
+              fontWeight: FontWeight.w600,
             ),
-            const SizedBox(height: 10),
-          ],
-          Text(title, textAlign: TextAlign.center, style: titleStyle),
+          ),
+          const SizedBox(height: 10),
+          FittedBox(
+            fit: BoxFit.scaleDown,
+            child: Text(title, maxLines: 1, style: titleStyle),
+          ),
           const SizedBox(height: 9),
           Center(
             child: FittedBox(
@@ -632,12 +662,11 @@ class _PrayerDensity {
 
   final double height, gap;
 
-  double mix(double tight, double spacious) =>
-      lerpDouble(
-        tight,
-        spacious,
-        ((height - minHeight) / (regularHeight - minHeight)).clamp(0, 1),
-      )!;
+  double mix(double tight, double spacious) => lerpDouble(
+    tight,
+    spacious,
+    ((height - minHeight) / (regularHeight - minHeight)).clamp(0, 1),
+  )!;
 }
 
 class _PrayerStop extends StatelessWidget {
@@ -754,7 +783,7 @@ class _PrayerStop extends StatelessWidget {
                               style: TextStyle(
                                 color: next ? colors.gold : colors.accent,
                                 fontSize: density.mix(8.5, 10),
-                                height: showRelative ? null : 1.15,
+                                height: 1.15,
                                 fontWeight: FontWeight.w700,
                                 letterSpacing: .8,
                               ),
@@ -788,6 +817,7 @@ class _PrayerStop extends StatelessWidget {
                                 style: TextStyle(
                                   color: colors.muted,
                                   fontSize: density.mix(10, 12),
+                                  height: 1.15,
                                 ),
                               ),
                             ],
