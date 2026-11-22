@@ -357,19 +357,21 @@ class _ShootingStar extends CustomPainter {
     final start = Offset(size.width * .15, archTop * .34);
     final end = Offset(size.width * .72, archTop * .91);
     final head = Offset.lerp(start, end, progress)!;
-    final tail = Offset.lerp(start, end, (progress - .18).clamp(0.0, 1.0))!;
+    final tail = Offset.lerp(start, end, (progress - .24).clamp(0.0, 1.0))!;
     final fade = math.sin(math.pi * progress);
+    final tip = Colors.white.withValues(alpha: .95 * fade);
     canvas.drawLine(
       tail,
       head,
       Paint()
         ..shader = ui.Gradient.linear(tail, head, [
           Colors.white.withValues(alpha: 0),
-          Colors.white.withValues(alpha: .7 * fade),
+          tip,
         ])
-        ..strokeWidth = 1.6
+        ..strokeWidth = 2.4
         ..strokeCap = StrokeCap.round,
     );
+    canvas.drawCircle(head, 1.8, Paint()..color = tip);
   }
 
   @override
