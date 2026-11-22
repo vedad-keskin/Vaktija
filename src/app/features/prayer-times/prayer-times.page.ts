@@ -304,6 +304,13 @@ export class PrayerTimesPage implements OnInit, OnDestroy {
     // Capture current visual positions before cancelling a transition that is in flight.
     const startCard = animate ? card.getBoundingClientRect() : null;
     const startRows = rows.map((row) => row.getBoundingClientRect());
+    const labels = rows.flatMap((row, rowIndex) =>
+      Array.from(row.querySelectorAll<HTMLElement>('.prayer-details, .prayer-clock'), (element) => ({
+        element,
+        rowIndex,
+        start: element.getBoundingClientRect(),
+      })),
+    );
     const startIllustrations = illustrations.map((image) =>
       (this.movingIllustrations.get(image) ?? image).getBoundingClientRect(),
     );
@@ -323,6 +330,7 @@ export class PrayerTimesPage implements OnInit, OnDestroy {
     // Read the new layout as one batch. Everything after this runs as transforms or opacity.
     const cardOffset = startCard.top - card.getBoundingClientRect().top;
     const endRows = rows.map((row) => row.getBoundingClientRect());
+    const endLabels = labels.map(({ element }) => element.getBoundingClientRect());
     const endIllustrations = illustrations.map((image) => image.getBoundingClientRect());
     const gridBounds = grid?.getBoundingClientRect();
     const toolbarOffset = toolbarTop - toolbar.getBoundingClientRect().top;
@@ -371,6 +379,28 @@ export class PrayerTimesPage implements OnInit, OnDestroy {
         `translate(${x}px, ${y}px) ${scale}`,
         entering ? `translate(${x}px, ${y - cardOffset}px) ${scale}` : translate(cardOffset),
       );
+    }
+
+    // Hold each label at its old inset until the row starts changing size.
+    // Convert viewport measurements to row coordinates so the parent scale isn't counted twice.
+    for (const [i, { element, rowIndex, start }] of labels.entries()) {
+      const end = endLabels[i];
+      const rowStart = startRows[rowIndex];
+      const rowEnd = endRows[rowIndex];
+      if (!start.height || !end.height || !end.width || !rowEnd.width || !rowEnd.height) continue;
+
+      const rowScaleX = rowStart.width / rowEnd.width;
+      const rowScaleY = rowStart.height / rowEnd.height;
+      if (!rowScaleX || !rowScaleY) continue;
+
+      const clock = element.classList.contains('prayer-clock');
+      const edge = clock ? 'right' : 'left';
+      const x = (start[edge] - rowStart.left) / rowScaleX - (end[edge] - rowEnd.left);
+      const y = (start.top - rowStart.top) / rowScaleY - (end.top - rowEnd.top);
+      const scaleX = clock ? start.width / end.width / rowScaleX : 1;
+      const scaleY = start.height / end.height / rowScaleY;
+      const from = `translate(${x}px, ${y}px) scale(${scaleX}, ${scaleY})`;
+      animateRowPart(element, from, entering ? from : 'none');
     }
 
     if (!grid || !gridBounds) return;

@@ -49,8 +49,23 @@ it('keeps one live countdown through fullscreen entry and exit and starts each v
     expect(toggle().getAttribute('aria-label')).toBe(EN_LABELS.enterFullscreen);
 
     const regularCard = card();
+    const row = page().querySelector('.prayer-stop') as HTMLElement;
+    const details = row.querySelector('.prayer-details') as HTMLElement;
+    const animate = () => ({ cancel: () => {} });
+    for (const element of [regularCard, toolbar(), row]) Object.assign(element, { animate });
+    const detailMotion = vi.fn(animate);
+    Object.assign(details, { animate: detailMotion });
+    row.getBoundingClientRect = () => new DOMRect(12, 300, 360, 76);
+    details.getBoundingClientRect = () =>
+      new DOMRect(page().classList.contains('is-fullscreen') ? 90 : 110, 320, 100, 20);
+
     toggle().click();
     fixture.detectChanges();
+    const holdInset = expect.objectContaining({ transform: 'translate(20px, 0px) scale(1, 1)' });
+    expect(detailMotion).toHaveBeenCalledWith(
+      [holdInset, holdInset, { transform: 'none' }],
+      expect.objectContaining({ duration: 520 }),
+    );
     expect(card()).toBe(regularCard);
     expect(page().classList.contains('is-fullscreen')).toBe(true);
     expect(toolbar().inert).toBe(true);

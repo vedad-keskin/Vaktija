@@ -34,6 +34,7 @@
 }
 .prayer-details {
   display: var(--prayer-details-display, block);
+  transform-origin: top left;
 }
 .prayer-name {
   font-size: 0.875rem;
@@ -55,6 +56,7 @@
 }
 .prayer-clock {
   display: grid;
+  transform-origin: top right;
   justify-items: end;
   gap: var(--prayer-clock-gap, 0.15rem);
 }
