@@ -47,7 +47,10 @@ const FULLSCREEN_VIEWPORT =
   ],
   templateUrl: './prayer-times.page.html',
   styleUrl: './prayer-times.page.css',
-  host: { '(document:keydown.escape)': 'exitFullscreen()' },
+  host: {
+    '[class.ios-standalone]': 'iosStandalone',
+    '(document:keydown.escape)': 'exitFullscreen()',
+  },
 })
 export class PrayerTimesPage implements OnInit, OnDestroy {
   private readonly prayerTimeService = inject(PrayerTimeService);
@@ -79,6 +82,8 @@ export class PrayerTimesPage implements OnInit, OnDestroy {
   protected readonly error = signal<string | null>(null);
   protected readonly now = signal(new Date());
   protected readonly fullscreen = signal(this.loadFullscreen());
+  protected readonly iosStandalone =
+    (navigator as Navigator & { standalone?: boolean }).standalone === true;
 
   /** Reactive labels shortcut */
   protected readonly labels = this.langService.labels;

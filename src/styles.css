@@ -91,6 +91,11 @@ body {
   padding: env(safe-area-inset-top) env(safe-area-inset-right) 0 env(safe-area-inset-left);
 }
 
+/* The fixed timetable supplies the viewport height in iOS standalone mode. */
+html:has(app-prayer-times.ios-standalone .is-fullscreen) :is(body, app-root) {
+  min-height: 0;
+}
+
 /* Smooth scrolling */
 html {
   scroll-behavior: smooth;

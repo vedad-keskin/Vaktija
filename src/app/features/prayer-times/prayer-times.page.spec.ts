@@ -48,6 +48,7 @@ it('keeps one live countdown and restores the saved fullscreen choice on mobile'
     const page = () => fixture.nativeElement.querySelector('.prayer-times-page');
     const card = () => page().querySelector('.countdown-section');
     const toolbar = () => page().querySelector('.page-toolbar');
+    expect(fixture.nativeElement.classList.contains('ios-standalone')).toBe(false);
     expect(page().classList.contains('is-fullscreen')).toBe(false);
     expect(page().querySelector('.date-hijri').textContent).toBe(snapshot.hijriDate);
     expect(toggle().getAttribute('aria-label')).toBe(EN_LABELS.enterFullscreen);
@@ -107,12 +108,15 @@ it('keeps one live countdown and restores the saved fullscreen choice on mobile'
 
     toggle().click();
     fixture.destroy();
+    Object.defineProperty(navigator, 'standalone', { configurable: true, value: true });
     fixture = TestBed.createComponent(PrayerTimesPage);
     await fixture.whenStable();
+    expect(fixture.nativeElement.classList.contains('ios-standalone')).toBe(true);
     expect(page().classList.contains('is-fullscreen')).toBe(true);
     expect(toggle().getAttribute('aria-label')).toBe(EN_LABELS.exitFullscreen);
 
     fixture.destroy();
+    Reflect.deleteProperty(navigator, 'standalone');
     mobileViewport = false;
     fixture = TestBed.createComponent(PrayerTimesPage);
     await fixture.whenStable();
@@ -120,6 +124,7 @@ it('keeps one live countdown and restores the saved fullscreen choice on mobile'
     expect(localStorage.getItem('vaktija_fullscreen')).toBe('true');
   } finally {
     fixture.destroy();
+    Reflect.deleteProperty(navigator, 'standalone');
     vi.unstubAllGlobals();
     localStorage.clear();
   }

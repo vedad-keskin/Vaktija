@@ -448,6 +448,9 @@
   flex-direction: column;
   padding-block: var(--fullscreen-top) calc(0.75rem + env(safe-area-inset-bottom));
 }
+:host(.ios-standalone) .is-fullscreen .page-content {
+  padding-block-end: max(0.75rem, env(safe-area-inset-bottom));
+}
 .is-fullscreen[data-pin-countdown] .countdown-wrap {
   position: sticky;
   top: var(--fullscreen-top);
