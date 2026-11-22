@@ -459,7 +459,7 @@ void main() {
     }
   });
 
-  testWidgets('cold start hands off with the correct overnight countdown', (
+  testWidgets('splash fades into the restored fullscreen overnight countdown', (
     tester,
   ) async {
     final launch = Completer<void>();
@@ -543,16 +543,25 @@ void main() {
     await tester.pump();
     await tester.pump();
     await tester.pump(const Duration(milliseconds: 1600));
-    final rest = tester.getCenter(mark);
+    final rest = tester.getRect(mark);
     expect(
       tester.widgetList<Opacity>(artworkOpacity).map((w) => w.opacity),
       everyElement(1.0),
     );
 
     await tester.pump(const Duration(milliseconds: 150));
-    final inFlight = tester.getCenter(mark);
-    expect(inFlight.dx, lessThan(rest.dx));
-    expect(inFlight.dy, lessThan(rest.dy));
+    expect(tester.getRect(mark), rest);
+    final markOpacity = find.ancestor(of: mark, matching: find.byType(Opacity));
+    expect(
+      tester.widgetList<Opacity>(markOpacity).map((w) => w.opacity),
+      contains(inExclusiveRange(0.0, 1.0)),
+    );
+    expect(
+      tester
+          .widget<PrayerTimetableView>(find.byType(PrayerTimetableView))
+          .fullscreen,
+      isTrue,
+    );
     expect(bars, isEmpty);
     await tester.pump(const Duration(milliseconds: 151));
     await tester.pump();

@@ -4,6 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import '../features/duas/duas_page.dart';
 import '../features/prayer_times/prayer_page.dart';
 import '../features/prayer_times/prayer_repository.dart';
 import '../features/prayer_times/timetable.dart';
@@ -53,6 +54,8 @@ class _AppShellState extends State<AppShell>
   bool _fullscreen = false;
   bool _systemFullscreen = false;
   final _cityPopup = OverlayPortalController();
+  final _duasMenuAnchor = LayerLink();
+  bool _duasVisited = false;
   var _overlay = _Overlay.none;
   var _section = MobileSection.prayerTimes;
 
@@ -62,6 +65,9 @@ class _AppShellState extends State<AppShell>
   void initState() {
     super.initState();
     final preferences = widget.repository.preferences;
+    // Lay out the saved view underneath the splash before it fades away.
+    _fullscreen = preferences.getBool(_fullscreenPreference) == true;
+    if (_fullscreen) _fullscreenTransition.value = 1;
     _city = _catalog.city(preferences.getInt('city'));
     _method = switch (preferences.getString('method')) {
       'angle' => PrayerMethod.angle,
@@ -110,10 +116,7 @@ class _AppShellState extends State<AppShell>
 
   void _finishStartup() {
     if (!widget.startupComplete) return;
-    if (widget.repository.preferences.getBool(_fullscreenPreference) == true) {
-      _fullscreen = true;
-      _fullscreenTransition.value = 1;
-    }
+    _syncSystemBars(_fullscreenTransition.status);
     if (_method == null) {
       WidgetsBinding.instance.addPostFrameCallback((_) => _chooseMethod());
     }
@@ -151,10 +154,17 @@ class _AppShellState extends State<AppShell>
     _setOverlay(_overlay == overlay ? _Overlay.none : overlay);
   });
 
-  void _selectSection(MobileSection section) => setState(() {
-    _setOverlay(_Overlay.none);
-    _section = section;
-  });
+  void _selectSection(MobileSection section) {
+    if (_section == MobileSection.duas && section != _section) {
+      FocusScope.of(context).unfocus();
+      ScaffoldMessenger.of(context).removeCurrentSnackBar();
+    }
+    setState(() {
+      _setOverlay(_Overlay.none);
+      _section = section;
+      if (section == MobileSection.duas) _duasVisited = true;
+    });
+  }
 
   void _closeOverlay() => setState(() => _setOverlay(_Overlay.none));
 
@@ -178,7 +188,7 @@ class _AppShellState extends State<AppShell>
   }
 
   void _syncSystemBars(AnimationStatus status) {
-    if (status.isAnimating) return;
+    if (!widget.startupComplete || status.isAnimating) return;
     final enabled = status == AnimationStatus.completed;
     if (_systemFullscreen == enabled) return;
     _systemFullscreen = enabled;
@@ -229,13 +239,65 @@ class _AppShellState extends State<AppShell>
     final safeInsets = MediaQuery.viewPaddingOf(context);
     final padding = MediaQuery.paddingOf(context);
 
+    final readingDuas = _section == MobileSection.duas;
+    final mobileHeader = MobileHeader(
+      labels: labels,
+      city: _city,
+      logoKey: widget.headerLogo,
+      showLogo: widget.startupComplete,
+      menuOpen: _overlay == _Overlay.menu,
+      citiesOpen: _overlay == _Overlay.cities,
+      cityPopup: _cityPopup,
+      cityInsets: safeInsets.copyWith(
+        bottom: keyboardInset > safeInsets.bottom
+            ? keyboardInset
+            : safeInsets.bottom,
+      ),
+      cityChoices: (height) => CityChoices(
+        labels: labels,
+        city: _city,
+        cities: _catalog.cities,
+        maxHeight: height,
+        onCity: (city) {
+          setState(() {
+            _city = city;
+            _setOverlay(_Overlay.none);
+          });
+          unawaited(_persist(preferences.setInt('city', city.id)));
+        },
+      ),
+      onHome: () => _selectSection(MobileSection.prayerTimes),
+      onMenu: () => _toggleOverlay(_Overlay.menu),
+      onCities: () => _toggleOverlay(_Overlay.cities),
+      onTheme: (dark) {
+        widget.onThemeChanged(dark);
+        unawaited(
+          _persist(preferences.setString('theme', dark ? 'dark' : 'light')),
+        );
+      },
+      onLanguage: (bosnian) {
+        setState(() => _bosnian = bosnian);
+        unawaited(
+          _persist(preferences.setString('language', bosnian ? 'bs' : 'en')),
+        );
+      },
+    );
+    final menu = VaktijaMenu(
+      open: _overlay == _Overlay.menu,
+      labels: labels,
+      section: _section,
+      method: _method,
+      onSection: _selectSection,
+      onMethod: _selectMethod,
+    );
+
     return PopScope<Object?>(
       canPop:
-          !_fullscreen &&
+          (!widget.startupComplete || !_fullscreen) &&
           _section == MobileSection.prayerTimes &&
           _overlay == _Overlay.none,
       onPopInvokedWithResult: (didPop, _) {
-        if (didPop) return;
+        if (didPop || !widget.startupComplete) return;
         if (_fullscreen) {
           _setFullscreen(false);
         } else if (_overlay != _Overlay.none) {
@@ -257,7 +319,7 @@ class _AppShellState extends State<AppShell>
                 ),
         child: Scaffold(
           // The city popup accounts for the keyboard without resizing the header.
-          resizeToAvoidBottomInset: false,
+          resizeToAvoidBottomInset: readingDuas,
           backgroundColor: const Color(0xff041e1b),
           body: TweenAnimationBuilder<EdgeInsets>(
             tween: EdgeInsetsTween(
@@ -285,87 +347,35 @@ class _AppShellState extends State<AppShell>
               removeRight: true,
               child: Column(
                 children: [
-                  AnimatedBuilder(
-                    animation: _fullscreenTransition,
-                    builder: (context, child) {
-                      final progress = _fullscreenMotion.value;
-                      if (progress == 1) return const SizedBox.shrink();
-                      final changing = _fullscreen || progress > 0;
-                      return ClipRect(
-                        child: Align(
-                          alignment: Alignment.topCenter,
-                          heightFactor: 1 - progress,
-                          child: Opacity(
-                            opacity: 1 - progress,
-                            child: ExcludeFocus(
-                              excluding: changing,
-                              child: ExcludeSemantics(
+                  if (!readingDuas)
+                    AnimatedBuilder(
+                      animation: _fullscreenTransition,
+                      builder: (context, child) {
+                        final progress = _fullscreenMotion.value;
+                        if (progress == 1) return const SizedBox.shrink();
+                        final changing = _fullscreen || progress > 0;
+                        return ClipRect(
+                          child: Align(
+                            alignment: Alignment.topCenter,
+                            heightFactor: 1 - progress,
+                            child: Opacity(
+                              opacity: 1 - progress,
+                              child: ExcludeFocus(
                                 excluding: changing,
-                                child: IgnorePointer(
-                                  ignoring: changing,
-                                  child: child,
+                                child: ExcludeSemantics(
+                                  excluding: changing,
+                                  child: IgnorePointer(
+                                    ignoring: changing,
+                                    child: child,
+                                  ),
                                 ),
                               ),
                             ),
                           ),
-                        ),
-                      );
-                    },
-                    child: MobileHeader(
-                      labels: labels,
-                      city: _city,
-                      logoKey: widget.headerLogo,
-                      showLogo: widget.startupComplete,
-                      menuOpen: _overlay == _Overlay.menu,
-                      citiesOpen: _overlay == _Overlay.cities,
-                      cityPopup: _cityPopup,
-                      cityInsets: safeInsets.copyWith(
-                        bottom: keyboardInset > safeInsets.bottom
-                            ? keyboardInset
-                            : safeInsets.bottom,
-                      ),
-                      cityChoices: (height) => CityChoices(
-                        labels: labels,
-                        city: _city,
-                        cities: _catalog.cities,
-                        maxHeight: height,
-                        onCity: (city) {
-                          setState(() {
-                            _city = city;
-                            _setOverlay(_Overlay.none);
-                          });
-                          unawaited(
-                            _persist(preferences.setInt('city', city.id)),
-                          );
-                        },
-                      ),
-                      onHome: () => _selectSection(MobileSection.prayerTimes),
-                      onMenu: () => _toggleOverlay(_Overlay.menu),
-                      onCities: () => _toggleOverlay(_Overlay.cities),
-                      onTheme: (dark) {
-                        widget.onThemeChanged(dark);
-                        unawaited(
-                          _persist(
-                            preferences.setString(
-                              'theme',
-                              dark ? 'dark' : 'light',
-                            ),
-                          ),
                         );
                       },
-                      onLanguage: (bosnian) {
-                        setState(() => _bosnian = bosnian);
-                        unawaited(
-                          _persist(
-                            preferences.setString(
-                              'language',
-                              bosnian ? 'bs' : 'en',
-                            ),
-                          ),
-                        );
-                      },
+                      child: mobileHeader,
                     ),
-                  ),
                   Expanded(
                     child: Stack(
                       children: [
@@ -385,14 +395,32 @@ class _AppShellState extends State<AppShell>
                               onExitFullscreen: () => _setFullscreen(false),
                             ),
                             for (final section in MobileSection.values.skip(1))
-                              Center(
-                                child: Text(
-                                  labels[section.label],
-                                  style: Theme.of(
-                                    context,
-                                  ).textTheme.headlineLarge,
+                              if (section == MobileSection.duas)
+                                if (_duasVisited)
+                                  DuasPage(
+                                    header: readingDuas
+                                        ? CompositedTransformTarget(
+                                            link: _duasMenuAnchor,
+                                            child: mobileHeader,
+                                          )
+                                        : null,
+                                    language: _bosnian ? 'bs' : 'en',
+                                    preferences: preferences,
+                                    onBack: () => _selectSection(
+                                      MobileSection.prayerTimes,
+                                    ),
+                                  )
+                                else
+                                  const SizedBox.shrink()
+                              else
+                                Center(
+                                  child: Text(
+                                    labels[section.label],
+                                    style: Theme.of(
+                                      context,
+                                    ).textTheme.headlineLarge,
+                                  ),
                                 ),
-                              ),
                           ],
                         ),
                         if (_overlay != _Overlay.none)
@@ -407,14 +435,14 @@ class _AppShellState extends State<AppShell>
                           left: 0,
                           top: 0,
                           right: 0,
-                          child: VaktijaMenu(
-                            open: _overlay == _Overlay.menu,
-                            labels: labels,
-                            section: _section,
-                            method: _method,
-                            onSection: _selectSection,
-                            onMethod: _selectMethod,
-                          ),
+                          child: readingDuas
+                              ? CompositedTransformFollower(
+                                  link: _duasMenuAnchor,
+                                  targetAnchor: Alignment.bottomLeft,
+                                  showWhenUnlinked: false,
+                                  child: menu,
+                                )
+                              : menu,
                         ),
                       ],
                     ),

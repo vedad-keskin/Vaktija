@@ -6,6 +6,7 @@ import 'package:vaktija/app/app_shell.dart';
 import 'package:vaktija/app/method_help_popover.dart';
 import 'package:vaktija/app/mobile_header.dart';
 import 'package:vaktija/app/vaktija_palette.dart';
+import 'package:vaktija/features/duas/dua_catalog.dart';
 import 'package:vaktija/features/prayer_times/prayer_page.dart';
 import 'package:vaktija/features/prayer_times/prayer_repository.dart';
 import 'package:vaktija/features/prayer_times/prayer_timetable_view.dart';
@@ -453,6 +454,12 @@ void main() {
       expect(part, greaterThan(0));
       expect(part, lessThan(tester.getSize(find.byType(VaktijaMenu)).height));
       await tester.tap(find.text(action));
+      if (action == 'DOVE') {
+        await tester.runAsync(() async {
+          await tester.pump();
+          await rootBundle.loadString('$duaAssets/catalog.json');
+        });
+      }
       await tester.pumpAndSettle();
       expect(find.text(page), findsOneWidget);
       await tester.binding.handlePopRoute();
