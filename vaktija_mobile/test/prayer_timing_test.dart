@@ -319,50 +319,69 @@ void main() {
     await tester.pumpWidget(const SizedBox.shrink());
   });
 
-  testWidgets('portrait splash loads full-screen day and night artwork', (
+  testWidgets('both Home themes share the same night splash and timing', (
     tester,
   ) async {
     const size = Size(390, 844);
     await tester.binding.setSurfaceSize(size);
     addTearDown(() => tester.binding.setSurfaceSize(null));
+    const provider = AssetImage('assets/branding/splash-night-horizon.webp');
 
     for (final brightness in Brightness.values) {
+      final launch = Completer<void>();
+      var finished = false;
       await tester.pumpWidget(
         MaterialApp(
           key: ValueKey(brightness),
           theme: ThemeData(brightness: brightness),
           home: SplashView(
             headerLogo: GlobalKey(),
-            leaving: false,
-            onFinished: () {},
+            launchReady: launch.future,
+            onFinished: () => finished = true,
           ),
         ),
       );
 
-      final provider = AssetImage(
-        'assets/branding/splash-mosque-${brightness.name}.webp',
-      );
       final artwork = find.image(provider);
-      expect(tester.widget<Image>(artwork).fit, BoxFit.cover);
+      final mark = find.byWidgetPredicate(
+        (widget) => widget is Image && widget.semanticLabel == 'Vaktija',
+      );
+      final visibleArt = find.ancestor(
+        of: artwork,
+        matching: find.byType(Opacity),
+      );
       final context = tester.element(artwork);
       await tester.runAsync(() => precacheImage(provider, context));
-      await tester.pump();
-      await tester.pump(const Duration(milliseconds: 1600));
-      expect(tester.getRect(artwork), Offset.zero & size);
+      await tester.pump(const Duration(seconds: 4));
+      expect(tester.getCenter(mark), size.center(Offset.zero));
+      expect(tester.getSize(mark), const Size(136, 111));
+      expect(tester.widget<Image>(mark).color, const Color(0xfff1f2e9));
+      expect(
+        tester.widgetList<Opacity>(visibleArt).map((widget) => widget.opacity),
+        contains(0.0),
+      );
+      expect(finished, isFalse);
 
-      final photo = tester
-          .widget<RawImage>(
-            find.descendant(of: artwork, matching: find.byType(RawImage)),
-          )
-          .image!;
-      expect(photo.width / photo.height, closeTo(size.aspectRatio, .01));
+      launch.complete();
+      await tester.pump();
+      await tester.pump();
+      await tester.pump(const Duration(milliseconds: 1599));
+      final artRect = tester.getRect(artwork);
+      expect(artRect.height, closeTo(size.width, .01));
+      expect(artRect.bottom, closeTo(size.height, .01));
+      expect(tester.getCenter(mark).dy, lessThan(size.height / 2));
+      expect(finished, isFalse);
+      await tester.pump(const Duration(milliseconds: 300));
+      expect(finished, isFalse);
+      await tester.pump(const Duration(milliseconds: 2));
+      expect(finished, isTrue);
     }
   });
 
   testWidgets('cold start hands off with the correct overnight countdown', (
     tester,
   ) async {
-    final firstFrame = Completer<void>();
+    final launch = Completer<void>();
     final yesterday = Completer<String>();
     final tomorrow = Completer<String>();
     final repository = (await tester.runAsync(() async {
@@ -386,7 +405,7 @@ void main() {
     await tester.pumpWidget(
       VaktijaApp(
         openRepository: () async => repository,
-        firstFrame: firstFrame.future,
+        launchReady: launch.future,
       ),
     );
     final splash = find.byType(SplashView);
@@ -430,6 +449,9 @@ void main() {
 
     yesterday.complete(_response('28-03-2026', _march28));
     await tester.pump();
+    launch.complete();
+    await tester.pump();
+    await tester.pump();
     await tester.pump(const Duration(milliseconds: 1600));
     final rest = tester.getCenter(mark);
     expect(
@@ -437,20 +459,11 @@ void main() {
       everyElement(1.0),
     );
 
-    firstFrame.complete();
-    await tester.pump();
-    await tester.pump();
-    expect(tester.widget<SplashView>(splash).leaving, isTrue);
-    Offset inFlight = rest;
-    for (var frame = 0; frame < 12; frame++) {
-      await tester.pump();
-      await tester.pump(const Duration(milliseconds: 20));
-      inFlight = tester.getCenter(mark);
-      if ((inFlight - rest).distance > 1) break;
-    }
+    await tester.pump(const Duration(milliseconds: 150));
+    final inFlight = tester.getCenter(mark);
     expect(inFlight.dx, lessThan(rest.dx));
     expect(inFlight.dy, lessThan(rest.dy));
-    await tester.pump(const Duration(milliseconds: 400));
+    await tester.pump(const Duration(milliseconds: 151));
     await tester.pump();
 
     expect(splash, findsNothing);
@@ -474,6 +487,7 @@ void main() {
       SharedPreferences.setMockInitialValues({
         'method': 'angle',
         'language': 'en',
+        'theme': 'light',
       });
       return PrayerRepository(
         await PrayerCatalog.load(),
@@ -490,15 +504,11 @@ void main() {
 
     await tester.pumpWidget(VaktijaApp(openRepository: () async => repository));
     await tester.pump();
-    await tester.pump(const Duration(milliseconds: 799));
+    await tester.pump(const Duration(milliseconds: 1899));
     expect(find.byType(SplashView), findsOneWidget);
     expect(requests, hasLength(3));
 
-    await tester.pump(const Duration(milliseconds: 1));
-    await tester.pump();
-    await tester.pump(const Duration(milliseconds: 820));
-    await tester.pump();
-    await tester.pump(const Duration(milliseconds: 320));
+    await tester.pump(const Duration(milliseconds: 2));
     await tester.pump();
     expect(find.byType(SplashView), findsNothing);
     expect(find.byType(PrayerTimetableView), findsNothing);
@@ -512,7 +522,7 @@ void main() {
   });
 
   testWidgets(
-    'first launch with reduced motion goes straight to method choice',
+    'first launch with reduced motion reaches method choice on schedule',
     (tester) async {
       tester.platformDispatcher.accessibilityFeaturesTestValue =
           const FakeAccessibilityFeatures(disableAnimations: true);
@@ -533,9 +543,9 @@ void main() {
       );
       expect(find.byType(SplashView), findsOneWidget);
       expect(find.byType(MethodChoice), findsNothing);
-      for (var frame = 0; frame < 5; frame++) {
-        await tester.pump();
-      }
+      await tester.pump();
+      await tester.pump(const Duration(milliseconds: 1901));
+      await tester.pump();
       expect(find.byType(SplashView), findsNothing);
       expect(find.byType(MethodChoice), findsOneWidget);
       await tester.pumpWidget(const SizedBox.shrink());

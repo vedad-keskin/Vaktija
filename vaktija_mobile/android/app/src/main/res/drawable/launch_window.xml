@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@color/launch_surface" />
+    <item android:width="136dp" android:height="111dp" android:gravity="center">
+        <bitmap
+            android:src="@drawable/launch_logo"
+            android:gravity="fill"
+            android:filter="true"
+            android:tint="#F1F2E9" />
+    </item>
+</layer-list>

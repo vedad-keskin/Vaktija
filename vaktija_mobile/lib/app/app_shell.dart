@@ -19,14 +19,12 @@ class AppShell extends StatefulWidget {
     required this.onThemeChanged,
     this.startupComplete = true,
     this.headerLogo,
-    this.onStartupReady,
   });
 
   final PrayerRepository repository;
   final ValueChanged<bool> onThemeChanged;
   final bool startupComplete;
   final GlobalKey? headerLogo;
-  final VoidCallback? onStartupReady;
 
   @override
   State<AppShell> createState() => _AppShellState();
@@ -257,7 +255,6 @@ class _AppShellState extends State<AppShell> {
                                 method: _method,
                                 labels: labels,
                                 collapsed: _collapsed,
-                                onStartupReady: widget.onStartupReady,
                                 onToggleCountdown: () {
                                   setState(() => _collapsed = !_collapsed);
                                   unawaited(
