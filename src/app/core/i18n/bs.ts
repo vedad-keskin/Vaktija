@@ -134,22 +134,30 @@ export interface AppLabels {
   qiblaLocationLabel: string;
   qiblaUseCity: string;
   qiblaCompassIdle: string;
+  qiblaStartHint: string;
   qiblaCompassWaiting: string;
+  qiblaWaitingHint: string;
   qiblaHoldFlat: string;
+  qiblaHoldFlatHint: string;
+  qiblaTurnLeft: string;
+  qiblaTurnRight: string;
   qiblaUncalibrated: string;
-  qiblaNorthUnavailable: string;
   qiblaDirectionUnavailable: string;
+  qiblaDirectionUnavailableHint: string;
   qiblaAlignedLabel: string;
+  qiblaAlignedHint: string;
   qiblaRecalibrate: string;
   qiblaGpsPending: string;
   qiblaGpsError: string;
   qiblaGpsDenied: string;
   qiblaEnableCompass: string;
-  qiblaCompassListening: string;
   qiblaUnsupported: string;
+  qiblaUseBearing: string;
+  qiblaChooseLocation: string;
   qiblaPermissionDenied: string;
+  qiblaPermissionHint: string;
+  qiblaNoReading: string;
   qiblaNoEventsHint: string;
-  qiblaCalibrationHint: string;
   qiblaBearingLabel: string;
   qiblaDistanceLabel: string;
   qiblaKaabaCaption: string;
@@ -322,31 +330,36 @@ export const BS_LABELS: AppLabels = {
   qiblaLocationGps: 'Moja lokacija',
   qiblaLocationLabel: 'Lokacija za proračun',
   qiblaUseCity: 'Koristi odabrani grad',
-  qiblaCompassIdle: 'Pregled smjera · kompas nije uključen',
-  qiblaCompassWaiting: 'Čekam signal kompasa…',
-  qiblaHoldFlat: 'Držite telefon ravnije, s ekranom prema gore.',
-  qiblaUncalibrated: 'Kompas nije kalibriran. Odmaknite se od magneta i lagano nacrtajte osmicu.',
-  qiblaNorthUnavailable:
-    'Korekcija sjevera nije dostupna. Kompas trenutno ne može potvrditi smjer.',
-  qiblaDirectionUnavailable: 'Na ovoj lokaciji nije moguće odrediti jedinstven smjer kible.',
+  qiblaCompassIdle: 'Pokrenite i kalibrišite kompas',
+  qiblaStartHint:
+    'Držite telefon gotovo vodoravno, s ekranom prema gore, i okrenite se prema oznaci Kabe.',
+  qiblaCompassWaiting: 'Čekamo signal kompasa',
+  qiblaWaitingHint: 'Držite telefon mirno, gotovo vodoravno, s ekranom prema gore.',
+  qiblaHoldFlat: 'Neispravna pozicija',
+  qiblaHoldFlatHint: 'Držite telefon gotovo vodoravno, s ekranom prema gore.',
+  qiblaTurnLeft: 'Okrenite se ulijevo',
+  qiblaTurnRight: 'Okrenite se udesno',
+  qiblaUncalibrated: 'Odmaknite se od metala i magneta pa telefonom napravite osmicu.',
+  qiblaDirectionUnavailable: 'Smjer kible nije dostupan',
+  qiblaDirectionUnavailableHint: 'Za ovu lokaciju nije moguće odrediti jedinstven smjer kible.',
   qiblaAlignedLabel: 'Okrenuti ste prema kibli',
-  qiblaRecalibrate: 'Kalibriši ponovo',
+  qiblaAlignedHint: 'Za namaz slijedite smjer koji pokazuje vrh telefona.',
+  qiblaRecalibrate: 'Kalibrišite ponovo',
   qiblaGpsPending: 'Određujem lokaciju…',
   qiblaGpsError: 'Nije moguće dobiti lokaciju. Provjerite dozvole i GPS.',
   qiblaGpsDenied: 'Lokacija je odbijena. Uključite je u postavkama preglednika.',
   qiblaEnableCompass: 'Pokreni kompas',
-  qiblaCompassListening: 'Kompas aktivan',
-  qiblaUnsupported:
-    'Ovaj uređaj ili preglednik ne podržava orijentaciju (kompas). Pokušajte na mobilnom telefonu u Chromeu ili Safariju.',
-  qiblaPermissionDenied: 'Pristup orijentaciji je odbijen. Dozvolite senzore u postavkama.',
-  qiblaNoEventsHint:
-    'Signal kompasa nije dostupan. Držite telefon ravno i provjerite dozvole za senzore.',
-  qiblaCalibrationHint: 'Držite telefon podalje od metala i magneta.',
-  qiblaBearingLabel: 'Azimut · pravi sjever',
+  qiblaUnsupported: 'Kompas nije dostupan',
+  qiblaUseBearing: 'Smjer odredite pomoću prikazanog ugla od pravog sjevera.',
+  qiblaChooseLocation: 'Odaberite grad ili koristite svoju lokaciju za izračun smjera.',
+  qiblaPermissionDenied: 'Pristup kompasu je odbijen',
+  qiblaPermissionHint: 'Dozvolite pristup senzorima pokreta u postavkama preglednika.',
+  qiblaNoReading: 'Nema signala kompasa',
+  qiblaNoEventsHint: 'Držite telefon gotovo vodoravno ili dodirnite kalibrišite ponovo.',
+  qiblaBearingLabel: 'Pravi sjever',
   qiblaDistanceLabel: 'Udaljenost',
   qiblaKaabaCaption: 'Kaaba',
-  qiblaFaceKaabaHint:
-    'Držite telefon ravno, s ekranom prema gore. Okrećite se dok se oznaka Kabe ne poravna s vrhom ekrana.',
+  qiblaFaceKaabaHint: 'Pratite oznaku Kabe dok se ne poravna s vrhom kompasa.',
 
   qiblaCalibrateTitle: 'Kalibrišite kompas',
   qiblaCalibrateBody:
@@ -362,11 +375,11 @@ export const BS_LABELS: AppLabels = {
     },
     {
       q: 'Šta ako je kompas nestabilan ili se oznaka ne poravnava?',
-      a: 'Odmaknite se od metala i magneta pa držite telefon ravno, s ekranom prema gore. Ako je očitanje i dalje nestabilno, dodirnite „Kalibriši ponovo“ i pratite upute.',
+      a: 'Odmaknite se od metala i magneta pa držite telefon ravno, s ekranom prema gore. Ako je očitanje i dalje nestabilno, dodirnite „Kalibrišite ponovo“ i pratite upute.',
     },
     {
-      q: 'Šta znači zelena kvačica?',
-      a: 'Kvačica se pojavi kada se smjer telefona razlikuje od izračunatog smjera kible za svega nekoliko stepeni. Tačnost očitanja zavisi od senzora telefona i okruženja.',
+      q: 'Šta znači zelena oznaka?',
+      a: 'Oznaka postane zelena kada se smjer telefona razlikuje od izračunatog smjera kible za svega nekoliko stepeni. Tačnost očitanja zavisi od senzora telefona i okruženja.',
     },
     {
       q: 'Šta ako klanjam sa malim odstupanjem od smjera kible?',

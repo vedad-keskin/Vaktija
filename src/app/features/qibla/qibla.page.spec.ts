@@ -60,12 +60,16 @@ it('uses the navbar city, handles GPS denial and cancellation, and starts with a
     expect(element.querySelectorAll('app-city-selector')).toHaveLength(1);
     expect(element.querySelector('app-header app-city-selector')).toBeTruthy();
     expect(text('#qibla-location-title')).toContain('Sarajevo');
-    expect(text('.compass-status')).toContain(BS_LABELS.qiblaCompassIdle);
+    expect(text('.guidance-announcement')).toContain(BS_LABELS.qiblaCompassIdle);
+    expect(text('.guidance-copy .is-current .guidance-instruction')).toBe(
+      BS_LABELS.qiblaStartHint,
+    );
+    expect(text('.qibla-stats dt')).toBe(BS_LABELS.qiblaBearingLabel);
     expect(element.querySelector<HTMLElement>('.compass-rotor')!.style.transform).toBe(
       'rotate(0deg)',
     );
     expect(element.querySelector('.compass-stack.aligned')).toBeNull();
-    expect(element.querySelector('.alignment-check')).toBeNull();
+    expect(element.querySelector('.guidance-icon .is-current.is-aligned')).toBeNull();
     expect(text('#qibla-faq-title')).toBe('Pomoć za kiblu');
     expect(element.querySelectorAll('.qibla-faq details')).toHaveLength(4);
     expect(text('.qibla-faq')).not.toContain(';');
@@ -112,11 +116,11 @@ it('uses the navbar city, handles GPS denial and cancellation, and starts with a
     dialog.dispatchEvent(new Event('cancel', { cancelable: true }));
     await fixture.whenStable();
     expect(dialog.open).toBe(false);
-    expect(text('.compass-status')).toContain(EN_LABELS.qiblaCompassIdle);
+    expect(text('.guidance-announcement')).toContain(EN_LABELS.qiblaCompassIdle);
     await click('.qibla-compass-section .qibla-start');
     await click('.calibration-skip');
     expect(dialog.open).toBe(false);
-    expect(text('.compass-status')).toContain(EN_LABELS.qiblaCompassWaiting);
+    expect(text('.guidance-announcement')).toContain(EN_LABELS.qiblaCompassWaiting);
     expect(element.querySelector('.compass-stack.aligned')).toBeNull();
     expect(element.querySelector<HTMLElement>('.compass-rotor')!.style.transform).toBe(
       'rotate(0deg)',
@@ -147,17 +151,19 @@ it('uses the navbar city, handles GPS denial and cancellation, and starts with a
     await new Promise((resolve) => setTimeout(resolve, 40));
     await fixture.whenStable();
     expect(element.querySelector('.compass-stack.aligned')).toBeTruthy();
-    expect(element.querySelector('.compass-status.is-aligned .alignment-check')).toBeTruthy();
-    expect(text('.compass-status')).toContain(EN_LABELS.qiblaAlignedLabel);
+    expect(element.querySelector('.guidance-icon .is-current.is-aligned')).toBeTruthy();
+    expect(text('.guidance-announcement')).toContain(EN_LABELS.qiblaAlignedLabel);
+    expect(text('.guidance-announcement')).toContain(EN_LABELS.qiblaAlignedHint);
     const permission = DeviceOrientationEvent as unknown as {
       requestPermission: ReturnType<typeof vi.fn>;
     };
     permission.requestPermission.mockResolvedValue('denied');
     await click('.qibla-compass-section .qibla-start');
     await click('.calibration-done');
-    expect(text('.compass-status')).toContain(EN_LABELS.qiblaPermissionDenied);
+    expect(text('.guidance-announcement')).toContain(EN_LABELS.qiblaPermissionDenied);
+    expect(text('.guidance-announcement')).toContain(EN_LABELS.qiblaPermissionHint);
     expect(element.querySelector('.compass-stack.aligned')).toBeNull();
-    expect(element.querySelector('.alignment-check')).toBeNull();
+    expect(element.querySelector('.guidance-icon .is-current.is-aligned')).toBeNull();
   } finally {
     fixture.destroy();
     vi.restoreAllMocks();
@@ -233,8 +239,22 @@ it('requires sustained fresh alignment and cancels stale, tilted, rotated, hidde
     sensor.quaternion = [q.x, q.y, q.z, q.w];
     sensor.dispatchEvent(new Event('reading'));
   };
+  const guidanceState = () => {
+    fixture.detectChanges();
+    return (fixture.nativeElement as HTMLElement)
+      .querySelector('.compass-guidance')!
+      .getAttribute('data-state');
+  };
   try {
     await page.enableCompass();
+    expect(guidanceState()).toBe('waiting');
+    await hold(magneticBearing + 35, 40);
+    expect(guidanceState()).toBe('left');
+    await hold(magneticBearing - 35, 1000);
+    expect(guidanceState()).toBe('right');
+    await hold(magneticBearing, 1200);
+    expect(guidanceState()).toBe('aligned');
+    window.dispatchEvent(new Event('orientationchange'));
     await hold(magneticBearing, 280);
     expect(page.qiblaAligned()).toBe(false);
     await hold(magneticBearing, 60);
@@ -250,11 +270,13 @@ it('requires sustained fresh alignment and cancels stale, tilted, rotated, hidde
     send(magneticBearing, 60);
     expect(page.qiblaAligned()).toBe(false);
     expect(page.compassQualityHint()).toBe('tilt');
+    expect(guidanceState()).toBe('tilt');
     await hold(magneticBearing, 340);
     expect(page.qiblaAligned()).toBe(true);
     send(magneticBearing, 0, -1);
     expect(page.qiblaAligned()).toBe(false);
     expect(page.compassQualityHint()).toBe('accuracy');
+    expect(guidanceState()).toBe('accuracy');
     await hold(magneticBearing, 340);
     window.dispatchEvent(new Event('orientationchange'));
     expect(page.qiblaAligned()).toBe(false);
@@ -265,6 +287,7 @@ it('requires sustained fresh alignment and cancels stale, tilted, rotated, hidde
     expect(page.qiblaAligned()).toBe(false);
     expect(page.smoothedHeading()).toBeNull();
     expect(sensors).toHaveLength(1);
+    expect(guidanceState()).toBe('noSignal');
     sensorReading(sensors[0]);
     await vi.advanceTimersByTimeAsync(20);
     expect(page.smoothedHeading()).toBeCloseTo(page.bearingDeg(), 8);
@@ -288,6 +311,7 @@ it('requires sustained fresh alignment and cancels stale, tilted, rotated, hidde
     expect(page.smoothedHeading()).toBeNull(); // start() alone does not imply a live compass.
     await vi.advanceTimersByTimeAsync(2000); // Silent quaternion API falls back to events.
     expect(sensors[1].stop).toHaveBeenCalledOnce();
+    expect(guidanceState()).toBe('unavailable');
     sensorReading(sensors[1]);
     expect(page.smoothedHeading()).toBeNull();
     await hold(magneticBearing, 340);

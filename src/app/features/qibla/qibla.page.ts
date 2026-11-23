@@ -16,6 +16,7 @@ import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { HeaderComponent } from '../prayer-times/components/header/header.component';
 import { CitySelectorComponent } from '../prayer-times/components/city-selector/city-selector.component';
 import { VaktijaDialog } from '../../shared/vaktija-dialog/vaktija-dialog';
+import type { AppLabels } from '../../core/i18n';
 import { LocationService } from '../../core/services/location.service';
 import { LanguageService } from '../../core/services/language.service';
 import { Location } from '../../core/models/location.model';
@@ -45,6 +46,23 @@ const ALIGN_EXIT_DEG = 7;
 const ALIGN_DWELL_MS = 300;
 const DISPLAY_DEADBAND_DEG = 0.3;
 const SOURCE_WAIT_MS = 2000;
+
+const COMPASS_GUIDANCE = {
+  idle: ['qiblaCompassIdle', 'qiblaStartHint', 'calibration'],
+  waiting: ['qiblaCompassWaiting', 'qiblaWaitingHint', 'waiting'],
+  tilt: ['qiblaHoldFlat', 'qiblaHoldFlatHint', 'level'],
+  left: ['qiblaTurnLeft', 'qiblaFaceKaabaHint', 'turn'],
+  right: ['qiblaTurnRight', 'qiblaFaceKaabaHint', 'turn'],
+  aligned: ['qiblaAlignedLabel', 'qiblaAlignedHint', 'aligned'],
+  accuracy: ['qiblaCalibrateTitle', 'qiblaUncalibrated', 'calibration'],
+  noSignal: ['qiblaNoReading', 'qiblaNoEventsHint', 'noSignal'],
+  unavailable: ['qiblaUnsupported', 'qiblaUseBearing', 'north'],
+  unavailableWithoutLocation: ['qiblaUnsupported', 'qiblaChooseLocation', 'north'],
+  denied: ['qiblaPermissionDenied', 'qiblaPermissionHint', 'denied'],
+  noDirection: ['qiblaDirectionUnavailable', 'qiblaDirectionUnavailableHint', 'noDirection'],
+} as const satisfies Record<string, readonly [keyof AppLabels, keyof AppLabels, string]>;
+
+type CompassGuidanceState = keyof typeof COMPASS_GUIDANCE;
 
 /** Minimal typing — `AbsoluteOrientationSensor` is not in all TS lib targets. */
 type AbsoluteOrientationSensorInstance = {
@@ -107,8 +125,8 @@ export class QiblaPage implements OnInit {
   protected readonly qiblaAligned = signal(false);
   /** Show calibration overlay before starting the compass. */
   protected readonly showCalibrationOverlay = signal(false);
-  /** Show a transient calibration hint banner. */
-  protected readonly showCalibrationHint = signal(false);
+  private readonly compassHasReading = signal(false);
+  private readonly turnDirection = signal<'left' | 'right' | null>(null);
 
   protected readonly rawHeading = signal<number | null>(null);
   protected readonly smoothedHeading = signal<number | null>(null);
@@ -117,20 +135,22 @@ export class QiblaPage implements OnInit {
     read: ElementRef<HTMLDialogElement>,
   });
 
-  protected readonly compassStatus = computed(() => {
-    const labels = this.labels();
-    if (!this.orientationSupported) return labels.qiblaUnsupported;
-    if (this.compassDenied()) return labels.qiblaPermissionDenied;
-    if (this.bearingDeg() === null && this.effectivePoint())
-      return labels.qiblaDirectionUnavailable;
-    if (!this.compassListening()) return labels.qiblaCompassIdle;
-    if (this.declinationDeg() === null && this.effectivePoint())
-      return labels.qiblaNorthUnavailable;
-    if (this.compassQualityHint() === 'tilt') return labels.qiblaHoldFlat;
-    if (this.compassQualityHint() === 'accuracy') return labels.qiblaUncalibrated;
-    if (this.compassNoDataHint()) return labels.qiblaNoEventsHint;
-    if (this.smoothedHeading() === null) return labels.qiblaCompassWaiting;
-    return this.qiblaAligned() ? labels.qiblaAlignedLabel : labels.qiblaCompassListening;
+  protected readonly guidance = COMPASS_GUIDANCE;
+  protected readonly guidanceStates = Object.keys(COMPASS_GUIDANCE) as CompassGuidanceState[];
+  protected readonly compassGuidanceState = computed<CompassGuidanceState>(() => {
+    const bearing = this.bearingDeg();
+    const hasLocation = this.effectivePoint() !== null;
+    if (hasLocation && bearing === null) return 'noDirection';
+    const unavailable = bearing === null ? 'unavailableWithoutLocation' : 'unavailable';
+    if (!this.orientationSupported) return unavailable;
+    if (this.compassDenied()) return 'denied';
+    if (!this.compassListening()) return 'idle';
+    if (hasLocation && this.declinationDeg() === null) return unavailable;
+    const quality = this.compassQualityHint();
+    if (quality) return quality;
+    if (this.compassNoDataHint()) return this.compassHasReading() ? 'noSignal' : unavailable;
+    if (bearing === null || this.smoothedHeading() === null) return 'waiting';
+    return this.qiblaAligned() ? 'aligned' : (this.turnDirection() ?? 'waiting');
   });
 
   private geoWatchId: number | null = null;
@@ -262,6 +282,7 @@ export class QiblaPage implements OnInit {
     this.internalSmoothed = this.lastRawHeadingInternal = null;
     this.rawHeading.set(null);
     this.smoothedHeading.set(null);
+    this.turnDirection.set(null);
     this.alignedSince = null;
     this.qiblaAligned.set(false);
     this.compassQualityHint.set(null);
@@ -271,7 +292,7 @@ export class QiblaPage implements OnInit {
   private markUnusable(reason: 'tilt' | 'accuracy'): void {
     this.resetHeading();
     this.compassQualityHint.set(reason);
-    this.compassNoDataHint.set(false);
+    this.noteCompassReading();
   }
 
   private ingestHeadingSample(magneticHeading: number): void {
@@ -290,23 +311,9 @@ export class QiblaPage implements OnInit {
     const heading = normalizeDeg(magneticHeading + declination);
     this.lastRawHeadingInternal = heading;
     this.internalSmoothed = this.headingFilter.update(heading, now);
-    this.showCalibrationHint.set(false);
     this.compassNoDataHint.set(false);
     this.compassQualityHint.set(null);
-    if (this.sourceTimer) clearTimeout(this.sourceTimer);
-    this.sourceTimer = null;
-    if (this.staleTimer) clearTimeout(this.staleTimer);
-    const session = this.compassSession;
-    this.staleTimer = setTimeout(() => {
-      if (session !== this.compassSession) return;
-      this.resetHeading();
-      this.compassNoDataHint.set(true);
-      if (this.activeSource === 'events') this.tryStartAbsoluteOrientationSensor();
-      else if (this.activeSource === 'sensor') {
-        this.startHeadingSources(false);
-        this.compassNoDataHint.set(true);
-      }
-    }, COMPASS_STALE_MS);
+    this.noteCompassReading();
 
     const bearing = this.bearingDeg();
     const error =
@@ -325,6 +332,21 @@ export class QiblaPage implements OnInit {
     this.scheduleHeadingFlush();
   }
 
+  private noteCompassReading(): void {
+    this.compassHasReading.set(true);
+    if (this.sourceTimer) clearTimeout(this.sourceTimer);
+    this.sourceTimer = null;
+    if (this.staleTimer) clearTimeout(this.staleTimer);
+    const session = this.compassSession;
+    this.staleTimer = setTimeout(() => {
+      if (session !== this.compassSession) return;
+      this.resetHeading();
+      if (this.activeSource === 'events') this.tryStartAbsoluteOrientationSensor();
+      else if (this.activeSource === 'sensor') this.startHeadingSources(false);
+      this.compassNoDataHint.set(true);
+    }, COMPASS_STALE_MS);
+  }
+
   private scheduleHeadingFlush(): void {
     if (this.rafFlushScheduled) return;
     this.rafFlushScheduled = true;
@@ -340,6 +362,14 @@ export class QiblaPage implements OnInit {
       ) {
         this.smoothedHeading.set(this.internalSmoothed);
       }
+      const bearing = this.bearingDeg();
+      const heading = this.smoothedHeading();
+      if (bearing === null || heading === null || this.qiblaAligned()) return;
+      const offset = angleDeltaDeg(bearing, heading);
+      const error = Math.abs(offset);
+      // Keep the last arrow while alignment settles or either direction is nearly equivalent.
+      if (error <= ALIGN_ENTER_DEG || (error >= 175 && this.turnDirection() !== null)) return;
+      this.turnDirection.set(offset < 0 ? 'left' : 'right');
     });
   }
 
@@ -385,7 +415,6 @@ export class QiblaPage implements OnInit {
       this.sourceTimer = null;
       if (!allowSensorFallback || !this.tryStartAbsoluteOrientationSensor()) {
         this.compassNoDataHint.set(true);
-        this.showCalibrationHint.set(false);
       }
     }, SOURCE_WAIT_MS);
   }
@@ -435,7 +464,6 @@ export class QiblaPage implements OnInit {
         if (session !== this.compassSession) return;
         if (typeof DeviceOrientationEvent !== 'undefined') this.startHeadingSources(false);
         this.compassNoDataHint.set(true);
-        this.showCalibrationHint.set(false);
       }, SOURCE_WAIT_MS);
       sensor.start(); // Activation is asynchronous; only a usable reading makes the compass live.
       return true;
@@ -562,8 +590,7 @@ export class QiblaPage implements OnInit {
     this.stopHeadingSources();
     this.resetHeading();
     this.compassListening.set(false);
-    this.compassNoDataHint.set(false);
-    this.showCalibrationHint.set(false);
+    this.compassHasReading.set(false);
   }
 
   /** Show the calibration overlay; actual compass starts after user dismisses it. */
@@ -607,7 +634,6 @@ export class QiblaPage implements OnInit {
         return;
       }
     }
-    this.showCalibrationHint.set(true);
     this.compassListening.set(true);
     this.startHeadingSources();
   }

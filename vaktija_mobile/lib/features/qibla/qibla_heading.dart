@@ -4,6 +4,7 @@ import 'qibla_direction.dart';
 
 // Same filter, tolerances and stale timeout as the web compass.
 const qiblaHeadingStale = Duration(milliseconds: 1500);
+const qiblaAlignmentEntryDegrees = 4.0;
 
 class QiblaHeading {
   final _samples = <double>[];
@@ -61,7 +62,7 @@ class QiblaHeading {
       _alignedSince = null;
       _notified = false;
     } else if (!aligned) {
-      if (error <= 4) {
+      if (error <= qiblaAlignmentEntryDegrees) {
         _alignedSince ??= timestamp;
         aligned = timestamp - _alignedSince! >= 300;
       } else {

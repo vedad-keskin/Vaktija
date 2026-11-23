@@ -179,14 +179,6 @@
 .compass-stack.unavailable {
   opacity: 0.5;
 }
-.compass-guidance {
-  max-width: 400px;
-  margin: 0 0 16px;
-  font-size: 14px;
-  line-height: 1.5;
-  color: var(--hero-muted);
-  text-align: center;
-}
 .qibla-compass-section {
   width: 100%;
   display: flex;
@@ -371,67 +363,88 @@
   border-radius: 50%;
   background: var(--hero-sky);
 }
-.compass-status {
-  min-height: 24px;
-  margin: 16px 0 12px;
-  text-align: center;
-  font-size: 14px;
-  color: var(--hero-muted);
-}
-.compass-status.is-warning {
-  color: var(--hero-gold);
-}
-.compass-status.is-aligned {
-  display: inline-flex;
+.compass-guidance {
+  position: relative;
+  display: grid;
+  grid-template-columns: 42px minmax(0, 1fr);
   align-items: center;
-  gap: 8px;
-  max-width: 100%;
-  padding: 9px 16px;
-  border-radius: 999px;
-  background: var(--accent);
-  color: var(--hero-sky);
-  font-size: 16px;
-  font-weight: 700;
-}
-.alignment-check {
-  width: 20px;
-  height: 20px;
-  flex: none;
-  fill: none;
-  stroke: currentColor;
-  stroke-width: 1.75;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-}
-.calibration-tip {
-  display: flex;
-  align-items: center;
-  gap: 16px;
+  gap: 12px;
   width: 100%;
   max-width: 400px;
-  padding: 14px 18px;
+  margin-top: 14px;
+  padding: 12px;
   border: 1px solid color-mix(in srgb, var(--hero-gold) 35%, transparent);
   border-radius: 12px;
-  background: color-mix(in srgb, var(--hero-sky) 94%, transparent);
+  background: var(--hero-sky);
 }
-.calibration-tip-icon {
+.guidance-icon {
   width: 42px;
-  flex-shrink: 0;
+  height: 49px;
   border-radius: 11px;
   background: var(--accent-surface);
-  fill: var(--hero-sky);
+  fill: none;
   stroke: var(--hero-gold);
   stroke-width: 1.5;
   stroke-linecap: round;
   stroke-linejoin: round;
 }
-.calibration-tip-icon > path {
-  fill: none;
+.guidance-icon rect {
+  fill: var(--hero-sky);
 }
-.calibration-tip p {
-  margin: 0;
-  font-size: 14px;
-  line-height: 1.4;
+.guidance-icon .is-aligned {
+  stroke: var(--accent);
+}
+.guidance-copy {
+  display: grid;
+  overflow-wrap: anywhere;
+}
+.guidance-layer {
+  grid-area: 1 / 1;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 180ms ease, visibility 0s 180ms;
+}
+.guidance-layer.is-current {
+  opacity: 1;
+  visibility: visible;
+  transition-delay: 0s;
+}
+.guidance-title {
+  color: var(--hero-text);
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.25;
+}
+.is-aligned .guidance-title {
+  color: var(--accent);
+}
+.guidance-instruction {
+  margin-top: 4px;
+  color: var(--hero-muted);
+  font-size: 0.875rem;
+  line-height: 1.35;
+}
+.guidance-announcement {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+.guidance-level-phone {
+  transform: rotate(5deg);
+}
+.is-current .guidance-level-phone {
+  animation: guidance-level-motion 1250ms ease-in-out infinite alternate;
+}
+@keyframes guidance-level-motion {
+  0%, 12% {
+    transform: rotate(36deg);
+  }
+  88%, 100% {
+    transform: rotate(5deg);
+  }
 }
 .qibla-faq {
   max-width: 900px;
@@ -647,10 +660,6 @@
   .compass-stack {
     width: min(100%, 300px);
   }
-  .calibration-tip {
-    gap: 10px;
-    padding: 12px;
-  }
   .qibla-faq {
     margin-top: 24px;
   }
@@ -663,8 +672,12 @@
 }
 @media (prefers-reduced-motion: reduce) {
   .calibration-dialog[open] .calibration-phone,
-  .calibration-dialog[open] .calibration-trail {
+  .calibration-dialog[open] .calibration-trail,
+  .is-current .guidance-level-phone {
     animation: none;
+  }
+  .guidance-layer {
+    transition: none;
   }
 }
 @keyframes calibration-phone-motion {

@@ -8,17 +8,26 @@ const qiblaCopy = {
       'qiblaLocationGps': 'Moja lokacija',
       'qiblaLocationLabel': 'Lokacija za proračun',
       'qiblaUseCity': 'Koristi odabrani grad',
-      'qiblaCompassIdle': 'Pregled smjera · kompas nije uključen',
-      'qiblaCompassWaiting': 'Čekam signal kompasa…',
-      'qiblaHoldFlat': 'Držite telefon ravnije, s ekranom prema gore.',
+      'qiblaCompassIdle': 'Pokrenite i kalibrišite kompas',
+      'qiblaStartHint':
+          'Držite telefon vodoravno s blagim nagibom i okrenite se prema oznaci Kabe.',
+      'qiblaCompassWaiting': 'Čekamo signal kompasa',
+      'qiblaWaitingHint':
+          'Držite telefon mirno, gotovo vodoravno, s ekranom prema gore.',
+      'qiblaHoldFlat': 'Neispravna pozicija',
+      'qiblaHoldFlatHint':
+          'Držite telefon gotovo vodoravno, s malim nagibom prema gore.',
+      'qiblaTurnLeft': 'Okrenite se ulijevo',
+      'qiblaTurnRight': 'Okrenite se udesno',
       'qiblaUncalibrated':
-          'Kompas nije kalibriran. Odmaknite se od magneta i lagano nacrtajte osmicu.',
-      'qiblaNorthUnavailable':
-          'Korekcija sjevera nije dostupna. Kompas trenutno ne može potvrditi smjer.',
-      'qiblaDirectionUnavailable':
-          'Na ovoj lokaciji nije moguće odrediti jedinstven smjer kible.',
+          'Odmaknite se od metala i magneta pa telefonom napravite osmicu.',
+      'qiblaDirectionUnavailable': 'Smjer kible nije dostupan',
+      'qiblaDirectionUnavailableHint':
+          'Za ovu lokaciju nije moguće odrediti jedinstven smjer kible.',
       'qiblaAlignedLabel': 'Okrenuti ste prema kibli',
-      'qiblaRecalibrate': 'Kalibriši ponovo',
+      'qiblaAlignedHint':
+          'Za namaz slijedite smjer koji pokazuje vrh telefona.',
+      'qiblaRecalibrate': 'Kalibrišite ponovo',
       'qiblaGpsPending': 'Određujem lokaciju…',
       'qiblaGpsDisabled':
           'Lokacija je isključena na telefonu. Uključite je u postavkama pa se vratite u aplikaciju.',
@@ -30,15 +39,16 @@ const qiblaCopy = {
       'qiblaGpsDenied':
           'Lokacija je odbijena. Uključite je u postavkama aplikacije.',
       'qiblaEnableCompass': 'Pokreni kompas',
-      'qiblaCompassListening': 'Kompas aktivan',
-      'qiblaUnsupported': 'Ovaj uređaj nema dostupan digitalni kompas.',
+      'qiblaUnsupported': 'Kompas nije dostupan',
+      'qiblaNoReading': 'Nema signala kompasa',
       'qiblaNoEventsHint':
-          'Signal kompasa nije dostupan. Držite telefon ravno i pokušajte ponovo.',
-      'qiblaCalibrationHint': 'Držite telefon podalje od metala i magneta.',
-      'qiblaBearingLabel': 'Azimut · pravi sjever',
+          'Držite telefon gotovo vodoravno ili dodirnite kalibrišite ponovo.',
+      'qiblaUseBearing':
+          'Smjer odredite pomoću prikazanog ugla od pravog sjevera.',
+      'qiblaBearingLabel': 'Pravi sjever',
       'qiblaDistanceLabel': 'Udaljenost',
       'qiblaFaceKaabaHint':
-          'Držite telefon ravno, s ekranom prema gore. Okrećite se dok se oznaka Kabe ne poravna s vrhom ekrana.',
+          'Pratite oznaku Kabe dok se ne poravna s vrhom kompasa.',
       'qiblaCalibrateTitle': 'Kalibrišite kompas',
       'qiblaCalibrateBody':
           'Odmaknite se od metala i magneta. Lagano pomičite telefon u obliku osmice, zatim ga držite ravno, s ekranom prema gore.',
@@ -55,7 +65,7 @@ const qiblaCopy = {
       (
         question: 'Šta ako je kompas nestabilan ili se oznaka ne poravnava?',
         answer:
-            'Odmaknite se od metala i magneta pa držite telefon ravno, s ekranom prema gore. Ako je očitanje i dalje nestabilno, dodirnite „Kalibriši ponovo“ i pratite upute.',
+            'Odmaknite se od metala i magneta pa držite telefon ravno, s ekranom prema gore. Ako je očitanje i dalje nestabilno, dodirnite „Kalibrišite ponovo“ i pratite upute.',
       ),
       (
         question: 'Šta znače zelena oznaka i vibracija?',
@@ -77,16 +87,25 @@ const qiblaCopy = {
       'qiblaLocationGps': 'My location',
       'qiblaLocationLabel': 'Location for calculation',
       'qiblaUseCity': 'Use selected city',
-      'qiblaCompassIdle': 'Direction preview · compass is off',
-      'qiblaCompassWaiting': 'Waiting for a compass reading…',
-      'qiblaHoldFlat': 'Hold your phone flatter, with the screen facing up.',
+      'qiblaCompassIdle': 'Start and calibrate the compass',
+      'qiblaStartHint':
+          'Hold your phone nearly flat with a slight tilt, then turn toward the Kaaba marker.',
+      'qiblaCompassWaiting': 'Waiting for a compass reading',
+      'qiblaWaitingHint':
+          'Keep your phone still and nearly flat, with the screen facing up.',
+      'qiblaHoldFlat': 'Incorrect phone position',
+      'qiblaHoldFlatHint':
+          'Hold your phone nearly flat with a slight upward tilt.',
+      'qiblaTurnLeft': 'Turn left',
+      'qiblaTurnRight': 'Turn right',
       'qiblaUncalibrated':
-          'Compass is uncalibrated. Move away from magnets and make a gentle figure-eight.',
-      'qiblaNorthUnavailable':
-          'North correction is unavailable. The compass cannot confirm direction right now.',
-      'qiblaDirectionUnavailable':
-          'A unique Qibla direction cannot be determined at this location.',
+          'Step away from metal and magnets, then trace a figure eight.',
+      'qiblaDirectionUnavailable': 'Qibla direction unavailable',
+      'qiblaDirectionUnavailableHint':
+          'A unique Qibla direction can’t be determined at this location.',
       'qiblaAlignedLabel': 'You are facing the Qibla',
+      'qiblaAlignedHint':
+          'For prayer, face the direction the top of your phone points.',
       'qiblaRecalibrate': 'Calibrate again',
       'qiblaGpsPending': 'Getting your location…',
       'qiblaGpsDisabled':
@@ -98,16 +117,15 @@ const qiblaCopy = {
       'qiblaGpsError': 'Could not get location. Check permissions and GPS.',
       'qiblaGpsDenied': 'Location was denied. Enable it in the app settings.',
       'qiblaEnableCompass': 'Start compass',
-      'qiblaCompassListening': 'Compass active',
-      'qiblaUnsupported': 'A digital compass is unavailable on this device.',
+      'qiblaUnsupported': 'Compass unavailable',
+      'qiblaNoReading': 'No compass signal',
       'qiblaNoEventsHint':
-          'Compass signal unavailable. Hold your phone flat and try again.',
-      'qiblaCalibrationHint':
-          'Keep away from metal or magnets for a steadier reading.',
-      'qiblaBearingLabel': 'Bearing · true north',
+          'Hold your phone nearly flat or tap “Calibrate again”.',
+      'qiblaUseBearing':
+          'Use the displayed angle from true north to find the direction.',
+      'qiblaBearingLabel': 'True north',
       'qiblaDistanceLabel': 'Distance',
-      'qiblaFaceKaabaHint':
-          'Hold your phone flat, screen facing up. Turn until the Kaaba marker aligns with the top of the screen.',
+      'qiblaFaceKaabaHint': 'Bring the Kaaba marker to the top of the dial.',
       'qiblaCalibrateTitle': 'Calibrate Your Compass',
       'qiblaCalibrateBody':
           'Move away from metal and magnets. Gently move your phone in a figure-eight, then hold it flat with the screen facing up.',

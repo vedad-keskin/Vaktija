@@ -7,6 +7,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:vaktija/app/vaktija_dialog.dart';
 import 'package:vaktija/app/vaktija_palette.dart';
 import 'package:vaktija/features/prayer_times/timetable.dart';
+import 'package:vaktija/features/qibla/qibla_calibration.dart';
 import 'package:vaktija/features/qibla/qibla_copy.dart';
 import 'package:vaktija/features/qibla/qibla_dial.dart';
 import 'package:vaktija/features/qibla/qibla_direction.dart';
@@ -78,7 +79,7 @@ void main() {
   );
 
   testWidgets(
-    'calibration gates the compass, alignment is visible in light mode, and leaving stops the stream',
+    'calibration gates the compass, guidance stays in place, and leaving stops the stream',
     (tester) async {
       tester.view.devicePixelRatio = 1;
       tester.view.physicalSize = const Size(360, 760);
@@ -110,13 +111,37 @@ void main() {
       );
       await tester.pumpAndSettle();
       expect(find.text('133.3°'), findsOneWidget);
+      expect(find.text('TRUE NORTH'), findsOneWidget);
       expect(sensorCalls, isEmpty);
       expect(locationCalls, isEmpty);
 
+      final guidance = find.byKey(const ValueKey('qibla-guidance'));
+      final guidanceRect = tester.getRect(guidance);
+      final illustration = find.byType(QiblaGuidanceIcon);
+      QiblaGuidanceCue cue() =>
+          tester.widget<QiblaGuidanceIcon>(illustration).cue;
+      Finder guideTitle(String title) => find.descendant(
+        of: find.descendant(
+          of: guidance,
+          matching: find.byType(AnimatedSwitcher),
+        ),
+        matching: find.text(title),
+      );
+
+      expect(guideTitle('Start and calibrate the compass'), findsOneWidget);
+      expect(cue(), QiblaGuidanceCue.calibration);
+      expect(tester.getSize(illustration), const Size(42, 49));
+      expect(tester.getCenter(illustration).dy, guidanceRect.center.dy);
       final start = find.text('START COMPASS');
       await tester.tap(start);
       await tester.pumpAndSettle();
-      expect(find.text('Calibrate Your Compass'), findsOneWidget);
+      expect(
+        find.descendant(
+          of: find.byType(VaktijaDialog),
+          matching: find.text('Calibrate Your Compass'),
+        ),
+        findsOneWidget,
+      );
       expect(sensorCalls, isEmpty);
       await tester.binding.handlePopRoute();
       await tester.pumpAndSettle();
@@ -128,6 +153,9 @@ void main() {
       await tester.pumpAndSettle();
       expect(sensorCalls, ['listen']);
       expect(locationCalls, isEmpty);
+      expect(guideTitle('Waiting for a compass reading'), findsOneWidget);
+      expect(cue(), QiblaGuidanceCue.waiting);
+      expect(tester.getRect(guidance), guidanceRect);
 
       final model = await loadQiblaMagneticModel(
         _MagneticModelAsset(modelData),
@@ -140,47 +168,75 @@ void main() {
       )!;
       final magneticHeading =
           qiblaDirection(43.6603, 17.7617)!.bearing! - declination;
-      Future<void> sendHeading(String quality) =>
-          messages.handlePlatformMessage(
-            heading.name,
-            const StandardMethodCodec().encodeSuccessEnvelope({
-              'heading': magneticHeading,
-              'rotation': 0,
-              'quality': quality,
-            }),
-            (_) {},
-          );
+      Future<void> sendHeading(
+        String quality, {
+        double offset = 0,
+        int rotation = 0,
+      }) => messages.handlePlatformMessage(
+        heading.name,
+        const StandardMethodCodec().encodeSuccessEnvelope({
+          'heading': magneticHeading + offset,
+          'rotation': rotation,
+          'quality': quality,
+        }),
+        (_) {},
+      );
+      await sendHeading('tilt');
+      await tester.pumpAndSettle();
+      expect(guideTitle('Incorrect phone position'), findsOneWidget);
+      expect(cue(), QiblaGuidanceCue.level);
+      expect(tester.getRect(guidance), guidanceRect);
+
+      await sendHeading('good', offset: -35);
+      await tester.pump();
+      expect(guideTitle('Turn right'), findsOneWidget);
+      expect(cue(), QiblaGuidanceCue.right);
+      expect(tester.getRect(guidance), guidanceRect);
+
+      await sendHeading('good', offset: 35, rotation: 1);
+      await tester.pump();
+      expect(guideTitle('Turn left'), findsOneWidget);
+      expect(cue(), QiblaGuidanceCue.left);
+      expect(tester.getRect(guidance), guidanceRect);
+
       await sendHeading('good');
+      await tester.pump();
+      expect(guideTitle('Turn left'), findsOneWidget);
+      expect(cue(), QiblaGuidanceCue.left);
       await tester.runAsync(
         () => Future<void>.delayed(const Duration(milliseconds: 310)),
       );
       await sendHeading('good');
       await tester.pump();
 
-      final confirmation = find.text('You are facing the Qibla');
+      final confirmation = guideTitle('You are facing the Qibla');
       expect(confirmation, findsOneWidget);
-      expect(find.byIcon(Icons.check_circle_outline), findsOneWidget);
+      expect(cue(), QiblaGuidanceCue.aligned);
+      expect(tester.getRect(guidance), guidanceRect);
+      expect(tester.getCenter(illustration).dy, guidanceRect.center.dy);
       final accent = const VaktijaPalette(false).accent;
-      expect(
-        find.ancestor(
-          of: confirmation,
-          matching: find.byWidgetPredicate(
-            (widget) =>
-                widget is Container &&
-                (widget.decoration as BoxDecoration?)?.color == accent,
-          ),
-        ),
-        findsOneWidget,
-      );
       final ink = tester.widget<Text>(confirmation).style!.color!;
+      final background =
+          (tester.widget<Container>(guidance).decoration! as BoxDecoration)
+              .color!;
+      expect(ink, accent);
       expect(
-        (ink.computeLuminance() + .05) / (accent.computeLuminance() + .05),
+        (background.computeLuminance() + .05) / (ink.computeLuminance() + .05),
         greaterThan(4.5),
       );
       expect(tester.widget<QiblaDial>(find.byType(QiblaDial)).aligned, isTrue);
-      await sendHeading('tilt');
+      await sendHeading('accuracy');
       await tester.pump();
       expect(confirmation, findsNothing);
+      expect(guideTitle('Calibrate Your Compass'), findsOneWidget);
+      expect(cue(), QiblaGuidanceCue.calibration);
+      expect(tester.widget<QiblaDial>(find.byType(QiblaDial)).aligned, isFalse);
+      expect(tester.getRect(guidance), guidanceRect);
+
+      await tester.pump(qiblaHeadingStale);
+      expect(guideTitle('No compass signal'), findsOneWidget);
+      expect(cue(), QiblaGuidanceCue.noSignal);
+      expect(tester.getRect(guidance), guidanceRect);
 
       await tester.tap(find.text('My location'));
       await tester.pumpAndSettle();

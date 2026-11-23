@@ -1,0 +1,6 @@
+---
+description: Use the Vaktija Android release workflow for bundle and release requests.
+alwaysApply: true
+---
+
+When asked to prepare a Vaktija bundle or Android release, follow [the mobile release workflow](../../vaktija_mobile/RELEASE.md).

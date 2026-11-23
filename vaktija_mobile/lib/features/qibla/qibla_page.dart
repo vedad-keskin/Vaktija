@@ -36,29 +36,29 @@ class QiblaPage extends StatefulWidget {
 }
 
 enum _CompassStatus {
-  idle('qiblaCompassIdle'),
-  waiting('qiblaCompassWaiting'),
-  active('qiblaCompassListening'),
-  aligned('qiblaAlignedLabel'),
-  tilt('qiblaHoldFlat'),
-  accuracy('qiblaUncalibrated'),
-  noReading('qiblaNoEventsHint'),
-  unsupported('qiblaUnsupported'),
-  noNorth('qiblaNorthUnavailable'),
-  noDirection('qiblaDirectionUnavailable');
+  idle('qiblaCompassIdle', 'qiblaStartHint', QiblaGuidanceCue.calibration),
+  waiting('qiblaCompassWaiting', 'qiblaWaitingHint', QiblaGuidanceCue.waiting),
+  turnLeft('qiblaTurnLeft', 'qiblaFaceKaabaHint', QiblaGuidanceCue.left),
+  turnRight('qiblaTurnRight', 'qiblaFaceKaabaHint', QiblaGuidanceCue.right),
+  aligned('qiblaAlignedLabel', 'qiblaAlignedHint', QiblaGuidanceCue.aligned),
+  tilt('qiblaHoldFlat', 'qiblaHoldFlatHint', QiblaGuidanceCue.level),
+  accuracy(
+    'qiblaCalibrateTitle',
+    'qiblaUncalibrated',
+    QiblaGuidanceCue.calibration,
+  ),
+  noReading('qiblaNoReading', 'qiblaNoEventsHint', QiblaGuidanceCue.noSignal),
+  unavailable('qiblaUnsupported', 'qiblaUseBearing', QiblaGuidanceCue.north),
+  noDirection(
+    'qiblaDirectionUnavailable',
+    'qiblaDirectionUnavailableHint',
+    QiblaGuidanceCue.noDirection,
+  );
 
-  const _CompassStatus(this.label);
-  final String label;
-
-  bool get showsWarning => switch (this) {
-    tilt ||
-    accuracy ||
-    noReading ||
-    unsupported ||
-    noNorth ||
-    noDirection => true,
-    _ => false,
-  };
+  const _CompassStatus(this.title, this.body, this.cue);
+  final String title;
+  final String body;
+  final QiblaGuidanceCue cue;
 }
 
 class _QiblaPageState extends State<QiblaPage> {
@@ -172,7 +172,7 @@ class _QiblaPageState extends State<QiblaPage> {
       _updateDirection();
       _restartHeading();
     } catch (error) {
-      if (mounted) _display(_CompassStatus.noNorth, reset: true);
+      if (mounted) _display(_CompassStatus.unavailable, reset: true);
       debugPrint('Could not read the Qibla magnetic model: $error');
     }
   }
@@ -182,13 +182,13 @@ class _QiblaPageState extends State<QiblaPage> {
     if (_direction?.bearing == null) {
       _display(_CompassStatus.noDirection);
     } else if (!_supported) {
-      _display(_CompassStatus.unsupported);
+      _display(_CompassStatus.unavailable);
     } else if (!_startRequested) {
       _display(_CompassStatus.idle);
     } else if (!_foreground || _calibrating || _model == null) {
       _display(_CompassStatus.waiting);
     } else if (_declination == null) {
-      _display(_CompassStatus.noNorth);
+      _display(_CompassStatus.unavailable);
     } else {
       _display(_CompassStatus.waiting);
       final session = _headingSession;
@@ -201,7 +201,7 @@ class _QiblaPageState extends State<QiblaPage> {
           _stopHeading();
           if (error is PlatformException && error.code == 'unsupported') {
             setState(() => _supported = false);
-            _display(_CompassStatus.unsupported);
+            _display(_CompassStatus.unavailable);
           } else {
             _display(_CompassStatus.noReading);
           }
@@ -237,16 +237,23 @@ class _QiblaPageState extends State<QiblaPage> {
         final trueHeading = normalizeDegrees(
           heading.toDouble() + _declination!,
         );
-        if (_filter.add(
-          trueHeading,
-          _direction!.bearing!,
-          _time.elapsedMilliseconds,
-        )) {
+        final bearing = _direction!.bearing!;
+        if (_filter.add(trueHeading, bearing, _time.elapsedMilliseconds)) {
           unawaited(HapticFeedback.lightImpact());
         }
-        _display(
-          _filter.aligned ? _CompassStatus.aligned : _CompassStatus.active,
-        );
+        final offset = angleDifference(bearing, _filter.displayed!);
+        final previous = _reading.value.status;
+        final wasTurning =
+            previous == _CompassStatus.turnLeft ||
+            previous == _CompassStatus.turnRight;
+        _display(switch (offset) {
+          _ when _filter.aligned => _CompassStatus.aligned,
+          >= -qiblaAlignmentEntryDegrees && <= qiblaAlignmentEntryDegrees =>
+            wasTurning ? previous : _CompassStatus.waiting,
+          <= -175 || >= 175 when wasTurning => previous,
+          < 0 => _CompassStatus.turnLeft,
+          _ => _CompassStatus.turnRight,
+        });
     }
   }
 
@@ -557,18 +564,6 @@ class _QiblaPageState extends State<QiblaPage> {
                       const SizedBox(height: 12),
                     ],
                     _compass(colors),
-                    const SizedBox(height: 14),
-                    Text(
-                      _label('qiblaFaceKaabaHint'),
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        color: colors.heroMuted,
-                        fontSize: 14,
-                        height: 1.5,
-                      ),
-                    ),
-                    const SizedBox(height: 16),
-                    _calibrationTip(colors),
                   ],
                 ),
               ),
@@ -756,11 +751,23 @@ class _QiblaPageState extends State<QiblaPage> {
     final label = '${_label('qiblaTileSubtitle')} · $_bearing';
     return ValueListenableBuilder(
       valueListenable: _reading,
-      builder: (context, reading, _) {
+      // Measure localized text once per layout, independent of heading updates.
+      child: ExcludeSemantics(
+        child: Opacity(
+          opacity: 0,
+          child: Stack(
+            children: [
+              for (final status in _CompassStatus.values)
+                _guidanceText(colors, status),
+            ],
+          ),
+        ),
+      ),
+      builder: (context, reading, textSizer) {
         final status = _direction?.bearing == null
             ? _CompassStatus.noDirection
             : !_supported
-            ? _CompassStatus.unsupported
+            ? _CompassStatus.unavailable
             : reading.status;
         final aligned = status == _CompassStatus.aligned;
         return Column(
@@ -772,88 +779,82 @@ class _QiblaPageState extends State<QiblaPage> {
               label: label,
             ),
             const SizedBox(height: 14),
-            Semantics(
-              liveRegion: true,
-              child: aligned
-                  ? Container(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 16,
-                        vertical: 9,
-                      ),
-                      decoration: BoxDecoration(
-                        color: colors.accent,
-                        borderRadius: BorderRadius.circular(24),
-                      ),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Icon(
-                            Icons.check_circle_outline,
-                            color: colors.sky,
-                            size: 20,
-                          ),
-                          const SizedBox(width: 8),
-                          Flexible(
-                            child: Text(
-                              _label(status.label),
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                color: colors.sky,
-                                fontWeight: FontWeight.w700,
-                                fontSize: 16,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    )
-                  : Text(
-                      _label(status.label),
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        color: status.showsWarning
-                            ? colors.heroGold
-                            : colors.heroMuted,
-                        fontSize: 14,
-                      ),
-                    ),
-            ),
+            _guidance(colors, status, textSizer!),
           ],
         );
       },
     );
   }
 
-  Widget _calibrationTip(VaktijaPalette colors) => Container(
-    padding: const EdgeInsets.all(12),
-    decoration: BoxDecoration(
-      border: Border.all(color: colors.heroGold.withValues(alpha: .35)),
-      borderRadius: BorderRadius.circular(12),
-      color: colors.sky.withValues(alpha: .94),
-    ),
-    child: Row(
-      children: [
-        const QiblaCalibrationIcon(),
-        const SizedBox(width: 12),
-        Expanded(
-          child: ValueListenableBuilder(
-            valueListenable: _reading,
-            builder: (context, reading, _) => Text(
-              _label(
-                reading.status == _CompassStatus.waiting
-                    ? 'qiblaCalibrationHint'
-                    : 'qiblaCalibrateBody',
-              ),
-              style: TextStyle(
-                color: colors.heroText,
-                fontSize: 14,
-                height: 1.4,
-              ),
+  Widget _guidance(
+    VaktijaPalette colors,
+    _CompassStatus status,
+    Widget textSizer,
+  ) {
+    final duration = MediaQuery.disableAnimationsOf(context)
+        ? Duration.zero
+        : const Duration(milliseconds: 180);
+    return Container(
+      key: const ValueKey('qibla-guidance'),
+      width: double.infinity,
+      padding: const EdgeInsets.all(12),
+      decoration: BoxDecoration(
+        border: Border.all(color: colors.heroGold.withValues(alpha: .35)),
+        borderRadius: BorderRadius.circular(12),
+        color: colors.sky,
+      ),
+      child: Row(
+        children: [
+          QiblaGuidanceIcon(cue: status.cue, duration: duration),
+          const SizedBox(width: 12),
+          Expanded(
+            child: Stack(
+              children: [
+                textSizer,
+                Positioned.fill(
+                  child: Semantics(
+                    liveRegion: true,
+                    label: '${_label(status.title)}\n${_label(status.body)}',
+                    excludeSemantics: true,
+                    child: AnimatedSwitcher(
+                      duration: duration,
+                      child: Align(
+                        key: ValueKey(status),
+                        alignment: AlignmentDirectional.topStart,
+                        child: _guidanceText(colors, status),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
             ),
           ),
+        ],
+      ),
+    );
+  }
+
+  Widget _guidanceText(VaktijaPalette colors, _CompassStatus status) => Column(
+    mainAxisSize: MainAxisSize.min,
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      Text(
+        _label(status.title),
+        style: TextStyle(
+          color: status == _CompassStatus.aligned
+              ? colors.accent
+              : colors.heroText,
+          fontSize: 16,
+          fontWeight: FontWeight.w700,
+          height: 1.25,
         ),
-      ],
-    ),
+      ),
+      const SizedBox(height: 4),
+      Text(
+        _label(status.body),
+        style: TextStyle(color: colors.heroMuted, fontSize: 14, height: 1.35),
+      ),
+    ],
   );
 
   Widget _calibrationDialog(BuildContext context) {
