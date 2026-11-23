@@ -1,0 +1,38 @@
+<div class="privacy-page" [attr.lang]="lang()">
+  <header class="privacy-top">
+    <a routerLink="/" class="privacy-brand" [attr.aria-label]="copy().home">
+      <img src="assets/icons/logo.png" alt="" class="privacy-logo" width="38" height="38" />
+    </a>
+    <div
+      class="lang-switcher"
+      [class.en-active]="lang() === 'en'"
+      role="group"
+      aria-label="Language"
+    >
+      <div class="lang-slider"></div>
+      <button type="button" class="lang-btn" [class.active]="lang() === 'bs'" title="Bosanski" (click)="setLang('bs')">
+        <img src="assets/icons/bih.png" alt="" class="lang-flag" />
+        <span class="lang-code">BS</span>
+      </button>
+      <button type="button" class="lang-btn" [class.active]="lang() === 'en'" title="English" (click)="setLang('en')">
+        <img src="assets/icons/uk.png" alt="" class="lang-flag" />
+        <span class="lang-code">EN</span>
+      </button>
+    </div>
+  </header>
+
+  <main class="privacy-main">
+    <h1>{{ copy().title }}</h1>
+    <p class="privacy-updated">{{ copy().updated }}</p>
+    <span class="privacy-divider" aria-hidden="true"></span>
+
+    @for (section of copy().sections; track section.heading) {
+      <section>
+        <h2>{{ section.heading }}</h2>
+        @for (paragraph of section.paragraphs; track paragraph) {
+          <p>{{ paragraph }}</p>
+        }
+      </section>
+    }
+  </main>
+</div>

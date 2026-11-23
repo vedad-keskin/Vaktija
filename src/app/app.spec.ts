@@ -63,6 +63,15 @@ describe('App', () => {
     nextVisit.destroy();
   });
 
+  it('leaves /privacy uncovered by the method dialog', async () => {
+    window.history.pushState({}, '', '/privacy');
+    const fixture = TestBed.createComponent(App);
+    await fixture.whenStable();
+    expect((fixture.nativeElement.querySelector('dialog') as HTMLDialogElement).open).toBe(false);
+    fixture.destroy();
+    window.history.pushState({}, '', '/');
+  });
+
   it('skips the dialog when a method was already saved', async () => {
     localStorage.setItem('vaktija_method', '14.6');
     const fixture = TestBed.createComponent(App);

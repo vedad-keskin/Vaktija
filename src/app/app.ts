@@ -21,7 +21,9 @@ export class App {
 
   constructor() {
     afterNextRender(() => {
-      if (!this.methods.hasChosen()) this.methodIntro()?.nativeElement.showModal();
+      if (!this.methods.hasChosen() && location.pathname !== '/privacy') {
+        this.methodIntro()?.nativeElement.showModal();
+      }
     });
   }
 

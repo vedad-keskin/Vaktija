@@ -26,6 +26,10 @@ export const routes: Routes = [
     loadComponent: () => import('./features/duas/duas.page').then((m) => m.DuasPage),
   },
   {
+    path: 'privacy',
+    loadComponent: () => import('./features/privacy/privacy.page').then((m) => m.PrivacyPage),
+  },
+  {
     path: 'dhikr',
     data: { collection: 'dhikr' },
     loadComponent: () => import('./features/duas/duas.page').then((m) => m.DuasPage),
