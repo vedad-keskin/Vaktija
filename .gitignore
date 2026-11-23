@@ -43,5 +43,8 @@ __screenshots__/
 .DS_Store
 Thumbs.db
 
+# Local store artwork
+/vaktija_mobile/store_assets/
+
 # Play upload key backup. Copy off this machine, then delete the folder.
 /play-upload-secrets/

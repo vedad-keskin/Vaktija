@@ -1,9 +1,0 @@
-{
-  "mode": "built-in image_gen",
-  "status": "direction-preview",
-  "file": "02-ivory-editorial-v2-preview.png",
-  "headline": "Od sabaha do jacije.",
-  "subtitle": "Vaša dnevna vaktija na jednom mjestu.",
-  "reference": "02-ivory-editorial-preview.png",
-  "prompt": "Use case: text-localization.\nEdit target: the supplied ivory Vaktija Google Play poster, concept 02. Make a precise copy-only revision to this same poster.\nReplace the large existing headline \"Vaš dan. U ritmu namaza.\" with the EXACT approved Bosnian headline:\n\"Od sabaha\ndo jacije.\"\nUse the existing elegant deep emerald serif, with the same strong hierarchy, left alignment and two-line headline placement. Spell sabaha and jacije exactly, with the period only at the end of jacije.\nReplace the smaller existing subtitle \"Sva vremena na jednom mjestu.\" with EXACTLY:\n\"Vaša dnevna vaktija na jednom mjestu.\"\nUse the same smaller sans-serif supporting type. Wrap this subtitle into two balanced lines if necessary so it stays comfortably within the margins: \"Vaša dnevna vaktija\" / \"na jednom mjestu.\"\nInvariants: change ONLY these two marketing text blocks above the phone. Preserve the original VAKTIJA wordmark and dome-and-crescent logo, gold accent line, warm ivory paper background, subtle sage geometric border, margins, phone size/position/bezel/shadow, and all app screen content and data. Do not regenerate, simplify, move or change the timetable UI, icons, numbers, mosque illustration or countdown. Keep the same calm ivory editorial composition and existing image dimensions. No new elements, no extra words, no watermarks. This is a faithful text revision, not a redesign."
-}
