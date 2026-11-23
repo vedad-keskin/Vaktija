@@ -702,21 +702,6 @@ svg {
   }
 }
 
-.dua-copy-dialog button {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-width: 84px;
-  min-height: 44px;
-  padding: 8px 18px;
-  border: 1px solid color-mix(in srgb, var(--hero-gold) 46%, transparent);
-  border-radius: 999px;
-  background: transparent;
-  color: var(--hero-text);
-  font: 600 15px var(--font-body);
-  cursor: pointer;
-}
-
 @media (prefers-reduced-motion: reduce) {
   .duas-category svg,
   .duas-category-panel {

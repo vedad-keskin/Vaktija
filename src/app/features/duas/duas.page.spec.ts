@@ -7,7 +7,6 @@ import { afterEach, vi } from 'vitest';
 import { routes } from '../../app.routes';
 import { LanguageService } from '../../core/services/language.service';
 import { BS_LABELS, EN_LABELS } from '../../core/i18n';
-import { entryCopyText } from './dua-copy';
 import { DUA_CATEGORIES, DUAS } from './duas.data';
 import { DHIKR, DHIKR_CATEGORIES } from './dhikr.data';
 import { DuasPage } from './duas.page';
@@ -976,84 +975,4 @@ it('shows the sourced bilingual dhikr collection and keeps its saved items separ
   harness.detectChanges();
   expect(JSON.parse(localStorage.getItem('vaktija_saved_duas')!)).toEqual(['hisn-190', 'hisn-250']);
   expect(JSON.parse(localStorage.getItem('vaktija_saved_dhikr')!)).toEqual(['hisn-250']);
-});
-
-it('copies a held title, a held block, and reports a clipboard failure', async () => {
-  const writeText = vi.fn<(text: string) => Promise<void>>(() => Promise.resolve());
-  const clipboard = navigator.clipboard;
-  Object.defineProperty(navigator, 'clipboard', { configurable: true, value: { writeText } });
-  const showModal = HTMLDialogElement.prototype.showModal;
-  const close = HTMLDialogElement.prototype.close;
-  HTMLDialogElement.prototype.showModal = function () {
-    this.open = true;
-  };
-  HTMLDialogElement.prototype.close = function () {
-    this.open = false;
-  };
-  let now = 0;
-  vi.spyOn(performance, 'now').mockImplementation(() => now);
-  const hold = (target: Element) => {
-    now = 0;
-    target.dispatchEvent(
-      new PointerEvent('pointerdown', {
-        bubbles: true,
-        button: 0,
-        clientX: 4,
-        clientY: 4,
-        pointerId: 1,
-      }),
-    );
-    now = 500;
-    target.dispatchEvent(
-      new PointerEvent('pointerup', {
-        bubbles: true,
-        button: 0,
-        clientX: 4,
-        clientY: 4,
-        pointerId: 1,
-      }),
-    );
-  };
-
-  try {
-    await TestBed.configureTestingModule({
-      imports: [DuasPage],
-      providers: [provideRouter(routes)],
-    }).compileComponents();
-    const harness = await RouterTestingHarness.create('/duas');
-    const element = harness.routeNativeElement!;
-    const dialog = element.querySelector('dialog')!;
-    Object.defineProperty(dialog, 'showModal', {
-      configurable: true,
-      value() {
-        dialog.open = true;
-      },
-    });
-    const card = element.querySelector('.dua-card')!;
-    const dua = DUAS.find((item) => item.id === card.getAttribute('data-dua-id'))!;
-    const lang = TestBed.inject(LanguageService).lang();
-
-    hold(card.querySelector('h2')!);
-    await Promise.resolve();
-    expect(writeText).toHaveBeenLastCalledWith(entryCopyText(dua, lang));
-
-    const arabic = dua.sayings ? dua.sayings[0].arabic : dua.arabic;
-    hold(card.querySelector('.dua-arabic')!);
-    await Promise.resolve();
-    expect(writeText).toHaveBeenLastCalledWith(arabic);
-
-    writeText.mockRejectedValueOnce(new Error('denied'));
-    hold(card.querySelector('.dua-arabic')!);
-    await Promise.resolve();
-    await Promise.resolve();
-    harness.detectChanges();
-    expect(dialog.open).toBe(true);
-    expect(dialog.textContent).toContain(
-      lang === 'bs' ? BS_LABELS.duasCopyError : EN_LABELS.duasCopyError,
-    );
-  } finally {
-    Object.defineProperty(navigator, 'clipboard', { configurable: true, value: clipboard });
-    HTMLDialogElement.prototype.showModal = showModal;
-    HTMLDialogElement.prototype.close = close;
-  }
 });

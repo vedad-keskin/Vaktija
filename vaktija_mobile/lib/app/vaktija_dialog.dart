@@ -30,7 +30,7 @@ class VaktijaDialog extends StatelessWidget {
         side: BorderSide(color: colors.heroBorder),
       ),
       child: SizedBox(
-        width: 420,
+        width: double.infinity,
         child: Stack(
           children: [
             const Positioned.fill(child: VaktijaCardArtwork()),

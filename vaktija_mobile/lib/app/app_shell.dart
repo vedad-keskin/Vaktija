@@ -135,6 +135,7 @@ class _AppShellState extends State<AppShell>
     final method = await showDialog<PrayerMethod>(
       context: context,
       barrierDismissible: false,
+      barrierColor: const Color(0xb8001511),
       builder: (context) => MethodChoice(labels: _catalog.labels(_bosnian)),
     );
     if (mounted && method != null) _selectMethod(method);

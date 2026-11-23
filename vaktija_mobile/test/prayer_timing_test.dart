@@ -8,6 +8,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:vaktija/app/method_choice.dart';
+import 'package:vaktija/app/vaktija_dialog.dart';
 import 'package:vaktija/app/startup/splash_view.dart';
 import 'package:vaktija/app/vaktija_app.dart';
 import 'package:vaktija/app/vaktija_palette.dart';
@@ -652,6 +653,7 @@ void main() {
       await tester.pump();
       expect(find.byType(SplashView), findsNothing);
       expect(find.byType(MethodChoice), findsOneWidget);
+      expect(find.byType(VaktijaDialog), findsOneWidget);
       await tester.pumpWidget(const SizedBox.shrink());
     },
   );

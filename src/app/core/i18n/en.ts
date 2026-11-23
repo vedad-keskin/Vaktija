@@ -141,10 +141,6 @@ export const EN_LABELS: AppLabels = {
   duasInstructions: 'Instruction',
   duasTranslation: 'Translation of the meaning',
   duasSource: 'Source',
-  duasCopyHold: 'Hold to copy the text',
-  duasCopyHoldAll: 'Hold to copy the whole entry',
-  duasCopyError: 'Couldn’t copy the text.',
-  duasCopyOk: 'OK',
 
   dhikrTitle: 'Dhikr',
   dhikrSubtitle: 'Remembrance for every day',

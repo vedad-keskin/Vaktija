@@ -131,12 +131,7 @@
               width="64"
               height="64"
             />
-            <h2
-              [id]="'dua-title-' + dua.id"
-              tabindex="-1"
-              [copyOnHold]="entryCopyText(dua, language.lang())"
-              [attr.aria-description]="labels().duasCopyHoldAll"
-            >{{ dua.title[language.lang()] }}</h2>
+            <h2 [id]="'dua-title-' + dua.id" tabindex="-1">{{ dua.title[language.lang()] }}</h2>
             <div class="dua-actions">
               <button
                 type="button"
@@ -159,37 +154,20 @@
             <div class="dua-sayings">
               @for (saying of sayings; track $index) {
                 <div class="dua-saying">
-                  <p
-                    class="dua-arabic"
-                    lang="ar"
-                    dir="rtl"
-                    [copyOnHold]="saying.arabic"
-                    [attr.aria-description]="labels().duasCopyHold"
-                  >{{ saying.arabic }}</p>
+                  <p class="dua-arabic" lang="ar" dir="rtl">{{ saying.arabic }}</p>
                   <span class="duas-divider dua-card-divider" aria-hidden="true"></span>
                   @if (saying.instructions?.[language.lang()]; as instruction) {
-                    <div
-                      class="dua-instructions"
-                      role="note"
-                      [copyOnHold]="instruction"
-                      [attr.aria-description]="labels().duasCopyHold"
-                    >
+                    <div class="dua-instructions" role="note">
                       <span class="dua-instructions-label">{{ labels().duasInstructions }}</span>
                       <p>{{ instruction }}</p>
                     </div>
                   }
-                  <p
-                    class="dua-transcription"
-                    [attr.aria-label]="labels().duasTranscription"
-                    [copyOnHold]="saying.transcription[language.lang()]"
-                    [attr.aria-description]="labels().duasCopyHold"
-                  >{{ saying.transcription[language.lang()] }}</p>
-                  <p
-                    class="dua-translation"
-                    [attr.aria-label]="labels().duasTranslation"
-                    [copyOnHold]="saying.translation[language.lang()]"
-                    [attr.aria-description]="labels().duasCopyHold"
-                  >{{ saying.translation[language.lang()] }}</p>
+                  <p class="dua-transcription" [attr.aria-label]="labels().duasTranscription">
+                    {{ saying.transcription[language.lang()] }}
+                  </p>
+                  <p class="dua-translation" [attr.aria-label]="labels().duasTranslation">
+                    {{ saying.translation[language.lang()] }}
+                  </p>
                   @if (saying.sources; as sources) {
                     <footer class="dua-source">
                       @for (source of sources; track $index) {
@@ -199,8 +177,6 @@
                               ? (source.bosnianSourceUrl ?? source.sourceUrl)
                               : source.sourceUrl
                           "
-                          [copyOnHold]="sourceCopyText(source, language.lang())"
-                          [attr.aria-description]="labels().duasCopyHold"
                           target="_blank"
                           rel="noopener noreferrer"
                         >
@@ -216,21 +192,10 @@
               }
             </div>
           } @else {
-            <p
-              class="dua-arabic"
-              lang="ar"
-              dir="rtl"
-              [copyOnHold]="dua.arabic ?? ''"
-              [attr.aria-description]="labels().duasCopyHold"
-            >{{ dua.arabic }}</p>
+            <p class="dua-arabic" lang="ar" dir="rtl">{{ dua.arabic }}</p>
             <span class="duas-divider dua-card-divider" aria-hidden="true"></span>
             @if (dua.instructions?.[language.lang()]; as instruction) {
-              <div
-                class="dua-instructions"
-                role="note"
-                [copyOnHold]="instruction"
-                [attr.aria-description]="labels().duasCopyHold"
-              >
+              <div class="dua-instructions" role="note">
                 <span class="dua-instructions-label">
                   <svg viewBox="0 0 24 24" aria-hidden="true">
                     <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
@@ -241,29 +206,21 @@
                 <p>{{ instruction }}</p>
               </div>
             }
-            @if (dua.transcription?.[language.lang()]; as transcription) {
-              <p
-                class="dua-transcription"
-                [attr.aria-label]="labels().duasTranscription"
-                [copyOnHold]="transcription"
-                [attr.aria-description]="labels().duasCopyHold"
-              >{{ transcription }}</p>
+            @if (dua.transcription?.[language.lang()]) {
+              <p class="dua-transcription" [attr.aria-label]="labels().duasTranscription">
+                {{ dua.transcription?.[language.lang()] }}
+              </p>
             }
-            @if (dua.translation?.[language.lang()]; as translation) {
-              <p
-                class="dua-translation"
-                [attr.aria-label]="labels().duasTranslation"
-                [copyOnHold]="translation"
-                [attr.aria-description]="labels().duasCopyHold"
-              >{{ translation }}</p>
+            @if (dua.translation?.[language.lang()]) {
+              <p class="dua-translation" [attr.aria-label]="labels().duasTranslation">
+                {{ dua.translation?.[language.lang()] }}
+              </p>
             }
           }
           @if (dua.sourceUrl; as sourceUrl) {
             <footer class="dua-source">
               <a
                 [href]="language.lang() === 'bs' ? (dua.bosnianSourceUrl ?? sourceUrl) : sourceUrl"
-                [copyOnHold]="sourceCopyText(dua, language.lang())"
-                [attr.aria-description]="labels().duasCopyHold"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -305,11 +262,4 @@
       }
     </section>
   </main>
-
-  <dialog appVaktijaDialog class="dua-copy-dialog" titleId="dua-copy-title">
-    <span dialog-title>{{ labels().duasCopyError }}</span>
-    <button dialog-action type="button" (click)="closeCopyError()">
-      {{ labels().duasCopyOk }}
-    </button>
-  </dialog>
 </div>

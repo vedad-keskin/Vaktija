@@ -17,9 +17,6 @@ import { LocationService } from '../../core/services/location.service';
 import { Location } from '../../core/models/location.model';
 import { HeaderComponent } from '../prayer-times/components/header/header.component';
 import { CitySelectorComponent } from '../prayer-times/components/city-selector/city-selector.component';
-import { VaktijaDialog } from '../../shared/vaktija-dialog/vaktija-dialog';
-import { CopyOnHold } from './copy-on-hold';
-import { entryCopyText, sourceCopyText } from './dua-copy';
 import { DUA_CATEGORIES, DUAS } from './duas.data';
 import { DHIKR, DHIKR_CATEGORIES } from './dhikr.data';
 import { createDuaSearch, normalizeDuaQuery } from './duas-search';
@@ -28,7 +25,7 @@ const PAGE_SIZE = 10;
 
 @Component({
   selector: 'app-duas-page',
-  imports: [HeaderComponent, CitySelectorComponent, RouterLink, CopyOnHold, VaktijaDialog],
+  imports: [HeaderComponent, CitySelectorComponent, RouterLink],
   templateUrl: './duas.page.html',
   styleUrl: './duas.page.css',
 })
@@ -65,8 +62,6 @@ export class DuasPage {
   );
   private readonly storageKey = this.isDhikr ? 'vaktija_saved_dhikr' : 'vaktija_saved_duas';
   protected readonly collectionPath = this.isDhikr ? '/dhikr' : '/duas';
-  protected readonly entryCopyText = entryCopyText;
-  protected readonly sourceCopyText = sourceCopyText;
   protected readonly copy = computed(() => {
     const labels = this.labels();
     return this.isDhikr
@@ -175,16 +170,6 @@ export class DuasPage {
   @HostListener('document:keydown.escape')
   protected onEscape(): void {
     this.closeCategories();
-  }
-
-  @HostListener('dua-copy-failed')
-  protected showCopyError(): void {
-    const dialog = (this.host.nativeElement as HTMLElement).querySelector('dialog');
-    if (dialog && !dialog.open) dialog.showModal();
-  }
-
-  protected closeCopyError(): void {
-    (this.host.nativeElement as HTMLElement).querySelector('dialog')?.close();
   }
 
   protected onSearch(query: string): void {
