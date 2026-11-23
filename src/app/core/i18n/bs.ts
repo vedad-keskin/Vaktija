@@ -106,6 +106,10 @@ export interface AppLabels {
   duasInstructions: string;
   duasTranslation: string;
   duasSource: string;
+  duasCopyHold: string;
+  duasCopyHoldAll: string;
+  duasCopyError: string;
+  duasCopyOk: string;
 
   /** Dhikr */
   dhikrTitle: string;
@@ -297,6 +301,10 @@ export const BS_LABELS: AppLabels = {
   duasInstructions: 'Uputa',
   duasTranslation: 'Prijevod značenja',
   duasSource: 'Izvor',
+  duasCopyHold: 'Zadržite za kopiranje teksta',
+  duasCopyHoldAll: 'Zadržite za kopiranje cijelog teksta',
+  duasCopyError: 'Tekst nije moguće kopirati.',
+  duasCopyOk: 'U redu',
 
   dhikrTitle: 'Zikrovi',
   dhikrSubtitle: 'Zikr za svaki dan',
