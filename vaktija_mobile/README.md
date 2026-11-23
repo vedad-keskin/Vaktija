@@ -1,6 +1,6 @@
 # Vaktija mobile
 
-Flutter app for Android and iOS. Both platforms use `com.vaktija.app`.
+Flutter app for Android and iOS. Android is `app.vaktija`. iOS is `com.vaktija.app`.
 
 From the repository root, with an emulator or phone connected:
 
