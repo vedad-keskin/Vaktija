@@ -55,6 +55,7 @@ class _AppShellState extends State<AppShell>
   late bool _bosnian;
   bool _fullscreen = false;
   bool _systemFullscreen = false;
+  final _headerKey = GlobalKey();
   final _cityPopup = OverlayPortalController();
   final _readerMenuAnchor = LayerLink();
   final _bookmarks = <DuaCollection, List<String>>{};
@@ -273,6 +274,7 @@ class _AppShellState extends State<AppShell>
     final reading = collection != null;
     final scrollingHeader = reading || _section == MobileSection.qibla;
     final mobileHeader = MobileHeader(
+      key: _headerKey,
       labels: labels,
       city: _city,
       logoKey: widget.headerLogo,

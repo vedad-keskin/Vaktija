@@ -1,38 +1,92 @@
 <div class="privacy-page" [attr.lang]="lang()">
   <header class="privacy-top">
     <a routerLink="/" class="privacy-brand" [attr.aria-label]="copy().home">
-      <img src="assets/icons/logo.png" alt="" class="privacy-logo" width="38" height="38" />
+      <img src="assets/icons/logo.png" alt="" class="privacy-logo" width="62" height="44" />
+      <span>Vaktija</span>
     </a>
-    <div
-      class="lang-switcher"
-      [class.en-active]="lang() === 'en'"
-      role="group"
-      aria-label="Language"
-    >
-      <div class="lang-slider"></div>
-      <button type="button" class="lang-btn" [class.active]="lang() === 'bs'" title="Bosanski" (click)="setLang('bs')">
-        <img src="assets/icons/bih.png" alt="" class="lang-flag" />
-        <span class="lang-code">BS</span>
-      </button>
-      <button type="button" class="lang-btn" [class.active]="lang() === 'en'" title="English" (click)="setLang('en')">
-        <img src="assets/icons/uk.png" alt="" class="lang-flag" />
-        <span class="lang-code">EN</span>
-      </button>
+    <div class="privacy-controls">
+      <app-theme-switcher [directSelect]="true" />
+      <div class="lang-switcher" role="group" [attr.aria-label]="copy().language">
+        <button
+          type="button"
+          class="lang-btn"
+          [attr.aria-pressed]="lang() === 'bs'"
+          lang="bs"
+          title="Bosanski"
+          (click)="setLang('bs')"
+        >
+          <img src="assets/icons/bih.png" alt="" width="18" height="18" />
+          BS
+        </button>
+        <button
+          type="button"
+          class="lang-btn"
+          [attr.aria-pressed]="lang() === 'en'"
+          lang="en"
+          title="English"
+          (click)="setLang('en')"
+        >
+          <img src="assets/icons/uk.png" alt="" width="18" height="18" />
+          EN
+        </button>
+      </div>
     </div>
   </header>
 
   <main class="privacy-main">
-    <h1>{{ copy().title }}</h1>
-    <p class="privacy-updated">{{ copy().updated }}</p>
-    <span class="privacy-divider" aria-hidden="true"></span>
+    <header class="privacy-hero">
+      <img
+        src="assets/ornaments/dua-crescent-rosette.webp"
+        class="privacy-ornament"
+        alt=""
+        width="72"
+        height="72"
+      />
+      <p class="privacy-eyebrow">Vaktija · Nightfall Studio</p>
+      <h1>{{ copy().title }}</h1>
+      <span class="privacy-divider" aria-hidden="true"></span>
+      <p class="privacy-intro">{{ copy().intro }}</p>
+      <p class="privacy-updated">
+        <time datetime="2026-11-23">{{ copy().updated }}</time>
+      </p>
+    </header>
 
-    @for (section of copy().sections; track section.heading) {
-      <section>
-        <h2>{{ section.heading }}</h2>
-        @for (paragraph of section.paragraphs; track paragraph) {
-          <p>{{ paragraph }}</p>
-        }
+    <div class="privacy-summary" role="group" [attr.aria-label]="copy().summaryLabel">
+      @for (item of copy().summary; track item.heading) {
+        <div>
+          <p class="summary-heading">{{ item.heading }}</p>
+          <p>{{ item.text }}</p>
+        </div>
+      }
+    </div>
+
+    <article class="privacy-document" [attr.aria-label]="copy().title">
+      @for (section of copy().sections; track section.id) {
+        <section [attr.aria-labelledby]="section.id">
+          <h2 [id]="section.id">{{ section.heading }}</h2>
+          @for (paragraph of section.paragraphs; track paragraph) {
+            <p>{{ paragraph }}</p>
+          }
+          @if (section.links) {
+            <div class="privacy-links">
+              @for (link of section.links; track link.href) {
+                <a [href]="link.href" rel="noreferrer">{{ link.label }}</a>
+              }
+            </div>
+          }
+        </section>
+      }
+      <section class="privacy-contact" aria-labelledby="privacy-contact-heading">
+        <h2 id="privacy-contact-heading">{{ copy().contactHeading }}</h2>
+        <p>{{ copy().contactText }}</p>
+        <a class="privacy-email" [href]="'mailto:' + contactEmail">{{ contactEmail }}</a>
+        <p>{{ copy().contactNote }}</p>
       </section>
-    }
+    </article>
   </main>
+
+  <footer class="privacy-footer">
+    <span>Nightfall Studio</span>
+    <a routerLink="/">{{ copy().home }}</a>
+  </footer>
 </div>

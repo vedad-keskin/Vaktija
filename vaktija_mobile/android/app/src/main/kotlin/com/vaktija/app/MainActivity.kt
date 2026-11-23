@@ -1,5 +1,6 @@
 package com.vaktija.app
 
+import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import androidx.core.view.WindowCompat
@@ -63,6 +64,11 @@ class MainActivity : FlutterActivity() {
     ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         if (requestCode == QiblaDevice.LOCATION_PERMISSION_REQUEST) qiblaDevice?.permissionResult()
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == QiblaDevice.LOCATION_SETTINGS_REQUEST) qiblaDevice?.settingsResult(resultCode)
     }
 
     override fun onPostResume() {

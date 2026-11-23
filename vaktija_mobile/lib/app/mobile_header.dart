@@ -2,6 +2,7 @@ import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../features/prayer_times/timetable.dart';
 import 'method_choice.dart';
@@ -406,6 +407,29 @@ class _VaktijaMenuState extends State<VaktijaMenu> {
   final _helpPortal = OverlayPortalController();
   PrayerMethod? _help;
 
+  Future<void> _openPrivacy() async {
+    try {
+      if (await launchUrl(
+        Uri.https('vaktija.life', '/privacy'),
+        mode: LaunchMode.externalApplication,
+      )) {
+        return;
+      }
+    } catch (_) {
+      // Keep the policy address available if no browser can open it.
+    }
+    if (!mounted) return;
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(
+          widget.labels.bosnian
+              ? 'Politiku privatnosti možeš pročitati na vaktija.life/privacy.'
+              : 'Read the privacy policy at vaktija.life/privacy.',
+        ),
+      ),
+    );
+  }
+
   @override
   void didUpdateWidget(VaktijaMenu oldWidget) {
     super.didUpdateWidget(oldWidget);
@@ -588,6 +612,18 @@ class _VaktijaMenuState extends State<VaktijaMenu> {
                     ),
                   ),
                 ),
+              ),
+            ),
+            const SizedBox(height: 8),
+            TextButton.icon(
+              onPressed: _openPrivacy,
+              icon: const Icon(Icons.privacy_tip_outlined, size: 18),
+              label: Text(
+                labels.bosnian ? 'Politika privatnosti' : 'Privacy policy',
+              ),
+              style: TextButton.styleFrom(
+                foregroundColor: colors.secondary,
+                minimumSize: const Size(48, 48),
               ),
             ),
           ],

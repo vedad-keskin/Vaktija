@@ -89,6 +89,7 @@ class _QiblaPageState extends State<QiblaPage> {
   ({double latitude, double longitude})? _location;
   ({double? bearing, double distanceKm})? _direction;
   bool _locating = false;
+  bool _retryLocationOnResume = false;
   String? _locationError;
   int _locationSession = 0;
 
@@ -133,10 +134,13 @@ class _QiblaPageState extends State<QiblaPage> {
   void _lifecycleChanged(AppLifecycleState state) {
     _foreground = state == AppLifecycleState.resumed;
     _restartHeading();
-    if (state == AppLifecycleState.hidden ||
-        state == AppLifecycleState.paused ||
+    if (_foreground && _retryLocationOnResume) {
+      _retryLocationOnResume = false;
+      unawaited(_toggleLocation());
+    }
+    if (state == AppLifecycleState.paused ||
         state == AppLifecycleState.detached) {
-      if (_locating) setState(_cancelLocation);
+      if (_locating) unawaited(_cancelBackgroundLocation());
     }
   }
 
@@ -290,35 +294,76 @@ class _QiblaPageState extends State<QiblaPage> {
       });
       _restartHeading();
     } on PlatformException catch (error) {
-      _reportLocationError(session, error.code == 'denied');
+      _reportLocationError(session, error.code);
     } on MissingPluginException {
-      _reportLocationError(session, false);
+      _reportLocationError(session, 'unavailable');
     }
   }
 
-  void _reportLocationError(int session, bool denied) {
+  void _reportLocationError(int session, String code) {
     if (!mounted || session != _locationSession) return;
     setState(() {
       _locating = false;
-      _locationError = denied ? 'qiblaGpsDenied' : 'qiblaGpsError';
+      _locationError = switch (code) {
+        'denied' => 'qiblaGpsDenied',
+        'services_disabled' =>
+          defaultTargetPlatform == TargetPlatform.iOS
+              ? 'qiblaGpsDisabledIos'
+              : 'qiblaGpsDisabled',
+        'cancelled' => null,
+        _ => 'qiblaGpsError',
+      };
     });
   }
 
+  Future<void> _openLocationSettings() async {
+    final session = _locationSession;
+    _retryLocationOnResume = true;
+    try {
+      await _device.invokeMethod<void>('openLocationSettings', {
+        'app': _locationError == 'qiblaGpsDenied',
+      });
+    } on PlatformException catch (error) {
+      if (!mounted || session != _locationSession) return;
+      _retryLocationOnResume = false;
+      _reportLocationError(session, error.code);
+    } on MissingPluginException {
+      if (!mounted || session != _locationSession) return;
+      _retryLocationOnResume = false;
+      _reportLocationError(session, 'unavailable');
+    }
+  }
+
   void _cancelLocation() {
+    _retryLocationOnResume = false;
+    _locationSession++;
     if (!_locating) return;
     _locating = false;
-    _locationSession++;
     unawaited(_stopLocationRequest());
   }
 
-  Future<void> _stopLocationRequest() async {
+  Future<void> _cancelBackgroundLocation() async {
+    final session = _locationSession;
+    if (!await _stopLocationRequest(background: true)) return;
+    if (!mounted || session != _locationSession) return;
+    setState(() {
+      _locating = false;
+      _locationSession++;
+    });
+  }
+
+  Future<bool> _stopLocationRequest({bool background = false}) async {
     try {
-      await _device.invokeMethod<void>('cancelLocation');
+      return await _device.invokeMethod<bool>('cancelLocation', {
+            'background': background,
+          }) ??
+          true;
     } on MissingPluginException {
       // No native request exists on this platform.
     } on PlatformException catch (error) {
       debugPrint('Could not cancel Qibla location: $error');
     }
+    return true;
   }
 
   @override
@@ -553,6 +598,11 @@ class _QiblaPageState extends State<QiblaPage> {
         : null;
     final title = Text(cityName, style: _displayText(colors.heroText, 28));
     final border = colors.heroMuted.withValues(alpha: .25);
+    final settingsLabel = switch (_locationError) {
+      'qiblaGpsDenied' => 'qiblaOpenAppSettings',
+      'qiblaGpsDisabled' => 'qiblaOpenLocationSettings',
+      _ => null,
+    };
     final useRow =
         location == null &&
         !_locating &&
@@ -615,6 +665,13 @@ class _QiblaPageState extends State<QiblaPage> {
               ),
             ),
           ],
+          if (!_locating && settingsLabel != null)
+            TextButton.icon(
+              onPressed: _openLocationSettings,
+              style: TextButton.styleFrom(foregroundColor: colors.heroGold),
+              icon: const Icon(Icons.settings_outlined, size: 20),
+              label: Text(_label(settingsLabel)),
+            ),
           const SizedBox(height: 12),
           Divider(height: 1, color: border),
           const SizedBox(height: 12),

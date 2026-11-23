@@ -29,9 +29,18 @@ final class QiblaDevice: NSObject, FlutterStreamHandler, CLLocationManagerDelega
         }
         switch call.method {
         case "location": self.requestLocation(reply)
+        case "openLocationSettings":
+          guard let url = URL(string: UIApplication.openSettingsURLString) else {
+            reply(FlutterError(code: "unavailable", message: nil, details: nil))
+            return
+          }
+          UIApplication.shared.open(url, options: [:]) { opened in
+            if opened { reply(nil) }
+            else { reply(FlutterError(code: "unavailable", message: nil, details: nil)) }
+          }
         case "cancelLocation":
           self.finishLocation(error: "cancelled")
-          reply(nil)
+          reply(true)
         default: reply(FlutterMethodNotImplemented)
         }
       }
@@ -95,6 +104,10 @@ final class QiblaDevice: NSObject, FlutterStreamHandler, CLLocationManagerDelega
   private func requestLocation(_ reply: @escaping FlutterResult) {
     finishLocation(error: "cancelled")
     locationReply = reply
+    guard CLLocationManager.locationServicesEnabled() else {
+      finishLocation(error: "services_disabled")
+      return
+    }
     let status: CLAuthorizationStatus
     if #available(iOS 14.0, *) {
       status = location.authorizationStatus
@@ -127,7 +140,8 @@ final class QiblaDevice: NSObject, FlutterStreamHandler, CLLocationManagerDelega
       }
       location.startUpdatingLocation()
     case .notDetermined: break
-    default: finishLocation(error: "denied")
+    default:
+      finishLocation(error: CLLocationManager.locationServicesEnabled() ? "denied" : "services_disabled")
     }
   }
 
@@ -151,7 +165,8 @@ final class QiblaDevice: NSObject, FlutterStreamHandler, CLLocationManagerDelega
     guard manager === location else { return }
     let code = (error as? CLError)?.code
     if code != .locationUnknown {
-      finishLocation(error: code == .denied ? "denied" : "unavailable")
+      let failure = CLLocationManager.locationServicesEnabled() ? "denied" : "services_disabled"
+      finishLocation(error: code == .denied ? failure : "unavailable")
     }
   }
 

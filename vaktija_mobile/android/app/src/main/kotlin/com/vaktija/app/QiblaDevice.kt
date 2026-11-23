@@ -1,7 +1,11 @@
 package com.vaktija.app
 
 import android.Manifest
+import android.app.Activity
 import android.annotation.SuppressLint
+import android.content.ActivityNotFoundException
+import android.content.Intent
+import android.content.IntentSender
 import android.content.pm.PackageManager
 import android.hardware.Sensor
 import android.hardware.SensorEvent
@@ -9,12 +13,22 @@ import android.hardware.SensorEventListener
 import android.hardware.SensorManager
 import android.location.Location
 import android.location.LocationManager
+import android.net.Uri
 import android.os.Handler
 import android.os.Looper
 import android.os.SystemClock
+import android.provider.Settings
 import android.view.Surface
 import androidx.core.app.ActivityCompat
 import androidx.core.location.LocationListenerCompat
+import androidx.core.location.LocationManagerCompat
+import com.google.android.gms.common.ConnectionResult
+import com.google.android.gms.common.GoogleApiAvailability
+import com.google.android.gms.common.api.ResolvableApiException
+import com.google.android.gms.location.LocationRequest
+import com.google.android.gms.location.LocationServices
+import com.google.android.gms.location.LocationSettingsRequest
+import com.google.android.gms.location.Priority
 import io.flutter.plugin.common.BinaryMessenger
 import io.flutter.plugin.common.EventChannel
 import io.flutter.plugin.common.MethodChannel
@@ -27,6 +41,7 @@ internal class QiblaDevice(
 ) : EventChannel.StreamHandler, SensorEventListener {
     companion object {
         const val LOCATION_PERMISSION_REQUEST = 7241
+        const val LOCATION_SETTINGS_REQUEST = 7242
         private val FACE_UP_LIMIT = cos(Math.toRadians(50.0))
     }
 
@@ -40,6 +55,7 @@ internal class QiblaDevice(
     private val screenMatrix = FloatArray(9)
     private var locationReply: MethodChannel.Result? = null
     private var permissionPending = false
+    private var settingsReply: MethodChannel.Result? = null
     private val locationTimeout = Runnable { finishLocation(error = "unavailable") }
     private val locationListener = object : LocationListenerCompat {
         override fun onLocationChanged(fix: Location) {
@@ -57,9 +73,31 @@ internal class QiblaDevice(
         actions.setMethodCallHandler { call, reply ->
             when (call.method) {
                 "location" -> requestLocation(reply)
+                "openLocationSettings" -> {
+                    try {
+                        val intent = if (call.argument<Boolean>("app") == true) {
+                            Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS,
+                                Uri.fromParts("package", activity.packageName, null))
+                        } else {
+                            Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS)
+                        }
+                        activity.startActivity(intent)
+                        reply.success(null)
+                    } catch (_: ActivityNotFoundException) {
+                        reply.error("unavailable", null, null)
+                    } catch (_: SecurityException) {
+                        reply.error("unavailable", null, null)
+                    }
+                }
                 "cancelLocation" -> {
-                    finishLocation(error = "cancelled")
-                    reply.success(null)
+                    // The native permission/settings dialog can temporarily hide Flutter.
+                    val prompting = permissionPending || settingsReply != null
+                    if (call.argument<Boolean>("background") == true && prompting) {
+                        reply.success(false)
+                    } else {
+                        finishLocation(error = "cancelled")
+                        reply.success(true)
+                    }
                 }
                 else -> reply.notImplemented()
             }
@@ -119,7 +157,7 @@ internal class QiblaDevice(
         finishLocation(error = "cancelled")
         locationReply = reply
         if (canLocate()) {
-            startLocation()
+            checkLocationSettings()
         } else if (!permissionPending) {
             permissionPending = true
             ActivityCompat.requestPermissions(
@@ -133,11 +171,59 @@ internal class QiblaDevice(
     fun permissionResult() {
         permissionPending = false
         if (locationReply == null) return
-        if (canLocate()) startLocation() else finishLocation(error = "denied")
+        if (canLocate()) checkLocationSettings() else finishLocation(error = "denied")
+    }
+
+    private fun checkLocationSettings(allowResolution: Boolean = true) {
+        val reply = locationReply ?: return
+        if (settingsReply != null) return
+        if (GoogleApiAvailability.getInstance().isGooglePlayServicesAvailable(activity) != ConnectionResult.SUCCESS) {
+            startLocation()
+            return
+        }
+        val priority = if (hasFineLocation()) Priority.PRIORITY_HIGH_ACCURACY
+            else Priority.PRIORITY_BALANCED_POWER_ACCURACY
+        val request = LocationRequest.Builder(priority, 1000L).setMaxUpdates(1).build()
+        val settings = LocationSettingsRequest.Builder().addLocationRequest(request).build()
+        LocationServices.getSettingsClient(activity).checkLocationSettings(settings)
+            .addOnSuccessListener {
+                if (locationReply === reply) startLocation()
+            }
+            .addOnFailureListener { error ->
+                if (locationReply !== reply) return@addOnFailureListener
+                if (error is ResolvableApiException && allowResolution) {
+                    settingsReply = reply
+                    try {
+                        error.startResolutionForResult(activity, LOCATION_SETTINGS_REQUEST)
+                    } catch (_: IntentSender.SendIntentException) {
+                        settingsReply = null
+                        startLocation()
+                    }
+                } else {
+                    // A working platform provider is still usable without Google's resolution UI.
+                    startLocation()
+                }
+            }
+    }
+
+    fun settingsResult(resultCode: Int) {
+        val reply = settingsReply ?: return
+        settingsReply = null
+        if (locationReply !== reply) {
+            if (locationReply != null) checkLocationSettings(allowResolution = false)
+        } else if (resultCode == Activity.RESULT_OK) {
+            checkLocationSettings(allowResolution = false)
+        } else {
+            finishLocation(error = "cancelled")
+        }
     }
 
     @SuppressLint("MissingPermission") // Both callers verify foreground permission.
     private fun startLocation() {
+        if (!LocationManagerCompat.isLocationEnabled(locations)) {
+            finishLocation(error = "services_disabled")
+            return
+        }
         var listening = false
         for (provider in listOf(LocationManager.GPS_PROVIDER, LocationManager.NETWORK_PROVIDER)) {
             try {
@@ -166,6 +252,7 @@ internal class QiblaDevice(
     fun close() {
         onCancel(null)
         finishLocation(error = "cancelled")
+        settingsReply = null
         compass.setStreamHandler(null)
         actions.setMethodCallHandler(null)
     }

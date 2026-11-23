@@ -12,9 +12,165 @@ import 'package:vaktija/features/prayer_times/prayer_page.dart';
 import 'package:vaktija/features/prayer_times/prayer_repository.dart';
 import 'package:vaktija/features/prayer_times/prayer_timetable_view.dart';
 import 'package:vaktija/features/prayer_times/timetable.dart';
+import 'package:vaktija/features/qibla/qibla_page.dart';
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
+
+  testWidgets('city dropdown survives navigation between all mobile screens', (
+    tester,
+  ) async {
+    tester.view.devicePixelRatio = 1;
+    tester.view.padding = const FakeViewPadding(top: 24, bottom: 16);
+    tester.view.viewPadding = tester.view.padding;
+    addTearDown(tester.view.resetDevicePixelRatio);
+    addTearDown(tester.view.resetPhysicalSize);
+    addTearDown(tester.view.resetPadding);
+    addTearDown(tester.view.resetViewPadding);
+    addTearDown(tester.view.resetViewInsets);
+    final repository = (await tester.runAsync(() async {
+      SharedPreferences.setMockInitialValues({
+        'method': 'iz',
+        'language': 'en',
+      });
+      await (FontLoader('Vaktija Sans')
+            ..addFont(rootBundle.load('assets/fonts/vaktija-sans-400.ttf'))
+            ..addFont(rootBundle.load('assets/fonts/vaktija-sans-600.ttf')))
+          .load();
+      return PrayerRepository(
+        await PrayerCatalog.load(),
+        await SharedPreferences.getInstance(),
+      );
+    }))!;
+    tester.view.physicalSize = const Size(384, 832);
+    await tester.pumpWidget(
+      MaterialApp(
+        theme: ThemeData(fontFamily: 'Vaktija Sans'),
+        home: AppShell(
+          repository: repository,
+          headerLogo: GlobalKey(),
+          onThemeChanged: (_) {},
+        ),
+      ),
+    );
+    await tester.pumpAndSettle();
+    final trigger = find.byKey(const ValueKey('city-trigger'));
+    final choices = find.byType(CityChoices);
+    final labels = repository.catalog.labels(false);
+    var cityName = 'Sarajevo';
+
+    for (final viewport in [const Size(384, 832), const Size(832, 384)]) {
+      tester.view.physicalSize = viewport;
+      await tester.pumpAndSettle();
+      for (final section in [
+        MobileSection.duas,
+        MobileSection.prayerTimes,
+        MobileSection.dhikr,
+        MobileSection.prayerTimes,
+        MobileSection.qibla,
+        MobileSection.duas,
+        MobileSection.dhikr,
+        MobileSection.qibla,
+        MobileSection.prayerTimes,
+      ]) {
+        if (section == MobileSection.prayerTimes) {
+          await tester.binding.handlePopRoute();
+        } else {
+          await tester.tap(find.byTooltip('Menu'));
+          await tester.pumpAndSettle();
+          await tester.tap(find.text(labels[section.label].toUpperCase()));
+          await tester.runAsync(() async {
+            await tester.pump();
+            if (section == MobileSection.duas) {
+              await rootBundle.loadString(DuaCollection.duas.asset);
+            } else if (section == MobileSection.dhikr) {
+              await rootBundle.loadString(DuaCollection.dhikr.asset);
+            }
+          });
+        }
+        await tester.pumpAndSettle();
+        expect(tester.takeException(), isNull);
+        await tester.tap(trigger);
+        await tester.pumpAndSettle();
+        expect(choices, findsOneWidget, reason: 'Opening on ${section.name}');
+        final anchor = tester.getRect(trigger);
+        expect(tester.getRect(choices).left, closeTo(anchor.left, .01));
+        expect(tester.getSize(choices).width, closeTo(anchor.width, .01));
+
+        cityName = cityName == 'Sarajevo' ? 'Jablanica' : 'Sarajevo';
+        final search = find.descendant(
+          of: choices,
+          matching: find.byType(TextField),
+        );
+        await tester.enterText(search, cityName);
+        final keyboardHeight = viewport.width > viewport.height ? 180.0 : 280.0;
+        tester.view.viewInsets = FakeViewPadding(bottom: keyboardHeight);
+        await tester.pumpAndSettle();
+        final dropdown = tester.getRect(choices);
+        expect(dropdown.top, greaterThanOrEqualTo(24));
+        expect(
+          dropdown.bottom,
+          lessThanOrEqualTo(viewport.height - keyboardHeight),
+        );
+        final result = find
+            .descendant(of: choices, matching: find.text(cityName))
+            .last;
+        expect(result.hitTestable(), findsOneWidget);
+        await tester.tap(result);
+        tester.view.resetViewInsets();
+        await tester.pumpAndSettle();
+        expect(choices, findsNothing);
+        final city = repository.catalog.cities.firstWhere(
+          (city) => city.name == cityName,
+        );
+        expect(repository.preferences.getInt('city'), city.id);
+        expect(
+          tester.widget<MobileHeader>(find.byType(MobileHeader)).city.id,
+          city.id,
+        );
+        expect(
+          tester
+              .widget<PrayerPage>(find.byType(PrayerPage, skipOffstage: false))
+              .city
+              .id,
+          city.id,
+        );
+        if (section == MobileSection.qibla) {
+          expect(
+            tester.widget<QiblaPage>(find.byType(QiblaPage)).city.id,
+            city.id,
+          );
+        }
+
+        if (section != MobileSection.prayerTimes) {
+          final page = section == MobileSection.qibla
+              ? find.byType(QiblaPage)
+              : find.byType(DuasPage);
+          final scroll = find
+              .descendant(of: page, matching: find.byType(Scrollable))
+              .first;
+          await tester.drag(scroll, const Offset(0, -80));
+          await tester.pumpAndSettle();
+          tester.state<ScrollableState>(scroll).position.jumpTo(0);
+          await tester.pumpAndSettle();
+        }
+        await tester.tap(trigger);
+        await tester.pumpAndSettle();
+        expect(choices, findsOneWidget);
+        await tester.tapAt(Offset(4, viewport.height - 24));
+        await tester.pumpAndSettle();
+        expect(choices, findsNothing);
+        await tester.tap(trigger);
+        await tester.pumpAndSettle();
+        await tester.binding.handlePopRoute();
+        await tester.pumpAndSettle();
+        expect(choices, findsNothing);
+        expect(find.byType(MobileHeader), findsOneWidget);
+        expect(tester.takeException(), isNull);
+      }
+    }
+    await tester.pumpWidget(const SizedBox.shrink());
+  });
 
   testWidgets('method help anchors to its switcher and can be toggled', (
     tester,

@@ -20,6 +20,12 @@ const qiblaCopy = {
       'qiblaAlignedLabel': 'Okrenuti ste prema kibli',
       'qiblaRecalibrate': 'Kalibriši ponovo',
       'qiblaGpsPending': 'Određujem lokaciju…',
+      'qiblaGpsDisabled':
+          'Lokacija je isključena na telefonu. Uključite je u postavkama pa se vratite u aplikaciju.',
+      'qiblaGpsDisabledIos':
+          'Lokacijske usluge su isključene. Uključite ih u Postavke > Privatnost i sigurnost > Lokacijske usluge.',
+      'qiblaOpenLocationSettings': 'Otvori postavke lokacije',
+      'qiblaOpenAppSettings': 'Otvori postavke aplikacije',
       'qiblaGpsError': 'Nije moguće dobiti lokaciju. Provjerite dozvole i GPS.',
       'qiblaGpsDenied':
           'Lokacija je odbijena. Uključite je u postavkama aplikacije.',
@@ -83,6 +89,12 @@ const qiblaCopy = {
       'qiblaAlignedLabel': 'You are facing the Qibla',
       'qiblaRecalibrate': 'Calibrate again',
       'qiblaGpsPending': 'Getting your location…',
+      'qiblaGpsDisabled':
+          'Location is switched off on your phone. Enable it in settings, then return to the app.',
+      'qiblaGpsDisabledIos':
+          'Location Services are switched off. Enable them in Settings > Privacy & Security > Location Services.',
+      'qiblaOpenLocationSettings': 'Open location settings',
+      'qiblaOpenAppSettings': 'Open app settings',
       'qiblaGpsError': 'Could not get location. Check permissions and GPS.',
       'qiblaGpsDenied': 'Location was denied. Enable it in the app settings.',
       'qiblaEnableCompass': 'Start compass',

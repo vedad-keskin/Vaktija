@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -242,6 +244,171 @@ void main() {
       await tester.pumpWidget(const SizedBox());
     }
   });
+
+  for (final outcome in ['enabled', 'cancelled', 'disposed', 'background']) {
+    testWidgets('native location prompt: $outcome', (tester) async {
+      const location = MethodChannel('vaktija/qibla');
+      final messages = tester.binding.defaultBinaryMessenger;
+      final fix = Completer<List<double>>();
+      final calls = <MethodCall>[];
+      messages.setMockMethodCallHandler(location, (call) async {
+        calls.add(call);
+        if (call.method == 'cancelLocation') {
+          return outcome == 'background' ||
+              call.arguments['background'] != true;
+        }
+        return fix.future;
+      });
+      addTearDown(() => messages.setMockMethodCallHandler(location, null));
+      tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.resumed);
+      await tester.pumpWidget(_page());
+      await tester.pumpAndSettle();
+      await tester.tap(find.text('My location'));
+      await tester.pumpAndSettle();
+      expect(find.text('Getting your location…'), findsOneWidget);
+      expect(find.byType(VaktijaDialog), findsNothing);
+
+      if (outcome == 'disposed') {
+        await tester.pumpWidget(const SizedBox());
+      }
+      await _returnFromLocationSettings(tester);
+      if (outcome == 'cancelled') {
+        fix.completeError(PlatformException(code: 'cancelled'));
+      } else {
+        fix.complete([43.8486, 18.3564]);
+      }
+      await tester.pumpAndSettle();
+      expect(calls.where((call) => call.method == 'location'), hasLength(1));
+      expect(find.byType(VaktijaDialog), findsNothing);
+      if (outcome == 'enabled') {
+        expect(find.text('134.5°'), findsOneWidget);
+      } else if (outcome != 'disposed') {
+        expect(find.text('133.3°'), findsOneWidget);
+        expect(
+          find.text('Could not get location. Check permissions and GPS.'),
+          findsNothing,
+        );
+      }
+      expect(find.text('Getting your location…'), findsNothing);
+      expect(tester.takeException(), isNull);
+      await tester.pumpWidget(const SizedBox());
+    });
+  }
+
+  for (final (platform, failure, outcome) in [
+    (TargetPlatform.android, 'services_disabled', 'enabled'),
+    (TargetPlatform.android, 'services_disabled', 'disabled'),
+    (TargetPlatform.android, 'services_disabled', 'unavailable'),
+    (TargetPlatform.android, 'services_disabled', 'disposed'),
+    (TargetPlatform.android, 'denied', 'enabled'),
+    (TargetPlatform.iOS, 'denied', 'enabled'),
+    (TargetPlatform.iOS, 'services_disabled', 'disabled'),
+  ]) {
+    testWidgets(
+      'inline location recovery: $platform/$failure/$outcome',
+      (tester) async {
+        const location = MethodChannel('vaktija/qibla');
+        final messages = tester.binding.defaultBinaryMessenger;
+        final calls = <String>[];
+        var enabled = false;
+        messages.setMockMethodCallHandler(location, (call) async {
+          calls.add(call.method);
+          if (call.method == 'openLocationSettings') {
+            expect(call.arguments, {'app': failure == 'denied'});
+            if (outcome == 'unavailable') {
+              throw PlatformException(code: 'unavailable');
+            }
+            return null;
+          }
+          if (enabled) return [43.8486, 18.3564];
+          throw PlatformException(code: failure);
+        });
+        addTearDown(() => messages.setMockMethodCallHandler(location, null));
+        tester.view.devicePixelRatio = 1;
+        tester.view.physicalSize = const Size(320, 640);
+        addTearDown(tester.view.resetDevicePixelRatio);
+        addTearDown(tester.view.resetPhysicalSize);
+        tester.binding.handleAppLifecycleStateChanged(
+          AppLifecycleState.resumed,
+        );
+        await tester.pumpWidget(_page(textScale: 1.75));
+        await tester.pumpAndSettle();
+
+        await tester.ensureVisible(find.text('My location'));
+        await tester.pumpAndSettle();
+        await tester.tap(find.text('My location'));
+        await tester.pumpAndSettle();
+        expect(find.byType(VaktijaDialog), findsNothing);
+        expect(find.text('133.3°'), findsOneWidget);
+        await _returnFromLocationSettings(tester);
+        expect(calls, ['location']);
+
+        if (platform == TargetPlatform.iOS && failure == 'services_disabled') {
+          expect(
+            find.text(qiblaCopy['en']!.labels['qiblaGpsDisabledIos']!),
+            findsOneWidget,
+          );
+          expect(find.text('Open location settings'), findsNothing);
+          expect(find.text('Open app settings'), findsNothing);
+          await tester.pumpWidget(const SizedBox());
+          return;
+        }
+        final settings = find.text(
+          failure == 'denied' ? 'Open app settings' : 'Open location settings',
+        );
+        await tester.ensureVisible(settings);
+        await tester.pumpAndSettle();
+        await tester.tap(settings);
+        await tester.pumpAndSettle();
+        expect(calls, ['location', 'openLocationSettings']);
+        enabled = outcome == 'enabled';
+        if (outcome == 'disposed') {
+          await tester.pumpWidget(const SizedBox());
+        }
+        await _returnFromLocationSettings(tester);
+        expect(find.byType(VaktijaDialog), findsNothing);
+        expect(
+          calls.where((call) => call == 'location').length,
+          outcome == 'enabled' || outcome == 'disabled' ? 2 : 1,
+        );
+        if (outcome == 'enabled') {
+          expect(find.text('134.5°'), findsOneWidget);
+          expect(find.text('43.8486°, 18.3564°'), findsOneWidget);
+        } else if (outcome != 'disposed') {
+          expect(find.text('133.3°'), findsOneWidget);
+          expect(
+            find.text(
+              qiblaCopy['en']!.labels[outcome == 'disabled'
+                  ? 'qiblaGpsDisabled'
+                  : 'qiblaGpsError']!,
+            ),
+            findsOneWidget,
+          );
+        }
+        final callCount = calls.length;
+        await _returnFromLocationSettings(tester);
+        expect(calls, hasLength(callCount));
+        expect(tester.takeException(), isNull);
+        await tester.pumpWidget(const SizedBox());
+      },
+      variant: TargetPlatformVariant({platform}),
+    );
+  }
+}
+
+Future<void> _returnFromLocationSettings(WidgetTester tester) async {
+  for (final state in [
+    AppLifecycleState.inactive,
+    AppLifecycleState.hidden,
+    AppLifecycleState.paused,
+    AppLifecycleState.hidden,
+    AppLifecycleState.inactive,
+    AppLifecycleState.resumed,
+  ]) {
+    tester.binding.handleAppLifecycleStateChanged(state);
+    await tester.pump();
+  }
+  await tester.pumpAndSettle();
 }
 
 const _modelAsset = 'assets/qibla/WMM2025.COF';

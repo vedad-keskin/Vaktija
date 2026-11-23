@@ -43,7 +43,7 @@
 }
 
 /* Shared page palette, typography and header controls. */
-:is(.prayer-times-page, .qibla-page, .duas-page, .method-intro) {
+:is(.prayer-times-page, .qibla-page, .duas-page, .method-intro, .privacy-page) {
   color-scheme: dark;
   --font-body: 'Source Sans 3', 'Segoe UI', sans-serif;
   --font-heading: var(--font-body);
@@ -81,7 +81,7 @@
   --logo-filter: brightness(0) invert(1);
 }
 
-[data-theme='light'] :is(.prayer-times-page, .qibla-page, .duas-page, .method-intro) {
+[data-theme='light'] :is(.prayer-times-page, .qibla-page, .duas-page, .method-intro, .privacy-page) {
   color-scheme: light;
   --surface: #f7f5ee;
   --surface-elevated: #fdfcf8;
@@ -114,12 +114,22 @@
 }
 
 @media (max-width: 599px) {
-  :is(.prayer-times-page, .qibla-page, .duas-page) {
+  :is(.prayer-times-page, .qibla-page, .duas-page, .privacy-page) {
     --hero-image: url('/assets/ornaments/mosque-horizon-mobile-dark.webp');
   }
-  [data-theme='light'] :is(.prayer-times-page, .qibla-page, .duas-page) {
+  [data-theme='light'] :is(.prayer-times-page, .qibla-page, .duas-page, .privacy-page) {
     --hero-image: url('/assets/ornaments/mosque-horizon-mobile-light.webp');
   }
+}
+
+/* The document header keeps both theme options large enough for touch. */
+:root .privacy-page .theme-switcher {
+  height: 52px;
+  background: var(--surface-elevated);
+}
+:root .privacy-page .theme-btn {
+  align-self: stretch;
+  min-width: 44px;
 }
 
 /* The secondary screens share the Qibla back button. */
@@ -156,7 +166,7 @@
 }
 
 /* :root gives these scoped overrides priority over Angular's component selectors. */
-:root :is(.prayer-times-page, .qibla-page, .duas-page, .method-intro) :is(button, a, input):focus-visible {
+:root :is(.prayer-times-page, .qibla-page, .duas-page, .method-intro, .privacy-page) :is(button, a, input):focus-visible {
   outline: 2px solid var(--gold);
   outline-offset: 3px;
 }
