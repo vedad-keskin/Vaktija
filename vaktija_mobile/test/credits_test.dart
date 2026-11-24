@@ -11,6 +11,15 @@ import 'package:vaktija/features/qibla/qibla_page.dart';
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
+  Future<void> settle(WidgetTester tester) async {
+    if (find.byType(CreditsDialog).evaluate().isNotEmpty) {
+      await tester.pump();
+      await tester.pump(const Duration(seconds: 4));
+    } else {
+      await tester.pumpAndSettle();
+    }
+  }
+
   const appChannel = MethodChannel('vaktija/app');
 
   setUp(() {
@@ -51,19 +60,19 @@ void main() {
           home: AppShell(repository: repository, onThemeChanged: (_) {}),
         ),
       );
-      await tester.pumpAndSettle();
+      await settle(tester);
       final logo = find.byType(CreditsTrigger);
       expect(tester.getSize(logo).shortestSide, greaterThanOrEqualTo(48));
 
       Future<void> goToQibla() async {
         await tester.tap(find.byTooltip('Menu'));
-        await tester.pumpAndSettle();
+        await settle(tester);
         await tester.tap(
           find.text(
             repository.catalog.labels(false)['qiblaNavTitle'].toUpperCase(),
           ),
         );
-        await tester.pumpAndSettle();
+        await settle(tester);
       }
 
       await goToQibla();
@@ -74,7 +83,7 @@ void main() {
       await tester.pump(const Duration(milliseconds: 4999));
       expect(find.byType(CreditsDialog), findsNothing);
       await hold.up();
-      await tester.pumpAndSettle();
+      await settle(tester);
       await tester.pump(const Duration(seconds: 1));
       expect(find.byType(CreditsDialog), findsNothing);
 
@@ -84,7 +93,7 @@ void main() {
       await hold.moveBy(const Offset(80, 0));
       await tester.pump(const Duration(seconds: 4));
       await hold.up();
-      await tester.pumpAndSettle();
+      await settle(tester);
       expect(find.byType(CreditsDialog), findsNothing);
 
       hold = await tester.startGesture(tester.getCenter(logo));
@@ -100,7 +109,7 @@ void main() {
       tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.resumed);
       await tester.pump(const Duration(seconds: 4));
       await hold.up();
-      await tester.pumpAndSettle();
+      await settle(tester);
       expect(find.byType(CreditsDialog), findsNothing);
 
       hold = await tester.startGesture(tester.getCenter(logo));
@@ -110,25 +119,42 @@ void main() {
       await tester.pump();
       expect(find.byType(CreditsDialog), findsOneWidget);
       await hold.up();
-      final pop = find.byKey(const ValueKey('credits-pop'));
-      double scale() => tester.widget<ScaleTransition>(pop).scale.value;
-      final openingScale = scale();
-      expect(openingScale, lessThan(1));
+      final credits = find.byType(CreditsDialog);
+      double routeProgress() =>
+          ModalRoute.of(tester.element(credits))!.animation!.value;
+      double reveal(String name) => tester
+          .widget<FadeTransition>(
+            find
+                .ancestor(
+                  of: find.text(name),
+                  matching: find.byType(FadeTransition),
+                )
+                .first,
+          )
+          .opacity
+          .value;
+      final opening = routeProgress();
+      expect(opening, lessThan(1));
       await tester.pump(const Duration(milliseconds: 100));
-      expect(scale(), greaterThan(openingScale));
-      await tester.pump(const Duration(milliseconds: 700));
+      expect(routeProgress(), greaterThan(opening));
+      await tester.pump(const Duration(milliseconds: 1700));
+      expect(reveal('Vedad Keskin'), greaterThan(0));
+      expect(reveal('Samija Bešić'), 0);
       expect(
         tester
-            .widgetList<FadeTransition>(
-              find.descendant(
-                of: find.byType(CreditsDialog),
-                matching: find.byType(FadeTransition),
-              ),
+            .widget<FadeTransition>(
+              find
+                  .ancestor(
+                    of: find.byIcon(Icons.code_rounded),
+                    matching: find.byType(FadeTransition),
+                  )
+                  .first,
             )
-            .every((fade) => fade.opacity.value == 1),
-        isTrue,
+            .opacity
+            .value,
+        0,
       );
-      await tester.pumpAndSettle();
+      await settle(tester);
       expect(find.text('Vedad Keskin'), findsOneWidget);
       expect(find.text('Samija Bešić'), findsOneWidget);
       expect(find.text('Lead Developer'), findsOneWidget);
@@ -138,14 +164,11 @@ void main() {
         find.descendant(
           of: find.byType(CreditsDialog),
           matching: find.image(
-            const AssetImage(
-              'assets/prayer_times/mosque-horizon-mobile-dark.webp',
-            ),
+            const AssetImage('assets/prayer_times/mosque-horizon-dark.webp'),
           ),
         ),
         findsOneWidget,
       );
-      final credits = find.byType(CreditsDialog);
       expect(
         find.descendant(of: credits, matching: find.text('Vaktija')),
         findsNothing,
@@ -154,11 +177,58 @@ void main() {
         find.descendant(of: credits, matching: find.text('Credits')),
         findsNothing,
       );
+      expect(reveal('Samija Bešić'), 1);
+      expect(
+        tester.widget<Text>(find.text('Lead Developer')).style!.fontFamily,
+        'Vaktija Sans',
+      );
       final nameStyle = tester.widget<Text>(find.text('Vedad Keskin')).style!;
       expect(nameStyle.fontFamily, 'Lilita One');
       expect(nameStyle.fontFamilyFallback, contains('Paytone One'));
       final branding = find.byKey(const ValueKey('credits-studio'));
       final version = find.byKey(const ValueKey('app-version'));
+      final footer = tester.getRect(
+        find.image(
+          const AssetImage('assets/prayer_times/mosque-horizon-dark.webp'),
+        ),
+      );
+      expect(footer.contains(tester.getTopLeft(branding)), isTrue);
+      expect(footer.contains(tester.getBottomRight(branding)), isTrue);
+      expect(footer.contains(tester.getTopLeft(version)), isTrue);
+      expect(footer.contains(tester.getBottomRight(version)), isTrue);
+      expect(
+        tester.getTopLeft(branding).dy - footer.top,
+        closeTo(footer.bottom - tester.getBottomRight(branding).dy, .01),
+      );
+      for (final (icon, role) in [
+        (Icons.code_rounded, 'Lead Developer'),
+        (Icons.import_contacts_outlined, 'Content Research'),
+      ]) {
+        final symbol = find.descendant(
+          of: credits,
+          matching: find.byIcon(icon),
+        );
+        expect(symbol, findsOneWidget);
+        expect(
+          tester.getCenter(symbol).dy,
+          closeTo(tester.getCenter(find.text(role)).dy, .01),
+        );
+        expect(
+          tester.getTopLeft(symbol).dx,
+          greaterThan(tester.getTopRight(find.text(role)).dx),
+        );
+        expect(
+          tester
+              .widget<FadeTransition>(
+                find
+                    .ancestor(of: symbol, matching: find.byType(FadeTransition))
+                    .first,
+              )
+              .opacity
+              .value,
+          1,
+        );
+      }
       final dialog = find.descendant(
         of: credits,
         matching: find.byType(Dialog),
@@ -169,49 +239,43 @@ void main() {
       expect(tester.getSize(surface).width, lessThan(320));
       expect(tester.getSize(surface).height, lessThan(640));
       expect(
-        tester.getCenter(branding).dx,
-        closeTo(tester.getCenter(dialog).dx, .01),
+        tester.getCenter(branding).dy,
+        closeTo(tester.getCenter(version).dy, .01),
       );
       expect(
-        tester.getCenter(version).dx,
-        closeTo(tester.getCenter(branding).dx, .01),
-      );
-      expect(
-        tester.getTopLeft(version).dy,
-        greaterThan(tester.getBottomLeft(branding).dy),
-      );
-      expect(
-        tester.getBottomLeft(version).dy,
-        lessThan(tester.getTopLeft(find.text('Lead Developer')).dy),
+        tester.getTopRight(branding).dx,
+        lessThan(tester.getTopLeft(version).dx),
       );
       final mark = find.descendant(
         of: credits,
         matching: find.image(const AssetImage('assets/branding/logo.png')),
       );
+      final lead = find.text('Vedad Keskin');
+      final research = find.text('Samija Bešić');
       expect(
-        tester.getTopLeft(mark).dy,
-        greaterThan(tester.getBottomLeft(version).dy),
+        tester.getBottomLeft(mark).dy,
+        lessThan(tester.getTopLeft(lead).dy),
       );
       expect(
-        tester.getCenter(find.byTooltip('Close')).dy,
-        lessThan(tester.getTopLeft(mark).dy),
+        tester.getTopLeft(lead).dx,
+        lessThan(tester.getTopLeft(research).dx),
       );
-      final close = tester.widget<IconButton>(
-        find.byKey(const ValueKey('credits-close')),
-      );
-      expect(close.style!.side!.resolve({})!.color, const Color(0xff7b713f));
-      expect(close.style!.fixedSize!.resolve({}), const Size.square(32));
-      expect(close.style!.tapTargetSize, MaterialTapTargetSize.padded);
       expect(
-        close.style!.backgroundColor!.resolve({}),
-        const Color(0xff032c28),
+        tester.getTopLeft(branding).dy,
+        greaterThan(tester.getBottomLeft(find.text('Content Research')).dy),
+      );
+      expect(
+        tester
+            .getSize(find.byKey(const ValueKey('credits-close')))
+            .shortestSide,
+        greaterThanOrEqualTo(48),
       );
       await tester.tap(find.byTooltip('Close'));
       await tester.pump();
       await tester.pump(const Duration(milliseconds: 100));
       expect(find.byType(CreditsDialog), findsOneWidget);
-      expect(scale(), lessThan(1));
-      await tester.pumpAndSettle();
+      expect(routeProgress(), lessThan(1));
+      await settle(tester);
       expect(find.byType(CreditsDialog), findsNothing);
       final restoredHeader = tester.widget<MobileHeader>(
         find.byType(MobileHeader),
@@ -228,24 +292,24 @@ void main() {
       await tester.pump();
       await tester.pump(const Duration(milliseconds: 40));
       expect(find.byType(CreditsDialog), findsOneWidget);
-      await tester.pumpAndSettle();
+      await settle(tester);
       expect(find.byType(CreditsDialog), findsNothing);
       expect(find.byType(QiblaPage), findsOneWidget);
 
       hold = await tester.startGesture(tester.getCenter(logo));
       await tester.pump(const Duration(seconds: 5));
       await hold.up();
-      await tester.pumpAndSettle();
+      await settle(tester);
       await tester.tapAt(const Offset(10, 10));
       await tester.pump();
       await tester.pump(const Duration(milliseconds: 100));
       expect(find.byType(CreditsDialog), findsOneWidget);
-      expect(scale(), lessThan(1));
-      await tester.pumpAndSettle();
+      expect(routeProgress(), lessThan(1));
+      await settle(tester);
       expect(find.byType(CreditsDialog), findsNothing);
 
       await tester.tap(logo);
-      await tester.pumpAndSettle();
+      await settle(tester);
       expect(find.byType(CreditsDialog), findsNothing);
       expect(find.byType(QiblaPage), findsNothing);
       hold = await tester.startGesture(tester.getCenter(logo));
@@ -283,7 +347,7 @@ void main() {
             home: const Scaffold(body: Text('Home')),
           ),
         );
-        await tester.pumpAndSettle();
+        await settle(tester);
         showDialog<void>(
           context: navigator.currentContext!,
           useSafeArea: false,
@@ -303,17 +367,18 @@ void main() {
             isTrue,
           );
         }
-        await tester.pumpAndSettle();
+        await settle(tester);
+        expect(tester.binding.hasScheduledFrame, !reduceMotion);
         expect(find.text('Glavni developer'), findsOneWidget);
         expect(find.text('Istraživanje sadržaja'), findsOneWidget);
         expect(find.bySemanticsLabel('Nightfall Studio'), findsOneWidget);
         await tester.ensureVisible(find.text('Samija Bešić'));
-        await tester.pumpAndSettle();
+        await settle(tester);
         expect(find.text('Samija Bešić').hitTestable(), findsOneWidget);
         expect(find.byTooltip('Zatvori').hitTestable(), findsOneWidget);
         expect(tester.takeException(), isNull);
         await tester.binding.handlePopRoute();
-        await tester.pumpAndSettle();
+        await settle(tester);
         expect(find.byType(CreditsDialog), findsNothing);
         expect(find.text('Home'), findsOneWidget);
       }
@@ -333,12 +398,10 @@ void main() {
         home: const CreditsDialog(bosnian: false),
       ),
     );
-    await tester.pumpAndSettle();
+    await settle(tester);
     expect(
       find.image(
-        const AssetImage(
-          'assets/prayer_times/mosque-horizon-mobile-light.webp',
-        ),
+        const AssetImage('assets/prayer_times/mosque-horizon-light.webp'),
       ),
       findsOneWidget,
     );
@@ -346,14 +409,12 @@ void main() {
       find.byKey(const ValueKey('credits-close')),
     );
     expect(close.style!.backgroundColor!.resolve({}), const Color(0xfffaf7ed));
-    expect(close.style!.side!.resolve({})!.color, const Color(0xffd4d8c4));
+    expect(close.style!.foregroundColor!.resolve({}), const Color(0xff123d33));
     expect(
       tester
           .getTopLeft(find.image(const AssetImage('assets/branding/logo.png')))
           .dy,
-      greaterThan(
-        tester.getBottomLeft(find.byKey(const ValueKey('app-version'))).dy,
-      ),
+      lessThan(tester.getTopLeft(find.byKey(const ValueKey('app-version'))).dy),
     );
   });
 }
