@@ -34,6 +34,8 @@ night_names = ("Zadnja tre\u0107ina", "Polovina no\u0107i")
 assert sum(d.startswith(night_names) for d in descriptions) == (2 if args.rows == 8 else 0)
 assert len(views("widget_prayer_icon")) == (0 if args.no_icons else args.rows)
 if views("widget_grid_left"):
+    assert len(views("widget_grid_divider")) == args.rows // 2 - 1, "Wrong grid row dividers"
+    assert len(views("widget_grid_column_divider")) == args.rows // 2, "Missing grid column dividers"
     for left, right in zip(rows[::2], rows[1::2]):
         x1, y1, x2, y2 = bounds(left)
         x3, y3, x4, y4 = bounds(right)

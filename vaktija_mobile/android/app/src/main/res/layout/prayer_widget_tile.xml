@@ -2,7 +2,6 @@
     android:id="@+id/widget_prayer_row"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/widget_row"
     android:gravity="center_vertical"
     android:orientation="horizontal"
     android:paddingLeft="8dp"

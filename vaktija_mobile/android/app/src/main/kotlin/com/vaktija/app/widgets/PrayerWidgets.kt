@@ -134,7 +134,6 @@ private object PrayerWidgetRenderer {
     private val icons = listOf(R.drawable.widget_fajr, R.drawable.widget_sunrise, R.drawable.widget_dhuhr,
         R.drawable.widget_asr, R.drawable.widget_maghrib, R.drawable.widget_isha,
         R.drawable.widget_midnight, R.drawable.widget_lastthird)
-    private val headerInk = Color.rgb(20, 54, 44)
     private val listText = Color.rgb(237, 242, 232)
 
     fun update(context: Context, manager: AppWidgetManager, id: Int, grid: Boolean, data: SharedPreferences) {
@@ -193,8 +192,8 @@ private object PrayerWidgetRenderer {
         if (narrow) {
             val textWidth = (width - 67f).coerceAtLeast(24f)
             headerHeight = max(38f, textHeight(context, "Ag", 15f, textWidth, includePad = true) + textHeight(context, date, 11f, textWidth, includePad = true) + 8f)
-            setText(context, views, R.id.widget_city, city, 15f, textWidth, headerInk)
-            setText(context, views, R.id.widget_compact_date, date, 11f, textWidth, headerInk)
+            setText(context, views, R.id.widget_city, city, 15f, textWidth, listText)
+            setText(context, views, R.id.widget_compact_date, date, 11f, textWidth, listText)
             views.setViewVisibility(R.id.widget_date, View.GONE)
             views.setViewVisibility(R.id.widget_compact_date, View.VISIBLE)
             views.setViewPadding(R.id.widget_list_header, dp(context, 10f), dp(context, 4f), dp(context, 13f), dp(context, 4f))
@@ -202,13 +201,13 @@ private object PrayerWidgetRenderer {
             val dateWidth = measure(context, date, 12f) + 2f
             val cityWidth = (width - dateWidth - 67f).coerceAtLeast(24f)
             headerHeight = max(38f, max(textHeight(context, city, 17f, cityWidth), textHeight(context, date, 12f, dateWidth)) + 10f)
-            setText(context, views, R.id.widget_city, city, 17f, cityWidth, headerInk, maxLines = 2)
-            setText(context, views, R.id.widget_date, date, 12f, dateWidth, headerInk, end = true, fill = false)
+            setText(context, views, R.id.widget_city, city, 17f, cityWidth, listText, maxLines = 2)
+            setText(context, views, R.id.widget_date, date, 12f, dateWidth, listText, end = true, fill = false)
             views.setViewVisibility(R.id.widget_date, View.VISIBLE)
             views.setViewVisibility(R.id.widget_compact_date, View.GONE)
             views.setViewPadding(R.id.widget_list_header, dp(context, 10f), dp(context, 5f), dp(context, 13f), dp(context, 5f))
         }
-        views.setImageViewBitmap(R.id.widget_logo, image(context, R.drawable.widget_logo_dark, 29f, 27f))
+        views.setImageViewBitmap(R.id.widget_logo, image(context, R.drawable.widget_logo, 29f, 27f))
         views.setContentDescription(R.id.widget_root, "$city, $weekday, $date")
         views.setOnClickPendingIntent(R.id.widget_root,
             HomeWidgetLaunchIntent.getActivity(context, MainActivity::class.java, Uri.parse("vaktija://widgets/prayers")))
@@ -233,7 +232,7 @@ private object PrayerWidgetRenderer {
             val nameSize = if (grid) { if (dense) 12f else 13f } else if (dense) 14f else 16f
             val timeSize = if (dense) 16f else 21f
             val minimumTimeWidth = measure(context, "23:59", timeSize, 700) + 2f
-            val nameWidth = if (grid) (width - 32f) / 2f - 16f - (if (showIcon) 33f else 0f)
+            val nameWidth = if (grid) (width - 33f) / 2f - 16f - (if (showIcon) 33f else 0f)
                 else width - 36f - (if (showIcon) 36f else 0f) - minimumTimeWidth
             val heights = day.rows.associateWith { row ->
                 val nameHeight = textHeight(context, row.name, nameSize, nameWidth, 400, includePad = true)
@@ -242,7 +241,7 @@ private object PrayerWidgetRenderer {
                 else if (dense) max(26f, max(nameHeight, timeHeight) + 1f) else max(39f, max(nameHeight, timeHeight) + 11f)
             }
             val compact = day.rows.filter { it.kind != "midnight" && it.kind != "lastthird" }
-            val gap = if (grid) 4f else 0f
+            val gap = if (grid) 1f else 0f
             val fullHeight = (if (grid) ceil(day.rows.size / 2f) else day.rows.size.toFloat()) * (heights.values.max() + gap)
             val compactHeight = (if (grid) ceil(compact.size / 2f) else compact.size.toFloat()) * (compact.maxOf { heights.getValue(it) } + gap)
             if (availableHeight < compactHeight || nameWidth < 30f || (grid && nameWidth < minimumTimeWidth)) {
@@ -251,10 +250,13 @@ private object PrayerWidgetRenderer {
             } else {
                 val visible = if (availableHeight >= fullHeight) day.rows else compact
                 if (grid) {
-                    for (pair in visible.chunked(2)) {
+                    val pairs = visible.chunked(2)
+                    for ((index, pair) in pairs.withIndex()) {
                         val row = RemoteViews(context.packageName, R.layout.prayer_widget_grid_row)
                         row.addView(R.id.widget_grid_left, prayerView(context, pair[0], true, nameWidth, dense, showIcon))
                         pair.getOrNull(1)?.let { row.addView(R.id.widget_grid_right, prayerView(context, it, true, nameWidth, dense, showIcon)) }
+                        row.setViewVisibility(R.id.widget_grid_divider, if (index == pairs.lastIndex) View.GONE else View.VISIBLE)
+                        row.setViewVisibility(R.id.widget_grid_column_divider, if (pair.size == 2) View.VISIBLE else View.GONE)
                         views.addView(R.id.widget_rows, row)
                     }
                 } else {

@@ -46,6 +46,6 @@
         android:id="@+id/widget_list_divider"
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="#26B6D3BD"
+        android:background="#33FFFFFF"
         android:importantForAccessibility="no" />
 </LinearLayout>
