@@ -1,0 +1,51 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/widget_prayer_row"
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+    android:layout_weight="1"
+    android:minHeight="26dp"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/widget_prayer_content"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp">
+
+        <ImageView
+            android:id="@+id/widget_prayer_icon"
+            android:layout_width="26dp"
+            android:layout_height="27dp"
+            android:layout_marginEnd="10dp"
+            android:importantForAccessibility="no" />
+
+        <ImageView
+            android:id="@+id/widget_prayer_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:layout_weight="1"
+            android:adjustViewBounds="true"
+            android:importantForAccessibility="no"
+            android:scaleType="fitStart" />
+
+        <ImageView
+            android:id="@+id/widget_prayer_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:importantForAccessibility="no"
+            android:scaleType="fitEnd" />
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/widget_list_divider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#26B6D3BD"
+        android:importantForAccessibility="no" />
+</LinearLayout>

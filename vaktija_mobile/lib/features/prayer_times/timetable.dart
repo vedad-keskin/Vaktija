@@ -88,6 +88,15 @@ List<PrayerTime> sortTimetable(List<PrayerTime> times) => times
     return order == 0 ? a.kind.index.compareTo(b.kind.index) : order;
   });
 
+List<PrayerTime> calendarTimetable(
+  DateTime day, {
+  List<PrayerTime>? yesterday,
+  List<PrayerTime>? today,
+}) => sortTimetable([
+  for (final time in [...?yesterday, ...?today])
+    if (dayKey(time.at) == dayKey(day)) time,
+]);
+
 class PrayerCatalog {
   PrayerCatalog.fromJson(Map<String, dynamic> json)
     : cities = (json['cities'] as List)

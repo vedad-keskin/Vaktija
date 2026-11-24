@@ -3,11 +3,13 @@ import 'dart:async';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:home_widget/home_widget.dart';
 
 import '../features/duas/dua_catalog.dart';
 import '../features/duas/duas_page.dart';
 import '../features/prayer_times/prayer_page.dart';
 import '../features/prayer_times/prayer_repository.dart';
+import '../features/prayer_times/prayer_widgets.dart';
 import '../features/prayer_times/timetable.dart';
 import '../features/qibla/qibla_page.dart';
 import 'mobile_header.dart';
@@ -35,7 +37,7 @@ class AppShell extends StatefulWidget {
 }
 
 class _AppShellState extends State<AppShell>
-    with SingleTickerProviderStateMixin {
+    with SingleTickerProviderStateMixin, WidgetsBindingObserver {
   static const _fullscreenChannel = MethodChannel('vaktija/fullscreen');
   static const _fullscreenPreference = 'fullscreen';
   late final _fullscreenTransition = AnimationController(
@@ -62,6 +64,9 @@ class _AppShellState extends State<AppShell>
   Future<bool> _bookmarkWrite = Future.value(true);
   var _overlay = _Overlay.none;
   var _section = MobileSection.prayerTimes;
+  late final _widgets = PrayerWidgets(widget.repository);
+  StreamSubscription<Uri?>? _widgetTaps;
+  bool _pendingWidgetTap = false;
 
   PrayerCatalog get _catalog => widget.repository.catalog;
   DuaCollection? get _readingCollection => switch (_section) {
@@ -73,6 +78,13 @@ class _AppShellState extends State<AppShell>
   @override
   void initState() {
     super.initState();
+    WidgetsBinding.instance.addObserver(this);
+    if (PrayerWidgets.supported) {
+      _widgetTaps = HomeWidget.widgetClicked.listen(_onWidgetTap);
+      unawaited(
+        HomeWidget.initiallyLaunchedFromHomeWidget().then(_onWidgetTap),
+      );
+    }
     final preferences = widget.repository.preferences;
     // Lay out the saved view underneath the splash before it fades away.
     _fullscreen = preferences.getBool(_fullscreenPreference) == true;
@@ -126,9 +138,38 @@ class _AppShellState extends State<AppShell>
   void _finishStartup() {
     if (!widget.startupComplete) return;
     _syncSystemBars(_fullscreenTransition.status);
+    _syncWidgets();
     if (_method == null) {
       WidgetsBinding.instance.addPostFrameCallback((_) => _chooseMethod());
     }
+    WidgetsBinding.instance.addPostFrameCallback((_) => _consumeWidgetTap());
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    if (state == AppLifecycleState.resumed && widget.startupComplete) {
+      _syncWidgets();
+    }
+  }
+
+  void _syncWidgets() =>
+      unawaited(_widgets.configure(_city, _method, _catalog.labels(_bosnian)));
+
+  void _onWidgetTap(Uri? uri) {
+    if (!mounted || uri?.scheme != 'vaktija' || uri?.host != 'widgets') return;
+    _pendingWidgetTap = true;
+    _consumeWidgetTap();
+  }
+
+  void _consumeWidgetTap() {
+    if (!mounted ||
+        !_pendingWidgetTap ||
+        !widget.startupComplete ||
+        _method == null) {
+      return;
+    }
+    _pendingWidgetTap = false;
+    _selectSection(MobileSection.prayerTimes);
   }
 
   Future<void> _chooseMethod() async {
@@ -148,13 +189,23 @@ class _AppShellState extends State<AppShell>
       _setOverlay(_Overlay.none);
     });
     unawaited(
-      _persist(widget.repository.preferences.setString('method', method.name)),
+      _persist(
+        widget.repository.preferences.setString('method', method.name),
+        syncWidgets: true,
+      ),
     );
   }
 
-  Future<void> _persist(Future<bool> operation) async {
+  Future<void> _persist(
+    Future<bool> operation, {
+    bool syncWidgets = false,
+  }) async {
     try {
       await operation;
+      if (syncWidgets && mounted) {
+        _syncWidgets();
+        _consumeWidgetTap();
+      }
     } catch (error) {
       debugPrint('Could not save Vaktija preferences: $error');
     }
@@ -247,6 +298,8 @@ class _AppShellState extends State<AppShell>
 
   @override
   void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    unawaited(_widgetTaps?.cancel());
     if (_systemFullscreen) unawaited(_setSystemFullscreen(false));
     _fullscreenTransition.dispose();
     super.dispose();
@@ -297,7 +350,9 @@ class _AppShellState extends State<AppShell>
             _city = city;
             _setOverlay(_Overlay.none);
           });
-          unawaited(_persist(preferences.setInt('city', city.id)));
+          unawaited(
+            _persist(preferences.setInt('city', city.id), syncWidgets: true),
+          );
         },
       ),
       onHome: () => _selectSection(MobileSection.prayerTimes),
@@ -312,7 +367,10 @@ class _AppShellState extends State<AppShell>
       onLanguage: (bosnian) {
         setState(() => _bosnian = bosnian);
         unawaited(
-          _persist(preferences.setString('language', bosnian ? 'bs' : 'en')),
+          _persist(
+            preferences.setString('language', bosnian ? 'bs' : 'en'),
+            syncWidgets: true,
+          ),
         );
       },
     );

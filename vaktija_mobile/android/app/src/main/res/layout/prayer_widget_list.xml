@@ -1,0 +1,85 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/widget_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/widget_list_panel"
+    android:clipToOutline="true"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/widget_list_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#BED0BC"
+        android:gravity="center_vertical"
+        android:minHeight="38dp"
+        android:orientation="horizontal"
+        android:paddingLeft="10dp"
+        android:paddingRight="13dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp">
+
+        <ImageView
+            android:id="@+id/widget_logo"
+            android:layout_width="29dp"
+            android:layout_height="27dp"
+            android:layout_marginEnd="7dp"
+            android:importantForAccessibility="no"
+            android:scaleType="fitCenter" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/widget_city"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:importantForAccessibility="no"
+                android:scaleType="fitStart" />
+
+            <ImageView
+                android:id="@+id/widget_compact_date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:importantForAccessibility="no"
+                android:scaleType="fitStart"
+                android:visibility="gone" />
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/widget_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:importantForAccessibility="no"
+            android:scaleType="fitEnd" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/widget_status"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="13dp"
+        android:paddingRight="13dp"
+        android:paddingTop="6dp"
+        android:textColor="#BED0BC"
+        android:textSize="12sp"
+        android:visibility="gone" />
+
+    <LinearLayout
+        android:id="@+id/widget_rows"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:paddingLeft="13dp"
+        android:paddingRight="13dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="11dp" />
+</LinearLayout>

@@ -101,7 +101,7 @@ class PrayerRepository {
 
   bool _withinCacheWindow(String date, DateTime today) =>
       date.compareTo(dayKey(sarajevoDay(today, -1))) >= 0 &&
-      date.compareTo(dayKey(sarajevoDay(today, 1))) <= 0;
+      date.compareTo(dayKey(sarajevoDay(today, 7))) <= 0;
 
   Future<void> _pruneCache(DateTime today) async {
     final date = dayKey(today);

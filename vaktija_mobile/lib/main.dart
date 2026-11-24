@@ -5,9 +5,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'app/vaktija_app.dart';
+import 'features/prayer_times/prayer_widgets.dart';
 
 void main() {
   final binding = WidgetsFlutterBinding.ensureInitialized();
+  unawaited(
+    PrayerWidgets.initialize().catchError((Object error) {
+      debugPrint('Could not initialize prayer widgets: $error');
+    }),
+  );
   binding.deferFirstFrame();
   runApp(
     VaktijaApp(

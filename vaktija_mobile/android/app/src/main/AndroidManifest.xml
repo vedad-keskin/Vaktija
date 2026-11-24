@@ -2,6 +2,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <application
         android:label="Vaktija"
         android:name="${applicationName}"
@@ -33,6 +34,45 @@
         <meta-data
             android:name="flutterEmbedding"
             android:value="2" />
+        <receiver
+            android:name=".widgets.PrayerListWidget"
+            android:exported="true"
+            android:label="@string/widget_list_name">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data android:name="android.appwidget.provider" android:resource="@xml/prayer_list_widget" />
+        </receiver>
+        <receiver
+            android:name=".widgets.PrayerGridWidget"
+            android:exported="true"
+            android:label="@string/widget_grid_name">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data android:name="android.appwidget.provider" android:resource="@xml/prayer_grid_widget" />
+        </receiver>
+        <receiver
+            android:name="es.antonborri.home_widget.HomeWidgetBackgroundReceiver"
+            android:exported="false" />
+        <receiver
+            android:name="es.antonborri.home_widget.HomeWidgetScheduledUpdateReceiver"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.MY_PACKAGE_REPLACED" />
+            </intent-filter>
+        </receiver>
+        <receiver
+            android:name=".widgets.PrayerWidgetRecovery"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.MY_PACKAGE_REPLACED" />
+                <action android:name="android.intent.action.TIME_SET" />
+                <action android:name="android.intent.action.TIMEZONE_CHANGED" />
+            </intent-filter>
+        </receiver>
     </application>
     <!-- Required to query activities that can process text, see:
          https://developer.android.com/training/package-visibility and

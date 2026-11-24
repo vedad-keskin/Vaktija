@@ -137,10 +137,11 @@ class _PrayerPageState extends State<PrayerPage> {
     final today = _days[date];
     final yesterday = _days[dayKey(sarajevoDay(_now, -1))]?.data;
     final tomorrow = _days[dayKey(sarajevoDay(_now, 1))]?.data;
-    final times = sortTimetable([
-      for (final time in [...?yesterday, ...?today?.data])
-        if (dayKey(time.at) == date) time,
-    ]);
+    final times = calendarTimetable(
+      _now,
+      yesterday: yesterday,
+      today: today?.data,
+    );
     final interval = PrayerInterval.find(
       _now,
       yesterday: yesterday,

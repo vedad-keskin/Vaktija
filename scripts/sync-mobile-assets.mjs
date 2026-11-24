@@ -6,6 +6,7 @@ import ts from 'typescript';
 const web = 'public/assets';
 const mobile = 'vaktija_mobile/assets';
 const core = 'src/app/core';
+const widgetAssets = 'vaktija_mobile/android/app/src/main/res/drawable-nodpi';
 
 async function loadExports(path) {
   const source = await readFile(path, 'utf8');
@@ -26,7 +27,7 @@ const keys = [
   'method146Tooltip', 'methodIzTooltip', 'method146HelpAria', 'methodIzHelpAria',
   'methodIntroTitle', 'methodIntroDescription', 'methodIntroConfirm', 'methodIntroLater',
   'method146Summary', 'methodIzSummary', 'countdownHours', 'countdownMinutes',
-  'countdownSeconds', 'countdownProgressAria', 'expandCountdown', 'collapseCountdown',
+  'countdownSeconds', 'countdownProgressAria', 'enterFullscreen', 'exitFullscreen',
   'nextTime', 'nextBadge', 'currentBadge', 'selectCity', 'searchCity', 'noCities',
   'dhuhrFridayName', 'loading', 'loadingSubtitle', 'errorTitle', 'errorHint',
   'errorGeneric', 'retryAction', 'prayerNames', 'dayNames', 'monthNames',
@@ -41,6 +42,7 @@ function prayerLabels(labels) {
 }
 
 await mkdir(join(mobile, 'prayer_times'), { recursive: true });
+await mkdir(widgetAssets, { recursive: true });
 await writeFile(join(mobile, 'prayer_times/catalog.json'), JSON.stringify({
   cities: BOSNIA_PRESET_CITIES,
   labels: { bs: prayerLabels(BS_LABELS), en: prayerLabels(EN_LABELS) },
@@ -61,6 +63,7 @@ const menuIcons = [...links.matchAll(/<svg\b[\s\S]*?<\/svg>/g)].slice(0, 3);
 
 await Promise.all([
   copyFile(join(web, 'icons/logo.png'), join(mobile, 'branding/logo.png')),
+  copyFile(join(web, 'ornaments/mosque-horizon-dark.webp'), join(widgetAssets, 'widget_horizon.webp')),
   ...assets.map((path) => copyFile(join(web, path), join(mobile, 'prayer_times', path.split('/').at(-1)))),
   ...['duas', 'dhikr', 'qibla'].map(async (name, index) => {
     const svg = menuIcons[index][0].replace('<svg', '<svg xmlns="http://www.w3.org/2000/svg"');
@@ -73,5 +76,14 @@ await Promise.all([
     const compact = svg.replace(/<style>[^<]*<\/style>/, '<style>.detail{display:none}.rim{stroke-width:2}</style>');
     await sharp(Buffer.from(compact), { density: 144 })
       .resize({ width: 156 }).png().toFile(join(mobile, `prayer_times/${name}.png`));
+    await copyFile(join(mobile, `prayer_times/${name}.png`), join(widgetAssets, `widget_${name}.png`));
   }),
 ]);
+
+const { data: logoAlpha, info: logoSize } = await sharp(join(web, 'icons/logo.png'))
+  .resize({ width: 156 }).ensureAlpha().extractChannel('alpha').toBuffer({ resolveWithObject: true });
+await sharp({ create: { width: logoSize.width, height: logoSize.height, channels: 3, background: '#ffffff' } })
+  .joinChannel(logoAlpha).png().toFile(join(widgetAssets, 'widget_logo.png'));
+await sharp(join(web, 'icons/logo.png'))
+  .resize({ width: 156, height: 145, fit: 'contain', background: '#00000000' })
+  .png().toFile(join(widgetAssets, 'widget_logo_dark.png'));

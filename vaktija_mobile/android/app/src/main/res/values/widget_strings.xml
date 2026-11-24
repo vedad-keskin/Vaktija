@@ -1,0 +1,6 @@
+<resources>
+    <string name="widget_list_name">Prayer List</string>
+    <string name="widget_grid_name">Prayer Grid</string>
+    <string name="widget_list_description">Prayers in a list</string>
+    <string name="widget_grid_description">Prayers in two columns</string>
+</resources>

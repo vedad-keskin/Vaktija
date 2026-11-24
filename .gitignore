@@ -46,5 +46,9 @@ Thumbs.db
 # Local store artwork
 /vaktija_mobile/store_assets/
 
+# Design previews and widget build output
+/design/
+/output/widgets/
+
 # Play upload key backup. Copy off this machine, then delete the folder.
 /play-upload-secrets/
