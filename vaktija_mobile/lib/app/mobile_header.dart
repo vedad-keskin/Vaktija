@@ -2,9 +2,9 @@ import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 import '../features/prayer_times/timetable.dart';
+import 'credits_dialog.dart';
 import 'method_choice.dart';
 import 'method_help_popover.dart';
 import 'vaktija_palette.dart';
@@ -57,7 +57,7 @@ class MobileHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colors = VaktijaPalette.of(context);
-    final controlScale = ((MediaQuery.sizeOf(context).width - 124) / 196).clamp(
+    final controlScale = ((MediaQuery.sizeOf(context).width - 140) / 196).clamp(
       .65,
       1.0,
     );
@@ -74,12 +74,13 @@ class MobileHeader extends StatelessWidget {
                 Semantics(
                   button: true,
                   label: 'Vaktija',
-                  child: InkWell(
-                    onTap: onHome,
-                    borderRadius: BorderRadius.circular(8),
+                  child: CreditsTrigger(
+                    onHome: onHome,
+                    bosnian: labels.bosnian,
+                    enabled: showLogo,
                     child: SizedBox(
-                      width: 32,
-                      height: 44,
+                      width: 48,
+                      height: 48,
                       child: OverflowBox(
                         maxWidth: 62,
                         maxHeight: 49,
@@ -407,29 +408,6 @@ class _VaktijaMenuState extends State<VaktijaMenu> {
   final _helpPortal = OverlayPortalController();
   PrayerMethod? _help;
 
-  Future<void> _openPrivacy() async {
-    try {
-      if (await launchUrl(
-        Uri.https('vaktija.life', '/privacy'),
-        mode: LaunchMode.externalApplication,
-      )) {
-        return;
-      }
-    } catch (_) {
-      // Keep the policy address available if no browser can open it.
-    }
-    if (!mounted) return;
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text(
-          widget.labels.bosnian
-              ? 'Politiku privatnosti možeš pročitati na vaktija.life/privacy.'
-              : 'Read the privacy policy at vaktija.life/privacy.',
-        ),
-      ),
-    );
-  }
-
   @override
   void didUpdateWidget(VaktijaMenu oldWidget) {
     super.didUpdateWidget(oldWidget);
@@ -612,18 +590,6 @@ class _VaktijaMenuState extends State<VaktijaMenu> {
                     ),
                   ),
                 ),
-              ),
-            ),
-            const SizedBox(height: 8),
-            TextButton.icon(
-              onPressed: _openPrivacy,
-              icon: const Icon(Icons.privacy_tip_outlined, size: 18),
-              label: Text(
-                labels.bosnian ? 'Politika privatnosti' : 'Privacy policy',
-              ),
-              style: TextButton.styleFrom(
-                foregroundColor: colors.secondary,
-                minimumSize: const Size(48, 48),
               ),
             ),
           ],

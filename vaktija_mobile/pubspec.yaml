@@ -1,7 +1,7 @@
 name: vaktija
 description: "Vaktija mobile app."
 publish_to: 'none'
-version: 1.1.3+3
+version: 1.2.0+4
 
 environment:
   sdk: ^3.12.2
@@ -36,7 +36,15 @@ flutter:
     - assets/fonts/source-sans-3-OFL.txt
     - assets/fonts/cormorant-garamond-OFL.txt
     - assets/fonts/amiri-OFL.txt
+    - assets/fonts/lilita-one-OFL.txt
+    - assets/fonts/paytone-one-OFL.txt
   fonts:
+    - family: Lilita One
+      fonts:
+        - asset: assets/fonts/lilita-one.ttf
+    - family: Paytone One
+      fonts:
+        - asset: assets/fonts/paytone-one.ttf
     - family: Amiri
       fonts:
         - asset: assets/fonts/amiri-arabic.ttf

@@ -12,5 +12,16 @@ import UIKit
 
   func didInitializeImplicitFlutterEngine(_ engineBridge: FlutterImplicitEngineBridge) {
     GeneratedPluginRegistrant.register(with: engineBridge.pluginRegistry)
+    let appChannel = FlutterMethodChannel(
+      name: "vaktija/app",
+      binaryMessenger: engineBridge.applicationRegistrar.messenger()
+    )
+    appChannel.setMethodCallHandler { call, result in
+      if call.method == "getVersion" {
+        result(Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String)
+      } else {
+        result(FlutterMethodNotImplemented)
+      }
+    }
   }
 }
