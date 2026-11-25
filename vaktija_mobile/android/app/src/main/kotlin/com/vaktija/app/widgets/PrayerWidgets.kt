@@ -45,10 +45,20 @@ import kotlin.math.min
 import kotlin.math.roundToInt
 import org.json.JSONObject
 
-class PrayerListWidget : PrayerWidgetProvider(false)
-class PrayerGridWidget : PrayerWidgetProvider(true)
+class PrayerListWidget : PrayerWidgetProvider(PrayerWidgetLayout.LIST)
+class PrayerGridWidget : PrayerWidgetProvider(PrayerWidgetLayout.GRID)
+class PrayerCountdownWidget : PrayerWidgetProvider(PrayerWidgetLayout.COUNTDOWN) {
+    override fun onDisabled(context: Context) {
+        super.onDisabled(context)
+        PrayerCountdown.cancelVisualUpdate(context)
+    }
+}
 
-abstract class PrayerWidgetProvider(private val grid: Boolean) : HomeWidgetProvider() {
+internal enum class PrayerWidgetLayout { LIST, GRID, COUNTDOWN }
+
+abstract class PrayerWidgetProvider internal constructor(
+    private val layout: PrayerWidgetLayout,
+) : HomeWidgetProvider() {
     override fun onEnabled(context: Context) {
         super.onEnabled(context)
         requestPrayerWidgetRefresh(context)
@@ -60,7 +70,7 @@ abstract class PrayerWidgetProvider(private val grid: Boolean) : HomeWidgetProvi
         ids: IntArray,
         data: SharedPreferences,
     ) {
-        for (id in ids) PrayerWidgetRenderer.update(context, manager, id, grid, data)
+        PrayerWidgetRenderer.update(context, manager, ids, layout, data)
     }
 
     override fun onAppWidgetOptionsChanged(
@@ -69,7 +79,7 @@ abstract class PrayerWidgetProvider(private val grid: Boolean) : HomeWidgetProvi
         id: Int,
         options: Bundle,
     ) {
-        PrayerWidgetRenderer.update(context, manager, id, grid, HomeWidgetPlugin.getData(context))
+        PrayerWidgetRenderer.update(context, manager, intArrayOf(id), layout, HomeWidgetPlugin.getData(context))
     }
 
     override fun onRestored(context: Context, oldIds: IntArray, newIds: IntArray) {
@@ -80,7 +90,7 @@ abstract class PrayerWidgetProvider(private val grid: Boolean) : HomeWidgetProvi
     override fun onDisabled(context: Context) {
         super.onDisabled(context)
         HomeWidgetScheduler.cancel(context, javaClass.name)
-        if (prayerWidgetProviders.all { widgetIds(context, it).isEmpty() }) {
+        if (prayerWidgetProviders.keys.all { widgetIds(context, it).isEmpty() }) {
             WorkManager.getInstance(context).cancelAllWorkByTag("vaktija.widgets")
         }
     }
@@ -96,23 +106,25 @@ class PrayerWidgetRecovery : BroadcastReceiver() {
             )) return
         val manager = AppWidgetManager.getInstance(context)
         val data = HomeWidgetPlugin.getData(context)
-        for (provider in prayerWidgetProviders) {
-            for (id in widgetIds(context, provider)) {
-                PrayerWidgetRenderer.update(context, manager, id, provider == PrayerGridWidget::class.java, data)
-            }
+        for ((provider, layout) in prayerWidgetProviders) {
+            PrayerWidgetRenderer.update(context, manager, widgetIds(context, provider), layout, data)
         }
         requestPrayerWidgetRefresh(context)
     }
 }
 
-private val prayerWidgetProviders = listOf(PrayerListWidget::class.java, PrayerGridWidget::class.java)
+private val prayerWidgetProviders = mapOf(
+    PrayerListWidget::class.java to PrayerWidgetLayout.LIST,
+    PrayerGridWidget::class.java to PrayerWidgetLayout.GRID,
+    PrayerCountdownWidget::class.java to PrayerWidgetLayout.COUNTDOWN,
+)
 
 private fun widgetIds(context: Context, provider: Class<*>) =
     AppWidgetManager.getInstance(context).getAppWidgetIds(ComponentName(context, provider))
 
 private fun requestPrayerWidgetRefresh(context: Context) {
     if (HomeWidgetPlugin.getDispatcherHandle(context) == 0L) return
-    if (prayerWidgetProviders.all { widgetIds(context, it).isEmpty() }) return
+    if (prayerWidgetProviders.keys.all { widgetIds(context, it).isEmpty() }) return
     try {
         HomeWidgetBackgroundIntent.getBroadcast(context, Uri.parse("vaktija://widgets/sync")).send()
     } catch (error: Exception) {
@@ -120,9 +132,15 @@ private fun requestPrayerWidgetRefresh(context: Context) {
     }
 }
 
-private data class WidgetSettings(val key: String, val city: String, val bosnian: Boolean, val ready: Boolean)
-private data class WidgetPrayer(val kind: String, val name: String, val time: String?, val nextDay: Boolean, val eventDate: String)
-private data class WidgetDay(val day: String, val weekday: String, val date: String, val shortDate: String, val rows: List<WidgetPrayer>, val complete: Boolean)
+internal data class WidgetSettings(val key: String, val city: String, val bosnian: Boolean, val ready: Boolean)
+internal data class WidgetPrayer(
+    val kind: String, val name: String, val time: String?, val nextDay: Boolean, val eventDate: String,
+    val timestamp: String?,
+)
+private data class WidgetDay(
+    val day: String, val weekday: String, val date: String, val shortDate: String,
+    val rows: List<WidgetPrayer>, val complete: Boolean, val previousIsha: String,
+)
 
 private object PrayerWidgetRenderer {
     private const val tag = "PrayerWidgets"
@@ -136,13 +154,37 @@ private object PrayerWidgetRenderer {
         R.drawable.widget_midnight, R.drawable.widget_lastthird)
     private val listText = Color.rgb(237, 242, 232)
 
-    fun update(context: Context, manager: AppWidgetManager, id: Int, grid: Boolean, data: SharedPreferences) {
+    fun update(
+        context: Context, manager: AppWidgetManager, ids: IntArray, layout: PrayerWidgetLayout,
+        data: SharedPreferences,
+    ) {
+        if (ids.isEmpty()) return
+        val now = System.currentTimeMillis()
         val settings = readSettings(data)
-        val today = dayKey(0)
+        val today = dayKey(0, now)
         val current = settings?.let { readDay(data, it, today) }
+        if (layout == PrayerWidgetLayout.COUNTDOWN) {
+            val previous = settings?.let { readDay(data, it, dayKey(-1, now)) }
+            val tomorrow = settings?.let { readDay(data, it, dayKey(1, now)) }
+            PrayerCountdown.update(
+                context, manager, ids, settings, now,
+                previous?.rows, current?.rows, tomorrow?.rows, current?.previousIsha,
+                prayerIcon = { kind -> icons[kinds.indexOf(kind)] },
+            )
+            prune(data)
+            return
+        }
         val day = current ?: settings?.let { active ->
             (1..7).firstNotNullOfOrNull { readDay(data, active, dayKey(-it)) }
         }
+        for (id in ids) updateTimetable(context, manager, id, layout == PrayerWidgetLayout.GRID, settings, day, today, data)
+        prune(data)
+    }
+
+    private fun updateTimetable(
+        context: Context, manager: AppWidgetManager, id: Int, grid: Boolean,
+        settings: WidgetSettings?, day: WidgetDay?, today: String, data: SharedPreferences,
+    ) {
         val options = manager.getAppWidgetOptions(id)
         try {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
@@ -153,7 +195,6 @@ private object PrayerWidgetRenderer {
                         render(context, size, grid, settings, day, today, data)
                     }
                     manager.updateAppWidget(id, RemoteViews(views))
-                    prune(data)
                     return
                 }
             }
@@ -162,7 +203,6 @@ private object PrayerWidgetRenderer {
             val heightKey = if (portrait) AppWidgetManager.OPTION_APPWIDGET_MAX_HEIGHT else AppWidgetManager.OPTION_APPWIDGET_MIN_HEIGHT
             val size = SizeF(options.getInt(widthKey, 344).toFloat(), options.getInt(heightKey, if (grid) 322 else 366).toFloat())
             manager.updateAppWidget(id, render(context, size, grid, settings, day, today, data))
-            prune(data)
         } catch (error: Exception) {
             Log.e(tag, "Could not render widget $id", error)
         }
@@ -388,22 +428,25 @@ private object PrayerWidgetRenderer {
                 require(kind in kinds && name.isNotBlank() && name.length <= 80)
                 require(time == null || timePattern.matches(time))
                 require(!nextDay)
-                WidgetPrayer(kind, name, time, nextDay, row.optString("eventDate", day))
+                WidgetPrayer(kind, name, time, nextDay, row.optString("eventDate", day), row.optString("at", ""))
             }
             val weekday = json.getString("weekday")
             val date = json.getString("date")
             val shortDate = json.getString("shortDate")
             require(weekday.length in 1..30 && date.length in 1..80 && shortDate.length in 1..20)
             val complete = json.optBoolean("calendarComplete", false)
-            WidgetDay(day, weekday, date, shortDate, rows, complete)
+            WidgetDay(day, weekday, date, shortDate, rows, complete, json.optString("previousIsha", ""))
         } catch (error: Exception) {
             Log.w(tag, "Invalid widget date $day", error)
             null
         }
     }
 
-    private fun dayKey(offset: Int): String {
-        val calendar = Calendar.getInstance(zone).apply { add(Calendar.DATE, offset) }
+    private fun dayKey(offset: Int, now: Long = System.currentTimeMillis()): String {
+        val calendar = Calendar.getInstance(zone).apply {
+            timeInMillis = now
+            add(Calendar.DATE, offset)
+        }
         return SimpleDateFormat("yyyy-MM-dd", Locale.ROOT).apply { timeZone = zone }.format(calendar.time)
     }
 

@@ -14,9 +14,13 @@ const _configurationKey = 'vaktija.widgets.configuration';
 const _workTag = 'vaktija.widgets';
 const _syncTask = 'vaktija.widgets.sync';
 const _dailyTask = 'vaktija.widgets.daily';
-const _providers = [
+const _timetableProviders = [
   'com.vaktija.app.widgets.PrayerListWidget',
   'com.vaktija.app.widgets.PrayerGridWidget',
+];
+const _providers = [
+  ..._timetableProviders,
+  'com.vaktija.app.widgets.PrayerCountdownWidget',
 ];
 
 class PrayerWidgetConfiguration {
@@ -310,6 +314,12 @@ class PrayerWidgets {
           times.length == PrayerKind.values.length &&
           yesterday?.length == PrayerKind.values.length,
     );
+    final previousIsha = yesterday
+        ?.where((time) => time.kind == PrayerKind.isha)
+        .firstOrNull;
+    if (previousIsha != null) {
+      payload['previousIsha'] = previousIsha.at.toUtc().toIso8601String();
+    }
     await HomeWidget.saveWidgetData(
       'vaktija.widgets.day.${configuration.key}.${dayKey(localDay)}',
       jsonEncode(payload),
@@ -324,7 +334,7 @@ class PrayerWidgets {
 
   Future<void> _schedule(DateTime day) async {
     final installed = await HomeWidget.getInstalledWidgets();
-    for (final provider in _providers) {
+    for (final provider in _timetableProviders) {
       if (installed.any((widget) => widget.androidClassName == provider)) {
         await HomeWidget.scheduleWidgetUpdates([
           for (var offset = 1; offset <= 8; offset++) sarajevoDay(day, offset),

@@ -3,4 +3,9 @@
     <string name="widget_grid_name">Prayer Grid</string>
     <string name="widget_list_description">Vaktija u listi</string>
     <string name="widget_grid_description">Vaktija u dvije kolone</string>
+    <string name="widget_countdown_name">Do sljedećeg namaza</string>
+    <string name="widget_countdown_description">Vrijeme do sljedećeg namaza. Proširite za prikaz ikone namaza.</string>
+    <string name="widget_countdown_setup">Dodirnite za postavljanje vaktije</string>
+    <string name="widget_countdown_unavailable">Vremena nisu dostupna</string>
+    <string name="widget_countdown_soon">Uskoro</string>
 </resources>
