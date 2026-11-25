@@ -65,10 +65,10 @@ internal object PrayerCountdown {
         val progress = if (next != null && starts != null && starts < next.at) {
             ((now - starts).toFloat() / (next.at - starts)).coerceIn(0f, 1f)
         } else 0f
-        val accent = when {
-            remaining <= 5 * minute -> Color.rgb(225, 68, 55)
-            remaining <= 15 * minute -> Color.rgb(156, 130, 0)
-            else -> Color.rgb(55, 122, 255)
+        val accent = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            context.getColor(android.R.color.system_accent1_400)
+        } else {
+            Color.rgb(55, 122, 255)
         }
         val ring = next?.let { progressRing(progress, accent) }
         val timerText = next?.let { remainingText(resources, remaining) }
@@ -239,11 +239,12 @@ internal object PrayerCountdown {
             style = Paint.Style.STROKE
             strokeWidth = 48f
             strokeCap = Paint.Cap.BUTT
-            color = 0x50FFFFFF
+            color = accent
+            alpha = 64
         }
         canvas.drawCircle(100f, 100f, 76f, paint)
         if (progress > 0f) {
-            paint.color = accent
+            paint.alpha = 255
             canvas.drawArc(24f, 24f, 176f, 176f, -90f, 360f * progress, false, paint)
         }
         return bitmap
