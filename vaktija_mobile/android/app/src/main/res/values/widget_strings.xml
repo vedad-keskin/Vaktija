@@ -8,7 +8,6 @@
     <string name="widget_countdown_setup">Tap to set up Vaktija</string>
     <string name="widget_countdown_unavailable">Times unavailable</string>
     <string name="widget_countdown_soon">Soon</string>
-    <string name="widget_countdown_under_minute">&lt;1m</string>
     <string name="widget_countdown_minutes">%1$dm</string>
     <string name="widget_countdown_hours_compact">%1$dh %2$dm</string>
 </resources>

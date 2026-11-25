@@ -42,7 +42,7 @@ if icon is not None:
     assert abs(icon_left - pill_left - (pill_right - ring_right)) <= 2, "Icon and ring need matching edge insets"
 timer = widget_node("timer")
 assert timer is not None, "Timer is missing"
-assert re.fullmatch(r"<1m|\d+m|\d+h \d+m", timer.get("text", "")), timer.attrib
+assert re.fullmatch(r"\d+m|\d+h \d+m", timer.get("text", "")), timer.attrib
 assert not re.search(r"\d{2}:\d{2}", title.get("content-desc", "")), title.attrib
 assert bool(re.search(r"\b(?:Soon|Uskoro)\b", title.get("content-desc", ""))) == args.soon
 print("Countdown pill checks passed")

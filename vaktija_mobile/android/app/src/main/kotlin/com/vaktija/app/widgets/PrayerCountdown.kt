@@ -66,9 +66,9 @@ internal object PrayerCountdown {
             ((now - starts).toFloat() / (next.at - starts)).coerceIn(0f, 1f)
         } else 0f
         val accent = when {
-            remaining <= 5 * minute -> Color.rgb(255, 96, 80)
-            remaining <= 15 * minute -> Color.rgb(255, 214, 32)
-            else -> Color.rgb(64, 160, 255)
+            remaining <= 5 * minute -> Color.rgb(225, 68, 55)
+            remaining <= 15 * minute -> Color.rgb(156, 130, 0)
+            else -> Color.rgb(55, 122, 255)
         }
         val ring = next?.let { progressRing(progress, accent) }
         val icon = next?.let {
@@ -228,7 +228,6 @@ internal object PrayerCountdown {
     }
 
     private fun remainingText(resources: Resources, remaining: Long): String {
-        if (remaining <= minute) return resources.getString(R.string.widget_countdown_under_minute)
         val minutes = (remaining + minute - 1) / minute
         val hours = minutes / 60
         if (hours == 0L) return resources.getString(R.string.widget_countdown_minutes, minutes)
