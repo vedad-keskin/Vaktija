@@ -1,4 +1,5 @@
 <appwidget-provider xmlns:android="http://schemas.android.com/apk/res/android"
+    android:description="@string/widget_countdown_description"
     android:initialLayout="@layout/prayer_widget_countdown"
     android:minWidth="110dp"
     android:minHeight="50dp"

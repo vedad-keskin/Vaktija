@@ -1,4 +1,5 @@
 <appwidget-provider xmlns:android="http://schemas.android.com/apk/res/android"
+    android:description="@string/widget_list_description"
     android:initialLayout="@layout/prayer_widget_list"
     android:minWidth="240dp"
     android:minHeight="180dp"

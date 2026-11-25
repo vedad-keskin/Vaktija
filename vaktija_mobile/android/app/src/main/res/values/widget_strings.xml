@@ -3,6 +3,9 @@
     <string name="widget_list_name">\u200BPrayer List</string>
     <string name="widget_grid_name">\u200B\u200BPrayer Grid</string>
     <string name="widget_countdown_name">\u200B\u200B\u200BPrayer Countdown</string>
+    <string name="widget_list_description">Daily prayer times with your city and date.</string>
+    <string name="widget_grid_description">Prayer times in a compact two-column layout.</string>
+    <string name="widget_countdown_description">Time until the next prayer, with a ring that fills as time passes.</string>
     <string name="widget_countdown_setup">Tap to set up Vaktija</string>
     <string name="widget_countdown_unavailable">Times unavailable</string>
     <string name="widget_countdown_soon">Soon</string>

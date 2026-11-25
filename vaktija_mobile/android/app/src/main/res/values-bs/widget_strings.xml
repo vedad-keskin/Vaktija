@@ -3,6 +3,9 @@
     <string name="widget_list_name">\u200BPrayer List</string>
     <string name="widget_grid_name">\u200B\u200BPrayer Grid</string>
     <string name="widget_countdown_name">\u200B\u200B\u200BPrayer Countdown</string>
+    <string name="widget_list_description">Dnevna vaktija s gradom i datumom.</string>
+    <string name="widget_grid_description">Vremena namaza u preglednom rasporedu s dvije kolone.</string>
+    <string name="widget_countdown_description">Vrijeme do sljedećeg namaza uz prsten koji se postepeno ispunjava.</string>
     <string name="widget_countdown_setup">Dodirnite za postavljanje vaktije</string>
     <string name="widget_countdown_unavailable">Vremena nisu dostupna</string>
     <string name="widget_countdown_soon">Uskoro</string>

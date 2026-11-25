@@ -241,7 +241,7 @@ internal object PrayerCountdown {
         val paint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
             style = Paint.Style.STROKE
             strokeWidth = 48f
-            strokeCap = Paint.Cap.ROUND
+            strokeCap = Paint.Cap.BUTT
             color = 0x50FFFFFF
         }
         canvas.drawCircle(100f, 100f, 76f, paint)
