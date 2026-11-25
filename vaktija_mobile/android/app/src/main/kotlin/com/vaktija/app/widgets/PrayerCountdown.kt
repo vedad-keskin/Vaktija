@@ -71,6 +71,7 @@ internal object PrayerCountdown {
             else -> Color.rgb(55, 122, 255)
         }
         val ring = next?.let { progressRing(progress, accent) }
+        val timerText = next?.let { remainingText(resources, remaining) }
         val icon = next?.let {
             val source = BitmapFactory.decodeResource(context.resources, prayerIcon(it.row.kind))
             // All five prayer PNGs share these transparent margins.
@@ -84,14 +85,13 @@ internal object PrayerCountdown {
             typeface = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) Typeface.create(family, 500, false) else family
         }
         val labelPaint = Paint(countdownPaint)
+        countdownPaint.fontFeatureSettings = "tnum"
 
         fun views(size: SizeF, hostScale: Float) = RemoteViews(context.packageName, R.layout.prayer_widget_countdown).apply {
             val wide = size.width * hostScale >= wideWidth
             val live = next != null
             val showIcon = wide && live
-            val textGravity = Gravity.CENTER_VERTICAL or (if (showIcon) Gravity.CENTER_HORIZONTAL else Gravity.START)
-            setInt(R.id.widget_countdown_title, "setGravity", textGravity)
-            setInt(R.id.widget_countdown_timer, "setGravity", textGravity)
+            val textGravity = Gravity.TOP or (if (showIcon) Gravity.CENTER_HORIZONTAL else Gravity.START)
             // Measured reference is 156.8 x 71.733 dp. Samsung Home scales third-party widgets.
             val panelHeight = minOf(size.height, referenceHeight / hostScale)
             val unit = panelHeight / referenceHeight
@@ -119,45 +119,43 @@ internal object PrayerCountdown {
             }
             val textWidth = size.width - startPadding - endPadding -
                 (if (live) imageWidth else 0f) - (if (showIcon) iconWidth else 0f)
-            val textWidthPx = (textWidth * metrics.density - 2f).coerceAtLeast(1f)
+            val textWidthPx = ((textWidth - 1f) * metrics.density).coerceAtLeast(1f)
+            val unitPx = unit * metrics.density
+
+            fun fitText(paint: Paint, text: String, sizeSp: Float, lineHeightDp: Float) {
+                paint.textSize = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, sizeSp * unit, metrics)
+                val font = paint.fontMetrics
+                paint.textSize *= minOf(1f, textWidthPx / paint.measureText(text),
+                    lineHeightDp * unitPx / (font.descent - font.ascent))
+            }
+
+            fun setLine(id: Int, text: String, paint: Paint, baselineDp: Float) {
+                setInt(id, "setGravity", textGravity)
+                setTextViewText(id, text)
+                setTextViewTextSize(id, TypedValue.COMPLEX_UNIT_PX, paint.textSize)
+                val top = ((baselineDp * unitPx).roundToInt() + paint.fontMetricsInt.ascent).coerceAtLeast(0)
+                setViewPadding(id, 0, top, 0, 0)
+            }
+
+            val compactness = if (timerText != null) {
+                fitText(countdownPaint, timerText, 23.5f, 32.5f)
+                // The reference's 23.5sp and 16.5sp timers have different line spacing.
+                ((23.5f - countdownPaint.textSize / unitPx) / 7f).coerceIn(0f, 1f)
+            } else 0f
             val title = next?.row?.name ?: resources.getString(
                 if (settings?.ready == true) R.string.widget_countdown_unavailable else R.string.widget_countdown_setup)
-            labelPaint.textSize = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 12f * unit, metrics)
-            setTextViewText(R.id.widget_countdown_title, title)
-            val labelSize = labelPaint.textSize * minOf(1f, textWidthPx / labelPaint.measureText(title))
-            setTextViewTextSize(R.id.widget_countdown_title, TypedValue.COMPLEX_UNIT_PX, labelSize)
-            val labelBaseline = (24.8f * unit * metrics.density).roundToInt()
-            val labelMetrics = labelPaint.fontMetricsInt
-            val labelTop = (labelBaseline + labelMetrics.ascent).coerceAtLeast((12.26667f * unit * metrics.density).roundToInt())
-            val labelHeight = minOf(labelMetrics.descent - labelMetrics.ascent,
-                (16.26667f * unit * metrics.density).roundToInt())
-            val panelHeightPx = (panelHeight * metrics.density).roundToInt()
-            val labelBottom = (panelHeightPx - labelTop - labelHeight).coerceAtLeast(0)
-            // Native autosizing uses the launcher's actual font metrics inside these line bounds.
-            setViewPadding(R.id.widget_countdown_title, 0, labelTop, 0, labelBottom)
+            fitText(labelPaint, title, 12f, 16.3f)
+            setLine(R.id.widget_countdown_title, title, labelPaint, 24.8f + 5.6f * compactness)
             setOnClickPendingIntent(R.id.widget_countdown_root, tap)
             val liveVisibility = if (live) View.VISIBLE else View.GONE
             setViewVisibility(R.id.widget_countdown_icon, if (showIcon) View.VISIBLE else View.GONE)
             setViewVisibility(R.id.widget_countdown_timer, liveVisibility)
             setViewVisibility(R.id.widget_countdown_progress, liveVisibility)
-            if (next == null) {
+            if (next == null || timerText == null) {
                 setContentDescription(R.id.widget_countdown_title, title)
             } else {
                 if (showIcon) setImageViewBitmap(R.id.widget_countdown_icon, icon)
-                val timerText = remainingText(resources, remaining)
-                countdownPaint.textSize = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 23.5f * unit, metrics)
-                val textHeightPx = 32.53333f * unit * metrics.density
-                val font = countdownPaint.fontMetrics
-                val timerMetrics = countdownPaint.fontMetricsInt
-                val scale = minOf(1f, textWidthPx / countdownPaint.measureText(timerText), textHeightPx / (font.descent - font.ascent))
-                countdownPaint.textSize *= scale
-                setTextViewText(R.id.widget_countdown_timer, timerText)
-                setTextViewTextSize(R.id.widget_countdown_timer, TypedValue.COMPLEX_UNIT_PX, countdownPaint.textSize)
-                val timerBaseline = (51.46667f * unit * metrics.density).roundToInt()
-                val timerTop = (timerBaseline + timerMetrics.ascent).coerceAtLeast((26.66667f * unit * metrics.density).roundToInt())
-                val timerHeight = minOf(timerMetrics.descent - timerMetrics.ascent, textHeightPx.roundToInt())
-                val timerBottom = (panelHeightPx - timerTop - timerHeight).coerceAtLeast(0)
-                setViewPadding(R.id.widget_countdown_timer, 0, timerTop, 0, timerBottom)
+                setLine(R.id.widget_countdown_timer, timerText, countdownPaint, 51.7f - 2.7f * compactness)
                 setImageViewBitmap(R.id.widget_countdown_progress, ring)
                 val announcement = listOfNotNull(next.row.name, soon).joinToString(", ")
                 setContentDescription(R.id.widget_countdown_title, announcement)
