@@ -1,10 +1,8 @@
 <resources>
-    <string name="widget_list_name">Prayer List</string>
-    <string name="widget_grid_name">Prayer Grid</string>
-    <string name="widget_list_description">Vaktija u listi</string>
-    <string name="widget_grid_description">Vaktija u dvije kolone</string>
-    <string name="widget_countdown_name">Do sljedećeg namaza</string>
-    <string name="widget_countdown_description">Vrijeme do sljedećeg namaza. Proširite za prikaz ikone namaza.</string>
+    <!-- Keep the same zero-width sorting prefixes as the default widget labels. -->
+    <string name="widget_list_name">\u200BPrayer List</string>
+    <string name="widget_grid_name">\u200B\u200BPrayer Grid</string>
+    <string name="widget_countdown_name">\u200B\u200B\u200BPrayer Countdown</string>
     <string name="widget_countdown_setup">Dodirnite za postavljanje vaktije</string>
     <string name="widget_countdown_unavailable">Vremena nisu dostupna</string>
     <string name="widget_countdown_soon">Uskoro</string>

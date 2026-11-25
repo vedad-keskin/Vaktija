@@ -1,10 +1,8 @@
 <resources>
-    <string name="widget_list_name">Prayer List</string>
-    <string name="widget_grid_name">Prayer Grid</string>
-    <string name="widget_list_description">Prayers in a list</string>
-    <string name="widget_grid_description">Prayers in two columns</string>
-    <string name="widget_countdown_name">Prayer Countdown</string>
-    <string name="widget_countdown_description">Time until the next prayer. Resize to show the prayer icon.</string>
+    <!-- Samsung Home compares labels directly. Increasing zero-width prefixes set the picker order. -->
+    <string name="widget_list_name">\u200BPrayer List</string>
+    <string name="widget_grid_name">\u200B\u200BPrayer Grid</string>
+    <string name="widget_countdown_name">\u200B\u200B\u200BPrayer Countdown</string>
     <string name="widget_countdown_setup">Tap to set up Vaktija</string>
     <string name="widget_countdown_unavailable">Times unavailable</string>
     <string name="widget_countdown_soon">Soon</string>
