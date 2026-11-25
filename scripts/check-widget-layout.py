@@ -13,6 +13,7 @@ parser = argparse.ArgumentParser(description=__doc__)
 parser.add_argument("dump")
 parser.add_argument("--rows", type=int, choices=(6, 8), required=True)
 parser.add_argument("--no-icons", action="store_true")
+parser.add_argument("--header", choices=("calendar-with-logo", "calendar", "compact"))
 args = parser.parse_args()
 nodes = list(ET.parse(args.dump).iter("node"))
 
@@ -33,6 +34,27 @@ assert all(re.search(r", \d{2}:\d{2},", d) and "+1" not in d for d in descriptio
 night_names = ("Zadnja tre\u0107ina", "Polovina no\u0107i")
 assert sum(d.startswith(night_names) for d in descriptions) == (2 if args.rows == 8 else 0)
 assert len(views("widget_prayer_icon")) == (0 if args.no_icons else args.rows)
+if args.header:
+    city, = views("widget_city")
+    date, = views("widget_date")
+    divider, = views("widget_header_divider")
+    assert bool(views("widget_logo")) == (args.header == "calendar-with-logo")
+    for name in ("widget_weekday", "widget_calendar_month", "widget_calendar_year"):
+        assert bool(views(name)) == (args.header != "compact"), name
+    if args.header == "calendar-with-logo":
+        logo, = views("widget_logo")
+        weekday, = views("widget_weekday")
+        logo_top, logo_bottom = bounds(logo)[1::2]
+        stack_top, stack_bottom = bounds(city)[1], bounds(weekday)[3]
+        assert abs(logo_bottom - logo_top - 0.8 * (stack_bottom - stack_top)) <= 2, "Logo height differs from header design"
+        assert abs(logo_top + logo_bottom - stack_top - stack_bottom) <= 2, "Logo is off-center"
+    assert bounds(city)[2] <= bounds(date)[0], "City and date overlap"
+    assert max(bounds(city)[3], bounds(date)[3]) <= bounds(divider)[1], "Header overlaps the divider"
+    assert bounds(divider)[3] <= bounds(rows[0])[1], "Divider overlaps the first prayer"
+    body_divider = (views("widget_list_divider") or views("widget_grid_divider"))[0]
+    for index in (0, 2):
+        assert bounds(divider)[index] == bounds(body_divider)[index], "Divider edges differ"
+    assert bounds(divider)[3] - bounds(divider)[1] == bounds(body_divider)[3] - bounds(body_divider)[1]
 if views("widget_grid_left"):
     assert len(views("widget_grid_divider")) == args.rows // 2 - 1, "Wrong grid row dividers"
     assert len(views("widget_grid_column_divider")) == args.rows // 2, "Missing grid column dividers"

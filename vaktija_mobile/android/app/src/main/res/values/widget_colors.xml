@@ -1,3 +1,4 @@
 <resources>
     <color name="widget_panel_fill">#A2000000</color>
+    <color name="widget_divider">#33FFFFFF</color>
 </resources>

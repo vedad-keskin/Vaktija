@@ -9,9 +9,7 @@ import android.content.SharedPreferences
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Canvas
-import android.graphics.Color
 import android.graphics.Paint
-import android.graphics.PorterDuff
 import android.graphics.Rect
 import android.graphics.Typeface
 import android.net.Uri
@@ -22,6 +20,7 @@ import android.text.StaticLayout
 import android.text.TextPaint
 import android.util.Log
 import android.util.SizeF
+import android.util.TypedValue
 import android.view.View
 import android.widget.RemoteViews
 import androidx.core.util.TypedValueCompat
@@ -41,7 +40,6 @@ import java.util.Locale
 import java.util.TimeZone
 import kotlin.math.ceil
 import kotlin.math.max
-import kotlin.math.min
 import kotlin.math.roundToInt
 import org.json.JSONObject
 
@@ -145,6 +143,11 @@ private data class WidgetDay(
 private object PrayerWidgetRenderer {
     private const val tag = "PrayerWidgets"
     private const val configurationKey = "vaktija.widgets.configuration"
+    private const val headerHorizontalInsets = 13f + 13f + 8f
+    private const val headerVerticalInsets = 5f + 5f + 1f
+    private const val logoHeightRatio = 0.8f
+    // Crop the transparent margins in widget_logo.png before sizing the mark.
+    private val logoBounds = Rect(35, 15, 122, 112)
     private val zone = TimeZone.getTimeZone("Europe/Sarajevo")
     private val datePattern = Regex("\\d{4}-\\d{2}-\\d{2}")
     private val timePattern = Regex("(?:[01]\\d|2[0-3]):[0-5]\\d")
@@ -152,7 +155,15 @@ private object PrayerWidgetRenderer {
     private val icons = listOf(R.drawable.widget_fajr, R.drawable.widget_sunrise, R.drawable.widget_dhuhr,
         R.drawable.widget_asr, R.drawable.widget_maghrib, R.drawable.widget_isha,
         R.drawable.widget_midnight, R.drawable.widget_lastthird)
-    private val listText = Color.rgb(237, 242, 232)
+    private data class Header(
+        val city: Bitmap, val date: Bitmap, val height: Float, val logo: Bitmap? = null,
+        val weekday: Bitmap? = null, val month: Bitmap? = null, val year: Bitmap? = null,
+    )
+
+    private data class Body(
+        val dense: Boolean, val showIcon: Boolean, val nameWidth: Float, val rows: List<WidgetPrayer>,
+        val nameLines: Int = Int.MAX_VALUE,
+    )
 
     fun update(
         context: Context, manager: AppWidgetManager, ids: IntArray, layout: PrayerWidgetLayout,
@@ -221,40 +232,19 @@ private object PrayerWidgetRenderer {
         val locale = if (settings?.bosnian != false) Locale.forLanguageTag("bs") else Locale.ENGLISH
         val bosnian = settings?.bosnian != false
         val width = size.width.coerceIn(140f, 1000f)
-        val narrow = width < 240f
         val city = settings?.city ?: "Vaktija"
-        val calendar = Calendar.getInstance(zone, locale)
+        val displayedDay = day?.day ?: today
+        val calendar = Calendar.getInstance(zone, locale).apply {
+            set(displayedDay.take(4).toInt(), displayedDay.substring(5, 7).toInt() - 1, displayedDay.takeLast(2).toInt())
+        }
         val weekday = day?.weekday ?: SimpleDateFormat("EEEE", locale).apply { timeZone = zone }.format(calendar.time)
             .replaceFirstChar { it.titlecase(locale) }
         val date = day?.shortDate ?: SimpleDateFormat("dd.MM.yyyy.", locale)
             .apply { timeZone = zone }.format(calendar.time)
-        val headerHeight: Float
-        if (narrow) {
-            val textWidth = (width - 67f).coerceAtLeast(24f)
-            headerHeight = max(38f, textHeight(context, "Ag", 15f, textWidth, includePad = true) + textHeight(context, date, 11f, textWidth, includePad = true) + 8f)
-            setText(context, views, R.id.widget_city, city, 15f, textWidth, listText)
-            setText(context, views, R.id.widget_compact_date, date, 11f, textWidth, listText)
-            views.setViewVisibility(R.id.widget_date, View.GONE)
-            views.setViewVisibility(R.id.widget_compact_date, View.VISIBLE)
-            views.setViewPadding(R.id.widget_list_header, dp(context, 10f), dp(context, 4f), dp(context, 13f), dp(context, 4f))
-        } else {
-            val dateWidth = measure(context, date, 12f) + 2f
-            val cityWidth = (width - dateWidth - 67f).coerceAtLeast(24f)
-            headerHeight = max(38f, max(textHeight(context, city, 17f, cityWidth), textHeight(context, date, 12f, dateWidth)) + 10f)
-            setText(context, views, R.id.widget_city, city, 17f, cityWidth, listText, maxLines = 2)
-            setText(context, views, R.id.widget_date, date, 12f, dateWidth, listText, end = true, fill = false)
-            views.setViewVisibility(R.id.widget_date, View.VISIBLE)
-            views.setViewVisibility(R.id.widget_compact_date, View.GONE)
-            views.setViewPadding(R.id.widget_list_header, dp(context, 10f), dp(context, 5f), dp(context, 13f), dp(context, 5f))
-        }
-        views.setImageViewBitmap(R.id.widget_logo, image(context, R.drawable.widget_logo, 29f, 27f))
-        views.setContentDescription(R.id.widget_root, "$city, $weekday, $date")
-        views.setOnClickPendingIntent(R.id.widget_root,
-            HomeWidgetLaunchIntent.getActivity(context, MainActivity::class.java, Uri.parse("vaktija://widgets/prayers")))
-        views.removeAllViews(R.id.widget_rows)
-
+        val shortStaleStatus = day != null && day.day != today && width < 240f
         var status = when {
             settings?.ready != true -> if (bosnian) "Dodirnite za postavljanje vaktije" else "Tap to set up Vaktija"
+            shortStaleStatus -> if (bosnian) "Prethodni datum" else "Previous date"
             day != null && day.day != today -> if (bosnian) "Podaci za prethodni datum · Otvorite aplikaciju" else "Previous date's times · Open the app"
             day != null && !day.complete -> if (bosnian) "Neka vremena nisu dostupna" else "Some times are unavailable"
             day == null && data.getBoolean("vaktija.widgets.failure.${settings.key}.$today", false) ->
@@ -262,64 +252,150 @@ private object PrayerWidgetRenderer {
             day == null -> if (bosnian) "Učitavanje vaktije…" else "Loading prayer times…"
             else -> ""
         }
-        val dense = if (grid) width < 300f || size.height - headerHeight - 16f < 3 * 64f
-            else narrow || size.height - headerHeight - 16f < 6 * 39f
-        val showIcon = if (grid) width >= 300f else !dense
-        views.setViewPadding(R.id.widget_rows, dp(context, 13f), dp(context, if (dense) 2f else 5f), dp(context, 13f), dp(context, if (dense) 6f else 11f))
-        var availableHeight = size.height - headerHeight - if (dense) 8f else 16f
-        if (status.isNotEmpty()) availableHeight -= textHeight(context, status, 12f, width - 28f) + 6f
-        if (day != null) {
-            val nameSize = if (grid) { if (dense) 12f else 13f } else if (dense) 14f else 16f
-            val timeSize = if (dense) 16f else 21f
-            val minimumTimeWidth = measure(context, "23:59", timeSize, 700) + 2f
-            val nameWidth = if (grid) (width - 33f) / 2f - 16f - (if (showIcon) 33f else 0f)
-                else width - 36f - (if (showIcon) 36f else 0f) - minimumTimeWidth
-            val heights = day.rows.associateWith { row ->
-                val nameHeight = textHeight(context, row.name, nameSize, nameWidth, 400, includePad = true)
-                val timeHeight = textHeight(context, "23:59", timeSize, minimumTimeWidth, 700, includePad = true)
-                if (grid) max(40f, nameHeight + timeHeight + if (dense) 4f else 8f)
-                else if (dense) max(26f, max(nameHeight, timeHeight) + 1f) else max(39f, max(nameHeight, timeHeight) + 11f)
+        val statusSize = if (shortStaleStatus) 11f else 12f
+        val statusTop = if (shortStaleStatus) 2f else 6f
+        val statusHeight = if (status.isEmpty()) 0f else textHeight(context, status, statusSize, width - 26f, includePad = true) + statusTop
+        val rows = day?.rows.orEmpty()
+        val compact = compactHeader(context, width, city, date, displayedDay)
+        val compactBody = fitBody(context, width, size.height - compact.height, statusHeight, grid, rows)
+        val (header, body) = calendarHeader(context, width, city, weekday, calendar, locale)?.let { calendarHeader ->
+            val body = fitBody(context, width, size.height - calendarHeader.height, statusHeight, grid, rows)
+            (calendarHeader to body).takeIf {
+                size.height >= calendarHeader.height + statusHeight &&
+                    (day == null || body.rows.isNotEmpty() && body.rows.size >= compactBody.rows.size && body.nameLines >= compactBody.nameLines)
             }
-            val compact = day.rows.filter { it.kind != "midnight" && it.kind != "lastthird" }
-            val gap = if (grid) 1f else 0f
-            val fullHeight = (if (grid) ceil(day.rows.size / 2f) else day.rows.size.toFloat()) * (heights.values.max() + gap)
-            val compactHeight = (if (grid) ceil(compact.size / 2f) else compact.size.toFloat()) * (compact.maxOf { heights.getValue(it) } + gap)
-            if (availableHeight < compactHeight || nameWidth < 30f || (grid && nameWidth < minimumTimeWidth)) {
-                Log.d(tag, "Widget needs more room: ${size.width}x${size.height}, available=$availableHeight, compact=$compactHeight, nameWidth=$nameWidth, dense=$dense")
-                status = if (bosnian) "Povećajte widget za prikaz vremena" else "Enlarge the widget to show times"
-            } else {
-                val visible = if (availableHeight >= fullHeight) day.rows else compact
-                if (grid) {
-                    val pairs = visible.chunked(2)
-                    for ((index, pair) in pairs.withIndex()) {
-                        val row = RemoteViews(context.packageName, R.layout.prayer_widget_grid_row)
-                        row.addView(R.id.widget_grid_left, prayerView(context, pair[0], true, nameWidth, dense, showIcon))
-                        pair.getOrNull(1)?.let { row.addView(R.id.widget_grid_right, prayerView(context, it, true, nameWidth, dense, showIcon)) }
-                        row.setViewVisibility(R.id.widget_grid_divider, if (index == pairs.lastIndex) View.GONE else View.VISIBLE)
-                        row.setViewVisibility(R.id.widget_grid_column_divider, if (pair.size == 2) View.VISIBLE else View.GONE)
-                        views.addView(R.id.widget_rows, row)
-                    }
-                } else {
-                    for ((index, prayer) in visible.withIndex()) {
-                        val row = prayerView(context, prayer, false, nameWidth, dense)
-                        row.setViewVisibility(R.id.widget_list_divider, if (index == visible.lastIndex) View.GONE else View.VISIBLE)
-                        views.addView(R.id.widget_rows, row)
-                    }
-                }
-                Log.d(tag, "Widget ${if (grid) "grid" else "list"} ${day.day} ${settings?.key} ${size.width}x${size.height} rows=${visible.size}")
+        } ?: (compact to compactBody)
+
+        views.setImageViewBitmap(R.id.widget_city, header.city)
+        views.setImageViewBitmap(R.id.widget_date, header.date)
+        views.setImageViewBitmap(R.id.widget_weekday, header.weekday)
+        views.setImageViewBitmap(R.id.widget_calendar_month, header.month)
+        views.setImageViewBitmap(R.id.widget_calendar_year, header.year)
+        views.setViewVisibility(R.id.widget_weekday, if (header.weekday != null) View.VISIBLE else View.GONE)
+        views.setViewVisibility(R.id.widget_calendar_details, if (header.month != null) View.VISIBLE else View.GONE)
+        views.setViewVisibility(R.id.widget_logo, if (header.logo != null) View.VISIBLE else View.GONE)
+        views.setImageViewBitmap(R.id.widget_logo, header.logo)
+        views.setContentDescription(R.id.widget_root, "$city, $weekday, $date")
+        views.setOnClickPendingIntent(R.id.widget_root,
+            HomeWidgetLaunchIntent.getActivity(context, MainActivity::class.java, Uri.parse("vaktija://widgets/prayers")))
+        views.removeAllViews(R.id.widget_rows)
+
+        val (dense, showIcon, nameWidth, visible, nameLines) = body
+        views.setViewPadding(R.id.widget_rows, dp(context, 13f), dp(context, if (dense) 2f else 5f), dp(context, 13f), dp(context, if (dense) 6f else 11f))
+        if (day != null && visible.isEmpty()) {
+            status = if (bosnian) "Povećajte widget za prikaz vremena" else "Enlarge the widget to show times"
+        } else if (grid) {
+            val pairs = visible.chunked(2)
+            for ((index, pair) in pairs.withIndex()) {
+                val row = RemoteViews(context.packageName, R.layout.prayer_widget_grid_row)
+                row.addView(R.id.widget_grid_left, prayerView(context, pair[0], true, nameWidth, dense, showIcon, nameLines))
+                pair.getOrNull(1)?.let { row.addView(R.id.widget_grid_right, prayerView(context, it, true, nameWidth, dense, showIcon, nameLines)) }
+                row.setViewVisibility(R.id.widget_grid_divider, if (index == pairs.lastIndex) View.GONE else View.VISIBLE)
+                row.setViewVisibility(R.id.widget_grid_column_divider, if (pair.size == 2) View.VISIBLE else View.GONE)
+                views.addView(R.id.widget_rows, row)
+            }
+        } else {
+            for ((index, prayer) in visible.withIndex()) {
+                val row = prayerView(context, prayer, false, nameWidth, dense, nameLines = nameLines)
+                row.setViewVisibility(R.id.widget_list_divider, if (index == visible.lastIndex) View.GONE else View.VISIBLE)
+                views.addView(R.id.widget_rows, row)
             }
         }
+        if (day != null) Log.d(tag, "Widget ${if (grid) "grid" else "list"} ${day.day} ${settings?.key} ${size.width}x${size.height} rows=${visible.size}")
         views.setTextViewText(R.id.widget_status, status)
+        views.setTextViewTextSize(R.id.widget_status, TypedValue.COMPLEX_UNIT_SP, statusSize)
+        views.setViewPadding(R.id.widget_status, dp(context, 13f), dp(context, statusTop), dp(context, 13f), 0)
         views.setViewVisibility(R.id.widget_status, if (status.isEmpty()) View.GONE else View.VISIBLE)
         return views
     }
 
-    private fun prayerView(context: Context, prayer: WidgetPrayer, grid: Boolean, nameWidth: Float, dense: Boolean = false, showIcon: Boolean = !dense): RemoteViews {
+    private fun calendarHeader(
+        context: Context, width: Float, city: String, weekday: String, calendar: Calendar, locale: Locale,
+    ): Header? {
+        val density = context.resources.displayMetrics.density
+        val contentWidth = width - headerHorizontalInsets
+        val monthLabel = SimpleDateFormat("MMM", locale).apply { timeZone = zone }.format(calendar.time)
+            .trimEnd('.').uppercase(locale)
+        val date = textBitmap(context, calendar.get(Calendar.DAY_OF_MONTH).toString(), 29f, contentWidth, fill = false, weight = 700)
+        val month = textBitmap(context, monthLabel, 12f, contentWidth, fill = false)
+        val year = textBitmap(context, calendar.get(Calendar.YEAR).toString(), 12f, contentWidth, fill = false)
+        val dateWidth = (date.width + max(month.width, year.width) + dp(context, 6f)) / density
+        val leftWidth = max(measure(context, city, 17f), measure(context, weekday, 12f)) + 2f
+        val spareWidth = contentWidth - dateWidth - leftWidth
+        if (spareWidth < 0f) return null
+
+        val cityImage = textBitmap(context, city, 17f, leftWidth, fill = false)
+        val weekdayImage = textBitmap(context, weekday, 12f, leftWidth, fill = false)
+        val cityStackHeight = cityImage.height + weekdayImage.height
+        val logoHeight = cityStackHeight * logoHeightRatio / density
+        val logoWidth = logoHeight * logoBounds.width() / logoBounds.height()
+        val logo = if (spareWidth >= logoWidth + 7f) {
+            image(context, R.drawable.widget_logo, logoWidth, logoHeight, logoBounds)
+        } else null
+        val textHeight = max(cityStackHeight, max(date.height, month.height + year.height)) / density
+        return Header(cityImage, date, ceil(textHeight) + headerVerticalInsets, logo, weekdayImage, month, year)
+    }
+
+    private fun compactHeader(context: Context, width: Float, city: String, date: String, displayedDay: String): Header {
+        val density = context.resources.displayMetrics.density
+        val contentWidth = width - headerHorizontalInsets
+        val cityWidth = measure(context, city, 14f) + 2f
+        val dateWidth = measure(context, date, 11f) + 2f
+        val showFullDate = cityWidth + dateWidth <= contentWidth
+        val dateLabel = if (showFullDate) date
+            else "${displayedDay.takeLast(2)}.${displayedDay.substring(5, 7)}."
+        val dateImage = textBitmap(context, dateLabel, 11f, if (showFullDate) dateWidth else contentWidth / 2f, fill = false)
+        val cityImage = textBitmap(context, city, 14f, contentWidth - dateImage.width / density, fill = false)
+        val height = ceil(max(cityImage.height, dateImage.height) / density) + headerVerticalInsets
+        return Header(cityImage, dateImage, height)
+    }
+
+    private fun fitBody(
+        context: Context, width: Float, height: Float, statusHeight: Float, grid: Boolean, rows: List<WidgetPrayer>,
+    ): Body {
+        val dense = if (grid) width < 300f || height - 16f < 3 * 64f
+            else width < 240f || height - 16f < 6 * 39f
+        val showIcon = if (grid) width >= 300f else !dense
+        val nameSize = if (grid) { if (dense) 12f else 13f } else if (dense) 14f else 16f
+        val timeSize = if (dense) 16f else 21f
+        val minimumTimeWidth = measure(context, "23:59", timeSize, 700) + 2f
+        val nameWidth = if (grid) (width - 33f) / 2f - 16f - (if (showIcon) 33f else 0f)
+            else width - 36f - (if (showIcon) 36f else 0f) - minimumTimeWidth
+        val blank = Body(dense, showIcon, nameWidth, emptyList())
+        if (rows.isEmpty() || nameWidth < 30f || (grid && nameWidth < minimumTimeWidth)) return blank
+
+        val timeHeight = textHeight(context, "23:59", timeSize, minimumTimeWidth, 700, includePad = true)
+        fun rowHeight(nameHeight: Float): Float = when {
+            grid && dense -> max(36f, nameHeight + timeHeight)
+            grid -> max(40f, nameHeight + timeHeight + 8f)
+            dense -> max(26f, max(nameHeight, timeHeight) + 1f)
+            else -> max(39f, max(nameHeight, timeHeight) + 11f)
+        }
+        val heights = rows.associateWith { rowHeight(textHeight(context, it.name, nameSize, nameWidth, 400, includePad = true)) }
+        val availableHeight = height - statusHeight - if (dense) 8f else 16f
+        fun fits(entries: List<WidgetPrayer>, rowHeight: Float): Boolean {
+            val rowCount = if (grid) ceil(entries.size / 2f) else entries.size.toFloat()
+            return entries.isNotEmpty() && availableHeight >= rowCount * (rowHeight + if (grid) 1f else 0f)
+        }
+
+        if (fits(rows, heights.values.max())) return blank.copy(rows = rows)
+        val primaryRows = rows.filter { it.kind != "midnight" && it.kind != "lastthird" }
+        if (fits(primaryRows, primaryRows.maxOfOrNull { heights.getValue(it) } ?: 0f)) return blank.copy(rows = primaryRows)
+
+        // A narrow tile can give the time a full line even when its name has to be ellipsized.
+        val oneLineHeight = textHeight(context, "Ag", nameSize, nameWidth, 400, includePad = true)
+        return if (dense && fits(primaryRows, rowHeight(oneLineHeight))) blank.copy(rows = primaryRows, nameLines = 1) else blank
+    }
+
+    private fun prayerView(
+        context: Context, prayer: WidgetPrayer, grid: Boolean, nameWidth: Float, dense: Boolean,
+        showIcon: Boolean = !dense, nameLines: Int,
+    ): RemoteViews {
         val views = RemoteViews(context.packageName, if (grid) R.layout.prayer_widget_tile else R.layout.prayer_widget_list_row)
         val index = kinds.indexOf(prayer.kind)
         views.setViewVisibility(R.id.widget_prayer_icon, if (showIcon) View.VISIBLE else View.GONE)
         if (dense) {
-            if (grid) views.setViewPadding(R.id.widget_prayer_row, dp(context, 8f), dp(context, 2f), dp(context, 8f), dp(context, 2f))
+            if (grid) views.setViewPadding(R.id.widget_prayer_row, dp(context, 8f), 0, dp(context, 8f), 0)
             else views.setViewPadding(R.id.widget_prayer_content, 0, 0, 0, 0)
         }
         if (showIcon) {
@@ -327,11 +403,11 @@ private object PrayerWidgetRenderer {
         }
         val nameSize = if (grid) { if (dense) 12f else 13f } else if (dense) 14f else 16f
         val timeSize = if (dense) 16f else 21f
-        setText(context, views, R.id.widget_prayer_name, prayer.name, nameSize, nameWidth, listText,
-            maxLines = Int.MAX_VALUE, weight = 400)
-        setText(context, views, R.id.widget_prayer_time, prayer.time ?: "—", timeSize,
+        views.setImageViewBitmap(R.id.widget_prayer_name, textBitmap(context, prayer.name, nameSize, nameWidth,
+            maxLines = nameLines, weight = 400))
+        views.setImageViewBitmap(R.id.widget_prayer_time, textBitmap(context, prayer.time ?: "—", timeSize,
             measure(context, "23:59", timeSize, 700) + 2f,
-            listText, end = !grid, fill = false, weight = 700)
+            end = !grid, fill = false, weight = 700))
         views.setContentDescription(R.id.widget_prayer_row, "${prayer.name}, ${prayer.time ?: "—"}, ${prayer.eventDate}")
         return views
     }
@@ -357,34 +433,25 @@ private object PrayerWidgetRenderer {
         return ceil(layout.height / metrics.density)
     }
 
-    private fun setText(
+    private fun textBitmap(
         context: Context,
-        views: RemoteViews,
-        id: Int,
         text: String,
         size: Float,
         width: Float,
-        color: Int,
         end: Boolean = false,
         maxLines: Int = 1,
         fill: Boolean = true,
         weight: Int = 600,
-    ) {
-        val bitmap = HomeWidgetFonts.textBitmap(context, typeface(context, weight), text,
-            fontSizeSp = size, maxWidthDp = width.coerceAtLeast(1f), maxLines = maxLines,
-            textAlign = if (end) TextAlign.End else TextAlign.Start, fillWidth = fill)
-        Canvas(bitmap).drawColor(color, PorterDuff.Mode.SRC_IN)
-        bitmap.density = context.resources.displayMetrics.densityDpi
-        views.setImageViewBitmap(id, bitmap)
-    }
+    ): Bitmap = HomeWidgetFonts.textBitmap(context, typeface(context, weight), text,
+        fontSizeSp = size, maxWidthDp = width.coerceAtLeast(1f), maxLines = maxLines,
+        textAlign = if (end) TextAlign.End else TextAlign.Start, fillWidth = fill)
 
-    private fun image(context: Context, resource: Int, width: Float, height: Float, crop: Boolean = false): Bitmap {
+    private fun image(context: Context, resource: Int, width: Float, height: Float, sourceBounds: Rect? = null): Bitmap {
         val density = context.resources.displayMetrics.density
         val source = BitmapFactory.decodeResource(context.resources, resource)
         val target = Bitmap.createBitmap(max(1, (width * density).roundToInt()), max(1, (height * density).roundToInt()), Bitmap.Config.ARGB_8888)
         target.density = context.resources.displayMetrics.densityDpi
-        val sourceHeight = if (crop) min(source.height, (source.width * height / width).roundToInt()) else source.height
-        Canvas(target).drawBitmap(source, Rect(0, source.height - sourceHeight, source.width, source.height),
+        Canvas(target).drawBitmap(source, sourceBounds,
             Rect(0, 0, target.width, target.height), Paint(Paint.ANTI_ALIAS_FLAG or Paint.FILTER_BITMAP_FLAG))
         return target
     }
