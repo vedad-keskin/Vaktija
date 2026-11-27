@@ -163,7 +163,9 @@ internal object PrayerWidgetRenderer {
     private const val tag = "PrayerWidgets"
     private const val configurationKey = "vaktija.widgets.configuration"
     private const val headerHorizontalInsets = 13f + 13f + 8f
-    private const val headerVerticalInsets = 5f + 5f + 1f
+    private const val headerVerticalPadding = 5f
+    private const val headerDividerHeight = 1f
+    private const val headerVerticalInsets = 2 * headerVerticalPadding + headerDividerHeight
     private const val logoHeightRatio = 0.8f
     // Crop the transparent margins in widget_logo.png before sizing the mark.
     private val logoBounds = Rect(35, 15, 122, 112)
@@ -389,18 +391,25 @@ internal object PrayerWidgetRenderer {
         } ?: (compact to compactBody)
 
         val settingsWidth = 48f / hostScale
-        val withSettings = if (width * hostScale >= 240f) {
-            calendarHeader(context, width - settingsWidth, city, weekday, calendar, locale, appearance.showAppLogo)?.let {
-                val header = it.copy(height = max(it.height, settingsWidth + headerVerticalInsets), settings = true)
+        val withSettings = calendarHeader(context, width - settingsWidth, city, weekday, calendar, locale, appearance.showAppLogo)?.let { calendarHeader ->
+            // Let the gear use the header's padding if keeping it would cost prayer rows.
+            val paddedHeight = max(calendarHeader.height, settingsWidth + headerVerticalInsets)
+            val minimumHeight = max(calendarHeader.height, settingsWidth + headerDividerHeight)
+            listOf(paddedHeight, minimumHeight).distinct().firstNotNullOfOrNull { height ->
+                val header = calendarHeader.copy(height = height, settings = true)
                 val body = fitBody(context, width, size.height - header.height, statusHeight, grid, rows, appearance.showPrayerIcon)
                 (header to body).takeIf {
                     size.height >= header.height + statusHeight &&
                         body.rows.size >= originalBody.rows.size && body.nameLines >= originalBody.nameLines
                 }
             }
-        } else null
+        }
         val (header, body) = withSettings ?: (originalHeader to originalBody)
         views.setViewVisibility(R.id.widget_settings, if (header.settings) View.VISIBLE else View.GONE)
+        if (header.settings) {
+            val padding = ((header.height - settingsWidth - headerDividerHeight) / 2).coerceIn(0f, headerVerticalPadding)
+            views.setViewPadding(R.id.widget_list_header, dp(context, 13f), dp(context, padding), dp(context, 13f), dp(context, padding))
+        }
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
             views.setViewLayoutWidth(R.id.widget_settings, settingsWidth, TypedValue.COMPLEX_UNIT_DIP)
             views.setViewLayoutHeight(R.id.widget_settings, settingsWidth, TypedValue.COMPLEX_UNIT_DIP)

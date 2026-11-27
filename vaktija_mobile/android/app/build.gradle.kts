@@ -33,6 +33,13 @@ android {
         versionName = flutter.versionName
     }
 
+    bundle {
+        language {
+            // The in-app language picker also changes native widget strings.
+            enableSplit = false
+        }
+    }
+
     signingConfigs {
         create("release") {
             keyAlias = keystoreProperties["keyAlias"] as String

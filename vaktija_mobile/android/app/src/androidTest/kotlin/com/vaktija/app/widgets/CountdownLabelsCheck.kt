@@ -8,6 +8,7 @@ import android.util.SizeF
 import android.widget.FrameLayout
 import android.widget.TextView
 import com.vaktija.app.R
+import java.util.concurrent.FutureTask
 
 // adb shell am instrument -w app.vaktija.test/com.vaktija.app.widgets.CountdownLabelsCheck
 class CountdownLabelsCheck : Instrumentation() {
@@ -18,8 +19,9 @@ class CountdownLabelsCheck : Instrumentation() {
 
     override fun onStart() {
         try {
-            runOnMainSync {
+            val checks = FutureTask {
                 val context = targetContext
+                checkTimetableGear(context)
                 val highlightPreferences = context.getSharedPreferences("highlight_color_check", Context.MODE_PRIVATE)
                 highlightPreferences.edit().clear().commit()
                 try {
@@ -70,7 +72,11 @@ class CountdownLabelsCheck : Instrumentation() {
                     }
                 }
             }
-            finish(Activity.RESULT_OK, Bundle().apply { putString("stream", "\nCountdown labels passed (32 cases). Highlight color persistence passed (5 colors).\n") })
+            runOnMainSync(checks)
+            checks.get()
+            finish(Activity.RESULT_OK, Bundle().apply {
+                putString("stream", "\nTimetable gear passed (4 cases). Countdown labels passed (32 cases). Highlight color persistence passed (5 colors).\n")
+            })
         } catch (error: Throwable) {
             finish(Activity.RESULT_CANCELED, Bundle().apply { putString("stream", error.stackTraceToString()) })
         }
