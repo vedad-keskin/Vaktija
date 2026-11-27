@@ -9,6 +9,10 @@
     <string name="widget_countdown_unavailable">Vremena nisu dostupna</string>
     <string name="widget_countdown_soon">Uskoro</string>
     <string name="widget_countdown_settings">Postavke widgeta</string>
+    <string name="widget_countdown_appearance">Izgled</string>
+    <string name="widget_countdown_theme_system">Sistemska tema</string>
+    <string name="widget_countdown_theme_light">Svijetla</string>
+    <string name="widget_countdown_theme_dark">Tamna</string>
     <string name="widget_countdown_transparency">Prozirnost</string>
     <string name="widget_countdown_display">Prikaz</string>
     <string name="widget_countdown_display_size_note">Dostupno za 3×1 i veće widgete</string>

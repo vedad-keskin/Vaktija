@@ -150,6 +150,18 @@ class CountdownSettingsActivity : Activity() {
             saveAppearance(updated)
         }
 
+        val themesById = mapOf(
+            R.id.widget_countdown_theme_system to CountdownTheme.SYSTEM,
+            R.id.widget_countdown_theme_light to CountdownTheme.LIGHT,
+            R.id.widget_countdown_theme_dark to CountdownTheme.DARK,
+        )
+        findViewById<RadioGroup>(R.id.widget_countdown_theme_options).apply {
+            check(themesById.entries.first { it.value == appearance.theme }.key)
+            setOnCheckedChangeListener { _, checkedId ->
+                themesById[checkedId]?.let { changeAppearance(appearance.copy(theme = it)) }
+            }
+        }
+
         ringModes.setOnCheckedChangeListener { _, checkedId ->
             val timeBased = checkedId == R.id.widget_countdown_ring_time_based
             showRingOptions(timeBased)

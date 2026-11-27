@@ -72,9 +72,49 @@
                 android:paddingEnd="18dp"
                 android:paddingBottom="6dp">
 
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/widget_countdown_appearance"
+                    android:textAppearance="@android:style/TextAppearance.Material.Body1"
+                    android:textColor="?android:attr/textColorSecondary" />
+
+                <RadioGroup
+                    android:id="@+id/widget_countdown_theme_options"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:saveEnabled="false">
+
+                    <RadioButton
+                        android:id="@+id/widget_countdown_theme_system"
+                        style="@style/CountdownRadioOption"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:saveEnabled="false"
+                        android:text="@string/widget_countdown_theme_system" />
+
+                    <RadioButton
+                        android:id="@+id/widget_countdown_theme_light"
+                        style="@style/CountdownRadioOption"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:saveEnabled="false"
+                        android:text="@string/widget_countdown_theme_light" />
+
+                    <RadioButton
+                        android:id="@+id/widget_countdown_theme_dark"
+                        style="@style/CountdownRadioOption"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:saveEnabled="false"
+                        android:text="@string/widget_countdown_theme_dark" />
+                </RadioGroup>
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
                     android:orientation="horizontal">
 
                     <TextView
@@ -84,7 +124,7 @@
                         android:labelFor="@+id/widget_countdown_transparency"
                         android:text="@string/widget_countdown_transparency"
                         android:textAppearance="@android:style/TextAppearance.Material.Body1"
-                        android:textColor="?android:attr/textColorSecondary" />
+                        android:textColor="?android:attr/textColorPrimary" />
 
                     <TextView
                         android:id="@+id/widget_countdown_transparency_value"
@@ -133,7 +173,7 @@
 
                     <RadioButton
                         android:id="@+id/widget_countdown_ring_solid"
-                        style="@style/CountdownRingMode"
+                        style="@style/CountdownRadioOption"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:saveEnabled="false"
@@ -150,7 +190,7 @@
 
                     <RadioButton
                         android:id="@+id/widget_countdown_ring_time_based"
-                        style="@style/CountdownRingMode"
+                        style="@style/CountdownRadioOption"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:saveEnabled="false"
@@ -190,7 +230,7 @@
                     android:layout_marginTop="4dp"
                     android:text="@string/widget_countdown_display_size_note"
                     android:textAppearance="@android:style/TextAppearance.Material.Caption"
-                    android:textColor="?android:attr/textColorSecondary"
+                    android:textColor="?android:attr/textColorPrimary"
                     android:visibility="gone" />
 
                 <Switch

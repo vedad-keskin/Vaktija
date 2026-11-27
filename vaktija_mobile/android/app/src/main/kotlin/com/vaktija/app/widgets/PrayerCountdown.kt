@@ -7,6 +7,7 @@ import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
+import android.content.res.ColorStateList
 import android.content.res.Configuration
 import android.content.res.Resources
 import android.graphics.Bitmap
@@ -47,12 +48,15 @@ internal enum class CountdownRingColor(val label: Int, val rgb: Int?) {
     }
 }
 
+internal enum class CountdownTheme { SYSTEM, LIGHT, DARK }
+
 internal data class CountdownAppearance(
     val opacity: Int,
     val color: CountdownRingColor,
     val timeBased: Boolean,
     val showPrayerTime: Boolean,
     val showPrayerIcon: Boolean,
+    val theme: CountdownTheme,
 )
 
 internal object PrayerCountdown {
@@ -72,6 +76,23 @@ internal object PrayerCountdown {
 
     private data class Prayer(val kind: String, val at: Long, val time: String)
 
+    private data class Palette(
+        val panel: Int,
+        val title: Int,
+        val ink: Int,
+        val panelDrawable: Int,
+        val gearDrawable: Int,
+    )
+
+    private val lightPalette = Palette(
+        0xFFF7F7FC.toInt(), 0xFF4B4E59.toInt(), 0xFF1E2028.toInt(),
+        R.drawable.widget_countdown_panel_light, R.drawable.widget_countdown_gear_background_light,
+    )
+    private val darkPalette = Palette(
+        Color.BLACK, 0xA6FCFCFF.toInt(), 0xFFFCFCFF.toInt(),
+        R.drawable.widget_countdown_panel, R.drawable.widget_countdown_gear_background,
+    )
+
     class Render(
         val nextPrayer: Long?,
         val nextMinute: Long?,
@@ -84,17 +105,20 @@ internal object PrayerCountdown {
     private fun timeBasedKey(id: Int) = "vaktija.widgets.countdown.segmented.$id"
     private fun prayerTimeKey(id: Int) = "vaktija.widgets.countdown.showPrayerTime.$id"
     private fun prayerIconKey(id: Int) = "vaktija.widgets.countdown.showPrayerIcon.$id"
+    private fun themeKey(id: Int) = "vaktija.widgets.countdown.theme.$id"
 
     fun isWide(size: SizeF, hostScale: Float) = size.width * hostScale >= wideWidth
 
     fun appearance(data: SharedPreferences, id: Int): CountdownAppearance {
         val color = data.getString(colorKey(id), null)
+        val theme = data.getString(themeKey(id), null)
         return CountdownAppearance(
             opacity = data.getInt(opacityKey(id), defaultOpacity).coerceIn(0, 255),
             color = CountdownRingColor.entries.firstOrNull { it.name == color } ?: CountdownRingColor.SYSTEM,
             timeBased = data.getBoolean(timeBasedKey(id), false),
             showPrayerTime = data.getBoolean(prayerTimeKey(id), false),
             showPrayerIcon = data.getBoolean(prayerIconKey(id), true),
+            theme = CountdownTheme.entries.firstOrNull { it.name == theme } ?: CountdownTheme.SYSTEM,
         )
     }
 
@@ -104,6 +128,7 @@ internal object PrayerCountdown {
             .putBoolean(timeBasedKey(id), appearance.timeBased)
             .putBoolean(prayerTimeKey(id), appearance.showPrayerTime)
             .putBoolean(prayerIconKey(id), appearance.showPrayerIcon)
+            .putString(themeKey(id), appearance.theme.name)
     }
 
     fun removeAppearance(editor: SharedPreferences.Editor, id: Int) {
@@ -112,6 +137,37 @@ internal object PrayerCountdown {
             .remove(timeBasedKey(id))
             .remove(prayerTimeKey(id))
             .remove(prayerIconKey(id))
+            .remove(themeKey(id))
+    }
+
+    private fun RemoteViews.setPalette(context: Context, theme: CountdownTheme, preview: Boolean) {
+        val fixed = when (theme) {
+            CountdownTheme.LIGHT -> lightPalette
+            CountdownTheme.DARK -> darkPalette
+            CountdownTheme.SYSTEM -> {
+                val night = context.applicationContext.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK
+                if (night == Configuration.UI_MODE_NIGHT_YES) darkPalette else lightPalette
+            }
+        }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            // Launcher widgets resolve System colors in the host. The preview may be inside a Vaktija theme override.
+            val adaptive = theme == CountdownTheme.SYSTEM && !preview
+            val day = if (adaptive) lightPalette else fixed
+            val night = if (adaptive) darkPalette else fixed
+            setColorStateList(R.id.widget_countdown_background, "setBackgroundTintList",
+                ColorStateList.valueOf(day.panel), ColorStateList.valueOf(night.panel))
+            setColorStateList(R.id.widget_countdown_gear, "setBackgroundTintList",
+                ColorStateList.valueOf(day.ink), ColorStateList.valueOf(night.ink))
+            setColorInt(R.id.widget_countdown_gear, "setColorFilter", day.ink, night.ink)
+            setColorInt(R.id.widget_countdown_title, "setTextColor", day.title, night.title)
+            setColorInt(R.id.widget_countdown_timer, "setTextColor", day.ink, night.ink)
+        } else {
+            setInt(R.id.widget_countdown_background, "setBackgroundResource", fixed.panelDrawable)
+            setInt(R.id.widget_countdown_gear, "setBackgroundResource", fixed.gearDrawable)
+            setInt(R.id.widget_countdown_gear, "setColorFilter", fixed.ink)
+            setTextColor(R.id.widget_countdown_title, fixed.title)
+            setTextColor(R.id.widget_countdown_timer, fixed.ink)
+        }
     }
 
     fun localizedContext(context: Context, settings: WidgetSettings?): Context {
@@ -188,6 +244,7 @@ internal object PrayerCountdown {
             val gapPx = (8f * unit * metrics.density).roundToInt()
             val insetPx = (inset * metrics.density).roundToInt()
             setViewPadding(R.id.widget_countdown_root, 0, insetPx, 0, insetPx)
+            setPalette(context, appearance.theme, preview = id == null)
             setFloat(R.id.widget_countdown_background, "setAlpha", appearance.opacity / 255f)
             val startPadding = (if (centerText) 8.53333f else 21.33333f) * unit
             val endPadding = 8.53333f * unit
