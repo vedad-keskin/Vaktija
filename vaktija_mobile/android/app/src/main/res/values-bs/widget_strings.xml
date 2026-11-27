@@ -16,14 +16,16 @@
     <string name="widget_countdown_transparency">Prozirnost</string>
     <string name="widget_countdown_display">Prikaz</string>
     <string name="widget_timetable_show_pictures">Prikaži slike namaza</string>
+    <string name="widget_timetable_pictures_info">Slike namaza automatski se skrivaju kada nema dovoljno prostora.</string>
     <string name="widget_timetable_include_night_times">Uključi noćna vremena</string>
-    <string name="widget_timetable_night_times_info">Prikazuje polovinu noći i zadnju trećinu kada ima mjesta za svih osam stavki. Povećajte širinu ili visinu widgeta za više prostora.</string>
+    <string name="widget_timetable_night_times_info">Polovina noći i zadnja trećina automatski se skrivaju kada nema dovoljno prostora za svih osam stavki.</string>
     <string name="widget_timetable_show_app_logo">Prikaži logo aplikacije</string>
     <string name="widget_timetable_highlight_next">Istakni sljedeći namaz</string>
     <string name="widget_timetable_next_label">Sljedeće</string>
     <string name="widget_countdown_display_size_note">Dostupno za 3×1 i veće widgete</string>
     <string name="widget_countdown_show_prayer_time">Prikaži vrijeme namaza</string>
     <string name="widget_countdown_show_prayer_icon">Prikaži sliku namaza</string>
+    <string name="widget_countdown_picture_size_note">Slika namaza automatski se skriva na manjim widgetima.</string>
     <string name="widget_countdown_ring">Prsten napretka</string>
     <string name="widget_countdown_ring_solid">Jednobojni</string>
     <string name="widget_countdown_ring_time_based">Prema preostalom vremenu</string>

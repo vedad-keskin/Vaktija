@@ -77,7 +77,7 @@ internal object PrayerCountdown {
     )
     private val utcTimestamp = Regex("""\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}(?:\d{3})?Z""")
 
-    private data class Prayer(val kind: String, val at: Long, val time: String)
+    private data class Prayer(val kind: String, val at: Long, val time: String, val name: String)
 
     private data class Palette(
         val panel: Int,
@@ -218,7 +218,7 @@ internal object PrayerCountdown {
             Bitmap.createBitmap(source, 15, 8, 126, 144)
         }
         val soon = if (remaining in 1..(5 * minute)) resources.getString(R.string.widget_countdown_soon) else null
-        val prayerTitle = resources.getString(next?.let { prayerTitles.getValue(it.kind) }
+        val prayerTitle = next?.takeIf { it.kind == "dhuhr" }?.name ?: resources.getString(next?.let { prayerTitles.getValue(it.kind) }
             ?: if (settings?.ready == true) R.string.widget_countdown_unavailable else R.string.widget_countdown_setup)
         val metrics = resources.displayMetrics
         val countdownPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
@@ -392,7 +392,7 @@ internal object PrayerCountdown {
         val events = rows.orEmpty().mapNotNull { row ->
             if (row.kind !in prayerTitles || row.time == null) return@mapNotNull null
             val at = parseTime(row.timestamp, parser) ?: return@mapNotNull null
-            Prayer(row.kind, at, row.time)
+            Prayer(row.kind, at, row.time, row.name)
         }
         if (events.map { it.kind }.toSet() != prayerTitles.keys) return null
         return events.distinctBy { it.kind }.sortedBy { it.at }

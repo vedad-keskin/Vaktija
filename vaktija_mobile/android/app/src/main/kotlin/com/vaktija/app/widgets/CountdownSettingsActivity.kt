@@ -221,6 +221,7 @@ class CountdownSettingsActivity : Activity() {
                 }
             }
             findViewById<View>(R.id.widget_timetable_night_times_info).visibility = View.VISIBLE
+            findViewById<View>(R.id.widget_timetable_pictures_info).visibility = View.VISIBLE
             refreshPreview = object : Runnable {
                 override fun run() {
                     redrawPreview(appearance)
@@ -280,6 +281,10 @@ class CountdownSettingsActivity : Activity() {
 
         if (!PrayerCountdown.isWide(size, hostScale)) {
             findViewById<View>(R.id.widget_countdown_display_size_note).visibility = View.VISIBLE
+            findViewById<TextView>(R.id.widget_timetable_pictures_info).apply {
+                setText(R.string.widget_countdown_picture_size_note)
+                visibility = View.VISIBLE
+            }
         }
         findViewById<Switch>(R.id.widget_countdown_show_prayer_time).apply {
             isChecked = appearance.showPrayerTime

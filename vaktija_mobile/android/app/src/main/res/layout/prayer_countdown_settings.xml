@@ -225,16 +225,6 @@
                     android:textAppearance="@android:style/TextAppearance.Material.Body1"
                     android:textColor="?android:attr/textColorSecondary" />
 
-                <TextView
-                    android:id="@+id/widget_countdown_display_size_note"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:text="@string/widget_countdown_display_size_note"
-                    android:textAppearance="@android:style/TextAppearance.Material.Caption"
-                    android:textColor="?android:attr/textColorPrimary"
-                    android:visibility="gone" />
-
                 <Switch
                     android:id="@+id/widget_countdown_show_prayer_time"
                     android:layout_width="match_parent"
@@ -246,16 +236,28 @@
                     android:text="@string/widget_countdown_show_prayer_time"
                     android:textColor="@color/countdown_option_text" />
 
+                <TextView
+                    android:id="@+id/widget_countdown_display_size_note"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="10dp"
+                    android:text="@string/widget_countdown_display_size_note"
+                    android:textAppearance="@android:style/TextAppearance.Material.Caption"
+                    android:textSize="11sp"
+                    android:textColor="?android:attr/textColorSecondary"
+                    android:visibility="gone" />
+
                 <Switch
-                    android:id="@+id/widget_countdown_show_prayer_icon"
+                    android:id="@+id/widget_timetable_highlight_next"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@null"
                     android:gravity="center_vertical"
                     android:minHeight="56dp"
                     android:saveEnabled="false"
-                    android:text="@string/widget_countdown_show_prayer_icon"
-                    android:textColor="@color/countdown_option_text" />
+                    android:text="@string/widget_timetable_highlight_next"
+                    android:textColor="@color/countdown_option_text"
+                    android:visibility="gone" />
 
                 <Switch
                     android:id="@+id/widget_timetable_show_app_logo"
@@ -270,15 +272,25 @@
                     android:visibility="gone" />
 
                 <Switch
-                    android:id="@+id/widget_timetable_highlight_next"
+                    android:id="@+id/widget_countdown_show_prayer_icon"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@null"
                     android:gravity="center_vertical"
                     android:minHeight="56dp"
                     android:saveEnabled="false"
-                    android:text="@string/widget_timetable_highlight_next"
-                    android:textColor="@color/countdown_option_text"
+                    android:text="@string/widget_countdown_show_prayer_icon"
+                    android:textColor="@color/countdown_option_text" />
+
+                <TextView
+                    android:id="@+id/widget_timetable_pictures_info"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="10dp"
+                    android:text="@string/widget_timetable_pictures_info"
+                    android:textAppearance="@android:style/TextAppearance.Material.Caption"
+                    android:textSize="11sp"
+                    android:textColor="?android:attr/textColorSecondary"
                     android:visibility="gone" />
 
                 <Switch
@@ -300,7 +312,8 @@
                     android:paddingBottom="10dp"
                     android:text="@string/widget_timetable_night_times_info"
                     android:textAppearance="@android:style/TextAppearance.Material.Caption"
-                    android:textColor="?android:attr/textColorPrimary"
+                    android:textSize="11sp"
+                    android:textColor="?android:attr/textColorSecondary"
                     android:visibility="gone" />
             </LinearLayout>
         </LinearLayout>

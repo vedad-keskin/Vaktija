@@ -16,14 +16,16 @@
     <string name="widget_countdown_transparency">Transparency</string>
     <string name="widget_countdown_display">Display</string>
     <string name="widget_timetable_show_pictures">Show prayer pictures</string>
+    <string name="widget_timetable_pictures_info">Prayer pictures are automatically hidden when there is not enough space.</string>
     <string name="widget_timetable_include_night_times">Include night times</string>
-    <string name="widget_timetable_night_times_info">Adds Midnight and Last third when all eight entries fit. Make the widget wider or taller for more space.</string>
+    <string name="widget_timetable_night_times_info">Midnight and Last third are automatically hidden when there is not enough space for all eight entries.</string>
     <string name="widget_timetable_show_app_logo">Show app logo</string>
     <string name="widget_timetable_highlight_next">Highlight next prayer</string>
     <string name="widget_timetable_next_label">Next</string>
     <string name="widget_countdown_display_size_note">Available at 3×1 and wider</string>
     <string name="widget_countdown_show_prayer_time">Show prayer time</string>
     <string name="widget_countdown_show_prayer_icon">Show prayer picture</string>
+    <string name="widget_countdown_picture_size_note">The prayer picture is automatically hidden on smaller widgets.</string>
     <string name="widget_countdown_title_with_time">%1$s · %2$s</string>
     <string name="widget_countdown_ring">Progress ring</string>
     <string name="widget_countdown_ring_solid">Solid</string>
