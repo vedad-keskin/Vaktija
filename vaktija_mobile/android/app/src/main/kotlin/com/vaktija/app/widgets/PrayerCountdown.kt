@@ -217,7 +217,8 @@ internal object PrayerCountdown {
         val starts = currentDay?.lastOrNull { it.at <= now }?.at
             ?: prayers(yesterday, parser)?.lastOrNull { it.at <= now }?.at
             ?: parseTime(previousIsha, parser)?.takeIf { it <= now }
-        val resources = localizedContext(context, settings).resources
+        val localized = localizedContext(context, settings)
+        val resources = localized.resources
         val remaining = next?.let { it.at - now } ?: 0L
         val progress = if (next != null && starts != null && starts < next.at) {
             ((now - starts).toFloat() / (next.at - starts)).coerceIn(0f, 1f)
@@ -231,8 +232,7 @@ internal object PrayerCountdown {
             Bitmap.createBitmap(source, 15, 8, 126, 144)
         }
         val soon = if (remaining in 1..(5 * minute)) resources.getString(R.string.widget_countdown_soon) else null
-        val prayerTitle = next?.takeIf { it.kind == "dhuhr" }?.name ?: resources.getString(next?.let { prayerTitles.getValue(it.kind) }
-            ?: if (settings?.ready == true) R.string.widget_countdown_unavailable else R.string.widget_countdown_setup)
+        val prayerTitle = next?.let { if (it.kind == "dhuhr") it.name else resources.getString(prayerTitles.getValue(it.kind)) }.orEmpty()
         val metrics = resources.displayMetrics
         val countdownPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
             val family = Typeface.create("sec", Typeface.NORMAL)
@@ -258,7 +258,9 @@ internal object PrayerCountdown {
             val inset = (size.height - panelHeight) / 2f
             // ponytail: pre-Android 12 image slots stay fixed; use size-specific layouts for full legacy resize fidelity.
             val imageWidth = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) 60.8f * unit else 60.8f
-            val settingsWidth = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            val settingsWidth = if (!live && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+                48f / hostScale
+            } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
                 maxOf(imageWidth, 48f / hostScale) + settingsGap / hostScale
             } else imageWidth + settingsGap
             val imageInset = ((imageWidth - 60.8f * unit) / 2f * metrics.density).roundToInt().coerceAtLeast(0)
@@ -271,8 +273,8 @@ internal object PrayerCountdown {
             setViewPadding(R.id.widget_countdown_root, 0, insetPx, 0, insetPx)
             setPalette(context, appearance.theme, preview = id == null)
             setFloat(R.id.widget_countdown_background, "setAlpha", appearance.opacity / 255f)
-            val startPadding = (if (centerText) 8.53333f else 21.33333f) * unit
-            val endPadding = 8.53333f * unit
+            val startPadding = if (!live) 0f else (if (centerText) 8.53333f else 21.33333f) * unit
+            val endPadding = if (live) 8.53333f * unit else 0f
             setViewPadding(R.id.widget_countdown_panel, (startPadding * metrics.density).roundToInt(), 0,
                 (endPadding * metrics.density).roundToInt(), 0)
             setViewPadding(R.id.widget_countdown_progress, imageInset + gapPx, imageInset, imageInset, imageInset)
@@ -316,8 +318,6 @@ internal object PrayerCountdown {
                 // The reference's 23.5sp and 16.5sp timers have different line spacing.
                 ((23.5f - countdownPaint.textSize / unitPx) / 7f).coerceIn(0f, 1f)
             } else 0f
-            fitText(labelPaint, title, 12f, 16.3f)
-            setLine(R.id.widget_countdown_title, title, labelPaint, 24.8f + 5.6f * compactness)
             if (id != null) {
                 setOnClickPendingIntent(R.id.widget_countdown_root, HomeWidgetLaunchIntent.getActivity(
                     context, MainActivity::class.java, Uri.parse("vaktija://widgets/prayers"),
@@ -329,11 +329,15 @@ internal object PrayerCountdown {
             }
             val liveVisibility = if (live) View.VISIBLE else View.GONE
             setViewVisibility(R.id.widget_countdown_icon, if (showIcon) View.VISIBLE else View.GONE)
+            setViewVisibility(R.id.widget_countdown_title, liveVisibility)
             setViewVisibility(R.id.widget_countdown_timer, liveVisibility)
             setViewVisibility(R.id.widget_countdown_progress, liveVisibility)
-            if (next == null || timerText == null) {
-                setContentDescription(R.id.widget_countdown_title, title)
-            } else {
+            val state = if (live) null else if (settings?.ready == true) WidgetState.UNAVAILABLE else WidgetState.SETUP
+            setContentDescription(R.id.widget_countdown_root, state?.let { resources.getString(it.title) })
+            setWidgetState(localized, state, textWidth, panelHeight, appearance.theme, preview = id == null, allowStack = false)
+            if (next != null && timerText != null) {
+                fitText(labelPaint, title, 12f, 16.3f)
+                setLine(R.id.widget_countdown_title, title, labelPaint, 24.8f + 5.6f * compactness)
                 if (showIcon) setImageViewBitmap(R.id.widget_countdown_icon, icon)
                 setLine(R.id.widget_countdown_timer, timerText, countdownPaint, 51.7f - 2.7f * compactness)
                 val color = if (appearance.timeBased) timeColor(remaining) else appearance.color

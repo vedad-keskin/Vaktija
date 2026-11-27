@@ -352,7 +352,7 @@ internal object PrayerWidgetRenderer {
     ): RemoteViews {
         val views = RemoteViews(context.packageName, R.layout.prayer_widget_list)
         val locale = if (settings?.bosnian != false) Locale.forLanguageTag("bs") else Locale.ENGLISH
-        val bosnian = settings?.bosnian != false
+        val localized = context.createConfigurationContext(Configuration(context.resources.configuration).apply { setLocale(locale) })
         val width = size.width.coerceIn(140f, 1000f)
         val city = settings?.city ?: "Vaktija"
         val displayedDay = day?.day ?: today
@@ -363,21 +363,17 @@ internal object PrayerWidgetRenderer {
             .replaceFirstChar { it.titlecase(locale) }
         val date = day?.shortDate ?: SimpleDateFormat("dd.MM.yyyy.", locale)
             .apply { timeZone = zone }.format(calendar.time)
-        val shortStaleStatus = day != null && day.day != today && width < 240f
-        var status = when {
-            settings?.ready != true -> if (bosnian) "Dodirnite za postavljanje vaktije" else "Tap to set up Vaktija"
-            shortStaleStatus -> if (bosnian) "Prethodni datum" else "Previous date"
-            day != null && day.day != today -> if (bosnian) "Podaci za prethodni datum · Otvorite aplikaciju" else "Previous date's times · Open the app"
-            day != null && !day.complete -> if (bosnian) "Neka vremena nisu dostupna" else "Some times are unavailable"
-            day == null && data.getBoolean("vaktija.widgets.failure.${settings.key}.$today", false) ->
-                if (bosnian) "Vremena nisu dostupna · Otvorite aplikaciju" else "Times unavailable · Open the app"
-            day == null -> if (bosnian) "Učitavanje vaktije…" else "Loading prayer times…"
-            else -> ""
+        val state = when {
+            settings?.ready != true -> WidgetState.SETUP
+            day != null && day.day != today -> WidgetState.STALE
+            day != null && !day.complete -> WidgetState.PARTIAL
+            day == null && data.getBoolean("vaktija.widgets.failure.${settings.key}.$today", false) -> WidgetState.UNAVAILABLE
+            day == null -> WidgetState.LOADING
+            else -> null
         }
-        val statusSize = if (shortStaleStatus) 11f else 12f
-        val statusTop = if (shortStaleStatus) 2f else 6f
-        val statusHeight = if (status.isEmpty()) 0f else textHeight(context, status, statusSize, width - 26f, includePad = true) + statusTop
-        val rows = day?.rows.orEmpty().filter {
+        val notice = state?.takeIf { it == WidgetState.STALE || it == WidgetState.PARTIAL }?.let { localized.getString(it.title) }
+        val statusHeight = if (notice == null) 0f else textHeight(context, "Ag", 12f, width - 26f, 400, includePad = true) + 4f
+        val rows = day?.takeUnless { state == WidgetState.SETUP }?.rows.orEmpty().filter {
             appearance.includeNightTimes || it.kind != "midnight" && it.kind != "lastthird"
         }
         val compact = compactHeader(context, width, city, date, displayedDay)
@@ -385,8 +381,8 @@ internal object PrayerWidgetRenderer {
         val (originalHeader, originalBody) = calendarHeader(context, width, city, weekday, calendar, locale, appearance.showAppLogo)?.let { calendarHeader ->
             val body = fitBody(context, width, size.height - calendarHeader.height, statusHeight, grid, rows, appearance.showPrayerIcon)
             (calendarHeader to body).takeIf {
-                size.height >= calendarHeader.height + statusHeight &&
-                    (day == null || body.rows.isNotEmpty() && body.rows.size >= compactBody.rows.size && body.nameLines >= compactBody.nameLines)
+                if (rows.isEmpty()) size.height - calendarHeader.height >= 32f
+                else body.rows.isNotEmpty() && body.rows.size >= compactBody.rows.size && body.nameLines >= compactBody.nameLines
             }
         } ?: (compact to compactBody)
 
@@ -399,8 +395,8 @@ internal object PrayerWidgetRenderer {
                 val header = calendarHeader.copy(height = height, settings = true)
                 val body = fitBody(context, width, size.height - header.height, statusHeight, grid, rows, appearance.showPrayerIcon)
                 (header to body).takeIf {
-                    size.height >= header.height + statusHeight &&
-                        body.rows.size >= originalBody.rows.size && body.nameLines >= originalBody.nameLines
+                    if (body.rows.isEmpty()) originalBody.rows.isEmpty() && size.height - header.height >= 32f
+                    else body.rows.size >= originalBody.rows.size && body.nameLines >= originalBody.nameLines
                 }
             }
         }
@@ -437,7 +433,7 @@ internal object PrayerWidgetRenderer {
         if (header.settings && !preview) {
             views.setOnClickPendingIntent(R.id.widget_settings, CountdownSettingsActivity.intent(context, id, size, hostScale))
             views.setContentDescription(R.id.widget_settings,
-                PrayerCountdown.localizedContext(context, settings).getString(R.string.widget_countdown_settings))
+                localized.getString(R.string.widget_countdown_settings))
         }
         views.setImageViewBitmap(R.id.widget_city, header.city)
         views.setImageViewBitmap(R.id.widget_date, header.date)
@@ -448,7 +444,6 @@ internal object PrayerWidgetRenderer {
         views.setViewVisibility(R.id.widget_calendar_details, if (header.month != null) View.VISIBLE else View.GONE)
         views.setViewVisibility(R.id.widget_logo, if (header.logo != null) View.VISIBLE else View.GONE)
         views.setImageViewBitmap(R.id.widget_logo, header.logo)
-        views.setContentDescription(R.id.widget_root, "$city, $weekday, $date")
         if (!preview) {
             views.setOnClickPendingIntent(R.id.widget_root,
                 HomeWidgetLaunchIntent.getActivity(context, MainActivity::class.java, Uri.parse("vaktija://widgets/prayers")))
@@ -459,11 +454,9 @@ internal object PrayerWidgetRenderer {
         val highlighted = if (appearance.highlightNext && day?.day == today) {
             nextHighlightedPrayer(visible, System.currentTimeMillis())
         } else null
-        val highlightLabel = PrayerCountdown.localizedContext(context, settings).getString(R.string.widget_timetable_next_label)
+        val highlightLabel = localized.getString(R.string.widget_timetable_next_label)
         views.setViewPadding(R.id.widget_rows, dp(context, 13f), dp(context, if (dense) 2f else 5f), dp(context, 13f), dp(context, if (dense) 6f else 11f))
-        if (day != null && visible.isEmpty()) {
-            status = if (bosnian) "Povećajte widget za prikaz vremena" else "Enlarge the widget to show times"
-        } else if (grid) {
+        if (grid) {
             val pairs = visible.chunked(2)
             for ((index, pair) in pairs.withIndex()) {
                 val row = RemoteViews(context.packageName, R.layout.prayer_widget_grid_row)
@@ -494,10 +487,13 @@ internal object PrayerWidgetRenderer {
             }
         }
         if (day != null) Log.d(tag, "Widget ${if (grid) "grid" else "list"} ${day.day} ${settings?.key} ${size.width}x${size.height} rows=${visible.size}")
-        views.setTextViewText(R.id.widget_status, status)
-        views.setTextViewTextSize(R.id.widget_status, TypedValue.COMPLEX_UNIT_SP, statusSize)
-        views.setViewPadding(R.id.widget_status, dp(context, 13f), dp(context, statusTop), dp(context, 13f), 0)
-        views.setViewVisibility(R.id.widget_status, if (status.isEmpty()) View.GONE else View.VISIBLE)
+        views.setTextViewText(R.id.widget_status, notice.orEmpty())
+        views.setViewVisibility(R.id.widget_status, if (notice != null && visible.isNotEmpty()) View.VISIBLE else View.GONE)
+        views.setViewVisibility(R.id.widget_rows, if (visible.isNotEmpty()) View.VISIBLE else View.GONE)
+        val emptyState = if (visible.isEmpty()) state ?: WidgetState.RESIZE else null
+        val statusDescription = emptyState?.let { localized.getString(it.title) } ?: notice
+        views.setContentDescription(R.id.widget_root, listOfNotNull(city, weekday, date, statusDescription).joinToString(", "))
+        views.setWidgetState(localized, emptyState, size.width, size.height - header.height, appearance.theme, preview)
         return views
     }
 
@@ -626,7 +622,7 @@ internal object PrayerWidgetRenderer {
         return views
     }
 
-    private fun tint(
+    internal fun tint(
         context: Context, views: RemoteViews, id: Int, method: String, theme: CountdownTheme,
         preview: Boolean, light: Int, dark: Int,
     ) {

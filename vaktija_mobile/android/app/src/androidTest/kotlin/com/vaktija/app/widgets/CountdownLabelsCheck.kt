@@ -22,6 +22,7 @@ class CountdownLabelsCheck : Instrumentation() {
             val checks = FutureTask {
                 val context = targetContext
                 checkTimetableGear(context)
+                checkWidgetStates(context)
                 val highlightPreferences = context.getSharedPreferences("highlight_color_check", Context.MODE_PRIVATE)
                 highlightPreferences.edit().clear().commit()
                 try {
@@ -75,7 +76,7 @@ class CountdownLabelsCheck : Instrumentation() {
             runOnMainSync(checks)
             checks.get()
             finish(Activity.RESULT_OK, Bundle().apply {
-                putString("stream", "\nTimetable gear passed (4 cases). Countdown labels passed (32 cases). Highlight color persistence passed (5 colors).\n")
+                putString("stream", "\nWidget states passed. Timetable gear passed (4 cases). Countdown labels passed (32 cases). Highlight color persistence passed (5 colors).\n")
             })
         } catch (error: Throwable) {
             finish(Activity.RESULT_CANCELED, Bundle().apply { putString("stream", error.stackTraceToString()) })

@@ -5,8 +5,15 @@
     <string name="widget_list_description">Dnevna vaktija s gradom i datumom.</string>
     <string name="widget_grid_description">Vremena namaza u preglednom rasporedu s dvije kolone.</string>
     <string name="widget_countdown_description">Vrijeme do sljedećeg namaza uz prsten koji se postepeno ispunjava.</string>
-    <string name="widget_countdown_setup">Dodirnite za postavljanje vaktije</string>
-    <string name="widget_countdown_unavailable">Vremena nisu dostupna</string>
+    <string name="widget_state_loading">Učitavanje vaktije…</string>
+    <string name="widget_state_resize">Povećajte widget</string>
+    <string name="widget_state_resize_hint">Pritisnite i držite za promjenu veličine</string>
+    <string name="widget_state_setup">Postavite vaktiju</string>
+    <string name="widget_state_setup_hint">Dodirnite za postavljanje</string>
+    <string name="widget_state_unavailable">Vremena nisu dostupna</string>
+    <string name="widget_state_open_app">Otvorite aplikaciju</string>
+    <string name="widget_state_stale">Starija vremena</string>
+    <string name="widget_state_partial">Nepotpuna vaktija</string>
     <string name="widget_countdown_soon">Uskoro</string>
     <string name="widget_countdown_settings">Postavke widgeta</string>
     <string name="widget_countdown_appearance">Izgled</string>

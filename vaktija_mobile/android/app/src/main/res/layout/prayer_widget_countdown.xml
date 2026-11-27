@@ -40,10 +40,10 @@
                 android:layout_height="match_parent"
                 android:ellipsize="end"
                 android:fontFamily="sec"
-                android:gravity="start|top"
+                android:gravity="center"
                 android:includeFontPadding="false"
                 android:maxLines="1"
-                android:text="@string/widget_countdown_setup"
+                android:text="@string/widget_state_loading"
                 android:textColor="#A6FCFCFF"
                 android:textFontWeight="500"
                 android:textSize="12sp" />
@@ -62,6 +62,8 @@
                 android:textFontWeight="500"
                 android:textSize="23.5sp"
                 android:visibility="gone" />
+
+            <include layout="@layout/prayer_widget_state" />
         </FrameLayout>
 
         <FrameLayout
