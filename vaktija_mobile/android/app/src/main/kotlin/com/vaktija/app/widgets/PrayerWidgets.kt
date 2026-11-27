@@ -49,18 +49,16 @@ class PrayerCountdownWidget : PrayerWidgetProvider(PrayerWidgetLayout.COUNTDOWN)
     override fun onDeleted(context: Context, appWidgetIds: IntArray) {
         super.onDeleted(context, appWidgetIds)
         val editor = HomeWidgetPlugin.getData(context).edit()
-        for (id in appWidgetIds) editor.remove(PrayerCountdown.opacityKey(id))
+        for (id in appWidgetIds) PrayerCountdown.removeAppearance(editor, id)
         editor.apply()
     }
 
     override fun onRestored(context: Context, oldIds: IntArray, newIds: IntArray) {
         val data = HomeWidgetPlugin.getData(context)
         val editor = data.edit()
-        for (id in oldIds) editor.remove(PrayerCountdown.opacityKey(id))
+        for (id in oldIds) PrayerCountdown.removeAppearance(editor, id)
         for ((oldId, newId) in oldIds.zip(newIds)) {
-            if (data.contains(PrayerCountdown.opacityKey(oldId))) {
-                editor.putInt(PrayerCountdown.opacityKey(newId), PrayerCountdown.opacity(data, oldId))
-            }
+            PrayerCountdown.writeAppearance(editor, newId, PrayerCountdown.appearance(data, oldId))
         }
         editor.apply()
         super.onRestored(context, oldIds, newIds)
@@ -211,13 +209,11 @@ internal object PrayerWidgetRenderer {
     fun countdownContext(context: Context, data: SharedPreferences): Context =
         PrayerCountdown.localizedContext(context, readSettings(data))
 
-    fun countdownPreview(
-        context: Context, data: SharedPreferences, size: SizeF, hostScale: Float, opacity: Int,
-    ): RemoteViews {
+    fun countdownPreview(context: Context, data: SharedPreferences): PrayerCountdown.Render {
         val now = System.currentTimeMillis()
         val settings = readSettings(data)
         val current = settings?.let { readDay(data, it, dayKey(0, now)) }
-        return prepareCountdown(context, data, settings, now, current).views(size, hostScale, opacity, null)
+        return prepareCountdown(context, data, settings, now, current)
     }
 
     private fun prepareCountdown(

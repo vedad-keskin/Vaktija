@@ -6,12 +6,19 @@ import android.appwidget.AppWidgetManager
 import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
+import android.content.res.Configuration
+import android.graphics.drawable.BitmapDrawable
 import android.net.Uri
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.SizeF
 import android.view.Gravity
 import android.view.View
 import android.widget.FrameLayout
+import android.widget.LinearLayout
+import android.widget.RadioButton
+import android.widget.RadioGroup
 import android.widget.SeekBar
 import android.widget.TextView
 import androidx.core.view.ViewCompat
@@ -19,12 +26,24 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.doOnLayout
 import com.vaktija.app.R
 import es.antonborri.home_widget.HomeWidgetPlugin
+import io.flutter.plugins.sharedpreferences.SHARED_PREFERENCES_NAME
 import java.text.NumberFormat
 import kotlin.math.roundToInt
 
 class CountdownSettingsActivity : Activity() {
+    private val previewHandler = Handler(Looper.getMainLooper())
+    private var refreshPreview: Runnable? = null
+    private var appliedNightMode: Int? = null
+
     override fun attachBaseContext(base: Context) {
-        super.attachBaseContext(PrayerWidgetRenderer.countdownContext(base, HomeWidgetPlugin.getData(base)))
+        val localized = PrayerWidgetRenderer.countdownContext(base, HomeWidgetPlugin.getData(base))
+        val night = appNightMode(base)
+        appliedNightMode = night
+        super.attachBaseContext(if (night == null) localized else {
+            val config = Configuration(localized.resources.configuration)
+            config.uiMode = (config.uiMode and Configuration.UI_MODE_NIGHT_MASK.inv()) or night
+            localized.createConfigurationContext(config)
+        })
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -40,8 +59,8 @@ class CountdownSettingsActivity : Activity() {
         }
         val hostScale = intent.getFloatExtra(extraScale, 1f)
         val data = HomeWidgetPlugin.getData(this)
-        var savedOpacity = PrayerCountdown.opacity(data, id)
-        var previewOpacity = savedOpacity
+        var appearance = PrayerCountdown.appearance(data, id)
+        var previewOpacity = appearance.opacity
 
         setContentView(R.layout.prayer_countdown_settings)
         findViewById<View>(R.id.widget_countdown_back).setOnClickListener { finish() }
@@ -56,7 +75,8 @@ class CountdownSettingsActivity : Activity() {
         ViewCompat.requestApplyInsets(screen)
 
         val stage = findViewById<FrameLayout>(R.id.widget_countdown_preview)
-        val preview = PrayerWidgetRenderer.countdownPreview(this, data, size, hostScale, previewOpacity).apply(this, stage)
+        var previewRenderer = PrayerWidgetRenderer.countdownPreview(this, data)
+        val preview = previewRenderer.views(size, hostScale, appearance, null).apply(this, stage)
         val density = resources.displayMetrics.density
         val width = (size.width * density).roundToInt().coerceAtLeast(1)
         val height = (size.height * density).roundToInt().coerceAtLeast(1)
@@ -73,13 +93,15 @@ class CountdownSettingsActivity : Activity() {
         val slider = findViewById<SeekBar>(R.id.widget_countdown_transparency)
         val value = findViewById<TextView>(R.id.widget_countdown_transparency_value)
         val percent = NumberFormat.getPercentInstance(resources.configuration.locales[0])
-        slider.progress = transparency(savedOpacity)
+        slider.progress = transparency(appearance.opacity)
         value.text = percent.format(slider.progress / 100.0)
 
-        fun saveOpacity() {
-            if (previewOpacity == savedOpacity || manager.getAppWidgetInfo(id)?.provider != provider) return
-            savedOpacity = previewOpacity
-            data.edit().putInt(PrayerCountdown.opacityKey(id), savedOpacity).apply()
+        fun saveAppearance(updated: CountdownAppearance) {
+            if (updated == appearance || manager.getAppWidgetInfo(id)?.provider != provider) return
+            val editor = data.edit()
+            PrayerCountdown.writeAppearance(editor, id, updated)
+            editor.apply()
+            appearance = updated
             PrayerCountdownWidget().onUpdate(this, manager, intArrayOf(id))
         }
 
@@ -87,14 +109,14 @@ class CountdownSettingsActivity : Activity() {
             private var dragging = false
 
             override fun onProgressChanged(seekBar: SeekBar, progress: Int, fromUser: Boolean) {
-                previewOpacity = if (progress == transparency(savedOpacity)) {
-                    savedOpacity
+                previewOpacity = if (progress == transparency(appearance.opacity)) {
+                    appearance.opacity
                 } else {
                     ((100 - progress) * 255 / 100f).roundToInt()
                 }
                 background.alpha = previewOpacity / 255f
                 value.text = percent.format(progress / 100.0)
-                if (fromUser && !dragging) saveOpacity()
+                if (fromUser && !dragging) saveAppearance(appearance.copy(opacity = previewOpacity))
             }
 
             override fun onStartTrackingTouch(seekBar: SeekBar) {
@@ -103,12 +125,109 @@ class CountdownSettingsActivity : Activity() {
 
             override fun onStopTrackingTouch(seekBar: SeekBar) {
                 dragging = false
-                saveOpacity()
+                saveAppearance(appearance.copy(opacity = previewOpacity))
             }
         })
+
+        val ringModes = findViewById<RadioGroup>(R.id.widget_countdown_ring_modes)
+        val colorRow = findViewById<RadioGroup>(R.id.widget_countdown_ring_color_row)
+        val timeSamples = findViewById<LinearLayout>(R.id.widget_countdown_ring_time_samples)
+        fun showRingOptions(timeBased: Boolean) {
+            colorRow.visibility = if (timeBased) View.GONE else View.VISIBLE
+            timeSamples.visibility = if (timeBased) View.VISIBLE else View.GONE
+        }
+        ringModes.check(if (appearance.timeBased) R.id.widget_countdown_ring_time_based else R.id.widget_countdown_ring_solid)
+        showRingOptions(appearance.timeBased)
+
+        fun redrawPreview(updated: CountdownAppearance) {
+            previewRenderer.views(size, hostScale, updated.copy(opacity = previewOpacity), null).reapply(this, preview)
+        }
+
+        fun changeRing(updated: CountdownAppearance) {
+            if (updated == appearance) return
+            redrawPreview(updated)
+            saveAppearance(updated)
+        }
+
+        ringModes.setOnCheckedChangeListener { _, checkedId ->
+            val timeBased = checkedId == R.id.widget_countdown_ring_time_based
+            showRingOptions(timeBased)
+            changeRing(appearance.copy(timeBased = timeBased))
+        }
+        val swatchSize = (28f * density).roundToInt()
+        val swatchPadding = (9f * density).roundToInt()
+        fun TextView.showRing(label: String, color: CountdownRingColor, progress: Float) {
+            val bitmap = PrayerCountdown.progressRing(progress, color.resolve(this@CountdownSettingsActivity), swatchSize)
+            val ring = BitmapDrawable(resources, bitmap).apply {
+                setBounds(0, 0, swatchSize, swatchSize)
+            }
+            gravity = Gravity.TOP or Gravity.CENTER_HORIZONTAL
+            textSize = 11f
+            text = label
+            setTextColor(getColorStateList(R.color.countdown_option_text))
+            compoundDrawablePadding = (5f * density).roundToInt()
+            setCompoundDrawables(null, ring, null, null)
+            setPadding(0, swatchPadding, 0, swatchPadding)
+        }
+        for (color in CountdownRingColor.entries) {
+            val swatch = RadioButton(this).apply {
+                this.id = View.generateViewId()
+                isSaveEnabled = false
+                buttonDrawable = null
+                val label = getString(if (color == CountdownRingColor.SYSTEM) R.string.widget_countdown_ring_auto else color.label)
+                showRing(label, color, 1f)
+                contentDescription = getString(color.label)
+                setBackgroundResource(R.drawable.countdown_ring_swatch_selection)
+                isChecked = color == appearance.color
+                setOnClickListener { changeRing(appearance.copy(color = color)) }
+            }
+            colorRow.addView(swatch, RadioGroup.LayoutParams(0, RadioGroup.LayoutParams.MATCH_PARENT, 1f))
+        }
+        for (minutes in listOf(20, 10, 3)) {
+            val sample = TextView(this).apply {
+                val color = PrayerCountdown.timeColor(minutes * PrayerCountdown.minute)
+                val label = getString(R.string.widget_countdown_minutes, minutes)
+                // Draw each example as a snapshot of a 30-minute countdown.
+                showRing(label, color, 1f - minutes / 30f)
+                contentDescription = getString(R.string.widget_countdown_ring_sample, label, getString(color.label))
+            }
+            timeSamples.addView(sample, LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.MATCH_PARENT, 1f))
+        }
+        refreshPreview = object : Runnable {
+            override fun run() {
+                previewRenderer = PrayerWidgetRenderer.countdownPreview(this@CountdownSettingsActivity, data)
+                redrawPreview(appearance)
+                previewRenderer.nextMinute?.let {
+                    previewHandler.postDelayed(this, (it - System.currentTimeMillis()).coerceAtLeast(100L))
+                }
+            }
+        }
+    }
+
+    override fun onStart() {
+        super.onStart()
+        if (appNightMode(this) != appliedNightMode) {
+            recreate()
+            return
+        }
+        refreshPreview?.run()
+    }
+
+    override fun onStop() {
+        refreshPreview?.let(previewHandler::removeCallbacks)
+        super.onStop()
     }
 
     private fun transparency(opacity: Int) = ((255 - opacity) * 100 / 255f).roundToInt()
+
+    // Read the same legacy SharedPreferences value that Vaktija uses for its theme.
+    private fun appNightMode(context: Context): Int? = when (
+        context.getSharedPreferences(SHARED_PREFERENCES_NAME, Context.MODE_PRIVATE).getString("flutter.theme", null)
+    ) {
+        "light" -> Configuration.UI_MODE_NIGHT_NO
+        "dark" -> Configuration.UI_MODE_NIGHT_YES
+        else -> null
+    }
 
     internal companion object {
         private const val extraSize = "countdown_size"

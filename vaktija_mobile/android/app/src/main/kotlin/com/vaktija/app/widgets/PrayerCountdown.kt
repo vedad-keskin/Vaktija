@@ -33,9 +33,25 @@ import java.util.Locale
 import java.util.TimeZone
 import kotlin.math.roundToInt
 
+internal enum class CountdownRingColor(val label: Int, val rgb: Int?) {
+    SYSTEM(R.string.widget_countdown_ring_system, null),
+    BLUE(R.string.widget_countdown_ring_blue, 0xFF377AFF.toInt()),
+    GREEN(R.string.widget_countdown_ring_green, 0xFF38B879.toInt()),
+    AMBER(R.string.widget_countdown_ring_amber, 0xFFFFB02E.toInt()),
+    RED(R.string.widget_countdown_ring_red, 0xFFF45159.toInt());
+
+    fun resolve(context: Context): Int = rgb ?: if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+        context.getColor(android.R.color.system_accent1_400)
+    } else {
+        Color.rgb(55, 122, 255)
+    }
+}
+
+internal data class CountdownAppearance(val opacity: Int, val color: CountdownRingColor, val timeBased: Boolean)
+
 internal object PrayerCountdown {
     private const val defaultOpacity = 162
-    private const val minute = 60_000L
+    const val minute = 60_000L
     private const val wideWidth = 190f
     private const val referenceHeight = 71.73333f
     private const val settingsGap = 18f
@@ -53,13 +69,32 @@ internal object PrayerCountdown {
     class Render(
         val nextPrayer: Long?,
         val nextMinute: Long?,
-        val views: (SizeF, Float, Int, Int?) -> RemoteViews,
+        val views: (SizeF, Float, CountdownAppearance, Int?) -> RemoteViews,
     )
 
-    fun opacityKey(id: Int) = "vaktija.widgets.countdown.opacity.$id"
+    private fun opacityKey(id: Int) = "vaktija.widgets.countdown.opacity.$id"
+    private fun colorKey(id: Int) = "vaktija.widgets.countdown.color.$id"
+    // Carry existing Segmented selections over to Time-based.
+    private fun timeBasedKey(id: Int) = "vaktija.widgets.countdown.segmented.$id"
 
-    fun opacity(data: SharedPreferences, id: Int) =
-        data.getInt(opacityKey(id), defaultOpacity).coerceIn(0, 255)
+    fun appearance(data: SharedPreferences, id: Int): CountdownAppearance {
+        val color = data.getString(colorKey(id), null)
+        return CountdownAppearance(
+            data.getInt(opacityKey(id), defaultOpacity).coerceIn(0, 255),
+            CountdownRingColor.entries.firstOrNull { it.name == color } ?: CountdownRingColor.SYSTEM,
+            data.getBoolean(timeBasedKey(id), false),
+        )
+    }
+
+    fun writeAppearance(editor: SharedPreferences.Editor, id: Int, appearance: CountdownAppearance) {
+        editor.putInt(opacityKey(id), appearance.opacity)
+            .putString(colorKey(id), appearance.color.name)
+            .putBoolean(timeBasedKey(id), appearance.timeBased)
+    }
+
+    fun removeAppearance(editor: SharedPreferences.Editor, id: Int) {
+        editor.remove(opacityKey(id)).remove(colorKey(id)).remove(timeBasedKey(id))
+    }
 
     fun localizedContext(context: Context, settings: WidgetSettings?): Context {
         if (settings == null) return context
@@ -88,12 +123,8 @@ internal object PrayerCountdown {
         val progress = if (next != null && starts != null && starts < next.at) {
             ((now - starts).toFloat() / (next.at - starts)).coerceIn(0f, 1f)
         } else 0f
-        val accent = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-            context.getColor(android.R.color.system_accent1_400)
-        } else {
-            Color.rgb(55, 122, 255)
-        }
-        val ring = next?.let { progressRing(progress, accent) }
+        val accent = CountdownRingColor.SYSTEM.resolve(context)
+        val rings = mutableMapOf<Int, Bitmap>()
         val timerText = next?.let { remainingText(resources, remaining) }
         val icon = next?.let {
             val source = BitmapFactory.decodeResource(context.resources, prayerIcon(it.kind))
@@ -111,7 +142,7 @@ internal object PrayerCountdown {
         val labelPaint = Paint(countdownPaint)
         countdownPaint.fontFeatureSettings = "tnum"
 
-        fun views(size: SizeF, hostScale: Float, opacity: Int, id: Int?) = RemoteViews(
+        fun views(size: SizeF, hostScale: Float, appearance: CountdownAppearance, id: Int?) = RemoteViews(
             context.packageName, R.layout.prayer_widget_countdown,
         ).apply {
             val wide = size.width * hostScale >= wideWidth
@@ -135,7 +166,7 @@ internal object PrayerCountdown {
             val gapPx = (8f * unit * metrics.density).roundToInt()
             val insetPx = (inset * metrics.density).roundToInt()
             setViewPadding(R.id.widget_countdown_root, 0, insetPx, 0, insetPx)
-            setFloat(R.id.widget_countdown_background, "setAlpha", opacity / 255f)
+            setFloat(R.id.widget_countdown_background, "setAlpha", appearance.opacity / 255f)
             val startPadding = (if (showIcon) 8.53333f else 21.33333f) * unit
             val endPadding = 8.53333f * unit
             setViewPadding(R.id.widget_countdown_panel, (startPadding * metrics.density).roundToInt(), 0,
@@ -201,7 +232,9 @@ internal object PrayerCountdown {
             } else {
                 if (showIcon) setImageViewBitmap(R.id.widget_countdown_icon, icon)
                 setLine(R.id.widget_countdown_timer, timerText, countdownPaint, 51.7f - 2.7f * compactness)
-                setImageViewBitmap(R.id.widget_countdown_progress, ring)
+                val color = if (appearance.timeBased) timeColor(remaining) else appearance.color
+                val rgb = color.rgb ?: accent
+                setImageViewBitmap(R.id.widget_countdown_progress, rings.getOrPut(rgb) { progressRing(progress, rgb) })
                 val announcement = listOfNotNull(title, soon).joinToString(", ")
                 setContentDescription(R.id.widget_countdown_title, announcement)
             }
@@ -218,13 +251,13 @@ internal object PrayerCountdown {
             try {
                 val options = manager.getAppWidgetOptions(id)
                 val hostScale = options.getFloat("hsResizeRatio", 1f).coerceIn(0.5f, 2f)
-                val opacity = opacity(data, id)
+                val appearance = appearance(data, id)
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
                     @Suppress("DEPRECATION")
                     val sizes = options.getParcelableArrayList<SizeF>(AppWidgetManager.OPTION_APPWIDGET_SIZES)
                     if (!sizes.isNullOrEmpty()) {
                         manager.updateAppWidget(id, RemoteViews(sizes.distinct().associateWith {
-                            render.views(it, hostScale, opacity, id)
+                            render.views(it, hostScale, appearance, id)
                         }))
                         continue
                     }
@@ -233,7 +266,7 @@ internal object PrayerCountdown {
                 val widthKey = if (landscape) AppWidgetManager.OPTION_APPWIDGET_MAX_WIDTH else AppWidgetManager.OPTION_APPWIDGET_MIN_WIDTH
                 val heightKey = if (landscape) AppWidgetManager.OPTION_APPWIDGET_MIN_HEIGHT else AppWidgetManager.OPTION_APPWIDGET_MAX_HEIGHT
                 val size = SizeF(options.getInt(widthKey, 144).toFloat(), options.getInt(heightKey, 56).toFloat())
-                manager.updateAppWidget(id, render.views(size, hostScale, opacity, id))
+                manager.updateAppWidget(id, render.views(size, hostScale, appearance, id))
             } catch (error: Exception) {
                 Log.e("PrayerCountdown", "Could not render widget $id", error)
             }
@@ -286,20 +319,28 @@ internal object PrayerCountdown {
         return resources.getString(R.string.widget_countdown_hours_compact, hours, minutes % 60)
     }
 
-    private fun progressRing(progress: Float, accent: Int): Bitmap {
-        val bitmap = Bitmap.createBitmap(200, 200, Bitmap.Config.ARGB_8888)
+    fun timeColor(remaining: Long): CountdownRingColor = when {
+        remaining <= 5 * minute -> CountdownRingColor.RED
+        remaining <= 15 * minute -> CountdownRingColor.AMBER
+        else -> CountdownRingColor.BLUE
+    }
+
+    fun progressRing(progress: Float, color: Int, diameter: Int = 200): Bitmap {
+        val bitmap = Bitmap.createBitmap(diameter, diameter, Bitmap.Config.ARGB_8888)
         val canvas = Canvas(bitmap)
         val paint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
             style = Paint.Style.STROKE
-            strokeWidth = 48f
+            strokeWidth = diameter * .24f
             strokeCap = Paint.Cap.BUTT
-            color = accent
+            this.color = color
             alpha = 64
         }
-        canvas.drawCircle(100f, 100f, 76f, paint)
+        val center = diameter / 2f
+        val inset = paint.strokeWidth / 2f
+        canvas.drawCircle(center, center, center - inset, paint)
         if (progress > 0f) {
             paint.alpha = 255
-            canvas.drawArc(24f, 24f, 176f, 176f, -90f, 360f * progress, false, paint)
+            canvas.drawArc(inset, inset, diameter - inset, diameter - inset, -90f, 360f * progress, false, paint)
         }
         return bitmap
     }

@@ -10,6 +10,15 @@
     <string name="widget_countdown_soon">Uskoro</string>
     <string name="widget_countdown_settings">Postavke widgeta</string>
     <string name="widget_countdown_transparency">Prozirnost</string>
+    <string name="widget_countdown_ring">Prsten napretka</string>
+    <string name="widget_countdown_ring_solid">Jednobojni</string>
+    <string name="widget_countdown_ring_time_based">Prema preostalom vremenu</string>
+    <string name="widget_countdown_ring_auto">Sistem</string>
+    <string name="widget_countdown_ring_system">Sistemska boja</string>
+    <string name="widget_countdown_ring_blue">Plava</string>
+    <string name="widget_countdown_ring_green">Zelena</string>
+    <string name="widget_countdown_ring_amber">Žuta</string>
+    <string name="widget_countdown_ring_red">Crvena</string>
     <string name="widget_countdown_back">Nazad</string>
     <string name="widget_countdown_fajr">Sabah</string>
     <string name="widget_countdown_dhuhr">Podne</string>

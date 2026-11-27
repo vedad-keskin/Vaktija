@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="launch_surface">#041E1B</color>
-    <color name="countdown_settings_card">#FDFCF8</color>
+    <color name="countdown_settings_card">#F5F5F5</color>
+    <item type="drawable" name="countdown_settings_horizon">@drawable/countdown_horizon_light</item>
 
     <style name="LaunchThemeBase" parent="@android:style/Theme.Black.NoTitleBar">
         <item name="android:windowBackground">@drawable/launch_window</item>
@@ -22,14 +23,25 @@
     </style>
 
     <style name="CountdownSettingsTheme" parent="@android:style/Theme.Material.Light.NoActionBar">
-        <item name="android:colorBackground">#F7F5EE</item>
+        <item name="android:colorBackground">@android:color/white</item>
         <item name="android:windowBackground">?android:attr/colorBackground</item>
         <item name="android:colorAccent">#256047</item>
-        <item name="android:textColorPrimary">#153A30</item>
-        <item name="android:textColorSecondary">#52655C</item>
-        <item name="android:statusBarColor">@color/countdown_settings_card</item>
+        <item name="android:textColorPrimary">#181818</item>
+        <item name="android:textColorSecondary">#555555</item>
+        <item name="android:statusBarColor">?android:attr/colorBackground</item>
         <item name="android:navigationBarColor">?android:attr/colorBackground</item>
         <item name="android:windowLightStatusBar">true</item>
         <item name="android:windowLightNavigationBar">true</item>
+    </style>
+
+    <style name="CountdownRingMode" parent="@android:style/Widget.Material.CompoundButton.RadioButton">
+        <item name="android:background">@null</item>
+        <item name="android:button">@null</item>
+        <item name="android:drawableEnd">?android:attr/listChoiceIndicatorSingle</item>
+        <item name="android:drawablePadding">12dp</item>
+        <item name="android:drawableTint">@color/countdown_selector_tint</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:minHeight">56dp</item>
+        <item name="android:textColor">@color/countdown_option_text</item>
     </style>
 </resources>

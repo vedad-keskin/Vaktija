@@ -10,6 +10,16 @@
     <string name="widget_countdown_soon">Soon</string>
     <string name="widget_countdown_settings">Widget settings</string>
     <string name="widget_countdown_transparency">Transparency</string>
+    <string name="widget_countdown_ring">Progress ring</string>
+    <string name="widget_countdown_ring_solid">Solid</string>
+    <string name="widget_countdown_ring_time_based">Time-based</string>
+    <string name="widget_countdown_ring_sample">%1$s, %2$s</string>
+    <string name="widget_countdown_ring_auto">Auto</string>
+    <string name="widget_countdown_ring_system">System accent</string>
+    <string name="widget_countdown_ring_blue">Blue</string>
+    <string name="widget_countdown_ring_green">Green</string>
+    <string name="widget_countdown_ring_amber">Amber</string>
+    <string name="widget_countdown_ring_red">Red</string>
     <string name="widget_countdown_back">Back</string>
     <string name="widget_countdown_fajr">Fajr</string>
     <string name="widget_countdown_dhuhr">Dhuhr</string>
