@@ -24,6 +24,7 @@ import android.util.TypedValue
 import android.view.Gravity
 import android.view.View
 import android.widget.RemoteViews
+import androidx.core.graphics.ColorUtils
 import com.vaktija.app.MainActivity
 import com.vaktija.app.R
 import es.antonborri.home_widget.HomeWidgetLaunchIntent
@@ -46,6 +47,12 @@ internal enum class CountdownRingColor(val label: Int, val rgb: Int?) {
     } else {
         Color.rgb(55, 122, 255)
     }
+
+    fun highlightTint(context: Context, dark: Boolean): Int {
+        if (this == GREEN) return if (dark) 0xFF45B985.toInt() else 0xFF256047.toInt()
+        return ColorUtils.blendARGB(resolve(context), if (dark) Color.WHITE else Color.BLACK,
+            if (dark) .08f else .35f)
+    }
 }
 
 internal enum class CountdownTheme { SYSTEM, LIGHT, DARK }
@@ -60,6 +67,7 @@ internal data class CountdownAppearance(
     val includeNightTimes: Boolean,
     val showAppLogo: Boolean,
     val highlightNext: Boolean,
+    val highlightColor: CountdownRingColor,
 )
 
 internal object PrayerCountdown {
@@ -112,12 +120,14 @@ internal object PrayerCountdown {
     private fun nightTimesKey(id: Int) = "vaktija.widgets.timetable.includeNightTimes.$id"
     private fun appLogoKey(id: Int) = "vaktija.widgets.timetable.showAppLogo.$id"
     private fun highlightKey(id: Int) = "vaktija.widgets.timetable.highlightNext.$id"
+    private fun highlightColorKey(id: Int) = "vaktija.widgets.timetable.highlightColor.$id"
 
     fun isWide(size: SizeF, hostScale: Float) = size.width * hostScale >= wideWidth
 
     fun appearance(data: SharedPreferences, id: Int): CountdownAppearance {
         val color = data.getString(colorKey(id), null)
         val theme = data.getString(themeKey(id), null)
+        val highlightColor = data.getString(highlightColorKey(id), null)
         return CountdownAppearance(
             opacity = data.getInt(opacityKey(id), defaultOpacity).coerceIn(0, 255),
             color = CountdownRingColor.entries.firstOrNull { it.name == color } ?: CountdownRingColor.SYSTEM,
@@ -128,6 +138,7 @@ internal object PrayerCountdown {
             includeNightTimes = data.getBoolean(nightTimesKey(id), true),
             showAppLogo = data.getBoolean(appLogoKey(id), true),
             highlightNext = data.getBoolean(highlightKey(id), false),
+            highlightColor = CountdownRingColor.entries.firstOrNull { it.name == highlightColor } ?: CountdownRingColor.GREEN,
         )
     }
 
@@ -141,6 +152,7 @@ internal object PrayerCountdown {
             .putBoolean(nightTimesKey(id), appearance.includeNightTimes)
             .putBoolean(appLogoKey(id), appearance.showAppLogo)
             .putBoolean(highlightKey(id), appearance.highlightNext)
+            .putString(highlightColorKey(id), appearance.highlightColor.name)
     }
 
     fun removeAppearance(editor: SharedPreferences.Editor, id: Int) {
@@ -153,6 +165,7 @@ internal object PrayerCountdown {
             .remove(nightTimesKey(id))
             .remove(appLogoKey(id))
             .remove(highlightKey(id))
+            .remove(highlightColorKey(id))
     }
 
     private fun RemoteViews.setPalette(context: Context, theme: CountdownTheme, preview: Boolean) {
@@ -363,9 +376,9 @@ internal object PrayerCountdown {
             }
         }
 
-        // Only the prayer change may wake a sleeping device. Visual updates catch up when awake.
+        // Prayer transitions may wake the device. Minute updates share one non-waking alarm.
         HomeWidgetScheduler.schedule(context, PrayerCountdownWidget::class.java.name, listOfNotNull(render.nextPrayer))
-        // Catch the boundary if it passed while this update was being rendered.
+        // If rendering crossed the prayer boundary, refresh as soon as the alarm can run.
         val visualUpdate = render.nextMinute?.takeIf {
             it != render.nextPrayer || it <= System.currentTimeMillis()
         }
@@ -373,6 +386,10 @@ internal object PrayerCountdown {
     }
 
     fun cancelVisualUpdate(context: Context) = scheduleVisualUpdate(context, null)
+
+    fun canSchedulePreciseUpdates(context: Context): Boolean =
+        Build.VERSION.SDK_INT < Build.VERSION_CODES.S ||
+            context.getSystemService(AlarmManager::class.java)?.canScheduleExactAlarms() == true
 
     private fun scheduleVisualUpdate(context: Context, at: Long?) {
         val component = ComponentName(context, PrayerCountdownWidget::class.java)
@@ -385,7 +402,19 @@ internal object PrayerCountdown {
         }
         val update = PendingIntent.getBroadcast(context, 0, intent, flags or PendingIntent.FLAG_IMMUTABLE) ?: return
         val alarms = context.getSystemService(AlarmManager::class.java) ?: return
-        if (at == null) alarms.cancel(update) else alarms.set(AlarmManager.RTC, at, update)
+        if (at == null) {
+            alarms.cancel(update)
+            return
+        }
+        if (canSchedulePreciseUpdates(context)) {
+            try {
+                alarms.setExact(AlarmManager.RTC, at, update)
+                return
+            } catch (error: SecurityException) {
+                Log.w("PrayerCountdown", "Exact alarm access changed before scheduling", error)
+            }
+        }
+        alarms.set(AlarmManager.RTC, at, update)
     }
 
     private fun prayers(rows: List<WidgetPrayer>?, parser: SimpleDateFormat): List<Prayer>? {

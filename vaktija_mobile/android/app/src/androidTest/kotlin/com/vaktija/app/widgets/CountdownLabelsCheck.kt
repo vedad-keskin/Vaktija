@@ -20,6 +20,28 @@ class CountdownLabelsCheck : Instrumentation() {
         try {
             runOnMainSync {
                 val context = targetContext
+                val highlightPreferences = context.getSharedPreferences("highlight_color_check", Context.MODE_PRIVATE)
+                highlightPreferences.edit().clear().commit()
+                try {
+                    val original = PrayerCountdown.appearance(highlightPreferences, 101).copy(highlightNext = true)
+                    check(original.highlightColor == CountdownRingColor.GREEN)
+                    val originalEditor = highlightPreferences.edit()
+                    PrayerCountdown.writeAppearance(originalEditor, 101, original)
+                    originalEditor.commit()
+                    for (color in CountdownRingColor.entries) {
+                        val editor = highlightPreferences.edit()
+                        PrayerCountdown.writeAppearance(editor, 202, original.copy(highlightColor = color))
+                        editor.commit()
+                        check(PrayerCountdown.appearance(highlightPreferences, 202) == original.copy(highlightColor = color))
+                        check(PrayerCountdown.appearance(highlightPreferences, 101).highlightColor == CountdownRingColor.GREEN)
+                    }
+                    val editor = highlightPreferences.edit()
+                    PrayerCountdown.removeAppearance(editor, 202)
+                    editor.commit()
+                    check(highlightPreferences.all.keys.none { it.endsWith(".202") })
+                } finally {
+                    highlightPreferences.edit().clear().commit()
+                }
                 val appearance = PrayerCountdown.appearance(
                     context.getSharedPreferences("countdown_label_check", Context.MODE_PRIVATE), -1,
                 ).copy(showPrayerTime = true)
@@ -48,7 +70,7 @@ class CountdownLabelsCheck : Instrumentation() {
                     }
                 }
             }
-            finish(Activity.RESULT_OK, Bundle().apply { putString("stream", "\nCountdown labels passed (32 cases).\n") })
+            finish(Activity.RESULT_OK, Bundle().apply { putString("stream", "\nCountdown labels passed (32 cases). Highlight color persistence passed (5 colors).\n") })
         } catch (error: Throwable) {
             finish(Activity.RESULT_CANCELED, Bundle().apply { putString("stream", error.stackTraceToString()) })
         }

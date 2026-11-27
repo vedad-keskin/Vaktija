@@ -41,6 +41,7 @@
         android:clipToPadding="false">
 
         <LinearLayout
+            android:id="@+id/widget_countdown_settings_content"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -259,6 +260,15 @@
                     android:textColor="@color/countdown_option_text"
                     android:visibility="gone" />
 
+                <RadioGroup
+                    android:id="@+id/widget_timetable_highlight_colors"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="4dp"
+                    android:orientation="horizontal"
+                    android:saveEnabled="false"
+                    android:visibility="gone" />
+
                 <Switch
                     android:id="@+id/widget_timetable_show_app_logo"
                     android:layout_width="match_parent"
@@ -315,6 +325,48 @@
                     android:textSize="11sp"
                     android:textColor="?android:attr/textColorSecondary"
                     android:visibility="gone" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/widget_updates_card"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/countdown_settings_card"
+                android:orientation="vertical"
+                android:paddingStart="18dp"
+                android:paddingTop="14dp"
+                android:paddingEnd="18dp"
+                android:paddingBottom="16dp"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/widget_updates_title"
+                    android:textAppearance="@android:style/TextAppearance.Material.Body1"
+                    android:textColor="?android:attr/textColorSecondary" />
+
+                <Switch
+                    android:id="@+id/widget_precise_updates"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    android:gravity="center_vertical"
+                    android:minHeight="56dp"
+                    android:paddingStart="0dp"
+                    android:paddingEnd="0dp"
+                    android:saveEnabled="false"
+                    android:text="@string/widget_precise_updates"
+                    android:textColor="@color/countdown_option_text" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/widget_precise_updates_info"
+                    android:textAppearance="@android:style/TextAppearance.Material.Caption"
+                    android:textSize="11sp"
+                    android:textColor="?android:attr/textColorSecondary" />
             </LinearLayout>
         </LinearLayout>
     </ScrollView>

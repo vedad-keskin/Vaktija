@@ -1,5 +1,6 @@
 package com.vaktija.app.widgets
 
+import android.app.AlarmManager
 import android.appwidget.AppWidgetManager
 import android.content.BroadcastReceiver
 import android.content.ComponentName
@@ -112,17 +113,19 @@ abstract class PrayerWidgetProvider internal constructor(
 
 class PrayerWidgetRecovery : BroadcastReceiver() {
     override fun onReceive(context: Context, intent: Intent) {
+        if (intent.action == AlarmManager.ACTION_SCHEDULE_EXACT_ALARM_PERMISSION_STATE_CHANGED) {
+            if (PrayerCountdown.canSchedulePreciseUpdates(context)) {
+                PrayerWidgetRenderer.refreshInstalled(context)
+            }
+            return
+        }
         if (intent.action !in listOf(
                 Intent.ACTION_BOOT_COMPLETED,
                 Intent.ACTION_MY_PACKAGE_REPLACED,
                 Intent.ACTION_TIME_CHANGED,
                 Intent.ACTION_TIMEZONE_CHANGED,
             )) return
-        val manager = AppWidgetManager.getInstance(context)
-        val data = HomeWidgetPlugin.getData(context)
-        for ((provider, layout) in prayerWidgetProviders) {
-            PrayerWidgetRenderer.update(context, manager, widgetIds(context, provider), layout, data)
-        }
+        PrayerWidgetRenderer.refreshInstalled(context)
         requestPrayerWidgetRefresh(context)
     }
 }
@@ -181,6 +184,14 @@ internal object PrayerWidgetRenderer {
         val dense: Boolean, val showIcon: Boolean, val nameWidth: Float, val rows: List<WidgetPrayer>,
         val nameLines: Int = Int.MAX_VALUE,
     )
+
+    fun refreshInstalled(context: Context) {
+        val manager = AppWidgetManager.getInstance(context)
+        val data = HomeWidgetPlugin.getData(context)
+        for ((provider, layout) in prayerWidgetProviders) {
+            update(context, manager, widgetIds(context, provider), layout, data)
+        }
+    }
 
     fun update(
         context: Context, manager: AppWidgetManager, ids: IntArray, layout: PrayerWidgetLayout,
@@ -449,12 +460,12 @@ internal object PrayerWidgetRenderer {
                 val row = RemoteViews(context.packageName, R.layout.prayer_widget_grid_row)
                 row.addView(R.id.widget_grid_left, prayerView(
                     context, pair[0], true, nameWidth, dense, showIcon, nameLines, appearance.theme, preview,
-                    highlightLabel.takeIf { pair[0] == highlighted },
+                    highlightLabel.takeIf { pair[0] == highlighted }, appearance.highlightColor,
                 ))
                 pair.getOrNull(1)?.let { prayer ->
                     row.addView(R.id.widget_grid_right, prayerView(
                         context, prayer, true, nameWidth, dense, showIcon, nameLines, appearance.theme, preview,
-                        highlightLabel.takeIf { prayer == highlighted },
+                        highlightLabel.takeIf { prayer == highlighted }, appearance.highlightColor,
                     ))
                 }
                 for (viewId in listOf(R.id.widget_grid_divider, R.id.widget_grid_column_divider)) {
@@ -467,7 +478,8 @@ internal object PrayerWidgetRenderer {
         } else {
             for ((index, prayer) in visible.withIndex()) {
                 val row = prayerView(context, prayer, false, nameWidth, dense, showIcon, nameLines,
-                    theme = appearance.theme, preview = preview, highlightLabel = highlightLabel.takeIf { prayer == highlighted })
+                    theme = appearance.theme, preview = preview, highlightLabel = highlightLabel.takeIf { prayer == highlighted },
+                    highlightColor = appearance.highlightColor)
                 row.setViewVisibility(R.id.widget_list_divider, if (index == visible.lastIndex) View.GONE else View.VISIBLE)
                 views.addView(R.id.widget_rows, row)
             }
@@ -563,13 +575,22 @@ internal object PrayerWidgetRenderer {
     private fun prayerView(
         context: Context, prayer: WidgetPrayer, grid: Boolean, nameWidth: Float, dense: Boolean,
         showIcon: Boolean, nameLines: Int, theme: CountdownTheme, preview: Boolean,
-        highlightLabel: String?,
+        highlightLabel: String?, highlightColor: CountdownRingColor,
     ): RemoteViews {
         val views = RemoteViews(context.packageName, if (grid) R.layout.prayer_widget_tile else R.layout.prayer_widget_list_row)
         val panelId = if (grid) R.id.widget_prayer_row else R.id.widget_prayer_content
         views.setInt(panelId, "setBackgroundResource", if (highlightLabel != null) R.drawable.widget_next_prayer_highlight else 0)
         if (highlightLabel != null) {
-            tint(context, views, panelId, "setBackgroundTintList", theme, preview, 0xFF256047.toInt(), 0xFF45B985.toInt())
+            val light = highlightColor.highlightTint(context, dark = false)
+            val dark = highlightColor.highlightTint(context, dark = true)
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+                tint(context, views, panelId, "setBackgroundTintList", theme, preview, light, dark)
+            } else {
+                val night = context.applicationContext.resources.configuration.uiMode and
+                    Configuration.UI_MODE_NIGHT_MASK == Configuration.UI_MODE_NIGHT_YES
+                val color = if (theme == CountdownTheme.DARK || theme == CountdownTheme.SYSTEM && night) dark else light
+                views.setInt(panelId, "setBackgroundColor", (color and 0x00FFFFFF) or 0x33000000)
+            }
         }
         val index = kinds.indexOf(prayer.kind)
         views.setViewVisibility(R.id.widget_prayer_icon, if (showIcon) View.VISIBLE else View.GONE)

@@ -3,6 +3,7 @@ package com.vaktija.app.widgets
 import android.app.Activity
 import android.app.PendingIntent
 import android.appwidget.AppWidgetManager
+import android.content.ActivityNotFoundException
 import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
@@ -13,6 +14,10 @@ import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.provider.Settings
+import android.transition.AutoTransition
+import android.transition.TransitionManager
+import android.transition.TransitionSet
 import android.util.SizeF
 import android.view.Gravity
 import android.view.View
@@ -23,6 +28,7 @@ import android.widget.RadioGroup
 import android.widget.SeekBar
 import android.widget.Switch
 import android.widget.TextView
+import android.widget.Toast
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.doOnLayout
@@ -86,6 +92,18 @@ class CountdownSettingsActivity : Activity() {
 
         setContentView(R.layout.prayer_countdown_settings)
         findViewById<View>(R.id.widget_countdown_back).setOnClickListener { finish() }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            findViewById<View>(R.id.widget_updates_card).visibility = View.VISIBLE
+            findViewById<Switch>(R.id.widget_precise_updates).setOnClickListener { view ->
+                (view as Switch).isChecked = PrayerCountdown.canSchedulePreciseUpdates(this)
+                val intent = Intent(Settings.ACTION_REQUEST_SCHEDULE_EXACT_ALARM, Uri.fromParts("package", packageName, null))
+                try {
+                    startActivity(intent)
+                } catch (_: ActivityNotFoundException) {
+                    Toast.makeText(this, R.string.widget_updates_unavailable, Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
         val screen = findViewById<View>(R.id.widget_countdown_screen)
         val body = findViewById<View>(R.id.widget_countdown_settings_body)
         ViewCompat.setOnApplyWindowInsetsListener(screen) { view, windowInsets ->
@@ -183,6 +201,33 @@ class CountdownSettingsActivity : Activity() {
             }
         }
 
+        fun animateOptions() {
+            TransitionManager.beginDelayedTransition(
+                findViewById(R.id.widget_countdown_settings_content),
+                AutoTransition().apply {
+                    duration = 180L
+                    setOrdering(TransitionSet.ORDERING_TOGETHER)
+                    excludeChildren(stage, true)
+                },
+            )
+        }
+
+        val swatchSize = (28f * density).roundToInt()
+        val swatchPadding = (9f * density).roundToInt()
+        fun TextView.showRing(label: String, color: CountdownRingColor, progress: Float) {
+            val bitmap = PrayerCountdown.progressRing(progress, color.resolve(this@CountdownSettingsActivity), swatchSize)
+            val ring = BitmapDrawable(resources, bitmap).apply {
+                setBounds(0, 0, swatchSize, swatchSize)
+            }
+            gravity = Gravity.TOP or Gravity.CENTER_HORIZONTAL
+            textSize = 11f
+            text = label
+            setTextColor(getColorStateList(R.color.countdown_option_text))
+            compoundDrawablePadding = (5f * density).roundToInt()
+            setCompoundDrawables(null, ring, null, null)
+            setPadding(0, swatchPadding, 0, swatchPadding)
+        }
+
         val themesById = mapOf(
             R.id.widget_countdown_theme_system to CountdownTheme.SYSTEM,
             R.id.widget_countdown_theme_light to CountdownTheme.LIGHT,
@@ -213,11 +258,31 @@ class CountdownSettingsActivity : Activity() {
                 isChecked = appearance.showAppLogo
                 setOnCheckedChangeListener { _, checked -> changeAppearance(appearance.copy(showAppLogo = checked)) }
             }
+            val highlightColors = findViewById<RadioGroup>(R.id.widget_timetable_highlight_colors)
             findViewById<Switch>(R.id.widget_timetable_highlight_next).apply {
                 visibility = View.VISIBLE
                 isChecked = appearance.highlightNext
                 setOnCheckedChangeListener { _, checked ->
                     changeAppearance(appearance.copy(highlightNext = checked))
+                    animateOptions()
+                    highlightColors.visibility = if (checked) View.VISIBLE else View.GONE
+                }
+            }
+            highlightColors.apply {
+                visibility = if (appearance.highlightNext) View.VISIBLE else View.GONE
+                for (color in CountdownRingColor.entries) {
+                    val swatch = RadioButton(this@CountdownSettingsActivity).apply {
+                        this.id = View.generateViewId()
+                        isSaveEnabled = false
+                        buttonDrawable = null
+                        val label = getString(if (color == CountdownRingColor.SYSTEM) R.string.widget_countdown_ring_auto else color.label)
+                        showRing(label, color, 1f)
+                        contentDescription = getString(color.label)
+                        setBackgroundResource(R.drawable.countdown_ring_swatch_selection)
+                        isChecked = color == appearance.highlightColor
+                        setOnClickListener { changeAppearance(appearance.copy(highlightColor = color)) }
+                    }
+                    addView(swatch, RadioGroup.LayoutParams(0, RadioGroup.LayoutParams.MATCH_PARENT, 1f))
                 }
             }
             findViewById<View>(R.id.widget_timetable_night_times_info).visibility = View.VISIBLE
@@ -225,7 +290,6 @@ class CountdownSettingsActivity : Activity() {
             refreshPreview = object : Runnable {
                 override fun run() {
                     redrawPreview(appearance)
-                    PrayerWidgetRenderer.update(this@CountdownSettingsActivity, manager, intArrayOf(id), layout, data)
                     val at = PrayerWidgetRenderer.nextTimetablePreviewUpdate(data, appearance)
                     previewHandler.postDelayed(this, (at - System.currentTimeMillis()).coerceAtLeast(100L))
                 }
@@ -236,23 +300,9 @@ class CountdownSettingsActivity : Activity() {
 
         ringModes.setOnCheckedChangeListener { _, checkedId ->
             val timeBased = checkedId == R.id.widget_countdown_ring_time_based
-            showRingOptions(timeBased)
             changeAppearance(appearance.copy(timeBased = timeBased))
-        }
-        val swatchSize = (28f * density).roundToInt()
-        val swatchPadding = (9f * density).roundToInt()
-        fun TextView.showRing(label: String, color: CountdownRingColor, progress: Float) {
-            val bitmap = PrayerCountdown.progressRing(progress, color.resolve(this@CountdownSettingsActivity), swatchSize)
-            val ring = BitmapDrawable(resources, bitmap).apply {
-                setBounds(0, 0, swatchSize, swatchSize)
-            }
-            gravity = Gravity.TOP or Gravity.CENTER_HORIZONTAL
-            textSize = 11f
-            text = label
-            setTextColor(getColorStateList(R.color.countdown_option_text))
-            compoundDrawablePadding = (5f * density).roundToInt()
-            setCompoundDrawables(null, ring, null, null)
-            setPadding(0, swatchPadding, 0, swatchPadding)
+            animateOptions()
+            showRingOptions(timeBased)
         }
         for (color in CountdownRingColor.entries) {
             val swatch = RadioButton(this).apply {
@@ -281,10 +331,10 @@ class CountdownSettingsActivity : Activity() {
 
         if (!PrayerCountdown.isWide(size, hostScale)) {
             findViewById<View>(R.id.widget_countdown_display_size_note).visibility = View.VISIBLE
-            findViewById<TextView>(R.id.widget_timetable_pictures_info).apply {
-                setText(R.string.widget_countdown_picture_size_note)
-                visibility = View.VISIBLE
-            }
+        }
+        findViewById<TextView>(R.id.widget_timetable_pictures_info).apply {
+            setText(R.string.widget_countdown_picture_size_note)
+            visibility = View.VISIBLE
         }
         findViewById<Switch>(R.id.widget_countdown_show_prayer_time).apply {
             isChecked = appearance.showPrayerTime
@@ -306,18 +356,23 @@ class CountdownSettingsActivity : Activity() {
         }
     }
 
-    override fun onStart() {
-        super.onStart()
+    override fun onResume() {
+        super.onResume()
         if (appNightMode(this) != appliedNightMode) {
             recreate()
             return
         }
+        if (refreshPreview == null) return
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            findViewById<Switch>(R.id.widget_precise_updates).isChecked = PrayerCountdown.canSchedulePreciseUpdates(this)
+        }
+        PrayerWidgetRenderer.refreshInstalled(applicationContext)
         refreshPreview?.run()
     }
 
-    override fun onStop() {
+    override fun onPause() {
         refreshPreview?.let(previewHandler::removeCallbacks)
-        super.onStop()
+        super.onPause()
     }
 
     private fun transparency(opacity: Int) = ((255 - opacity) * 100 / 255f).roundToInt()

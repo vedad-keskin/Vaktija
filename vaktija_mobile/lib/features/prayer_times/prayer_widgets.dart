@@ -14,12 +14,9 @@ const _configurationKey = 'vaktija.widgets.configuration';
 const _workTag = 'vaktija.widgets';
 const _syncTask = 'vaktija.widgets.sync';
 const _dailyTask = 'vaktija.widgets.daily';
-const _timetableProviders = [
+const _providers = [
   'com.vaktija.app.widgets.PrayerListWidget',
   'com.vaktija.app.widgets.PrayerGridWidget',
-];
-const _providers = [
-  ..._timetableProviders,
   'com.vaktija.app.widgets.PrayerCountdownWidget',
 ];
 
@@ -247,7 +244,6 @@ class PrayerWidgets {
     }
     final active = configuration!;
     final day = repository.now();
-    await _schedule(day);
     await _updateProviders();
     var complete = true;
     for (var offset = 0; offset <= 7; offset++) {
@@ -330,17 +326,6 @@ class PrayerWidgets {
     );
     return times.length == PrayerKind.values.length &&
         yesterday?.length == PrayerKind.values.length;
-  }
-
-  Future<void> _schedule(DateTime day) async {
-    final installed = await HomeWidget.getInstalledWidgets();
-    for (final provider in _timetableProviders) {
-      if (installed.any((widget) => widget.androidClassName == provider)) {
-        await HomeWidget.scheduleWidgetUpdates([
-          for (var offset = 1; offset <= 8; offset++) sarajevoDay(day, offset),
-        ], qualifiedAndroidName: provider);
-      }
-    }
   }
 
   Future<void> _updateProviders() async {
