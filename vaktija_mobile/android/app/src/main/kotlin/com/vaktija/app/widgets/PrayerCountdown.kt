@@ -56,6 +56,11 @@ internal enum class CountdownRingColor(val label: Int, val rgb: Int?) {
 }
 
 internal enum class CountdownTheme { SYSTEM, LIGHT, DARK }
+internal enum class RingThickness(val label: Int, val ratio: Float) {
+    SLIM(R.string.widget_ring_slim, .14f),
+    STANDARD(R.string.widget_ring_standard, .24f),
+    BOLD(R.string.widget_ring_bold, .32f),
+}
 
 internal data class CountdownAppearance(
     val opacity: Int,
@@ -68,6 +73,7 @@ internal data class CountdownAppearance(
     val showAppLogo: Boolean,
     val highlightNext: Boolean,
     val highlightColor: CountdownRingColor,
+    val ringThickness: RingThickness = RingThickness.STANDARD,
 )
 
 internal object PrayerCountdown {
@@ -121,6 +127,7 @@ internal object PrayerCountdown {
     private fun appLogoKey(id: Int) = "vaktija.widgets.timetable.showAppLogo.$id"
     private fun highlightKey(id: Int) = "vaktija.widgets.timetable.highlightNext.$id"
     private fun highlightColorKey(id: Int) = "vaktija.widgets.timetable.highlightColor.$id"
+    private fun thicknessKey(id: Int) = "vaktija.widgets.countdown.thickness.$id"
 
     fun isWide(size: SizeF, hostScale: Float) = size.width * hostScale >= wideWidth
 
@@ -139,6 +146,7 @@ internal object PrayerCountdown {
             showAppLogo = data.getBoolean(appLogoKey(id), true),
             highlightNext = data.getBoolean(highlightKey(id), false),
             highlightColor = CountdownRingColor.entries.firstOrNull { it.name == highlightColor } ?: CountdownRingColor.GREEN,
+            ringThickness = RingThickness.entries.firstOrNull { it.name == data.getString(thicknessKey(id), null) } ?: RingThickness.STANDARD,
         )
     }
 
@@ -153,6 +161,7 @@ internal object PrayerCountdown {
             .putBoolean(appLogoKey(id), appearance.showAppLogo)
             .putBoolean(highlightKey(id), appearance.highlightNext)
             .putString(highlightColorKey(id), appearance.highlightColor.name)
+            .putString(thicknessKey(id), appearance.ringThickness.name)
     }
 
     fun removeAppearance(editor: SharedPreferences.Editor, id: Int) {
@@ -166,6 +175,7 @@ internal object PrayerCountdown {
             .remove(appLogoKey(id))
             .remove(highlightKey(id))
             .remove(highlightColorKey(id))
+            .remove(thicknessKey(id))
     }
 
     private fun RemoteViews.setPalette(context: Context, theme: CountdownTheme, preview: Boolean) {
@@ -224,7 +234,7 @@ internal object PrayerCountdown {
             ((now - starts).toFloat() / (next.at - starts)).coerceIn(0f, 1f)
         } else 0f
         val accent = CountdownRingColor.SYSTEM.resolve(context)
-        val rings = mutableMapOf<Int, Bitmap>()
+        val rings = mutableMapOf<Pair<Int, RingThickness>, Bitmap>()
         val timerText = next?.let { remainingText(resources, remaining) }
         val icon = next?.let {
             val source = BitmapFactory.decodeResource(context.resources, prayerIcon(it.kind))
@@ -342,7 +352,9 @@ internal object PrayerCountdown {
                 setLine(R.id.widget_countdown_timer, timerText, countdownPaint, 51.7f - 2.7f * compactness)
                 val color = if (appearance.timeBased) timeColor(remaining) else appearance.color
                 val rgb = color.rgb ?: accent
-                setImageViewBitmap(R.id.widget_countdown_progress, rings.getOrPut(rgb) { progressRing(progress, rgb) })
+                setImageViewBitmap(R.id.widget_countdown_progress, rings.getOrPut(rgb to appearance.ringThickness) {
+                    progressRing(progress, rgb, thickness = appearance.ringThickness)
+                })
                 val announcement = listOfNotNull(prayerTitle, shownTime, soon).joinToString(", ")
                 setContentDescription(R.id.widget_countdown_title, announcement)
             }
@@ -454,12 +466,12 @@ internal object PrayerCountdown {
         else -> CountdownRingColor.BLUE
     }
 
-    fun progressRing(progress: Float, color: Int, diameter: Int = 200): Bitmap {
+    fun progressRing(progress: Float, color: Int, diameter: Int = 200, thickness: RingThickness = RingThickness.STANDARD): Bitmap {
         val bitmap = Bitmap.createBitmap(diameter, diameter, Bitmap.Config.ARGB_8888)
         val canvas = Canvas(bitmap)
         val paint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
             style = Paint.Style.STROKE
-            strokeWidth = diameter * .24f
+            strokeWidth = diameter * thickness.ratio
             strokeCap = Paint.Cap.BUTT
             this.color = color
             alpha = 64

@@ -21,6 +21,7 @@ class CountdownLabelsCheck : Instrumentation() {
         try {
             val checks = FutureTask {
                 val context = targetContext
+                WidgetLayoutCheck.run(context)
                 checkTimetableGear(context)
                 checkWidgetStates(context)
                 val highlightPreferences = context.getSharedPreferences("highlight_color_check", Context.MODE_PRIVATE)

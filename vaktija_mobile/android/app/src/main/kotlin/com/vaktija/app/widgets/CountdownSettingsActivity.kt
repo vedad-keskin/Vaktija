@@ -89,6 +89,7 @@ class CountdownSettingsActivity : Activity() {
         val data = HomeWidgetPlugin.getData(this)
         var appearance = PrayerCountdown.appearance(data, id)
         var previewOpacity = appearance.opacity
+        var refreshRingSamples: (() -> Unit)? = null
 
         setContentView(R.layout.prayer_countdown_settings)
         findViewById<View>(R.id.widget_countdown_back).setOnClickListener { finish() }
@@ -194,6 +195,7 @@ class CountdownSettingsActivity : Activity() {
             if (updated == appearance) return
             redrawPreview(updated)
             saveAppearance(updated)
+            refreshRingSamples?.invoke()
             if (!countdown) refreshPreview?.let {
                 previewHandler.removeCallbacks(it)
                 val at = PrayerWidgetRenderer.nextTimetablePreviewUpdate(data, appearance)
@@ -214,8 +216,9 @@ class CountdownSettingsActivity : Activity() {
 
         val swatchSize = (28f * density).roundToInt()
         val swatchPadding = (9f * density).roundToInt()
-        fun TextView.showRing(label: String, color: CountdownRingColor, progress: Float) {
-            val bitmap = PrayerCountdown.progressRing(progress, color.resolve(this@CountdownSettingsActivity), swatchSize)
+        fun TextView.showRing(label: String, color: CountdownRingColor, progress: Float,
+                             thickness: RingThickness = appearance.ringThickness) {
+            val bitmap = PrayerCountdown.progressRing(progress, color.resolve(this@CountdownSettingsActivity), swatchSize, thickness)
             val ring = BitmapDrawable(resources, bitmap).apply {
                 setBounds(0, 0, swatchSize, swatchSize)
             }
@@ -242,6 +245,7 @@ class CountdownSettingsActivity : Activity() {
 
         if (!countdown) {
             findViewById<View>(R.id.widget_countdown_ring_card).visibility = View.GONE
+            findViewById<View>(R.id.widget_ring_thickness_card).visibility = View.GONE
             findViewById<View>(R.id.widget_countdown_show_prayer_time).visibility = View.GONE
             findViewById<Switch>(R.id.widget_countdown_show_prayer_icon).apply {
                 isChecked = appearance.showPrayerIcon
@@ -328,6 +332,35 @@ class CountdownSettingsActivity : Activity() {
             }
             timeSamples.addView(sample, LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.MATCH_PARENT, 1f))
         }
+        val thicknessRow = findViewById<RadioGroup>(R.id.widget_ring_thickness)
+        for (choice in RingThickness.entries) {
+            val option = RadioButton(this).apply {
+                this.id = View.generateViewId()
+                isSaveEnabled = false
+                buttonDrawable = null
+                setBackgroundResource(R.drawable.countdown_ring_swatch_selection)
+                isChecked = appearance.ringThickness == choice
+                setOnClickListener { changeAppearance(appearance.copy(ringThickness = choice)) }
+            }
+            thicknessRow.addView(option, RadioGroup.LayoutParams(0, -1, 1f))
+        }
+        refreshRingSamples = {
+            for ((index, color) in CountdownRingColor.entries.withIndex()) {
+                val swatch = colorRow.getChildAt(index) as TextView
+                swatch.showRing(swatch.text.toString(), color, 1f)
+            }
+            for ((index, minutes) in listOf(20, 10, 3).withIndex()) {
+                val sample = timeSamples.getChildAt(index) as TextView
+                sample.showRing(sample.text.toString(), PrayerCountdown.timeColor(minutes * PrayerCountdown.minute), 1f - minutes / 30f)
+            }
+            val color = if (appearance.timeBased) {
+                PrayerCountdown.timeColor((previewRenderer?.nextPrayer ?: (System.currentTimeMillis() + 20 * PrayerCountdown.minute)) - System.currentTimeMillis())
+            } else appearance.color
+            for ((index, choice) in RingThickness.entries.withIndex()) {
+                (thicknessRow.getChildAt(index) as TextView).showRing(getString(choice.label), color, .75f, choice)
+            }
+        }
+        refreshRingSamples.invoke()
 
         if (!PrayerCountdown.isWide(size, hostScale)) {
             findViewById<View>(R.id.widget_countdown_display_size_note).visibility = View.VISIBLE
@@ -349,6 +382,7 @@ class CountdownSettingsActivity : Activity() {
             override fun run() {
                 previewRenderer = PrayerWidgetRenderer.countdownPreview(this@CountdownSettingsActivity, data)
                 redrawPreview(appearance)
+                refreshRingSamples?.invoke()
                 previewRenderer?.nextMinute?.let {
                     previewHandler.postDelayed(this, (it - System.currentTimeMillis()).coerceAtLeast(100L))
                 }

@@ -22,6 +22,10 @@
     <string name="widget_countdown_theme_dark">Dark</string>
     <string name="widget_countdown_transparency">Transparency</string>
     <string name="widget_countdown_display">Display</string>
+    <string name="widget_ring_thickness">Ring thickness</string>
+    <string name="widget_ring_slim">Slim</string>
+    <string name="widget_ring_standard">Standard</string>
+    <string name="widget_ring_bold">Bold</string>
     <string name="widget_updates_title">Widget updates</string>
     <string name="widget_precise_updates">Precise updates</string>
     <string name="widget_precise_updates_info">Keeps the countdown and prayer changes up to date more precisely.</string>

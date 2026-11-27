@@ -22,6 +22,10 @@
     <string name="widget_countdown_theme_dark">Tamna</string>
     <string name="widget_countdown_transparency">Prozirnost</string>
     <string name="widget_countdown_display">Prikaz</string>
+    <string name="widget_ring_thickness">Debljina prstena</string>
+    <string name="widget_ring_slim">Tanki</string>
+    <string name="widget_ring_standard">Standardni</string>
+    <string name="widget_ring_bold">Debeli</string>
     <string name="widget_updates_title">Osvježavanje widgeta</string>
     <string name="widget_precise_updates">Precizno osvježavanje</string>
     <string name="widget_precise_updates_info">Omogućava preciznije osvježavanje odbrojavanja i vremena namaza.</string>
