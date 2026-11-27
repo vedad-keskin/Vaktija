@@ -52,3 +52,6 @@ Thumbs.db
 
 # Play upload key backup. Copy off this machine, then delete the folder.
 /play-upload-secrets/
+
+# Local development scripts
+/scripts/
