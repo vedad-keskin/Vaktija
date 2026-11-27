@@ -3,11 +3,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <FrameLayout
+        android:id="@+id/widget_countdown_background"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:alpha="0.6352941"
+        android:background="@drawable/widget_countdown_panel"
+        android:importantForAccessibility="no" />
+
     <LinearLayout
         android:id="@+id/widget_countdown_panel"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/widget_countdown_panel"
         android:gravity="center_vertical"
         android:orientation="horizontal"
         android:paddingStart="21.333dp"
@@ -57,13 +64,33 @@
                 android:visibility="gone" />
         </FrameLayout>
 
-        <ImageView
-            android:id="@+id/widget_countdown_progress"
-            android:layout_width="60.8dp"
-            android:layout_height="match_parent"
-            android:importantForAccessibility="no"
-            android:paddingStart="8dp"
-            android:scaleType="fitCenter"
-            android:visibility="gone" />
+        <FrameLayout
+            android:id="@+id/widget_countdown_settings"
+            android:layout_width="78.8dp"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/widget_countdown_progress"
+                android:layout_width="60.8dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="end"
+                android:importantForAccessibility="no"
+                android:paddingStart="8dp"
+                android:scaleType="fitCenter"
+                android:visibility="gone" />
+
+            <ImageView
+                android:id="@+id/widget_countdown_gear"
+                android:layout_width="26dp"
+                android:layout_height="26dp"
+                android:layout_gravity="top|start"
+                android:layout_marginTop="4.5dp"
+                android:background="@drawable/widget_countdown_gear_background"
+                android:duplicateParentState="true"
+                android:importantForAccessibility="no"
+                android:padding="5dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_countdown_settings" />
+        </FrameLayout>
     </LinearLayout>
 </FrameLayout>

@@ -46,6 +46,26 @@ import org.json.JSONObject
 class PrayerListWidget : PrayerWidgetProvider(PrayerWidgetLayout.LIST)
 class PrayerGridWidget : PrayerWidgetProvider(PrayerWidgetLayout.GRID)
 class PrayerCountdownWidget : PrayerWidgetProvider(PrayerWidgetLayout.COUNTDOWN) {
+    override fun onDeleted(context: Context, appWidgetIds: IntArray) {
+        super.onDeleted(context, appWidgetIds)
+        val editor = HomeWidgetPlugin.getData(context).edit()
+        for (id in appWidgetIds) editor.remove(PrayerCountdown.opacityKey(id))
+        editor.apply()
+    }
+
+    override fun onRestored(context: Context, oldIds: IntArray, newIds: IntArray) {
+        val data = HomeWidgetPlugin.getData(context)
+        val editor = data.edit()
+        for (id in oldIds) editor.remove(PrayerCountdown.opacityKey(id))
+        for ((oldId, newId) in oldIds.zip(newIds)) {
+            if (data.contains(PrayerCountdown.opacityKey(oldId))) {
+                editor.putInt(PrayerCountdown.opacityKey(newId), PrayerCountdown.opacity(data, oldId))
+            }
+        }
+        editor.apply()
+        super.onRestored(context, oldIds, newIds)
+    }
+
     override fun onDisabled(context: Context) {
         super.onDisabled(context)
         PrayerCountdown.cancelVisualUpdate(context)
@@ -140,7 +160,7 @@ private data class WidgetDay(
     val rows: List<WidgetPrayer>, val complete: Boolean, val previousIsha: String,
 )
 
-private object PrayerWidgetRenderer {
+internal object PrayerWidgetRenderer {
     private const val tag = "PrayerWidgets"
     private const val configurationKey = "vaktija.widgets.configuration"
     private const val headerHorizontalInsets = 13f + 13f + 8f
@@ -175,12 +195,8 @@ private object PrayerWidgetRenderer {
         val today = dayKey(0, now)
         val current = settings?.let { readDay(data, it, today) }
         if (layout == PrayerWidgetLayout.COUNTDOWN) {
-            val previous = settings?.let { readDay(data, it, dayKey(-1, now)) }
-            val tomorrow = settings?.let { readDay(data, it, dayKey(1, now)) }
             PrayerCountdown.update(
-                context, manager, ids, settings, now,
-                previous?.rows, current?.rows, tomorrow?.rows, current?.previousIsha,
-                prayerIcon = { kind -> icons[kinds.indexOf(kind)] },
+                context, manager, ids, data, prepareCountdown(context, data, settings, now, current),
             )
             prune(data)
             return
@@ -190,6 +206,29 @@ private object PrayerWidgetRenderer {
         }
         for (id in ids) updateTimetable(context, manager, id, layout == PrayerWidgetLayout.GRID, settings, day, today, data)
         prune(data)
+    }
+
+    fun countdownContext(context: Context, data: SharedPreferences): Context =
+        PrayerCountdown.localizedContext(context, readSettings(data))
+
+    fun countdownPreview(
+        context: Context, data: SharedPreferences, size: SizeF, hostScale: Float, opacity: Int,
+    ): RemoteViews {
+        val now = System.currentTimeMillis()
+        val settings = readSettings(data)
+        val current = settings?.let { readDay(data, it, dayKey(0, now)) }
+        return prepareCountdown(context, data, settings, now, current).views(size, hostScale, opacity, null)
+    }
+
+    private fun prepareCountdown(
+        context: Context, data: SharedPreferences, settings: WidgetSettings?, now: Long, current: WidgetDay?,
+    ): PrayerCountdown.Render {
+        val previous = settings?.let { readDay(data, it, dayKey(-1, now)) }
+        val tomorrow = settings?.let { readDay(data, it, dayKey(1, now)) }
+        return PrayerCountdown.prepare(
+            context, settings, now, previous?.rows, current?.rows, tomorrow?.rows, current?.previousIsha,
+            prayerIcon = { kind -> icons[kinds.indexOf(kind)] },
+        )
     }
 
     private fun updateTimetable(

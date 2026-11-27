@@ -2,7 +2,7 @@
 
 adb shell uiautomator dump /sdcard/countdown.xml
 adb pull /sdcard/countdown.xml countdown.xml
-python scripts/check-countdown-widget.py countdown.xml --prayer "Fajr (Dawn)" --expanded
+python scripts/check-countdown-widget.py countdown.xml --prayer Fajr --expanded
 """
 
 import argparse
@@ -25,6 +25,10 @@ def widget_node(name):
     return pill.find(f".//node[@resource-id='app.vaktija:id/widget_countdown_{name}']")
 
 
+def bounds(node):
+    return tuple(map(int, re.findall(r"\d+", node.get("bounds", ""))))
+
+
 title = widget_node("title")
 assert title is not None and title.get("text") == args.prayer, "Unexpected prayer"
 assert widget_node("time") is None, "Start time is visible"
@@ -33,11 +37,29 @@ icon = widget_node("icon")
 assert (icon is not None) == args.expanded, "Icon visibility does not match the width"
 ring = widget_node("progress")
 assert ring is not None, "Countdown ring is missing"
+settings = widget_node("settings")
+assert settings is not None and settings.get("clickable") == "true", "Settings target is missing"
+assert settings.get("content-desc") in {"Widget settings", "Postavke widgeta"}
+gear = settings.find(".//node[@resource-id='app.vaktija:id/widget_countdown_gear']")
+assert gear is not None, "Settings gear is missing"
+settings_left, _, settings_right, _ = bounds(settings)
+gear_left, gear_top, gear_right, gear_bottom = bounds(gear)
+ring_left, ring_top, ring_right, ring_bottom = bounds(ring)
+ring_width = ring_right - ring_left
+ring_height = ring_bottom - ring_top
+ring_diameter = min(ring_width * 52.8 / 60.8, ring_height * 52.8 / 71.73333)
+gear_diameter = gear_right - gear_left
+gear_padding = gear_diameter * 5 / 26
+assert settings_left <= ring_left < ring_right <= settings_right, "The ring should open settings"
+assert gear_diameter - 2 * gear_padding >= ring_width / 4, "The gear is too small"
+assert settings_left <= gear_left and gear_left + gear_padding <= ring_left - ring_width / 6
+assert gear_right <= (ring_left + ring_right) / 2
+assert ring_top <= gear_top < gear_bottom <= ring_bottom
+assert abs(gear_top + gear_padding - (ring_top + (ring_height - ring_diameter) / 2)) <= 3
+assert bounds(title)[2] <= settings_left, "Settings overlaps the prayer title"
 if icon is not None:
-    icon_left, icon_top, icon_right, icon_bottom = map(int, re.findall(r"\d+", icon.get("bounds", "")))
-    ring_left, _, ring_right, _ = map(int, re.findall(r"\d+", ring.get("bounds", "")))
-    pill_left, _, pill_right, _ = map(int, re.findall(r"\d+", pill.get("bounds", "")))
-    ring_diameter = (ring_right - ring_left) * 52.8 / 60.8
+    icon_left, icon_top, _, icon_bottom = bounds(icon)
+    pill_left, _, pill_right, _ = bounds(pill)
     assert abs(icon_bottom - icon_top - ring_diameter) <= 2, "Icon height should match the ring"
     assert abs(icon_left - pill_left - (pill_right - ring_right)) <= 2, "Icon and ring need matching edge insets"
 timer = widget_node("timer")

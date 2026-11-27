@@ -8,4 +8,12 @@
     <string name="widget_countdown_setup">Dodirnite za postavljanje vaktije</string>
     <string name="widget_countdown_unavailable">Vremena nisu dostupna</string>
     <string name="widget_countdown_soon">Uskoro</string>
+    <string name="widget_countdown_settings">Postavke widgeta</string>
+    <string name="widget_countdown_transparency">Prozirnost</string>
+    <string name="widget_countdown_back">Nazad</string>
+    <string name="widget_countdown_fajr">Sabah</string>
+    <string name="widget_countdown_dhuhr">Podne</string>
+    <string name="widget_countdown_asr">Ikindija</string>
+    <string name="widget_countdown_maghrib">Akšam</string>
+    <string name="widget_countdown_isha">Jacija</string>
 </resources>

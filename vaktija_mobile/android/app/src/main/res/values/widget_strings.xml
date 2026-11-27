@@ -8,6 +8,14 @@
     <string name="widget_countdown_setup">Tap to set up Vaktija</string>
     <string name="widget_countdown_unavailable">Times unavailable</string>
     <string name="widget_countdown_soon">Soon</string>
+    <string name="widget_countdown_settings">Widget settings</string>
+    <string name="widget_countdown_transparency">Transparency</string>
+    <string name="widget_countdown_back">Back</string>
+    <string name="widget_countdown_fajr">Fajr</string>
+    <string name="widget_countdown_dhuhr">Dhuhr</string>
+    <string name="widget_countdown_asr">Asr</string>
+    <string name="widget_countdown_maghrib">Maghrib</string>
+    <string name="widget_countdown_isha">Isha</string>
     <string name="widget_countdown_minutes">%1$dm</string>
     <string name="widget_countdown_hours_compact">%1$dh %2$dm</string>
 </resources>

@@ -6,6 +6,7 @@ import android.appwidget.AppWidgetManager
 import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.content.res.Configuration
 import android.content.res.Resources
 import android.graphics.Bitmap
@@ -33,19 +34,45 @@ import java.util.TimeZone
 import kotlin.math.roundToInt
 
 internal object PrayerCountdown {
+    private const val defaultOpacity = 162
     private const val minute = 60_000L
     private const val wideWidth = 190f
     private const val referenceHeight = 71.73333f
-    private val kinds = setOf("fajr", "dhuhr", "asr", "maghrib", "isha")
+    private const val settingsGap = 18f
+    private val prayerTitles = mapOf(
+        "fajr" to R.string.widget_countdown_fajr,
+        "dhuhr" to R.string.widget_countdown_dhuhr,
+        "asr" to R.string.widget_countdown_asr,
+        "maghrib" to R.string.widget_countdown_maghrib,
+        "isha" to R.string.widget_countdown_isha,
+    )
     private val utcTimestamp = Regex("""\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}(?:\d{3})?Z""")
 
-    private data class Prayer(val row: WidgetPrayer, val at: Long)
+    private data class Prayer(val kind: String, val at: Long)
 
-    fun update(
-        context: Context, manager: AppWidgetManager, ids: IntArray, settings: WidgetSettings?, now: Long,
+    class Render(
+        val nextPrayer: Long?,
+        val nextMinute: Long?,
+        val views: (SizeF, Float, Int, Int?) -> RemoteViews,
+    )
+
+    fun opacityKey(id: Int) = "vaktija.widgets.countdown.opacity.$id"
+
+    fun opacity(data: SharedPreferences, id: Int) =
+        data.getInt(opacityKey(id), defaultOpacity).coerceIn(0, 255)
+
+    fun localizedContext(context: Context, settings: WidgetSettings?): Context {
+        if (settings == null) return context
+        val localized = Configuration(context.resources.configuration)
+        localized.setLocale(Locale.forLanguageTag(if (settings.bosnian) "bs" else "en"))
+        return context.createConfigurationContext(localized)
+    }
+
+    fun prepare(
+        context: Context, settings: WidgetSettings?, now: Long,
         yesterday: List<WidgetPrayer>?, today: List<WidgetPrayer>?, tomorrow: List<WidgetPrayer>?,
         previousIsha: String?, prayerIcon: (String) -> Int,
-    ) {
+    ): Render {
         val parser = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.ROOT).apply {
             isLenient = false
             timeZone = TimeZone.getTimeZone("UTC")
@@ -56,11 +83,7 @@ internal object PrayerCountdown {
         val starts = currentDay?.lastOrNull { it.at <= now }?.at
             ?: prayers(yesterday, parser)?.lastOrNull { it.at <= now }?.at
             ?: parseTime(previousIsha, parser)?.takeIf { it <= now }
-        val resources = if (settings == null) context.resources else {
-            val localized = Configuration(context.resources.configuration)
-            localized.setLocale(Locale.forLanguageTag(if (settings.bosnian) "bs" else "en"))
-            context.createConfigurationContext(localized).resources
-        }
+        val resources = localizedContext(context, settings).resources
         val remaining = next?.let { it.at - now } ?: 0L
         val progress = if (next != null && starts != null && starts < next.at) {
             ((now - starts).toFloat() / (next.at - starts)).coerceIn(0f, 1f)
@@ -73,12 +96,13 @@ internal object PrayerCountdown {
         val ring = next?.let { progressRing(progress, accent) }
         val timerText = next?.let { remainingText(resources, remaining) }
         val icon = next?.let {
-            val source = BitmapFactory.decodeResource(context.resources, prayerIcon(it.row.kind))
+            val source = BitmapFactory.decodeResource(context.resources, prayerIcon(it.kind))
             // All five prayer PNGs share these transparent margins.
             Bitmap.createBitmap(source, 15, 8, 126, 144)
         }
         val soon = if (remaining in 1..(5 * minute)) resources.getString(R.string.widget_countdown_soon) else null
-        val tap = HomeWidgetLaunchIntent.getActivity(context, MainActivity::class.java, Uri.parse("vaktija://widgets/prayers"))
+        val title = resources.getString(next?.let { prayerTitles.getValue(it.kind) }
+            ?: if (settings?.ready == true) R.string.widget_countdown_unavailable else R.string.widget_countdown_setup)
         val metrics = resources.displayMetrics
         val countdownPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
             val family = Typeface.create("sec", Typeface.NORMAL)
@@ -87,7 +111,9 @@ internal object PrayerCountdown {
         val labelPaint = Paint(countdownPaint)
         countdownPaint.fontFeatureSettings = "tnum"
 
-        fun views(size: SizeF, hostScale: Float) = RemoteViews(context.packageName, R.layout.prayer_widget_countdown).apply {
+        fun views(size: SizeF, hostScale: Float, opacity: Int, id: Int?) = RemoteViews(
+            context.packageName, R.layout.prayer_widget_countdown,
+        ).apply {
             val wide = size.width * hostScale >= wideWidth
             val live = next != null
             val showIcon = wide && live
@@ -98,6 +124,9 @@ internal object PrayerCountdown {
             val inset = (size.height - panelHeight) / 2f
             // ponytail: pre-Android 12 image slots stay fixed; use size-specific layouts for full legacy resize fidelity.
             val imageWidth = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) 60.8f * unit else 60.8f
+            val settingsWidth = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+                maxOf(imageWidth, 48f / hostScale) + settingsGap / hostScale
+            } else imageWidth + settingsGap
             val imageInset = ((imageWidth - 60.8f * unit) / 2f * metrics.density).roundToInt().coerceAtLeast(0)
             val iconHeight = 52.8f * unit
             val iconWidth = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
@@ -106,6 +135,7 @@ internal object PrayerCountdown {
             val gapPx = (8f * unit * metrics.density).roundToInt()
             val insetPx = (inset * metrics.density).roundToInt()
             setViewPadding(R.id.widget_countdown_root, 0, insetPx, 0, insetPx)
+            setFloat(R.id.widget_countdown_background, "setAlpha", opacity / 255f)
             val startPadding = (if (showIcon) 8.53333f else 21.33333f) * unit
             val endPadding = 8.53333f * unit
             setViewPadding(R.id.widget_countdown_panel, (startPadding * metrics.density).roundToInt(), 0,
@@ -113,12 +143,21 @@ internal object PrayerCountdown {
             setViewPadding(R.id.widget_countdown_progress, imageInset + gapPx, imageInset, imageInset, imageInset)
             setViewPadding(R.id.widget_countdown_icon, 0, 0, gapPx, 0)
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+                val gearSize = 26f / hostScale
+                val gearInset = 5f / hostScale
+                val gearInsetPx = (gearInset * metrics.density).roundToInt()
+                val gearTop = ((panelHeight - iconHeight) / 2f - gearInset).coerceAtLeast(0f)
+                setViewPadding(R.id.widget_countdown_gear, gearInsetPx, gearInsetPx, gearInsetPx, gearInsetPx)
+                setViewLayoutWidth(R.id.widget_countdown_gear, gearSize, TypedValue.COMPLEX_UNIT_DIP)
+                setViewLayoutHeight(R.id.widget_countdown_gear, gearSize, TypedValue.COMPLEX_UNIT_DIP)
+                setViewLayoutMargin(R.id.widget_countdown_gear, RemoteViews.MARGIN_TOP, gearTop, TypedValue.COMPLEX_UNIT_DIP)
+                setViewLayoutWidth(R.id.widget_countdown_settings, settingsWidth, TypedValue.COMPLEX_UNIT_DIP)
                 setViewLayoutWidth(R.id.widget_countdown_progress, imageWidth, TypedValue.COMPLEX_UNIT_DIP)
                 setViewLayoutWidth(R.id.widget_countdown_icon, iconWidth, TypedValue.COMPLEX_UNIT_DIP)
                 setViewLayoutHeight(R.id.widget_countdown_icon, iconHeight, TypedValue.COMPLEX_UNIT_DIP)
             }
             val textWidth = size.width - startPadding - endPadding -
-                (if (live) imageWidth else 0f) - (if (showIcon) iconWidth else 0f)
+                settingsWidth - (if (showIcon) iconWidth else 0f)
             val textWidthPx = ((textWidth - 1f) * metrics.density).coerceAtLeast(1f)
             val unitPx = unit * metrics.density
 
@@ -142,11 +181,17 @@ internal object PrayerCountdown {
                 // The reference's 23.5sp and 16.5sp timers have different line spacing.
                 ((23.5f - countdownPaint.textSize / unitPx) / 7f).coerceIn(0f, 1f)
             } else 0f
-            val title = next?.row?.name ?: resources.getString(
-                if (settings?.ready == true) R.string.widget_countdown_unavailable else R.string.widget_countdown_setup)
             fitText(labelPaint, title, 12f, 16.3f)
             setLine(R.id.widget_countdown_title, title, labelPaint, 24.8f + 5.6f * compactness)
-            setOnClickPendingIntent(R.id.widget_countdown_root, tap)
+            if (id != null) {
+                setOnClickPendingIntent(R.id.widget_countdown_root, HomeWidgetLaunchIntent.getActivity(
+                    context, MainActivity::class.java, Uri.parse("vaktija://widgets/prayers"),
+                ))
+                setOnClickPendingIntent(R.id.widget_countdown_settings,
+                    CountdownSettingsActivity.intent(context, id, size, hostScale))
+                setContentDescription(R.id.widget_countdown_settings,
+                    resources.getString(R.string.widget_countdown_settings))
+            }
             val liveVisibility = if (live) View.VISIBLE else View.GONE
             setViewVisibility(R.id.widget_countdown_icon, if (showIcon) View.VISIBLE else View.GONE)
             setViewVisibility(R.id.widget_countdown_timer, liveVisibility)
@@ -157,20 +202,30 @@ internal object PrayerCountdown {
                 if (showIcon) setImageViewBitmap(R.id.widget_countdown_icon, icon)
                 setLine(R.id.widget_countdown_timer, timerText, countdownPaint, 51.7f - 2.7f * compactness)
                 setImageViewBitmap(R.id.widget_countdown_progress, ring)
-                val announcement = listOfNotNull(next.row.name, soon).joinToString(", ")
+                val announcement = listOfNotNull(title, soon).joinToString(", ")
                 setContentDescription(R.id.widget_countdown_title, announcement)
             }
         }
 
+        val nextMinute = next?.let { it.at - ((remaining - 1) / minute) * minute }
+        return Render(next?.at, nextMinute, ::views)
+    }
+
+    fun update(
+        context: Context, manager: AppWidgetManager, ids: IntArray, data: SharedPreferences, render: Render,
+    ) {
         for (id in ids) {
             try {
                 val options = manager.getAppWidgetOptions(id)
                 val hostScale = options.getFloat("hsResizeRatio", 1f).coerceIn(0.5f, 2f)
+                val opacity = opacity(data, id)
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
                     @Suppress("DEPRECATION")
                     val sizes = options.getParcelableArrayList<SizeF>(AppWidgetManager.OPTION_APPWIDGET_SIZES)
                     if (!sizes.isNullOrEmpty()) {
-                        manager.updateAppWidget(id, RemoteViews(sizes.distinct().associateWith { views(it, hostScale) }))
+                        manager.updateAppWidget(id, RemoteViews(sizes.distinct().associateWith {
+                            render.views(it, hostScale, opacity, id)
+                        }))
                         continue
                     }
                 }
@@ -178,18 +233,17 @@ internal object PrayerCountdown {
                 val widthKey = if (landscape) AppWidgetManager.OPTION_APPWIDGET_MAX_WIDTH else AppWidgetManager.OPTION_APPWIDGET_MIN_WIDTH
                 val heightKey = if (landscape) AppWidgetManager.OPTION_APPWIDGET_MIN_HEIGHT else AppWidgetManager.OPTION_APPWIDGET_MAX_HEIGHT
                 val size = SizeF(options.getInt(widthKey, 144).toFloat(), options.getInt(heightKey, 56).toFloat())
-                manager.updateAppWidget(id, views(size, hostScale))
+                manager.updateAppWidget(id, render.views(size, hostScale, opacity, id))
             } catch (error: Exception) {
                 Log.e("PrayerCountdown", "Could not render widget $id", error)
             }
         }
 
         // Only the prayer change may wake a sleeping device. Visual updates catch up when awake.
-        HomeWidgetScheduler.schedule(context, PrayerCountdownWidget::class.java.name, listOfNotNull(next?.at))
-        val visualUpdate = next?.let { target ->
-            val nextMinute = target.at - ((remaining - 1) / minute) * minute
-            // Catch the boundary if it passed while this update was being rendered.
-            nextMinute.takeIf { it < target.at || it <= System.currentTimeMillis() }
+        HomeWidgetScheduler.schedule(context, PrayerCountdownWidget::class.java.name, listOfNotNull(render.nextPrayer))
+        // Catch the boundary if it passed while this update was being rendered.
+        val visualUpdate = render.nextMinute?.takeIf {
+            it != render.nextPrayer || it <= System.currentTimeMillis()
         }
         scheduleVisualUpdate(context, visualUpdate)
     }
@@ -212,12 +266,12 @@ internal object PrayerCountdown {
 
     private fun prayers(rows: List<WidgetPrayer>?, parser: SimpleDateFormat): List<Prayer>? {
         val events = rows.orEmpty().mapNotNull { row ->
-            if (row.kind !in kinds || row.time == null) return@mapNotNull null
+            if (row.kind !in prayerTitles || row.time == null) return@mapNotNull null
             val at = parseTime(row.timestamp, parser) ?: return@mapNotNull null
-            Prayer(row, at)
+            Prayer(row.kind, at)
         }
-        if (events.map { it.row.kind }.toSet() != kinds) return null
-        return events.distinctBy { it.row.kind }.sortedBy { it.at }
+        if (events.map { it.kind }.toSet() != prayerTitles.keys) return null
+        return events.distinctBy { it.kind }.sortedBy { it.at }
     }
 
     private fun parseTime(timestamp: String?, parser: SimpleDateFormat): Long? {
