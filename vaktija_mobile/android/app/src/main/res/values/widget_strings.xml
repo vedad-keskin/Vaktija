@@ -10,6 +10,11 @@
     <string name="widget_countdown_soon">Soon</string>
     <string name="widget_countdown_settings">Widget settings</string>
     <string name="widget_countdown_transparency">Transparency</string>
+    <string name="widget_countdown_display">Display</string>
+    <string name="widget_countdown_display_size_note">Available at 3×1 and wider</string>
+    <string name="widget_countdown_show_prayer_time">Show prayer time</string>
+    <string name="widget_countdown_show_prayer_icon">Show prayer picture</string>
+    <string name="widget_countdown_title_with_time">%1$s · %2$s</string>
     <string name="widget_countdown_ring">Progress ring</string>
     <string name="widget_countdown_ring_solid">Solid</string>
     <string name="widget_countdown_ring_time_based">Time-based</string>

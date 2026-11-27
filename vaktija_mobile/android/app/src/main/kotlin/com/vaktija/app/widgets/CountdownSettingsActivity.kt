@@ -20,6 +20,7 @@ import android.widget.LinearLayout
 import android.widget.RadioButton
 import android.widget.RadioGroup
 import android.widget.SeekBar
+import android.widget.Switch
 import android.widget.TextView
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -143,7 +144,7 @@ class CountdownSettingsActivity : Activity() {
             previewRenderer.views(size, hostScale, updated.copy(opacity = previewOpacity), null).reapply(this, preview)
         }
 
-        fun changeRing(updated: CountdownAppearance) {
+        fun changeAppearance(updated: CountdownAppearance) {
             if (updated == appearance) return
             redrawPreview(updated)
             saveAppearance(updated)
@@ -152,7 +153,7 @@ class CountdownSettingsActivity : Activity() {
         ringModes.setOnCheckedChangeListener { _, checkedId ->
             val timeBased = checkedId == R.id.widget_countdown_ring_time_based
             showRingOptions(timeBased)
-            changeRing(appearance.copy(timeBased = timeBased))
+            changeAppearance(appearance.copy(timeBased = timeBased))
         }
         val swatchSize = (28f * density).roundToInt()
         val swatchPadding = (9f * density).roundToInt()
@@ -179,7 +180,7 @@ class CountdownSettingsActivity : Activity() {
                 contentDescription = getString(color.label)
                 setBackgroundResource(R.drawable.countdown_ring_swatch_selection)
                 isChecked = color == appearance.color
-                setOnClickListener { changeRing(appearance.copy(color = color)) }
+                setOnClickListener { changeAppearance(appearance.copy(color = color)) }
             }
             colorRow.addView(swatch, RadioGroup.LayoutParams(0, RadioGroup.LayoutParams.MATCH_PARENT, 1f))
         }
@@ -193,6 +194,19 @@ class CountdownSettingsActivity : Activity() {
             }
             timeSamples.addView(sample, LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.MATCH_PARENT, 1f))
         }
+
+        if (!PrayerCountdown.isWide(size, hostScale)) {
+            findViewById<View>(R.id.widget_countdown_display_size_note).visibility = View.VISIBLE
+        }
+        findViewById<Switch>(R.id.widget_countdown_show_prayer_time).apply {
+            isChecked = appearance.showPrayerTime
+            setOnCheckedChangeListener { _, checked -> changeAppearance(appearance.copy(showPrayerTime = checked)) }
+        }
+        findViewById<Switch>(R.id.widget_countdown_show_prayer_icon).apply {
+            isChecked = appearance.showPrayerIcon
+            setOnCheckedChangeListener { _, checked -> changeAppearance(appearance.copy(showPrayerIcon = checked)) }
+        }
+
         refreshPreview = object : Runnable {
             override fun run() {
                 previewRenderer = PrayerWidgetRenderer.countdownPreview(this@CountdownSettingsActivity, data)

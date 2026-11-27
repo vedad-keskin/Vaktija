@@ -47,7 +47,13 @@ internal enum class CountdownRingColor(val label: Int, val rgb: Int?) {
     }
 }
 
-internal data class CountdownAppearance(val opacity: Int, val color: CountdownRingColor, val timeBased: Boolean)
+internal data class CountdownAppearance(
+    val opacity: Int,
+    val color: CountdownRingColor,
+    val timeBased: Boolean,
+    val showPrayerTime: Boolean,
+    val showPrayerIcon: Boolean,
+)
 
 internal object PrayerCountdown {
     private const val defaultOpacity = 162
@@ -64,7 +70,7 @@ internal object PrayerCountdown {
     )
     private val utcTimestamp = Regex("""\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}(?:\d{3})?Z""")
 
-    private data class Prayer(val kind: String, val at: Long)
+    private data class Prayer(val kind: String, val at: Long, val time: String)
 
     class Render(
         val nextPrayer: Long?,
@@ -76,13 +82,19 @@ internal object PrayerCountdown {
     private fun colorKey(id: Int) = "vaktija.widgets.countdown.color.$id"
     // Carry existing Segmented selections over to Time-based.
     private fun timeBasedKey(id: Int) = "vaktija.widgets.countdown.segmented.$id"
+    private fun prayerTimeKey(id: Int) = "vaktija.widgets.countdown.showPrayerTime.$id"
+    private fun prayerIconKey(id: Int) = "vaktija.widgets.countdown.showPrayerIcon.$id"
+
+    fun isWide(size: SizeF, hostScale: Float) = size.width * hostScale >= wideWidth
 
     fun appearance(data: SharedPreferences, id: Int): CountdownAppearance {
         val color = data.getString(colorKey(id), null)
         return CountdownAppearance(
-            data.getInt(opacityKey(id), defaultOpacity).coerceIn(0, 255),
-            CountdownRingColor.entries.firstOrNull { it.name == color } ?: CountdownRingColor.SYSTEM,
-            data.getBoolean(timeBasedKey(id), false),
+            opacity = data.getInt(opacityKey(id), defaultOpacity).coerceIn(0, 255),
+            color = CountdownRingColor.entries.firstOrNull { it.name == color } ?: CountdownRingColor.SYSTEM,
+            timeBased = data.getBoolean(timeBasedKey(id), false),
+            showPrayerTime = data.getBoolean(prayerTimeKey(id), false),
+            showPrayerIcon = data.getBoolean(prayerIconKey(id), true),
         )
     }
 
@@ -90,10 +102,16 @@ internal object PrayerCountdown {
         editor.putInt(opacityKey(id), appearance.opacity)
             .putString(colorKey(id), appearance.color.name)
             .putBoolean(timeBasedKey(id), appearance.timeBased)
+            .putBoolean(prayerTimeKey(id), appearance.showPrayerTime)
+            .putBoolean(prayerIconKey(id), appearance.showPrayerIcon)
     }
 
     fun removeAppearance(editor: SharedPreferences.Editor, id: Int) {
-        editor.remove(opacityKey(id)).remove(colorKey(id)).remove(timeBasedKey(id))
+        editor.remove(opacityKey(id))
+            .remove(colorKey(id))
+            .remove(timeBasedKey(id))
+            .remove(prayerTimeKey(id))
+            .remove(prayerIconKey(id))
     }
 
     fun localizedContext(context: Context, settings: WidgetSettings?): Context {
@@ -132,7 +150,7 @@ internal object PrayerCountdown {
             Bitmap.createBitmap(source, 15, 8, 126, 144)
         }
         val soon = if (remaining in 1..(5 * minute)) resources.getString(R.string.widget_countdown_soon) else null
-        val title = resources.getString(next?.let { prayerTitles.getValue(it.kind) }
+        val prayerTitle = resources.getString(next?.let { prayerTitles.getValue(it.kind) }
             ?: if (settings?.ready == true) R.string.widget_countdown_unavailable else R.string.widget_countdown_setup)
         val metrics = resources.displayMetrics
         val countdownPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
@@ -145,10 +163,14 @@ internal object PrayerCountdown {
         fun views(size: SizeF, hostScale: Float, appearance: CountdownAppearance, id: Int?) = RemoteViews(
             context.packageName, R.layout.prayer_widget_countdown,
         ).apply {
-            val wide = size.width * hostScale >= wideWidth
+            val wide = isWide(size, hostScale)
             val live = next != null
-            val showIcon = wide && live
-            val textGravity = Gravity.TOP or (if (showIcon) Gravity.CENTER_HORIZONTAL else Gravity.START)
+            val centerText = wide && live
+            val showIcon = centerText && appearance.showPrayerIcon
+            val shownTime = next?.time?.takeIf { wide && appearance.showPrayerTime }
+            val title = shownTime?.let { resources.getString(R.string.widget_countdown_title_with_time, prayerTitle, it) }
+                ?: prayerTitle
+            val textGravity = Gravity.TOP or (if (centerText) Gravity.CENTER_HORIZONTAL else Gravity.START)
             // Measured reference is 156.8 x 71.733 dp. Samsung Home scales third-party widgets.
             val panelHeight = minOf(size.height, referenceHeight / hostScale)
             val unit = panelHeight / referenceHeight
@@ -167,7 +189,7 @@ internal object PrayerCountdown {
             val insetPx = (inset * metrics.density).roundToInt()
             setViewPadding(R.id.widget_countdown_root, 0, insetPx, 0, insetPx)
             setFloat(R.id.widget_countdown_background, "setAlpha", appearance.opacity / 255f)
-            val startPadding = (if (showIcon) 8.53333f else 21.33333f) * unit
+            val startPadding = (if (centerText) 8.53333f else 21.33333f) * unit
             val endPadding = 8.53333f * unit
             setViewPadding(R.id.widget_countdown_panel, (startPadding * metrics.density).roundToInt(), 0,
                 (endPadding * metrics.density).roundToInt(), 0)
@@ -235,7 +257,7 @@ internal object PrayerCountdown {
                 val color = if (appearance.timeBased) timeColor(remaining) else appearance.color
                 val rgb = color.rgb ?: accent
                 setImageViewBitmap(R.id.widget_countdown_progress, rings.getOrPut(rgb) { progressRing(progress, rgb) })
-                val announcement = listOfNotNull(title, soon).joinToString(", ")
+                val announcement = listOfNotNull(prayerTitle, shownTime, soon).joinToString(", ")
                 setContentDescription(R.id.widget_countdown_title, announcement)
             }
         }
@@ -301,7 +323,7 @@ internal object PrayerCountdown {
         val events = rows.orEmpty().mapNotNull { row ->
             if (row.kind !in prayerTitles || row.time == null) return@mapNotNull null
             val at = parseTime(row.timestamp, parser) ?: return@mapNotNull null
-            Prayer(row.kind, at)
+            Prayer(row.kind, at, row.time)
         }
         if (events.map { it.kind }.toSet() != prayerTitles.keys) return null
         return events.distinctBy { it.kind }.sortedBy { it.at }

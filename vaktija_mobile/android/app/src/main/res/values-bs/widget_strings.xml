@@ -10,6 +10,10 @@
     <string name="widget_countdown_soon">Uskoro</string>
     <string name="widget_countdown_settings">Postavke widgeta</string>
     <string name="widget_countdown_transparency">Prozirnost</string>
+    <string name="widget_countdown_display">Prikaz</string>
+    <string name="widget_countdown_display_size_note">Dostupno za 3×1 i veće widgete</string>
+    <string name="widget_countdown_show_prayer_time">Prikaži vrijeme namaza</string>
+    <string name="widget_countdown_show_prayer_icon">Prikaži sliku namaza</string>
     <string name="widget_countdown_ring">Prsten napretka</string>
     <string name="widget_countdown_ring_solid">Jednobojni</string>
     <string name="widget_countdown_ring_time_based">Prema preostalom vremenu</string>
