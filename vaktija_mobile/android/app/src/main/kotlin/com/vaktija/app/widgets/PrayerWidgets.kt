@@ -6,6 +6,8 @@ import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
+import android.content.res.ColorStateList
+import android.content.res.Configuration
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Canvas
@@ -46,24 +48,6 @@ import org.json.JSONObject
 class PrayerListWidget : PrayerWidgetProvider(PrayerWidgetLayout.LIST)
 class PrayerGridWidget : PrayerWidgetProvider(PrayerWidgetLayout.GRID)
 class PrayerCountdownWidget : PrayerWidgetProvider(PrayerWidgetLayout.COUNTDOWN) {
-    override fun onDeleted(context: Context, appWidgetIds: IntArray) {
-        super.onDeleted(context, appWidgetIds)
-        val editor = HomeWidgetPlugin.getData(context).edit()
-        for (id in appWidgetIds) PrayerCountdown.removeAppearance(editor, id)
-        editor.apply()
-    }
-
-    override fun onRestored(context: Context, oldIds: IntArray, newIds: IntArray) {
-        val data = HomeWidgetPlugin.getData(context)
-        val editor = data.edit()
-        for (id in oldIds) PrayerCountdown.removeAppearance(editor, id)
-        for ((oldId, newId) in oldIds.zip(newIds)) {
-            PrayerCountdown.writeAppearance(editor, newId, PrayerCountdown.appearance(data, oldId))
-        }
-        editor.apply()
-        super.onRestored(context, oldIds, newIds)
-    }
-
     override fun onDisabled(context: Context) {
         super.onDisabled(context)
         PrayerCountdown.cancelVisualUpdate(context)
@@ -99,8 +83,22 @@ abstract class PrayerWidgetProvider internal constructor(
     }
 
     override fun onRestored(context: Context, oldIds: IntArray, newIds: IntArray) {
+        val data = HomeWidgetPlugin.getData(context)
+        val editor = data.edit()
+        for (id in oldIds) PrayerCountdown.removeAppearance(editor, id)
+        for ((oldId, newId) in oldIds.zip(newIds)) {
+            PrayerCountdown.writeAppearance(editor, newId, PrayerCountdown.appearance(data, oldId))
+        }
+        editor.apply()
         super.onRestored(context, oldIds, newIds)
         requestPrayerWidgetRefresh(context)
+    }
+
+    override fun onDeleted(context: Context, appWidgetIds: IntArray) {
+        super.onDeleted(context, appWidgetIds)
+        val editor = HomeWidgetPlugin.getData(context).edit()
+        for (id in appWidgetIds) PrayerCountdown.removeAppearance(editor, id)
+        editor.apply()
     }
 
     override fun onDisabled(context: Context) {
@@ -176,6 +174,7 @@ internal object PrayerWidgetRenderer {
     private data class Header(
         val city: Bitmap, val date: Bitmap, val height: Float, val logo: Bitmap? = null,
         val weekday: Bitmap? = null, val month: Bitmap? = null, val year: Bitmap? = null,
+        val settings: Boolean = false,
     )
 
     private data class Body(
@@ -203,7 +202,64 @@ internal object PrayerWidgetRenderer {
             (1..7).firstNotNullOfOrNull { readDay(data, active, dayKey(-it)) }
         }
         for (id in ids) updateTimetable(context, manager, id, layout == PrayerWidgetLayout.GRID, settings, day, today, data)
+        scheduleTimetableUpdates(context, layout, settings, data, now)
         prune(data)
+    }
+
+    private fun scheduleTimetableUpdates(
+        context: Context, layout: PrayerWidgetLayout, settings: WidgetSettings?, data: SharedPreferences, now: Long,
+    ) {
+        val provider = if (layout == PrayerWidgetLayout.GRID) PrayerGridWidget::class.java else PrayerListWidget::class.java
+        val active = widgetIds(context, provider).map { PrayerCountdown.appearance(data, it) }.filter { it.highlightNext }
+        val includeNight = active.any { it.includeNightTimes }
+        val parser = PrayerCountdown.timestampParser()
+        val midnight = Calendar.getInstance(zone).apply {
+            timeInMillis = now
+            set(Calendar.HOUR_OF_DAY, 0)
+            set(Calendar.MINUTE, 0)
+            set(Calendar.SECOND, 0)
+            set(Calendar.MILLISECOND, 0)
+        }
+        val updates = (1..8).map {
+            (midnight.clone() as Calendar).apply { add(Calendar.DATE, it) }.timeInMillis
+        }.toMutableList()
+        if (settings != null && active.isNotEmpty()) {
+            for (offset in 0..7) {
+                val rows = readDay(data, settings, dayKey(offset, now))?.rows.orEmpty()
+                for (row in rows) {
+                    if (row.time == null || row.kind == "sunrise" ||
+                        !includeNight && row.kind in listOf("midnight", "lastthird")) continue
+                    PrayerCountdown.parseTime(row.timestamp, parser)?.takeIf { it > now }?.let(updates::add)
+                }
+            }
+        }
+        HomeWidgetScheduler.schedule(context, provider.name, updates)
+    }
+
+    internal fun nextHighlightedPrayer(rows: List<WidgetPrayer>, now: Long): WidgetPrayer? {
+        val parser = PrayerCountdown.timestampParser()
+        return rows.filter { it.time != null && it.kind != "sunrise" }.mapNotNull { row ->
+            PrayerCountdown.parseTime(row.timestamp, parser)?.takeIf { it > now }?.let { row to it }
+        }.minByOrNull { it.second }?.first
+    }
+
+    fun nextTimetablePreviewUpdate(data: SharedPreferences, appearance: CountdownAppearance): Long {
+        val now = System.currentTimeMillis()
+        val midnight = Calendar.getInstance(zone).apply {
+            timeInMillis = now
+            add(Calendar.DATE, 1)
+            set(Calendar.HOUR_OF_DAY, 0)
+            set(Calendar.MINUTE, 0)
+            set(Calendar.SECOND, 0)
+            set(Calendar.MILLISECOND, 0)
+        }.timeInMillis
+        if (!appearance.highlightNext) return midnight
+        val settings = readSettings(data) ?: return midnight
+        val rows = readDay(data, settings, dayKey(0, now))?.rows.orEmpty().filter {
+            appearance.includeNightTimes || it.kind != "midnight" && it.kind != "lastthird"
+        }
+        val next = nextHighlightedPrayer(rows, now) ?: return midnight
+        return minOf(midnight, PrayerCountdown.parseTime(next.timestamp, PrayerCountdown.timestampParser()) ?: midnight)
     }
 
     fun countdownContext(context: Context, data: SharedPreferences): Context =
@@ -214,6 +270,18 @@ internal object PrayerWidgetRenderer {
         val settings = readSettings(data)
         val current = settings?.let { readDay(data, it, dayKey(0, now)) }
         return prepareCountdown(context, data, settings, now, current)
+    }
+
+    fun timetablePreview(
+        context: Context, data: SharedPreferences, id: Int, size: SizeF, hostScale: Float,
+        grid: Boolean, appearance: CountdownAppearance,
+    ): RemoteViews {
+        val settings = readSettings(data)
+        val today = dayKey(0)
+        val day = settings?.let { active ->
+            (0..7).firstNotNullOfOrNull { readDay(data, active, dayKey(-it)) }
+        }
+        return render(context, size, grid, settings, day, today, data, id, hostScale, appearance, preview = true)
     }
 
     private fun prepareCountdown(
@@ -232,13 +300,15 @@ internal object PrayerWidgetRenderer {
         settings: WidgetSettings?, day: WidgetDay?, today: String, data: SharedPreferences,
     ) {
         val options = manager.getAppWidgetOptions(id)
+        val hostScale = options.getFloat("hsResizeRatio", 1f).coerceIn(0.5f, 2f)
+        val appearance = PrayerCountdown.appearance(data, id)
         try {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
                 @Suppress("DEPRECATION")
                 val sizes = options.getParcelableArrayList<SizeF>(AppWidgetManager.OPTION_APPWIDGET_SIZES)
                 if (!sizes.isNullOrEmpty()) {
                     val views = sizes.distinct().associateWith { size ->
-                        render(context, size, grid, settings, day, today, data)
+                        render(context, size, grid, settings, day, today, data, id, hostScale, appearance)
                     }
                     manager.updateAppWidget(id, RemoteViews(views))
                     return
@@ -248,7 +318,7 @@ internal object PrayerWidgetRenderer {
             val widthKey = if (portrait) AppWidgetManager.OPTION_APPWIDGET_MIN_WIDTH else AppWidgetManager.OPTION_APPWIDGET_MAX_WIDTH
             val heightKey = if (portrait) AppWidgetManager.OPTION_APPWIDGET_MAX_HEIGHT else AppWidgetManager.OPTION_APPWIDGET_MIN_HEIGHT
             val size = SizeF(options.getInt(widthKey, 344).toFloat(), options.getInt(heightKey, if (grid) 322 else 366).toFloat())
-            manager.updateAppWidget(id, render(context, size, grid, settings, day, today, data))
+            manager.updateAppWidget(id, render(context, size, grid, settings, day, today, data, id, hostScale, appearance))
         } catch (error: Exception) {
             Log.e(tag, "Could not render widget $id", error)
         }
@@ -262,6 +332,10 @@ internal object PrayerWidgetRenderer {
         day: WidgetDay?,
         today: String,
         data: SharedPreferences,
+        id: Int,
+        hostScale: Float,
+        appearance: CountdownAppearance,
+        preview: Boolean = false,
     ): RemoteViews {
         val views = RemoteViews(context.packageName, R.layout.prayer_widget_list)
         val locale = if (settings?.bosnian != false) Locale.forLanguageTag("bs") else Locale.ENGLISH
@@ -290,17 +364,61 @@ internal object PrayerWidgetRenderer {
         val statusSize = if (shortStaleStatus) 11f else 12f
         val statusTop = if (shortStaleStatus) 2f else 6f
         val statusHeight = if (status.isEmpty()) 0f else textHeight(context, status, statusSize, width - 26f, includePad = true) + statusTop
-        val rows = day?.rows.orEmpty()
+        val rows = day?.rows.orEmpty().filter {
+            appearance.includeNightTimes || it.kind != "midnight" && it.kind != "lastthird"
+        }
         val compact = compactHeader(context, width, city, date, displayedDay)
-        val compactBody = fitBody(context, width, size.height - compact.height, statusHeight, grid, rows)
-        val (header, body) = calendarHeader(context, width, city, weekday, calendar, locale)?.let { calendarHeader ->
-            val body = fitBody(context, width, size.height - calendarHeader.height, statusHeight, grid, rows)
+        val compactBody = fitBody(context, width, size.height - compact.height, statusHeight, grid, rows, appearance.showPrayerIcon)
+        val (originalHeader, originalBody) = calendarHeader(context, width, city, weekday, calendar, locale, appearance.showAppLogo)?.let { calendarHeader ->
+            val body = fitBody(context, width, size.height - calendarHeader.height, statusHeight, grid, rows, appearance.showPrayerIcon)
             (calendarHeader to body).takeIf {
                 size.height >= calendarHeader.height + statusHeight &&
                     (day == null || body.rows.isNotEmpty() && body.rows.size >= compactBody.rows.size && body.nameLines >= compactBody.nameLines)
             }
         } ?: (compact to compactBody)
 
+        val settingsWidth = 48f / hostScale
+        val withSettings = if (width * hostScale >= 240f) {
+            calendarHeader(context, width - settingsWidth, city, weekday, calendar, locale, appearance.showAppLogo)?.let {
+                val header = it.copy(height = max(it.height, settingsWidth + headerVerticalInsets), settings = true)
+                val body = fitBody(context, width, size.height - header.height, statusHeight, grid, rows, appearance.showPrayerIcon)
+                (header to body).takeIf {
+                    size.height >= header.height + statusHeight &&
+                        body.rows.size >= originalBody.rows.size && body.nameLines >= originalBody.nameLines
+                }
+            }
+        } else null
+        val (header, body) = withSettings ?: (originalHeader to originalBody)
+        views.setViewVisibility(R.id.widget_settings, if (header.settings) View.VISIBLE else View.GONE)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            views.setViewLayoutWidth(R.id.widget_settings, settingsWidth, TypedValue.COMPLEX_UNIT_DIP)
+            views.setViewLayoutHeight(R.id.widget_settings, settingsWidth, TypedValue.COMPLEX_UNIT_DIP)
+            views.setViewLayoutWidth(R.id.widget_settings_gear, 26f / hostScale, TypedValue.COMPLEX_UNIT_DIP)
+            views.setViewLayoutHeight(R.id.widget_settings_gear, 26f / hostScale, TypedValue.COMPLEX_UNIT_DIP)
+            val gearPadding = dp(context, 5f / hostScale)
+            views.setViewPadding(R.id.widget_settings_gear, gearPadding, gearPadding, gearPadding, gearPadding)
+        }
+        val night = appearance.theme == CountdownTheme.DARK ||
+            appearance.theme == CountdownTheme.SYSTEM &&
+            context.applicationContext.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK == Configuration.UI_MODE_NIGHT_YES
+        views.setInt(R.id.widget_background, "setBackgroundResource",
+            if (night) R.drawable.widget_list_panel else R.drawable.widget_list_panel_light)
+        views.setInt(R.id.widget_settings_gear, "setBackgroundResource",
+            if (night) R.drawable.widget_countdown_gear_background else R.drawable.widget_countdown_gear_background_light)
+        views.setFloat(R.id.widget_background, "setAlpha", appearance.opacity / 255f)
+        tint(context, views, R.id.widget_background, "setBackgroundTintList", appearance.theme, preview, 0xFFF7F7FC.toInt(), 0xFF000000.toInt())
+        for (viewId in listOf(R.id.widget_logo, R.id.widget_city, R.id.widget_date, R.id.widget_weekday, R.id.widget_calendar_month,
+                R.id.widget_calendar_year, R.id.widget_settings_gear)) {
+            tint(context, views, viewId, "setColorFilter", appearance.theme, preview, 0xFF1E2028.toInt(), 0xFFFCFCFF.toInt())
+        }
+        tint(context, views, R.id.widget_settings_gear, "setBackgroundTintList", appearance.theme, preview, 0xFF1E2028.toInt(), 0xFFFCFCFF.toInt())
+        tint(context, views, R.id.widget_status, "setTextColor", appearance.theme, preview, 0xFF1E2028.toInt(), 0xFFFCFCFF.toInt())
+        tint(context, views, R.id.widget_header_divider, "setBackgroundColor", appearance.theme, preview, 0x331E2028, 0x33FFFFFF)
+        if (header.settings && !preview) {
+            views.setOnClickPendingIntent(R.id.widget_settings, CountdownSettingsActivity.intent(context, id, size, hostScale))
+            views.setContentDescription(R.id.widget_settings,
+                PrayerCountdown.localizedContext(context, settings).getString(R.string.widget_countdown_settings))
+        }
         views.setImageViewBitmap(R.id.widget_city, header.city)
         views.setImageViewBitmap(R.id.widget_date, header.date)
         views.setImageViewBitmap(R.id.widget_weekday, header.weekday)
@@ -311,11 +429,17 @@ internal object PrayerWidgetRenderer {
         views.setViewVisibility(R.id.widget_logo, if (header.logo != null) View.VISIBLE else View.GONE)
         views.setImageViewBitmap(R.id.widget_logo, header.logo)
         views.setContentDescription(R.id.widget_root, "$city, $weekday, $date")
-        views.setOnClickPendingIntent(R.id.widget_root,
-            HomeWidgetLaunchIntent.getActivity(context, MainActivity::class.java, Uri.parse("vaktija://widgets/prayers")))
+        if (!preview) {
+            views.setOnClickPendingIntent(R.id.widget_root,
+                HomeWidgetLaunchIntent.getActivity(context, MainActivity::class.java, Uri.parse("vaktija://widgets/prayers")))
+        }
         views.removeAllViews(R.id.widget_rows)
 
         val (dense, showIcon, nameWidth, visible, nameLines) = body
+        val highlighted = if (appearance.highlightNext && day?.day == today) {
+            nextHighlightedPrayer(visible, System.currentTimeMillis())
+        } else null
+        val highlightLabel = PrayerCountdown.localizedContext(context, settings).getString(R.string.widget_timetable_next_label)
         views.setViewPadding(R.id.widget_rows, dp(context, 13f), dp(context, if (dense) 2f else 5f), dp(context, 13f), dp(context, if (dense) 6f else 11f))
         if (day != null && visible.isEmpty()) {
             status = if (bosnian) "Povećajte widget za prikaz vremena" else "Enlarge the widget to show times"
@@ -323,15 +447,27 @@ internal object PrayerWidgetRenderer {
             val pairs = visible.chunked(2)
             for ((index, pair) in pairs.withIndex()) {
                 val row = RemoteViews(context.packageName, R.layout.prayer_widget_grid_row)
-                row.addView(R.id.widget_grid_left, prayerView(context, pair[0], true, nameWidth, dense, showIcon, nameLines))
-                pair.getOrNull(1)?.let { row.addView(R.id.widget_grid_right, prayerView(context, it, true, nameWidth, dense, showIcon, nameLines)) }
+                row.addView(R.id.widget_grid_left, prayerView(
+                    context, pair[0], true, nameWidth, dense, showIcon, nameLines, appearance.theme, preview,
+                    highlightLabel.takeIf { pair[0] == highlighted },
+                ))
+                pair.getOrNull(1)?.let { prayer ->
+                    row.addView(R.id.widget_grid_right, prayerView(
+                        context, prayer, true, nameWidth, dense, showIcon, nameLines, appearance.theme, preview,
+                        highlightLabel.takeIf { prayer == highlighted },
+                    ))
+                }
+                for (viewId in listOf(R.id.widget_grid_divider, R.id.widget_grid_column_divider)) {
+                    tint(context, row, viewId, "setBackgroundColor", appearance.theme, preview, 0x331E2028, 0x33FFFFFF)
+                }
                 row.setViewVisibility(R.id.widget_grid_divider, if (index == pairs.lastIndex) View.GONE else View.VISIBLE)
                 row.setViewVisibility(R.id.widget_grid_column_divider, if (pair.size == 2) View.VISIBLE else View.GONE)
                 views.addView(R.id.widget_rows, row)
             }
         } else {
             for ((index, prayer) in visible.withIndex()) {
-                val row = prayerView(context, prayer, false, nameWidth, dense, nameLines = nameLines)
+                val row = prayerView(context, prayer, false, nameWidth, dense, showIcon, nameLines,
+                    theme = appearance.theme, preview = preview, highlightLabel = highlightLabel.takeIf { prayer == highlighted })
                 row.setViewVisibility(R.id.widget_list_divider, if (index == visible.lastIndex) View.GONE else View.VISIBLE)
                 views.addView(R.id.widget_rows, row)
             }
@@ -346,6 +482,7 @@ internal object PrayerWidgetRenderer {
 
     private fun calendarHeader(
         context: Context, width: Float, city: String, weekday: String, calendar: Calendar, locale: Locale,
+        showLogo: Boolean,
     ): Header? {
         val density = context.resources.displayMetrics.density
         val contentWidth = width - headerHorizontalInsets
@@ -364,7 +501,7 @@ internal object PrayerWidgetRenderer {
         val cityStackHeight = cityImage.height + weekdayImage.height
         val logoHeight = cityStackHeight * logoHeightRatio / density
         val logoWidth = logoHeight * logoBounds.width() / logoBounds.height()
-        val logo = if (spareWidth >= logoWidth + 7f) {
+        val logo = if (showLogo && spareWidth >= logoWidth + 7f) {
             image(context, R.drawable.widget_logo, logoWidth, logoHeight, logoBounds)
         } else null
         val textHeight = max(cityStackHeight, max(date.height, month.height + year.height)) / density
@@ -387,15 +524,16 @@ internal object PrayerWidgetRenderer {
 
     private fun fitBody(
         context: Context, width: Float, height: Float, statusHeight: Float, grid: Boolean, rows: List<WidgetPrayer>,
+        showPictures: Boolean,
     ): Body {
         val dense = if (grid) width < 300f || height - 16f < 3 * 64f
             else width < 240f || height - 16f < 6 * 39f
-        val showIcon = if (grid) width >= 300f else !dense
+        val showIcon = showPictures && (if (grid) width >= 300f else !dense)
         val nameSize = if (grid) { if (dense) 12f else 13f } else if (dense) 14f else 16f
         val timeSize = if (dense) 16f else 21f
         val minimumTimeWidth = measure(context, "23:59", timeSize, 700) + 2f
-        val nameWidth = if (grid) (width - 33f) / 2f - 16f - (if (showIcon) 33f else 0f)
-            else width - 36f - (if (showIcon) 36f else 0f) - minimumTimeWidth
+        val nameWidth = if (grid) (width - 27f) / 2f - 16f - (if (showIcon) 33f else 0f)
+            else width - 39f - (if (showIcon) 36f else 0f) - minimumTimeWidth
         val blank = Body(dense, showIcon, nameWidth, emptyList())
         if (rows.isEmpty() || nameWidth < 30f || (grid && nameWidth < minimumTimeWidth)) return blank
 
@@ -424,9 +562,15 @@ internal object PrayerWidgetRenderer {
 
     private fun prayerView(
         context: Context, prayer: WidgetPrayer, grid: Boolean, nameWidth: Float, dense: Boolean,
-        showIcon: Boolean = !dense, nameLines: Int,
+        showIcon: Boolean, nameLines: Int, theme: CountdownTheme, preview: Boolean,
+        highlightLabel: String?,
     ): RemoteViews {
         val views = RemoteViews(context.packageName, if (grid) R.layout.prayer_widget_tile else R.layout.prayer_widget_list_row)
+        val panelId = if (grid) R.id.widget_prayer_row else R.id.widget_prayer_content
+        views.setInt(panelId, "setBackgroundResource", if (highlightLabel != null) R.drawable.widget_next_prayer_highlight else 0)
+        if (highlightLabel != null) {
+            tint(context, views, panelId, "setBackgroundTintList", theme, preview, 0xFF256047.toInt(), 0xFF45B985.toInt())
+        }
         val index = kinds.indexOf(prayer.kind)
         views.setViewVisibility(R.id.widget_prayer_icon, if (showIcon) View.VISIBLE else View.GONE)
         if (dense) {
@@ -443,8 +587,31 @@ internal object PrayerWidgetRenderer {
         views.setImageViewBitmap(R.id.widget_prayer_time, textBitmap(context, prayer.time ?: "—", timeSize,
             measure(context, "23:59", timeSize, 700) + 2f,
             end = !grid, fill = false, weight = 700))
-        views.setContentDescription(R.id.widget_prayer_row, "${prayer.name}, ${prayer.time ?: "—"}, ${prayer.eventDate}")
+        views.setContentDescription(R.id.widget_prayer_row,
+            listOfNotNull(prayer.name, prayer.time ?: "—", prayer.eventDate, highlightLabel).joinToString(", "))
+        for (viewId in listOf(R.id.widget_prayer_name, R.id.widget_prayer_time)) {
+            tint(context, views, viewId, "setColorFilter", theme, preview, 0xFF1E2028.toInt(), 0xFFFCFCFF.toInt())
+        }
+        if (!grid) tint(context, views, R.id.widget_list_divider, "setBackgroundColor", theme, preview, 0x331E2028, 0x33FFFFFF)
         return views
+    }
+
+    private fun tint(
+        context: Context, views: RemoteViews, id: Int, method: String, theme: CountdownTheme,
+        preview: Boolean, light: Int, dark: Int,
+    ) {
+        val night = context.applicationContext.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK == Configuration.UI_MODE_NIGHT_YES
+        val fixed = if (theme == CountdownTheme.DARK || theme == CountdownTheme.SYSTEM && night) dark else light
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            val adaptive = theme == CountdownTheme.SYSTEM && !preview
+            val dayColor = if (adaptive) light else fixed
+            val nightColor = if (adaptive) dark else fixed
+            if (method == "setBackgroundTintList") {
+                views.setColorStateList(id, method, ColorStateList.valueOf(dayColor), ColorStateList.valueOf(nightColor))
+            } else views.setColorInt(id, method, dayColor, nightColor)
+        } else if (method != "setBackgroundTintList") {
+            views.setInt(id, method, fixed)
+        }
     }
 
     private fun dp(context: Context, value: Float): Int =

@@ -9,6 +9,7 @@ import android.content.Intent
 import android.content.res.Configuration
 import android.graphics.drawable.BitmapDrawable
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -51,14 +52,34 @@ class CountdownSettingsActivity : Activity() {
         super.onCreate(savedInstanceState)
         val manager = AppWidgetManager.getInstance(this)
         val id = intent.getIntExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, AppWidgetManager.INVALID_APPWIDGET_ID)
-        val provider = ComponentName(this, PrayerCountdownWidget::class.java)
-        val size = intent.extras?.getSizeF(extraSize)
-        if (manager.getAppWidgetInfo(id)?.provider != provider || size == null ||
-            size.width <= 0f || size.height <= 0f) {
+        val provider = manager.getAppWidgetInfo(id)?.provider
+        val layout = when (provider) {
+            ComponentName(this, PrayerCountdownWidget::class.java) -> PrayerWidgetLayout.COUNTDOWN
+            ComponentName(this, PrayerListWidget::class.java) -> PrayerWidgetLayout.LIST
+            ComponentName(this, PrayerGridWidget::class.java) -> PrayerWidgetLayout.GRID
+            else -> null
+        }
+        if (layout == null) {
             finish()
             return
         }
-        val hostScale = intent.getFloatExtra(extraScale, 1f)
+        val options = manager.getAppWidgetOptions(id)
+        val landscape = resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE
+        @Suppress("DEPRECATION")
+        val sizes = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S)
+            options.getParcelableArrayList<SizeF>(AppWidgetManager.OPTION_APPWIDGET_SIZES) else null
+        val size = intent.extras?.getSizeF(extraSize)
+            ?: (if (landscape) sizes?.maxByOrNull { it.width } else sizes?.minByOrNull { it.width })
+            ?: SizeF(
+                options.getInt(if (landscape) AppWidgetManager.OPTION_APPWIDGET_MAX_WIDTH else AppWidgetManager.OPTION_APPWIDGET_MIN_WIDTH, 240).toFloat(),
+                options.getInt(if (landscape) AppWidgetManager.OPTION_APPWIDGET_MIN_HEIGHT else AppWidgetManager.OPTION_APPWIDGET_MAX_HEIGHT, 240).toFloat(),
+            )
+        if (!size.width.isFinite() || !size.height.isFinite() || size.width <= 0f || size.height <= 0f) {
+            finish()
+            return
+        }
+        val countdown = layout == PrayerWidgetLayout.COUNTDOWN
+        val hostScale = options.getFloat("hsResizeRatio", intent.getFloatExtra(extraScale, 1f)).coerceIn(.5f, 2f)
         val data = HomeWidgetPlugin.getData(this)
         var appearance = PrayerCountdown.appearance(data, id)
         var previewOpacity = appearance.opacity
@@ -76,9 +97,16 @@ class CountdownSettingsActivity : Activity() {
         ViewCompat.requestApplyInsets(screen)
 
         val stage = findViewById<FrameLayout>(R.id.widget_countdown_preview)
-        var previewRenderer = PrayerWidgetRenderer.countdownPreview(this, data)
-        val preview = previewRenderer.views(size, hostScale, appearance, null).apply(this, stage)
+        var previewRenderer = if (countdown) PrayerWidgetRenderer.countdownPreview(this, data) else null
+        fun previewViews(updated: CountdownAppearance) = previewRenderer?.views(size, hostScale, updated, null)
+            ?: PrayerWidgetRenderer.timetablePreview(this, data, id, size, hostScale, layout == PrayerWidgetLayout.GRID, updated)
+        val preview = previewViews(appearance).apply(this, stage)
         val density = resources.displayMetrics.density
+        if (!countdown) {
+            stage.layoutParams = stage.layoutParams.apply {
+                height = (minOf(size.height * hostScale + 32f, 320f) * density).roundToInt()
+            }
+        }
         val width = (size.width * density).roundToInt().coerceAtLeast(1)
         val height = (size.height * density).roundToInt().coerceAtLeast(1)
         stage.addView(preview, FrameLayout.LayoutParams(width, height, Gravity.CENTER))
@@ -90,7 +118,7 @@ class CountdownSettingsActivity : Activity() {
             preview.scaleY = scale
         }
 
-        val background = preview.findViewById<View>(R.id.widget_countdown_background)
+        val background = preview.findViewById<View>(if (countdown) R.id.widget_countdown_background else R.id.widget_background)
         val slider = findViewById<SeekBar>(R.id.widget_countdown_transparency)
         val value = findViewById<TextView>(R.id.widget_countdown_transparency_value)
         val percent = NumberFormat.getPercentInstance(resources.configuration.locales[0])
@@ -103,7 +131,7 @@ class CountdownSettingsActivity : Activity() {
             PrayerCountdown.writeAppearance(editor, id, updated)
             editor.apply()
             appearance = updated
-            PrayerCountdownWidget().onUpdate(this, manager, intArrayOf(id))
+            PrayerWidgetRenderer.update(this, manager, intArrayOf(id), layout, data)
         }
 
         slider.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
@@ -141,13 +169,18 @@ class CountdownSettingsActivity : Activity() {
         showRingOptions(appearance.timeBased)
 
         fun redrawPreview(updated: CountdownAppearance) {
-            previewRenderer.views(size, hostScale, updated.copy(opacity = previewOpacity), null).reapply(this, preview)
+            previewViews(updated.copy(opacity = previewOpacity)).reapply(this, preview)
         }
 
         fun changeAppearance(updated: CountdownAppearance) {
             if (updated == appearance) return
             redrawPreview(updated)
             saveAppearance(updated)
+            if (!countdown) refreshPreview?.let {
+                previewHandler.removeCallbacks(it)
+                val at = PrayerWidgetRenderer.nextTimetablePreviewUpdate(data, appearance)
+                previewHandler.postDelayed(it, (at - System.currentTimeMillis()).coerceAtLeast(100L))
+            }
         }
 
         val themesById = mapOf(
@@ -160,6 +193,44 @@ class CountdownSettingsActivity : Activity() {
             setOnCheckedChangeListener { _, checkedId ->
                 themesById[checkedId]?.let { changeAppearance(appearance.copy(theme = it)) }
             }
+        }
+
+        if (!countdown) {
+            findViewById<View>(R.id.widget_countdown_ring_card).visibility = View.GONE
+            findViewById<View>(R.id.widget_countdown_show_prayer_time).visibility = View.GONE
+            findViewById<Switch>(R.id.widget_countdown_show_prayer_icon).apply {
+                isChecked = appearance.showPrayerIcon
+                setText(R.string.widget_timetable_show_pictures)
+                setOnCheckedChangeListener { _, checked -> changeAppearance(appearance.copy(showPrayerIcon = checked)) }
+            }
+            findViewById<Switch>(R.id.widget_timetable_include_night_times).apply {
+                visibility = View.VISIBLE
+                isChecked = appearance.includeNightTimes
+                setOnCheckedChangeListener { _, checked -> changeAppearance(appearance.copy(includeNightTimes = checked)) }
+            }
+            findViewById<Switch>(R.id.widget_timetable_show_app_logo).apply {
+                visibility = View.VISIBLE
+                isChecked = appearance.showAppLogo
+                setOnCheckedChangeListener { _, checked -> changeAppearance(appearance.copy(showAppLogo = checked)) }
+            }
+            findViewById<Switch>(R.id.widget_timetable_highlight_next).apply {
+                visibility = View.VISIBLE
+                isChecked = appearance.highlightNext
+                setOnCheckedChangeListener { _, checked ->
+                    changeAppearance(appearance.copy(highlightNext = checked))
+                }
+            }
+            findViewById<View>(R.id.widget_timetable_night_times_info).visibility = View.VISIBLE
+            refreshPreview = object : Runnable {
+                override fun run() {
+                    redrawPreview(appearance)
+                    PrayerWidgetRenderer.update(this@CountdownSettingsActivity, manager, intArrayOf(id), layout, data)
+                    val at = PrayerWidgetRenderer.nextTimetablePreviewUpdate(data, appearance)
+                    previewHandler.postDelayed(this, (at - System.currentTimeMillis()).coerceAtLeast(100L))
+                }
+            }
+            setResult(RESULT_OK, Intent().putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, id))
+            return
         }
 
         ringModes.setOnCheckedChangeListener { _, checkedId ->
@@ -223,7 +294,7 @@ class CountdownSettingsActivity : Activity() {
             override fun run() {
                 previewRenderer = PrayerWidgetRenderer.countdownPreview(this@CountdownSettingsActivity, data)
                 redrawPreview(appearance)
-                previewRenderer.nextMinute?.let {
+                previewRenderer?.nextMinute?.let {
                     previewHandler.postDelayed(this, (it - System.currentTimeMillis()).coerceAtLeast(100L))
                 }
             }

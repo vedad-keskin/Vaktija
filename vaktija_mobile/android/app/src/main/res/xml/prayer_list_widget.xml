@@ -1,4 +1,6 @@
 <appwidget-provider xmlns:android="http://schemas.android.com/apk/res/android"
+    android:configure="com.vaktija.app.widgets.CountdownSettingsActivity"
+    android:widgetFeatures="reconfigurable|configuration_optional"
     android:description="@string/widget_list_description"
     android:initialLayout="@layout/prayer_widget_list"
     android:minWidth="240dp"

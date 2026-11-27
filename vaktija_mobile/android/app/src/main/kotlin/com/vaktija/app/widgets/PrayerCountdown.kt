@@ -57,6 +57,9 @@ internal data class CountdownAppearance(
     val showPrayerTime: Boolean,
     val showPrayerIcon: Boolean,
     val theme: CountdownTheme,
+    val includeNightTimes: Boolean,
+    val showAppLogo: Boolean,
+    val highlightNext: Boolean,
 )
 
 internal object PrayerCountdown {
@@ -106,6 +109,9 @@ internal object PrayerCountdown {
     private fun prayerTimeKey(id: Int) = "vaktija.widgets.countdown.showPrayerTime.$id"
     private fun prayerIconKey(id: Int) = "vaktija.widgets.countdown.showPrayerIcon.$id"
     private fun themeKey(id: Int) = "vaktija.widgets.countdown.theme.$id"
+    private fun nightTimesKey(id: Int) = "vaktija.widgets.timetable.includeNightTimes.$id"
+    private fun appLogoKey(id: Int) = "vaktija.widgets.timetable.showAppLogo.$id"
+    private fun highlightKey(id: Int) = "vaktija.widgets.timetable.highlightNext.$id"
 
     fun isWide(size: SizeF, hostScale: Float) = size.width * hostScale >= wideWidth
 
@@ -119,6 +125,9 @@ internal object PrayerCountdown {
             showPrayerTime = data.getBoolean(prayerTimeKey(id), false),
             showPrayerIcon = data.getBoolean(prayerIconKey(id), true),
             theme = CountdownTheme.entries.firstOrNull { it.name == theme } ?: CountdownTheme.SYSTEM,
+            includeNightTimes = data.getBoolean(nightTimesKey(id), true),
+            showAppLogo = data.getBoolean(appLogoKey(id), true),
+            highlightNext = data.getBoolean(highlightKey(id), false),
         )
     }
 
@@ -129,6 +138,9 @@ internal object PrayerCountdown {
             .putBoolean(prayerTimeKey(id), appearance.showPrayerTime)
             .putBoolean(prayerIconKey(id), appearance.showPrayerIcon)
             .putString(themeKey(id), appearance.theme.name)
+            .putBoolean(nightTimesKey(id), appearance.includeNightTimes)
+            .putBoolean(appLogoKey(id), appearance.showAppLogo)
+            .putBoolean(highlightKey(id), appearance.highlightNext)
     }
 
     fun removeAppearance(editor: SharedPreferences.Editor, id: Int) {
@@ -138,6 +150,9 @@ internal object PrayerCountdown {
             .remove(prayerTimeKey(id))
             .remove(prayerIconKey(id))
             .remove(themeKey(id))
+            .remove(nightTimesKey(id))
+            .remove(appLogoKey(id))
+            .remove(highlightKey(id))
     }
 
     private fun RemoteViews.setPalette(context: Context, theme: CountdownTheme, preview: Boolean) {
@@ -182,10 +197,7 @@ internal object PrayerCountdown {
         yesterday: List<WidgetPrayer>?, today: List<WidgetPrayer>?, tomorrow: List<WidgetPrayer>?,
         previousIsha: String?, prayerIcon: (String) -> Int,
     ): Render {
-        val parser = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.ROOT).apply {
-            isLenient = false
-            timeZone = TimeZone.getTimeZone("UTC")
-        }
+        val parser = timestampParser()
         val currentDay = prayers(today, parser)
         val next = currentDay?.firstOrNull { it.at > now }
             ?: currentDay?.let { prayers(tomorrow, parser)?.firstOrNull { it.at > now } }
@@ -386,7 +398,12 @@ internal object PrayerCountdown {
         return events.distinctBy { it.kind }.sortedBy { it.at }
     }
 
-    private fun parseTime(timestamp: String?, parser: SimpleDateFormat): Long? {
+    fun timestampParser() = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.ROOT).apply {
+        isLenient = false
+        timeZone = TimeZone.getTimeZone("UTC")
+    }
+
+    fun parseTime(timestamp: String?, parser: SimpleDateFormat): Long? {
         if (timestamp == null || !utcTimestamp.matches(timestamp)) return null
         return parser.parse(timestamp.take(23) + "Z", ParsePosition(0))?.time
     }

@@ -147,6 +147,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/widget_countdown_ring_card"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
@@ -206,6 +207,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/widget_countdown_display_card"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
@@ -254,6 +256,52 @@
                     android:saveEnabled="false"
                     android:text="@string/widget_countdown_show_prayer_icon"
                     android:textColor="@color/countdown_option_text" />
+
+                <Switch
+                    android:id="@+id/widget_timetable_show_app_logo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    android:gravity="center_vertical"
+                    android:minHeight="56dp"
+                    android:saveEnabled="false"
+                    android:text="@string/widget_timetable_show_app_logo"
+                    android:textColor="@color/countdown_option_text"
+                    android:visibility="gone" />
+
+                <Switch
+                    android:id="@+id/widget_timetable_highlight_next"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    android:gravity="center_vertical"
+                    android:minHeight="56dp"
+                    android:saveEnabled="false"
+                    android:text="@string/widget_timetable_highlight_next"
+                    android:textColor="@color/countdown_option_text"
+                    android:visibility="gone" />
+
+                <Switch
+                    android:id="@+id/widget_timetable_include_night_times"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    android:gravity="center_vertical"
+                    android:minHeight="56dp"
+                    android:saveEnabled="false"
+                    android:text="@string/widget_timetable_include_night_times"
+                    android:textColor="@color/countdown_option_text"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/widget_timetable_night_times_info"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="10dp"
+                    android:text="@string/widget_timetable_night_times_info"
+                    android:textAppearance="@android:style/TextAppearance.Material.Caption"
+                    android:textColor="?android:attr/textColorPrimary"
+                    android:visibility="gone" />
             </LinearLayout>
         </LinearLayout>
     </ScrollView>

@@ -32,9 +32,13 @@
         <activity
             android:name=".widgets.CountdownSettingsActivity"
             android:excludeFromRecents="true"
-            android:exported="false"
+            android:exported="true"
             android:taskAffinity=""
-            android:theme="@style/CountdownSettingsTheme" />
+            android:theme="@style/CountdownSettingsTheme">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE" />
+            </intent-filter>
+        </activity>
         <!-- Don't delete the meta-data below.
              This is used by the Flutter tool to generate GeneratedPluginRegistrant.java -->
         <meta-data
