@@ -122,6 +122,8 @@ class _VaktijaAppState extends State<VaktijaApp> {
 
   ThemeData _theme(VaktijaPalette colors) => ThemeData(
     fontFamily: 'Vaktija Sans',
+    splashFactory: NoSplash.splashFactory,
+    highlightColor: Colors.transparent,
     textTheme: const TextTheme(
       bodyMedium: TextStyle(letterSpacing: 0),
       bodyLarge: TextStyle(letterSpacing: 0),

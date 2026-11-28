@@ -1,10 +1,14 @@
 import 'dart:async';
 
+import 'package:flutter/foundation.dart' show setEquals;
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import '../../app/vaktija_palette.dart';
+import 'prayer_reminders.dart';
 import 'prayer_repository.dart';
 import 'prayer_timetable_view.dart';
+import 'prayer_widgets.dart';
 import 'timetable.dart';
 
 class PrayerPage extends StatefulWidget {
@@ -14,6 +18,7 @@ class PrayerPage extends StatefulWidget {
     required this.city,
     required this.method,
     required this.labels,
+    this.reminders,
     this.fullscreen = false,
     this.fullscreenMotion,
     this.fullscreenRowsMotion,
@@ -25,6 +30,7 @@ class PrayerPage extends StatefulWidget {
   final PrayerCity city;
   final PrayerMethod? method;
   final PrayerLabels labels;
+  final PrayerReminders? reminders;
   final bool fullscreen;
   final Animation<double>? fullscreenMotion;
   final Animation<double>? fullscreenRowsMotion;
@@ -34,19 +40,36 @@ class PrayerPage extends StatefulWidget {
   State<PrayerPage> createState() => _PrayerPageState();
 }
 
-class _PrayerPageState extends State<PrayerPage> {
+class _PrayerPageState extends State<PrayerPage> with WidgetsBindingObserver {
   late DateTime _now;
   final _days = <String, AsyncSnapshot<List<PrayerTime>>>{};
   final _regularScroll = ScrollController();
   final _countdownKey = GlobalKey();
   double _regularOffset = 0;
   Timer? _clock;
+  late final _reminders =
+      widget.reminders ?? PrayerReminders(widget.repository.preferences);
+  late Set<String> _visibleReminders = _reminders.enabled;
+  bool _savingReminders = false;
+  bool _saveRequested = false;
+  bool _refreshRequested = false;
+  bool _requestingReminderPermission = false;
+  bool _reminderPermissionGranted = false;
+  int _permissionCheck = 0;
+
+  bool get _supportsReminders =>
+      widget.reminders != null || PrayerReminders.supported;
 
   @override
   void initState() {
     super.initState();
+    WidgetsBinding.instance.addObserver(this);
     _now = widget.repository.now();
     _loadWindow();
+    if (_supportsReminders) {
+      unawaited(_checkReminderPermission());
+      _refreshReminders(refresh: true);
+    }
     _clock = Timer.periodic(const Duration(seconds: 1), (_) {
       final now = widget.repository.now();
       setState(() {
@@ -71,6 +94,157 @@ class _PrayerPageState extends State<PrayerPage> {
       _days.clear();
       _now = widget.repository.now();
       _loadWindow();
+    }
+    if (widget.city != oldWidget.city ||
+        widget.method != oldWidget.method ||
+        widget.labels.bosnian != oldWidget.labels.bosnian) {
+      _refreshReminders();
+    }
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    if (state == AppLifecycleState.resumed &&
+        _supportsReminders &&
+        !_requestingReminderPermission) {
+      unawaited(_checkReminderPermission());
+      _refreshReminders(refresh: true);
+    }
+  }
+
+  Future<void> _checkReminderPermission() async {
+    final check = ++_permissionCheck;
+    _reminderPermissionGranted = false;
+    try {
+      final permission = await _reminders.checkPermission();
+      if (mounted && check == _permissionCheck) {
+        _reminderPermissionGranted = permission == ReminderPermission.granted;
+      }
+    } catch (error) {
+      debugPrint('Could not check prayer reminder permission: $error');
+    }
+  }
+
+  void _refreshReminders({bool refresh = false}) {
+    if (_supportsReminders && _visibleReminders.isNotEmpty) {
+      _refreshRequested = _refreshRequested || refresh;
+      _queueReminderSave();
+    }
+  }
+
+  void _queueReminderSave() {
+    _saveRequested = true;
+    if (!_savingReminders) unawaited(_saveReminders());
+  }
+
+  Future<void> _saveReminders() async {
+    _savingReminders = true;
+    try {
+      while (_saveRequested) {
+        // A newer tap can replace the pending selection while a write is open.
+        await Future<void>.delayed(Duration.zero);
+        if (!mounted || widget.method == null) return;
+        _saveRequested = false;
+        final selection = _visibleReminders;
+        final refresh = _refreshRequested;
+        _refreshRequested = false;
+        try {
+          await PrayerWidgets.initialize();
+          if (!mounted || widget.method == null) return;
+          await _reminders.save(
+            widget.city,
+            widget.method!,
+            widget.labels,
+            selection,
+            refresh: refresh,
+          );
+        } catch (error) {
+          debugPrint('Could not update prayer reminders: $error');
+          if (mounted &&
+              identical(selection, _visibleReminders) &&
+              !setEquals(selection, _reminders.enabled)) {
+            setState(() => _visibleReminders = _reminders.enabled);
+            _showReminderSaveError();
+          }
+        }
+      }
+    } finally {
+      _savingReminders = false;
+    }
+  }
+
+  void _changeReminder(String key, {required bool enabled}) {
+    final selection = {..._visibleReminders};
+    final changed = enabled ? selection.add(key) : selection.remove(key);
+    if (!changed) return;
+    setState(() => _visibleReminders = selection);
+    _queueReminderSave();
+  }
+
+  void _showReminderSaveError() {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(
+          widget.labels.bosnian
+              ? 'Nije moguće sačuvati obavijest.'
+              : 'Could not save the reminder.',
+        ),
+      ),
+    );
+  }
+
+  Future<void> _toggleReminder(PrayerKind kind, PrayerReminder reminder) async {
+    final key = reminder.key(kind);
+    final enabled = _visibleReminders.contains(key);
+    if (enabled || _reminderPermissionGranted) {
+      _changeReminder(key, enabled: !enabled);
+      return;
+    }
+    if (_requestingReminderPermission) return;
+    _requestingReminderPermission = true;
+    _permissionCheck++;
+    final bosnian = widget.labels.bosnian;
+    try {
+      final permission = await _reminders.requestPermission();
+      if (!mounted) return;
+      _reminderPermissionGranted = permission == ReminderPermission.granted;
+      if (_reminderPermissionGranted) {
+        _changeReminder(key, enabled: true);
+        return;
+      }
+      final askForNotifications =
+          permission == ReminderPermission.notifications;
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(
+            askForNotifications
+                ? (bosnian
+                      ? 'Dozvolite obavijesti za Vaktiju.'
+                      : 'Allow notifications for Vaktija.')
+                : (bosnian
+                      ? 'Dozvolite tačne alarme za podsjetnike.'
+                      : 'Allow exact alarms for prayer reminders.'),
+          ),
+          action: SnackBarAction(
+            label: bosnian ? 'Postavke' : 'Settings',
+            onPressed: () {
+              if (askForNotifications) {
+                unawaited(
+                  const MethodChannel(
+                    'vaktija/app',
+                  ).invokeMethod<void>('openNotificationSettings'),
+                );
+              } else {
+                unawaited(_toggleReminder(kind, reminder));
+              }
+            },
+          ),
+        ),
+      );
+    } catch (error) {
+      if (mounted) _showReminderSaveError();
+    } finally {
+      _requestingReminderPermission = false;
     }
   }
 
@@ -125,6 +299,7 @@ class _PrayerPageState extends State<PrayerPage> {
 
   @override
   void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
     _clock?.cancel();
     _regularScroll.dispose();
     super.dispose();
@@ -192,6 +367,10 @@ class _PrayerPageState extends State<PrayerPage> {
       rowMotion: widget.fullscreenRowsMotion,
       regularScroll: _regularScroll,
       regularOffset: _regularOffset,
+      reminderSelections: _supportsReminders ? _visibleReminders : const {},
+      onToggleReminder: _supportsReminders && widget.method != null
+          ? _toggleReminder
+          : null,
       onToggleFullscreen: widget.fullscreen
           ? widget.onExitFullscreen
           : widget.onEnterFullscreen,

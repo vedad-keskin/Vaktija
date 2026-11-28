@@ -26,6 +26,7 @@
         <item name="android:colorBackground">@android:color/white</item>
         <item name="android:windowBackground">?android:attr/colorBackground</item>
         <item name="android:colorAccent">#256047</item>
+        <item name="android:colorControlHighlight">@android:color/transparent</item>
         <item name="android:textColorPrimary">#181818</item>
         <item name="android:textColorSecondary">#555555</item>
         <item name="android:statusBarColor">?android:attr/colorBackground</item>

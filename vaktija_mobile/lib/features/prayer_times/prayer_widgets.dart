@@ -7,6 +7,7 @@ import 'package:home_widget/home_widget.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:workmanager/workmanager.dart';
 
+import 'prayer_reminders.dart';
 import 'prayer_repository.dart';
 import 'timetable.dart';
 
@@ -133,16 +134,22 @@ Map<String, Object?> _widgetPrayer(
 @pragma('vm:entry-point')
 void prayerWidgetDispatcher() {
   Workmanager().executeTask((task, input) async {
-    if (task != _syncTask && task != _dailyTask) return true;
     try {
+      if (task == PrayerReminders.dailyTask) {
+        await PrayerReminders.enqueueRefresh();
+        return true;
+      }
+      final reminders = task == PrayerReminders.syncTask;
+      if (!reminders && task != _syncTask && task != _dailyTask) return true;
       final preferences = await SharedPreferences.getInstance();
       await preferences.reload();
       final catalog = await PrayerCatalog.load();
-      return await PrayerWidgets(
-        PrayerRepository(catalog, preferences),
-      ).refresh();
+      final repository = PrayerRepository(catalog, preferences);
+      return reminders
+          ? await PrayerReminders.refresh(repository)
+          : await PrayerWidgets(repository).refresh();
     } catch (error, stack) {
-      debugPrint('Widget background update failed: $error\n$stack');
+      debugPrint('Prayer background update failed for $task: $error\n$stack');
       return false;
     }
   });

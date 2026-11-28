@@ -1,14 +1,18 @@
+import 'dart:math' as math;
 import 'dart:ui' show lerpDouble;
 
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
 import '../../app/vaktija_palette.dart';
+import 'prayer_reminder_card.dart';
+import 'prayer_reminders.dart';
 import 'timetable.dart';
 
 const _tabular = [FontFeature.tabularFigures()];
 const _trailX = 10.0;
 const _trailGutter = 26.0;
+const _reminderStripTop = 3.0;
 
 class PrayerTimetableView extends StatelessWidget {
   const PrayerTimetableView({
@@ -25,6 +29,8 @@ class PrayerTimetableView extends StatelessWidget {
     this.regularScroll,
     this.regularOffset = 0,
     this.countdownKey,
+    this.reminderSelections = const {},
+    this.onToggleReminder,
     required this.onToggleFullscreen,
   });
 
@@ -39,6 +45,8 @@ class PrayerTimetableView extends StatelessWidget {
   final ScrollController? regularScroll;
   final double regularOffset;
   final Key? countdownKey;
+  final Set<String> reminderSelections;
+  final void Function(PrayerKind, PrayerReminder)? onToggleReminder;
   final VoidCallback onToggleFullscreen;
 
   @override
@@ -232,6 +240,7 @@ class PrayerTimetableView extends StatelessWidget {
       stops: [
         for (final time in rows)
           _PrayerStop(
+            key: ValueKey(time.kind),
             time: time,
             density: density,
             fullscreen: compact,
@@ -252,6 +261,12 @@ class PrayerTimetableView extends StatelessWidget {
             progress: time == current
                 ? countdown!.progress
                 : (elapsed(time) ? 1 : 0),
+            labels: labels,
+            reminderSelections: reminderSelections,
+            onToggleReminder:
+                !compact && PrayerReminders.availableFor(time.kind)
+                ? onToggleReminder
+                : null,
           ),
       ],
     );
@@ -675,6 +690,7 @@ class _PrayerDensity {
 
 class _PrayerStop extends StatelessWidget {
   const _PrayerStop({
+    super.key,
     required this.time,
     required this.density,
     required this.fullscreen,
@@ -686,6 +702,9 @@ class _PrayerStop extends StatelessWidget {
     required this.elapsed,
     required this.dimmed,
     required this.progress,
+    required this.labels,
+    required this.reminderSelections,
+    required this.onToggleReminder,
   });
 
   final PrayerTime time;
@@ -695,6 +714,9 @@ class _PrayerStop extends StatelessWidget {
   final String? badge;
   final bool current, next, elapsed, dimmed;
   final double progress;
+  final PrayerLabels labels;
+  final Set<String> reminderSelections;
+  final void Function(PrayerKind, PrayerReminder)? onToggleReminder;
 
   @override
   Widget build(BuildContext context) {
@@ -719,123 +741,238 @@ class _PrayerStop extends StatelessWidget {
         height: 1.15,
       ),
     );
+    final decoration = BoxDecoration(
+      color: next ? colors.next : null,
+      gradient: next
+          ? null
+          : LinearGradient(
+              colors: [colors.panel, colors.surface],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+            ),
+      borderRadius: BorderRadius.circular(12),
+      border: Border.all(color: border),
+    );
+    final prayerName = Text(
+      name,
+      style: TextStyle(
+        color: foreground,
+        fontSize: density.mix(12, 14),
+        fontWeight: FontWeight.w500,
+        height: density.mix(1.15, 1.3),
+      ),
+    );
+    final status = badge == null
+        ? null
+        : Text(
+            badge!.toUpperCase(),
+            style: TextStyle(
+              color: next ? colors.gold : colors.accent,
+              fontSize: density.mix(8.5, 10),
+              height: 1.15,
+              fontWeight: FontWeight.w700,
+              letterSpacing: .8,
+            ),
+          );
+    final statusGap = density.mix(1, 4);
+    final title = Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        prayerName,
+        if (status != null) ...[SizedBox(height: statusGap), status],
+      ],
+    );
+    final relativeTime = Text(
+      relative,
+      textAlign: TextAlign.right,
+      style: TextStyle(
+        color: colors.muted,
+        fontSize: density.mix(10, 12),
+        height: 1.15,
+      ),
+    );
+    final illustration = Image.asset(
+      '$prayerAssets/${time.kind.name}.png',
+      width: imageSize,
+      height: fullscreen ? imageSize : null,
+      excludeFromSemantics: true,
+    );
 
-    return Padding(
-      padding: const EdgeInsets.only(left: _trailGutter),
-      child: Container(
-        constraints: BoxConstraints(minHeight: density.height),
-        decoration: BoxDecoration(
-          color: next ? colors.next : null,
-          gradient: next
-              ? null
-              : LinearGradient(
-                  colors: [colors.panel, colors.surface],
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
-                ),
-          borderRadius: BorderRadius.circular(12),
-          border: Border.all(color: border),
+    Widget withHighlight(Widget child) => Stack(
+      children: [
+        if (next)
+          Positioned(
+            left: 0,
+            top: 0,
+            bottom: 0,
+            width: 2,
+            child: ColoredBox(color: colors.gold),
+          ),
+        child,
+      ],
+    );
+
+    final horizontalPadding = density.mix(8, spacious ? 12 : 10);
+    final illustrationGap = density.mix(7, spacious ? 10 : 8);
+    final timeColumn = Column(
+      crossAxisAlignment: CrossAxisAlignment.end,
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        if (fullscreen)
+          FittedBox(
+            fit: BoxFit.scaleDown,
+            alignment: Alignment.centerRight,
+            child: clock,
+          )
+        else
+          clock,
+        if (showRelative) ...[
+          SizedBox(height: density.mix(1, 3)),
+          relativeTime,
+        ],
+      ],
+    );
+
+    Widget row(Widget image, Widget name, Widget timing) => Row(
+      children: [
+        image,
+        SizedBox(width: illustrationGap),
+        Expanded(flex: 6, child: name),
+        const SizedBox(width: 6),
+        Flexible(
+          flex: 4,
+          child: Align(alignment: Alignment.centerRight, child: timing),
         ),
-        clipBehavior: Clip.antiAlias,
-        child: Stack(
+      ],
+    );
+
+    Size measure(Text label, double width) {
+      final painter = TextPainter(
+        text: TextSpan(
+          text: label.data,
+          style: DefaultTextStyle.of(context).style.merge(label.style),
+        ),
+        textDirection: Directionality.of(context),
+        textScaler: MediaQuery.textScalerOf(context),
+        textWidthBasis: TextWidthBasis.longestLine,
+        maxLines: label.maxLines,
+      )..layout(maxWidth: width);
+      final size = painter.size;
+      painter.dispose();
+      return size;
+    }
+
+    Widget front([Widget? bells]) {
+      final original = Padding(
+        padding: EdgeInsets.symmetric(
+          horizontal: horizontalPadding,
+          vertical: verticalPadding,
+        ),
+        child: ConstrainedBox(
+          constraints: BoxConstraints(
+            minHeight: density.height - verticalPadding * 2 - 2,
+          ),
+          child: row(illustration, title, timeColumn),
+        ),
+      );
+      if (bells == null) return withHighlight(original);
+
+      return withHighlight(
+        Stack(
           children: [
-            if (next)
-              Positioned(
-                left: 0,
-                top: 0,
-                bottom: 0,
-                width: 2,
-                child: ColoredBox(color: colors.gold),
-              ),
-            Padding(
-              padding: EdgeInsets.symmetric(
-                horizontal: density.mix(8, spacious ? 12 : 10),
-                vertical: verticalPadding,
-              ),
-              child: ConstrainedBox(
-                constraints: BoxConstraints(
-                  minHeight: density.height - verticalPadding * 2 - 2,
-                ),
-                child: Row(
-                  children: [
-                    Image.asset(
-                      '$prayerAssets/${time.kind.name}.png',
-                      width: imageSize,
-                      height: fullscreen ? imageSize : null,
-                      excludeFromSemantics: true,
-                    ),
-                    SizedBox(width: density.mix(7, spacious ? 10 : 8)),
-                    Expanded(
-                      flex: 6,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            name,
-                            style: TextStyle(
-                              color: foreground,
-                              fontSize: density.mix(12, 14),
-                              fontWeight: FontWeight.w500,
-                              height: density.mix(1.15, 1.3),
-                            ),
-                          ),
-                          if (badge != null) ...[
-                            SizedBox(height: density.mix(1, 4)),
-                            Text(
-                              badge!.toUpperCase(),
-                              style: TextStyle(
-                                color: next ? colors.gold : colors.accent,
-                                fontSize: density.mix(8.5, 10),
-                                height: 1.15,
-                                fontWeight: FontWeight.w700,
-                                letterSpacing: .8,
-                              ),
-                            ),
-                          ],
-                        ],
-                      ),
-                    ),
-                    const SizedBox(width: 6),
-                    Flexible(
-                      flex: 4,
-                      child: Align(
-                        alignment: Alignment.centerRight,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.end,
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            if (fullscreen)
-                              FittedBox(
-                                fit: BoxFit.scaleDown,
-                                alignment: Alignment.centerRight,
-                                child: clock,
+            original,
+            Positioned.fill(
+              left: horizontalPadding,
+              right: horizontalPadding,
+              child: LayoutBuilder(
+                builder: (context, bounds) {
+                  final titleStart = imageSize + illustrationGap;
+                  final textWidth = math.max(
+                    0.0,
+                    bounds.maxWidth - titleStart - 6,
+                  );
+                  final nameSize = measure(prayerName, textWidth * .6);
+                  final statusSize = status == null
+                      ? Size.zero
+                      : measure(status, textWidth * .6);
+                  final titleHeight =
+                      nameSize.height +
+                      statusSize.height +
+                      (status == null ? 0 : statusGap);
+                  final roomAbove = math.max(
+                    0.0,
+                    (bounds.maxHeight - titleHeight) / 2,
+                  );
+                  final clockInset = measure(clock, textWidth * .4).width + 11;
+                  final titleEnd =
+                      titleStart +
+                      math.max(nameSize.width, statusSize.width) +
+                      4;
+                  final roomBeside = bounds.maxWidth - titleEnd - clockInset;
+                  // Give the bells whichever space fits best without moving the text.
+                  final above =
+                      roomAbove >=
+                          _reminderStripTop + prayerReminderStripHeight ||
+                      (roomBeside < prayerReminderStripWidth &&
+                          roomAbove / prayerReminderStripHeight >=
+                              roomBeside / prayerReminderStripWidth);
+                  final top = above
+                      ? (roomAbove - prayerReminderStripHeight).clamp(
+                          0.0,
+                          _reminderStripTop,
+                        )
+                      : _reminderStripTop;
+                  return Stack(
+                    children: [
+                      Positioned(
+                        top: top,
+                        left: above ? titleStart : titleEnd,
+                        right: clockInset,
+                        height: above
+                            ? math.min(
+                                prayerReminderStripHeight,
+                                roomAbove - top,
                               )
-                            else
-                              clock,
-                            if (showRelative) ...[
-                              SizedBox(height: density.mix(1, 3)),
-                              Text(
-                                relative,
-                                textAlign: TextAlign.right,
-                                style: TextStyle(
-                                  color: colors.muted,
-                                  fontSize: density.mix(10, 12),
-                                  height: 1.15,
-                                ),
-                              ),
-                            ],
-                          ],
+                            : prayerReminderStripHeight,
+                        child: Align(
+                          alignment: Alignment.centerRight,
+                          child: FittedBox(fit: BoxFit.scaleDown, child: bells),
                         ),
                       ),
-                    ),
-                  ],
-                ),
+                    ],
+                  );
+                },
               ),
             ),
           ],
         ),
-      ),
+      );
+    }
+
+    final toggle = onToggleReminder;
+    return Padding(
+      padding: const EdgeInsets.only(left: _trailGutter),
+      child: toggle == null
+          ? Container(
+              constraints: BoxConstraints(minHeight: density.height),
+              decoration: decoration,
+              clipBehavior: Clip.antiAlias,
+              child: front(),
+            )
+          : PrayerReminderCard(
+              name: name,
+              labels: labels,
+              decoration: decoration,
+              minHeight: density.height,
+              enabled: {
+                for (final reminder in PrayerReminder.values)
+                  if (reminderSelections.contains(reminder.key(time.kind)))
+                    reminder,
+              },
+              onToggle: (reminder) => toggle(time.kind, reminder),
+              front: front,
+            ),
     );
   }
 }

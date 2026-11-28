@@ -530,7 +530,10 @@ void main() {
         (widget) => widget is Image && widget.semanticLabel == 'Vaktija',
       ),
     );
-    expect(Theme.of(tester.element(splash)).brightness, Brightness.dark);
+    final appTheme = Theme.of(tester.element(splash));
+    expect(appTheme.brightness, Brightness.dark);
+    expect(appTheme.splashFactory, NoSplash.splashFactory);
+    expect(appTheme.highlightColor, Colors.transparent);
     expect(
       tester
           .widget<PrayerTimetableView>(find.byType(PrayerTimetableView))

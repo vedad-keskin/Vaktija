@@ -1,8 +1,10 @@
 package com.vaktija.app
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
+import android.provider.Settings
 import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
@@ -37,6 +39,18 @@ class MainActivity : FlutterActivity() {
                     @Suppress("DEPRECATION")
                     val info = packageManager.getPackageInfo(packageName, 0)
                     result.success(info.versionName)
+                } else if (call.method == "openNotificationSettings") {
+                    val settings = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                        Intent(Settings.ACTION_APP_NOTIFICATION_SETTINGS)
+                            .putExtra(Settings.EXTRA_APP_PACKAGE, packageName)
+                    } else {
+                        Intent(
+                            Settings.ACTION_APPLICATION_DETAILS_SETTINGS,
+                            Uri.fromParts("package", packageName, null),
+                        )
+                    }
+                    startActivity(settings)
+                    result.success(null)
                 } else {
                     result.notImplemented()
                 }
